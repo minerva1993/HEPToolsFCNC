@@ -68,7 +68,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     double cjmDEta = 0;
     double cjmDR = 0;
 
-    double aa, ab, ac, ad, ae, af, ag, ba, bb, bc, ca, cb, cc, da, db
+    double tmp[15] = {100,};
 
     //Selection Option
     bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -130,34 +130,34 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       }
     } 
       if( njets == 3 ) {
-        aa = njets;
-        ab = nbjets_m;
-        ac = nbjets_t;
-        ad = ncjets_m;
-        ae = jDPhi;
-        af = jDEta;
-        ag = jDR;
+        tmp[0] = njets;
+        tmp[1] = nbjets_m;
+        tmp[2] = nbjets_t;
+        tmp[3] = ncjets_m;
+        tmp[4] = jDPhi;
+        tmp[5] = jDEta;
+        tmp[6] = jDR;
 
         if( nbjets_m >1 ){
-          ba = bjmDPhi;
-          bb = bjmDEta;
-          bc = bjmDR;
+          tmp[7] = bjmDPhi;
+          tmp[8] = bjmDEta;
+          tmp[9] = bjmDR;
         }
         if( nbjets_t >1 ){
-          ca = bjtDPhi;
-          cb = bjmDEta;
-          cc = bjmDR;
+          tmp[10] = bjtDPhi;
+          tmp[11] = bjmDEta;
+          tmp[12] = bjmDR;
         }
         if( ncjets_m >1 ){
-          da = cjmDPhi;
-          db = cjmDEta;
+          tmp[13] = cjmDPhi;
+          tmp[14] = cjmDEta;
         }
-
-    bkg_ttbb->Fill(aa,ab,ac,ad,ae,af,ag,ba,bb,bc,ca,cb,cc,da,db);
       }
+    }
+    bkg_ttbb->Fill(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7],tmp[8],tmp[9],tmp[10],tmp[11],tmp[12],tmp[13],tmp[14]);
+    bkg_ttbb->Print();
     hfile.Write();
     hfile.Close();
-    }
    return kTRUE;
 }
 
