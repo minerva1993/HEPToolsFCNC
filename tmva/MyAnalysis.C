@@ -16,7 +16,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 {
     TFile hfile("tmva_ttbb.root", "RECREATE", "background tree in step1");
     TNtuple *bkg_ttbb = new TNtuple("bkg_ttbb", "ttbb bkg", "NJets:NBJets_M:NBJets_T:NCJets_M:JDPhi:JDEta:JDR:BJMDPhi:BJMDEta:BJMDR:BJTDPhi:BJTDEta:BJTDR:CJMDPhi:CJMDEta");
-    Double_t tmp[15];
 
     fReader.SetEntry(entry);
     TString option = GetOption();   
@@ -68,6 +67,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     double cjmDPhi = 0;
     double cjmDEta = 0;
     double cjmDR = 0;
+
+    double aa, ab, ac, ad, ae, af, ag, ba, bb, bc, ca, cb, cc, da, db
 
     //Selection Option
     bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -128,32 +129,32 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         }
       }
     } 
-
       if( njets == 3 ) {
-        tmp[0] = njets;
-        tmp[1] = nbjets_m;
-        tmp[2] = nbjets_t;
-        tmp[3] = ncjets_m;
-        tmp[4] = jDPhi;
-        tmp[5] = jDEta;
-        tmp[6] = jDR;
+        aa = njets;
+        ab = nbjets_m;
+        ac = nbjets_t;
+        ad = ncjets_m;
+        ae = jDPhi;
+        af = jDEta;
+        ag = jDR;
 
         if( nbjets_m >1 ){
-          tmp[7] = bjmDPhi;
-          tmp[8] = bjmDEta;
-          tmp[9] = bjmDR;
+          ba = bjmDPhi;
+          bb = bjmDEta;
+          bc = bjmDR;
         }
         if( nbjets_t >1 ){
-          tmp[10] = bjtDPhi;
-          tmp[11] = bjmDEta;
-          tmp[12] = bjmDR;
+          ca = bjtDPhi;
+          cb = bjmDEta;
+          cc = bjmDR;
         }
         if( ncjets_m >1 ){
-          tmp[13] = cjmDPhi;
-          tmp[14] = cjmDEta;
+          da = cjmDPhi;
+          db = cjmDEta;
         }
+
+    bkg_ttbb->Fill(aa,ab,ac,ad,ae,af,ag,ba,bb,bc,ca,cb,cc,da,db);
       }
-    bkg_ttbb->Fill(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7],tmp[8],tmp[9],tmp[10],tmp[11],tmp[12],tmp[13],tmp[14]);
     hfile.Write();
     hfile.Close();
     }
