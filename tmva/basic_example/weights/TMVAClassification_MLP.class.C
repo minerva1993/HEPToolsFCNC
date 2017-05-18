@@ -10,9 +10,9 @@ Method         : MLP::MLP
 TMVA Release   : 4.2.1         [262657]
 ROOT Release   : 6.06/01       [394753]
 Creator        : minerva1993
-Date           : Wed May 17 21:11:08 2017
+Date           : Thu May 18 13:48:31 2017
 Host           : Linux vocms0301.cern.ch 2.6.32-642.11.1.el6.x86_64 #1 SMP Wed Nov 16 09:40:09 CET 2016 x86_64 x86_64 x86_64 GNU/Linux
-Dir            : /cms/home/minerva1993/fcnc/fcnc/tmva/basic_example
+Dir            : /home/minerva1993/fcnc/tmva/basic_example
 Training events: 6000
 Analysis type  : [Classification]
 
