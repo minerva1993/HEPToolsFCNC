@@ -1,6 +1,5 @@
 #define MyAnalysis_cxx
 #include "MyAnalysis.h"
-#include <TNtuple.h>
 #include <TMath.h>
 void MyAnalysis::Begin(TTree * /*tree*/)
 {
@@ -10,13 +9,13 @@ void MyAnalysis::Begin(TTree * /*tree*/)
 void MyAnalysis::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
+
+    Tree = new TNtuple(Form("tmva_%s",option.Data()), "tree for tmva", "NJets:NBJets_M:NBJets_T:NCJets_M:JDPhi:JDEta:JDR:BJMDPhi:BJMDEta:BJMDR:BJTDPhi:BJTDEta:BJTDR:CJMDPhi:CJMDEta");
+    fOutput->Add(Tree);
 }
 
 Bool_t MyAnalysis::Process(Long64_t entry)
 {
-    TFile hfile("tmva_ttbb.root", "RECREATE", "background tree in step1");
-    TNtuple *bkg_ttbb = new TNtuple("bkg_ttbb", "ttbb bkg", "NJets:NBJets_M:NBJets_T:NCJets_M:JDPhi:JDEta:JDR:BJMDPhi:BJMDEta:BJMDR:BJTDPhi:BJTDEta:BJTDR:CJMDPhi:CJMDEta");
-
     fReader.SetEntry(entry);
     TString option = GetOption();   
 
@@ -55,20 +54,20 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     TLorentzVector jet1, jet2, bjet_m1, bjet_m2, bjet_t1, bjet_t2, cjet_m1, cjet_m2;
 
-    double jDPhi = 0;
-    double jDEta = 0;
-    double jDR = 0;
-    double bjmDPhi = 0;
-    double bjmDEta = 0;
-    double bjmDR = 0;
-    double bjtDPhi = 0;
-    double bjtDEta = 0;
-    double bjtDR = 0;
-    double cjmDPhi = 0;
-    double cjmDEta = 0;
-    double cjmDR = 0;
+    double jDPhi = 100;
+    double jDEta = 100;
+    double jDR = 100;
+    double bjmDPhi = 100;
+    double bjmDEta = 100;
+    double bjmDR = 100;
+    double bjtDPhi = 100;
+    double bjtDEta = 100;
+    double bjtDR = 100;
+    double cjmDPhi = 100;
+    double cjmDEta = 100;
+    double cjmDR = 100;
 
-    double tmp[15] = {100,};
+    Double_t tmp[15];
 
     //Selection Option
     bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -153,11 +152,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           tmp[14] = cjmDEta;
         }
       }
+    Tree->Fill(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7],tmp[8],tmp[9],tmp[10],tmp[11],tmp[12],tmp[13],tmp[14]);
     }
-    bkg_ttbb->Fill(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7],tmp[8],tmp[9],tmp[10],tmp[11],tmp[12],tmp[13],tmp[14]);
-    bkg_ttbb->Print();
-    hfile.Write();
-    hfile.Close();
    return kTRUE;
 }
 
@@ -171,6 +167,11 @@ void MyAnalysis::SlaveTerminate()
 void MyAnalysis::Terminate()
 {
   TString option = GetOption();
+
+    TFile hfile(Form("tmva_%s.root",option.Data()), "RECREATE", "Tree for tmva run");
+    fOutput->FindObject(Form("tmva_%s",option.Data()))->Write();
+    hfile.Write();
+    hfile.Close();
 }
 
 

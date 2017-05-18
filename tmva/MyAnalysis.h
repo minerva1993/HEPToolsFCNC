@@ -17,6 +17,7 @@
 #include <TTreeReaderArray.h>
 #include <TH1D.h>
 #include <TH2D.h>
+#include <TNtuple.h>
 // Headers needed by this particular selector
 #include <vector>
 #include <TLorentzVector.h>
@@ -122,6 +123,8 @@ public :
    virtual void    SlaveTerminate();
    virtual void    Terminate();
    double transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
+
+   TNtuple *Tree;
 
    ClassDef(MyAnalysis,0);
 
