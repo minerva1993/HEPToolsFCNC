@@ -197,6 +197,7 @@
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TH2.h
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TMatrixFBasefwd.h
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TMatrixDBasefwd.h
+./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TNtuple.h
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TLorentzVector.h
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TMath.h
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TVector3.h
@@ -210,6 +211,5 @@
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TMatrixFUtils.h
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TMatrixFUtilsfwd.h
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TRotation.h
-./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/TNtuple.h
 ./MyAnalysis_C.so: /share/apps/root/root_v6.08.02/include/root/RVersion.h /share/apps/root/root_v6.08.02/include/root/RConfig.h /share/apps/root/root_v6.08.02/include/root/TClass.h /share/apps/root/root_v6.08.02/include/root/TDictAttributeMap.h /share/apps/root/root_v6.08.02/include/root/TInterpreter.h /share/apps/root/root_v6.08.02/include/root/TROOT.h /share/apps/root/root_v6.08.02/include/root/TBuffer.h /share/apps/root/root_v6.08.02/include/root/TMemberInspector.h /share/apps/root/root_v6.08.02/include/root/TError.h /share/apps/root/root_v6.08.02/include/root/RtypesImp.h /share/apps/root/root_v6.08.02/include/root/TIsAProxy.h /share/apps/root/root_v6.08.02/include/root/TFileMergeInfo.h /share/apps/root/root_v6.08.02/include/root/TCollectionProxyInfo.h /share/apps/root/root_v6.08.02/bin/rootcling
 MyAnalysis_C__ROOTBUILDVERSION= 6.08/02
