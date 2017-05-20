@@ -38,11 +38,10 @@ void anamva(){
   factory->AddVariable("BJMDPhi",'F');
   factory->AddVariable("BJMDEta",'F');  
 
-
   factory->PrepareTrainingAndTestTree(mycuts,mycutb,"random"); 
 
-  factory->BookMethod( TMVA::Types::kMLP, "MLP", "H:!V:NeuronType=tanh:VarTransform=N:NCycles=600:HiddenLayers=N+5:TestRate=5:!UseRegulator" );
-  factory->BookMethod( TMVA::Types::kBDT, "BDT", "!H:!V:NTrees=500:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:UseBaggedBoost:SeparationType=GiniIndex");
+  factory->BookMethod( TMVA::Types::kMLP, "MLP", "H:!V:NeuronType=tanh:VarTransform=N:NCycles=1000:HiddenLayers=N+5:TestRate=5:!UseRegulator" );
+  factory->BookMethod( TMVA::Types::kBDT, "BDT", "!H:!V:NTrees=1500:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:UseBaggedBoost:SeparationType=GiniIndex");
 
   factory->TrainAllMethods();
   
