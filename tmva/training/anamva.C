@@ -7,7 +7,7 @@ void anamva(){
 
   TMVA::Factory *factory = new TMVA::Factory("TMVAClassification",outputFile,"V:!Silent:Color:Transformations=I:DrawProgressBar:AnalysisType=Classification"); 
 
-  Double_t signalWeight = 0.25;
+  Double_t signalWeight = 1.0;
   Double_t backgroundWeight= 1.0;
 
   TFile* signalA = new TFile("tmva_AntiTop_Hut.root");
@@ -29,10 +29,12 @@ void anamva(){
   factory->AddSignalTree(sigTreeD,signalWeight);
   factory->AddBackgroundTree(backgroundTree,backgroundWeight);
 
-  TCut mycuts="(BJMDPhi < 10 && BJMDEta < 10)";
-  TCut mycutb="(BJMDPhi < 10 && BJMDEta < 10)";
+  TCut mycuts="(NJets > 0 && NBJets_M > 0 && NCJets_M >0 && BJMDPhi < 10 && BJMDEta < 10)";
+  TCut mycutb="(NJets > 0 && NBJets_M > 0 && NCJets_M >0 && BJMDPhi < 10 && BJMDEta < 10)";
 
-//  factory->AddVariable("NBJets_M",'F');
+  factory->AddVariable("NJets",'I');
+  factory->AddVariable("NBJets_M",'I');
+  factory->AddVariable("NCJets_M",'I');
   factory->AddVariable("BJMDPhi",'F');
   factory->AddVariable("BJMDEta",'F');  
 

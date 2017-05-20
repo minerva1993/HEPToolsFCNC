@@ -128,7 +128,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         }
       }
     } 
-      if( njets == 3 ) {
+      if( njets >= 4 ) {
         tmp[0] = njets;
         tmp[1] = nbjets_m;
         tmp[2] = nbjets_t;
