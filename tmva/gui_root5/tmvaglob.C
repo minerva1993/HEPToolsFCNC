@@ -252,8 +252,11 @@ namespace TMVAGlob {
          return;
       }
       img->SetConstRatio(kFALSE);
-      UInt_t h_ = img->GetHeight();
-      UInt_t w_ = img->GetWidth();
+     // UInt_t h_ = img->GetHeight();
+     // UInt_t w_ = img->GetWidth();
+
+      Double_t h_ = img->GetHeight();
+      Double_t w_ = img->GetWidth();
 
       Float_t r = w_/h_;
       gPad->Update();
