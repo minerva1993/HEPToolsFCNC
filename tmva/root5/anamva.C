@@ -42,6 +42,7 @@ void anamva(){
 
   factory->BookMethod( TMVA::Types::kMLP, "MLP", "H:!V:NeuronType=tanh:VarTransform=N:NCycles=1000:HiddenLayers=N+5:TestRate=5:!UseRegulator" );
   factory->BookMethod( TMVA::Types::kBDT, "BDT", "!H:!V:NTrees=1500:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:UseBaggedBoost:SeparationType=GiniIndex");
+  //factory->BookMethod( TMVA::Types::kDNN, "DNN CPU", "!H:V:ErrorStrategy=CROSSENTROPY:VarTransform=N:WeightInitialization=XAVIERUNIFORM:Architecture=CPU"); 
 
   factory->TrainAllMethods();
   
