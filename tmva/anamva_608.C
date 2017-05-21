@@ -48,10 +48,10 @@ void anamva_608(){
   loader->AddVariable("BJMDPhi",'F');
   loader->AddVariable("BJMDEta",'F');  
 
-  TString dataString = "nTrain_Signal=20000:"
-                       "nTrain_Background=20000:"
-                       "nTest_Signal=1000:"
-                       "nTest_Background=1000:"
+  TString dataString = "nTrain_Signal=100000:"
+                       "nTrain_Background=100000:"
+                       "nTest_Signal=5000:"
+                       "nTest_Background=5000:"
                        "SplitMode=Random:"
                        "NormMode=NumEvents:"
                        "!V";
@@ -64,24 +64,24 @@ void anamva_608(){
   //DNN part  
 
     TString trainingString1 = "TrainingStrategy="
-                              "LearningRate=1e-1,"
+                              "LearningRate=0.03,"
                               "Momentum=0.5,"
                               "Repetitions=1,"
-                              "ConvergenceSteps=500,"
-                              "BatchSize=20,"
-                              "DropConfig=0.0+0.5+0.5+0.0,"  // Dropout
+                              "ConvergenceSteps=300,"
+                              "BatchSize=1500,"
+                              "DropConfig=0.0+0.3+0.3+0.0,"  // Dropout
                               "WeightDecay=0.001,"
                               "Regularization=L2,"
-                              "TestRepetitions=15,"
+                              "TestRepetitions=5,"
                               "Multithreading=True";
 
     TString configString = "!H:V";
     configString += ":VarTransform=N";
     configString += ":ErrorStrategy=CROSSENTROPY";
     configString += ":WeightInitialization=XAVIERUNIFORM";
-    TString layoutString = "Layout=TANH|100,TANH|50,TANH|10,LINEAR";
+    TString layoutString = "Layout=TANH|50,TANH|100,TANH|70,TANH|30,TANH|10,LINEAR";
 
-    configString += ":" + layoutString + ":" + trainingString1; //+ ":Architecture=CPU";
+    configString += ":" + layoutString + ":" + trainingString1; // + ":Architecture=CPU";
 
   factory->BookMethod(loader, TMVA::Types::kDNN, "DNN", configString);
 
