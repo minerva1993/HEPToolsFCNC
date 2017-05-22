@@ -1,4 +1,4 @@
-void comp(TString var = "cjmDR", TString step = "16" ){
+void comp(TString var = "NJet", TString step = "11" ){
 
   TFile * f_Top_Hct = new TFile("hist_Top_Hct.root");
   TFile * f_Top_Hut = new TFile("hist_Top_Hut.root");
@@ -22,7 +22,7 @@ void comp(TString var = "cjmDR", TString step = "16" ){
   TCanvas * c = new TCanvas("c","c",1);
   h_Top_Hct->SetStats(0000);
   h_Top_Hct->Draw("Hist");
-  h_Top_Hct->GetYaxis()->SetRangeUser(0,0.04);
+  h_Top_Hct->GetYaxis()->SetRangeUser(0,0.5);
   h_Top_Hut->Draw("Histsame");
   h_AntiTop_Hct->Draw("Histsame");
   h_AntiTop_Hut->Draw("Histsame");
