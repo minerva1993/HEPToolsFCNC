@@ -6,18 +6,18 @@
 #include "TMVA/DataLoader.h"
 #include "TMVA/TMVAGui.h"
 
-void anamva_608(){
+void anamva_608_smalllayer(){
 
   TMVA::Tools::Instance();
 
-  TFile* outputFile = TFile::Open("output_608_2.root", "RECREATE"); 
+  TFile* outputFile = TFile::Open("output_608_3.root", "RECREATE"); 
 
   TMVA::Factory *factory = new TMVA::Factory("TMVAClassification",outputFile,"V:!Silent:Color:Transformations=I:DrawProgressBar:AnalysisType=Classification"); 
 
   Double_t signalWeight = 1.0;
   Double_t backgroundWeight= 1.0;
 
-  TMVA::DataLoader *loader=new TMVA::DataLoader("train_2");
+  TMVA::DataLoader *loader=new TMVA::DataLoader("train_3");
   //TMVA::Factory *factory = new TMVA::Factory( "TMVAClassification",outputFile,"AnalysisType=Classification" );
 
   TFile* signalA = new TFile("tmva_AntiTop_Hut.root");
@@ -48,10 +48,10 @@ void anamva_608(){
   loader->AddVariable("BJMDPhi",'F');
   loader->AddVariable("BJMDEta",'F');  
 
-  TString dataString = "nTrain_Signal=150000:"
-                       "nTrain_Background=100000:"
-                       "nTest_Signal=5000:"
-                       "nTest_Background=5000:"
+  TString dataString = "nTrain_Signal=20000:"
+                       "nTrain_Background=20000:"
+                       "nTest_Signal=1000:"
+                       "nTest_Background=1000:"
                        "SplitMode=Random:"
                        "NormMode=NumEvents:"
                        "!V";
@@ -68,8 +68,8 @@ void anamva_608(){
                               "Momentum=0.5,"
                               "Repetitions=1,"
                               "ConvergenceSteps=300,"
-                              "BatchSize=1500,"
-                              "DropConfig=0.0+0.3+0.3+0.3+0.3+0.0,"  // Dropout
+                              "BatchSize=1000,"
+                              "DropConfig=0.0+0.3+0.3+0.0,"  // Dropout
                               "WeightDecay=0.001,"
                               "Regularization=L2,"
                               "TestRepetitions=5,"
@@ -79,7 +79,7 @@ void anamva_608(){
     configString += ":VarTransform=N";
     configString += ":ErrorStrategy=CROSSENTROPY";
     configString += ":WeightInitialization=XAVIERUNIFORM";
-    TString layoutString = "Layout=TANH|50,TANH|100,TANH|70,TANH|30,TANH|10,LINEAR";
+    TString layoutString = "Layout=TANH|50,TANH|30,TANH|10,LINEAR";
 
     configString += ":" + layoutString + ":" + trainingString1; // + ":Architecture=CPU";
 

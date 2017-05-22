@@ -6,7 +6,7 @@
 #include "TMVA/DataLoader.h"
 #include "TMVA/TMVAGui.h"
 
-void anamva_608(){
+void anamva_608_smallstat(){
 
   TMVA::Tools::Instance();
 
@@ -17,7 +17,7 @@ void anamva_608(){
   Double_t signalWeight = 1.0;
   Double_t backgroundWeight= 1.0;
 
-  TMVA::DataLoader *loader=new TMVA::DataLoader("train_2");
+  TMVA::DataLoader *loader=new TMVA::DataLoader("train_2_smallstat");
   //TMVA::Factory *factory = new TMVA::Factory( "TMVAClassification",outputFile,"AnalysisType=Classification" );
 
   TFile* signalA = new TFile("tmva_AntiTop_Hut.root");
@@ -48,8 +48,8 @@ void anamva_608(){
   loader->AddVariable("BJMDPhi",'F');
   loader->AddVariable("BJMDEta",'F');  
 
-  TString dataString = "nTrain_Signal=150000:"
-                       "nTrain_Background=100000:"
+  TString dataString = "nTrain_Signal=50000:"
+                       "nTrain_Background=50000:"
                        "nTest_Signal=5000:"
                        "nTest_Background=5000:"
                        "SplitMode=Random:"
