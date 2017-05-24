@@ -15,7 +15,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
 
-    Tree = new TNtuple(Form("tmva_%s",option.Data()), "tree for tmva", "NJets:NBJets_M:NCJets_M:BJet_M_delta_R:H_Mass:BJet_Pt:CJet_Pt:Jet1_Pt:Jet2_Pt:Jet3_Pt:Jet1_CSV:Jet2_CSV:Jet3_CSV");
+    Tree = new TNtuple(Form("tmva_%s",option.Data()), "tree for tmva", "NJets:NBJets_M:NCJets_M:BJet_M_delta_R:H_Mass:BJet_Pt:CJet_Pt:Jet1_Pt:Jet2_Pt:Jet3_Pt:Jet4_Pt:Jet1_CSV:Jet2_CSV:Jet3_CSV:Jet4_CSV");
     fOutput->Add(Tree);
 }
 
@@ -59,15 +59,16 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     double transverseM = transverseMass(lepton, p4met);
 
-    TLorentzVector jet, jet0, bjet_m1, bjet_m2, cjet_m;
+    TLorentzVector jet, jet0, jet1, bjet_m1, bjet_m2, cjet_m;
 
-    Double_t tmp[15];
+    Double_t tmp[16];
     vector<double> bjmdr;
     vector<double> hm;
     vector<float> bjet_pt1;
     vector<float> bjet_pt2;
     vector<float> jet_pt;
     vector<float> jet_csv;
+    vector<float> jet_cvsl;
     vector<float> bjet_csv;
     vector<float> cjet_cvsl;
     vector<float> cjet_pt;
@@ -80,10 +81,14 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     multimap<float /*jet CSV*/, TLorentzVector /*jet_4 vector*/> m_jets;
       multimap<float, TLorentzVector>::iterator j_itr;
-    multimap<float /*jet CSV*/, TLorentzVector /*jet_4 vector*/> m_bjets;
+/*
+    multimap<float , TLorentzVector > n_jets;
+      multimap<float, TLorentzVector>::iterator k_itr;
+*/
+    multimap<float , TLorentzVector > m_bjets;
       multimap<float, TLorentzVector>::iterator m_itr;
       multimap<float, TLorentzVector>::iterator n_itr;
-    multimap<float /*jet CSV*/, TLorentzVector /*jet_4 vector*/> m_cjets;
+    multimap<float , TLorentzVector > m_cjets;
       multimap<float, TLorentzVector>::iterator c_itr;
 
 
@@ -94,7 +99,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
         m_jets.insert(pair<float, TLorentzVector>(jet_CSV[iJet],jet));
-
+//        n_jets.insert(pair<float, TLorentzVector>(jet_CvsL[iJet],jet));
         if( jet_CSV[iJet] > 0.8484 ){
           nbjets_m++;
           m_bjets.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
@@ -118,7 +123,12 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         jet_pt.push_back(jet0.Pt());
         jet_csv.push_back(j_itr->first);
       }
-
+/*
+      for(k_itr = n_jets.begin(); k_itr != n_jets.end(); ++k_itr){
+        jet1 = k_itr->second;
+        jet_cvsl.push_back(k_itr->first);
+      }
+*/
       if( nbjets_m >1 ){
 
         if( ncjets_m >= 1 ){
@@ -156,18 +166,29 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         tmp[7] = *max_element(jet_pt.begin(), jet_pt.end());
         int disjetpt1 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
         jet_pt.erase(jet_pt.begin() + disjetpt1);
-        tmp[10] = jet_csv.at(disjetpt1);
+        tmp[11] = jet_csv.at(disjetpt1);
         jet_csv.erase(jet_csv.begin() + disjetpt1);
+//        tmp[13] = jet_cvsl.at(disjetpt1);
+//        jet_cvsl.erase(jet_cvsl.begin() + disjetpt1);
+
 
         tmp[8] = *max_element(jet_pt.begin(), jet_pt.end());
         int disjetpt2 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
         jet_pt.erase(jet_pt.begin() + disjetpt2);
-        tmp[11] = jet_csv.at(disjetpt2);
+        tmp[12] = jet_csv.at(disjetpt2);
         jet_csv.erase(jet_csv.begin() + disjetpt2);
+//        tmp[14] = jet_cvsl.at(disjetpt2);
+//        jet_cvsl.erase(jet_cvsl.begin() + disjetpt2);
 
         tmp[9] = *max_element(jet_pt.begin(), jet_pt.end());
         int disjetpt3 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
-        tmp[12] = jet_csv.at(disjetpt3);
+        jet_pt.erase(jet_pt.begin() + disjetpt3);
+        tmp[13] = jet_csv.at(disjetpt3);
+        jet_csv.erase(jet_csv.begin() + disjetpt3);
+
+        tmp[10] = *max_element(jet_pt.begin(), jet_pt.end());
+        int disjetpt4 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
+        tmp[14] = jet_csv.at(disjetpt4);
 
       }
 
