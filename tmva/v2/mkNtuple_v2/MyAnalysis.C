@@ -15,7 +15,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
 
-    Tree = new TNtuple(Form("tmva_%s",option.Data()), "tree for tmva", "NJets:NBJets_M:NCJets_M:BJet_M_delta_R:H_Mass:CSVv2_M:CvsL_M:BJet_Pt:CJet_Pt");
+    Tree = new TNtuple(Form("tmva_%s",option.Data()), "tree for tmva", "NJets:NBJets_M:NCJets_M:BJet_M_delta_R:H_Mass:BJet_Pt:CJet_Pt:Jet1_Pt:Jet2_Pt:Jet3_Pt:Jet1_CSV:Jet2_CSV:Jet3_CSV");
     fOutput->Add(Tree);
 }
 
@@ -59,16 +59,17 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     double transverseM = transverseMass(lepton, p4met);
 
-    TLorentzVector bjet_m1, bjet_m2, cjet_m;
+    TLorentzVector jet, jet0, bjet_m1, bjet_m2, cjet_m;
 
-    Double_t tmp[10];
+    Double_t tmp[15];
     vector<double> bjmdr;
     vector<double> hm;
-    vector<float> mcsv;
-    vector<float> ncsv;
-    vector<float> cvsl;
-    vector<float> cpt;
-    vector<float> bjet_pt;
+    vector<float> bjet_pt1;
+    vector<float> bjet_pt2;
+    vector<float> jet_pt;
+    vector<float> jet_csv;
+    vector<float> bjet_csv;
+    vector<float> cjet_cvsl;
     vector<float> cjet_pt;
 
     //Event selection 
@@ -77,6 +78,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   if( passmuon || passelectron ){
 
+    multimap<float /*jet CSV*/, TLorentzVector /*jet_4 vector*/> m_jets;
+      multimap<float, TLorentzVector>::iterator j_itr;
     multimap<float /*jet CSV*/, TLorentzVector /*jet_4 vector*/> m_bjets;
       multimap<float, TLorentzVector>::iterator m_itr;
       multimap<float, TLorentzVector>::iterator n_itr;
@@ -86,33 +89,43 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     for (unsigned int iJet = 0; iJet < jet_pT.GetSize() ; ++iJet) {
 
-      TLorentzVector jet;
       jet.SetPtEtaPhiE(jet_pT[iJet], jet_eta[iJet], jet_phi[iJet], jet_E[iJet]);
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
-        
+        m_jets.insert(pair<float, TLorentzVector>(jet_CSV[iJet],jet));
+
         if( jet_CSV[iJet] > 0.8484 ){
           nbjets_m++;
-          m_bjets.insert(pair<float, TLorentzVector>(jet_CSV[iJet],jet));
-          bjet_pt.push_back(jet_pT[iJet]);
+          m_bjets.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
+          bjet_csv.push_back(jet_CSV[iJet]);
         }
-        if( jet_CvsL[iJet] > -0.1 && jet_CvsL[iJet] > 0.08 ) ncjets_m++;
-          m_cjets.insert(pair<float, TLorentzVector>(jet_CvsL[iJet],jet));
-          cjet_pt.push_back(jet_pT[iJet]);
+        if( jet_CvsL[iJet] > -0.1 && jet_CvsL[iJet] > 0.08 ){
+          ncjets_m++;
+          m_cjets.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
+          cjet_cvsl.push_back(jet_CvsL[iJet]);
+        }
       }
     } 
 
     if( njets >= 4 ) {
-
       tmp[0] = njets;
       tmp[1] = nbjets_m;
       tmp[2] = ncjets_m;
+      
+      for(j_itr = m_jets.begin(); j_itr != m_jets.end(); ++j_itr){
+        jet0 = j_itr->second;
+        jet_pt.push_back(jet0.Pt());
+        jet_csv.push_back(j_itr->first);
+      }
+
       if( nbjets_m >1 ){
-        for(c_itr = m_cjets.begin(); c_itr != m_cjets.end(); ++c_itr){
-          cvsl.push_back(c_itr->first);
-          cjet_m = c_itr->second;
-          cpt.push_back(cjet_m.Pt());
+
+        if( ncjets_m >= 1 ){
+         for(c_itr = m_cjets.begin(); c_itr != m_cjets.end(); ++c_itr){
+            cjet_m = c_itr->second;
+            cjet_pt.push_back(c_itr->first);
+          }
         }
 
         for(m_itr = m_bjets.begin(); m_itr != m_bjets.end(); ++m_itr){
@@ -126,22 +139,40 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             if(jm < jn){
               bjmdr.push_back(bjet_m1.DeltaR(bjet_m2));
               hm.push_back((bjet_m1 + bjet_m2).M());
-              mcsv.push_back(m_itr->first);
-              ncsv.push_back(n_itr->first);
+              bjet_pt1.push_back(m_itr->first);
+              bjet_pt2.push_back(n_itr->first);
             }
           }
         }
         tmp[3] = *min_element(bjmdr.begin(), bjmdr.end());
         int a = distance(begin(bjmdr),min_element(bjmdr.begin(), bjmdr.end()));
         tmp[4] = hm.at(a);
-        if(mcsv.at(a) > ncsv.at(a)) tmp[5] = mcsv.at(a);
-        else tmp[5] = ncsv.at(a);
-        tmp[6] = *max_element(cvsl.begin(), cvsl.end());
-        tmp[7] = *max_element(bjet_pt.begin(), bjet_pt.end());
-        tmp[8] = *max_element(cjet_pt.begin(), cjet_pt.end());
+
+        if(bjet_pt1.at(a) > bjet_pt2.at(a)) tmp[5] = bjet_pt1.at(a);
+        else tmp[5] = bjet_pt2.at(a);
+
+        if(cjet_pt.size() != 0) tmp[6] = *max_element(cjet_pt.begin(), cjet_pt.end());
+
+        tmp[7] = *max_element(jet_pt.begin(), jet_pt.end());
+        int disjetpt1 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
+        jet_pt.erase(jet_pt.begin() + disjetpt1);
+        tmp[10] = jet_csv.at(disjetpt1);
+        jet_csv.erase(jet_csv.begin() + disjetpt1);
+
+        tmp[8] = *max_element(jet_pt.begin(), jet_pt.end());
+        int disjetpt2 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
+        jet_pt.erase(jet_pt.begin() + disjetpt2);
+        tmp[11] = jet_csv.at(disjetpt2);
+        jet_csv.erase(jet_csv.begin() + disjetpt2);
+
+        tmp[9] = *max_element(jet_pt.begin(), jet_pt.end());
+        int disjetpt3 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
+        tmp[12] = jet_csv.at(disjetpt3);
+
       }
+
     }
-    Tree->Fill(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7],tmp[8]);
+    Tree->Fill(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7],tmp[8],tmp[9],tmp[10],tmp[11],tmp[12],tmp[13],tmp[14]);
   }
    return kTRUE;
 }

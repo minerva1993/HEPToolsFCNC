@@ -39,18 +39,21 @@ void anamva_test(){
   loader->AddSignalTree(sigTreeD,signalWeight);
   loader->AddBackgroundTree(backgroundTree,backgroundWeight);
 
-  TCut mycuts="(NJets > 0 && NBJets_M > 0 && NCJets_M > 0 && H_Mass < 300 && CSVv2_M > 0.8484 && CvsL_M > 0.8)";
-  TCut mycutb="(NJets > 0 && NBJets_M > 0 && NCJets_M > 0 && H_Mass < 300 && CSVv2_M > 0.8484 && CvsL_M > 0.8)";
-
+  TCut mycuts="(NJets > 0 && NBJets_M > 0 && NCJets_M > 0 && H_Mass < 300 && BJet_Pt < 300 && CJet_Pt < 300 && Jet1_Pt < 300 && Jet2_Pt < 300 && Jet3_Pt < 300 && Jet1_CSV > 0 && Jet2_CSV > 0 && Jet3_CSV > 0)";
+  TCut mycutb="(NJets > 0 && NBJets_M > 0 && NCJets_M > 0 && H_Mass < 300 && BJet_Pt < 300 && CJet_Pt < 300 && Jet1_Pt < 300 && Jet2_Pt < 300 && Jet3_Pt < 300 && Jet1_CSV > 0 && Jet2_CSV > 0 && Jet3_CSV > 0)";
   loader->AddVariable("NJets",'I');
   loader->AddVariable("NBJets_M",'I');
   loader->AddVariable("NCJets_M",'I');
   loader->AddVariable("BJet_M_delta_R",'F');
   loader->AddVariable("H_Mass",'F');
-  loader->AddVariable("CSVv2_M",'F');
-  loader->AddVariable("CvsL_M",'F');
   loader->AddVariable("BJet_Pt",'F');
   loader->AddVariable("CJet_Pt",'F');
+  loader->AddVariable("Jet1_Pt",'F');
+  loader->AddVariable("Jet2_Pt",'F');
+  loader->AddVariable("Jet3_Pt",'F');
+  loader->AddVariable("Jet1_CSV",'F');
+  loader->AddVariable("Jet2_CSV",'F');
+  loader->AddVariable("Jet3_CSV",'F');
 
   TString dataString = "nTrain_Signal=30000:"
                        "nTrain_Background=30000:"
@@ -62,12 +65,12 @@ void anamva_test(){
 
   loader->PrepareTrainingAndTestTree(mycuts,mycutb,dataString); 
 
-  factory->BookMethod(loader,TMVA::Types::kLikelihood, "Likelihood","H:!V:TransformOutput:PDFInterpol=Spline2:NSmoothSig[0]=20:NSmoothBkg[0]=20:NSmoothBkg[1]=10:NSmooth=1:NAvEvtPerBin=50" );
-  factory->BookMethod(loader,TMVA::Types::kMLP, "MLP", "H:!V:NeuronType=tanh:VarTransform=N:NCycles=1000:HiddenLayers=N+5:TestRate=5:!UseRegulator" );
+  //ctory->BookMethod(loader,TMVA::Types::kLikelihood, "Likelihood","H:!V:TransformOutput:PDFInterpol=Spline2:NSmoothSig[0]=20:NSmoothBkg[0]=20:NSmoothBkg[1]=10:NSmooth=1:NAvEvtPerBin=50" );
+  //ctory->BookMethod(loader,TMVA::Types::kMLP, "MLP", "H:!V:NeuronType=tanh:VarTransform=N:NCycles=1000:HiddenLayers=N+5:TestRate=5:!UseRegulator" );
   factory->BookMethod(loader,TMVA::Types::kBDT, "BDT", "!H:!V:NTrees=1000:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:UseBaggedBoost:SeparationType=GiniIndex");
 
   //DNN part  
-
+/*
     TString trainingString1 = "TrainingStrategy="
                               "LearningRate=0.01,"
                               "Momentum=0.4,"
@@ -89,7 +92,7 @@ void anamva_test(){
     configString += ":" + layoutString + ":" + trainingString1; // + ":Architecture=CPU";
 
   factory->BookMethod(loader, TMVA::Types::kDNN, "DNN", configString);
-
+*/
 
   factory->TrainAllMethods();
   
