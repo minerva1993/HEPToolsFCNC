@@ -15,7 +15,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
 
-    Tree = new TNtuple(Form("tmva_%s",option.Data()), "tree for tmva", "NJets:NBJets_M:BJet_M_delta_R:H_Mass:CSVv2_M:CvsL_M");
+    Tree = new TNtuple(Form("tmva_%s",option.Data()), "tree for tmva", "NJets:NBJets_M:NCJets_M:BJet_M_delta_R:H_Mass:CSVv2_M:CvsL_M:BJet_Pt:CJet_Pt");
     fOutput->Add(Tree);
 }
 
@@ -61,13 +61,15 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     TLorentzVector bjet_m1, bjet_m2, cjet_m;
 
-    Double_t tmp[8];
+    Double_t tmp[10];
     vector<double> bjmdr;
     vector<double> hm;
     vector<float> mcsv;
     vector<float> ncsv;
     vector<float> cvsl;
     vector<float> cpt;
+    vector<float> bjet_pt;
+    vector<float> cjet_pt;
 
     //Event selection 
     bool passmuon = (mode == 0) && (lepton.Pt() > 27) && (abs(lepton.Eta()) <= 2.1);
@@ -89,12 +91,15 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
+        
         if( jet_CSV[iJet] > 0.8484 ){
           nbjets_m++;
           m_bjets.insert(pair<float, TLorentzVector>(jet_CSV[iJet],jet));
+          bjet_pt.push_back(jet_pT[iJet]);
         }
         if( jet_CvsL[iJet] > -0.1 && jet_CvsL[iJet] > 0.08 ) ncjets_m++;
           m_cjets.insert(pair<float, TLorentzVector>(jet_CvsL[iJet],jet));
+          cjet_pt.push_back(jet_pT[iJet]);
       }
     } 
 
@@ -102,6 +107,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
       tmp[0] = njets;
       tmp[1] = nbjets_m;
+      tmp[2] = ncjets_m;
       if( nbjets_m >1 ){
         for(c_itr = m_cjets.begin(); c_itr != m_cjets.end(); ++c_itr){
           cvsl.push_back(c_itr->first);
@@ -125,16 +131,17 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             }
           }
         }
-        tmp[2] = *min_element(bjmdr.begin(), bjmdr.end());
+        tmp[3] = *min_element(bjmdr.begin(), bjmdr.end());
         int a = distance(begin(bjmdr),min_element(bjmdr.begin(), bjmdr.end()));
-        tmp[3] = hm.at(a);
-        if(mcsv.at(a) > ncsv.at(a)) tmp[4] = mcsv.at(a);
-        else tmp[4] = ncsv.at(a);
-
-        tmp[5] = *max_element(cvsl.begin(), cvsl.end());
+        tmp[4] = hm.at(a);
+        if(mcsv.at(a) > ncsv.at(a)) tmp[5] = mcsv.at(a);
+        else tmp[5] = ncsv.at(a);
+        tmp[6] = *max_element(cvsl.begin(), cvsl.end());
+        tmp[7] = *max_element(bjet_pt.begin(), bjet_pt.end());
+        tmp[8] = *max_element(cjet_pt.begin(), cjet_pt.end());
       }
     }
-    Tree->Fill(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7]);
+    Tree->Fill(tmp[0],tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7],tmp[8]);
   }
    return kTRUE;
 }
