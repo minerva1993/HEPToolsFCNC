@@ -1,6 +1,6 @@
 #include <TStyle.h>
 
-void comp2(TString var = "cjmDPhiDEta", TString step = "16" ){
+void comp2(TString var = "bjmDPhiDEta", TString step = "11" ){
 
   TFile * f_Top_Hct = new TFile("hist_Top_Hct.root");
   TFile * f_Top_Hut = new TFile("hist_Top_Hut.root");
@@ -9,11 +9,11 @@ void comp2(TString var = "cjmDPhiDEta", TString step = "16" ){
 
   TFile * f_ttbb = new TFile("hist_ttbb.root");
 
-  TH2F * h_Top_Hct = (TH2F *) f_Top_Hct->Get(Form("h_%s_Ch0_S%s_Top_Hct",var.Data(),step.Data()));
-  TH2F * h_Top_Hut = (TH2F *) f_Top_Hut->Get(Form("h_%s_Ch0_S%s_Top_Hut",var.Data(),step.Data()));
-  TH2F * h_AntiTop_Hct = (TH2F *) f_AntiTop_Hct->Get(Form("h_%s_Ch0_S%s_AntiTop_Hct",var.Data(),step.Data()));
-  TH2F * h_AntiTop_Hut = (TH2F *) f_AntiTop_Hut->Get(Form("h_%s_Ch0_S%s_AntiTop_Hut",var.Data(),step.Data()));
-  TH2F * h_ttbb = (TH2F *) f_ttbb->Get(Form("h_%s_Ch0_S%s_ttbb",var.Data(),step.Data()));
+  TH2F * h_Top_Hct = (TH2F *) f_Top_Hct->Get(Form("h_%s_S%s_Top_Hct",var.Data(),step.Data()));
+  TH2F * h_Top_Hut = (TH2F *) f_Top_Hut->Get(Form("h_%s_S%s_Top_Hut",var.Data(),step.Data()));
+  TH2F * h_AntiTop_Hct = (TH2F *) f_AntiTop_Hct->Get(Form("h_%s_S%s_AntiTop_Hct",var.Data(),step.Data()));
+  TH2F * h_AntiTop_Hut = (TH2F *) f_AntiTop_Hut->Get(Form("h_%s_S%s_AntiTop_Hut",var.Data(),step.Data()));
+  TH2F * h_ttbb = (TH2F *) f_ttbb->Get(Form("h_%s_S%s_ttbb",var.Data(),step.Data()));
 
   h_Top_Hct->Scale(1.0/h_Top_Hct->Integral());
   h_Top_Hut->Scale(1.0/h_Top_Hut->Integral());
