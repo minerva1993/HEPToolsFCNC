@@ -13,7 +13,7 @@ void FCNCAnalysis::SlaveBegin(TTree * /*tree*/)
 {
    TString option = GetOption();
 
-   for( int i=0; i < 21; i++){
+   for( int i=0; i < 5; i++){
 
       h_NJet[i] = new TH1D(Form("h_NJet_S%i_%s",i,option.Data()), "Number of jets", 12, 0, 12);
       h_NJet[i]->SetXTitle("Jet Multiplicity");
@@ -203,7 +203,7 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
    bool passmuon = (*NMuon == 1) && (lepton.Pt() > 27) && (abs(lepton.Eta()) <= 2.1); // && (*NLooseMuon + *NLooseElectron) == 0;
    bool passelectron = (*NElectron == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1); // && (*NLooseMuon + *NLooseElectron) == 0;
 
-if ( *TTBB == 1 ){
+//if ( *TTBB == 1 ){
   if ( passmuon ){
 
     for (unsigned int iJet = 0; iJet < Jet_Pt.GetSize() ; ++iJet) {
@@ -267,42 +267,42 @@ if ( *TTBB == 1 ){
     //h_kinwmass[0]->Fill(*Kin_Wmass, EventWeight);
 
       if( njets >= 3 ) {
-        h_NJet[11]->Fill(njets, EventWeight);
-        h_NBJetCSVv2M[11]->Fill(nbjets_m, EventWeight);
-        h_NBJetCSVv2T[11]->Fill(nbjets_t, EventWeight);
-        h_NCJetM[11]->Fill(ncjets_m, EventWeight);
-        h_MET[11]->Fill(*MET, EventWeight);
-        h_WMass[11]->Fill(transverseM, EventWeight);
-        h_DPhi[11]->Fill(lepDphi, EventWeight);
+        h_NJet[1]->Fill(njets, EventWeight);
+        h_NBJetCSVv2M[1]->Fill(nbjets_m, EventWeight);
+        h_NBJetCSVv2T[1]->Fill(nbjets_t, EventWeight);
+        h_NCJetM[1]->Fill(ncjets_m, EventWeight);
+        h_MET[1]->Fill(*MET, EventWeight);
+        h_WMass[1]->Fill(transverseM, EventWeight);
+        h_DPhi[1]->Fill(lepDphi, EventWeight);
         //h_LepIso[11]->Fill(relIso, EventWeight);
 
-        h_jDPhi[11]->Fill(jDPhi, EventWeight);
-        h_jDEta[11]->Fill(jDEta, EventWeight);
-        h_jDPhiDEta[11]->Fill(jDPhi, jDEta, EventWeight);
-        h_jDR[11]->Fill(jDR, EventWeight);
+        h_jDPhi[1]->Fill(jDPhi, EventWeight);
+        h_jDEta[1]->Fill(jDEta, EventWeight);
+        h_jDPhiDEta[1]->Fill(jDPhi, jDEta, EventWeight);
+        h_jDR[1]->Fill(jDR, EventWeight);
 
         if( nbjets_m >1 ){
-          h_bjmDPhi[11]->Fill(bjmDPhi, EventWeight);
-          h_bjmDEta[11]->Fill(bjmDEta, EventWeight);
-          h_bjmDR[11]->Fill(bjmDR, EventWeight);
-          h_bjmDPhiDEta[11]->Fill(bjmDPhi, bjmDEta, EventWeight);
+          h_bjmDPhi[1]->Fill(bjmDPhi, EventWeight);
+          h_bjmDEta[1]->Fill(bjmDEta, EventWeight);
+          h_bjmDR[1]->Fill(bjmDR, EventWeight);
+          h_bjmDPhiDEta[1]->Fill(bjmDPhi, bjmDEta, EventWeight);
         }
         if( nbjets_t >1 ){
-          h_bjtDPhi[11]->Fill(bjtDPhi, EventWeight);
-          h_bjtDEta[11]->Fill(bjtDEta, EventWeight);
-          h_bjtDR[11]->Fill(bjtDR, EventWeight);
-          h_bjtDPhiDEta[11]->Fill(bjtDPhi, bjtDEta, EventWeight);
+          h_bjtDPhi[1]->Fill(bjtDPhi, EventWeight);
+          h_bjtDEta[1]->Fill(bjtDEta, EventWeight);
+          h_bjtDR[1]->Fill(bjtDR, EventWeight);
+          h_bjtDPhiDEta[1]->Fill(bjtDPhi, bjtDEta, EventWeight);
         }
         if( ncjets_m >1 ){
-          h_cjmDPhi[11]->Fill(cjmDPhi, EventWeight);
-          h_cjmDEta[11]->Fill(cjmDEta, EventWeight);
-          h_cjmDR[11]->Fill(cjmDR, EventWeight);
-          h_cjmDPhiDEta[11]->Fill(cjmDPhi, cjmDEta, EventWeight);
+          h_cjmDPhi[1]->Fill(cjmDPhi, EventWeight);
+          h_cjmDEta[1]->Fill(cjmDEta, EventWeight);
+          h_cjmDR[1]->Fill(cjmDR, EventWeight);
+          h_cjmDPhiDEta[1]->Fill(cjmDPhi, cjmDEta, EventWeight);
         }
       }
 
   }
-}//ttbb
+//}//ttbb
    return kTRUE;
 }
 
