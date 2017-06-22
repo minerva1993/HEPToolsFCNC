@@ -831,6 +831,12 @@ void MyAnalysis::Terminate()
       fOutput->FindObject(Form("h_cjmDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_cjmDR_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_cjmDPhiDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      fOutput->FindObject(Form("h_HMass_m_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      fOutput->FindObject(Form("h_HMass_t_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      fOutput->FindObject(Form("h_bJetPtHt_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      fOutput->FindObject(Form("h_bJetPtHm_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      fOutput->FindObject(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+
     }
   }
   out->Write();
