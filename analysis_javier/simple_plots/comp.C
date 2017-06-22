@@ -1,4 +1,21 @@
-void comp(TString var = "NJet", TString step = "11" ){
+void compare(TString var, TString ch, TString step );
+
+void comp(TString ch = "0", TString step = "11"){
+
+  compare("NJet", ch, step);
+  compare("NBJetCSVv2M", ch, step);
+  compare("NBJetCSVv2T", ch, step);
+  compare("NCJetM", ch, step);
+  compare("bjmDPhi", ch, step);
+  compare("bjmDEta", ch, step);
+  compare("bjmDR", ch, step);
+  compare("bjtDPhi", ch, step);
+  compare("bjtDEta", ch, step);
+  compare("bjtDR", ch, step);
+
+}
+
+void compare(TString var, TString ch, TString step ){
 
   TFile * f_Top_Hct = new TFile("hist_Top_Hct.root");
   TFile * f_Top_Hut = new TFile("hist_Top_Hut.root");
@@ -7,11 +24,11 @@ void comp(TString var = "NJet", TString step = "11" ){
 
   TFile * f_ttbb = new TFile("hist_ttbb.root");
 
-  TH2F * h_Top_Hct = (TH2F *) f_Top_Hct->Get(Form("h_%s_Ch0_S%s_Top_Hct",var.Data(),step.Data()));
-  TH2F * h_Top_Hut = (TH2F *) f_Top_Hut->Get(Form("h_%s_Ch0_S%s_Top_Hut",var.Data(),step.Data()));
-  TH2F * h_AntiTop_Hct = (TH2F *) f_AntiTop_Hct->Get(Form("h_%s_Ch0_S%s_AntiTop_Hct",var.Data(),step.Data()));
-  TH2F * h_AntiTop_Hut = (TH2F *) f_AntiTop_Hut->Get(Form("h_%s_Ch0_S%s_AntiTop_Hut",var.Data(),step.Data()));
-  TH2F * h_ttbb = (TH2F *) f_ttbb->Get(Form("h_%s_Ch0_S%s_ttbb",var.Data(),step.Data()));
+  TH2F * h_Top_Hct = (TH2F *) f_Top_Hct->Get(Form("h_%s_Ch%s_S%s_Top_Hct",var.Data(),ch.Data(),step.Data()));
+  TH2F * h_Top_Hut = (TH2F *) f_Top_Hut->Get(Form("h_%s_Ch%s_S%s_Top_Hut",var.Data(),ch.Data(),step.Data()));
+  TH2F * h_AntiTop_Hct = (TH2F *) f_AntiTop_Hct->Get(Form("h_%s_Ch%s_S%s_AntiTop_Hct",var.Data(),ch.Data(),step.Data()));
+  TH2F * h_AntiTop_Hut = (TH2F *) f_AntiTop_Hut->Get(Form("h_%s_Ch%s_S%s_AntiTop_Hut",var.Data(),ch.Data(),step.Data()));
+  TH2F * h_ttbb = (TH2F *) f_ttbb->Get(Form("h_%s_Ch%s_S%s_ttbb",var.Data(),ch.Data(),step.Data()));
 
   h_Top_Hct->Scale(1.0/h_Top_Hct->Integral());
   h_Top_Hut->Scale(1.0/h_Top_Hut->Integral());
@@ -43,6 +60,6 @@ void comp(TString var = "NJet", TString step = "11" ){
   l->SetTextSize(.03);
   l->Draw();
 
-  c->Print(Form("c_%s_S%s.pdf",var.Data(),step.Data()));
+  c->Print(Form("c_%s_Ch%s_S%s.pdf",var.Data(),ch.Data(),step.Data()));
  
 }
