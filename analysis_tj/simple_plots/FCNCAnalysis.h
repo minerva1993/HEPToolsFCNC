@@ -143,34 +143,34 @@ public :
 
    ClassDef(FCNCAnalysis,0);
 
-   TH1D *h_NJet[21];
-   TH1D *h_NBJetCSVv2M[21];
-   TH1D *h_NBJetCSVv2T[21];
-   TH1D *h_NCJetM[21];
-   TH1D *h_MET[21];
-   TH1D *h_WMass[21];
-   TH1D *h_LepIso[21];
-   TH1D *h_kinhmass[21];
-   TH1D *h_kinhdRbb[21];
-   TH1D *h_kinwmass[21];
+   TH1D *h_NJet[5];
+   TH1D *h_NBJetCSVv2M[5];
+   TH1D *h_NBJetCSVv2T[5];
+   TH1D *h_NCJetM[5];
+   TH1D *h_MET[5];
+   TH1D *h_WMass[5];
+   TH1D *h_LepIso[5];
+   TH1D *h_kinhmass[5];
+   TH1D *h_kinhdRbb[5];
+   TH1D *h_kinwmass[5];
 
-   TH1D *h_DPhi[21];
-   TH1D *h_jDPhi[21];
-   TH1D *h_jDEta[21];
-   TH1D *h_jDR[21];
-   TH2D *h_jDPhiDEta[21];
-   TH1D *h_bjmDPhi[21];
-   TH1D *h_bjmDEta[21];
-   TH1D *h_bjmDR[21];
-   TH2D *h_bjmDPhiDEta[21];
-   TH1D *h_bjtDPhi[21];
-   TH1D *h_bjtDEta[21];
-   TH1D *h_bjtDR[21];
-   TH2D *h_bjtDPhiDEta[21];
-   TH1D *h_cjmDPhi[21];
-   TH1D *h_cjmDEta[21];
-   TH1D *h_cjmDR[21];
-   TH2D *h_cjmDPhiDEta[21];
+   TH1D *h_DPhi[5];
+   TH1D *h_jDPhi[5];
+   TH1D *h_jDEta[5];
+   TH1D *h_jDR[5];
+   TH2D *h_jDPhiDEta[5];
+   TH1D *h_bjmDPhi[5];
+   TH1D *h_bjmDEta[5];
+   TH1D *h_bjmDR[5];
+   TH2D *h_bjmDPhiDEta[5];
+   TH1D *h_bjtDPhi[5];
+   TH1D *h_bjtDEta[5];
+   TH1D *h_bjtDR[5];
+   TH2D *h_bjtDPhiDEta[5];
+   TH1D *h_cjmDPhi[5];
+   TH1D *h_cjmDEta[5];
+   TH1D *h_cjmDR[5];
+   TH2D *h_cjmDPhiDEta[5];
 
 
    float EventWeight;
