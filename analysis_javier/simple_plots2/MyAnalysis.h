@@ -134,10 +134,6 @@ public :
    TH1D *h_LepIso[2][21];
    TH1D *h_LepIsoQCD[2][21];
    TH1D *h_DPhi[2][21];
-   TH1D *h_jDPhi[2][21];
-   TH1D *h_jDEta[2][21];
-   TH1D *h_jDR[2][21];
-   TH2D *h_jDPhiDEta[2][21];
    TH1D *h_bjmDPhi[2][21];
    TH1D *h_bjmDEta[2][21];
    TH1D *h_bjmDR[2][21];

@@ -76,28 +76,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_DPhi[ich][i]->SetXTitle("DPhi");
       h_DPhi[ich][i]->Sumw2();
       fOutput->Add(h_DPhi[ich][i]);
-/*
-      h_jDPhi[ich][i] = new TH1D(Form("h_jDPhi_Ch%i_S%i_%s",ich,i,option.Data()), "jet Delta Phi", 64 ,0 ,3.2);
-      h_jDPhi[ich][i]->SetXTitle("jet Delta Phi");
-      h_jDPhi[ich][i]->Sumw2();
-      fOutput->Add(h_jDPhi[ich][i]);
 
-      h_jDEta[ich][i] = new TH1D(Form("h_jDEta_Ch%i_S%i_%s",ich,i,option.Data()), "jet Delta Eta", 64 ,0 ,3.2);
-      h_jDEta[ich][i]->SetXTitle("jet Delta Eta");
-      h_jDEta[ich][i]->Sumw2();
-      fOutput->Add(h_jDEta[ich][i]);
-
-      h_jDR[ich][i] = new TH1D(Form("h_jDR_Ch%i_S%i_%s",ich,i,option.Data()), "jet Delta R", 64 ,0 ,3.2);
-      h_jDR[ich][i]->SetXTitle("jet Delta R");
-      h_jDR[ich][i]->Sumw2();
-      fOutput->Add(h_jDR[ich][i]);
-
-      h_jDPhiDEta[ich][i] = new TH2D(Form("h_jDPhiDEta_Ch%i_S%i_%s",ich,i,option.Data()),"jet Delta Phi Delta Eta", 30, -3, 3, 30, -3, 3);
-      h_jDPhiDEta[ich][i]->SetYTitle("Delta Eta (jj)");
-      h_jDPhiDEta[ich][i]->SetXTitle("Delta Phi (jj)");
-      h_jDPhiDEta[ich][i]->Sumw2();
-      fOutput->Add(h_jDPhiDEta[ich][i]);
-*/
       h_bjmDPhi[ich][i] = new TH1D(Form("h_bjmDPhi_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta Phi", 64 ,0 ,3.2);
       h_bjmDPhi[ich][i]->SetXTitle("bjet_m Delta Phi");
       h_bjmDPhi[ich][i]->Sumw2();
@@ -255,7 +234,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     vector<float> jet_pt;
     vector<float> jet_csv;
     vector<float> jet_cvsl;
-    vector<float> bjet_csv;
+    vector<float> bjm_csv;
+    vector<float> bjt_csv;
     vector<float> cjet_cvsl;
     vector<float> cjet_pt;
 
@@ -295,12 +275,12 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         if( jet_CSV[iJet] > 0.8484 ){
           nbjets_m++;
           m_bjets_m.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
-          bjet_csv.push_back(jet_CSV[iJet]);
+          bjm_csv.push_back(jet_CSV[iJet]);
         }
         if( jet_CSV[iJet] > 0.9535 ){
           nbjets_t++;
           m_bjets_t.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
-          bjet_csv.push_back(jet_CSV[iJet]);
+          bjt_csv.push_back(jet_CSV[iJet]);
         }
         if( jet_CvsL[iJet] > -0.1 && jet_CvsL[iJet] > 0.08 ){
           ncjets_m++;
@@ -316,12 +296,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         jet_pt.push_back(jet0.Pt());
         jet_csv.push_back(j_itr->first);
       }
-/*
-      for(k_itr = n_jets.begin(); k_itr != n_jets.end(); ++k_itr){
-        jet1 = k_itr->second;
-        jet_cvsl.push_back(k_itr->first);
-      }
-*/
 
       if( ncjets_m >= 1 ){
         for(c_itr = m_cjets.begin(); c_itr != m_cjets.end(); ++c_itr){
@@ -329,6 +303,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           cjet_pt.push_back(c_itr->first);
         }
       }
+
       if(cjet_pt.size() != 0) cjetPt = *max_element(cjet_pt.begin(), cjet_pt.end());
 
       if( nbjets_m >1 ){
@@ -352,13 +327,13 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           }
         }
         bjmDR = *min_element(bjmdr.begin(), bjmdr.end());
-        int a = distance(begin(bjmdr),min_element(bjmdr.begin(), bjmdr.end()));
-        higgsMass_m = hm.at(a);
-        bjmDEta = bjmdeta.at(a);
-        bjmDPhi = bjmdphi.at(a);
+        int b = distance(begin(bjmdr),min_element(bjmdr.begin(), bjmdr.end()));
+        higgsMass_m = hm.at(b);
+        bjmDEta = bjmdeta.at(b);
+        bjmDPhi = bjmdphi.at(b);
 
-        if(bjm_pt1.at(a) > bjm_pt2.at(a)) bJetPtHm = bjm_pt1.at(a);
-        else bJetPtHm = bjm_pt2.at(a);
+        if(bjm_pt1.at(b) > bjm_pt2.at(b)) bJetPtHm = bjm_pt1.at(b);
+        else bJetPtHm = bjm_pt2.at(b);
       }
 
       if( nbjets_t >1 ){
@@ -382,7 +357,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           }
         }
         bjtDR = *min_element(bjtdr.begin(), bjtdr.end());
-        int a = distance(begin(bjmdr),min_element(bjmdr.begin(), bjmdr.end()));
+        int a = distance(begin(bjtdr),min_element(bjtdr.begin(), bjtdr.end()));
         higgsMass_t = ht.at(a);
         bjtDEta = bjtdeta.at(a);
         bjtDPhi = bjtdphi.at(a);
@@ -390,34 +365,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         if(bjt_pt1.at(a) > bjt_pt2.at(a)) bJetPtHt = bjt_pt1.at(a);
         else bJetPtHt = bjt_pt2.at(a);
       }
-/*
-        tmp[7] = *max_element(jet_pt.begin(), jet_pt.end());
-        int disjetpt1 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
-        jet_pt.erase(jet_pt.begin() + disjetpt1);
-        tmp[11] = jet_csv.at(disjetpt1);
-        jet_csv.erase(jet_csv.begin() + disjetpt1);
-//        tmp[13] = jet_cvsl.at(disjetpt1);
-//        jet_cvsl.erase(jet_cvsl.begin() + disjetpt1);
-
-
-        tmp[8] = *max_element(jet_pt.begin(), jet_pt.end());
-        int disjetpt2 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
-        jet_pt.erase(jet_pt.begin() + disjetpt2);
-        tmp[12] = jet_csv.at(disjetpt2);
-        jet_csv.erase(jet_csv.begin() + disjetpt2);
-//        tmp[14] = jet_cvsl.at(disjetpt2);
-//        jet_cvsl.erase(jet_cvsl.begin() + disjetpt2);
-
-        tmp[9] = *max_element(jet_pt.begin(), jet_pt.end());
-        int disjetpt3 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
-        jet_pt.erase(jet_pt.begin() + disjetpt3);
-        tmp[13] = jet_csv.at(disjetpt3);
-        jet_csv.erase(jet_csv.begin() + disjetpt3);
-
-        tmp[10] = *max_element(jet_pt.begin(), jet_pt.end());
-        int disjetpt4 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
-        tmp[14] = jet_csv.at(disjetpt4);
-*/
     }
      /////Fill histograms
 
@@ -441,12 +388,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         h_DPhi[mode][1]->Fill(lepDphi, EventWeight);
         h_LepIso[mode][1]->Fill(relIso, EventWeight);
         if( isQCD ) h_LepIsoQCD[mode][1]->Fill(relIso, EventWeight);
-/*
-        h_jDPhi[mode][1]->Fill(jDPhi, EventWeight);
-        h_jDEta[mode][1]->Fill(jDEta, EventWeight);
-        h_jDPhiDEta[mode][1]->Fill(jDPhi, jDEta, EventWeight);
-        h_jDR[mode][1]->Fill(jDR, EventWeight);
-*/
+
         if( nbjets_m >1 ){
           h_bjmDPhi[mode][1]->Fill(bjmDPhi, EventWeight);
           h_bjmDEta[mode][1]->Fill(bjmDEta, EventWeight);
@@ -455,6 +397,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_HMass_m[mode][1]->Fill(higgsMass_m, EventWeight);
           h_bJetPtHm[mode][1]->Fill(bJetPtHm, EventWeight);
         }
+
         if( nbjets_t >1 ){
           h_bjtDPhi[mode][1]->Fill(bjtDPhi, EventWeight);
           h_bjtDEta[mode][1]->Fill(bjtDEta, EventWeight);
@@ -463,7 +406,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_HMass_t[mode][1]->Fill(higgsMass_t, EventWeight);
           h_bJetPtHt[mode][1]->Fill(bJetPtHt, EventWeight);
         }
-        if( ncjets_m >=1 ){
+
+        if( ncjets_m >1 ){
           h_cJetPt[mode][1]->Fill(cjetPt, EventWeight);
         }
 /*
@@ -535,12 +479,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         h_DPhi[mode][6]->Fill(lepDphi, EventWeight);
         h_LepIso[mode][6]->Fill(relIso, EventWeight);
         if( isQCD ) h_LepIsoQCD[mode][6]->Fill(relIso, EventWeight);
-/*
-        h_jDPhi[mode][6]->Fill(jDPhi, EventWeight);
-        h_jDEta[mode][6]->Fill(jDEta, EventWeight);
-        h_jDPhiDEta[mode][6]->Fill(jDPhi, jDEta, EventWeight);
-        h_jDR[mode][6]->Fill(jDR, EventWeight);
-*/
+
         if( nbjets_m >1 ){
           h_bjmDPhi[mode][6]->Fill(bjmDPhi, EventWeight);
           h_bjmDEta[mode][6]->Fill(bjmDEta, EventWeight);
@@ -623,12 +562,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         h_DPhi[mode][11]->Fill(lepDphi, EventWeight);
         h_LepIso[mode][11]->Fill(relIso, EventWeight);
         if( isQCD ) h_LepIsoQCD[mode][11]->Fill(relIso, EventWeight);
-/*
-        h_jDPhi[mode][11]->Fill(jDPhi, EventWeight);
-        h_jDEta[mode][11]->Fill(jDEta, EventWeight);
-        h_jDPhiDEta[mode][11]->Fill(jDPhi, jDEta, EventWeight);
-        h_jDR[mode][11]->Fill(jDR, EventWeight);
-*/
+
         if( nbjets_m >1 ){
           h_bjmDPhi[mode][11]->Fill(bjmDPhi, EventWeight);
           h_bjmDEta[mode][11]->Fill(bjmDEta, EventWeight);
@@ -711,12 +645,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         h_DPhi[mode][16]->Fill(lepDphi, EventWeight);
         h_LepIso[mode][16]->Fill(relIso, EventWeight);
         if( isQCD ) h_LepIsoQCD[mode][16]->Fill(relIso, EventWeight);
-/*
-        h_jDPhi[mode][16]->Fill(jDPhi, EventWeight);
-        h_jDEta[mode][16]->Fill(jDEta, EventWeight);
-        h_jDPhiDEta[mode][16]->Fill(jDPhi, jDEta, EventWeight);
-        h_jDR[mode][16]->Fill(jDR, EventWeight);
-*/
+
         if( nbjets_m >1 ){
           h_bjmDPhi[mode][16]->Fill(bjmDPhi, EventWeight);
           h_bjmDEta[mode][16]->Fill(bjmDEta, EventWeight);
@@ -815,10 +744,6 @@ void MyAnalysis::Terminate()
       fOutput->FindObject(Form("h_DPhi_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_LepIso_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_LepIsoQCD_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
-      fOutput->FindObject(Form("h_jDPhi_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
-      fOutput->FindObject(Form("h_jDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
-      fOutput->FindObject(Form("h_jDR_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
-      fOutput->FindObject(Form("h_jDPhiDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_bjmDPhi_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_bjmDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
@@ -827,14 +752,14 @@ void MyAnalysis::Terminate()
       fOutput->FindObject(Form("h_bjtDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_bjtDR_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_bjtDPhiDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
-      fOutput->FindObject(Form("h_cjmDPhi_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
-      fOutput->FindObject(Form("h_cjmDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
-      fOutput->FindObject(Form("h_cjmDR_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
-      fOutput->FindObject(Form("h_cjmDPhiDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      //fOutput->FindObject(Form("h_cjmDPhi_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      //fOutput->FindObject(Form("h_cjmDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      //fOutput->FindObject(Form("h_cjmDR_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      //fOutput->FindObject(Form("h_cjmDPhiDEta_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_HMass_m_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_HMass_t_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
-      fOutput->FindObject(Form("h_bJetPtHt_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_bJetPtHm_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
+      fOutput->FindObject(Form("h_bJetPtHt_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
       fOutput->FindObject(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()))->Write();
 
     }
