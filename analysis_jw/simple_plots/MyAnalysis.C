@@ -493,7 +493,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         if( ncjets_m >1 ){
           h_cJetPt[mode][6]->Fill(cjetPt, EventWeight);
         }
-
 /*
         if( nbjets_m == 2 ){
           h_NJet[mode][7]->Fill(njets, EventWeight);
