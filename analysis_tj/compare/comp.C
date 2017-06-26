@@ -1,4 +1,4 @@
-void comp(TString var = "NBJetCSVv2M", TString step = "11" ){
+void comp(TString var = "NJet", TString step = "11" ){
 
   //TFile * f_Top_Hct = new TFile("hist_Top_Hct.root");
   //TFile * f_Top_Hut = new TFile("hist_Top_Hut.root");

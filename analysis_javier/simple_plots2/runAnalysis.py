@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
-from ROOT import TChain, TProof, TFile, TH1D, TH1F, TCanvas
+#from ROOT import TChain, TProof, TFile, TH1D, TH1F, TCanvas
+from ROOT import *
+gROOT.SetBatch(True)
 
 def runAna(dir, file, name):
   chain = TChain("ttbbLepJetsQCD/tree","events")

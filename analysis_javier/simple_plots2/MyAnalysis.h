@@ -142,10 +142,12 @@ public :
    TH1D *h_bjtDEta[2][21];
    TH1D *h_bjtDR[2][21];
    TH2D *h_bjtDPhiDEta[2][21];
+/*
    TH1D *h_cjmDPhi[2][21];
    TH1D *h_cjmDEta[2][21];
    TH1D *h_cjmDR[2][21];
    TH2D *h_cjmDPhiDEta[2][21];
+*/
    TH1D *h_HMass_m[2][21];
    TH1D *h_bJetPtHm[2][21];
    TH1D *h_HMass_t[2][21];

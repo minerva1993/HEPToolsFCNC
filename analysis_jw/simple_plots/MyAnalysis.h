@@ -134,10 +134,6 @@ public :
    TH1D *h_LepIso[2][21];
    TH1D *h_LepIsoQCD[2][21];
    TH1D *h_DPhi[2][21];
-   TH1D *h_jDPhi[2][21];
-   TH1D *h_jDEta[2][21];
-   TH1D *h_jDR[2][21];
-   TH2D *h_jDPhiDEta[2][21];
    TH1D *h_bjmDPhi[2][21];
    TH1D *h_bjmDEta[2][21];
    TH1D *h_bjmDR[2][21];
@@ -146,11 +142,11 @@ public :
    TH1D *h_bjtDEta[2][21];
    TH1D *h_bjtDR[2][21];
    TH2D *h_bjtDPhiDEta[2][21];
-   TH1D *h_cjmDPhi[2][21];
-   TH1D *h_cjmDEta[2][21];
-   TH1D *h_cjmDR[2][21];
-   TH2D *h_cjmDPhiDEta[2][21];
-
+   TH1D *h_HMass_m[2][21];
+   TH1D *h_bJetPtHm[2][21];
+   TH1D *h_HMass_t[2][21];
+   TH1D *h_bJetPtHt[2][21];
+   TH1D *h_cJetPt[2][21];
 
 };
 
