@@ -372,7 +372,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       h_bJetPtHt[mode][0]->Fill(bJetPtHt, EventWeight);
     }
 
-    if( ncjets_m >1 ){
+    if( ncjets_m >0 ){
       h_cJetPt[mode][0]->Fill(cjetPt, EventWeight);
     }
 
@@ -407,7 +407,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_bJetPtHt[mode][1]->Fill(bJetPtHt, EventWeight);
         }
 
-        if( ncjets_m >1 ){
+        if( ncjets_m >0 ){
           h_cJetPt[mode][1]->Fill(cjetPt, EventWeight);
         }
 /*
@@ -490,7 +490,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_bJetPtHt[mode][6]->Fill(bJetPtHt, EventWeight);
         }
 
-        if( ncjets_m >1 ){
+        if( ncjets_m >0 ){
           h_cJetPt[mode][6]->Fill(cjetPt, EventWeight);
         }
 
@@ -574,7 +574,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_bJetPtHt[mode][11]->Fill(bJetPtHt, EventWeight);
         }
 
-        if( ncjets_m >1 ){
+        if( ncjets_m >0 ){
           h_cJetPt[mode][11]->Fill(cjetPt, EventWeight);
         }
 
@@ -658,7 +658,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_bJetPtHt[mode][16]->Fill(bJetPtHt, EventWeight);
         }
 
-        if( ncjets_m >1 ){
+        if( ncjets_m >0 ){
           h_cJetPt[mode][16]->Fill(cjetPt, EventWeight);
         }
 
