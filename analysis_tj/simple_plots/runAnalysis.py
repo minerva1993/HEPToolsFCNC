@@ -22,9 +22,9 @@ def runAna(dir, file, name):
 
 p = TProof.Open("", "workers=8")
 
-runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_powheg.root","ttbb")
-#runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_TopLeptonicDecay_TH_1L3B_Eta_Hct.root","Top_Hct")
-#runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_TopLeptonicDecay_TH_1L3B_Eta_Hut.root","Top_Hut")
-#runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_AntitopLeptonicDecay_TH_1L3B_Eta_Hct.root","AntiTop_Hct")
-#runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_AntitopLeptonicDecay_TH_1L3B_Eta_Hut.root","AntiTop_Hut")
+#runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_powheg.root","ttbb")
+runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_TopLeptonicDecay_TH_1L3B_Eta_Hct.root","Top_Hct")
+runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_TopLeptonicDecay_TH_1L3B_Eta_Hut.root","Top_Hut")
+runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_AntitopLeptonicDecay_TH_1L3B_Eta_Hct.root","AntiTop_Hct")
+runAna("/home/minerva1993/fcnc/ntuple_tj","vallot_TT_AntitopLeptonicDecay_TH_1L3B_Eta_Hut.root","AntiTop_Hut")
 

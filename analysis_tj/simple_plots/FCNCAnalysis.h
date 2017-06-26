@@ -55,10 +55,10 @@ public :
    TTreeReaderArray<Float_t> LooseMuon_Iso04 = {fReader, "LooseMuon_Iso04"};
    TTreeReaderArray<Float_t> LooseMuon_Charge = {fReader, "LooseMuon_Charge"};
    TTreeReaderValue<Int_t> NElectron = {fReader, "NElectron"};
-   TTreeReaderArray<Float_t> Electron_Pt = {fReader, "Electron_Pt"};
-   TTreeReaderArray<Float_t> Electron_Eta = {fReader, "Electron_Eta"};
-   TTreeReaderArray<Float_t> Electron_Phi = {fReader, "Electron_Phi"};
-   TTreeReaderArray<Float_t> Electron_E = {fReader, "Electron_E"};
+   TTreeReaderValue<Float_t> Electron_Pt = {fReader, "Electron_Pt"};//arry->value
+   TTreeReaderValue<Float_t> Electron_Eta = {fReader, "Electron_Eta"};//arry->value
+   TTreeReaderValue<Float_t> Electron_Phi = {fReader, "Electron_Phi"};//arry->value
+   TTreeReaderValue<Float_t> Electron_E = {fReader, "Electron_E"};//arry->value
    TTreeReaderArray<Float_t> Electron_Iso03 = {fReader, "Electron_Iso03"};
    TTreeReaderArray<Float_t> Electron_Iso04 = {fReader, "Electron_Iso04"};
    TTreeReaderArray<Float_t> Electron_Charge = {fReader, "Electron_Charge"};
@@ -101,10 +101,10 @@ public :
    TTreeReaderValue<Float_t> GenLepton1_Eta = {fReader, "GenLepton1_Eta"};
    TTreeReaderValue<Float_t> GenLepton2_Pt = {fReader, "GenLepton2_Pt"};
    TTreeReaderValue<Float_t> GenLepton2_Eta = {fReader, "GenLepton2_Eta"};
-   TTreeReaderArray<Float_t> MT_MuonMET = {fReader, "MT_MuonMET"};
-   TTreeReaderArray<Float_t> Phi_MuonMET = {fReader, "Phi_MuonMET"};
-   TTreeReaderArray<Float_t> MT_ElectronMET = {fReader, "MT_ElectronMET"};
-   TTreeReaderArray<Float_t> Phi_ElectronMET = {fReader, "Phi_ElectronMET"};
+   TTreeReaderValue<Float_t> MT_MuonMET = {fReader, "MT_MuonMET"};//arry->value
+   TTreeReaderValue<Float_t> Phi_MuonMET = {fReader, "Phi_MuonMET"};//arry->value
+   TTreeReaderValue<Float_t> MT_ElectronMET = {fReader, "MT_ElectronMET"};//arry->value
+   TTreeReaderValue<Float_t> Phi_ElectronMET = {fReader, "Phi_ElectronMET"};//arry->value
    TTreeReaderValue<Float_t> Kin_Hmass = {fReader, "Kin_Hmass"};
    TTreeReaderValue<Float_t> Kin_HdRbb = {fReader, "Kin_HdRbb"};
    TTreeReaderValue<Float_t> Kin_Chi2 = {fReader, "Kin_Chi2"};
@@ -149,19 +149,23 @@ public :
    TH1D *h_NCJetM[2][5];
    TH1D *h_MET[2][5];
    TH1D *h_WMass[2][5];
-   TH1D *h_LepIso[2][5];
-   TH1D *h_kinhmass[5];
-   TH1D *h_kinhdRbb[5];
-   TH1D *h_kinwmass[5];
+   TH1D *h_kinWMass[2][5];
+   TH1D *h_HMass[2][5];
+   TH1D *h_kinHMass[2][5];
+   TH1D *h_dRbb[2][5];
+   TH1D *h_bJetPtH[2][5];
+   TH1D *h_cJetPt[2][5];
 
-   TH1D *h_HMass_m[2][21];
-   TH1D *h_bJetPtHm[2][21];
-   TH1D *h_cJetPt[2][21];
+   TH1D *h_kinTopMHc[2][5];
+   TH1D *h_kinTopMWb[2][5];
 
    TH1D *h_DPhi[2][5];
    TH1D *h_bjmDPhi[2][5];
    TH1D *h_bjmDEta[2][5];
    TH1D *h_bjmDR[2][5];
+
+   TH1D *h_LepIso[2][5];
+
 
    float EventWeight;
 
