@@ -143,22 +143,25 @@ public :
 
    ClassDef(FCNCAnalysis,0);
 
-   TH1D *h_NJet[5];
-   TH1D *h_NBJetCSVv2M[5];
-   TH1D *h_NBJetCSVv2T[5];
-   TH1D *h_NCJetM[5];
-   TH1D *h_MET[5];
-   TH1D *h_WMass[5];
-   TH1D *h_LepIso[5];
+   TH1D *h_NJet[2][5];
+   TH1D *h_NBJetCSVv2M[2][5];
+   TH1D *h_NBJetCSVv2T[2][5];
+   TH1D *h_NCJetM[2][5];
+   TH1D *h_MET[2][5];
+   TH1D *h_WMass[2][5];
+   TH1D *h_LepIso[2][5];
    TH1D *h_kinhmass[5];
    TH1D *h_kinhdRbb[5];
    TH1D *h_kinwmass[5];
 
-   TH1D *h_DPhi[5];
-   TH1D *h_bjmDPhi[5];
-   TH1D *h_bjmDEta[5];
-   TH1D *h_bjmDR[5];
-   TH2D *h_bjmDPhiDEta[5];
+   TH1D *h_HMass_m[2][21];
+   TH1D *h_bJetPtHm[2][21];
+   TH1D *h_cJetPt[2][21];
+
+   TH1D *h_DPhi[2][5];
+   TH1D *h_bjmDPhi[2][5];
+   TH1D *h_bjmDEta[2][5];
+   TH1D *h_bjmDR[2][5];
 
    float EventWeight;
 

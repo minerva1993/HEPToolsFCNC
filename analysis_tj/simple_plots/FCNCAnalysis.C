@@ -49,7 +49,17 @@ void FCNCAnalysis::SlaveBegin(TTree * /*tree*/)
       h_HMass_m[ich][i] = new TH1D(Form("h_HMass_m_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (medium)", 100 ,50 ,150);
       h_HMass_m[ich][i]->SetXTitle("Higg Mass (2 medium b jets) (GeV)");
       h_HMass_m[ich][i]->Sumw2();
-      fOutput->Add(h_HMass_m[ich][i])
+      fOutput->Add(h_HMass_m[ich][i]);
+
+      h_bJetPtHm[ich][i] = new TH1D(Form("h_bJetPtHm_Ch%i_S%i_%s",ich,i,option.Data()), "b jet (medium) pT from H", 200 ,0 ,200);
+      h_bJetPtHm[ich][i]->SetXTitle("b Jet (medium) pT from Higgs (GeV)");
+      h_bJetPtHm[ich][i]->Sumw2();
+      fOutput->Add(h_bJetPtHm[ich][i]);
+
+      h_cJetPt[ich][i] = new TH1D(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()), "leading c jet (medium) pT", 200 ,0 ,200);
+      h_cJetPt[ich][i]->SetXTitle("leading c Jet (medium) pT (GeV)");
+      h_cJetPt[ich][i]->Sumw2();
+      fOutput->Add(h_cJetPt[ich][i]);
 
       h_DPhi[ich][i] = new TH1D(Form("h_DPhi_Ch%i_S%i_%s",ich,i,option.Data()), "lepton DPhi", 64 ,0 ,3.2);
       h_DPhi[ich][i]->SetXTitle("DPhi");
@@ -102,6 +112,8 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
 
     //if( !option.Contains("Data") ) lep_SF = lepton_SF[0];
 
+    float relIso = 0;
+
     int njets = 0;
     int nbjets_m = 0;
     int nbjets_t = 0;
@@ -115,11 +127,16 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
     double met_y = *MET_Py;
     p4met.SetPxPyPzE( met_x, met_y, 0, met);
 
-    TLorentzVector jet1, jet2, bjet_m1, bjet_m2, bjet_t1, bjet_t2, cjet_m1, cjet_m2;
+    TLorentzVector muon;
+    muon.SetPtEtaPhiE(*Muon_Pt, *Muon_Eta, *Muon_Phi, *Muon_E);
+    TLorentzVector elec;
+    elec.SetPtEtaPhiE(Electron_Pt[0], Electron_Eta[0], Electron_Phi[0], Electron_E[0]);
 
-    double jDPhi = 0;
-    double jDEta = 0;
-    double jDR = 0;
+    double transverseM = 0;
+    double lepDphi = 0;
+
+    TLorentzVector jet0, jet1, jet2, bjet_m1, bjet_m2, cjet_m;
+
     double bjmDPhi = 0;
     double bjmDEta = 0;
     double bjmDR = 0;
@@ -142,17 +159,34 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
 
 
    //Event selection 
-    TLorentzVector lepton;
+    bool passmuon = (*NMuon == 1)  && (muon.Pt() > 27) && (abs(muon.Eta()) <= 2.1); // && (*NLooseMuon + *NLooseElectron) == 0;
 
-    bool passmuon = (mode = 0) && (*NMuon == 1) && (lepton.Pt() > 27) && (abs(lepton.Eta()) <= 2.1) && lepton.SetPtEtaPhiE(*Muon_Pt, *Muon_Eta, *Muon_Phi, *Muon_E); // && (*NLooseMuon + *NLooseElectron) == 0;
-
-    bool passelectron = (mode = 1) && (*NElectron == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1) && lepton.SetPtEtaPhiE(*Electron_Pt, *Electron_Eta, *Electron_Phi, *Electron_E); // && (*NLooseMuon + *NLooseElectron) == 0; 
-
-    double transverseM = transverseMass(lepton, p4met);
-    double lepDphi = lepton.DeltaPhi(p4met);
+    bool passelectron = (*NElectron == 1) && (elec.Pt() > 35) && (abs(elec.Eta()) <= 2.1); // && (*NLooseMuon + *NLooseElectron) == 0; 
 
 if ( *TTBB == 1 ){
   if ( passmuon || passelectron ){
+
+    if ( passmuon ){
+      mode = 0;
+      transverseM = transverseMass(muon, p4met);
+      lepDphi = muon.DeltaPhi(p4met);
+      relIso  = Muon_Iso03[0];
+    }
+
+    if ( passelectron ){
+      mode = 1;
+      transverseM = transverseMass(elec, p4met);
+      lepDphi = elec.DeltaPhi(p4met);
+      relIso  = Electron_Iso03[0];
+    }
+
+    multimap<float /*jet CSV*/, TLorentzVector /*jet_4 vector*/> m_jets;
+      multimap<float, TLorentzVector>::iterator j_itr;
+    multimap<float , TLorentzVector > m_bjets_m;
+      multimap<float, TLorentzVector>::iterator m_itr;
+      multimap<float, TLorentzVector>::iterator n_itr;
+    multimap<float , TLorentzVector > m_cjets;
+      multimap<float, TLorentzVector>::iterator c_itr;
 
     for (unsigned int iJet = 0; iJet < Jet_Pt.GetSize() ; ++iJet) {
 
@@ -161,38 +195,71 @@ if ( *TTBB == 1 ){
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
-        if( njets > 1){
-          jet1.SetPtEtaPhiE(Jet_Pt[1], Jet_Eta[1], Jet_Phi[1], Jet_E[1]);
-          jet2.SetPtEtaPhiE(Jet_Pt[2], Jet_Eta[2], Jet_Phi[2], Jet_E[2]);
-          jDPhi = jet1.DeltaPhi(jet2);
-          jDEta = jet1.Eta()-jet2.Eta();
-          jDR = jet1.DeltaR(jet2);
-        }
+        m_jets.insert(pair<float, TLorentzVector>(Jet_bDiscriminator[iJet],jet));
+
         if( Jet_bDiscriminator[iJet] > 0.8484 ){
           nbjets_m++;
-          if( nbjets_m > 1){
-            bjet_m1.SetPtEtaPhiE(Jet_Pt[1], Jet_Eta[1], Jet_Phi[1], Jet_E[1]);   
-            bjet_m2.SetPtEtaPhiE(Jet_Pt[2], Jet_Eta[2], Jet_Phi[2], Jet_E[2]);
-            bjmDPhi = bjet_m1.DeltaPhi(bjet_m2);
-            bjmDEta = bjet_m1.Eta()-bjet_m2.Eta();
-            bjmDR = bjet_m1.DeltaR(bjet_m2);
-          }
+          m_bjets_m.insert(pair<float, TLorentzVector>(Jet_Pt[iJet],jet));
+          bjm_csv.push_back(Jet_bDiscriminator[iJet]);
         }
-        if( Jet_bDiscriminator[iJet] > 0.9535 ){
-          nbjets_t++;
-          if( nbjets_t > 1){
-            bjet_t1.SetPtEtaPhiE(Jet_Pt[1], Jet_Eta[1], Jet_Phi[1], Jet_E[1]);   
-            bjet_t2.SetPtEtaPhiE(Jet_Pt[2], Jet_Eta[2], Jet_Phi[2], Jet_E[2]);
-            bjtDPhi = bjet_t1.DeltaPhi(bjet_t2);
-            bjtDEta = bjet_t1.Eta()-bjet_t2.Eta();
-            bjtDR = bjet_t1.DeltaR(bjet_t2);
-          }
+
+        if( Jet_bDiscriminator[iJet] > 0.9535 ) nbjets_t++;
+
+        if( Jet_pfCombinedCvsLJetTags[iJet] > -0.1 && Jet_pfCombinedCvsLJetTags[iJet] > 0.08 ){
+          ncjets_m++;
+          m_cjets.insert(pair<float, TLorentzVector>(Jet_Pt[iJet],jet));
+          cjet_cvsl.push_back(Jet_pfCombinedCvsLJetTags[iJet]);
         }
-        if( Jet_pfCombinedCvsLJetTags[iJet] > -0.1 && Jet_pfCombinedCvsLJetTags[iJet] > 0.08 ) ncjets_m++;
       }
     }
 
+    if( njets > 1){
+      for(j_itr = m_jets.begin(); j_itr != m_jets.end(); ++j_itr){
+        jet0 = j_itr->second;
+        jet_pt.push_back(jet0.Pt());
+        jet_csv.push_back(j_itr->first);
+      }
 
+      if( ncjets_m >= 1 ){
+        for(c_itr = m_cjets.begin(); c_itr != m_cjets.end(); ++c_itr){
+          cjet_m = c_itr->second;
+          cjet_pt.push_back(c_itr->first);
+        }
+      }
+
+      if(cjet_pt.size() != 0) cjetPt = *max_element(cjet_pt.begin(), cjet_pt.end());
+
+      if( nbjets_m >1 ){
+
+        for(m_itr = m_bjets_m.begin(); m_itr != m_bjets_m.end(); ++m_itr){
+          bjet_m1 = m_itr->second;
+          jm = distance(m_bjets_m.begin(),m_itr);
+
+          for(n_itr = m_bjets_m.begin(); n_itr != m_bjets_m.end(); ++n_itr){
+            bjet_m2 = n_itr->second;
+            jn = distance(m_bjets_m.begin(),n_itr);
+
+            if(jm < jn){
+              bjmdr.push_back(bjet_m1.DeltaR(bjet_m2));
+              hm.push_back((bjet_m1 + bjet_m2).M());
+              bjmdeta.push_back(abs(bjet_m1.Eta()-bjet_m2.Eta()));
+              bjmdphi.push_back(abs(bjet_m1.Phi()-bjet_m2.Phi()));
+              bjm_pt1.push_back(m_itr->first);
+              bjm_pt2.push_back(n_itr->first);
+            }
+          }
+        }
+        bjmDR = *min_element(bjmdr.begin(), bjmdr.end());
+        int b = distance(begin(bjmdr),min_element(bjmdr.begin(), bjmdr.end()));
+        higgsMass_m = hm.at(b);
+        bjmDEta = bjmdeta.at(b);
+        bjmDPhi = bjmdphi.at(b);
+
+        if(bjm_pt1.at(b) > bjm_pt2.at(b)) bJetPtHm = bjm_pt1.at(b);
+        else bJetPtHm = bjm_pt2.at(b);
+      }
+    }
+/*
     h_NJet[0]->Fill( njets, EventWeight);
     h_NBJetCSVv2M[0]->Fill( nbjets_m, EventWeight);
     h_NBJetCSVv2T[0]->Fill( nbjets_t, EventWeight);
@@ -204,31 +271,31 @@ if ( *TTBB == 1 ){
     //h_kinhmass[0]->Fill(*Kin_Hmass, EventWeight);
     //h_kinhdRbb[0]->Fill(*Kin_HdRbb, EventWeight);
     //h_kinwmass[0]->Fill(*Kin_Wmass, EventWeight);
-/*
-      if( njets >= 3 ) {
-        h_NJet[1]->Fill(njets, EventWeight);
-        h_NBJetCSVv2M[1]->Fill(nbjets_m, EventWeight);
-        h_NBJetCSVv2T[1]->Fill(nbjets_t, EventWeight);
-        h_NCJetM[1]->Fill(ncjets_m, EventWeight);
-        h_MET[1]->Fill(*MET, EventWeight);
-        h_WMass[1]->Fill(transverseM, EventWeight);
-        h_DPhi[1]->Fill(lepDphi, EventWeight);
-        h_LepIso[11]->Fill(Muon_Iso03[0], EventWeight);
-
-        if( nbjets_m >1 ){
-          h_bjmDPhi[1]->Fill(bjmDPhi, EventWeight);
-          h_bjmDEta[1]->Fill(bjmDEta, EventWeight);
-          h_bjmDR[1]->Fill(bjmDR, EventWeight);
-          h_bjmDPhiDEta[1]->Fill(bjmDPhi, bjmDEta, EventWeight);
-        }
-        if( nbjets_t >1 ){
-          h_bjtDPhi[1]->Fill(bjtDPhi, EventWeight);
-          h_bjtDEta[1]->Fill(bjtDEta, EventWeight);
-          h_bjtDR[1]->Fill(bjtDR, EventWeight);
-          h_bjtDPhiDEta[1]->Fill(bjtDPhi, bjtDEta, EventWeight);
-        }
-      }
 */
+
+//transverse M check, W mass kin fit add, H mass kinfit add, tec.
+
+    h_NJet[mode][0]->Fill(njets, EventWeight);
+    h_NBJetCSVv2M[mode][0]->Fill(nbjets_m, EventWeight);
+    h_NBJetCSVv2T[mode][0]->Fill(nbjets_t, EventWeight);
+    h_NCJetM[mode][0]->Fill(ncjets_m, EventWeight);
+    h_MET[mode][0]->Fill(met, EventWeight);
+    h_WMass[mode][0]->Fill(transverseM, EventWeight);
+//    h_DPhi[mode][0]->Fill(Phi_MuonMET[0], EventWeight);
+    h_DPhi[mode][0]->Fill(lepDphi, EventWeight);
+    h_LepIso[mode][0]->Fill(relIso, EventWeight);
+
+    if( nbjets_m >1 ){
+      h_bjmDPhi[mode][0]->Fill(bjmDPhi, EventWeight);
+      h_bjmDEta[mode][0]->Fill(bjmDEta, EventWeight);
+      h_bjmDR[mode][0]->Fill(bjmDR, EventWeight);
+      h_HMass_m[mode][0]->Fill(higgsMass_m, EventWeight);
+      h_bJetPtHm[mode][0]->Fill(bJetPtHm, EventWeight);
+    }
+
+    if( ncjets_m >0 ){
+      h_cJetPt[mode][0]->Fill(cjetPt, EventWeight);
+    }
   }
 }//ttbb
    return kTRUE;
