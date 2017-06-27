@@ -42,7 +42,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_MET[ich][i]->Sumw2();
       fOutput->Add(h_MET[ich][i]);
 
-      h_WMass[ich][i] = new TH1D(Form("h_WMass_Ch%i_S%i_%s",ich,i,option.Data()), "WMass", 32 ,0 ,160);
+      h_WMass[ich][i] = new TH1D(Form("h_WMass_Ch%i_S%i_%s",ich,i,option.Data()), "WMass", 80 ,0 ,160);
       h_WMass[ich][i]->SetXTitle("Transverse Mass (GeV)");
       h_WMass[ich][i]->Sumw2();
       fOutput->Add(h_WMass[ich][i]);
