@@ -36,27 +36,27 @@ void FCNCAnalysis::SlaveBegin(TTree * /*tree*/)
       h_NCJetM[ich][i]->Sumw2();
       fOutput->Add(h_NCJetM[ich][i]);
 
-      h_MET[ich][i] = new TH1D(Form("h_MET_Ch%i_S%i_%s",ich,i,option.Data()), "MET", 40,0,400);
+      h_MET[ich][i] = new TH1D(Form("h_MET_Ch%i_S%i_%s",ich,i,option.Data()), "MET", 30,0,300);
       h_MET[ich][i]->SetXTitle("MET (GeV)");
       h_MET[ich][i]->Sumw2();
       fOutput->Add(h_MET[ich][i]);
 
-      h_WMass[ich][i] = new TH1D(Form("h_WMass_Ch%i_S%i_%s",ich,i,option.Data()), "WMass", 32 ,0 ,160);
+      h_WMass[ich][i] = new TH1D(Form("h_WMass_Ch%i_S%i_%s",ich,i,option.Data()), "WMass", 80 ,0 ,160);
       h_WMass[ich][i]->SetXTitle("Transverse Mass (GeV)");
       h_WMass[ich][i]->Sumw2();
       fOutput->Add(h_WMass[ich][i]);
 
-      h_kinWMass[ich][i] = new TH1D(Form("h_kinWMass_Ch%i_S%i_%s",ich,i,option.Data()), "WMass kinfit", 32 ,0 ,160);
+      h_kinWMass[ich][i] = new TH1D(Form("h_kinWMass_Ch%i_S%i_%s",ich,i,option.Data()), "WMass kinfit", 80 ,0 ,160);
       h_kinWMass[ich][i]->SetXTitle("Transverse Mass (GeV)");
       h_kinWMass[ich][i]->Sumw2();
       fOutput->Add(h_kinWMass[ich][i]);
 
-      h_HMass[ich][i] = new TH1D(Form("h_HMass_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (medium)", 100 ,50 ,150);
+      h_HMass[ich][i] = new TH1D(Form("h_HMass_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (medium)", 75 ,50 ,200);
       h_HMass[ich][i]->SetXTitle("Higg Mass (2 medium b jets) (GeV)");
       h_HMass[ich][i]->Sumw2();
       fOutput->Add(h_HMass[ich][i]);
 
-      h_kinHMass[ich][i] = new TH1D(Form("h_kinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "HMass kinfit", 100 ,50 ,150);
+      h_kinHMass[ich][i] = new TH1D(Form("h_kinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "HMass kinfit", 75 ,50 ,200);
       h_kinHMass[ich][i]->SetXTitle("Higg Mass (2 b jets) (GeV)");
       h_kinHMass[ich][i]->Sumw2();
       fOutput->Add(h_kinHMass[ich][i]);
@@ -66,12 +66,12 @@ void FCNCAnalysis::SlaveBegin(TTree * /*tree*/)
       h_dRbb[ich][i]->Sumw2();
       fOutput->Add(h_dRbb[ich][i]);
 
-      h_bJetPtH[ich][i] = new TH1D(Form("h_bJetPtH_Ch%i_S%i_%s",ich,i,option.Data()), "b jet (medium) pT from H", 200 ,0 ,200);
+      h_bJetPtH[ich][i] = new TH1D(Form("h_bJetPtH_Ch%i_S%i_%s",ich,i,option.Data()), "b jet (medium) pT from H", 56 ,20 ,300);
       h_bJetPtH[ich][i]->SetXTitle("b Jet (medium) pT from Higgs (GeV)");
       h_bJetPtH[ich][i]->Sumw2();
       fOutput->Add(h_bJetPtH[ich][i]);
 
-      h_cJetPt[ich][i] = new TH1D(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()), "leading c jet (medium) pT", 200 ,0 ,200);
+      h_cJetPt[ich][i] = new TH1D(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()), "leading c jet (medium) pT", 56 ,20 ,300);
       h_cJetPt[ich][i]->SetXTitle("leading c Jet (medium) pT (GeV)");
       h_cJetPt[ich][i]->Sumw2();
       fOutput->Add(h_cJetPt[ich][i]);
@@ -96,17 +96,17 @@ void FCNCAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bjmDR[ich][i]->Sumw2();
       fOutput->Add(h_bjmDR[ich][i]);
 
-      h_kinTopMHc[ich][i] = new TH1D(Form("h_kinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc kinfit", 100 ,120 , 220);
+      h_kinTopMHc[ich][i] = new TH1D(Form("h_kinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc kinfit", 75 ,120 , 270);
       h_kinTopMHc[ich][i]->SetXTitle("Top Mass (Hc) (GeV)");
       h_kinTopMHc[ich][i]->Sumw2();
       fOutput->Add(h_kinTopMHc[ich][i]);
 
-      h_kinTopMWb[ich][i] = new TH1D(Form("h_kinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from Wb kinfit", 100 , 120 , 220);
+      h_kinTopMWb[ich][i] = new TH1D(Form("h_kinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from Wb kinfit", 75 , 120 , 270);
       h_kinTopMWb[ich][i]->SetXTitle("Top Mass (Wb) (GeV)");
       h_kinTopMWb[ich][i]->Sumw2();
       fOutput->Add(h_kinTopMWb[ich][i]);
 
-      h_LepIso[ich][i] = new TH1D(Form("h_LepIso_Ch%i_S%i_%s",ich,i,option.Data()), "LepIso", 100 ,0 ,1);
+      h_LepIso[ich][i] = new TH1D(Form("h_LepIso_Ch%i_S%i_%s",ich,i,option.Data()), "LepIso", 30 ,0 ,0.3);
       h_LepIso[ich][i]->SetXTitle("Relative Isolation");
       h_LepIso[ich][i]->Sumw2();
       fOutput->Add(h_LepIso[ich][i]);
@@ -157,7 +157,7 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
     double apt_elec = TMath::Abs(met_elec);
     double met_x_elec =  apt_elec*TMath::Cos(met_phi_elec);
     double met_y_elec =  apt_elec*TMath::Sin(met_phi_elec);
-    p4met_muon.SetPxPyPzE( met_x_elec, met_y_elec, 0, met_elec);
+    p4met_elec.SetPxPyPzE( met_x_elec, met_y_elec, 0, met_elec);
 
     double met = 0;
 
@@ -200,7 +200,7 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
     bool passelectron = (*NElectron == 1) && (elec.Pt() > 35) && (abs(elec.Eta()) <= 2.1); // && (*NLooseMuon + *NLooseElectron) == 0; 
 
   //analysis
-//if ( *TTBB == 1 ){
+if ( *TTBB == 1 ){
   if ( passmuon || passelectron ){
 
     if ( passmuon ){
@@ -345,7 +345,7 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
     }
 
   }
-//}//ttbb
+}//ttbb
    return kTRUE;
 }
 
