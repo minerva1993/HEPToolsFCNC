@@ -1,5 +1,25 @@
-void comp(TString var = "NJet", TString step = "11" ){
+void compare(TString var, TString ch, TString step );
 
+void comp_ttbb(TString ch = "0", TString step = "0"){
+
+  compare("NJet", ch, step);
+  compare("NBJetCSVv2M", ch, step);
+  compare("NBJetCSVv2T", ch, step);
+  compare("NCJetM", ch, step);
+  compare("MET", ch, step);
+  compare("WMass", ch, step);
+  compare("HMass_m", ch, step);
+  compare("bJetPtHm", ch, step);
+  compare("cJetPt", ch, step);
+  compare("DPhi", ch, step);
+  compare("bjmDPhi", ch, step);
+  compare("bjmDEta", ch, step);
+  compare("bjmDR", ch, step);
+  compare("LepIso", ch, step);
+
+}
+
+void compare(TString var, TString ch, TString step ){
   //TFile * f_Top_Hct = new TFile("hist_Top_Hct.root");
   //TFile * f_Top_Hut = new TFile("hist_Top_Hut.root");
   //TFile * f_AntiTop_Hct = new TFile("hist_AntiTop_Hct.root");
@@ -11,8 +31,8 @@ void comp(TString var = "NJet", TString step = "11" ){
   //TH2F * h_Top_Hut = (TH2F *) f_Top_Hut->Get(Form("h_%s_S%s_Top_Hut",var.Data(),step.Data()));
   //TH2F * h_AntiTop_Hct = (TH2F *) f_AntiTop_Hct->Get(Form("h_%s_S%s_AntiTop_Hct",var.Data(),step.Data()));
   //TH2F * h_AntiTop_Hut = (TH2F *) f_AntiTop_Hut->Get(Form("h_%s_S%s_AntiTop_Hut",var.Data(),step.Data()));
-  TH2F * h_ttbb_tj = (TH2F *) f_ttbb_tj->Get(Form("h_%s_S%s_ttbb",var.Data(),step.Data()));
-  TH2F * h_ttbb_jav = (TH2F *) f_ttbb_jav->Get(Form("h_%s_Ch0_S%s_ttbb",var.Data(),step.Data()));
+  TH2F * h_ttbb_tj = (TH2F *) f_ttbb_tj->Get(Form("h_%s_Ch%s_S%s_ttbb",var.Data(),ch.Data(),step.Data()));
+  TH2F * h_ttbb_jav = (TH2F *) f_ttbb_jav->Get(Form("h_%s_Ch%s_S%s_ttbb",var.Data(),ch.Data(),step.Data()));
 
 /*
   h_Top_Hct->Scale(1.0/h_Top_Hct->Integral());
@@ -52,8 +72,13 @@ void comp(TString var = "NJet", TString step = "11" ){
   TCanvas * c = new TCanvas("c","c",1);
   h_ttbb_tj->SetStats(0000);
   h_ttbb_tj->Draw("Hist");
-  h_ttbb_tj->GetYaxis()->SetRangeUser(0,0.4);
   h_ttbb_jav->Draw("Histsame");
+
+  double scale_tj = 1.2*(h_ttbb_tj->GetMaximum());
+  double scale_jav = 1.2*(h_ttbb_jav->GetMaximum());
+
+  if( scale_tj > scale_jav) h_ttbb_tj->GetYaxis()->SetRangeUser(0,scale_tj);
+  else  h_ttbb_tj->GetYaxis()->SetRangeUser(0,scale_jav);
 
   h_ttbb_tj->SetLineColor(2);
   h_ttbb_jav->SetLineColor(4);
@@ -64,7 +89,5 @@ void comp(TString var = "NJet", TString step = "11" ){
   l->SetTextSize(.03);
   l->Draw();
 
-
-  c->Print(Form("c_%s_S%s.pdf",var.Data(),step.Data()));
- 
+  c->Print(Form("c_%s_Ch%s_S%s.pdf",var.Data(),ch.Data(),step.Data()));
 }

@@ -51,10 +51,10 @@ void FCNCAnalysis::SlaveBegin(TTree * /*tree*/)
       h_kinWMass[ich][i]->Sumw2();
       fOutput->Add(h_kinWMass[ich][i]);
 
-      h_HMass[ich][i] = new TH1D(Form("h_HMass_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (medium)", 75 ,50 ,200);
-      h_HMass[ich][i]->SetXTitle("Higg Mass (2 medium b jets) (GeV)");
-      h_HMass[ich][i]->Sumw2();
-      fOutput->Add(h_HMass[ich][i]);
+      h_HMass_m[ich][i] = new TH1D(Form("h_HMass_m_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (medium)", 75 ,50 ,200);
+      h_HMass_m[ich][i]->SetXTitle("Higg Mass (2 medium b jets) (GeV)");
+      h_HMass_m[ich][i]->Sumw2();
+      fOutput->Add(h_HMass_m[ich][i]);
 
       h_kinHMass[ich][i] = new TH1D(Form("h_kinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "HMass kinfit", 75 ,50 ,200);
       h_kinHMass[ich][i]->SetXTitle("Higg Mass (2 b jets) (GeV)");
@@ -66,10 +66,10 @@ void FCNCAnalysis::SlaveBegin(TTree * /*tree*/)
       h_dRbb[ich][i]->Sumw2();
       fOutput->Add(h_dRbb[ich][i]);
 
-      h_bJetPtH[ich][i] = new TH1D(Form("h_bJetPtH_Ch%i_S%i_%s",ich,i,option.Data()), "b jet (medium) pT from H", 56 ,20 ,300);
-      h_bJetPtH[ich][i]->SetXTitle("b Jet (medium) pT from Higgs (GeV)");
-      h_bJetPtH[ich][i]->Sumw2();
-      fOutput->Add(h_bJetPtH[ich][i]);
+      h_bJetPtHm[ich][i] = new TH1D(Form("h_bJetPtHm_Ch%i_S%i_%s",ich,i,option.Data()), "b jet (medium) pT from H", 56 ,20 ,300);
+      h_bJetPtHm[ich][i]->SetXTitle("b Jet (medium) pT from Higgs (GeV)");
+      h_bJetPtHm[ich][i]->Sumw2();
+      fOutput->Add(h_bJetPtHm[ich][i]);
 
       h_cJetPt[ich][i] = new TH1D(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()), "leading c jet (medium) pT", 56 ,20 ,300);
       h_cJetPt[ich][i]->SetXTitle("leading c Jet (medium) pT (GeV)");
@@ -305,10 +305,10 @@ if ( *TTBB == 1 ){
       h_bjmDPhi[mode][0]->Fill(bjmDPhi, EventWeight);
       h_bjmDEta[mode][0]->Fill(bjmDEta, EventWeight);
       h_bjmDR[mode][0]->Fill(bjmDR, EventWeight);
-      h_HMass[mode][0]->Fill(higgsMass, EventWeight);
+      h_HMass_m[mode][0]->Fill(higgsMass, EventWeight);
       h_kinHMass[mode][0]->Fill(*Kin_Hmass, EventWeight);
       h_dRbb[mode][0]->Fill(*Kin_HdRbb, EventWeight);
-      h_bJetPtH[mode][0]->Fill(bJetPtH, EventWeight);
+      h_bJetPtHm[mode][0]->Fill(bJetPtH, EventWeight);
     }
 
     if( ncjets_m >0 ){
@@ -333,10 +333,10 @@ if ( *TTBB == 1 ){
         h_bjmDPhi[mode][1]->Fill(bjmDPhi, EventWeight);
         h_bjmDEta[mode][1]->Fill(bjmDEta, EventWeight);
         h_bjmDR[mode][1]->Fill(bjmDR, EventWeight);
-        h_HMass[mode][1]->Fill(higgsMass, EventWeight);
+        h_HMass_m[mode][1]->Fill(higgsMass, EventWeight);
         h_kinHMass[mode][1]->Fill(*Kin_Hmass, EventWeight);
         h_dRbb[mode][1]->Fill(*Kin_HdRbb, EventWeight);
-        h_bJetPtH[mode][1]->Fill(bJetPtH, EventWeight);
+        h_bJetPtHm[mode][1]->Fill(bJetPtH, EventWeight);
       }
 
       if( ncjets_m >0 ){

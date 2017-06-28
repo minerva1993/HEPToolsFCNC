@@ -20,7 +20,8 @@
 #include <TLorentzVector.h>
 #include <TH2D.h>
 // Headers needed by this particular selector
-
+#include "TClonesArray.h"
+#include <vector>
 
 class FCNCAnalysis : public TSelector {
 public :
@@ -150,10 +151,10 @@ public :
    TH1D *h_MET[2][5];
    TH1D *h_WMass[2][5];
    TH1D *h_kinWMass[2][5];
-   TH1D *h_HMass[2][5];
+   TH1D *h_HMass_m[2][5];
    TH1D *h_kinHMass[2][5];
    TH1D *h_dRbb[2][5];
-   TH1D *h_bJetPtH[2][5];
+   TH1D *h_bJetPtHm[2][5];
    TH1D *h_cJetPt[2][5];
 
    TH1D *h_kinTopMHc[2][5];
