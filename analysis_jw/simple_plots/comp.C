@@ -1,12 +1,13 @@
 void compare(TString var, TString ch, TString step );
 
-void comp(TString ch = "0", TString step = "11"){
+void comp(TString ch = "0", TString step = "0"){
 
   compare("NJet", ch, step);
   compare("NBJetCSVv2M", ch, step);
   compare("NBJetCSVv2T", ch, step);
   compare("NCJetM", ch, step);
   compare("WMass", ch, step);
+  compare("MET", ch, step);
   compare("DPhi", ch, step);
   compare("bjmDPhi", ch, step);
   compare("bjmDEta", ch, step);
