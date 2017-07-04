@@ -76,6 +76,16 @@ public :
    TTreeReaderArray<float> kinjet_phi = {fReader, "kinjet_phi"};
    TTreeReaderArray<float> kinjet_E = {fReader, "kinjet_E"};
    TTreeReaderArray<int> kinjet_index = {fReader, "kinjet_index"};
+   TTreeReaderValue<Float_t> fcnhkin_chi2 = {fReader, "fcnhkin_chi2"};
+   TTreeReaderValue<Float_t> fcnhkinnu_pT = {fReader, "fcnhkinnu_pT"};
+   TTreeReaderValue<Float_t> fcnhkinnu_eta = {fReader, "fcnhkinnu_eta"};
+   TTreeReaderValue<Float_t> fcnhkinnu_phi = {fReader, "fcnhkinnu_phi"};
+   TTreeReaderValue<Float_t> fcnhkinnu_E = {fReader, "fcnhkinnu_E"};
+   TTreeReaderArray<float> fcnhkinjet_pT = {fReader, "fcnhkinjet_pT"};
+   TTreeReaderArray<float> fcnhkinjet_eta = {fReader, "fcnhkinjet_eta"};
+   TTreeReaderArray<float> fcnhkinjet_phi = {fReader, "fcnhkinjet_phi"};
+   TTreeReaderArray<float> fcnhkinjet_E = {fReader, "fcnhkinjet_E"};
+   TTreeReaderArray<int> fcnhkinjet_index = {fReader, "fcnhkinjet_index"};
    //TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
    //TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    //TTreeReaderArray<int> jet_MatchedGenJetIndex = {fReader, "jet_MatchedGenJetIndex"};
@@ -147,6 +157,17 @@ public :
    TH1D *h_HMass_t[2][21];
    TH1D *h_bJetPtHt[2][21];
    TH1D *h_cJetPt[2][21];
+
+   ///kin sol
+   TH1D *h_kinLepWMass[2][21];
+   TH1D *h_kinHadWMass[2][21];
+   TH1D *h_kinTopMWb[2][21];
+   TH1D *h_kinTopMqqb[2][21];
+
+   TH1D *h_fcnhkinHMass[2][21];
+   TH1D *h_fcnhkinWMass[2][21];
+   TH1D *h_fcnhkinTopMWb[2][21];
+   TH1D *h_fcnhkinTopMHc[2][21];
 
 };
 

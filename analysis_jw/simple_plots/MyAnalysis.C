@@ -47,8 +47,8 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_WMass[ich][i]->Sumw2();
       fOutput->Add(h_WMass[ich][i]);
 
-      h_HMass_m[ich][i] = new TH1D(Form("h_HMass_m_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (medium)", 75 ,50 ,200);
-      h_HMass_m[ich][i]->SetXTitle("Higg Mass (2 medium b jets) (GeV)");
+      h_HMass_m[ich][i] = new TH1D(Form("h_HMass_m_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (2 medium b jets)", 75 ,50 ,200);
+      h_HMass_m[ich][i]->SetXTitle("Higg Mass (GeV)");
       h_HMass_m[ich][i]->Sumw2();
       fOutput->Add(h_HMass_m[ich][i]);
 
@@ -57,8 +57,8 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bJetPtHm[ich][i]->Sumw2();
       fOutput->Add(h_bJetPtHm[ich][i]);
 
-      h_HMass_t[ich][i] = new TH1D(Form("h_HMass_t_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (tight)", 75 ,50 ,200);
-      h_HMass_t[ich][i]->SetXTitle("Higg Mass (2 tight b jets) (GeV)");
+      h_HMass_t[ich][i] = new TH1D(Form("h_HMass_t_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (2 tight b jets)", 75 ,50 ,200);
+      h_HMass_t[ich][i]->SetXTitle("Higg Mass (GeV)");
       h_HMass_t[ich][i]->Sumw2();
       fOutput->Add(h_HMass_t[ich][i]);
 
@@ -128,6 +128,47 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_LepIsoQCD[ich][i]->SetXTitle("Relative Isolation");
       h_LepIsoQCD[ich][i]->Sumw2();
       fOutput->Add(h_LepIsoQCD[ich][i]);
+
+      h_kinLepWMass[ich][i] = new TH1D(Form("h_kinLepWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from kinfit (Lep)", 79 ,2 ,160);
+      h_kinLepWMass[ich][i]->SetXTitle("W Mass (GeV)");
+      h_kinLepWMass[ich][i]->Sumw2();
+      fOutput->Add(h_kinLepWMass[ich][i]);
+
+      h_kinHadWMass[ich][i] = new TH1D(Form("h_kinHadWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from kinfit (qqb)", 79 ,2 ,160);
+      h_kinHadWMass[ich][i]->SetXTitle("W Mass (GeV)");
+      h_kinHadWMass[ich][i]->Sumw2();
+      fOutput->Add(h_kinHadWMass[ich][i]);
+
+      h_fcnhkinWMass[ich][i] = new TH1D(Form("h_fcnhkinWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from fcnh kinfit (Lep)", 79 ,2 ,160);
+      h_fcnhkinWMass[ich][i]->SetXTitle("W Mass (GeV)");
+      h_fcnhkinWMass[ich][i]->Sumw2();
+      fOutput->Add(h_fcnhkinWMass[ich][i]);
+
+      h_fcnhkinHMass[ich][i] = new TH1D(Form("h_fcnhkinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "H Mass fron fcnh kinfit (bb)", 75 ,50 ,200);
+      h_fcnhkinHMass[ich][i]->SetXTitle("H Mass (GeV)");
+      h_fcnhkinHMass[ich][i]->Sumw2();
+      fOutput->Add(h_fcnhkinHMass[ich][i]);
+
+      h_kinTopMqqb[ich][i] = new TH1D(Form("h_kinTopMqqb_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from kinfit (qqb)", 75 ,120 , 270);
+      h_kinTopMqqb[ich][i]->SetXTitle("Top Mass (GeV)");
+      h_kinTopMqqb[ich][i]->Sumw2();
+      fOutput->Add(h_kinTopMqqb[ich][i]);
+
+      h_kinTopMWb[ich][i] = new TH1D(Form("h_kinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from kinfit (Lep)", 75 , 120 , 270);
+      h_kinTopMWb[ich][i]->SetXTitle("Top Mass (GeV)");
+      h_kinTopMWb[ich][i]->Sumw2();
+      fOutput->Add(h_kinTopMWb[ich][i]);
+
+      h_fcnhkinTopMHc[ich][i] = new TH1D(Form("h_fcnhkinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc/u fcnhkinfit", 75 ,120 , 270);
+      h_fcnhkinTopMHc[ich][i]->SetXTitle("Top Mass (GeV)");
+      h_fcnhkinTopMHc[ich][i]->Sumw2();
+      fOutput->Add(h_fcnhkinTopMHc[ich][i]);
+
+      h_fcnhkinTopMWb[ich][i] = new TH1D(Form("h_fcnhkinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from fcnhkinfit (Lep)", 75 , 120 , 270);
+      h_fcnhkinTopMWb[ich][i]->SetXTitle("Top Mass (GeV)");
+      h_fcnhkinTopMWb[ich][i]->Sumw2();
+      fOutput->Add(h_fcnhkinTopMWb[ich][i]);
+
 
       }
     }
@@ -342,6 +383,36 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         else bJetPtHt = bjt_pt2.at(a);
       }
     }
+
+  ////kinfit values: for kin, lep T->W (lep + kin nu) + kinbl, had T -> (j1 + j2) + bjrefit. for fcnc, lep T -> W (lep + kin nu) + kinbl, fcn T -> H (kinj1 kinj2) + kinbjrefit(c/u jet)
+
+    TLorentzVector kinnu, kinLepb, kinHadb, kinj1, kinj2, fcnhkinnu, fcnhkinLepb, fcnhkinuc, fcnhkinHb1, fcnhkinHb2;
+
+    TLorentzVector kinLepT, kinHadT, kinLepW, kinHadW, fcnhkinH, fcnhkinLepW, fcnhkinLepT, fcnhkinHcT;
+
+    kinnu.SetPtEtaPhiE(*kinnu_pT, *kinnu_eta, *kinnu_phi, *kinnu_E);
+    kinLepW = lepton + kinnu;
+    kinLepb.SetPtEtaPhiE(kinjet_pT[3], kinjet_eta[3], kinjet_phi[3], kinjet_E[3]);
+    kinLepT = kinLepW + kinLepb;
+
+    kinHadb.SetPtEtaPhiE(kinjet_pT[0], kinjet_eta[0], kinjet_phi[0], kinjet_E[0]);
+    kinj1.SetPtEtaPhiE(kinjet_pT[1], kinjet_eta[1], kinjet_phi[1], kinjet_E[1]);
+    kinj2.SetPtEtaPhiE(kinjet_pT[2], kinjet_eta[2], kinjet_phi[2], kinjet_E[2]);
+    kinHadW = kinj1 + kinj2;
+    kinHadT = kinHadW + kinHadb;
+
+    fcnhkinnu.SetPtEtaPhiE(*fcnhkinnu_pT, *fcnhkinnu_eta, *fcnhkinnu_phi, *fcnhkinnu_E);
+    fcnhkinLepW = fcnhkinnu + lepton;
+    fcnhkinLepb.SetPtEtaPhiE(fcnhkinjet_pT[3], fcnhkinjet_eta[3], fcnhkinjet_phi[3], fcnhkinjet_E[3]);
+    fcnhkinLepT = fcnhkinLepW + fcnhkinLepb;
+
+    fcnhkinuc.SetPtEtaPhiE(fcnhkinjet_pT[0], fcnhkinjet_eta[0], fcnhkinjet_phi[0], fcnhkinjet_E[0]);
+    fcnhkinHb1.SetPtEtaPhiE(fcnhkinjet_pT[1], fcnhkinjet_eta[1], fcnhkinjet_phi[1], fcnhkinjet_E[1]);
+    fcnhkinHb2.SetPtEtaPhiE(fcnhkinjet_pT[2], fcnhkinjet_eta[2], fcnhkinjet_phi[2], fcnhkinjet_E[2]);
+    fcnhkinH = fcnhkinHb1 + fcnhkinHb2;
+    fcnhkinHcT = fcnhkinH + fcnhkinuc;
+
+
      /////Fill histograms
 
     h_NJet[mode][0]->Fill(njets, EventWeight);
@@ -374,6 +445,19 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     if( ncjets_m >0 ){
       h_cJetPt[mode][0]->Fill(cjetPt, EventWeight);
+    }
+    //kinfits
+    if(*kin_chi2 < 10000){
+      h_kinLepWMass[mode][0]->Fill(kinLepW.M(),EventWeight);
+      h_kinHadWMass[mode][0]->Fill(kinLepW.M(),EventWeight);
+      h_kinTopMWb[mode][0]->Fill(kinLepT.M(),EventWeight);
+      h_kinTopMqqb[mode][0]->Fill(kinHadT.M(),EventWeight);
+    }
+    if(*fcnhkin_chi2 < 10000){
+      h_fcnhkinWMass[mode][0]->Fill(fcnhkinLepW.M(),EventWeight);
+      h_fcnhkinHMass[mode][0]->Fill(fcnhkinH.M(),EventWeight);
+      h_fcnhkinTopMWb[mode][0]->Fill(fcnhkinLepT.M(),EventWeight);
+      h_fcnhkinTopMHc[mode][0]->Fill(fcnhkinHcT.M(),EventWeight);
     }
 
 //step1
