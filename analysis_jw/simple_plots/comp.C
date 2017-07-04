@@ -19,7 +19,14 @@ void comp(TString ch = "0", TString step = "0"){
   compare("bJetPtHm", ch, step);
   compare("bJetPtHt", ch, step);
   compare("cJetPt", ch, step);
-
+  compare("kinLepWMass", ch, step);
+  compare("kinHadWMass", ch, step);
+  compare("fcnhkinWMass", ch, step);
+  compare("fcnhkinHMass", ch, step);
+  compare("kinTopMqqb", ch, step);
+  compare("kinTopMWb", ch, step);
+  compare("fcnhkinTopMHc", ch, step);
+  compare("fcnhkinTopMWb", ch, step);
 
 
 }
@@ -48,11 +55,16 @@ void compare(TString var, TString ch, TString step ){
   TCanvas * c = new TCanvas("c","c",1);
   h_Top_Hct->SetStats(0000);
   h_Top_Hct->Draw("Hist");
-  h_Top_Hct->GetYaxis()->SetRangeUser(0,1.2*(h_Top_Hct->GetMaximum()));
   h_Top_Hut->Draw("Histsame");
   h_AntiTop_Hct->Draw("Histsame");
   h_AntiTop_Hut->Draw("Histsame");
   h_ttbb->Draw("HistSame");
+
+  double scale_fcnc = 1.2*(h_Top_Hct->GetMaximum());
+  double scale_ttbb = 1.2*(h_ttbb->GetMaximum());
+
+  if( scale_fcnc > scale_ttbb) h_Top_Hct->GetYaxis()->SetRangeUser(0,scale_fcnc);
+  else  h_Top_Hct->GetYaxis()->SetRangeUser(0,scale_ttbb);
 
   h_Top_Hct->SetLineColor(4);
   h_Top_Hut->SetLineColor(6);
