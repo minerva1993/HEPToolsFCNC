@@ -1,4 +1,5 @@
-root [0] 
+o
+t [0] 
 Processing anamva_test.C...
                          : Parsing option string: 
                          : ... "V:!Silent:Color:Transformations=I:DrawProgressBar:AnalysisType=Classification"
@@ -23,6 +24,41 @@ DataSetInfo              : [inputcorr_test] : Added class "Background"
                          : Add Tree tmva_ttbb of type Background with 47208 events
 Factory                  : Booking method: Likelihood
                          : 
+Factory                  : Booking method: MLP
+                         : 
+MLP                      : [inputcorr_test] : Create Transformation "N" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'NJets' <---> Output : variable 'NJets'
+                         : Input : variable 'NBJets_M' <---> Output : variable 'NBJets_M'
+                         : Input : variable 'NCJets_M' <---> Output : variable 'NCJets_M'
+                         : Input : variable 'Transvers_Mass' <---> Output : variable 'Transvers_Mass'
+                         : Input : variable 'Lepton_DPhi' <---> Output : variable 'Lepton_DPhi'
+                         : Input : variable 'Missing_ET' <---> Output : variable 'Missing_ET'
+                         : Input : variable 'BJet_M_delta_R' <---> Output : variable 'BJet_M_delta_R'
+                         : Input : variable 'BJet_M_delta_Eta' <---> Output : variable 'BJet_M_delta_Eta'
+                         : Input : variable 'BJet_M_delta_Phi' <---> Output : variable 'BJet_M_delta_Phi'
+                         : Input : variable 'H_Mass' <---> Output : variable 'H_Mass'
+                         : Input : variable 'BJet_Pt_H' <---> Output : variable 'BJet_Pt_H'
+                         : Input : variable 'CJet_Pt' <---> Output : variable 'CJet_Pt'
+                         : Input : variable 'Jet1_Pt' <---> Output : variable 'Jet1_Pt'
+                         : Input : variable 'Jet2_Pt' <---> Output : variable 'Jet2_Pt'
+                         : Input : variable 'Jet3_Pt' <---> Output : variable 'Jet3_Pt'
+                         : Input : variable 'Jet4_Pt' <---> Output : variable 'Jet4_Pt'
+                         : Input : variable 'Jet1_CSV' <---> Output : variable 'Jet1_CSV'
+                         : Input : variable 'Jet2_CSV' <---> Output : variable 'Jet2_CSV'
+                         : Input : variable 'Jet3_CSV' <---> Output : variable 'Jet3_CSV'
+                         : Input : variable 'Jet4_CSV' <---> Output : variable 'Jet4_CSV'
+                         : Input : variable 'Kin_Lep_WMass' <---> Output : variable 'Kin_Lep_WMass'
+                         : Input : variable 'Kin_Lep_TopMass' <---> Output : variable 'Kin_Lep_TopMass'
+                         : Input : variable 'Kin_Had_WMass' <---> Output : variable 'Kin_Had_WMass'
+                         : Input : variable 'Kin_Had_TopMass' <---> Output : variable 'Kin_Had_TopMass'
+                         : Input : variable 'fcnhKin_Lep_WMass' <---> Output : variable 'fcnhKin_Lep_WMass'
+                         : Input : variable 'fcnhKin_Lep_TopMass' <---> Output : variable 'fcnhKin_Lep_TopMass'
+                         : Input : variable 'fcnhKin_HMass' <---> Output : variable 'fcnhKin_HMass'
+                         : Input : variable 'fcnhKin_Huc_TopMass' <---> Output : variable 'fcnhKin_Huc_TopMass'
+MLP                      : Building Network. 
+                         : Initializing weights
 Factory                  : Booking method: BDT
                          : 
 <WARNING>                : Dataset[inputcorr_test] : Input expression resolves to infinite value (NaN): Transvers_Mass
@@ -122,6 +158,62 @@ DataSetInfo              : Correlation matrix (Background):
                          : -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 DataSetFactory           : [inputcorr_test] :  
                          : 
+Factory                  : Booking method: DNN
+                         : 
+                         : Parsing option string: 
+                         : ... "!H:V:VarTransform=N:ErrorStrategy=CROSSENTROPY:WeightInitialization=XAVIERUNIFORM:Layout=TANH|30,TANH|20,LINEAR:TrainingStrategy=LearningRate=0.01,Momentum=0.4,Repetitions=1,ConvergenceSteps=300,BatchSize=100,DropConfig=0.0+0.2+0.0,WeightDecay=0.001,Regularization=L2,TestRepetitions=5,Multithreading=True"
+                         : The following options are set:
+                         : - By User:
+                         :     <none>
+                         : - Default:
+                         :     Boost_num: "0" [Number of times the classifier will be boosted]
+                         : Parsing option string: 
+                         : ... "!H:V:VarTransform=N:ErrorStrategy=CROSSENTROPY:WeightInitialization=XAVIERUNIFORM:Layout=TANH|30,TANH|20,LINEAR:TrainingStrategy=LearningRate=0.01,Momentum=0.4,Repetitions=1,ConvergenceSteps=300,BatchSize=100,DropConfig=0.0+0.2+0.0,WeightDecay=0.001,Regularization=L2,TestRepetitions=5,Multithreading=True"
+                         : The following options are set:
+                         : - By User:
+                         :     V: "True" [Verbose output (short form of "VerbosityLevel" below - overrides the latter one)]
+                         :     VarTransform: "N" [List of variable transformations performed before training, e.g., "D_Background,P_Signal,G,N_AllClasses" for: "Decorrelation, PCA-transformation, Gaussianisation, Normalisation, each for the given class of events ('AllClasses' denotes all events of all classes, if no class indication is given, 'All' is assumed)"]
+                         :     H: "False" [Print method-specific help message]
+                         :     Layout: "TANH|30,TANH|20,LINEAR" [Layou of the network.]
+                         :     ErrorStrategy: "CROSSENTROPY" [Loss function: Mean squared error (regression) or cross entropy (binary classifcation).]
+                         :     WeightInitialization: "XAVIERUNIFORM" [Weight initialization strategy]
+                         :     TrainingStrategy: "LearningRate=0.01,Momentum=0.4,Repetitions=1,ConvergenceSteps=300,BatchSize=100,DropConfig=0.0+0.2+0.0,WeightDecay=0.001,Regularization=L2,TestRepetitions=5,Multithreading=True" [Defines the training strategies.]
+                         : - Default:
+                         :     VerbosityLevel: "Default" [Verbosity level]
+                         :     CreateMVAPdfs: "False" [Create PDFs for classifier outputs (signal and background)]
+                         :     IgnoreNegWeightsInTraining: "False" [Events with negative weights are ignored in the training (but are included for testing and performance evaluation)]
+                         :     Architecture: "STANDARD" [Which architecture to perfrom the training on.]
+DNN                      : [inputcorr_test] : Create Transformation "N" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'NJets' <---> Output : variable 'NJets'
+                         : Input : variable 'NBJets_M' <---> Output : variable 'NBJets_M'
+                         : Input : variable 'NCJets_M' <---> Output : variable 'NCJets_M'
+                         : Input : variable 'Transvers_Mass' <---> Output : variable 'Transvers_Mass'
+                         : Input : variable 'Lepton_DPhi' <---> Output : variable 'Lepton_DPhi'
+                         : Input : variable 'Missing_ET' <---> Output : variable 'Missing_ET'
+                         : Input : variable 'BJet_M_delta_R' <---> Output : variable 'BJet_M_delta_R'
+                         : Input : variable 'BJet_M_delta_Eta' <---> Output : variable 'BJet_M_delta_Eta'
+                         : Input : variable 'BJet_M_delta_Phi' <---> Output : variable 'BJet_M_delta_Phi'
+                         : Input : variable 'H_Mass' <---> Output : variable 'H_Mass'
+                         : Input : variable 'BJet_Pt_H' <---> Output : variable 'BJet_Pt_H'
+                         : Input : variable 'CJet_Pt' <---> Output : variable 'CJet_Pt'
+                         : Input : variable 'Jet1_Pt' <---> Output : variable 'Jet1_Pt'
+                         : Input : variable 'Jet2_Pt' <---> Output : variable 'Jet2_Pt'
+                         : Input : variable 'Jet3_Pt' <---> Output : variable 'Jet3_Pt'
+                         : Input : variable 'Jet4_Pt' <---> Output : variable 'Jet4_Pt'
+                         : Input : variable 'Jet1_CSV' <---> Output : variable 'Jet1_CSV'
+                         : Input : variable 'Jet2_CSV' <---> Output : variable 'Jet2_CSV'
+                         : Input : variable 'Jet3_CSV' <---> Output : variable 'Jet3_CSV'
+                         : Input : variable 'Jet4_CSV' <---> Output : variable 'Jet4_CSV'
+                         : Input : variable 'Kin_Lep_WMass' <---> Output : variable 'Kin_Lep_WMass'
+                         : Input : variable 'Kin_Lep_TopMass' <---> Output : variable 'Kin_Lep_TopMass'
+                         : Input : variable 'Kin_Had_WMass' <---> Output : variable 'Kin_Had_WMass'
+                         : Input : variable 'Kin_Had_TopMass' <---> Output : variable 'Kin_Had_TopMass'
+                         : Input : variable 'fcnhKin_Lep_WMass' <---> Output : variable 'fcnhKin_Lep_WMass'
+                         : Input : variable 'fcnhKin_Lep_TopMass' <---> Output : variable 'fcnhKin_Lep_TopMass'
+                         : Input : variable 'fcnhKin_HMass' <---> Output : variable 'fcnhKin_HMass'
+                         : Input : variable 'fcnhKin_Huc_TopMass' <---> Output : variable 'fcnhKin_Huc_TopMass'
 Factory                  : Train all methods
 Factory                  : [inputcorr_test] : Create Transformation "I" with events from all classes.
                          : 
@@ -270,12 +362,109 @@ Factory                  : Train method: Likelihood for Classification
                          : 
                          : Filling reference histograms
                          : Building PDF out of reference histograms
-                         : Elapsed time for training with 60000 events: 1.87 sec         
+                         : Elapsed time for training with 60000 events: 1.11 sec         
 Likelihood               : [inputcorr_test] : Evaluation of Likelihood on training sample (60000 events)
-                         : Elapsed time for evaluation of 60000 events: 0.397 sec       
+                         : Elapsed time for evaluation of 60000 events: 0.237 sec       
                          : Creating xml weight file: inputcorr_test/weights/TMVAClassification_Likelihood.weights.xml
                          : Creating standalone class: inputcorr_test/weights/TMVAClassification_Likelihood.class.C
                          : Write monitoring histograms to file: output_test.root:/inputcorr_test/Method_Likelihood/Likelihood
+Factory                  : Training finished
+                         : 
+Factory                  : Train method: MLP for Classification
+                         : 
+                         : 
+                         : ================================================================
+                         : H e l p   f o r   M V A   m e t h o d   [ MLP ] :
+                         : 
+                         : --- Short description:
+                         : 
+                         : The MLP artificial neural network (ANN) is a traditional feed-
+                         : forward multilayer perceptron impementation. The MLP has a user-
+                         : defined hidden layer architecture, while the number of input (output)
+                         : nodes is determined by the input variables (output classes, i.e., 
+                         : signal and one background). 
+                         : 
+                         : --- Performance optimisation:
+                         : 
+                         : Neural networks are stable and performing for a large variety of 
+                         : linear and non-linear classification problems. However, in contrast
+                         : to (e.g.) boosted decision trees, the user is advised to reduce the 
+                         : number of input variables that have only little discrimination power. 
+                         : 
+                         : In the tests we have carried out so far, the MLP and ROOT networks
+                         : (TMlpANN, interfaced via TMVA) performed equally well, with however
+                         : a clear speed advantage for the MLP. The Clermont-Ferrand neural 
+                         : net (CFMlpANN) exhibited worse classification performance in these
+                         : tests, which is partly due to the slow convergence of its training
+                         : (at least 10k training cycles are required to achieve approximately
+                         : competitive results).
+                         : 
+                         : Overtraining: only the TMlpANN performs an explicit separation of the
+                         : full training sample into independent training and validation samples.
+                         : We have found that in most high-energy physics applications the 
+                         : avaliable degrees of freedom (training events) are sufficient to 
+                         : constrain the weights of the relatively simple architectures required
+                         : to achieve good performance. Hence no overtraining should occur, and 
+                         : the use of validation samples would only reduce the available training
+                         : information. However, if the perrormance on the training sample is 
+                         : found to be significantly better than the one found with the inde-
+                         : pendent test sample, caution is needed. The results for these samples 
+                         : are printed to standard output at the end of each training job.
+                         : 
+                         : --- Performance tuning via configuration options:
+                         : 
+                         : The hidden layer architecture for all ANNs is defined by the option
+                         : "HiddenLayers=N+1,N,...", where here the first hidden layer has N+1
+                         : neurons and the second N neurons (and so on), and where N is the number  
+                         : of input variables. Excessive numbers of hidden layers should be avoided,
+                         : in favour of more neurons in the first hidden layer.
+                         : 
+                         : The number of cycles should be above 500. As said, if the number of
+                         : adjustable weights is small compared to the training sample size,
+                         : using a large number of training samples should not lead to overtraining.
+                         : 
+                         : <Suppress this message by specifying "!H" in the booking option>
+                         : ================================================================
+                         : 
+TFHandler_MLP            :            Variable                   Mean                   RMS           [        Min                   Max ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         :               NJets:             -0.68706              0.29599   [              -1.0000               1.0000 ]
+                         :            NBJets_M:             -0.88886              0.26931   [              -1.0000               1.0000 ]
+                         :            NCJets_M:             -0.22846              0.23061   [              -1.0000               1.0000 ]
+                         :      Transvers_Mass:             -0.63896              0.20977   [              -1.0000               1.0000 ]
+                         :         Lepton_DPhi:           -0.0027995              0.51114   [              -1.0000               1.0000 ]
+                         :          Missing_ET:             -0.78919              0.15327   [              -1.0000               1.0000 ]
+                         :      BJet_M_delta_R:             -0.39777              0.35982   [              -1.0000               1.0000 ]
+                         :    BJet_M_delta_Eta:             -0.52141              0.34636   [              -1.0000               1.0000 ]
+                         :    BJet_M_delta_Phi:             -0.53149              0.49985   [              -1.0000               1.0000 ]
+                         :              H_Mass:             -0.86206             0.097307   [              -1.0000               1.0000 ]
+                         :           BJet_Pt_H:             -0.88299              0.10220   [              -1.0000               1.0000 ]
+                         :             CJet_Pt:             -0.84284              0.12299   [              -1.0000               1.0000 ]
+                         :             Jet1_Pt:             -0.82078              0.14121   [              -1.0000               1.0000 ]
+                         :             Jet2_Pt:             -0.86727              0.10263   [              -1.0000               1.0000 ]
+                         :             Jet3_Pt:             -0.79370              0.16124   [              -1.0000               1.0000 ]
+                         :             Jet4_Pt:             -0.79932              0.18380   [              -1.0000               1.0000 ]
+                         :            Jet1_CSV:              0.45836              0.70118   [              -1.0000               1.0000 ]
+                         :            Jet2_CSV:              0.45544              0.70514   [              -1.0000               1.0000 ]
+                         :            Jet3_CSV:              0.37900              0.73897   [              -1.0000               1.0000 ]
+                         :            Jet4_CSV:              0.33747              0.74342   [              -1.0000               1.0000 ]
+                         :       Kin_Lep_WMass:             -0.62927             0.078222   [              -1.0000               1.0000 ]
+                         :     Kin_Lep_TopMass:             -0.41073             0.079889   [              -1.0000               1.0000 ]
+                         :       Kin_Had_WMass:              0.54501              0.45307   [              -1.0000               1.0000 ]
+                         :     Kin_Had_TopMass:              0.78273              0.52149   [              -1.0000               1.0000 ]
+                         :   fcnhKin_Lep_WMass:             -0.24595             0.098986   [              -1.0000               1.0000 ]
+                         : fcnhKin_Lep_TopMass:             -0.63915              0.16687   [              -1.0000               1.0000 ]
+                         :       fcnhKin_HMass:             -0.35379              0.86486   [              -1.0000               1.0000 ]
+                         : fcnhKin_Huc_TopMass:             -0.90995              0.12703   [              -1.0000               1.0000 ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         : Training Network
+                         : 
+                         : Elapsed time for training with 60000 events: 1.49e+03 sec         015/1.05]     
+MLP                      : [inputcorr_test] : Evaluation of MLP on training sample (60000 events)
+                         : Elapsed time for evaluation of 60000 events: 0.632 sec       
+                         : Creating xml weight file: inputcorr_test/weights/TMVAClassification_MLP.weights.xml
+                         : Creating standalone class: inputcorr_test/weights/TMVAClassification_MLP.class.C
+                         : Write special histos to file: output_test.root:/inputcorr_test/Method_MLP/MLP
 Factory                  : Training finished
                          : 
 Factory                  : Train method: BDT for Classification
@@ -283,11 +472,116 @@ Factory                  : Train method: BDT for Classification
 BDT                      : #events: (reweighted) sig: 30000 bkg: 30000
                          : #events: (unweighted) sig: 30000 bkg: 30000
                          : Training 1000 Decision Trees ... patience please
-                         : Elapsed time for training with 60000 events: 109 sec         
+                         : Elapsed time for training with 60000 events: 60.8 sec         
 BDT                      : [inputcorr_test] : Evaluation of BDT on training sample (60000 events)
-                         : Elapsed time for evaluation of 60000 events: 15.9 sec       
+                         : Elapsed time for evaluation of 60000 events: 7.57 sec       
                          : Creating xml weight file: inputcorr_test/weights/TMVAClassification_BDT.weights.xml
                          : Creating standalone class: inputcorr_test/weights/TMVAClassification_BDT.class.C
+Factory                  : Training finished
+                         : 
+Factory                  : Train method: DNN for Classification
+                         : 
+TFHandler_DNN            :            Variable                   Mean                   RMS           [        Min                   Max ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         :               NJets:             -0.68706              0.29599   [              -1.0000               1.0000 ]
+                         :            NBJets_M:             -0.88886              0.26931   [              -1.0000               1.0000 ]
+                         :            NCJets_M:             -0.22846              0.23061   [              -1.0000               1.0000 ]
+                         :      Transvers_Mass:             -0.63896              0.20977   [              -1.0000               1.0000 ]
+                         :         Lepton_DPhi:           -0.0027995              0.51114   [              -1.0000               1.0000 ]
+                         :          Missing_ET:             -0.78919              0.15327   [              -1.0000               1.0000 ]
+                         :      BJet_M_delta_R:             -0.39777              0.35982   [              -1.0000               1.0000 ]
+                         :    BJet_M_delta_Eta:             -0.52141              0.34636   [              -1.0000               1.0000 ]
+                         :    BJet_M_delta_Phi:             -0.53149              0.49985   [              -1.0000               1.0000 ]
+                         :              H_Mass:             -0.86206             0.097307   [              -1.0000               1.0000 ]
+                         :           BJet_Pt_H:             -0.88299              0.10220   [              -1.0000               1.0000 ]
+                         :             CJet_Pt:             -0.84284              0.12299   [              -1.0000               1.0000 ]
+                         :             Jet1_Pt:             -0.82078              0.14121   [              -1.0000               1.0000 ]
+                         :             Jet2_Pt:             -0.86727              0.10263   [              -1.0000               1.0000 ]
+                         :             Jet3_Pt:             -0.79370              0.16124   [              -1.0000               1.0000 ]
+                         :             Jet4_Pt:             -0.79932              0.18380   [              -1.0000               1.0000 ]
+                         :            Jet1_CSV:              0.45836              0.70118   [              -1.0000               1.0000 ]
+                         :            Jet2_CSV:              0.45544              0.70514   [              -1.0000               1.0000 ]
+                         :            Jet3_CSV:              0.37900              0.73897   [              -1.0000               1.0000 ]
+                         :            Jet4_CSV:              0.33747              0.74342   [              -1.0000               1.0000 ]
+                         :       Kin_Lep_WMass:             -0.62927             0.078222   [              -1.0000               1.0000 ]
+                         :     Kin_Lep_TopMass:             -0.41073             0.079889   [              -1.0000               1.0000 ]
+                         :       Kin_Had_WMass:              0.54501              0.45307   [              -1.0000               1.0000 ]
+                         :     Kin_Had_TopMass:              0.78273              0.52149   [              -1.0000               1.0000 ]
+                         :   fcnhKin_Lep_WMass:             -0.24595             0.098986   [              -1.0000               1.0000 ]
+                         : fcnhKin_Lep_TopMass:             -0.63915              0.16687   [              -1.0000               1.0000 ]
+                         :       fcnhKin_HMass:             -0.35379              0.86486   [              -1.0000               1.0000 ]
+                         : fcnhKin_Huc_TopMass:             -0.90995              0.12703   [              -1.0000               1.0000 ]
+                         : ------------------------------------------------------------------------------------------------------------------
+TFHandler_DNN            :            Variable                   Mean                   RMS           [        Min                   Max ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         :               NJets:             -0.68706              0.29599   [              -1.0000               1.0000 ]
+                         :            NBJets_M:             -0.88886              0.26931   [              -1.0000               1.0000 ]
+                         :            NCJets_M:             -0.22846              0.23061   [              -1.0000               1.0000 ]
+                         :      Transvers_Mass:             -0.63896              0.20977   [              -1.0000               1.0000 ]
+                         :         Lepton_DPhi:           -0.0027995              0.51114   [              -1.0000               1.0000 ]
+                         :          Missing_ET:             -0.78919              0.15327   [              -1.0000               1.0000 ]
+                         :      BJet_M_delta_R:             -0.39777              0.35982   [              -1.0000               1.0000 ]
+                         :    BJet_M_delta_Eta:             -0.52141              0.34636   [              -1.0000               1.0000 ]
+                         :    BJet_M_delta_Phi:             -0.53149              0.49985   [              -1.0000               1.0000 ]
+                         :              H_Mass:             -0.86206             0.097307   [              -1.0000               1.0000 ]
+                         :           BJet_Pt_H:             -0.88299              0.10220   [              -1.0000               1.0000 ]
+                         :             CJet_Pt:             -0.84284              0.12299   [              -1.0000               1.0000 ]
+                         :             Jet1_Pt:             -0.82078              0.14121   [              -1.0000               1.0000 ]
+                         :             Jet2_Pt:             -0.86727              0.10263   [              -1.0000               1.0000 ]
+                         :             Jet3_Pt:             -0.79370              0.16124   [              -1.0000               1.0000 ]
+                         :             Jet4_Pt:             -0.79932              0.18380   [              -1.0000               1.0000 ]
+                         :            Jet1_CSV:              0.45836              0.70118   [              -1.0000               1.0000 ]
+                         :            Jet2_CSV:              0.45544              0.70514   [              -1.0000               1.0000 ]
+                         :            Jet3_CSV:              0.37900              0.73897   [              -1.0000               1.0000 ]
+                         :            Jet4_CSV:              0.33747              0.74342   [              -1.0000               1.0000 ]
+                         :       Kin_Lep_WMass:             -0.62927             0.078222   [              -1.0000               1.0000 ]
+                         :     Kin_Lep_TopMass:             -0.41073             0.079889   [              -1.0000               1.0000 ]
+                         :       Kin_Had_WMass:              0.54501              0.45307   [              -1.0000               1.0000 ]
+                         :     Kin_Had_TopMass:              0.78273              0.52149   [              -1.0000               1.0000 ]
+                         :   fcnhKin_Lep_WMass:             -0.24595             0.098986   [              -1.0000               1.0000 ]
+                         : fcnhKin_Lep_TopMass:             -0.63915              0.16687   [              -1.0000               1.0000 ]
+                         :       fcnhKin_HMass:             -0.35379              0.86486   [              -1.0000               1.0000 ]
+                         : fcnhKin_Huc_TopMass:             -0.90995              0.12703   [              -1.0000               1.0000 ]
+                         : ------------------------------------------------------------------------------------------------------------------
+TFHandler_DNN            :            Variable                   Mean                   RMS           [        Min                   Max ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         :               NJets:             -0.71800              0.28729   [              -1.0000              0.55556 ]
+                         :            NBJets_M:             -0.90911              0.25158   [              -1.0000               1.0000 ]
+                         :            NCJets_M:             -0.25143              0.23052   [              -1.0000              0.71429 ]
+                         :      Transvers_Mass:             -0.63490              0.22242   [             -0.99977               1.4061 ]
+                         :         Lepton_DPhi:             0.015957              0.51548   [             -0.99803              0.99971 ]
+                         :          Missing_ET:             -0.78119              0.16475   [             -0.99287              0.54908 ]
+                         :      BJet_M_delta_R:             -0.40000              0.33960   [             -0.98805              0.87735 ]
+                         :    BJet_M_delta_Eta:             -0.53318              0.33578   [             -0.99989              0.93410 ]
+                         :    BJet_M_delta_Phi:             -0.51753              0.50456   [             -0.99835              0.95515 ]
+                         :              H_Mass:             -0.86394             0.087272   [             -0.99622              0.33472 ]
+                         :           BJet_Pt_H:             -0.88387             0.096710   [             -0.99953             0.091343 ]
+                         :             CJet_Pt:             -0.84742              0.11318   [             -0.99327              0.27773 ]
+                         :             Jet1_Pt:             -0.82488              0.13889   [             -0.99233              0.27645 ]
+                         :             Jet2_Pt:             -0.87094             0.098991   [             -0.99311              0.12924 ]
+                         :             Jet3_Pt:             -0.80120              0.15840   [             -0.99796              0.92180 ]
+                         :             Jet4_Pt:             -0.80824              0.17736   [             -0.99967              0.66737 ]
+                         :            Jet1_CSV:              0.48390              0.69006   [             -0.98515              0.99954 ]
+                         :            Jet2_CSV:              0.50508              0.67558   [             -0.98083               1.0000 ]
+                         :            Jet3_CSV:              0.39118              0.73057   [             -0.99971              0.99959 ]
+                         :            Jet4_CSV:              0.33276              0.74554   [             -0.99441              0.99971 ]
+                         :       Kin_Lep_WMass:             -0.63250             0.081921   [             -0.88468              0.34057 ]
+                         :     Kin_Lep_TopMass:             -0.40980             0.086026   [             -0.98652              0.30494 ]
+                         :       Kin_Had_WMass:              0.56049              0.42506   [              -1.0000              0.82129 ]
+                         :     Kin_Had_TopMass:              0.80250              0.48946   [              -1.0000              0.97418 ]
+                         :   fcnhKin_Lep_WMass:             -0.24812              0.10538   [             -0.58482              0.60921 ]
+                         : fcnhKin_Lep_TopMass:             -0.61954              0.16942   [             -0.99884              0.45388 ]
+                         :       fcnhKin_HMass:             -0.21277              0.89305   [              -1.0000              0.99910 ]
+                         : fcnhKin_Huc_TopMass:             -0.88955              0.13452   [              -1.0000             0.031610 ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         : Using Standard Implementation.Training with learning rate = 0.01, momentum = 0.4, repetitions = 1
+                         : 
+                         : [...............] (1%, time left: unknown) [(train/test/epoch): 0.5889/0.5947/2261]  260/299/299]   
+                         : Elapsed time for training with 60000 events: 614 sec         
+DNN                      : [inputcorr_test] : Evaluation of DNN on training sample (60000 events)
+                         : Elapsed time for evaluation of 60000 events: 0.478 sec       
+                         : Creating xml weight file: inputcorr_test/weights/TMVAClassification_DNN.weights.xml
+                         : Creating standalone class: inputcorr_test/weights/TMVAClassification_DNN.class.C
 Factory                  : Training finished
                          : 
                          : Ranking input variables (method specific)...
@@ -324,6 +618,39 @@ Likelihood               : Ranking result (top variable is best ranked)
                          :   27 : fcnhKin_Huc_TopMass : -2.624e-03
                          :   28 : fcnhKin_HMass       : -2.909e-03
                          : --------------------------------------------------
+MLP                      : Ranking result (top variable is best ranked)
+                         : --------------------------------------------
+                         : Rank : Variable            : Importance
+                         : --------------------------------------------
+                         :    1 : H_Mass              : 3.831e+02
+                         :    2 : fcnhKin_Huc_TopMass : 1.789e+02
+                         :    3 : NBJets_M            : 1.344e+02
+                         :    4 : BJet_Pt_H           : 1.293e+02
+                         :    5 : NJets               : 1.117e+02
+                         :    6 : Jet1_Pt             : 1.074e+02
+                         :    7 : Kin_Had_TopMass     : 9.884e+01
+                         :    8 : fcnhKin_HMass       : 9.541e+01
+                         :    9 : Jet3_Pt             : 7.817e+01
+                         :   10 : Jet2_Pt             : 7.306e+01
+                         :   11 : Jet4_Pt             : 6.783e+01
+                         :   12 : Missing_ET          : 6.276e+01
+                         :   13 : CJet_Pt             : 5.854e+01
+                         :   14 : Jet3_CSV            : 4.882e+01
+                         :   15 : Jet1_CSV            : 4.479e+01
+                         :   16 : Transvers_Mass      : 3.649e+01
+                         :   17 : Jet4_CSV            : 3.467e+01
+                         :   18 : Jet2_CSV            : 2.852e+01
+                         :   19 : Kin_Lep_WMass       : 2.764e+01
+                         :   20 : fcnhKin_Lep_TopMass : 2.600e+01
+                         :   21 : BJet_M_delta_Phi    : 2.335e+01
+                         :   22 : BJet_M_delta_R      : 2.264e+01
+                         :   23 : Kin_Had_WMass       : 2.182e+01
+                         :   24 : BJet_M_delta_Eta    : 1.679e+01
+                         :   25 : Lepton_DPhi         : 1.598e+01
+                         :   26 : Kin_Lep_TopMass     : 1.006e+01
+                         :   27 : NCJets_M            : 6.127e+00
+                         :   28 : fcnhKin_Lep_WMass   : 2.470e+00
+                         : --------------------------------------------
 BDT                      : Ranking result (top variable is best ranked)
                          : -----------------------------------------------------
                          : Rank : Variable            : Variable Importance
@@ -357,17 +684,60 @@ BDT                      : Ranking result (top variable is best ranked)
                          :   27 : Kin_Lep_WMass       : 1.916e-02
                          :   28 : Kin_Had_TopMass     : 1.913e-02
                          : -----------------------------------------------------
+DNN                      : Ranking result (top variable is best ranked)
+                         : --------------------------------------------
+                         : Rank : Variable            : Importance
+                         : --------------------------------------------
+                         :    1 : NJets               : 1.000e+00
+                         :    2 : NBJets_M            : 1.000e+00
+                         :    3 : NCJets_M            : 1.000e+00
+                         :    4 : Transvers_Mass      : 1.000e+00
+                         :    5 : Lepton_DPhi         : 1.000e+00
+                         :    6 : Missing_ET          : 1.000e+00
+                         :    7 : BJet_M_delta_R      : 1.000e+00
+                         :    8 : BJet_M_delta_Eta    : 1.000e+00
+                         :    9 : BJet_M_delta_Phi    : 1.000e+00
+                         :   10 : H_Mass              : 1.000e+00
+                         :   11 : BJet_Pt_H           : 1.000e+00
+                         :   12 : CJet_Pt             : 1.000e+00
+                         :   13 : Jet1_Pt             : 1.000e+00
+                         :   14 : Jet2_Pt             : 1.000e+00
+                         :   15 : Jet3_Pt             : 1.000e+00
+                         :   16 : Jet4_Pt             : 1.000e+00
+                         :   17 : Jet1_CSV            : 1.000e+00
+                         :   18 : Jet2_CSV            : 1.000e+00
+                         :   19 : Jet3_CSV            : 1.000e+00
+                         :   20 : Jet4_CSV            : 1.000e+00
+                         :   21 : Kin_Lep_WMass       : 1.000e+00
+                         :   22 : Kin_Lep_TopMass     : 1.000e+00
+                         :   23 : Kin_Had_WMass       : 1.000e+00
+                         :   24 : Kin_Had_TopMass     : 1.000e+00
+                         :   25 : fcnhKin_Lep_WMass   : 1.000e+00
+                         :   26 : fcnhKin_Lep_TopMass : 1.000e+00
+                         :   27 : fcnhKin_HMass       : 1.000e+00
+                         :   28 : fcnhKin_Huc_TopMass : 1.000e+00
+                         : --------------------------------------------
 Factory                  : === Destroy and recreate all methods via weight files for testing ===
                          : 
+MLP                      : Building Network. 
+                         : Initializing weights
 Factory                  : Test all methods
 Factory                  : Test method: Likelihood for Classification performance
                          : 
 Likelihood               : [inputcorr_test] : Evaluation of Likelihood on testing sample (1500 events)
-                         : Elapsed time for evaluation of 1500 events: 0.0202 sec       
+                         : Elapsed time for evaluation of 1500 events: 0.0117 sec       
+Factory                  : Test method: MLP for Classification performance
+                         : 
+MLP                      : [inputcorr_test] : Evaluation of MLP on testing sample (1500 events)
+                         : Elapsed time for evaluation of 1500 events: 0.0232 sec       
 Factory                  : Test method: BDT for Classification performance
                          : 
 BDT                      : [inputcorr_test] : Evaluation of BDT on testing sample (1500 events)
-                         : Elapsed time for evaluation of 1500 events: 0.357 sec       
+                         : Elapsed time for evaluation of 1500 events: 0.141 sec       
+Factory                  : Test method: DNN for Classification performance
+                         : 
+DNN                      : [inputcorr_test] : Evaluation of DNN on testing sample (1500 events)
+                         : Elapsed time for evaluation of 1500 events: 0.0174 sec       
 Factory                  : Evaluate all methods
 Factory                  : Evaluate classifier: Likelihood
                          : 
@@ -403,6 +773,83 @@ TFHandler_Likelihood     :            Variable                   Mean           
                          : fcnhKin_Lep_TopMass:               130.34               57.370   [               1.8967               493.82 ]
                          :       fcnhKin_HMass:               54.354               61.660   [               0.0000               138.03 ]
                          : fcnhKin_Huc_TopMass:               82.926               101.00   [               0.0000               774.55 ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         : 
+                         : <PlotVariables> Will not produce scatter plots ==> 
+                         : |  The number of 28 input variables and 0 target values would require 378 two-dimensional
+                         : |  histograms, which would occupy the computer's memory. Note that this
+                         : |  suppression does not have any consequences for your analysis, other
+                         : |  than not disposing of these scatter plots. You can modify the maximum
+                         : |  number of input variables allowed to generate scatter plots in your
+                         : |  script via the command line:
+                         : |  "(TMVA::gConfig().GetVariablePlotting()).fMaxNumOfAllowedVariablesForScatterPlots = <some int>;"
+                         : 
+                         : Some more output
+Factory                  : Evaluate classifier: MLP
+                         : 
+TFHandler_MLP            :            Variable                   Mean                   RMS           [        Min                   Max ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         :               NJets:             -0.71800              0.28729   [              -1.0000              0.55556 ]
+                         :            NBJets_M:             -0.90911              0.25158   [              -1.0000               1.0000 ]
+                         :            NCJets_M:             -0.25143              0.23052   [              -1.0000              0.71429 ]
+                         :      Transvers_Mass:             -0.63490              0.22242   [             -0.99977               1.4061 ]
+                         :         Lepton_DPhi:             0.015957              0.51548   [             -0.99803              0.99971 ]
+                         :          Missing_ET:             -0.78119              0.16475   [             -0.99287              0.54908 ]
+                         :      BJet_M_delta_R:             -0.40000              0.33960   [             -0.98805              0.87735 ]
+                         :    BJet_M_delta_Eta:             -0.53318              0.33578   [             -0.99989              0.93410 ]
+                         :    BJet_M_delta_Phi:             -0.51753              0.50456   [             -0.99835              0.95515 ]
+                         :              H_Mass:             -0.86394             0.087272   [             -0.99622              0.33472 ]
+                         :           BJet_Pt_H:             -0.88387             0.096710   [             -0.99953             0.091343 ]
+                         :             CJet_Pt:             -0.84742              0.11318   [             -0.99327              0.27773 ]
+                         :             Jet1_Pt:             -0.82488              0.13889   [             -0.99233              0.27645 ]
+                         :             Jet2_Pt:             -0.87094             0.098991   [             -0.99311              0.12924 ]
+                         :             Jet3_Pt:             -0.80120              0.15840   [             -0.99796              0.92180 ]
+                         :             Jet4_Pt:             -0.80824              0.17736   [             -0.99967              0.66737 ]
+                         :            Jet1_CSV:              0.48390              0.69006   [             -0.98515              0.99954 ]
+                         :            Jet2_CSV:              0.50508              0.67558   [             -0.98083               1.0000 ]
+                         :            Jet3_CSV:              0.39118              0.73057   [             -0.99971              0.99959 ]
+                         :            Jet4_CSV:              0.33276              0.74554   [             -0.99441              0.99971 ]
+                         :       Kin_Lep_WMass:             -0.63250             0.081921   [             -0.88468              0.34057 ]
+                         :     Kin_Lep_TopMass:             -0.40980             0.086026   [             -0.98652              0.30494 ]
+                         :       Kin_Had_WMass:              0.56049              0.42506   [              -1.0000              0.82129 ]
+                         :     Kin_Had_TopMass:              0.80250              0.48946   [              -1.0000              0.97418 ]
+                         :   fcnhKin_Lep_WMass:             -0.24812              0.10538   [             -0.58482              0.60921 ]
+                         : fcnhKin_Lep_TopMass:             -0.61954              0.16942   [             -0.99884              0.45388 ]
+                         :       fcnhKin_HMass:             -0.21277              0.89305   [              -1.0000              0.99910 ]
+                         : fcnhKin_Huc_TopMass:             -0.88955              0.13452   [              -1.0000             0.031610 ]
+                         : ------------------------------------------------------------------------------------------------------------------
+MLP                      : [inputcorr_test] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_MLP            :            Variable                   Mean                   RMS           [        Min                   Max ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         :               NJets:             -0.71800              0.28729   [              -1.0000              0.55556 ]
+                         :            NBJets_M:             -0.90911              0.25158   [              -1.0000               1.0000 ]
+                         :            NCJets_M:             -0.25143              0.23052   [              -1.0000              0.71429 ]
+                         :      Transvers_Mass:             -0.63490              0.22242   [             -0.99977               1.4061 ]
+                         :         Lepton_DPhi:             0.015957              0.51548   [             -0.99803              0.99971 ]
+                         :          Missing_ET:             -0.78119              0.16475   [             -0.99287              0.54908 ]
+                         :      BJet_M_delta_R:             -0.40000              0.33960   [             -0.98805              0.87735 ]
+                         :    BJet_M_delta_Eta:             -0.53318              0.33578   [             -0.99989              0.93410 ]
+                         :    BJet_M_delta_Phi:             -0.51753              0.50456   [             -0.99835              0.95515 ]
+                         :              H_Mass:             -0.86394             0.087272   [             -0.99622              0.33472 ]
+                         :           BJet_Pt_H:             -0.88387             0.096710   [             -0.99953             0.091343 ]
+                         :             CJet_Pt:             -0.84742              0.11318   [             -0.99327              0.27773 ]
+                         :             Jet1_Pt:             -0.82488              0.13889   [             -0.99233              0.27645 ]
+                         :             Jet2_Pt:             -0.87094             0.098991   [             -0.99311              0.12924 ]
+                         :             Jet3_Pt:             -0.80120              0.15840   [             -0.99796              0.92180 ]
+                         :             Jet4_Pt:             -0.80824              0.17736   [             -0.99967              0.66737 ]
+                         :            Jet1_CSV:              0.48390              0.69006   [             -0.98515              0.99954 ]
+                         :            Jet2_CSV:              0.50508              0.67558   [             -0.98083               1.0000 ]
+                         :            Jet3_CSV:              0.39118              0.73057   [             -0.99971              0.99959 ]
+                         :            Jet4_CSV:              0.33276              0.74554   [             -0.99441              0.99971 ]
+                         :       Kin_Lep_WMass:             -0.63250             0.081921   [             -0.88468              0.34057 ]
+                         :     Kin_Lep_TopMass:             -0.40980             0.086026   [             -0.98652              0.30494 ]
+                         :       Kin_Had_WMass:              0.56049              0.42506   [              -1.0000              0.82129 ]
+                         :     Kin_Had_TopMass:              0.80250              0.48946   [              -1.0000              0.97418 ]
+                         :   fcnhKin_Lep_WMass:             -0.24812              0.10538   [             -0.58482              0.60921 ]
+                         : fcnhKin_Lep_TopMass:             -0.61954              0.16942   [             -0.99884              0.45388 ]
+                         :       fcnhKin_HMass:             -0.21277              0.89305   [              -1.0000              0.99910 ]
+                         : fcnhKin_Huc_TopMass:             -0.88955              0.13452   [              -1.0000             0.031610 ]
                          : ------------------------------------------------------------------------------------------------------------------
                          : 
                          : <PlotVariables> Will not produce scatter plots ==> 
@@ -461,12 +908,91 @@ TFHandler_BDT            :            Variable                   Mean           
                          : |  "(TMVA::gConfig().GetVariablePlotting()).fMaxNumOfAllowedVariablesForScatterPlots = <some int>;"
                          : 
                          : Some more output
+Factory                  : Evaluate classifier: DNN
+                         : 
+TFHandler_DNN            :            Variable                   Mean                   RMS           [        Min                   Max ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         :               NJets:             -0.71800              0.28729   [              -1.0000              0.55556 ]
+                         :            NBJets_M:             -0.90911              0.25158   [              -1.0000               1.0000 ]
+                         :            NCJets_M:             -0.25143              0.23052   [              -1.0000              0.71429 ]
+                         :      Transvers_Mass:             -0.63490              0.22242   [             -0.99977               1.4061 ]
+                         :         Lepton_DPhi:             0.015957              0.51548   [             -0.99803              0.99971 ]
+                         :          Missing_ET:             -0.78119              0.16475   [             -0.99287              0.54908 ]
+                         :      BJet_M_delta_R:             -0.40000              0.33960   [             -0.98805              0.87735 ]
+                         :    BJet_M_delta_Eta:             -0.53318              0.33578   [             -0.99989              0.93410 ]
+                         :    BJet_M_delta_Phi:             -0.51753              0.50456   [             -0.99835              0.95515 ]
+                         :              H_Mass:             -0.86394             0.087272   [             -0.99622              0.33472 ]
+                         :           BJet_Pt_H:             -0.88387             0.096710   [             -0.99953             0.091343 ]
+                         :             CJet_Pt:             -0.84742              0.11318   [             -0.99327              0.27773 ]
+                         :             Jet1_Pt:             -0.82488              0.13889   [             -0.99233              0.27645 ]
+                         :             Jet2_Pt:             -0.87094             0.098991   [             -0.99311              0.12924 ]
+                         :             Jet3_Pt:             -0.80120              0.15840   [             -0.99796              0.92180 ]
+                         :             Jet4_Pt:             -0.80824              0.17736   [             -0.99967              0.66737 ]
+                         :            Jet1_CSV:              0.48390              0.69006   [             -0.98515              0.99954 ]
+                         :            Jet2_CSV:              0.50508              0.67558   [             -0.98083               1.0000 ]
+                         :            Jet3_CSV:              0.39118              0.73057   [             -0.99971              0.99959 ]
+                         :            Jet4_CSV:              0.33276              0.74554   [             -0.99441              0.99971 ]
+                         :       Kin_Lep_WMass:             -0.63250             0.081921   [             -0.88468              0.34057 ]
+                         :     Kin_Lep_TopMass:             -0.40980             0.086026   [             -0.98652              0.30494 ]
+                         :       Kin_Had_WMass:              0.56049              0.42506   [              -1.0000              0.82129 ]
+                         :     Kin_Had_TopMass:              0.80250              0.48946   [              -1.0000              0.97418 ]
+                         :   fcnhKin_Lep_WMass:             -0.24812              0.10538   [             -0.58482              0.60921 ]
+                         : fcnhKin_Lep_TopMass:             -0.61954              0.16942   [             -0.99884              0.45388 ]
+                         :       fcnhKin_HMass:             -0.21277              0.89305   [              -1.0000              0.99910 ]
+                         : fcnhKin_Huc_TopMass:             -0.88955              0.13452   [              -1.0000             0.031610 ]
+                         : ------------------------------------------------------------------------------------------------------------------
+DNN                      : [inputcorr_test] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_DNN            :            Variable                   Mean                   RMS           [        Min                   Max ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         :               NJets:             -0.71800              0.28729   [              -1.0000              0.55556 ]
+                         :            NBJets_M:             -0.90911              0.25158   [              -1.0000               1.0000 ]
+                         :            NCJets_M:             -0.25143              0.23052   [              -1.0000              0.71429 ]
+                         :      Transvers_Mass:             -0.63490              0.22242   [             -0.99977               1.4061 ]
+                         :         Lepton_DPhi:             0.015957              0.51548   [             -0.99803              0.99971 ]
+                         :          Missing_ET:             -0.78119              0.16475   [             -0.99287              0.54908 ]
+                         :      BJet_M_delta_R:             -0.40000              0.33960   [             -0.98805              0.87735 ]
+                         :    BJet_M_delta_Eta:             -0.53318              0.33578   [             -0.99989              0.93410 ]
+                         :    BJet_M_delta_Phi:             -0.51753              0.50456   [             -0.99835              0.95515 ]
+                         :              H_Mass:             -0.86394             0.087272   [             -0.99622              0.33472 ]
+                         :           BJet_Pt_H:             -0.88387             0.096710   [             -0.99953             0.091343 ]
+                         :             CJet_Pt:             -0.84742              0.11318   [             -0.99327              0.27773 ]
+                         :             Jet1_Pt:             -0.82488              0.13889   [             -0.99233              0.27645 ]
+                         :             Jet2_Pt:             -0.87094             0.098991   [             -0.99311              0.12924 ]
+                         :             Jet3_Pt:             -0.80120              0.15840   [             -0.99796              0.92180 ]
+                         :             Jet4_Pt:             -0.80824              0.17736   [             -0.99967              0.66737 ]
+                         :            Jet1_CSV:              0.48390              0.69006   [             -0.98515              0.99954 ]
+                         :            Jet2_CSV:              0.50508              0.67558   [             -0.98083               1.0000 ]
+                         :            Jet3_CSV:              0.39118              0.73057   [             -0.99971              0.99959 ]
+                         :            Jet4_CSV:              0.33276              0.74554   [             -0.99441              0.99971 ]
+                         :       Kin_Lep_WMass:             -0.63250             0.081921   [             -0.88468              0.34057 ]
+                         :     Kin_Lep_TopMass:             -0.40980             0.086026   [             -0.98652              0.30494 ]
+                         :       Kin_Had_WMass:              0.56049              0.42506   [              -1.0000              0.82129 ]
+                         :     Kin_Had_TopMass:              0.80250              0.48946   [              -1.0000              0.97418 ]
+                         :   fcnhKin_Lep_WMass:             -0.24812              0.10538   [             -0.58482              0.60921 ]
+                         : fcnhKin_Lep_TopMass:             -0.61954              0.16942   [             -0.99884              0.45388 ]
+                         :       fcnhKin_HMass:             -0.21277              0.89305   [              -1.0000              0.99910 ]
+                         : fcnhKin_Huc_TopMass:             -0.88955              0.13452   [              -1.0000             0.031610 ]
+                         : ------------------------------------------------------------------------------------------------------------------
+                         : 
+                         : <PlotVariables> Will not produce scatter plots ==> 
+                         : |  The number of 28 input variables and 0 target values would require 378 two-dimensional
+                         : |  histograms, which would occupy the computer's memory. Note that this
+                         : |  suppression does not have any consequences for your analysis, other
+                         : |  than not disposing of these scatter plots. You can modify the maximum
+                         : |  number of input variables allowed to generate scatter plots in your
+                         : |  script via the command line:
+                         : |  "(TMVA::gConfig().GetVariablePlotting()).fMaxNumOfAllowedVariablesForScatterPlots = <some int>;"
+                         : 
+                         : Some more output
                          : 
                          : Evaluation results ranked by best signal efficiency and purity (area)
                          : -------------------------------------------------------------------------------------------------------------------
                          : DataSet       MVA                       
                          : Name:         Method:          ROC-integ
                          : inputcorr_test BDT            : 0.845
+                         : inputcorr_test MLP            : 0.825
+                         : inputcorr_test DNN            : 0.822
                          : inputcorr_test Likelihood     : 0.775
                          : -------------------------------------------------------------------------------------------------------------------
                          : 
@@ -476,6 +1002,8 @@ TFHandler_BDT            :            Variable                   Mean           
                          : Name:                Method:          @B=0.01             @B=0.10            @B=0.30   
                          : -------------------------------------------------------------------------------------------------------------------
                          : inputcorr_test       BDT            : 0.215 (0.281)       0.585 (0.611)      0.801 (0.809)
+                         : inputcorr_test       MLP            : 0.172 (0.184)       0.528 (0.554)      0.788 (0.792)
+                         : inputcorr_test       DNN            : 0.195 (0.193)       0.535 (0.539)      0.759 (0.765)
                          : inputcorr_test       Likelihood     : 0.014 (0.014)       0.409 (0.406)      0.714 (0.710)
                          : -------------------------------------------------------------------------------------------------------------------
                          : 
@@ -486,3 +1014,4 @@ Dataset:inputcorr_test   : Created tree 'TrainTree' with 60000 events
 Factory                  : Thank you for using TMVA!
                          : For citation information, please visit: http://tmva.sf.net/citeTMVA.html
 root [1] .q
+

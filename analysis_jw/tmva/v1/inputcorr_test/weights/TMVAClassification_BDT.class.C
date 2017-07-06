@@ -10,7 +10,7 @@ Method         : BDT::BDT
 TMVA Release   : 4.2.1         [262657]
 ROOT Release   : 6.08/02       [395266]
 Creator        : minerva1993
-Date           : Tue Jul  4 21:26:48 2017
+Date           : Tue Jul  4 23:28:19 2017
 Host           : Linux htop.hanyang.ac.kr 2.6.32-696.el6.centos.plus.x86_64 #1 SMP Mon Apr 3 14:56:08 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 Dir            : /home/minerva1993/fcnc/analysis_jw/tmva/v1
 Training events: 60000

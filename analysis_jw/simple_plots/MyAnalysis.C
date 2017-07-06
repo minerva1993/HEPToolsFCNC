@@ -144,27 +144,27 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_fcnhkinWMass[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinWMass[ich][i]);
 
-      h_fcnhkinHMass[ich][i] = new TH1D(Form("h_fcnhkinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "H Mass fron fcnh kinfit (bb)", 75 ,50 ,200);
+      h_fcnhkinHMass[ich][i] = new TH1D(Form("h_fcnhkinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "H Mass fron fcnh kinfit (bb)", 99 ,2 ,200);
       h_fcnhkinHMass[ich][i]->SetXTitle("H Mass (GeV)");
       h_fcnhkinHMass[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinHMass[ich][i]);
 
-      h_kinTopMqqb[ich][i] = new TH1D(Form("h_kinTopMqqb_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from kinfit (qqb)", 75 ,120 , 270);
+      h_kinTopMqqb[ich][i] = new TH1D(Form("h_kinTopMqqb_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from kinfit (qqb)", 109 ,2 , 220);
       h_kinTopMqqb[ich][i]->SetXTitle("Top Mass (GeV)");
       h_kinTopMqqb[ich][i]->Sumw2();
       fOutput->Add(h_kinTopMqqb[ich][i]);
 
-      h_kinTopMWb[ich][i] = new TH1D(Form("h_kinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from kinfit (Lep)", 75 , 120 , 270);
+      h_kinTopMWb[ich][i] = new TH1D(Form("h_kinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from kinfit (Lep)", 109 , 2 , 220);
       h_kinTopMWb[ich][i]->SetXTitle("Top Mass (GeV)");
       h_kinTopMWb[ich][i]->Sumw2();
       fOutput->Add(h_kinTopMWb[ich][i]);
 
-      h_fcnhkinTopMHc[ich][i] = new TH1D(Form("h_fcnhkinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc/u fcnhkinfit", 75 ,120 , 270);
+      h_fcnhkinTopMHc[ich][i] = new TH1D(Form("h_fcnhkinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc/u fcnhkinfit", 109 ,2 , 220);
       h_fcnhkinTopMHc[ich][i]->SetXTitle("Top Mass (GeV)");
       h_fcnhkinTopMHc[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinTopMHc[ich][i]);
 
-      h_fcnhkinTopMWb[ich][i] = new TH1D(Form("h_fcnhkinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from fcnhkinfit (Lep)", 75 , 120 , 270);
+      h_fcnhkinTopMWb[ich][i] = new TH1D(Form("h_fcnhkinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from fcnhkinfit (Lep)", 109 , 2 , 220);
       h_fcnhkinTopMWb[ich][i]->SetXTitle("Top Mass (GeV)");
       h_fcnhkinTopMWb[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinTopMWb[ich][i]);
@@ -409,7 +409,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     fcnhkinuc.SetPtEtaPhiE(fcnhkinjet_pT[0], fcnhkinjet_eta[0], fcnhkinjet_phi[0], fcnhkinjet_E[0]);
     fcnhkinHb1.SetPtEtaPhiE(fcnhkinjet_pT[1], fcnhkinjet_eta[1], fcnhkinjet_phi[1], fcnhkinjet_E[1]);
     fcnhkinHb2.SetPtEtaPhiE(fcnhkinjet_pT[2], fcnhkinjet_eta[2], fcnhkinjet_phi[2], fcnhkinjet_E[2]);
-    fcnhkinH = fcnhkinHb1 + fcnhkinHb2;
+    if ( fcnhkinjet_pT[1] != 0 and fcnhkinjet_pT[2] != 0 ) fcnhkinH = fcnhkinHb1 + fcnhkinHb2;
     fcnhkinHcT = fcnhkinH + fcnhkinuc;
 
 
@@ -447,18 +447,18 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       h_cJetPt[mode][0]->Fill(cjetPt, EventWeight);
     }
     //kinfits
-    if(*kin_chi2 < 10000){
+    //if(*kin_chi2 < 10000){
       h_kinLepWMass[mode][0]->Fill(kinLepW.M(),EventWeight);
       h_kinHadWMass[mode][0]->Fill(kinLepW.M(),EventWeight);
       h_kinTopMWb[mode][0]->Fill(kinLepT.M(),EventWeight);
       h_kinTopMqqb[mode][0]->Fill(kinHadT.M(),EventWeight);
-    }
-    if(*fcnhkin_chi2 < 10000){
+    //}
+    //if(*fcnhkin_chi2 < 10000){
       h_fcnhkinWMass[mode][0]->Fill(fcnhkinLepW.M(),EventWeight);
       h_fcnhkinHMass[mode][0]->Fill(fcnhkinH.M(),EventWeight);
       h_fcnhkinTopMWb[mode][0]->Fill(fcnhkinLepT.M(),EventWeight);
       h_fcnhkinTopMHc[mode][0]->Fill(fcnhkinHcT.M(),EventWeight);
-    }
+    //}
 
 //step1
 

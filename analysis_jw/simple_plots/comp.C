@@ -1,7 +1,7 @@
 void compare(TString var, TString ch, TString step );
 
-void comp(TString ch = "1", TString step = "20"){
-
+void comp(TString ch = "0", TString step = "0"){
+/*
   compare("NJet", ch, step);
   compare("NBJetCSVv2M", ch, step);
   compare("NBJetCSVv2T", ch, step);
@@ -19,6 +19,7 @@ void comp(TString ch = "1", TString step = "20"){
   compare("bJetPtHm", ch, step);
   compare("bJetPtHt", ch, step);
   compare("cJetPt", ch, step);
+*/
   compare("kinLepWMass", ch, step);
   compare("kinHadWMass", ch, step);
   compare("fcnhkinWMass", ch, step);
