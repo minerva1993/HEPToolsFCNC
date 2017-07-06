@@ -4,11 +4,11 @@
     <Info name="TMVA Release" value="4.2.1 [262657]"/>
     <Info name="ROOT Release" value="6.08/02 [395266]"/>
     <Info name="Creator" value="minerva1993"/>
-    <Info name="Date" value="Tue Jul  4 21:24:43 2017"/>
+    <Info name="Date" value="Tue Jul  4 23:02:18 2017"/>
     <Info name="Host" value="Linux htop.hanyang.ac.kr 2.6.32-696.el6.centos.plus.x86_64 #1 SMP Mon Apr 3 14:56:08 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux"/>
     <Info name="Dir" value="/home/minerva1993/fcnc/analysis_jw/tmva/v1"/>
     <Info name="Training events" value="60000"/>
-    <Info name="TrainingTime" value="1.86876011e+00"/>
+    <Info name="TrainingTime" value="1.11223602e+00"/>
     <Info name="AnalysisType" value="Classification"/>
   </GeneralInfo>
   <Options>

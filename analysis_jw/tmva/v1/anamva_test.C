@@ -87,9 +87,9 @@ void anamva_test(){
   loader->PrepareTrainingAndTestTree(mycuts,mycutb,dataString); 
 
   factory->BookMethod(loader,TMVA::Types::kLikelihood, "Likelihood","H:!V:TransformOutput:PDFInterpol=Spline2:NSmoothSig[0]=20:NSmoothBkg[0]=20:NSmoothBkg[1]=10:NSmooth=1:NAvEvtPerBin=50" );
-  //factory->BookMethod(loader,TMVA::Types::kMLP, "MLP", "H:!V:NeuronType=tanh:VarTransform=N:NCycles=1000:HiddenLayers=N+5:TestRate=5:!UseRegulator" );
+  factory->BookMethod(loader,TMVA::Types::kMLP, "MLP", "H:!V:NeuronType=tanh:VarTransform=N:NCycles=1000:HiddenLayers=N+5:TestRate=5:!UseRegulator" );
   factory->BookMethod(loader,TMVA::Types::kBDT, "BDT", "!H:!V:NTrees=1000:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:UseBaggedBoost:SeparationType=GiniIndex");
-/*
+
   //DNN part  
 
     TString trainingString1 = "TrainingStrategy="
@@ -113,7 +113,7 @@ void anamva_test(){
     configString += ":" + layoutString + ":" + trainingString1; // + ":Architecture=CPU";
 
   factory->BookMethod(loader, TMVA::Types::kDNN, "DNN", configString);
-*/
+
 
   factory->TrainAllMethods();
   
