@@ -87,7 +87,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bjmDEta[ich][i]->Sumw2();
       fOutput->Add(h_bjmDEta[ich][i]);
 
-      h_bjmDR[ich][i] = new TH1D(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta R", 64 ,0 ,3.2);
+      h_bjmDR[ich][i] = new TH1D(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta R", 100 ,0 ,5);
       h_bjmDR[ich][i]->SetXTitle("bjet_m Delta R");
       h_bjmDR[ich][i]->Sumw2();
       fOutput->Add(h_bjmDR[ich][i]);
@@ -108,7 +108,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bjtDEta[ich][i]->Sumw2();
       fOutput->Add(h_bjtDEta[ich][i]);
 
-      h_bjtDR[ich][i] = new TH1D(Form("h_bjtDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta R", 64 ,0 ,3.2);
+      h_bjtDR[ich][i] = new TH1D(Form("h_bjtDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta R", 100 ,0 ,5);
       h_bjtDR[ich][i]->SetXTitle("bjet_t Delta R");
       h_bjtDR[ich][i]->Sumw2();
       fOutput->Add(h_bjtDR[ich][i]);

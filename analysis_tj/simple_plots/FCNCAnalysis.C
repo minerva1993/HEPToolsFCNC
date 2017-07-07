@@ -61,7 +61,7 @@ void FCNCAnalysis::SlaveBegin(TTree * /*tree*/)
       h_kinHMass[ich][i]->Sumw2();
       fOutput->Add(h_kinHMass[ich][i]);
 
-      h_dRbb[ich][i] = new TH1D(Form("h_dRbb_Ch%i_S%i_%s",ich,i,option.Data()), "Delta R of bb", 64 ,0 ,3.2);
+      h_dRbb[ich][i] = new TH1D(Form("h_dRbb_Ch%i_S%i_%s",ich,i,option.Data()), "Delta R of bb", 100 ,0 ,5);
       h_dRbb[ich][i]->SetXTitle("Delta R of bb");
       h_dRbb[ich][i]->Sumw2();
       fOutput->Add(h_dRbb[ich][i]);
@@ -91,7 +91,7 @@ void FCNCAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bjmDEta[ich][i]->Sumw2();
       fOutput->Add(h_bjmDEta[ich][i]);
 
-      h_bjmDR[ich][i] = new TH1D(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta R", 64 ,0 ,3.2);
+      h_bjmDR[ich][i] = new TH1D(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta R", 100 ,0 ,5);
       h_bjmDR[ich][i]->SetXTitle("bjet_m Delta R");
       h_bjmDR[ich][i]->Sumw2();
       fOutput->Add(h_bjmDR[ich][i]);

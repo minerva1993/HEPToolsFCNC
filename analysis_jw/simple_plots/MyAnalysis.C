@@ -87,7 +87,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bjmDEta[ich][i]->Sumw2();
       fOutput->Add(h_bjmDEta[ich][i]);
 
-      h_bjmDR[ich][i] = new TH1D(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta R", 64 ,0 ,3.2);
+      h_bjmDR[ich][i] = new TH1D(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta R", 100 ,0 ,5);
       h_bjmDR[ich][i]->SetXTitle("bjet_m Delta R");
       h_bjmDR[ich][i]->Sumw2();
       fOutput->Add(h_bjmDR[ich][i]);
@@ -108,7 +108,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bjtDEta[ich][i]->Sumw2();
       fOutput->Add(h_bjtDEta[ich][i]);
 
-      h_bjtDR[ich][i] = new TH1D(Form("h_bjtDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta R", 64 ,0 ,3.2);
+      h_bjtDR[ich][i] = new TH1D(Form("h_bjtDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta R", 100 ,0 ,5);
       h_bjtDR[ich][i]->SetXTitle("bjet_t Delta R");
       h_bjtDR[ich][i]->Sumw2();
       fOutput->Add(h_bjtDR[ich][i]);
@@ -519,7 +519,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][2]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][2]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m == 3 ){
           h_NJet[mode][3]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][3]->Fill(nbjets_m, EventWeight);
@@ -531,7 +530,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][3]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][3]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m == 2 || nbjets_m == 3 ){
           h_NJet[mode][4]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][4]->Fill(nbjets_m, EventWeight);
@@ -543,7 +541,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][4]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][4]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m >= 2 ){
           h_NJet[mode][5]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][5]->Fill(nbjets_m, EventWeight);
@@ -615,7 +612,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][7]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][7]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m == 3 ){
           h_NJet[mode][8]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][8]->Fill(nbjets_m, EventWeight);
@@ -627,7 +623,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][8]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][8]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m == 2 || nbjets_m == 3 ){
           h_NJet[mode][9]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][9]->Fill(nbjets_m, EventWeight);
@@ -639,7 +634,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][9]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][9]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m >= 2 ){
           h_NJet[mode][10]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][10]->Fill(nbjets_m, EventWeight);
@@ -711,7 +705,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][12]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][12]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m == 3 ){
           h_NJet[mode][13]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][13]->Fill(nbjets_m, EventWeight);
@@ -723,7 +716,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][13]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][13]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m == 2 || nbjets_m == 3 ){
           h_NJet[mode][14]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][14]->Fill(nbjets_m, EventWeight);
@@ -735,7 +727,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][14]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][14]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m >= 2 ){
           h_NJet[mode][15]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][15]->Fill(nbjets_m, EventWeight);
@@ -807,7 +798,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][17]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][17]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m == 3 ){
           h_NJet[mode][18]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][18]->Fill(nbjets_m, EventWeight);
@@ -819,7 +809,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][18]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][18]->Fill(relIso, EventWeight);
         }
-
         if( nbjets_m == 2 || nbjets_m == 3 ){
           h_NJet[mode][19]->Fill(njets, EventWeight);
           h_NBJetCSVv2M[mode][19]->Fill(nbjets_m, EventWeight);
