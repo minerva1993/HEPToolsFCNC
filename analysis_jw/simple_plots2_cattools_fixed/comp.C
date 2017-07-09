@@ -1,6 +1,6 @@
 void compare(TString var, TString ch, TString step );
 
-void comp(TString ch = "0", TString step = "0"){
+void comp(TString ch = "1", TString step = "0"){
 /*
   compare("NJet", ch, step);
   compare("NBJetCSVv2M", ch, step);

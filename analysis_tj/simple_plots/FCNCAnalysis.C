@@ -139,8 +139,6 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
     int nbjets_m = 0;
     int nbjets_t = 0;
     int ncjets_m = 0;
-    int jm = 0;
-    int jn = 0;
 
   //MET
     TLorentzVector p4met_muon;
@@ -170,28 +168,17 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
     double transverseM = 0;
     double lepDphi = 0;
 
+    double bjmDPhi = 999;
+    double bjmDEta = 999;
+    double bjmDR = 999;
+    double higgsMass = 9999;
+    double bJetPtH = 9999;
+    double cjetPt = 9999;
 
-    TLorentzVector jet0, jet1, jet2, bjet_m1, bjet_m2;
-
-    double bjmDPhi = 0;
-    double bjmDEta = 0;
-    double bjmDR = 0;
-    double higgsMass = 0;
-    double bJetPtH = 0;
-    double cjetPt = 0;
-
-    vector<double> bjmdr;
-    vector<double> bjmdeta;
-    vector<double> bjmdphi;
-    vector<double> hm;
-    vector<float> bjm_pt1;
-    vector<float> bjm_pt2;
-    vector<float> jet_pt;
     vector<float> jet_csv;
     vector<float> jet_cvsl;
     vector<float> bjm_csv;
     vector<float> cjet_cvsl;
-    vector<float> cjet_pt;
 
 
    //Event selection 
@@ -200,8 +187,12 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
     bool passelectron = (*NElectron == 1) && (elec.Pt() > 35) && (abs(elec.Eta()) <= 2.1); // && (*NLooseMuon + *NLooseElectron) == 0; 
 
   //analysis
-if ( *TTBB == 1 ){
+//if ( *TTBB == 1 ){
   if ( passmuon || passelectron ){
+
+    vector<float> v_cjet_m;
+    vector<TLorentzVector> v_bjet_m;
+    vector<TLorentzVector> v_jet;
 
     if ( passmuon ){
       mode = 0;
@@ -219,14 +210,6 @@ if ( *TTBB == 1 ){
       met = met_elec;
     }
 
-    multimap<float /*jet CSV*/, TLorentzVector /*jet_4 vector*/> m_jets;
-      multimap<float, TLorentzVector>::iterator j_itr;
-    multimap<float , TLorentzVector > m_bjets_m;
-      multimap<float, TLorentzVector>::iterator m_itr;
-      multimap<float, TLorentzVector>::iterator n_itr;
-    multimap<float , TLorentzVector > m_cjets;
-      multimap<float, TLorentzVector>::iterator c_itr;
-
     for (unsigned int iJet = 0; iJet < Jet_Pt.GetSize() ; ++iJet) {
 
       TLorentzVector jet;
@@ -234,11 +217,12 @@ if ( *TTBB == 1 ){
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
-        m_jets.insert(pair<float, TLorentzVector>(Jet_bDiscriminator[iJet],jet));
+        v_jet.push_back(jet);
+        jet_csv.push_back(Jet_bDiscriminator[iJet]);
 
         if( Jet_bDiscriminator[iJet] > 0.8484 ){
           nbjets_m++;
-          m_bjets_m.insert(pair<float, TLorentzVector>(Jet_Pt[iJet],jet));
+          v_bjet_m.push_back(jet);
           bjm_csv.push_back(Jet_bDiscriminator[iJet]);
         }
 
@@ -246,44 +230,44 @@ if ( *TTBB == 1 ){
 
         if( Jet_pfCombinedCvsLJetTags[iJet] > -0.1 && Jet_pfCombinedCvsLJetTags[iJet] > 0.08 ){
           ncjets_m++;
-          cjet_pt.push_back(jet.Pt());
+          v_cjet_m.push_back(jet.Pt());
         }
       }
     }
 
-    if( njets > 1){
+    if( ncjets_m != 0 ) cjetPt = *max_element(v_cjet_m.begin(), v_cjet_m.end());
 
-      if( ncjets_m > 0 ) cjetPt = *max_element(cjet_pt.begin(), cjet_pt.end());
+    if( nbjets_m >1 ){
 
-      if( nbjets_m >1 ){
+      double tmp_bjmDR = 999;
+      double tmp_higgsMass_m  = 9999;
+      double tmp_bjmDEta = 999;
+      double tmp_bjmDPhi = 999;
+      double tmp_bjmPt1 = 9999;
+      double tmp_bjmPt2 = 9999;
 
-        for(m_itr = m_bjets_m.begin(); m_itr != m_bjets_m.end(); ++m_itr){
-          bjet_m1 = m_itr->second;
-          jm = distance(m_bjets_m.begin(),m_itr);
+      for(int m = 0; m < nbjets_m; m++){
+        for(int n = 1; n <  nbjets_m; n++){
+          if(m < n){
+            tmp_bjmDR = v_bjet_m[m].DeltaR(v_bjet_m[n]);
+            tmp_higgsMass_m = (v_bjet_m[m] + v_bjet_m[n]).M();
+            tmp_bjmDEta = v_bjet_m[m].Eta()-v_bjet_m[n].Eta();
+            tmp_bjmDPhi = v_bjet_m[m].DeltaPhi(v_bjet_m[n]);
+            tmp_bjmPt1 = v_bjet_m[m].Pt();
+            tmp_bjmPt2 = v_bjet_m[n].Pt();
 
-          for(n_itr = m_bjets_m.begin(); n_itr != m_bjets_m.end(); ++n_itr){
-            bjet_m2 = n_itr->second;
-            jn = distance(m_bjets_m.begin(),n_itr);
+            if( tmp_bjmDR < bjmDR ){
+              bjmDR = tmp_bjmDR;
+              higgsMass = tmp_higgsMass_m;
+              bjmDEta = tmp_bjmDEta;
+              bjmDPhi = tmp_bjmDPhi;
 
-            if(jm < jn){
-              bjmdr.push_back(bjet_m1.DeltaR(bjet_m2));
-              hm.push_back((bjet_m1 + bjet_m2).M());
-              bjmdeta.push_back(abs(bjet_m1.Eta()-bjet_m2.Eta()));
-              bjmdphi.push_back(abs(bjet_m1.Phi()-bjet_m2.Phi()));
-              bjm_pt1.push_back(m_itr->first);
-              bjm_pt2.push_back(n_itr->first);
+              if( tmp_bjmPt1 > tmp_bjmPt2) bJetPtH = tmp_bjmPt1;
+              else                         bJetPtH = tmp_bjmPt2;
+
             }
           }
         }
-
-        bjmDR = *min_element(bjmdr.begin(), bjmdr.end());
-        int b = distance(begin(bjmdr),min_element(bjmdr.begin(), bjmdr.end()));
-        higgsMass = hm.at(b);
-        bjmDEta = bjmdeta.at(b);
-        bjmDPhi = bjmdphi.at(b);
-
-        if(bjm_pt1.at(b) > bjm_pt2.at(b)) bJetPtH = bjm_pt1.at(b);
-        else bJetPtH = bjm_pt2.at(b);
       }
     }
 
@@ -345,7 +329,7 @@ if ( *TTBB == 1 ){
     }
 
   }
-}//ttbb
+//}//ttbb
    return kTRUE;
 }
 

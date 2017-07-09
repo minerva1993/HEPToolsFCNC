@@ -202,12 +202,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     int nbjets_m = 0; 
     int nbjets_t = 0; 
     int ncjets_m = 0; 
-    int jm = 0;
-    int jn = 0;
-    int jt = 0;
-    int js = 0;
-
-
 
     TLorentzVector p4met;
     double met = *MET;
@@ -223,42 +217,23 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     double transverseM = transverseMass(lepton, p4met);
     double lepDphi = lepton.DeltaPhi(p4met);
 
-    TLorentzVector jet, jet0, jet1, bjet_m1, bjet_m2, bjet_t1, bjet_t2, cjet_m;
-
-    double jDPhi = 0;
-    double jDEta = 0;
-    double jDR = 0;
-    double bjmDPhi = 0;
-    double bjmDEta = 0;
-    double bjmDR = 0;
-    double bjtDPhi = 0;
-    double bjtDEta = 0;
-    double bjtDR = 0;
-    double higgsMass_m = 0;
-    double higgsMass_t = 0;
-    double bJetPtHm = 0;
-    double bJetPtHt = 0;
+    double bjmDPhi = 999;
+    double bjmDEta = 999;
+    double bjmDR = 999;
+    double bjtDPhi = 999;
+    double bjtDEta = 999;
+    double bjtDR = 999;
+    double higgsMass_m = 9999;
+    double higgsMass_t = 9999;
+    double bJetPtHm = 9999;
+    double bJetPtHt = 9999;
     double cjetPt = 0;
 
-    vector<double> bjmdr;
-    vector<double> bjmdeta;
-    vector<double> bjmdphi;
-    vector<double> bjtdr;
-    vector<double> bjtdeta;
-    vector<double> bjtdphi;
-    vector<double> hm;
-    vector<double> ht;
-    vector<float> bjm_pt1;
-    vector<float> bjm_pt2;
-    vector<float> bjt_pt1;
-    vector<float> bjt_pt2;
-    vector<float> jet_pt;
     vector<float> jet_csv;
     vector<float> jet_cvsl;
     vector<float> bjm_csv;
     vector<float> bjt_csv;
     vector<float> cjet_cvsl;
-    vector<float> cjet_pt;
 
     //Selection Option
     bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -273,16 +248,10 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   if( passmuon || passelectron ){
 
-    multimap<float /*jet CSV*/, TLorentzVector /*jet_4 vector*/> m_jets;
-      multimap<float, TLorentzVector>::iterator j_itr;
-    multimap<float , TLorentzVector > m_bjets_m;
-      multimap<float, TLorentzVector>::iterator m_itr;
-      multimap<float, TLorentzVector>::iterator n_itr;
-    multimap<float , TLorentzVector > m_bjets_t;
-      multimap<float, TLorentzVector>::iterator t_itr;
-      multimap<float, TLorentzVector>::iterator s_itr;
-    multimap<float , TLorentzVector > m_cjets;
-      multimap<float, TLorentzVector>::iterator c_itr;
+    vector<float> v_cjet_m;
+    vector<TLorentzVector> v_bjet_m;
+    vector<TLorentzVector> v_bjet_t;
+    vector<TLorentzVector> v_jet;
 
     for (unsigned int iJet = 0; iJet < jet_pT.GetSize() ; ++iJet) {
 
@@ -291,100 +260,94 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
-        m_jets.insert(pair<float, TLorentzVector>(jet_CSV[iJet],jet));
-//        n_jets.insert(pair<float, TLorentzVector>(jet_CvsL[iJet],jet));
+        v_jet.push_back(jet);
+        jet_csv.push_back(jet_CSV[iJet]);
+
         if( jet_CSV[iJet] > 0.8484 ){
           nbjets_m++;
-          m_bjets_m.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
+          v_bjet_m.push_back(jet);
           bjm_csv.push_back(jet_CSV[iJet]);
         }
         if( jet_CSV[iJet] > 0.9535 ){
           nbjets_t++;
-          m_bjets_t.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
+          v_bjet_t.push_back(jet);
           bjt_csv.push_back(jet_CSV[iJet]);
         }
         if( jet_CvsL[iJet] > -0.1 && jet_CvsL[iJet] > 0.08 ){
           ncjets_m++;
-          m_cjets.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
-          cjet_cvsl.push_back(jet_CvsL[iJet]);
+          v_cjet_m.push_back(jet.Pt());
+          //cjet_cvsl.push_back(jet_CvsL[iJet]);
         }
       }
     } 
-    
-    if( njets > 1){
-      for(j_itr = m_jets.begin(); j_itr != m_jets.end(); ++j_itr){
-        jet0 = j_itr->second;
-        jet_pt.push_back(jet0.Pt());
-        jet_csv.push_back(j_itr->first);
-      }
 
-      if( ncjets_m >= 1 ){
-        for(c_itr = m_cjets.begin(); c_itr != m_cjets.end(); ++c_itr){
-          cjet_m = c_itr->second;
-          cjet_pt.push_back(c_itr->first);
-        }
-      }
+    if( ncjets_m != 0 ) cjetPt = *max_element(v_cjet_m.begin(), v_cjet_m.end());
 
-      if(cjet_pt.size() != 0) cjetPt = *max_element(cjet_pt.begin(), cjet_pt.end());
+    if( nbjets_m >1 ){
 
-      if( nbjets_m >1 ){
+      double tmp_bjmDR = 999;
+      double tmp_higgsMass_m  = 9999;
+      double tmp_bjmDEta = 999;
+      double tmp_bjmDPhi = 999;
+      double tmp_bjmPt1 = 9999;
+      double tmp_bjmPt2 = 9999;
 
-        for(m_itr = m_bjets_m.begin(); m_itr != m_bjets_m.end(); ++m_itr){
-          bjet_m1 = m_itr->second;
-          jm = distance(m_bjets_m.begin(),m_itr);
+      for(int m = 0; m < nbjets_m; m++){
+        for(int n = 1; n <  nbjets_m; n++){
+          if(m < n){
+            tmp_bjmDR = v_bjet_m[m].DeltaR(v_bjet_m[n]);
+            tmp_higgsMass_m = (v_bjet_m[m] + v_bjet_m[n]).M();
+            tmp_bjmDEta = v_bjet_m[m].Eta()-v_bjet_m[n].Eta();
+            tmp_bjmDPhi = v_bjet_m[m].DeltaPhi(v_bjet_m[n]);
+            tmp_bjmPt1 = v_bjet_m[m].Pt();
+            tmp_bjmPt2 = v_bjet_m[n].Pt();
 
-          for(n_itr = m_bjets_m.begin(); n_itr != m_bjets_m.end(); ++n_itr){
-            bjet_m2 = n_itr->second;
-            jn = distance(m_bjets_m.begin(),n_itr);
+            if( tmp_bjmDR < bjmDR ){
+              bjmDR = tmp_bjmDR;
+              higgsMass_m = tmp_higgsMass_m;
+              bjmDEta = tmp_bjmDEta;
+              bjmDPhi = tmp_bjmDPhi;
 
-            if(jm < jn){
-              bjmdr.push_back(bjet_m1.DeltaR(bjet_m2));
-              hm.push_back((bjet_m1 + bjet_m2).M());
-              bjmdeta.push_back(abs(bjet_m1.Eta()-bjet_m2.Eta()));
-              bjmdphi.push_back(abs(bjet_m1.Phi()-bjet_m2.Phi()));
-              bjm_pt1.push_back(m_itr->first);
-              bjm_pt2.push_back(n_itr->first);
+              if( tmp_bjmPt1 > tmp_bjmPt2) bJetPtHm = tmp_bjmPt1;
+              else                         bJetPtHm = tmp_bjmPt2;
+
             }
           }
         }
-        bjmDR = *min_element(bjmdr.begin(), bjmdr.end());
-        int b = distance(begin(bjmdr),min_element(bjmdr.begin(), bjmdr.end()));
-        higgsMass_m = hm.at(b);
-        bjmDEta = bjmdeta.at(b);
-        bjmDPhi = bjmdphi.at(b);
-
-        if(bjm_pt1.at(b) > bjm_pt2.at(b)) bJetPtHm = bjm_pt1.at(b);
-        else bJetPtHm = bjm_pt2.at(b);
       }
+    }
 
-      if( nbjets_t >1 ){
+    if( nbjets_t >1 ){
 
-        for(t_itr = m_bjets_t.begin(); t_itr != m_bjets_t.end(); ++t_itr){
-          bjet_t1 = t_itr->second;
-          jt = distance(m_bjets_t.begin(),t_itr);
+      double tmp_bjtDR = 999;
+      double tmp_higgsMass_t  = 9999;
+      double tmp_bjtDEta = 999;
+      double tmp_bjtDPhi = 999;
+      double tmp_bjtPt1 = 9999;
+      double tmp_bjtPt2 = 9999;
 
-          for(s_itr = m_bjets_t.begin(); s_itr != m_bjets_t.end(); ++s_itr){
-            bjet_t2 = s_itr->second;
-            js = distance(m_bjets_t.begin(),s_itr);
+      for(int m = 0; m < nbjets_t; m++){
+        for(int n = 1; n <  nbjets_t; n++){
+          if(m < n){
+            tmp_bjtDR = v_bjet_t[m].DeltaR(v_bjet_t[n]);
+            tmp_higgsMass_t = (v_bjet_t[m] + v_bjet_t[n]).M();
+            tmp_bjtDEta = v_bjet_t[m].Eta()-v_bjet_t[n].Eta();
+            tmp_bjtDPhi = v_bjet_t[m].DeltaPhi(v_bjet_t[n]);
+            tmp_bjtPt1 = v_bjet_t[m].Pt();
+            tmp_bjtPt2 = v_bjet_t[n].Pt();
 
-            if(jt < js){
-              bjtdr.push_back(bjet_t1.DeltaR(bjet_t2));
-              ht.push_back((bjet_t1 + bjet_t2).M());
-              bjtdeta.push_back(abs(bjet_t1.Eta()-bjet_t2.Eta()));
-              bjtdphi.push_back(abs(bjet_t1.Phi()-bjet_t2.Phi()));
-              bjt_pt1.push_back(t_itr->first);
-              bjt_pt2.push_back(s_itr->first);
+            if( tmp_bjtDR < bjtDR ){
+              bjtDR = tmp_bjtDR;
+              higgsMass_t = tmp_higgsMass_t;
+              bjtDEta = tmp_bjtDEta;
+              bjtDPhi = tmp_bjtDPhi;
+
+              if( tmp_bjtPt1 > tmp_bjtPt2) bJetPtHt = tmp_bjtPt1;
+              else                         bJetPtHt = tmp_bjtPt2;
+
             }
           }
         }
-        bjtDR = *min_element(bjtdr.begin(), bjtdr.end());
-        int a = distance(begin(bjtdr),min_element(bjtdr.begin(), bjtdr.end()));
-        higgsMass_t = ht.at(a);
-        bjtDEta = bjtdeta.at(a);
-        bjtDPhi = bjtdphi.at(a);
-
-        if(bjt_pt1.at(a) > bjt_pt2.at(a)) bJetPtHt = bjt_pt1.at(a);
-        else bJetPtHt = bjt_pt2.at(a);
       }
     }
 

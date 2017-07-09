@@ -172,8 +172,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     double transverseM = transverseMass(lepton, p4met);
     double lepDphi = lepton.DeltaPhi(p4met);
 
-    TLorentzVector jet;
-
     double bjmDPhi = 999;
     double bjmDEta = 999;
     double bjmDR = 999;
