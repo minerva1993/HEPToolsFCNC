@@ -229,11 +229,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     double bJetPtHt = 9999;
     double cjetPt = 0;
 
-    vector<float> jet_csv;
     vector<float> jet_cvsl;
     vector<float> bjm_csv;
     vector<float> bjt_csv;
-    vector<float> cjet_cvsl;
 
     //Selection Option
     bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -260,8 +258,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
-        v_jet.push_back(jet);
-        jet_csv.push_back(jet_CSV[iJet]);
 
         if( jet_CSV[iJet] > 0.8484 ){
           nbjets_m++;
@@ -276,7 +272,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         if( jet_CvsL[iJet] > -0.1 && jet_CvsL[iJet] > 0.08 ){
           ncjets_m++;
           v_cjet_m.push_back(jet.Pt());
-          //cjet_cvsl.push_back(jet_CvsL[iJet]);
         }
       }
     } 

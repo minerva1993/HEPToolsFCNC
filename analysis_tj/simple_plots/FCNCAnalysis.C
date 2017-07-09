@@ -175,11 +175,9 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
     double bJetPtH = 9999;
     double cjetPt = 9999;
 
-    vector<float> jet_csv;
-    vector<float> jet_cvsl;
     vector<float> bjm_csv;
-    vector<float> cjet_cvsl;
-
+    vector<float> v_cjet_m;
+    vector<TLorentzVector> v_bjet_m;
 
    //Event selection 
     bool passmuon = (*NMuon == 1)  && (muon.Pt() > 27) && (abs(muon.Eta()) <= 2.1); // && (*NLooseMuon + *NLooseElectron) == 0;
@@ -189,10 +187,6 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
   //analysis
 //if ( *TTBB == 1 ){
   if ( passmuon || passelectron ){
-
-    vector<float> v_cjet_m;
-    vector<TLorentzVector> v_bjet_m;
-    vector<TLorentzVector> v_jet;
 
     if ( passmuon ){
       mode = 0;
@@ -217,8 +211,6 @@ Bool_t FCNCAnalysis::Process(Long64_t entry)
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
-        v_jet.push_back(jet);
-        jet_csv.push_back(Jet_bDiscriminator[iJet]);
 
         if( Jet_bDiscriminator[iJet] > 0.8484 ){
           nbjets_m++;
