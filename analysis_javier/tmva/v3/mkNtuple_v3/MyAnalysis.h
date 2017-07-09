@@ -132,18 +132,18 @@ public :
     int b_njets = 0;
     int b_nbjets_m = 0;
     int b_ncjets_m = 0;
-    float b_bjmdr = 0;
-    float b_hmass = 0;
-    float b_bjmpt = 0;
-    float b_cjmpt = 0;
-    float b_jet1pt = 0;
-    float b_jet2pt = 0;
-    float b_jet3pt = 0;
-    float b_jet4pt = 0;
-    float b_jet1csv = 0;
-    float b_jet2csv = 0;
-    float b_jet3csv = 0;
-    float b_jet4csv = 0;
+    float b_bjmdr = 999;
+    float b_hmass = 9999;
+    float b_bjmpt = 9999;
+    float b_cjmpt = 9999;
+    float b_jet1pt = 9999;
+    float b_jet2pt = 9999;
+    float b_jet3pt = 9999;
+    float b_jet4pt = 9999;
+    float b_jet1csv = 99;
+    float b_jet2csv = 99;
+    float b_jet3csv = 99;
+    float b_jet4csv = 99;
 
 
 };
