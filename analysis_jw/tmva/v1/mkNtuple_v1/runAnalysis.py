@@ -22,7 +22,7 @@ def runAna(dir, file, name):
 
 p = TProof.Open("", "workers=8")
 
-version = "v1"
+version = "v2"
 inputdir = "/home/minerva1993/fcnc/ntuple_jw/"
 
 #runAna(inputdir+version,"Tree_LepJets_Final_v8-0-6_Spring16-80X_36814pb-1_DataSingleEG.root","DataSingleEG")

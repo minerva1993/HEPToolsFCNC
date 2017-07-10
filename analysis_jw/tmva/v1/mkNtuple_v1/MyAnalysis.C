@@ -25,7 +25,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     tree->Branch("BJet_M_delta_Eta", &b_bjmdeta, "b_bjmdeta/F");
     tree->Branch("BJet_M_delta_Phi", &b_bjmdphi, "b_bjmdphi/F");
     tree->Branch("H_Mass", &b_hmass, "b_hmass/F");
-    tree->Branch("BJet_Pt_H", &b_bjmpth, "b_bjmpth/F");
+    tree->Branch("BJet_Pt_H", &b_bjmpt, "b_bjmpt/F");
     tree->Branch("CJet_Pt", &b_cjmpt, "b_cjmpt/F");
     tree->Branch("Jet1_Pt", &b_jet1pt, "b_jet1pt/F");
     tree->Branch("Jet2_Pt", &b_jet2pt, "b_jet2pt/F");
@@ -70,14 +70,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     //Object selection
     int njets = 0;
     int nbjets_m = 0; 
-    int nbjets_t = 0; 
     int ncjets_m = 0; 
-    int jm = 0;
-    int jn = 0;
-    int jt = 0;
-    int js = 0;
-
-
 
     TLorentzVector p4met;
     double met = *MET;
@@ -93,20 +86,11 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     double transverseM = transverseMass(lepton, p4met);
     double lepDphi = lepton.DeltaPhi(p4met);
 
-    TLorentzVector jet, jet0, jet1, bjet_m1, bjet_m2, cjet_m;
+    TLorentzVector jet;
 
-    vector<double> bjmdr;
-    vector<double> bjmdeta;
-    vector<double> bjmdphi;
-    vector<double> hm;
-    vector<float> bjm_pt1;
-    vector<float> bjm_pt2;
-    vector<float> jet_pt;
-    vector<float> jet_csv;
     vector<float> jet_cvsl;
     vector<float> bjm_csv;
     vector<float> cjet_cvsl;
-    vector<float> cjet_pt;
 
     //Selection Option
     bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -121,32 +105,28 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   if( passmuon || passelectron ){
 
-    multimap<float /*jet CSV*/, TLorentzVector /*jet_4 vector*/> m_jets;
-      multimap<float, TLorentzVector>::iterator j_itr;
-    multimap<float , TLorentzVector > m_bjets_m;
-      multimap<float, TLorentzVector>::iterator m_itr;
-      multimap<float, TLorentzVector>::iterator n_itr;
-    multimap<float , TLorentzVector > m_cjets;
-      multimap<float, TLorentzVector>::iterator c_itr;
+    vector<float> v_cjet_m;
+    vector<TLorentzVector> v_bjet_m;
+
+    multimap<float /*jet pT*/, float /*CSV*/, std::greater<float>> m_jets;
+      multimap<float, float /*CSV*/, std::greater<float>>::iterator j_itr;
 
     for (unsigned int iJet = 0; iJet < jet_pT.GetSize() ; ++iJet) {
 
-      TLorentzVector jet;
       jet.SetPtEtaPhiE(jet_pT[iJet], jet_eta[iJet], jet_phi[iJet], jet_E[iJet]);
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
-        m_jets.insert(pair<float, TLorentzVector>(jet_CSV[iJet],jet));
-//        n_jets.insert(pair<float, TLorentzVector>(jet_CvsL[iJet],jet));
+        m_jets.insert(pair<float, float>(jet_pT[iJet], jet_CSV[iJet]));
+
         if( jet_CSV[iJet] > 0.8484 ){
           nbjets_m++;
-          m_bjets_m.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
+          v_bjet_m.push_back(jet);
           bjm_csv.push_back(jet_CSV[iJet]);
         }
         if( jet_CvsL[iJet] > -0.1 && jet_CvsL[iJet] > 0.08 ){
           ncjets_m++;
-          m_cjets.insert(pair<float, TLorentzVector>(jet_pT[iJet],jet));
-          cjet_cvsl.push_back(jet_CvsL[iJet]);
+          v_cjet_m.push_back(jet.Pt());
         }
       }
     } 
@@ -155,76 +135,68 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       b_njets = njets;
       b_nbjets_m = nbjets_m;
       b_ncjets_m = ncjets_m;
+
       b_met = met;
       b_lepdphi = lepDphi;
       b_transversem = transverseMass(lepton, p4met);
 
+      float tmp_jetpt[4];
+      float tmp_jetcsv[4];
+      int tmp_index = 0;
+
       for(j_itr = m_jets.begin(); j_itr != m_jets.end(); ++j_itr){
-        jet0 = j_itr->second;
-        jet_pt.push_back(jet0.Pt());
-        jet_csv.push_back(j_itr->first);
-      }
-
-      if( ncjets_m >= 1 ){
-        for(c_itr = m_cjets.begin(); c_itr != m_cjets.end(); ++c_itr){
-          cjet_m = c_itr->second;
-          cjet_pt.push_back(c_itr->first);
+        if(tmp_index < 4){
+          tmp_jetpt[tmp_index] = j_itr->first;
+          tmp_jetcsv[tmp_index] = j_itr->second;
+          ++tmp_index;
         }
+        else continue;
       }
 
-      if(cjet_pt.size() != 0) b_cjmpt = *max_element(cjet_pt.begin(), cjet_pt.end());
+      b_jet1pt = tmp_jetpt[0];
+      b_jet2pt = tmp_jetpt[1];
+      b_jet3pt = tmp_jetpt[2];
+      b_jet4pt = tmp_jetpt[3];
+      b_jet1csv = tmp_jetcsv[0];
+      b_jet2csv = tmp_jetcsv[1];
+      b_jet3csv = tmp_jetcsv[2];
+      b_jet4csv = tmp_jetcsv[3];
 
-      if( nbjets_m >1 ){
+      if( ncjets_m != 0 ) b_cjmpt  = *max_element(v_cjet_m.begin(), v_cjet_m.end());
 
-        for(m_itr = m_bjets_m.begin(); m_itr != m_bjets_m.end(); ++m_itr){
-          bjet_m1 = m_itr->second;
-          jm = distance(m_bjets_m.begin(),m_itr);
+      double tmp_bjmDR = 999;
+      double tmp_higgsMass_m  = 9999;
+      double tmp_bjmDEta = 999;
+      double tmp_bjmDPhi = 999;
+      double tmp_bjmPt1 = 9999;
+      double tmp_bjmPt2 = 9999;
+      double tmp_bjmdeta = 999;
+      double tmp_bjmdphi = 999;
 
-          for(n_itr = m_bjets_m.begin(); n_itr != m_bjets_m.end(); ++n_itr){
-            bjet_m2 = n_itr->second;
-            jn = distance(m_bjets_m.begin(),n_itr);
+      for(int m = 0; m < nbjets_m; m++){
+        for(int n = 1; n <  nbjets_m; n++){
+          if(m < n){
+            tmp_bjmDR = v_bjet_m[m].DeltaR(v_bjet_m[n]);
+            tmp_higgsMass_m = (v_bjet_m[m] + v_bjet_m[n]).M();
+            tmp_bjmPt1 = v_bjet_m[m].Pt();
+            tmp_bjmPt2 = v_bjet_m[n].Pt();
+            tmp_bjmdeta = v_bjet_m[m].Eta()-v_bjet_m[n].Eta();
+            tmp_bjmdphi = v_bjet_m[m].DeltaPhi(v_bjet_m[n]);
 
-            if(jm < jn){
-              bjmdr.push_back(bjet_m1.DeltaR(bjet_m2));
-              hm.push_back((bjet_m1 + bjet_m2).M());
-              bjmdeta.push_back(abs(bjet_m1.Eta()-bjet_m2.Eta()));
-              bjmdphi.push_back(abs(bjet_m1.Phi()-bjet_m2.Phi()));
-              bjm_pt1.push_back(m_itr->first);
-              bjm_pt2.push_back(n_itr->first);
+            if( tmp_bjmDR < b_bjmdr ){
+              b_bjmdr = tmp_bjmDR;
+              b_hmass = tmp_higgsMass_m;
+              b_bjmdeta = tmp_bjmdeta;
+              b_bjmdphi = tmp_bjmdphi;
+
+              if( tmp_bjmPt1 > tmp_bjmPt2) b_bjmpt = tmp_bjmPt1;
+              else                         b_bjmpt = tmp_bjmPt2;
+
             }
           }
         }
-        b_bjmdr = *min_element(bjmdr.begin(), bjmdr.end());
-        int b = distance(begin(bjmdr),min_element(bjmdr.begin(), bjmdr.end()));
-        b_hmass = hm.at(b);
-        b_bjmdeta = bjmdeta.at(b);
-        b_bjmdphi = bjmdphi.at(b);
+      }//for
 
-        if(bjm_pt1.at(b) > bjm_pt2.at(b)) b_bjmpth = bjm_pt1.at(b);
-        else b_bjmpth = bjm_pt2.at(b);
-      }
-
-      b_jet1pt = *max_element(jet_pt.begin(), jet_pt.end());
-      int disjetpt1 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
-      jet_pt.erase(jet_pt.begin() + disjetpt1);
-      b_jet1csv = jet_csv.at(disjetpt1);
-      jet_csv.erase(jet_csv.begin() + disjetpt1);
-
-      b_jet2pt = *max_element(jet_pt.begin(), jet_pt.end());
-      int disjetpt2 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
-      jet_pt.erase(jet_pt.begin() + disjetpt2);
-      b_jet2csv = jet_csv.at(disjetpt2);
-      jet_csv.erase(jet_csv.begin() + disjetpt2);
-
-      b_jet3pt = *max_element(jet_pt.begin(), jet_pt.end());
-      int disjetpt3 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
-      jet_pt.erase(jet_pt.begin() + disjetpt3);
-      b_jet3csv = jet_csv.at(disjetpt3);
-      jet_csv.erase(jet_csv.begin() + disjetpt3);
-
-      b_jet4pt = *max_element(jet_pt.begin(), jet_pt.end());
-      int disjetpt4 = distance(begin(jet_pt), max_element(jet_pt.begin(), jet_pt.end()));
-      b_jet4csv = jet_csv.at(disjetpt4);
 
 
       ////kinfit values: for kin, lep T->W (lep + kin nu) + kinbl, had T -> (j1 + j2) + bjrefit. for fcnc, lep T -> W (lep + kin nu) + kinbl, fcn T -> H (kinj1 kinj2) + kinbjrefit(c/u jet)
