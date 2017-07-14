@@ -5,8 +5,8 @@
 // found on file: /home/minerva1993/fcnc/ntuple_jw/v2/TT_TopLeptonicDecay_TH_1L3B_Eta_Hct.root
 //////////////////////////////////////////////////////////
 
-#ifndef Analyzer_h
-#define Analyzer_h
+#ifndef AnalyzerHYTuple_h
+#define AnalyzerHYTuple_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -16,7 +16,7 @@
 #include "vector"
 #include "vector"
 
-class Analyzer {
+class AnalyzerHYTuple {
 public :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
    Int_t           fCurrent; //!current Tree number in a TChain
@@ -149,21 +149,21 @@ public :
    TBranch        *b_fcnhkinnu_M;   //!
    TBranch        *b_kinnu_M;   //!
 
-   Analyzer(TTree *tree=0);
-   virtual ~Analyzer();
+   AnalyzerHYTuple(TTree *tree=0);
+   virtual ~AnalyzerHYTuple();
    virtual Int_t    Cut(Long64_t entry);
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
-   virtual void     Loop(const int mode=1);
+   virtual void     Loop(const std::string modeStr, const std::string outFileName);
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
 };
 
 #endif
 
-#ifdef Analyzer_cxx
-Analyzer::Analyzer(TTree *tree) : fChain(0) 
+#ifdef AnalyzerHYTuple_cxx
+AnalyzerHYTuple::AnalyzerHYTuple(TTree *tree) : fChain(0) 
 {
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
@@ -179,19 +179,19 @@ Analyzer::Analyzer(TTree *tree) : fChain(0)
    Init(tree);
 }
 
-Analyzer::~Analyzer()
+AnalyzerHYTuple::~AnalyzerHYTuple()
 {
    if (!fChain) return;
    delete fChain->GetCurrentFile();
 }
 
-Int_t Analyzer::GetEntry(Long64_t entry)
+Int_t AnalyzerHYTuple::GetEntry(Long64_t entry)
 {
 // Read contents of entry.
    if (!fChain) return 0;
    return fChain->GetEntry(entry);
 }
-Long64_t Analyzer::LoadTree(Long64_t entry)
+Long64_t AnalyzerHYTuple::LoadTree(Long64_t entry)
 {
 // Set the environment to read one entry
    if (!fChain) return -5;
@@ -204,7 +204,7 @@ Long64_t Analyzer::LoadTree(Long64_t entry)
    return centry;
 }
 
-void Analyzer::Init(TTree *tree)
+void AnalyzerHYTuple::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -318,7 +318,7 @@ void Analyzer::Init(TTree *tree)
    Notify();
 }
 
-Bool_t Analyzer::Notify()
+Bool_t AnalyzerHYTuple::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -329,18 +329,18 @@ Bool_t Analyzer::Notify()
    return kTRUE;
 }
 
-void Analyzer::Show(Long64_t entry)
+void AnalyzerHYTuple::Show(Long64_t entry)
 {
 // Print contents of entry.
 // If entry is not specified, print current entry
    if (!fChain) return;
    fChain->Show(entry);
 }
-Int_t Analyzer::Cut(Long64_t entry)
+Int_t AnalyzerHYTuple::Cut(Long64_t entry)
 {
 // This function may be called from Loop.
 // returns  1 if entry is accepted.
 // returns -1 otherwise.
    return 1;
 }
-#endif // #ifdef Analyzer_cxx
+#endif // #ifdef AnalyzerHYTuple_cxx
