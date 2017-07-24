@@ -21,6 +21,8 @@
 #include <vector>
 #include <TLorentzVector.h>
 
+#include <iostream>
+
 class MyAnalysis : public TSelector {
 public :
    TTreeReader     fReader;  //!the tree reader
@@ -169,12 +171,15 @@ public :
     TH1D *h_fcnhkinNuM[2][16];
 
     //M3
+/*
     TH1D *h_m3TTkinLepWMass[2][16];
     TH1D *h_m3TTkinHadWMass[2][16];
     TH1D *h_m3TTkinDR[2][16];
     TH1D *h_m3TTkinTopMWb[2][16];
     TH1D *h_m3TTkinTopMqqb[2][16];
-    TH1D *h_m3FCNHkinWMass[2][16];
+*/
+    TH1D *h_m3FCNHkinLepWMass[2][16];
+    TH1D *h_m3FCNHkinHadWMass[2][16];
     TH1D *h_m3FCNHkinHMass[2][16];
     TH1D *h_m3FCNHkinDR[2][16];
     TH1D *h_m3FCNHkinTopMWb[2][16];
