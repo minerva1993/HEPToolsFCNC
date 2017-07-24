@@ -42,67 +42,67 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_MET[ich][i]->Sumw2();
       fOutput->Add(h_MET[ich][i]);
 
-      h_WMass[ich][i] = new TH1D(Form("h_WMass_Ch%i_S%i_%s",ich,i,option.Data()), "WMass", 80 ,0 ,160);
+      h_WMass[ich][i] = new TH1D(Form("h_WMass_Ch%i_S%i_%s",ich,i,option.Data()), "WMass", 50 ,0 ,200);
       h_WMass[ich][i]->SetXTitle("Transverse Mass (GeV)");
       h_WMass[ich][i]->Sumw2();
       fOutput->Add(h_WMass[ich][i]);
 
-      h_HMass_m[ich][i] = new TH1D(Form("h_HMassM_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (2 medium b jets)", 50 ,50 ,300);
+      h_HMass_m[ich][i] = new TH1D(Form("h_HMassM_Ch%i_S%i_%s",ich,i,option.Data()), "Di-bjet Mass (medium) wrt min DR", 60 ,0 ,300);
       h_HMass_m[ich][i]->SetXTitle("Di-bjet (medium) Mass (GeV)");
       h_HMass_m[ich][i]->Sumw2();
       fOutput->Add(h_HMass_m[ich][i]);
 
-      h_bJetPtHm[ich][i] = new TH1D(Form("h_bJetPtHm_Ch%i_S%i_%s",ich,i,option.Data()), "b jet (medium) pT from H", 56 ,20 ,300);
+      h_bJetPtHm[ich][i] = new TH1D(Form("h_bJetPtHm_Ch%i_S%i_%s",ich,i,option.Data()), "Leading b jet (medium) pT from di-bjets", 54 ,30 ,300);
       h_bJetPtHm[ich][i]->SetXTitle("b Jet (medium) pT from Higgs (GeV)");
       h_bJetPtHm[ich][i]->Sumw2();
       fOutput->Add(h_bJetPtHm[ich][i]);
 
-      h_HMass_t[ich][i] = new TH1D(Form("h_HMassT_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (2 tight b jets)", 50 ,50 ,300);
+      h_HMass_t[ich][i] = new TH1D(Form("h_HMassT_Ch%i_S%i_%s",ich,i,option.Data()), "Di-bjet Mass (tight) wrt min DR", 60 ,0 ,300);
       h_HMass_t[ich][i]->SetXTitle("Di-bjet (tight) Mass (GeV)");
       h_HMass_t[ich][i]->Sumw2();
       fOutput->Add(h_HMass_t[ich][i]);
 
-      h_bJetPtHt[ich][i] = new TH1D(Form("h_bJetPtHt_Ch%i_S%i_%s",ich,i,option.Data()), "b jet (tight) pT from H", 56 ,20 ,300);
+      h_bJetPtHt[ich][i] = new TH1D(Form("h_bJetPtHt_Ch%i_S%i_%s",ich,i,option.Data()), "Leading b jet (tight) pT from the di-bjets", 54 ,30 ,300);
       h_bJetPtHt[ich][i]->SetXTitle("b Jet (tight) pT from Higgs (GeV)");
       h_bJetPtHt[ich][i]->Sumw2();
       fOutput->Add(h_bJetPtHt[ich][i]);
 
-      h_cJetPt[ich][i] = new TH1D(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()), "leading c jet (medium) pT", 56 ,20 ,300);
+      h_cJetPt[ich][i] = new TH1D(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()), "leading c jet (medium) pT", 54 ,30 ,300);
       h_cJetPt[ich][i]->SetXTitle("leading c Jet (medium) pT (GeV)");
       h_cJetPt[ich][i]->Sumw2();
       fOutput->Add(h_cJetPt[ich][i]);
 
-      h_DPhi[ich][i] = new TH1D(Form("h_DPhi_Ch%i_S%i_%s",ich,i,option.Data()), "lepton DPhi", 64 ,0 ,3.2);
+      h_DPhi[ich][i] = new TH1D(Form("h_DPhi_Ch%i_S%i_%s",ich,i,option.Data()), "lepton DPhi", 32 ,0 ,3.2);
       h_DPhi[ich][i]->SetXTitle("DPhi");
       h_DPhi[ich][i]->Sumw2();
       fOutput->Add(h_DPhi[ich][i]);
 
-      h_bjmDPhi[ich][i] = new TH1D(Form("h_bjmDPhi_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta Phi", 64 ,0 ,3.2);
+      h_bjmDPhi[ich][i] = new TH1D(Form("h_bjmDPhi_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta Phi", 32 ,0 ,3.2);
       h_bjmDPhi[ich][i]->SetXTitle("bjet_m Delta Phi");
       h_bjmDPhi[ich][i]->Sumw2();
       fOutput->Add(h_bjmDPhi[ich][i]);
 
-      h_bjmDEta[ich][i] = new TH1D(Form("h_bjmDEta_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta Eta", 64 ,0 ,3.2);
+      h_bjmDEta[ich][i] = new TH1D(Form("h_bjmDEta_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta Eta", 32 ,0 ,3.2);
       h_bjmDEta[ich][i]->SetXTitle("bjet_m Delta Eta");
       h_bjmDEta[ich][i]->Sumw2();
       fOutput->Add(h_bjmDEta[ich][i]);
 
-      h_bjmDR[ich][i] = new TH1D(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta R", 100 ,0 ,5);
+      h_bjmDR[ich][i] = new TH1D(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta R", 50 ,0 ,5);
       h_bjmDR[ich][i]->SetXTitle("bjet_m Delta R");
       h_bjmDR[ich][i]->Sumw2();
       fOutput->Add(h_bjmDR[ich][i]);
 
-      h_bjtDPhi[ich][i] = new TH1D(Form("h_bjtDPhi_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta Phi", 64 ,0 ,3.2);
+      h_bjtDPhi[ich][i] = new TH1D(Form("h_bjtDPhi_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta Phi", 32 ,0 ,3.2);
       h_bjtDPhi[ich][i]->SetXTitle("bjet_t Delta Phi");
       h_bjtDPhi[ich][i]->Sumw2();
       fOutput->Add(h_bjtDPhi[ich][i]);
 
-      h_bjtDEta[ich][i] = new TH1D(Form("h_bjtDEta_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta Eta", 64 ,0 ,3.2);
+      h_bjtDEta[ich][i] = new TH1D(Form("h_bjtDEta_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta Eta", 32 ,0 ,3.2);
       h_bjtDEta[ich][i]->SetXTitle("bjet_t Delta Eta");
       h_bjtDEta[ich][i]->Sumw2();
       fOutput->Add(h_bjtDEta[ich][i]);
 
-      h_bjtDR[ich][i] = new TH1D(Form("h_bjtDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta R", 100 ,0 ,5);
+      h_bjtDR[ich][i] = new TH1D(Form("h_bjtDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_t Delta R", 50 ,0 ,5);
       h_bjtDR[ich][i]->SetXTitle("bjet_t Delta R");
       h_bjtDR[ich][i]->Sumw2();
       fOutput->Add(h_bjtDR[ich][i]);
@@ -117,47 +117,47 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_LepIsoQCD[ich][i]->Sumw2();
       fOutput->Add(h_LepIsoQCD[ich][i]);
 
-      h_kinLepWMass[ich][i] = new TH1D(Form("h_kinLepWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from kinfit (Lep)", 79 ,2 ,160);
+      h_kinLepWMass[ich][i] = new TH1D(Form("h_kinLepWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from kinfit (Lep)", 20 ,60 ,100);
       h_kinLepWMass[ich][i]->SetXTitle("W Mass from kinfit (Lep) (GeV)");
       h_kinLepWMass[ich][i]->Sumw2();
       fOutput->Add(h_kinLepWMass[ich][i]);
 
-      h_kinHadWMass[ich][i] = new TH1D(Form("h_kinHadWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from kinfit (qqb)", 79 ,2 ,160);
+      h_kinHadWMass[ich][i] = new TH1D(Form("h_kinHadWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from kinfit (qqb)", 20 ,60 ,100);
       h_kinHadWMass[ich][i]->SetXTitle("W Mass from kinfit (qqb) (GeV)");
       h_kinHadWMass[ich][i]->Sumw2();
       fOutput->Add(h_kinHadWMass[ich][i]);
 
-      h_kinTopMqqb[ich][i] = new TH1D(Form("h_kinTopMqqb_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from kinfit (qqb)", 109 ,2 , 220);
+      h_kinTopMqqb[ich][i] = new TH1D(Form("h_kinTopMqqb_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from kinfit (qqb)", 25 , 150 , 200);
       h_kinTopMqqb[ich][i]->SetXTitle("Top Mass from kinfit (qqb) (GeV)");
       h_kinTopMqqb[ich][i]->Sumw2();
       fOutput->Add(h_kinTopMqqb[ich][i]);
 
-      h_kinTopMWb[ich][i] = new TH1D(Form("h_kinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from kinfit (Lep)", 109 , 2 , 220);
+      h_kinTopMWb[ich][i] = new TH1D(Form("h_kinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from kinfit (Lep)", 25 , 150 , 200);
       h_kinTopMWb[ich][i]->SetXTitle("Top Mass from kinfit (Lep) (GeV)");
       h_kinTopMWb[ich][i]->Sumw2();
       fOutput->Add(h_kinTopMWb[ich][i]);
 
-      h_fcnhkinWMass[ich][i] = new TH1D(Form("h_fcnhkinWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from fcnhkinfit (Lep)", 79 ,2 ,160);
+      h_fcnhkinWMass[ich][i] = new TH1D(Form("h_fcnhkinWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from fcnhkinfit (Lep)", 39 , 5 ,200);
       h_fcnhkinWMass[ich][i]->SetXTitle("W Mass from fcnhkinfit (Lep) (GeV)");
       h_fcnhkinWMass[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinWMass[ich][i]);
 
-      h_fcnhkinHMass[ich][i] = new TH1D(Form("h_fcnhkinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "H Mass from fcnhkinfit (bb)", 99 ,2 ,200);
+      h_fcnhkinHMass[ich][i] = new TH1D(Form("h_fcnhkinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "H Mass from fcnhkinfit (bb)", 25 ,100 ,150);
       h_fcnhkinHMass[ich][i]->SetXTitle("H Mass from fcnhkinfit (bb)(GeV)");
       h_fcnhkinHMass[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinHMass[ich][i]);
 
-      h_fcnhkinTopMHc[ich][i] = new TH1D(Form("h_fcnhkinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc/u fcnhkinfit", 109 ,2 , 220);
+      h_fcnhkinTopMHc[ich][i] = new TH1D(Form("h_fcnhkinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc/u fcnhkinfit", 26 , 120 , 250);
       h_fcnhkinTopMHc[ich][i]->SetXTitle("Top Mass from Hc/u fcnhkinfit (GeV)");
       h_fcnhkinTopMHc[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinTopMHc[ich][i]);
 
-      h_fcnhkinTopMWb[ich][i] = new TH1D(Form("h_fcnhkinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from fcnhkinfit (Lep)", 109 , 2 , 220);
+      h_fcnhkinTopMWb[ich][i] = new TH1D(Form("h_fcnhkinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from fcnhkinfit (Lep)", 26 , 120 , 250);
       h_fcnhkinTopMWb[ich][i]->SetXTitle("Top Mass from fcnhkinfit (Lep) (GeV)");
       h_fcnhkinTopMWb[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinTopMWb[ich][i]);
 
-      h_fcnhkinNuM[ich][i] = new TH1D(Form("h_fcnhkinNuM_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from fcnhkinfit (Lep)", 100 , 0 , 100);
+      h_fcnhkinNuM[ich][i] = new TH1D(Form("h_fcnhkinNuM_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from fcnhkinfit (Lep)", 10 , 0 , 10);
       h_fcnhkinNuM[ich][i]->SetXTitle("Nu Mass (=0) (GeV)");
       h_fcnhkinNuM[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinNuM[ich][i]);
@@ -187,32 +187,32 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_m3TTkinTopMqqb[ich][i]->Sumw2();
       fOutput->Add(h_m3TTkinTopMqqb[ich][i]);
 */
-      h_m3FCNHkinLepWMass[ich][i] = new TH1D(Form("h_m3FCNHkinLepWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from m3FCNHkinfit (Lep)", 79 ,2 ,160);
+      h_m3FCNHkinLepWMass[ich][i] = new TH1D(Form("h_m3FCNHkinLepWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from m3FCNHkinfit (Lep)", 59 ,5 ,300);
       h_m3FCNHkinLepWMass[ich][i]->SetXTitle("W Mass from m3FCNHkinfit (Lep) (GeV)");
       h_m3FCNHkinLepWMass[ich][i]->Sumw2();
       fOutput->Add(h_m3FCNHkinLepWMass[ich][i]);
 
-      h_m3FCNHkinHadWMass[ich][i] = new TH1D(Form("h_m3FCNHkinHadWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from m3FCNHkinfit (Had)", 79 ,2 ,160);
+      h_m3FCNHkinHadWMass[ich][i] = new TH1D(Form("h_m3FCNHkinHadWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from m3FCNHkinfit (Had)", 59 ,5 ,300);
       h_m3FCNHkinHadWMass[ich][i]->SetXTitle("W Mass from m3FCNHkinfit (Had) (GeV)");
       h_m3FCNHkinHadWMass[ich][i]->Sumw2();
       fOutput->Add(h_m3FCNHkinHadWMass[ich][i]);
 
-      h_m3FCNHkinHMass[ich][i] = new TH1D(Form("h_m3FCNHkinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "H Mass from m3FCNHkinfit (bb)", 99 ,2 ,200);
+      h_m3FCNHkinHMass[ich][i] = new TH1D(Form("h_m3FCNHkinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "H Mass from m3FCNHkinfit (bb)", 59 ,5 ,300);
       h_m3FCNHkinHMass[ich][i]->SetXTitle("H Mass from m3FCNHkinfit (bb)(GeV)");
       h_m3FCNHkinHMass[ich][i]->Sumw2();
       fOutput->Add(h_m3FCNHkinHMass[ich][i]);
 
-      h_m3FCNHkinDR[ich][i] = new TH1D(Form("h_m3FCNHkinDR_Ch%i_S%i_%s",ich,i,option.Data()), "Delta R from m3FCNHkinfit", 100 ,0 ,5);
+      h_m3FCNHkinDR[ich][i] = new TH1D(Form("h_m3FCNHkinDR_Ch%i_S%i_%s",ich,i,option.Data()), "Delta R from m3FCNHkinfit", 49, 0.1 ,5);
       h_m3FCNHkinDR[ich][i]->SetXTitle("Delta R from m3FCNHkinfit Higgs");
       h_m3FCNHkinDR[ich][i]->Sumw2();
       fOutput->Add(h_m3FCNHkinDR[ich][i]);
 
-      h_m3FCNHkinTopMWb[ich][i] = new TH1D(Form("h_m3FCNHkinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from m3FCNHkinfit (Lep)", 110 , 40 , 260);
+      h_m3FCNHkinTopMWb[ich][i] = new TH1D(Form("h_m3FCNHkinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from m3FCNHkinfit (Lep)", 59 , 5 , 300);
       h_m3FCNHkinTopMWb[ich][i]->SetXTitle("Top Mass from m3FCNHkinfit (Lep) (GeV)");
       h_m3FCNHkinTopMWb[ich][i]->Sumw2();
       fOutput->Add(h_m3FCNHkinTopMWb[ich][i]);
 
-      h_m3FCNHkinTopMHc[ich][i] = new TH1D(Form("h_m3FCNHkinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc/u m3FCNHkinfit", 110 ,40 , 260);
+      h_m3FCNHkinTopMHc[ich][i] = new TH1D(Form("h_m3FCNHkinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc/u m3FCNHkinfit", 59 , 5 , 300);
       h_m3FCNHkinTopMHc[ich][i]->SetXTitle("Top Mass from Hc/u m3FCNHkinfit (GeV)");
       h_m3FCNHkinTopMHc[ich][i]->Sumw2();
       fOutput->Add(h_m3FCNHkinTopMHc[ich][i]);
@@ -504,19 +504,19 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       h_cJetPt[mode][0]->Fill(cjetPt, EventWeight);
     }
     //kinfits
-    //if(*kin_chi2 < 10000){
+    if(*kin_chi2 < 200000){
       h_kinLepWMass[mode][0]->Fill(kinLepW.M(),EventWeight);
       h_kinHadWMass[mode][0]->Fill(kinLepW.M(),EventWeight);
       h_kinTopMWb[mode][0]->Fill(kinLepT.M(),EventWeight);
       h_kinTopMqqb[mode][0]->Fill(kinHadT.M(),EventWeight);
-    //}
-    //if(*fcnhkin_chi2 < 10000){
+    }
+    if(*fcnhkin_chi2 < 200000){
       h_fcnhkinWMass[mode][0]->Fill(fcnhkinLepW.M(),EventWeight);
       h_fcnhkinHMass[mode][0]->Fill(fcnhkinH.M(),EventWeight);
       h_fcnhkinTopMWb[mode][0]->Fill(fcnhkinLepT.M(),EventWeight);
       h_fcnhkinTopMHc[mode][0]->Fill(fcnhkinHcT.M(),EventWeight);
       h_fcnhkinNuM[mode][0]->Fill(fcnhkinnu.M(),EventWeight);
-    //}
+    }
     h_m3FCNHkinLepWMass[mode][0]->Fill((lepton+p4met).M(),EventWeight);
     h_m3FCNHkinHadWMass[mode][0]->Fill((jetP4s[2]+jetP4s[3]).M(),EventWeight);
     h_m3FCNHkinTopMWb[mode][0]->Fill((lepton+p4met+jetP4s[0]).M(),EventWeight);
@@ -972,18 +972,24 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             h_cJetPt[mode][10]->Fill(cjetPt, EventWeight);
           }
           //kinfits
-          //if(*kin_chi2 < 10000){
+          if(*kin_chi2 < 200000){
             h_kinLepWMass[mode][10]->Fill(kinLepW.M(),EventWeight);
             h_kinHadWMass[mode][10]->Fill(kinLepW.M(),EventWeight);
             h_kinTopMWb[mode][10]->Fill(kinLepT.M(),EventWeight);
             h_kinTopMqqb[mode][10]->Fill(kinHadT.M(),EventWeight);
-          //}
-          //if(*fcnhkin_chi2 < 10000){
+          }
+          if(*fcnhkin_chi2 < 200000){
             h_fcnhkinWMass[mode][10]->Fill(fcnhkinLepW.M(),EventWeight);
             h_fcnhkinHMass[mode][10]->Fill(fcnhkinH.M(),EventWeight);
             h_fcnhkinTopMWb[mode][10]->Fill(fcnhkinLepT.M(),EventWeight);
             h_fcnhkinTopMHc[mode][10]->Fill(fcnhkinHcT.M(),EventWeight);
-          //}
+          }
+          h_m3FCNHkinLepWMass[mode][10]->Fill((lepton+p4met).M(),EventWeight);
+          h_m3FCNHkinHadWMass[mode][10]->Fill((jetP4s[2]+jetP4s[3]).M(),EventWeight);
+          h_m3FCNHkinTopMWb[mode][10]->Fill((lepton+p4met+jetP4s[0]).M(),EventWeight);
+          h_m3FCNHkinHMass[mode][10]->Fill((jetP4s[1]+jetP4s[2]).M(),EventWeight);
+          h_m3FCNHkinDR[mode][10]->Fill(jetP4s[1].DeltaR(jetP4s[2]),EventWeight);
+          h_m3FCNHkinTopMHc[mode][10]->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).M(),EventWeight);
         }
       }
 
@@ -1203,18 +1209,18 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             h_cJetPt[mode][15]->Fill(cjetPt, EventWeight);
           }
           //kinfits
-          //if(*kin_chi2 < 10000){
+          if(*kin_chi2 < 200000){
             h_kinLepWMass[mode][15]->Fill(kinLepW.M(),EventWeight);
             h_kinHadWMass[mode][15]->Fill(kinLepW.M(),EventWeight);
             h_kinTopMWb[mode][15]->Fill(kinLepT.M(),EventWeight);
             h_kinTopMqqb[mode][15]->Fill(kinHadT.M(),EventWeight);
-          //}
-          //if(*fcnhkin_chi2 < 10000){
+          }
+          if(*fcnhkin_chi2 < 200000){
             h_fcnhkinWMass[mode][15]->Fill(fcnhkinLepW.M(),EventWeight);
             h_fcnhkinHMass[mode][15]->Fill(fcnhkinH.M(),EventWeight);
             h_fcnhkinTopMWb[mode][15]->Fill(fcnhkinLepT.M(),EventWeight);
             h_fcnhkinTopMHc[mode][15]->Fill(fcnhkinHcT.M(),EventWeight);
-          //}
+          }
           h_m3FCNHkinLepWMass[mode][15]->Fill((lepton+p4met).M(),EventWeight);
           h_m3FCNHkinHadWMass[mode][15]->Fill((jetP4s[2]+jetP4s[3]).M(),EventWeight);
           h_m3FCNHkinTopMWb[mode][15]->Fill((lepton+p4met+jetP4s[0]).M(),EventWeight);
