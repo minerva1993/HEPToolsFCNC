@@ -47,7 +47,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_WMass[ich][i]->Sumw2();
       fOutput->Add(h_WMass[ich][i]);
 
-      h_HMass_m[ich][i] = new TH1D(Form("h_HMass_m_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (2 medium b jets)", 75 ,50 ,200);
+      h_HMass_m[ich][i] = new TH1D(Form("h_HMassM_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (2 medium b jets)", 75 ,50 ,200);
       h_HMass_m[ich][i]->SetXTitle("Higg Mass (GeV)");
       h_HMass_m[ich][i]->Sumw2();
       fOutput->Add(h_HMass_m[ich][i]);
@@ -57,7 +57,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bJetPtHm[ich][i]->Sumw2();
       fOutput->Add(h_bJetPtHm[ich][i]);
 
-      h_HMass_t[ich][i] = new TH1D(Form("h_HMass_t_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (2 tight b jets)", 75 ,50 ,200);
+      h_HMass_t[ich][i] = new TH1D(Form("h_HMassT_Ch%i_S%i_%s",ich,i,option.Data()), "HMass (2 tight b jets)", 75 ,50 ,200);
       h_HMass_t[ich][i]->SetXTitle("Higg Mass (GeV)");
       h_HMass_t[ich][i]->Sumw2();
       fOutput->Add(h_HMass_t[ich][i]);

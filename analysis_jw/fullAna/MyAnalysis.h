@@ -135,39 +135,51 @@ public :
 
    ClassDef(MyAnalysis,0);
 
-   TH1D *h_NJet[2][16];
-   TH1D *h_NBJetCSVv2M[2][16];
-   TH1D *h_NBJetCSVv2T[2][16];
-   TH1D *h_NCJetM[2][16];
-   TH1D *h_MET[2][16];
-   TH1D *h_WMass[2][16];
-   TH1D *h_LepIso[2][16];
-   TH1D *h_LepIsoQCD[2][16];
-   TH1D *h_DPhi[2][16];
-   TH1D *h_bjmDPhi[2][16];
-   TH1D *h_bjmDEta[2][16];
-   TH1D *h_bjmDR[2][16];
-   TH1D *h_bjtDPhi[2][16];
-   TH1D *h_bjtDEta[2][16];
-   TH1D *h_bjtDR[2][16];
-   TH1D *h_HMass_m[2][16];
-   TH1D *h_bJetPtHm[2][16];
-   TH1D *h_HMass_t[2][16];
-   TH1D *h_bJetPtHt[2][16];
-   TH1D *h_cJetPt[2][16];
+    TH1D *h_NJet[2][16];
+    TH1D *h_NBJetCSVv2M[2][16];
+    TH1D *h_NBJetCSVv2T[2][16];
+    TH1D *h_NCJetM[2][16];
+    TH1D *h_MET[2][16];
+    TH1D *h_WMass[2][16];
+    TH1D *h_LepIso[2][16];
+    TH1D *h_LepIsoQCD[2][16];
+    TH1D *h_DPhi[2][16];
+    TH1D *h_bjmDPhi[2][16];
+    TH1D *h_bjmDEta[2][16];
+    TH1D *h_bjmDR[2][16];
+    TH1D *h_bjtDPhi[2][16];
+    TH1D *h_bjtDEta[2][16];
+    TH1D *h_bjtDR[2][16];
+    TH1D *h_HMass_m[2][16];
+    TH1D *h_bJetPtHm[2][16];
+    TH1D *h_HMass_t[2][16];
+    TH1D *h_bJetPtHt[2][16];
+    TH1D *h_cJetPt[2][16];
 
-   ///kin sol
-   TH1D *h_kinLepWMass[2][16];
-   TH1D *h_kinHadWMass[2][16];
-   TH1D *h_kinTopMWb[2][16];
-   TH1D *h_kinTopMqqb[2][16];
+    ///kin sol
+    TH1D *h_kinLepWMass[2][16];
+    TH1D *h_kinHadWMass[2][16];
+    TH1D *h_kinTopMWb[2][16];
+    TH1D *h_kinTopMqqb[2][16];
 
-   TH1D *h_fcnhkinHMass[2][16];
-   TH1D *h_fcnhkinWMass[2][16];
-   TH1D *h_fcnhkinTopMWb[2][16];
-   TH1D *h_fcnhkinTopMHc[2][16];
+    TH1D *h_fcnhkinHMass[2][16];
+    TH1D *h_fcnhkinWMass[2][16];
+    TH1D *h_fcnhkinTopMWb[2][16];
+    TH1D *h_fcnhkinTopMHc[2][16];
+    TH1D *h_fcnhkinNuM[2][16];
 
-   TH1D *h_fcnhkinNuM[2][16];
+    //M3
+    TH1D *h_m3TTkinLepWMass[2][16];
+    TH1D *h_m3TTkinHadWMass[2][16];
+    TH1D *h_m3TTkinDR[2][16];
+    TH1D *h_m3TTkinTopMWb[2][16];
+    TH1D *h_m3TTkinTopMqqb[2][16];
+    TH1D *h_m3FCNHkinWMass[2][16];
+    TH1D *h_m3FCNHkinHMass[2][16];
+    TH1D *h_m3FCNHkinDR[2][16];
+    TH1D *h_m3FCNHkinTopMWb[2][16];
+    TH1D *h_m3FCNHkinTopMHc[2][16];
+
 };
 
 #endif
