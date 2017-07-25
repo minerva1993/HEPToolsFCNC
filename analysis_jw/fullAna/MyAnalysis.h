@@ -171,13 +171,6 @@ public :
     TH1D *h_fcnhkinNuM[2][16];
 
     //M3
-/*
-    TH1D *h_m3TTkinLepWMass[2][16];
-    TH1D *h_m3TTkinHadWMass[2][16];
-    TH1D *h_m3TTkinDR[2][16];
-    TH1D *h_m3TTkinTopMWb[2][16];
-    TH1D *h_m3TTkinTopMqqb[2][16];
-*/
     TH1D *h_m3FCNHkinLepWMass[2][16];
     TH1D *h_m3FCNHkinHadWMass[2][16];
     TH1D *h_m3FCNHkinHMass[2][16];
@@ -185,6 +178,13 @@ public :
     TH1D *h_m3FCNHkinTopMWb[2][16];
     TH1D *h_m3FCNHkinTopMHc[2][16];
 
+    //DR
+    TH1D *h_DRFCNHkinLepWMass[2][16];
+    TH1D *h_DRFCNHkinHadWMass[2][16];
+    TH1D *h_DRFCNHkinHMass[2][16];
+    TH1D *h_DRFCNHkinDR[2][16];
+    TH1D *h_DRFCNHkinTopMWb[2][16];
+    TH1D *h_DRFCNHkinTopMHc[2][16];
 };
 
 #endif
