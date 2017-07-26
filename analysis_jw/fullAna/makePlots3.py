@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from ROOT import TStyle, TF1, TFile, TCanvas, gDirectory, TTree, TH1F, TH2F, THStack, TLegend, gROOT 
+from ROOT import TStyle, TF1, TFile, TCanvas, gDirectory, TTree, TH1F, TH2F, THStack, TLegend, gROOT , TPad
 import ROOT
 import os
 
@@ -116,9 +116,9 @@ AddBkg("hist_wz.root","DiBoson",ROOT.kCyan, 47.13)
 AddBkg("hist_zz.root","DiBoson",ROOT.kCyan, 16.523)
 #AddBkg("../noniso/hist_qcd.root","QCD",ROOT.kGray, 1)
 
-AddHct("hist_Top_Hct.root", "Hct", 3, 6.66)
+AddHct("hist_Top_Hct.root", "Hct", 602, 6.66)
 #AddHct("hist_AntiTop_Hct.root", "Hct", 3, 3.33) # Top Hct ->xsection twice!
-AddHut("hist_Top_Hut.root", "Hut", 5, 9.14)
+AddHut("hist_Top_Hut.root", "Hut", 419, 9.14)
 #AddHut("hist_AntiTop_Hut.root", "Hut", 5, 4.57) #used 1610.04857 values
 #### 
 
@@ -138,8 +138,6 @@ for i in range(0, N_hist):
     mode = 1 
 
   hnames = datasamples[datasamples.keys()[mode]]["hname"][i].split("_")
-  string0 = "%s \n" %hnames
-  fNevt.write(string0)
 
   #printHistName = "LepIsoQCD"
   printHistName = "NJet"
@@ -201,10 +199,7 @@ for i in range(0, N_hist):
       fNevt.write(string)
       print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt) # " scale : " ,"{0:.1g}".format(scale)  
     ## Add to Stack
-    if bkgsamples[fname]["name"] == "WJets":
-      hs.Add( h_tmp, "E" ) #hh_tmp -> add h tmp sig, hs->other
-    else:
-      hs.Add( h_tmp )
+    hs.Add( h_tmp ) #hh_tmp -> add h tmp sig, hs->other
     k = k+1
 
 #Sig Stack
@@ -284,12 +279,58 @@ for i in range(0, N_hist):
   if QCDestimate:
     qcd.append(h_sub)
 
-  c = TCanvas("c_"+"{}".format(i),"c",1)
+#creat canvas
+  c = TCanvas("c_"+"{}".format(i),"c", 450, 450)
   if log:
     c.SetLogy()
 
+  # Upper histogram plot is pad1
+  pad1 = TPad("pad1", "pad1", 0, 0.20, 1, 1.0)
+  pad1.SetBottomMargin(-0.5)  # joins upper and lower plot
+  #pad1.SetGridx()
+  pad1.Draw()
+  # Lower ratio plot is pad2
+  c.cd()  # returns to main canvas before defining pad2
+  pad2 = TPad("pad2", "pad2", 0, 0.05, 1, 0.27)
+  pad2.SetTopMargin(-0.5)  # joins upper and lower plot
+  #pad2.SetBottomMargin(0)
+  #pad2.SetGridx()
+  pad2.Draw()
+
+#creat ratio plot
+  h3 = h_data.Clone("h3")
+  h3.SetLineColor(1)
+  h3.SetMarkerStyle(6)
+  h3.SetTitle("")
+  h3.SetMinimum(0.8)
+  h3.SetMaximum(1.2)
+  # Set up plot for markers and errors
+  #h3.Sumw2()
+  h3.SetStats(0)
+  #h3.Divide(hs)
+
+  # Adjust y-axis settings
+  y = h3.GetYaxis()
+  y.SetTitle("Data/MC")
+  #y.SetNdivisions(505)
+  y.SetTitleSize(0.1)
+  #y.SetTitleFont(43)
+  #y.SetTitleOffset(1.55)
+  #y.SetLabelFont(43)
+  y.SetLabelSize(0.1)
+
+  # Adjust x-axis settings
+  x = h3.GetXaxis()
+  x.SetTitleSize(0.2)
+  #x.SetTitleFont(43)
+  #x.SetTitleOffset(2.0)
+  #x.SetLabelFont(43)
+  x.SetLabelSize(0.1)
+
+#Draw each plot...
+  pad1.cd()
   h_data.SetMarkerStyle(20)
-  h_data.SetMarkerSize(0.3)
+  h_data.SetMarkerSize(0.4)
   max_data = h_data.GetMaximum()
   max_hs = hs.GetMaximum()
   maxfrac = 0.5
@@ -305,11 +346,14 @@ for i in range(0, N_hist):
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Entries")
+  h_data.GetXaxis().SetTitleOffset(13)
+  h_data.GetXaxis().SetLabelSize(0)
+  #hs.GetXaxis().SetTitle("")
   hs.Draw("histsame")
+  hs2 = hs
   h_data.Draw("psame")
   hsHct.Draw("hist same")
   hsHut.Draw("hist same")
-
 
   l.AddEntry(h_data,"Data","P")
   l.Draw()
@@ -325,6 +369,15 @@ for i in range(0, N_hist):
   label.SetTextSize(0.04)
   label.SetTextAlign(32)
   label.Draw("same")
+
+  #lx =  TLine(c.GetUxmin(),0,c.GetUxmax(),0);
+  #lx.Draw();
+
+  pad2.cd()
+  h4 = hs2.GetHistogram()
+  h3.Divide(h4)
+  #pad2.Clear()
+  h3.Draw("ep")
 
   ndata = h_data.Integral()
   nsub = ndata-ntotalbkg
@@ -348,12 +401,14 @@ for i in range(0, N_hist):
   #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
   h_data.SetTitle(hnames[2]+"_"+hnames[3])
   filename = "result"+logname+".pdf"
+
   if i == 0 and N_hist > 1:
     c.Print( (filename+"(") )
   elif i > 0 and i == N_hist-1:
     c.Print( (filename+")") ) 
   else:
     c.Print(filename)
+
 
 if QCDestimate :
  f = ROOT.TFile("hist_qcd.root", "recreate")
