@@ -664,7 +664,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][2]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][2]->Fill(relIso, EventWeight);
 
-          if( nbjets_m >2 ){
+          if( nbjets_m > 1 ){
             h_bjmDPhi[mode][2]->Fill(bjmDPhi, EventWeight);
             h_bjmDEta[mode][2]->Fill(bjmDEta, EventWeight);
             h_bjmDR[mode][2]->Fill(bjmDR, EventWeight);
@@ -672,7 +672,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             h_bJetPtHm[mode][2]->Fill(bJetPtHm, EventWeight);
           }
 
-          if( nbjets_t >2 ){
+          if( nbjets_t >1  ){
             h_bjtDPhi[mode][2]->Fill(bjtDPhi, EventWeight);
             h_bjtDEta[mode][2]->Fill(bjtDEta, EventWeight);
             h_bjtDR[mode][2]->Fill(bjtDR, EventWeight);
@@ -724,7 +724,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][3]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][3]->Fill(relIso, EventWeight);
 
-          if( nbjets_m >2 ){
+          if( nbjets_m > 1 ){
             h_bjmDPhi[mode][3]->Fill(bjmDPhi, EventWeight);
             h_bjmDEta[mode][3]->Fill(bjmDEta, EventWeight);
             h_bjmDR[mode][3]->Fill(bjmDR, EventWeight);
@@ -732,7 +732,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             h_bJetPtHm[mode][3]->Fill(bJetPtHm, EventWeight);
           }
 
-          if( nbjets_t >2 ){
+          if( nbjets_t > 1 ){
             h_bjtDPhi[mode][3]->Fill(bjtDPhi, EventWeight);
             h_bjtDEta[mode][3]->Fill(bjtDEta, EventWeight);
             h_bjtDR[mode][3]->Fill(bjtDR, EventWeight);
@@ -784,7 +784,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][4]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][4]->Fill(relIso, EventWeight);
 
-          if( nbjets_m >2 ){
+          if( nbjets_m > 1 ){
             h_bjmDPhi[mode][4]->Fill(bjmDPhi, EventWeight);
             h_bjmDEta[mode][4]->Fill(bjmDEta, EventWeight);
             h_bjmDR[mode][4]->Fill(bjmDR, EventWeight);
@@ -792,7 +792,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             h_bJetPtHm[mode][4]->Fill(bJetPtHm, EventWeight);
           }
 
-          if( nbjets_t >2 ){
+          if( nbjets_t > 1 ){
             h_bjtDPhi[mode][4]->Fill(bjtDPhi, EventWeight);
             h_bjtDEta[mode][4]->Fill(bjtDEta, EventWeight);
             h_bjtDR[mode][4]->Fill(bjtDR, EventWeight);
@@ -844,7 +844,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_LepIso[mode][5]->Fill(relIso, EventWeight);
           if( isQCD ) h_LepIsoQCD[mode][5]->Fill(relIso, EventWeight);
 
-          if( nbjets_m >2 ){
+          if( nbjets_m > 1 ){
             h_bjmDPhi[mode][5]->Fill(bjmDPhi, EventWeight);
             h_bjmDEta[mode][5]->Fill(bjmDEta, EventWeight);
             h_bjmDR[mode][5]->Fill(bjmDR, EventWeight);
@@ -852,7 +852,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             h_bJetPtHm[mode][5]->Fill(bJetPtHm, EventWeight);
           }
 
-          if( nbjets_t >2 ){
+          if( nbjets_t > 1 ){
             h_bjtDPhi[mode][5]->Fill(bjtDPhi, EventWeight);
             h_bjtDEta[mode][5]->Fill(bjtDEta, EventWeight);
             h_bjtDR[mode][5]->Fill(bjtDR, EventWeight);
