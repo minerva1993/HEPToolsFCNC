@@ -199,7 +199,10 @@ for i in range(0, N_hist):
       fNevt.write(string)
       print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt) # " scale : " ,"{0:.1g}".format(scale)  
     ## Add to Stack
-    hs.Add( h_tmp ) #hh_tmp -> add h tmp sig, hs->other
+    if bkgsamples[fname]["name"] == "WJets":
+      hs.Add( h_tmp, "E" ) #hh_tmp -> add h tmp sig, hs->other
+    else:
+      hs.Add( h_tmp )
     k = k+1
 
 #Sig Stack
