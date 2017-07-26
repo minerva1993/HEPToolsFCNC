@@ -293,7 +293,7 @@ for i in range(0, N_hist):
   c.cd()  # returns to main canvas before defining pad2
   pad2 = TPad("pad2", "pad2", 0, 0.05, 1, 0.27)
   pad2.SetTopMargin(-0.5)  # joins upper and lower plot
-  #pad2.SetBottomMargin(0)
+  #pad2.SetBottomMargin(-0.5)
   #pad2.SetGridx()
   pad2.Draw()
 
@@ -312,18 +312,18 @@ for i in range(0, N_hist):
   # Adjust y-axis settings
   y = h3.GetYaxis()
   y.SetTitle("Data/MC")
-  #y.SetNdivisions(505)
-  y.SetTitleSize(0.1)
+  y.SetNdivisions(505)
+  y.SetTitleSize(0.14)
   #y.SetTitleFont(43)
-  #y.SetTitleOffset(1.55)
+  y.SetTitleOffset(0.3)
   #y.SetLabelFont(43)
   y.SetLabelSize(0.1)
 
   # Adjust x-axis settings
   x = h3.GetXaxis()
-  x.SetTitleSize(0.2)
+  x.SetTitleSize(0.14)
   #x.SetTitleFont(43)
-  #x.SetTitleOffset(2.0)
+  x.SetTitleOffset(0.8)
   #x.SetLabelFont(43)
   x.SetLabelSize(0.1)
 
@@ -350,7 +350,6 @@ for i in range(0, N_hist):
   h_data.GetXaxis().SetLabelSize(0)
   #hs.GetXaxis().SetTitle("")
   hs.Draw("histsame")
-  hs2 = hs
   h_data.Draw("psame")
   hsHct.Draw("hist same")
   hsHut.Draw("hist same")
@@ -374,7 +373,7 @@ for i in range(0, N_hist):
   #lx.Draw();
 
   pad2.cd()
-  h4 = hs2.GetHistogram()
+  h4 = hs.GetHistogram()
   h3.Divide(h4)
   #pad2.Clear()
   h3.Draw("ep")
