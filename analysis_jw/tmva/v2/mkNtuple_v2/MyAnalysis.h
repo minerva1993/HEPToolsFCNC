@@ -149,7 +149,7 @@ public :
     float b_bjmdeta = 99;
     float b_bjmdphi = 99;
     float b_bjmdr = 999;
-    float b_hmass = 9999;
+    float b_dibjetm = 9999;
     float b_bjmpt = 9999;
     float b_cjmpt = 9999;
     float b_jet1pt = 9999;
@@ -169,7 +169,7 @@ public :
     float b_fcnhkinLepT = 0;
     float b_fcnhkinH = 0;
     float b_fcnhkinHcT = 0;
-    float b_b_m3LepW = 0;
+    float b_m3LepW = 0;
     float b_m3HadW = 0;
     float b_m3H = 0;
     float b_m3DR = 0;
