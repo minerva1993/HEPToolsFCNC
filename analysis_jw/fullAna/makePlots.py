@@ -103,7 +103,7 @@ AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 365.4)
 AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.4)
 AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 365.4)
 AddBkg("hist_tt.root","ttLF",ROOT.kRed, 356.4)
-#AddBkg("hist_ttBkg.root","ttLF",ROOT.kRed, 831.8)
+AddBkg("hist_ttBkg.root","ttLF",ROOT.kRed, 831.8)
 AddBkg("hist_wjets.root","WJets",ROOT.kYellow,61524)
 AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 6025.2)
 AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
@@ -138,6 +138,8 @@ for i in range(0, N_hist):
     mode = 1 
 
   hnames = datasamples[datasamples.keys()[mode]]["hname"][i].split("_")
+  string0 = "%s \n" %hnames
+  fNevt.write(string0)
 
   #printHistName = "LepIsoQCD"
   printHistName = "NJet"
@@ -170,34 +172,13 @@ for i in range(0, N_hist):
     h_tmp.SetFillColor(bkgsamples[fname]["col"])
     ## normalization
     scale = 1.0
-    scales_Ch0 = {'tWchannel' : '0.948619', 'tbarWchannel' : '0.948696', 'tbarchannel' : '0.986703',
-	'tchannel' : '0.986703', 'tt' : '0.971293', 'ttBkg' : '0.843443', 'ttLF' : '0.961737',
-	'ttbb' : '0.969366', 'ttbj' : '0.961783', 'ttcc' : '0.961522', 'wjets' : '0.988420',
-	'ww' : '0.951653', 'wz' : '0.980968', 'zjets' : '1.014968', 'zjets10to50' : '0.986675',
-	'zz' : '1.006082'}
-    scales_Ch1 = {'tWchannel' : '1.012115', 'tbarWchannel' : '1.013038', 'tbarchannel' : '1.012247',
-	'tchannel' : '1.013092', 'tt' : '1.034054', 'ttBkg' : '1.007072', 'ttLF' : '1.039719',
-	'ttbb' : '1.090047', 'ttbj' : '1.059840', 'ttcc' : '1.049882', 'wjets' : '0.968534',
-	'ww' : '0.966891', 'wz' : '0.991173', 'zjets' : '1.060363', 'zjets10to50' : '0.972615',
-	'zz' : '1.039911'}
-    hName = h_tmp.GetName()
-    hProc = hName.split('_')[4]
-    if bkgsamples[fname]["name"] != "QCD": 
-      if "Ch_0" in hName : scale *= scales_Ch0[hProc]
-      if "Ch_1" in hName : scale *= scales_Ch1[hProc]
-      scale *= datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
+    if bkgsamples[fname]["name"] == "QCD": 
+      scale = 1.0
     else: 
-      scaleQCD_Ch0 = [0.832826, 0.738475, 0.738475, 0.738475, 0.738475, 0.738475, 0.776416, 0.682633, 0.682633, 0.584223, 0.590185, 0.748903, 0.748903, -1.27058, 0.748903, 0.748903, 0.792743, 0.792743, 0.792743, 0.792743, 0.792743]
-      scaleQCD_Ch1 = [2.19208, 2.15573, 2.14465, 0.0357605, 2.03599, 2.03599, 0.943209, 0.943209, 1.16091, 0.943209, 0.943209, 1.9208, 0.366675, 0.366675, 0.316396, 0.289221, 0.962235, 0.962235, 0.962235, 0.962235, 0.962235]
-      if bkgsamples[fname]["name"] == "QCD":
-          step = int(hName.split('_')[3][1:])
-	  if "Ch0_" in hName: scale *= scaleQCD_Ch0[step]
-	  #if scaleQCD_Ch0[step] > 0: scale *= scaleQCD_Ch0[step]
-          #  else: scale *= 0.832826
-	  if "Ch1_" in hName: scale *= scaleQCD_Ch1[step]
-	  #if scaleQCD_Ch1[step] > 0: scale *= scaleQCD_Ch1[step]
-          #  else: scale *= 0.832826
- 
+      scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
+
+    #print fname
+    #print scale
     h_tmp.Scale(scale)
 
     if bkgsamples[fname]["name"] is not "QCD" and QCDestimate: 
@@ -222,7 +203,10 @@ for i in range(0, N_hist):
       fNevt.write(string)
       print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt) # " scale : " ,"{0:.1g}".format(scale)  
     ## Add to Stack
-    hs.Add( h_tmp ) #hh_tmp -> add h tmp sig, hs->other
+    if bkgsamples[fname]["name"] == "WJets":
+      hs.Add( h_tmp, "E" ) #hh_tmp -> add h tmp sig, hs->other
+    else:
+      hs.Add( h_tmp )
     k = k+1
 
 #Sig Stack
@@ -244,6 +228,8 @@ for i in range(0, N_hist):
     else: 
       scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
 
+    #print fname
+    #print scale
     h_Hct.Scale(scale)
 
     if hctsamples[fname]["name"] is not "QCD" and QCDestimate: 
@@ -281,6 +267,8 @@ for i in range(0, N_hist):
     else:
       scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
 
+    #print fname
+    #print scale
     h_Hut.Scale(scale)
 
     if hutsamples[fname]["name"] is not "QCD" and QCDestimate:
