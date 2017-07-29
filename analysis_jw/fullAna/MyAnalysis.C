@@ -156,12 +156,12 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_fcnhkinTopMWb[ich][i]->SetXTitle("Top Mass from fcnhkinfit (Lep) (GeV)");
       h_fcnhkinTopMWb[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinTopMWb[ich][i]);
-
+/*
       h_fcnhkinNuM[ich][i] = new TH1D(Form("h_fcnhkinNuM_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from fcnhkinfit (Lep)", 10 , 0 , 10);
       h_fcnhkinNuM[ich][i]->SetXTitle("Nu Mass (=0) (GeV)");
       h_fcnhkinNuM[ich][i]->Sumw2();
       fOutput->Add(h_fcnhkinNuM[ich][i]);
-
+*/
       h_m3FCNHkinLepWMass[ich][i] = new TH1D(Form("h_m3FCNHkinLepWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from m3FCNHkinfit (Lep)", 59 ,5 ,300);
       h_m3FCNHkinLepWMass[ich][i]->SetXTitle("W Mass from m3FCNHkinfit (Lep) (GeV)");
       h_m3FCNHkinLepWMass[ich][i]->Sumw2();
@@ -215,7 +215,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_DRFCNHkinTopMWb[ich][i] = new TH1D(Form("h_DRFCNHkinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from DRFCNHkinfit (Lep)", 59 , 5 , 300);
       h_DRFCNHkinTopMWb[ich][i]->SetXTitle("Top Mass from DRFCNHkinfit (Lep) (GeV)");
       h_DRFCNHkinTopMWb[ich][i]->Sumw2();
-       fOutput->Add(h_DRFCNHkinTopMWb[ich][i]);
+      fOutput->Add(h_DRFCNHkinTopMWb[ich][i]);
 
       h_DRFCNHkinTopMHc[ich][i] = new TH1D(Form("h_DRFCNHkinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc/u DRFCNHkinfit", 59 , 5 , 300);
       h_DRFCNHkinTopMHc[ich][i]->SetXTitle("Top Mass from Hc/u DRFCNHkinfit (GeV)");
@@ -576,7 +576,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       h_fcnhkinHMass[mode][0]->Fill(fcnhkinH.M(),EventWeight);
       h_fcnhkinTopMWb[mode][0]->Fill(fcnhkinLepT.M(),EventWeight);
       h_fcnhkinTopMHc[mode][0]->Fill(fcnhkinHcT.M(),EventWeight);
-      h_fcnhkinNuM[mode][0]->Fill(fcnhkinnu.M(),EventWeight);
+      //h_fcnhkinNuM[mode][0]->Fill(fcnhkinnu.M(),EventWeight);
     }
 
     h_m3FCNHkinLepWMass[mode][0]->Fill((lepton+p4met).M(),EventWeight);

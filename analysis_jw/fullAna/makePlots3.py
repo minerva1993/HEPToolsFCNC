@@ -198,6 +198,7 @@ for i in range(0, N_hist):
       string = "%s :  %s = %d \n"%(fname,bkgsamples[fname]["name"],numevt)
       fNevt.write(string)
       print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt) # " scale : " ,"{0:.1g}".format(scale)  
+
     ## Add to Stack
     hs.Add( h_tmp ) #hh_tmp -> add h tmp sig, hs->other
     k = k+1
@@ -285,25 +286,25 @@ for i in range(0, N_hist):
     c.SetLogy()
 
   # Upper histogram plot is pad1
-  pad1 = TPad("pad1", "pad1", 0, 0.20, 1, 1.0)
-  pad1.SetBottomMargin(-0.5)  # joins upper and lower plot
+  pad1 = TPad("pad1", "pad1", 0.02, 0.20, 1, 1.0)
   #pad1.SetGridx()
   pad1.Draw()
-  # Lower ratio plot is pad2
   c.cd()  # returns to main canvas before defining pad2
-  pad2 = TPad("pad2", "pad2", 0, 0.05, 1, 0.27)
-  pad2.SetTopMargin(-0.5)  # joins upper and lower plot
+  pad2 = TPad("pad2", "pad2", 0.02, 0.05, 1, 0.29)
   #pad2.SetBottomMargin(-0.5)
   #pad2.SetGridx()
   pad2.Draw()
 
 #creat ratio plot
   h3 = h_data.Clone("h3")
+  #h3 = hs.GetStack().Last()
+  ROOT.SetOwnership( h3,  True )
+  h3.SetDirectory(0)
   h3.SetLineColor(1)
   h3.SetMarkerStyle(6)
   h3.SetTitle("")
-  h3.SetMinimum(0.8)
-  h3.SetMaximum(1.2)
+  #h3.SetMinimum(0.8)
+  #h3.SetMaximum(1.2)
   # Set up plot for markers and errors
   #h3.Sumw2()
   h3.SetStats(0)
@@ -314,17 +315,13 @@ for i in range(0, N_hist):
   y.SetTitle("Data/MC")
   y.SetNdivisions(505)
   y.SetTitleSize(0.14)
-  #y.SetTitleFont(43)
   y.SetTitleOffset(0.3)
-  #y.SetLabelFont(43)
   y.SetLabelSize(0.1)
 
   # Adjust x-axis settings
   x = h3.GetXaxis()
   x.SetTitleSize(0.14)
-  #x.SetTitleFont(43)
   x.SetTitleOffset(0.8)
-  #x.SetLabelFont(43)
   x.SetLabelSize(0.1)
 
 #Draw each plot...
@@ -343,10 +340,11 @@ for i in range(0, N_hist):
     h_data.SetMaximum(max_hs+max_hs*maxfrac)
   else:
     h_data.SetMaximum(max_data+max_data*maxfrac)
+
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Entries")
-  h_data.GetXaxis().SetTitleOffset(13)
+  h_data.GetYaxis().SetTitleOffset(1.2)
   h_data.GetXaxis().SetLabelSize(0)
   #hs.GetXaxis().SetTitle("")
   hs.Draw("histsame")
@@ -368,17 +366,14 @@ for i in range(0, N_hist):
   label.SetTextSize(0.04)
   label.SetTextAlign(32)
   label.Draw("same")
-
-  #lx =  TLine(c.GetUxmin(),0,c.GetUxmax(),0);
-  #lx.Draw();
+  h4 = hs.GetHistogram()
+  h4.SetDirectory(0)
 
   pad2.cd()
-  h4 = hs.GetHistogram()
   h3.Divide(h4)
-  #pad2.Clear()
   h3.Draw("ep")
 
-  ndata = h_data.Integral()
+  ndata= h_data.Integral()
   nsub = ndata-ntotalbkg
   if hnames[1] == printHistName:
     string1 = "ntotal = %d \n" % ntotalbkg
@@ -399,7 +394,7 @@ for i in range(0, N_hist):
 
   #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
   h_data.SetTitle(hnames[2]+"_"+hnames[3])
-  filename = "result"+logname+".pdf"
+  filename = "result_ratio"+logname+".pdf"
 
   if i == 0 and N_hist > 1:
     c.Print( (filename+"(") )

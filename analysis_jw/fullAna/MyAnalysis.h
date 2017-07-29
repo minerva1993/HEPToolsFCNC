@@ -168,7 +168,7 @@ public :
     TH1D *h_fcnhkinWMass[2][16];
     TH1D *h_fcnhkinTopMWb[2][16];
     TH1D *h_fcnhkinTopMHc[2][16];
-    TH1D *h_fcnhkinNuM[2][16];
+    //TH1D *h_fcnhkinNuM[2][16];
 
     //M3
     TH1D *h_m3FCNHkinLepWMass[2][16];
