@@ -13,11 +13,11 @@ def runAna(dir, file, name):
   f = TFile(dir+"/"+file,"read")
 
   ## save Event Summary histogram ##
-  out = TFile("hist_"+name+".root","update")
-  hevt = f.Get("ttbbLepJets/EventInfo")
-  hevt.Write()
-  out.Write()
-  out.Close()
+  #out = TFile("hist_"+name+".root","update")
+  #hevt = f.Get("ttbbLepJets/EventInfo")
+  #hevt.Write()
+  #out.Write()
+  #out.Close()
 
 
 p = TProof.Open("", "workers=8")
