@@ -7,7 +7,7 @@ gROOT.SetBatch(True)
 def runAna(dir, file, name):
   chain = TChain("ttbbLepJets/tree","events")
   chain.Add(dir+"/"+file)
-  chain.SetProof();
+  #chain.SetProof();
   chain.Process("MyAnalysis.C+",name)
 
   f = TFile(dir+"/"+file,"read")
@@ -20,7 +20,7 @@ def runAna(dir, file, name):
   out.Close()
 
 
-p = TProof.Open("", "workers=8")
+#p = TProof.Open("", "workers=8")
 
 version = "v2"
 inputdir = "/home/minerva1993/fcnc/ntuple_jw/"

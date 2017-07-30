@@ -5,8 +5,8 @@
 // found on file: /xrootd/store/user/brochero/v8-0-4/Tree_LepJets_NewCSVSF_v8-0-4_Spring16-80X_36814pb-1_ttbar_PowhegPythia.root
 //////////////////////////////////////////////////////////
 
-#ifndef MyAnalysis_h
-#define MyAnalysis_h
+#ifndef tmvaAnalysis_h
+#define tmvaAnalysis_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -23,7 +23,7 @@
 
 #include <iostream>
 
-class MyAnalysis : public TSelector {
+class tmvaAnalysis : public TSelector {
 public :
    TTreeReader     fReader;  //!the tree reader
    TTree          *fChain = 0;   //!pointer to the analyzed TTree or TChain
@@ -118,8 +118,8 @@ public :
    //TTreeReaderArray<int> genjet_gencone_mom = {fReader, "genjet_gencone_mom"};
 
 
-   MyAnalysis(TTree * /*tree*/ =0) { }
-   virtual ~MyAnalysis() { }
+   tmvaAnalysis(TTree * /*tree*/ =0) { }
+   virtual ~tmvaAnalysis() { }
    virtual Int_t   Version() const { return 2; }
    virtual void    Begin(TTree *tree);
    virtual void    SlaveBegin(TTree *tree);
@@ -135,9 +135,7 @@ public :
    virtual void    Terminate();
    double transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
 
-   ClassDef(MyAnalysis,0);
-
-    TTree *tree;
+    TTree *treeTMVA = 0;
 
     //objects for ntuple
     int b_njets = 0;
@@ -181,12 +179,15 @@ public :
     float b_DRDR = 0;
     float b_DRLepT = 0;
     float b_DRHadT = 0;
+
+   ClassDef(tmvaAnalysis,0);
+
 };
 
 #endif
 
-#ifdef MyAnalysis_cxx
-void MyAnalysis::Init(TTree *tree)
+#ifdef tmvaAnalysis_cxx
+void tmvaAnalysis::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the reader is initialized.
@@ -199,7 +200,7 @@ void MyAnalysis::Init(TTree *tree)
 
 }
 
-Bool_t MyAnalysis::Notify()
+Bool_t tmvaAnalysis::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -211,4 +212,4 @@ Bool_t MyAnalysis::Notify()
 }
 
 
-#endif // #ifdef MyAnalysis_cxx
+#endif // #ifdef tmvaAnalysis_cxx
