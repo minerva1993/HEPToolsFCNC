@@ -138,6 +138,9 @@ for i in range(0, N_hist):
     mode = 1 
 
   hnames = datasamples[datasamples.keys()[mode]]["hname"][i].split("_")
+  string0 = "%s \n" %hnames
+  #fNevt.write(string0)
+  print string0
 
   #printHistName = "LepIsoQCD"
   printHistName = "NJet"
@@ -294,7 +297,7 @@ for i in range(0, N_hist):
   #pad2.SetBottomMargin(-0.5)
   #pad2.SetGridx()
   pad2.Draw()
-
+"""
 #creat ratio plot
   h3 = h_data.Clone("h3")
   #h3 = hs.GetStack().Last()
@@ -323,8 +326,9 @@ for i in range(0, N_hist):
   x.SetTitleSize(0.14)
   x.SetTitleOffset(0.8)
   x.SetLabelSize(0.1)
+"""
 
-#Draw each plot...
+  #Draw each plot...
   pad1.cd()
   h_data.SetMarkerStyle(20)
   h_data.SetMarkerSize(0.4)
@@ -366,10 +370,39 @@ for i in range(0, N_hist):
   label.SetTextSize(0.04)
   label.SetTextAlign(32)
   label.Draw("same")
-  h4 = hs.GetHistogram()
+  h4 = hs.GetHistogram().Clone("h4")
+  ROOT.SetOwnership( h4,  True )
   h4.SetDirectory(0)
 
   pad2.cd()
+  #creat ratio plot
+  h3 = h_data.Clone("h3")
+  #h3 = hs.GetStack().Last()
+  ROOT.SetOwnership( h3,  True )
+  h3.SetDirectory(0)
+  h3.SetLineColor(1)
+  h3.SetMarkerStyle(6)
+  h3.SetTitle("")
+  #h3.SetMinimum(0.8)
+  #h3.SetMaximum(1.2)
+  # Set up plot for markers and errors
+  #h3.Sumw2()
+  h3.SetStats(0)
+  #h3.Divide(hs)
+
+  # Adjust y-axis settings
+  y = h3.GetYaxis()
+  y.SetTitle("Data/MC")
+  y.SetNdivisions(505)
+  y.SetTitleSize(0.14)
+  y.SetTitleOffset(0.3)
+  y.SetLabelSize(0.1)
+
+  # Adjust x-axis settings
+  x = h3.GetXaxis()
+  x.SetTitleSize(0.14)
+  x.SetTitleOffset(0.8)
+  x.SetLabelSize(0.1)
   h3.Divide(h4)
   h3.Draw("ep")
 
