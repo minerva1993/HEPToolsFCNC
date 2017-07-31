@@ -50,8 +50,8 @@ void anamva_test(){
   TFile* background9 = new TFile("mkNtuple_v2/tmva_tt.root");
   TTree* backgroundTree9 = (TTree*)(background9->Get("tmva_tt"));
 
-  TFile* background10 = new TFile("mkNtuple_v2/tmva_wjets.root");
-  TTree* backgroundTree10 = (TTree*)(background10->Get("tmva_wjets"));
+  //TFile* background10 = new TFile("mkNtuple_v2/tmva_wjets.root");
+ // TTree* backgroundTree10 = (TTree*)(background10->Get("tmva_wjets"));
   TFile* background11 = new TFile("mkNtuple_v2/tmva_ww.root");
   TTree* backgroundTree11 = (TTree*)(background11->Get("tmva_ww"));
   TFile* background12 = new TFile("mkNtuple_v2/tmva_wz.root");
@@ -77,7 +77,7 @@ void anamva_test(){
   loader->AddBackgroundTree(backgroundTree7,0.0910581123792);
   loader->AddBackgroundTree(backgroundTree8,0.0910581123792);
   loader->AddBackgroundTree(backgroundTree9,0.0888153017294);
-  loader->AddBackgroundTree(backgroundTree10,134.276449237);
+  //loader->AddBackgroundTree(backgroundTree10,134.276449237);
   loader->AddBackgroundTree(backgroundTree11,4.70407414855);
   loader->AddBackgroundTree(backgroundTree12,1.69041171);
   loader->AddBackgroundTree(backgroundTree13,0.598577911125);
