@@ -177,7 +177,7 @@ for i in range(0, N_hist):
 
   h_data = datasamples[datasamples.keys()[mode]]["file"].Get(datasamples[datasamples.keys()[mode]]["hname"][i])
   nbins = h_data.GetNbinsX()
-  #h_data.AddBinContent( nbins, h_data.GetBinContent( nbins+1 ) )  #overflow
+  h_data.AddBinContent( nbins, h_data.GetBinContent( nbins+1 ) )  #overflow
 
   h_sub = h_data.Clone("h_sub") 
   if QCDestimate : 
@@ -188,7 +188,7 @@ for i in range(0, N_hist):
   for fname in bkgsamples.keys():
     h_tmp = bkgsamples[fname]["file"].Get(bkgsamples[fname]["hname"][i])
     nbins = h_tmp.GetNbinsX()
-    #h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) #overflow
+    h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) #overflow
     h_tmp.SetFillColor(bkgsamples[fname]["col"])
     ## normalization
     scale = 1.0

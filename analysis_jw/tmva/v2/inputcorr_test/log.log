@@ -1,0 +1,466 @@
+Processing anamva_test.C...
+                         : Parsing option string: 
+                         : ... "V:!Silent:Color:Transformations=I:DrawProgressBar:AnalysisType=Classification"
+                         : The following options are set:
+                         : - By User:
+                         :     V: "True" [Verbose flag]
+                         :     Color: "True" [Flag for coloured screen output (default: True, if in batch mode: False)]
+                         :     Transformations: "I" [List of transformations to test; formatting example: "Transformations=I;D;P;U;G,D", for identity, decorrelation, PCA, Uniform and Gaussianisation followed by decorrelation transformations]
+                         :     Silent: "False" [Batch mode: boolean silent flag inhibiting any output from TMVA after the creation of the factory class object (default: False)]
+                         :     DrawProgressBar: "True" [Draw progress bar to display training, testing and evaluation schedule (default: True)]
+                         :     AnalysisType: "Classification" [Set the analysis type (Classification, Regression, Multiclass, Auto) (default: Auto)]
+                         : - Default:
+                         :     Correlations: "False" [boolean to show correlation in output]
+                         :     ROC: "True" [boolean to show ROC in output]
+                         :     ModelPersistence: "True" [Option to save the trained model in xml file or using serialization]
+DataSetInfo              : [inputcorr_test] : Added class "Signal"
+                         : Add Tree tmva_AntiTop_Hut of type Signal with 291927 events
+                         : Add Tree tmva_AntiTop_Hct of type Signal with 300138 events
+                         : Add Tree tmva_Top_Hut of type Signal with 300567 events
+                         : Add Tree tmva_Top_Hct of type Signal with 301282 events
+DataSetInfo              : [inputcorr_test] : Added class "Background"
+                         : Add Tree tmva_tbarchannel of type Background with 3457085 events
+                         : Add Tree tmva_tbarWchannel of type Background with 1135664 events
+                         : Add Tree tmva_tchannel of type Background with 5611789 events
+                         : Add Tree tmva_tWchannel of type Background with 1153596 events
+                         : Add Tree tmva_ttbb of type Background with 181561 events
+                         : Add Tree tmva_ttbj of type Background with 595731 events
+                         : Add Tree tmva_ttcc of type Background with 408805 events
+                         : Add Tree tmva_ttLF of type Background with 11912355 events
+                         : Add Tree tmva_tt of type Background with 28790465 events
+                         : Add Tree tmva_wjets of type Background with 3645899 events
+                         : Add Tree tmva_ww of type Background with 110477 events
+                         : Add Tree tmva_wz of type Background with 80997 events
+                         : Add Tree tmva_zz of type Background with 28740 events
+                         : Add Tree tmva_zjets10to50 of type Background with 177829 events
+                         : Add Tree tmva_zjets of type Background with 11775876 events
+Factory                  : Booking method: Likelihood
+                         : 
+Factory                  : Booking method: BDT
+                         : 
+DataSetFactory           : [inputcorr_test] : Number of events in input trees
+                         : Dataset[inputcorr_test] :     Signal     requirement: "(njets > 0 && nbjets_m  > 0 && ncjets_m > 0 &&  lepDPhi > 0 && missingET > 0 && bjetmDR < 5 && bjetmDEta < 5 && bjetmDEta < 5 && dibjetsMass < 9999 && bjetPt_dibjetsm < 9999 && cjetPt < 9999 && jetPt1 < 9999 && jetPt2 < 9999 && jetPt3 < 9999 && jetPt4 < 9999 &&  jetCSV1 < 1.01 && JetCSV2 < 1.01 && JetCSV3 < 1.01 && JetCSV4 < 1.01 && DRLepWMass > 0 && DRHadWMass > 0 && DRHMass > 0 && DRDR > 0 && DRLepTopMass > 0 && DRHucTopMass > 0)"
+                         : Dataset[inputcorr_test] :     Signal          -- number of events passed: 594266  / sum of weights: 80417.6
+                         : Dataset[inputcorr_test] :     Signal          -- efficiency             : 0.499778
+                         : Dataset[inputcorr_test] :     Background requirement: "(njets > 0 && nbjets_m  > 0 && ncjets_m > 0 && lepDPhi > 0 && missingET > 0 && bjetmDR < 5 && bjetmDEta < 5 && bjetmDEta < 5 && dibjetsMass < 9999 && bjetPt_dibjetsm < 9999 && cjetPt < 9999 && jetPt1 < 9999 && jetPt2 < 9999 && jetPt3 < 9999 && jetPt4 < 9999 &&  jetCSV1 < 1.01 && JetCSV2 < 1.01 && JetCSV3 < 1.01 && JetCSV4 < 1.01 && DRLepWMass > 0 && DRHadWMass > 0 && DRHMass > 0 && DRDR > 0 && DRLepTopMass > 0 && DRHucTopMass > 0)"
+                         : Dataset[inputcorr_test] :     Background      -- number of events passed: 27842468  / sum of weights: 1.03733e+08
+                         : Dataset[inputcorr_test] :     Background      -- efficiency             : 0.215297
+                         : Dataset[inputcorr_test] :  you have opted for interpreting the requested number of training/testing events
+                         :  to be the number of events AFTER your preselection cuts
+                         : 
+                         : Dataset[inputcorr_test] :  you have opted for interpreting the requested number of training/testing events
+                         :  to be the number of events AFTER your preselection cuts
+                         : 
+                         : Number of training and testing events
+                         : ---------------------------------------------------------------------------
+                         : Signal     -- training events            : 100000
+                         : Signal     -- testing events             : 10000
+                         : Signal     -- training and testing events: 110000
+                         : Dataset[inputcorr_test] : Signal     -- due to the preselection a scaling factor has been applied to the numbers of requested events: 0.497746
+                         : Background -- training events            : 300000
+                         : Background -- testing events             : 10000
+                         : Background -- training and testing events: 310000
+                         : Dataset[inputcorr_test] : Background -- due to the preselection a scaling factor has been applied to the numbers of requested events: 0.403123
+                         : 
+DataSetInfo              : Correlation matrix (Signal):
+                         : ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                         :                    njets nbjets_m ncjets_m lepDPhi missingET bjetmDR bjetmDEta bjetmDPhi dibjetsMass bjetPt_dibjetsm  cjetPt  jetPt1  jetPt2  jetPt3  jetPt4 jetCSV1 JetCSV2 JetCSV3 JetCSV4 DRLepWMass DRHadWMass DRHMass    DRDR DRLepTopMass DRHucTopMass
+                         :           njets:  +1.000   +0.159   +0.394  -0.079    +0.129  -0.078    +0.003    +0.005      +0.060          +0.137  +0.219  +0.304  +0.313  +0.397  +0.520  -0.161  -0.128  -0.079  -0.047     +0.056     -0.077  -0.006  -0.170       +0.343       -0.071
+                         :        nbjets_m:  +0.159   +1.000   +0.378  -0.010    +0.035  -0.224    -0.006    +0.003      -0.152          +0.014  +0.079  +0.071  +0.063  +0.071  +0.094  +0.035  +0.047  +0.047  +0.049     +0.010     -0.038  -0.060  -0.080       +0.060       -0.052
+                         :        ncjets_m:  +0.394   +0.378   +1.000  -0.028    +0.049  -0.101    -0.007    +0.004      -0.042          +0.028  +0.176  +0.123  +0.125  +0.166  +0.224  -0.038  -0.021  -0.018  -0.024     +0.017     -0.044  -0.029  -0.083       +0.155       -0.041
+                         :         lepDPhi:  -0.079   -0.010   -0.028  +1.000    -0.346  +0.105    -0.010    -0.016      -0.048          -0.156  -0.142  -0.174  -0.111  -0.117  -0.094  +0.045  +0.031  -0.018  -0.021     +0.268     -0.017  -0.034  +0.118       -0.112       -0.029
+                         :       missingET:  +0.129   +0.035   +0.049  -0.346    +1.000  -0.133    +0.008    +0.005      +0.096          +0.263  +0.267  +0.319  +0.212  +0.213  +0.172  -0.050  -0.023  +0.021  +0.017     +0.335     +0.073  +0.080  -0.137       +0.382       +0.092
+                         :         bjetmDR:  -0.078   -0.224   -0.101  +0.105    -0.133  +1.000    +0.008    -0.002      +0.527          -0.222  -0.224  -0.230  -0.221  -0.210  -0.178  +0.002  -0.034  -0.031  +0.009     -0.055     +0.037  +0.341  +0.700       -0.094       +0.150
+                         :       bjetmDEta:  +0.003   -0.006   -0.007  -0.010    +0.008  +0.008    +1.000    -0.001      +0.008          +0.001  -0.005  -0.007  -0.004  +0.003  +0.000  -0.004  +0.008  -0.006  -0.005     -0.003     -0.004  +0.007  +0.008       -0.005       +0.004
+                         :       bjetmDPhi:  +0.005   +0.003   +0.004  -0.016    +0.005  -0.002    -0.001    +1.000      -0.008          -0.007  -0.005  -0.003  -0.001  -0.006  -0.000  -0.004  -0.006  +0.006  +0.000     -0.017     +0.005  -0.003  -0.001       +0.000       +0.003
+                         :     dibjetsMass:  +0.060   -0.152   -0.042  -0.048    +0.096  +0.527    +0.008    -0.008      +1.000          +0.512  +0.378  +0.327  +0.364  +0.347  +0.272  +0.072  +0.017  -0.009  -0.043     +0.048     +0.336  +0.789  +0.353       +0.103       +0.578
+                         : bjetPt_dibjetsm:  +0.137   +0.014   +0.028  -0.156    +0.263  -0.222    +0.001    -0.007      +0.512          +1.000  +0.784  +0.707  +0.694  +0.532  +0.384  +0.098  +0.008  -0.041  -0.036     +0.114     +0.352  +0.467  -0.176       +0.216       +0.479
+                         :          cjetPt:  +0.219   +0.079   +0.176  -0.142    +0.267  -0.224    -0.005    -0.005      +0.378          +0.784  +1.000  +0.857  +0.760  +0.592  +0.459  +0.070  -0.015  -0.037  -0.021     +0.117     +0.295  +0.367  -0.197       +0.394       +0.398
+                         :          jetPt1:  +0.304   +0.071   +0.123  -0.174    +0.319  -0.230    -0.007    -0.003      +0.327          +0.707  +0.857  +1.000  +0.793  +0.637  +0.522  -0.094  -0.009  -0.013  +0.001     +0.128     +0.294  +0.313  -0.204       +0.577       +0.376
+                         :          jetPt2:  +0.313   +0.063   +0.125  -0.111    +0.212  -0.221    -0.004    -0.001      +0.364          +0.694  +0.760  +0.793  +1.000  +0.755  +0.591  -0.078  -0.011  -0.015  -0.000     +0.099     +0.315  +0.342  -0.206       +0.447       +0.407
+                         :          jetPt3:  +0.397   +0.071   +0.166  -0.117    +0.213  -0.210    +0.003    -0.006      +0.347          +0.532  +0.592  +0.637  +0.755  +1.000  +0.766  -0.101  -0.045  -0.003  -0.002     +0.103     +0.277  +0.323  -0.212       +0.400       +0.367
+                         :          jetPt4:  +0.520   +0.094   +0.224  -0.094    +0.172  -0.178    +0.000    -0.000      +0.272          +0.384  +0.459  +0.522  +0.591  +0.766  +1.000  -0.122  -0.078  -0.029  +0.008     +0.080     +0.196  +0.237  -0.197       +0.371       +0.264
+                         :         jetCSV1:  -0.161   +0.035   -0.038  +0.045    -0.050  +0.002    -0.004    -0.004      +0.072          +0.098  +0.070  -0.094  -0.078  -0.101  -0.122  +1.000  -0.057  -0.061  -0.064     -0.024     -0.028  +0.084  +0.021       -0.188       +0.005
+                         :         JetCSV2:  -0.128   +0.047   -0.021  +0.031    -0.023  -0.034    +0.008    -0.006      +0.017          +0.008  -0.015  -0.009  -0.011  -0.045  -0.078  -0.057  +1.000  -0.060  -0.063     -0.013     +0.004  +0.035  -0.010       -0.051       +0.013
+                         :         JetCSV3:  -0.079   +0.047   -0.018  -0.018    +0.021  -0.031    -0.006    +0.006      -0.009          -0.041  -0.037  -0.013  -0.015  -0.003  -0.029  -0.061  -0.060  +1.000  -0.073     +0.013     +0.005  +0.004  -0.007       +0.014       +0.010
+                         :         JetCSV4:  -0.047   +0.049   -0.024  -0.021    +0.017  +0.009    -0.005    +0.000      -0.043          -0.036  -0.021  +0.001  -0.000  -0.002  +0.008  -0.064  -0.063  -0.073  +1.000     -0.002     +0.032  -0.032  +0.017       +0.025       +0.020
+                         :      DRLepWMass:  +0.056   +0.010   +0.017  +0.268    +0.335  -0.055    -0.003    -0.017      +0.048          +0.114  +0.117  +0.128  +0.099  +0.103  +0.080  -0.024  -0.013  +0.013  -0.002     +1.000     +0.031  +0.039  -0.058       +0.393       +0.044
+                         :      DRHadWMass:  -0.077   -0.038   -0.044  -0.017    +0.073  +0.037    -0.004    +0.005      +0.336          +0.352  +0.295  +0.294  +0.315  +0.277  +0.196  -0.028  +0.004  +0.005  +0.032     +0.031     +1.000  +0.317  +0.065       +0.083       +0.796
+                         :         DRHMass:  -0.006   -0.060   -0.029  -0.034    +0.080  +0.341    +0.007    -0.003      +0.789          +0.467  +0.367  +0.313  +0.342  +0.323  +0.237  +0.084  +0.035  +0.004  -0.032     +0.039     +0.317  +1.000  +0.530       +0.099       +0.660
+                         :            DRDR:  -0.170   -0.080   -0.083  +0.118    -0.137  +0.700    +0.008    -0.001      +0.353          -0.176  -0.197  -0.204  -0.206  -0.212  -0.197  +0.021  -0.010  -0.007  +0.017     -0.058     +0.065  +0.530  +1.000       -0.082       +0.256
+                         :    DRLepTopMass:  +0.343   +0.060   +0.155  -0.112    +0.382  -0.094    -0.005    +0.000      +0.103          +0.216  +0.394  +0.577  +0.447  +0.400  +0.371  -0.188  -0.051  +0.014  +0.025     +0.393     +0.083  +0.099  -0.082       +1.000       +0.116
+                         :    DRHucTopMass:  -0.071   -0.052   -0.041  -0.029    +0.092  +0.150    +0.004    +0.003      +0.578          +0.479  +0.398  +0.376  +0.407  +0.367  +0.264  +0.005  +0.013  +0.010  +0.020     +0.044     +0.796  +0.660  +0.256       +0.116       +1.000
+                         : ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DataSetInfo              : Correlation matrix (Background):
+                         : ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                         :                    njets nbjets_m ncjets_m lepDPhi missingET bjetmDR bjetmDEta bjetmDPhi dibjetsMass bjetPt_dibjetsm  cjetPt  jetPt1  jetPt2  jetPt3  jetPt4 jetCSV1 JetCSV2 JetCSV3 JetCSV4 DRLepWMass DRHadWMass DRHMass    DRDR DRLepTopMass DRHucTopMass
+                         :           njets:  +1.000   +0.049   +0.012  -0.300    +0.217  -0.431    -0.156    -0.467      +0.120          +0.363  +0.391  +0.522  +0.382  +0.375  +0.336  -0.290  +0.143  +0.534  -0.375     +0.188     +0.410  +0.085  -0.344       +0.423       +0.270
+                         :        nbjets_m:  +0.049   +1.000   +0.070  -0.004    +0.021  +0.006    -0.008    +0.007      -0.016          -0.012  +0.019  +0.010  -0.011  -0.022  -0.031  +0.024  -0.054  -0.005  +0.041     +0.032     +0.033  -0.007  +0.015       +0.042       +0.012
+                         :        ncjets_m:  +0.012   +0.070   +1.000  -0.581    +0.409  -0.141    +0.674    -0.200      +0.321          +0.352  +0.565  +0.364  +0.351  +0.560  +0.588  +0.363  +0.003  +0.004  -0.421     +0.412     +0.472  -0.043  -0.217       +0.776       +0.321
+                         :         lepDPhi:  -0.300   -0.004   -0.581  +1.000    -0.179  +0.498    -0.522    +0.526      -0.205          -0.875  -0.819  -0.838  -0.870  -0.889  -0.896  +0.361  +0.137  -0.161  +0.580     +0.091     -0.334  -0.155  +0.365       -0.720       -0.229
+                         :       missingET:  +0.217   +0.021   +0.409  -0.179    +1.000  +0.323    +0.397    +0.248      +0.796          +0.340  +0.566  +0.353  +0.332  +0.153  +0.058  +0.587  +0.172  +0.041  -0.217     +0.648     +0.623  +0.660  +0.456       +0.461       +0.804
+                         :         bjetmDR:  -0.431   +0.006   -0.141  +0.498    +0.323  +1.000    +0.101    +0.893      +0.530          -0.395  -0.357  -0.562  -0.416  -0.532  -0.612  +0.594  -0.239  -0.375  +0.407     +0.039     -0.206  +0.317  +0.871       -0.504       +0.107
+                         :       bjetmDEta:  -0.156   -0.008   +0.674  -0.522    +0.397  +0.101    +1.000    -0.005      +0.327          +0.410  +0.547  +0.346  +0.395  +0.300  +0.320  +0.344  -0.304  -0.254  -0.101     +0.352     +0.408  +0.398  +0.231       +0.504       +0.491
+                         :       bjetmDPhi:  -0.467   +0.007   -0.200  +0.526    +0.248  +0.893    -0.005    +1.000      +0.460          -0.381  -0.375  -0.556  -0.390  -0.477  -0.547  +0.528  -0.130  -0.328  +0.367     -0.095     -0.285  +0.228  +0.746       -0.558       -0.005
+                         :     dibjetsMass:  +0.120   -0.016   +0.321  -0.205    +0.796  +0.530    +0.327    +0.460      +1.000          +0.414  +0.491  +0.291  +0.394  +0.274  +0.149  +0.436  +0.070  -0.002  -0.224     +0.270     +0.361  +0.607  +0.538       +0.262       +0.581
+                         : bjetPt_dibjetsm:  +0.363   -0.012   +0.352  -0.875    +0.340  -0.395    +0.410    -0.381      +0.414          +1.000  +0.911  +0.941  +0.987  +0.836  +0.798  -0.354  +0.025  +0.146  -0.538     -0.045     +0.395  +0.474  -0.153       +0.629       +0.424
+                         :          cjetPt:  +0.391   +0.019   +0.565  -0.819    +0.566  -0.357    +0.547    -0.375      +0.491          +0.911  +1.000  +0.939  +0.911  +0.756  +0.731  -0.031  +0.124  +0.153  -0.540     +0.288     +0.668  +0.543  -0.101       +0.807       +0.675
+                         :          jetPt1:  +0.522   +0.010   +0.364  -0.838    +0.353  -0.562    +0.346    -0.556      +0.291          +0.941  +0.939  +1.000  +0.947  +0.799  +0.781  -0.335  +0.140  +0.251  -0.560     +0.113     +0.552  +0.432  -0.286       +0.745       +0.510
+                         :          jetPt2:  +0.382   -0.011   +0.351  -0.870    +0.332  -0.416    +0.395    -0.390      +0.394          +0.987  +0.911  +0.947  +1.000  +0.848  +0.811  -0.367  +0.048  +0.149  -0.540     -0.051     +0.388  +0.466  -0.171       +0.640       +0.416
+                         :          jetPt3:  +0.375   -0.022   +0.560  -0.889    +0.153  -0.532    +0.300    -0.477      +0.274          +0.836  +0.756  +0.799  +0.848  +1.000  +0.979  -0.411  +0.070  +0.287  -0.653     -0.130     +0.257  -0.009  -0.510       +0.724       +0.092
+                         :          jetPt4:  +0.336   -0.031   +0.588  -0.896    +0.058  -0.612    +0.320    -0.547      +0.149          +0.798  +0.731  +0.781  +0.811  +0.979  +1.000  -0.420  +0.071  +0.276  -0.636     -0.145     +0.262  -0.087  -0.592       +0.732       +0.053
+                         :         jetCSV1:  -0.290   +0.024   +0.363  +0.361    +0.587  +0.594    +0.344    +0.528      +0.436          -0.354  -0.031  -0.335  -0.367  -0.411  -0.420  +1.000  +0.081  -0.223  +0.188     +0.625     +0.382  +0.271  +0.538       +0.044       +0.501
+                         :         JetCSV2:  +0.143   -0.054   +0.003  +0.137    +0.172  -0.239    -0.304    -0.130      +0.070          +0.025  +0.124  +0.140  +0.048  +0.070  +0.071  +0.081  +1.000  +0.155  -0.177     +0.256     +0.223  +0.018  -0.209       +0.192       +0.169
+                         :         JetCSV3:  +0.534   -0.005   +0.004  -0.161    +0.041  -0.375    -0.254    -0.328      -0.002          +0.146  +0.153  +0.251  +0.149  +0.287  +0.276  -0.223  +0.155  +1.000  -0.370     +0.054     +0.232  -0.217  -0.443       +0.272       -0.001
+                         :         JetCSV4:  -0.375   +0.041   -0.421  +0.580    -0.217  +0.407    -0.101    +0.367      -0.224          -0.538  -0.540  -0.560  -0.540  -0.653  -0.636  +0.188  -0.177  -0.370  +1.000     -0.010     -0.307  +0.029  +0.408       -0.550       -0.152
+                         :      DRLepWMass:  +0.188   +0.032   +0.412  +0.091    +0.648  +0.039    +0.352    -0.095      +0.270          -0.045  +0.288  +0.113  -0.051  -0.130  -0.145  +0.625  +0.256  +0.054  -0.010     +1.000     +0.680  +0.347  +0.172       +0.519       +0.697
+                         :      DRHadWMass:  +0.410   +0.033   +0.472  -0.334    +0.623  -0.206    +0.408    -0.285      +0.361          +0.395  +0.668  +0.552  +0.388  +0.257  +0.262  +0.382  +0.223  +0.232  -0.307     +0.680     +1.000  +0.443  -0.004       +0.668       +0.857
+                         :         DRHMass:  +0.085   -0.007   -0.043  -0.155    +0.660  +0.317    +0.398    +0.228      +0.607          +0.474  +0.543  +0.432  +0.466  -0.009  -0.087  +0.271  +0.018  -0.217  +0.029     +0.347     +0.443  +1.000  +0.692       +0.136       +0.810
+                         :            DRDR:  -0.344   +0.015   -0.217  +0.365    +0.456  +0.871    +0.231    +0.746      +0.538          -0.153  -0.101  -0.286  -0.171  -0.510  -0.592  +0.538  -0.209  -0.443  +0.408     +0.172     -0.004  +0.692  +1.000       -0.396       +0.415
+                         :    DRLepTopMass:  +0.423   +0.042   +0.776  -0.720    +0.461  -0.504    +0.504    -0.558      +0.262          +0.629  +0.807  +0.745  +0.640  +0.724  +0.732  +0.044  +0.192  +0.272  -0.550     +0.519     +0.668  +0.136  -0.396       +1.000       +0.493
+                         :    DRHucTopMass:  +0.270   +0.012   +0.321  -0.229    +0.804  +0.107    +0.491    -0.005      +0.581          +0.424  +0.675  +0.510  +0.416  +0.092  +0.053  +0.501  +0.169  -0.001  -0.152     +0.697     +0.857  +0.810  +0.415       +0.493       +1.000
+                         : ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DataSetFactory           : [inputcorr_test] :  
+                         : 
+Factory                  : Train all methods
+Factory                  : [inputcorr_test] : Create Transformation "I" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'njets' <---> Output : variable 'njets'
+                         : Input : variable 'nbjets_m' <---> Output : variable 'nbjets_m'
+                         : Input : variable 'ncjets_m' <---> Output : variable 'ncjets_m'
+                         : Input : variable 'lepDPhi' <---> Output : variable 'lepDPhi'
+                         : Input : variable 'missingET' <---> Output : variable 'missingET'
+                         : Input : variable 'bjetmDR' <---> Output : variable 'bjetmDR'
+                         : Input : variable 'bjetmDEta' <---> Output : variable 'bjetmDEta'
+                         : Input : variable 'bjetmDPhi' <---> Output : variable 'bjetmDPhi'
+                         : Input : variable 'dibjetsMass' <---> Output : variable 'dibjetsMass'
+                         : Input : variable 'bjetPt_dibjetsm' <---> Output : variable 'bjetPt_dibjetsm'
+                         : Input : variable 'cjetPt' <---> Output : variable 'cjetPt'
+                         : Input : variable 'jetPt1' <---> Output : variable 'jetPt1'
+                         : Input : variable 'jetPt2' <---> Output : variable 'jetPt2'
+                         : Input : variable 'jetPt3' <---> Output : variable 'jetPt3'
+                         : Input : variable 'jetPt4' <---> Output : variable 'jetPt4'
+                         : Input : variable 'jetCSV1' <---> Output : variable 'jetCSV1'
+                         : Input : variable 'JetCSV2' <---> Output : variable 'JetCSV2'
+                         : Input : variable 'JetCSV3' <---> Output : variable 'JetCSV3'
+                         : Input : variable 'JetCSV4' <---> Output : variable 'JetCSV4'
+                         : Input : variable 'DRLepWMass' <---> Output : variable 'DRLepWMass'
+                         : Input : variable 'DRHadWMass' <---> Output : variable 'DRHadWMass'
+                         : Input : variable 'DRHMass' <---> Output : variable 'DRHMass'
+                         : Input : variable 'DRDR' <---> Output : variable 'DRDR'
+                         : Input : variable 'DRLepTopMass' <---> Output : variable 'DRLepTopMass'
+                         : Input : variable 'DRHucTopMass' <---> Output : variable 'DRHucTopMass'
+TFHandler_Factory        :        Variable               Mean               RMS       [        Min               Max ]
+                         : ----------------------------------------------------------------------------------------------
+                         :           njets:           4.8914          0.64088   [           4.0000           16.000 ]
+                         :        nbjets_m:           3.0212          0.15257   [           3.0000           8.0000 ]
+                         :        ncjets_m:           3.1128          0.71534   [           1.0000           8.0000 ]
+                         :         lepDPhi:           1.6074           1.0080   [       2.1458e-06           3.1416 ]
+                         :       missingET:           45.199           36.491   [          0.20680           807.41 ]
+                         :         bjetmDR:           1.0690          0.48222   [          0.38162           3.6770 ]
+                         :       bjetmDEta:       -0.0098814          0.68772   [          -3.3043           3.4561 ]
+                         :       bjetmDPhi:          0.14100          0.93929   [          -3.1366           3.1399 ]
+                         :     dibjetsMass:           91.899           41.096   [           17.037           1261.9 ]
+                         : bjetPt_dibjetsm:           124.37           64.492   [           30.242           1400.9 ]
+                         :          cjetPt:           146.84           78.531   [           30.227           1343.1 ]
+                         :          jetPt1:           168.88           80.099   [           33.164           1400.9 ]
+                         :          jetPt2:           121.10           62.457   [           31.086           1192.2 ]
+                         :          jetPt3:           81.082           33.596   [           30.128           1011.1 ]
+                         :          jetPt4:           68.900           29.592   [           30.000           392.35 ]
+                         :         jetCSV1:          0.66029          0.41368   [          -10.000           1.0000 ]
+                         :         JetCSV2:          0.88427          0.29615   [          -10.000          0.99990 ]
+                         :         JetCSV3:          0.81268          0.49864   [          -10.000          0.99963 ]
+                         :         JetCSV4:          0.48065          0.56528   [          -10.000          0.99963 ]
+                         :      DRLepWMass:           81.678           44.785   [          0.41237           1051.9 ]
+                         :      DRHadWMass:           132.24           53.464   [           15.268           1510.4 ]
+                         :         DRHMass:           102.90           85.844   [           17.037           1261.9 ]
+                         :            DRDR:           1.1394          0.58649   [          0.38762           4.6137 ]
+                         :    DRLepTopMass:           262.08           127.45   [           23.550           3315.1 ]
+                         :    DRHucTopMass:           209.33           106.84   [           42.025           1668.8 ]
+                         : ----------------------------------------------------------------------------------------------
+                         : 
+                         : <PlotVariables> Will not produce scatter plots ==> 
+                         : |  The number of 25 input variables and 0 target values would require 300 two-dimensional
+                         : |  histograms, which would occupy the computer's memory. Note that this
+                         : |  suppression does not have any consequences for your analysis, other
+                         : |  than not disposing of these scatter plots. You can modify the maximum
+                         : |  number of input variables allowed to generate scatter plots in your
+                         : |  script via the command line:
+                         : |  "(TMVA::gConfig().GetVariablePlotting()).fMaxNumOfAllowedVariablesForScatterPlots = <some int>;"
+                         : 
+                         : Some more output
+                         : Ranking input variables (method unspecific)...
+IdTransformation         : Ranking result (top variable is best ranked)
+                         : ----------------------------------------
+                         : Rank : Variable        : Separation
+                         : ----------------------------------------
+                         :    1 : lepDPhi         : 6.982e-01
+                         :    2 : bjetmDPhi       : 6.800e-01
+                         :    3 : bjetPt_dibjetsm : 6.103e-01
+                         :    4 : DRHadWMass      : 5.977e-01
+                         :    5 : bjetmDR         : 5.942e-01
+                         :    6 : cjetPt          : 5.934e-01
+                         :    7 : DRDR            : 5.889e-01
+                         :    8 : jetPt2          : 5.839e-01
+                         :    9 : dibjetsMass     : 5.202e-01
+                         :   10 : missingET       : 5.000e-01
+                         :   11 : jetPt1          : 4.752e-01
+                         :   12 : jetPt3          : 4.591e-01
+                         :   13 : jetPt4          : 4.530e-01
+                         :   14 : DRLepTopMass    : 4.465e-01
+                         :   15 : bjetmDEta       : 4.445e-01
+                         :   16 : DRHucTopMass    : 4.196e-01
+                         :   17 : DRLepWMass      : 3.933e-01
+                         :   18 : DRHMass         : 3.908e-01
+                         :   19 : njets           : 3.460e-01
+                         :   20 : JetCSV4         : 3.315e-01
+                         :   21 : jetCSV1         : 2.320e-01
+                         :   22 : JetCSV2         : 1.911e-01
+                         :   23 : ncjets_m        : 1.431e-01
+                         :   24 : JetCSV3         : 1.377e-01
+                         :   25 : nbjets_m        : 3.702e-02
+                         : ----------------------------------------
+Factory                  : Train method: Likelihood for Classification
+                         : 
+                         : 
+                         : ================================================================
+                         : H e l p   f o r   M V A   m e t h o d   [ Likelihood ] :
+                         : 
+                         : --- Short description:
+                         : 
+                         : The maximum-likelihood classifier models the data with probability 
+                         : density functions (PDF) reproducing the signal and background
+                         : distributions of the input variables. Correlations among the 
+                         : variables are ignored.
+                         : 
+                         : --- Performance optimisation:
+                         : 
+                         : Required for good performance are decorrelated input variables
+                         : (PCA transformation via the option "VarTransform=Decorrelate"
+                         : may be tried). Irreducible non-linear correlations may be reduced
+                         : by precombining strongly correlated input variables, or by simply
+                         : removing one of the variables.
+                         : 
+                         : --- Performance tuning via configuration options:
+                         : 
+                         : High fidelity PDF estimates are mandatory, i.e., sufficient training 
+                         : statistics is required to populate the tails of the distributions
+                         : It would be a surprise if the default Spline or KDE kernel parameters
+                         : provide a satisfying fit to the data. The user is advised to properly
+                         : tune the events per bin and smooth options in the spline cases
+                         : individually per variable. If the KDE kernel is used, the adaptive
+                         : Gaussian kernel may lead to artefacts, so please always also try
+                         : the non-adaptive one.
+                         : 
+                         : All tuning parameters must be adjusted individually for each input
+                         : variable!
+                         : 
+                         : <Suppress this message by specifying "!H" in the booking option>
+                         : ================================================================
+                         : 
+                         : Filling reference histograms
+                         : Building PDF out of reference histograms
+                         : Elapsed time for training with 400000 events: 3.86 sec         
+Likelihood               : [inputcorr_test] : Evaluation of Likelihood on training sample (400000 events)
+                         : Elapsed time for evaluation of 400000 events: 1.44 sec       
+                         : Creating xml weight file: inputcorr_test/weights/TMVAClassification_Likelihood.weights.xml
+                         : Creating standalone class: inputcorr_test/weights/TMVAClassification_Likelihood.class.C
+                         : Write monitoring histograms to file: output_test.root:/inputcorr_test/Method_Likelihood/Likelihood
+Factory                  : Training finished
+                         : 
+Factory                  : Train method: BDT for Classification
+                         : 
+BDT                      : #events: (reweighted) sig: 200000 bkg: 200000
+                         : #events: (unweighted) sig: 100000 bkg: 300000
+                         : Training 1000 Decision Trees ... patience please
+                         : Elapsed time for training with 400000 events: 547 sec         
+BDT                      : [inputcorr_test] : Evaluation of BDT on training sample (400000 events)
+                         : Elapsed time for evaluation of 400000 events: 74.9 sec       
+                         : Creating xml weight file: inputcorr_test/weights/TMVAClassification_BDT.weights.xml
+                         : Creating standalone class: inputcorr_test/weights/TMVAClassification_BDT.class.C
+Factory                  : Training finished
+                         : 
+                         : Ranking input variables (method specific)...
+Likelihood               : Ranking result (top variable is best ranked)
+                         : ----------------------------------------------
+                         : Rank : Variable        : Delta Separation
+                         : ----------------------------------------------
+                         :    1 : JetCSV2         : 7.615e-01
+                         :    2 : DRDR            : 1.122e-02
+                         :    3 : JetCSV4         : 1.018e-02
+                         :    4 : JetCSV3         : 9.724e-03
+                         :    5 : dibjetsMass     : 8.684e-03
+                         :    6 : DRHMass         : 8.350e-03
+                         :    7 : bjetPt_dibjetsm : 7.712e-03
+                         :    8 : DRHadWMass      : 6.325e-03
+                         :    9 : ncjets_m        : 5.490e-03
+                         :   10 : cjetPt          : 5.407e-03
+                         :   11 : lepDPhi         : 4.752e-03
+                         :   12 : bjetmDPhi       : 4.427e-03
+                         :   13 : DRLepWMass      : 4.273e-03
+                         :   14 : DRHucTopMass    : 3.578e-03
+                         :   15 : bjetmDR         : 2.955e-03
+                         :   16 : bjetmDEta       : 2.866e-03
+                         :   17 : jetPt1          : 2.215e-03
+                         :   18 : jetPt2          : 7.709e-04
+                         :   19 : jetPt3          : 1.240e-04
+                         :   20 : missingET       : -1.933e-04
+                         :   21 : DRLepTopMass    : -3.122e-04
+                         :   22 : njets           : -4.381e-04
+                         :   23 : nbjets_m        : -8.453e-04
+                         :   24 : jetCSV1         : -6.518e-03
+                         :   25 : jetPt4          : -1.814e-02
+                         : ----------------------------------------------
+BDT                      : Ranking result (top variable is best ranked)
+                         : -------------------------------------------------
+                         : Rank : Variable        : Variable Importance
+                         : -------------------------------------------------
+                         :    1 : lepDPhi         : 5.613e-02
+                         :    2 : bjetmDPhi       : 5.562e-02
+                         :    3 : jetPt4          : 5.153e-02
+                         :    4 : DRHadWMass      : 4.992e-02
+                         :    5 : missingET       : 4.766e-02
+                         :    6 : DRDR            : 4.723e-02
+                         :    7 : DRLepTopMass    : 4.594e-02
+                         :    8 : bjetmDR         : 4.577e-02
+                         :    9 : jetPt3          : 4.453e-02
+                         :   10 : bjetmDEta       : 4.271e-02
+                         :   11 : DRLepWMass      : 4.267e-02
+                         :   12 : jetPt2          : 4.173e-02
+                         :   13 : cjetPt          : 4.156e-02
+                         :   14 : ncjets_m        : 4.108e-02
+                         :   15 : DRHucTopMass    : 4.041e-02
+                         :   16 : DRHMass         : 3.826e-02
+                         :   17 : njets           : 3.678e-02
+                         :   18 : JetCSV4         : 3.625e-02
+                         :   19 : dibjetsMass     : 3.566e-02
+                         :   20 : bjetPt_dibjetsm : 3.561e-02
+                         :   21 : jetPt1          : 3.165e-02
+                         :   22 : jetCSV1         : 2.742e-02
+                         :   23 : JetCSV3         : 2.715e-02
+                         :   24 : JetCSV2         : 2.353e-02
+                         :   25 : nbjets_m        : 1.320e-02
+                         : -------------------------------------------------
+Factory                  : === Destroy and recreate all methods via weight files for testing ===
+                         : 
+Factory                  : Test all methods
+Factory                  : Test method: Likelihood for Classification performance
+                         : 
+Likelihood               : [inputcorr_test] : Evaluation of Likelihood on testing sample (20000 events)
+                         : Elapsed time for evaluation of 20000 events: 0.0774 sec       
+Factory                  : Test method: BDT for Classification performance
+                         : 
+BDT                      : [inputcorr_test] : Evaluation of BDT on testing sample (20000 events)
+                         : Elapsed time for evaluation of 20000 events: 3.28 sec       
+Factory                  : Evaluate all methods
+Factory                  : Evaluate classifier: Likelihood
+                         : 
+Likelihood               : [inputcorr_test] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_Likelihood     :        Variable               Mean               RMS       [        Min               Max ]
+                         : ----------------------------------------------------------------------------------------------
+                         :           njets:           4.8742          0.41595   [           4.0000           13.000 ]
+                         :        nbjets_m:           3.0041         0.066543   [           3.0000           6.0000 ]
+                         :        ncjets_m:           2.9936          0.69548   [           1.0000           8.0000 ]
+                         :         lepDPhi:           1.7209           1.0453   [       0.00011444           3.1415 ]
+                         :       missingET:           37.407           28.505   [          0.46958           563.99 ]
+                         :         bjetmDR:          0.98865          0.43794   [          0.38873           3.4833 ]
+                         :       bjetmDEta:        -0.033110          0.60785   [          -3.2407           3.1204 ]
+                         :       bjetmDPhi:          0.18679          0.87393   [          -3.1315           3.1255 ]
+                         :     dibjetsMass:           88.354           39.483   [           19.593           1048.3 ]
+                         : bjetPt_dibjetsm:           126.23           63.925   [           30.562           1400.9 ]
+                         :          cjetPt:           148.59           79.274   [           33.845           1267.7 ]
+                         :          jetPt1:           173.58           76.984   [           35.233           1400.9 ]
+                         :          jetPt2:           125.13           63.643   [           31.786           1149.7 ]
+                         :          jetPt3:           83.283           33.678   [           30.157           456.53 ]
+                         :          jetPt4:           72.946           29.799   [           30.001           288.67 ]
+                         :         jetCSV1:          0.63272          0.37521   [          -10.000          0.99950 ]
+                         :         JetCSV2:          0.92191          0.17748   [          -10.000          0.99955 ]
+                         :         JetCSV3:          0.84327          0.39784   [          -10.000          0.99958 ]
+                         :         JetCSV4:          0.45225          0.42237   [          -10.000          0.99958 ]
+                         :      DRLepWMass:           78.193           43.491   [          0.49655           1051.9 ]
+                         :      DRHadWMass:           138.70           46.114   [           17.290           1788.3 ]
+                         :         DRHMass:           98.203           86.570   [           19.723           1048.3 ]
+                         :            DRDR:           1.0287          0.52382   [          0.39989           4.4721 ]
+                         :    DRLepTopMass:           263.75           122.03   [           31.859           2961.7 ]
+                         :    DRHucTopMass:           210.70           107.03   [           46.400           1886.2 ]
+                         : ----------------------------------------------------------------------------------------------
+                         : 
+                         : <PlotVariables> Will not produce scatter plots ==> 
+                         : |  The number of 25 input variables and 0 target values would require 300 two-dimensional
+                         : |  histograms, which would occupy the computer's memory. Note that this
+                         : |  suppression does not have any consequences for your analysis, other
+                         : |  than not disposing of these scatter plots. You can modify the maximum
+                         : |  number of input variables allowed to generate scatter plots in your
+                         : |  script via the command line:
+                         : |  "(TMVA::gConfig().GetVariablePlotting()).fMaxNumOfAllowedVariablesForScatterPlots = <some int>;"
+                         : 
+                         : Some more output
+Factory                  : Evaluate classifier: BDT
+                         : 
+BDT                      : [inputcorr_test] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_BDT            :        Variable               Mean               RMS       [        Min               Max ]
+                         : ----------------------------------------------------------------------------------------------
+                         :           njets:           4.8742          0.41595   [           4.0000           13.000 ]
+                         :        nbjets_m:           3.0041         0.066543   [           3.0000           6.0000 ]
+                         :        ncjets_m:           2.9936          0.69548   [           1.0000           8.0000 ]
+                         :         lepDPhi:           1.7209           1.0453   [       0.00011444           3.1415 ]
+                         :       missingET:           37.407           28.505   [          0.46958           563.99 ]
+                         :         bjetmDR:          0.98865          0.43794   [          0.38873           3.4833 ]
+                         :       bjetmDEta:        -0.033110          0.60785   [          -3.2407           3.1204 ]
+                         :       bjetmDPhi:          0.18679          0.87393   [          -3.1315           3.1255 ]
+                         :     dibjetsMass:           88.354           39.483   [           19.593           1048.3 ]
+                         : bjetPt_dibjetsm:           126.23           63.925   [           30.562           1400.9 ]
+                         :          cjetPt:           148.59           79.274   [           33.845           1267.7 ]
+                         :          jetPt1:           173.58           76.984   [           35.233           1400.9 ]
+                         :          jetPt2:           125.13           63.643   [           31.786           1149.7 ]
+                         :          jetPt3:           83.283           33.678   [           30.157           456.53 ]
+                         :          jetPt4:           72.946           29.799   [           30.001           288.67 ]
+                         :         jetCSV1:          0.63272          0.37521   [          -10.000          0.99950 ]
+                         :         JetCSV2:          0.92191          0.17748   [          -10.000          0.99955 ]
+                         :         JetCSV3:          0.84327          0.39784   [          -10.000          0.99958 ]
+                         :         JetCSV4:          0.45225          0.42237   [          -10.000          0.99958 ]
+                         :      DRLepWMass:           78.193           43.491   [          0.49655           1051.9 ]
+                         :      DRHadWMass:           138.70           46.114   [           17.290           1788.3 ]
+                         :         DRHMass:           98.203           86.570   [           19.723           1048.3 ]
+                         :            DRDR:           1.0287          0.52382   [          0.39989           4.4721 ]
+                         :    DRLepTopMass:           263.75           122.03   [           31.859           2961.7 ]
+                         :    DRHucTopMass:           210.70           107.03   [           46.400           1886.2 ]
+                         : ----------------------------------------------------------------------------------------------
+                         : 
+                         : <PlotVariables> Will not produce scatter plots ==> 
+                         : |  The number of 25 input variables and 0 target values would require 300 two-dimensional
+                         : |  histograms, which would occupy the computer's memory. Note that this
+                         : |  suppression does not have any consequences for your analysis, other
+                         : |  than not disposing of these scatter plots. You can modify the maximum
+                         : |  number of input variables allowed to generate scatter plots in your
+                         : |  script via the command line:
+                         : |  "(TMVA::gConfig().GetVariablePlotting()).fMaxNumOfAllowedVariablesForScatterPlots = <some int>;"
+                         : 
+                         : Some more output
+                         : 
+                         : Evaluation results ranked by best signal efficiency and purity (area)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet       MVA                       
+                         : Name:         Method:          ROC-integ
+                         : inputcorr_test BDT            : 0.685
+                         : inputcorr_test Likelihood     : 0.572
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+                         : Testing efficiency compared to training efficiency (overtraining check)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet              MVA              Signal efficiency: from test sample (from training sample) 
+                         : Name:                Method:          @B=0.01             @B=0.10            @B=0.30   
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : inputcorr_test       BDT            : 0.708 (0.726)       1.000 (1.000)      1.000 (1.000)
+                         : inputcorr_test       Likelihood     : 0.510 (0.509)       0.609 (0.608)      0.876 (0.839)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+Dataset:inputcorr_test   : Created tree 'TestTree' with 20000 events
+                         : 
+Dataset:inputcorr_test   : Created tree 'TrainTree' with 400000 events
+                         : 
+Factory                  : Thank you for using TMVA!
+                         : For citation information, please visit: http://tmva.sf.net/citeTMVA.html
