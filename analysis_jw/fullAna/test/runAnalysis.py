@@ -7,7 +7,7 @@ gROOT.SetBatch(True)
 def runAna(dir, file, name):
   chain = TChain("ttbbLepJets/tree","events")
   chain.Add(dir+"/"+file)
-  chain.SetProof();
+  #chain.SetProof();
   chain.Process("MyAnalysis.C+",name)
 
   f = TFile(dir+"/"+file,"read")
@@ -20,7 +20,7 @@ def runAna(dir, file, name):
   out.Close()
 
 
-p = TProof.Open("", "workers=8")
+#p = TProof.Open("", "workers=8")
 
 version = "v3"
 inputdir = "/home/minerva1993/fcnc/ntuple_jw/"
@@ -66,3 +66,4 @@ runAna(inputdir+version,"QCD_MuEnr_600to800.root","QCD_MuEnr_600to800")
 runAna(inputdir+version,"QCD_MuEnr_800to1000.root","QCD_MuEnr_800to1000")
 runAna(inputdir+version,"QCD_MuEnr_1000toInf.root","QCD_MuEnr_1000toInf")
 """
+runAna("/home/minerva1993/fcnc/ntuple_javier","Tree_LepJets_Final_v8-0-6_Spring16-80X_36814pb-1_ttbar_LepJetsPowhegPythiattbb.root","test")
