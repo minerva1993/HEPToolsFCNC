@@ -98,10 +98,10 @@ def AddHut(fname, name, color, xsection):
 ####Users should provide these information 
 SetData("hist_DataSingleMu.root","data", 35867) # for now, combination of muon and electron
 SetData("hist_DataSingleEG.root","data", 35867) # for now, combination of muon and electron
-AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.4)
-AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 365.4)
-AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.4)
-AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 365.4)
+AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 356.4)
+AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 356.4)
+AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 356.4)
+AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 356.4)
 AddBkg("hist_tt.root","ttLF",ROOT.kRed, 356.4)
 #AddBkg("hist_ttBkg.root","ttLF",ROOT.kRed, 831.8)
 AddBkg("hist_wjets.root","WJets",ROOT.kYellow,61524)
@@ -109,8 +109,8 @@ AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 6025.2)
 AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
 AddBkg("hist_tchannel.root","Single t",6, 44.33)
 AddBkg("hist_tbarchannel.root","Single t",6, 26.38)
-AddBkg("hist_tWchannel.root","Single t",6, 35.6)
-AddBkg("hist_tbarWchannel.root","Single t",6, 35.6)
+AddBkg("hist_tWchannel.root","Single t",6, 35.85)
+AddBkg("hist_tbarWchannel.root","Single t",6, 35.85)
 AddBkg("hist_ww.root","DiBoson",ROOT.kCyan, 118.7)
 AddBkg("hist_wz.root","DiBoson",ROOT.kCyan, 47.13)
 AddBkg("hist_zz.root","DiBoson",ROOT.kCyan, 16.523)
@@ -129,7 +129,7 @@ N_bkgsamples = len(bkgsamples)
 N_Hctsamples = len(hctsamples)
 N_Hutsamples = len(hutsamples)
 
-fNevt = open("Nevt.txt",'w')
+fNevt = open("Nevt_ratio.txt",'w')
 
 for i in range(0, N_hist):
   if "Ch0" in datasamples[datasamples.keys()[0]]["hname"][i]:
@@ -158,7 +158,7 @@ for i in range(0, N_hist):
 
   h_data = datasamples[datasamples.keys()[mode]]["file"].Get(datasamples[datasamples.keys()[mode]]["hname"][i])
   nbins = h_data.GetNbinsX()
-  #h_data.AddBinContent( nbins, h_data.GetBinContent( nbins+1 ) )  #overflow
+  h_data.AddBinContent( nbins, h_data.GetBinContent( nbins+1 ) )  #overflow
 
   h_sub = h_data.Clone("h_sub") 
   if QCDestimate : 
@@ -169,7 +169,7 @@ for i in range(0, N_hist):
   for fname in bkgsamples.keys():
     h_tmp = bkgsamples[fname]["file"].Get(bkgsamples[fname]["hname"][i])
     nbins = h_tmp.GetNbinsX()
-    #h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) #overflow
+    h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) #overflow
     h_tmp.SetFillColor(bkgsamples[fname]["col"])
     ## normalization
     scale = 1.0
@@ -215,7 +215,7 @@ for i in range(0, N_hist):
   for fname in hctsamples.keys():
     h_Hct = hctsamples[fname]["file"].Get(hctsamples[fname]["hname"][i])
     nbins = h_Hct.GetNbinsX()
-    #h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) 
+    h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) 
     h_Hct.SetLineColor(hctsamples[fname]["col"])
     h_Hct.SetFillColorAlpha(hctsamples[fname]["col"],0.0)
     ## normalization
@@ -252,7 +252,7 @@ for i in range(0, N_hist):
   for fname in hutsamples.keys():
     h_Hut = hutsamples[fname]["file"].Get(hutsamples[fname]["hname"][i])
     nbins = h_Hut.GetNbinsX()
-    #h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) 
+    h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) 
     h_Hut.SetLineColor(hutsamples[fname]["col"])
     h_Hut.SetFillColorAlpha(hutsamples[fname]["col"],0.0)
     ## normalization
@@ -290,48 +290,17 @@ for i in range(0, N_hist):
 
   # Upper histogram plot is pad1
   pad1 = TPad("pad1", "pad1", 0.02, 0.20, 1, 1.0)
-  #pad1.SetGridx()
   pad1.Draw()
   c.cd()  # returns to main canvas before defining pad2
-  pad2 = TPad("pad2", "pad2", 0.02, 0.05, 1, 0.29)
-  #pad2.SetBottomMargin(-0.5)
-  #pad2.SetGridx()
+  pad2 = TPad("pad2", "pad2", 0.02, 0.05, 1, 0.26)
+  pad2.SetGridx()
+  pad2.SetGridy()
   pad2.Draw()
-"""
-#creat ratio plot
-  h3 = h_data.Clone("h3")
-  #h3 = hs.GetStack().Last()
-  ROOT.SetOwnership( h3,  True )
-  h3.SetDirectory(0)
-  h3.SetLineColor(1)
-  h3.SetMarkerStyle(6)
-  h3.SetTitle("")
-  #h3.SetMinimum(0.8)
-  #h3.SetMaximum(1.2)
-  # Set up plot for markers and errors
-  #h3.Sumw2()
-  h3.SetStats(0)
-  #h3.Divide(hs)
-
-  # Adjust y-axis settings
-  y = h3.GetYaxis()
-  y.SetTitle("Data/MC")
-  y.SetNdivisions(505)
-  y.SetTitleSize(0.14)
-  y.SetTitleOffset(0.3)
-  y.SetLabelSize(0.1)
-
-  # Adjust x-axis settings
-  x = h3.GetXaxis()
-  x.SetTitleSize(0.14)
-  x.SetTitleOffset(0.8)
-  x.SetLabelSize(0.1)
-"""
 
   #Draw each plot...
   pad1.cd()
   h_data.SetMarkerStyle(20)
-  h_data.SetMarkerSize(0.4)
+  h_data.SetMarkerSize(0.5)
   max_data = h_data.GetMaximum()
   max_hs = hs.GetMaximum()
   maxfrac = 0.5
@@ -348,9 +317,10 @@ for i in range(0, N_hist):
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Entries")
-  h_data.GetYaxis().SetTitleOffset(1.2)
-  h_data.GetXaxis().SetLabelSize(0)
+  h_data.GetYaxis().SetTitleOffset(1.4)
+  #h_data.GetXaxis().SetLabelSize(0)
   #hs.GetXaxis().SetTitle("")
+  h_data.GetXaxis().SetTitleOffset(5.0)
   hs.Draw("histsame")
   h_data.Draw("psame")
   hsHct.Draw("hist same")
@@ -370,27 +340,20 @@ for i in range(0, N_hist):
   label.SetTextSize(0.04)
   label.SetTextAlign(32)
   label.Draw("same")
-  h4 = hs.GetHistogram().Clone("h4")
-  ROOT.SetOwnership( h4,  True )
-  h4.SetDirectory(0)
 
   pad2.cd()
-  #creat ratio plot
   h3 = h_data.Clone("h3")
-  #h3 = hs.GetStack().Last()
   ROOT.SetOwnership( h3,  True )
   h3.SetDirectory(0)
   h3.SetLineColor(1)
-  h3.SetMarkerStyle(6)
+  h3.SetMarkerStyle(20)
+  h3.SetMarkerSize(0.5)
   h3.SetTitle("")
-  #h3.SetMinimum(0.8)
-  #h3.SetMaximum(1.2)
-  # Set up plot for markers and errors
-  #h3.Sumw2()
+  h3.SetMinimum(0.8)
+  h3.SetMaximum(1.2)
+  h3.Sumw2()
   h3.SetStats(0)
-  #h3.Divide(hs)
 
-  # Adjust y-axis settings
   y = h3.GetYaxis()
   y.SetTitle("Data/MC")
   y.SetNdivisions(505)
@@ -400,10 +363,11 @@ for i in range(0, N_hist):
 
   # Adjust x-axis settings
   x = h3.GetXaxis()
-  x.SetTitleSize(0.14)
-  x.SetTitleOffset(0.8)
-  x.SetLabelSize(0.1)
-  h3.Divide(h4)
+  x.SetTitleSize(0.13)
+  x.SetTitleOffset(0.37)
+  #x.SetLabelSize(0.1)
+  x.SetLabelSize(0)
+  h3.Divide(hs.GetStack().Last())
   h3.Draw("ep")
 
   ndata= h_data.Integral()

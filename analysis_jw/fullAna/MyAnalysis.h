@@ -149,15 +149,17 @@ public :
     TH1D *h_bjmDPhi[2][16];
     TH1D *h_bjmDEta[2][16];
     TH1D *h_bjmDR[2][16];
+/*
     TH1D *h_bjtDPhi[2][16];
     TH1D *h_bjtDEta[2][16];
     TH1D *h_bjtDR[2][16];
+*/
     TH1D *h_HMass_m[2][16];
     TH1D *h_bJetPtHm[2][16];
-    TH1D *h_HMass_t[2][16];
-    TH1D *h_bJetPtHt[2][16];
+    //TH1D *h_HMass_t[2][16];
+    //TH1D *h_bJetPtHt[2][16];
     TH1D *h_cJetPt[2][16];
-
+/*
     ///kin sol
     TH1D *h_kinLepWMass[2][16];
     TH1D *h_kinHadWMass[2][16];
@@ -177,7 +179,7 @@ public :
     TH1D *h_m3FCNHkinDR[2][16];
     TH1D *h_m3FCNHkinTopMWb[2][16];
     TH1D *h_m3FCNHkinTopMHc[2][16];
-
+*/
     //DR
     TH1D *h_DRFCNHkinLepWMass[2][16];
     TH1D *h_DRFCNHkinHadWMass[2][16];
