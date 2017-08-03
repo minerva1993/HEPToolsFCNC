@@ -136,9 +136,9 @@ AddBkg("hist_QCD_MuEnr_800to1000.root","QCD",ROOT.kGray, 4.707368272)
 AddBkg("hist_QCD_MuEnr_1000toInf.root","QCD",ROOT.kGray, 1.62131692)
 
 
-AddHct("hist_Top_Hct.root", "Hct", 3, 6.66)
+AddHct("hist_Top_Hct.root", "Hct", 602, 6.66)
 #AddHct("hist_AntiTop_Hct.root", "Hct", 3, 3.33) # Top Hct ->xsection twice!
-AddHut("hist_Top_Hut.root", "Hut", 5, 9.14)
+AddHut("hist_Top_Hut.root", "Hut", 419, 9.14)
 #AddHut("hist_AntiTop_Hut.root", "Hut", 5, 4.57) #used 1610.04857 values
 #### 
 
@@ -221,7 +221,7 @@ for i in range(0, N_hist):
     if hnames[1] == printHistName:
       string = "%s :  %s = %d \n"%(fname,bkgsamples[fname]["name"],numevt)
       fNevt.write(string)
-      print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt) # " scale : " ,"{0:.1g}".format(scale)  
+      print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)  
     ## Add to Stack
     if bkgsamples[fname]["name"] == "WJets":
       hs.Add( h_tmp, "E" ) #hh_tmp -> add h tmp sig, hs->other
