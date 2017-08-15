@@ -35,7 +35,7 @@ class MonteFile{
     string category;
     vector<string> v_histName;
     double scale_Mu;
-    double scale_EG;
+    double scale_El;
     int color;
     int nHist;
     
