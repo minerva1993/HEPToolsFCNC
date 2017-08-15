@@ -114,7 +114,26 @@ AddBkg("hist_tbarWchannel.root","Single t",6, 35.85)
 AddBkg("hist_ww.root","DiBoson",ROOT.kCyan, 118.7)
 AddBkg("hist_wz.root","DiBoson",ROOT.kCyan, 47.13)
 AddBkg("hist_zz.root","DiBoson",ROOT.kCyan, 16.523)
-#AddBkg("../noniso/hist_qcd.root","QCD",ROOT.kGray, 1)
+#AddBkg("hist_QCD.root","QCD",ROOT.kGray, 1)
+
+AddBkg("hist_QCD_EGEnr_20to30.root","QCD",ROOT.kGray, 5352960)
+AddBkg("hist_QCD_EGEnr_30to50.root","QCD",ROOT.kGray, 9928000)
+AddBkg("hist_QCD_EGEnr_50to80.root","QCD",ROOT.kGray, 2890800)
+AddBkg("hist_QCD_EGEnr_80to120.root","QCD",ROOT.kGray, 350000)
+AddBkg("hist_QCD_EGEnr_120to170.root","QCD",ROOT.kGray, 62964)
+AddBkg("hist_QCD_EGEnr_170to300.root","QCD",ROOT.kGray, 18810)
+AddBkg("hist_QCD_EGEnr_300toInf.root","QCD",ROOT.kGray, 1350)
+AddBkg("hist_QCD_MuEnr_20to30.root","QCD",ROOT.kGray, 2960198.4)
+AddBkg("hist_QCD_MuEnr_30to50.root","QCD",ROOT.kGray, 1652471.46)
+AddBkg("hist_QCD_MuEnr_50to80.root","QCD",ROOT.kGray, 437504.1)
+AddBkg("hist_QCD_MuEnr_80to120.root","QCD",ROOT.kGray, 106033.6648)
+AddBkg("hist_QCD_MuEnr_120to170.root","QCD",ROOT.kGray, 25190.51514)
+AddBkg("hist_QCD_MuEnr_170to300.root","QCD",ROOT.kGray, 8654.49315)
+AddBkg("hist_QCD_MuEnr_300to470.root","QCD",ROOT.kGray, 797.35269)
+AddBkg("hist_QCD_MuEnr_470to600.root","QCD",ROOT.kGray, 79.02553776)
+AddBkg("hist_QCD_MuEnr_600to800.root","QCD",ROOT.kGray, 25.09505908)
+AddBkg("hist_QCD_MuEnr_800to1000.root","QCD",ROOT.kGray, 4.707368272)
+AddBkg("hist_QCD_MuEnr_1000toInf.root","QCD",ROOT.kGray, 1.62131692)
 
 AddHct("hist_Top_Hct.root", "Hct", 602, 6.66)
 #AddHct("hist_AntiTop_Hct.root", "Hct", 3, 3.33) # Top Hct ->xsection twice!
@@ -172,11 +191,11 @@ for i in range(0, N_hist):
     h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) #overflow
     h_tmp.SetFillColor(bkgsamples[fname]["col"])
     ## normalization
-    scale = 1.0
-    if bkgsamples[fname]["name"] == "QCD": 
-      scale = 1.0
-    else: 
-      scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
+    #scale = 1.0
+    #if bkgsamples[fname]["name"] == "QCD": 
+      #scale = 1.0
+    #else: 
+    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
 
     h_tmp.Scale(scale)
 
@@ -283,7 +302,7 @@ for i in range(0, N_hist):
   if QCDestimate:
     qcd.append(h_sub)
 
-#creat canvas
+  #creat canvas
   c = TCanvas("c_"+"{}".format(i),"c", 450, 450)
   if log:
     c.SetLogy()
@@ -292,7 +311,7 @@ for i in range(0, N_hist):
   pad1 = TPad("pad1", "pad1", 0.02, 0.20, 1, 1.0)
   pad1.Draw()
   c.cd()  # returns to main canvas before defining pad2
-  pad2 = TPad("pad2", "pad2", 0.02, 0.05, 1, 0.26)
+  pad2 = TPad("pad2", "pad2", 0.02, 0.05, 1, 0.27)
   pad2.SetGridx()
   pad2.SetGridy()
   pad2.Draw()
@@ -319,12 +338,14 @@ for i in range(0, N_hist):
   h_data.GetYaxis().SetTitle("Entries")
   h_data.GetYaxis().SetTitleOffset(1.4)
   #h_data.GetXaxis().SetLabelSize(0)
-  #hs.GetXaxis().SetTitle("")
+  #h_data.GetXaxis().SetTitle("")
   h_data.GetXaxis().SetTitleOffset(5.0)
   hs.Draw("histsame")
   h_data.Draw("psame")
   hsHct.Draw("hist same")
   hsHut.Draw("hist same")
+  h4 = hs.Clone("h4")
+  ROOT.SetOwnership( h4,  True )
 
   l.AddEntry(h_data,"Data","P")
   l.Draw()
@@ -351,7 +372,7 @@ for i in range(0, N_hist):
   h3.SetTitle("")
   h3.SetMinimum(0.8)
   h3.SetMaximum(1.2)
-  h3.Sumw2()
+  #h3.Sumw2()
   h3.SetStats(0)
 
   y = h3.GetYaxis()
@@ -367,7 +388,8 @@ for i in range(0, N_hist):
   x.SetTitleOffset(0.37)
   #x.SetLabelSize(0.1)
   x.SetLabelSize(0)
-  h3.Divide(hs.GetStack().Last())
+  h3.Divide(h4.GetStack().Last())
+  #h3.Divide(h4)
   h3.Draw("ep")
 
   ndata= h_data.Integral()
@@ -399,7 +421,6 @@ for i in range(0, N_hist):
     c.Print( (filename+")") ) 
   else:
     c.Print(filename)
-
 
 if QCDestimate :
  f = ROOT.TFile("hist_qcd.root", "recreate")
