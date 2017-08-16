@@ -21,47 +21,47 @@ void anamva_test(){
   //TMVA::Factory *factory = new TMVA::Factory( "TMVAClassification",outputFile,"AnalysisType=Classification" );
 
   TFile* signalA = new TFile("mkNtuple_v2/tmva_AntiTop_Hut.root");
-  TTree* sigTreeA = (TTree*)(signalA->Get("tmva_AntiTop_Hut"));
+  TTree* sigTreeA = (TTree*)(signalA->Get("tmva_tree"));
   TFile* signalB = new TFile("mkNtuple_v2/tmva_AntiTop_Hct.root");
-  TTree* sigTreeB = (TTree*)(signalB->Get("tmva_AntiTop_Hct"));
+  TTree* sigTreeB = (TTree*)(signalB->Get("tmva_tree"));
   TFile* signalC = new TFile("mkNtuple_v2/tmva_Top_Hut.root");
-  TTree* sigTreeC = (TTree*)(signalC->Get("tmva_Top_Hut"));
+  TTree* sigTreeC = (TTree*)(signalC->Get("tmva_tree"));
   TFile* signalD = new TFile("mkNtuple_v2/tmva_Top_Hct.root");
-  TTree* sigTreeD = (TTree*)(signalD->Get("tmva_Top_Hct"));
+  TTree* sigTreeD = (TTree*)(signalD->Get("tmva_tree"));
 
    
   TFile* background1 = new TFile("mkNtuple_v2/tmva_tbarchannel.root");
-  TTree* backgroundTree1 = (TTree*)(background1->Get("tmva_tbarchannel"));
+  TTree* backgroundTree1 = (TTree*)(background1->Get("tmva_tree"));
   TFile* background2 = new TFile("mkNtuple_v2/tmva_tbarWchannel.root");
-  TTree* backgroundTree2 = (TTree*)(background2->Get("tmva_tbarWchannel"));
+  TTree* backgroundTree2 = (TTree*)(background2->Get("tmva_tree"));
   TFile* background3 = new TFile("mkNtuple_v2/tmva_tchannel.root");
-  TTree* backgroundTree3 = (TTree*)(background3->Get("tmva_tchannel"));
+  TTree* backgroundTree3 = (TTree*)(background3->Get("tmva_tree"));
   TFile* background4 = new TFile("mkNtuple_v2/tmva_tWchannel.root");
-  TTree* backgroundTree4 = (TTree*)(background4->Get("tmva_tWchannel"));
+  TTree* backgroundTree4 = (TTree*)(background4->Get("tmva_tree"));
 
   TFile* background5 = new TFile("mkNtuple_v2/tmva_ttbb.root");
-  TTree* backgroundTree5 = (TTree*)(background5->Get("tmva_ttbb"));
+  TTree* backgroundTree5 = (TTree*)(background5->Get("tmva_tree"));
   TFile* background6 = new TFile("mkNtuple_v2/tmva_ttbj.root");
-  TTree* backgroundTree6 = (TTree*)(background6->Get("tmva_ttbj"));
+  TTree* backgroundTree6 = (TTree*)(background6->Get("tmva_tree"));
   TFile* background7 = new TFile("mkNtuple_v2/tmva_ttcc.root");
-  TTree* backgroundTree7 = (TTree*)(background7->Get("tmva_ttcc"));
+  TTree* backgroundTree7 = (TTree*)(background7->Get("tmva_tree"));
   TFile* background8 = new TFile("mkNtuple_v2/tmva_ttLF.root");
-  TTree* backgroundTree8 = (TTree*)(background8->Get("tmva_ttLF"));
+  TTree* backgroundTree8 = (TTree*)(background8->Get("tmva_tree"));
   TFile* background9 = new TFile("mkNtuple_v2/tmva_tt.root");
-  TTree* backgroundTree9 = (TTree*)(background9->Get("tmva_tt"));
+  TTree* backgroundTree9 = (TTree*)(background9->Get("tmva_tree"));
 
   //TFile* background10 = new TFile("mkNtuple_v2/tmva_wjets.root");
  // TTree* backgroundTree10 = (TTree*)(background10->Get("tmva_wjets"));
   TFile* background11 = new TFile("mkNtuple_v2/tmva_ww.root");
-  TTree* backgroundTree11 = (TTree*)(background11->Get("tmva_ww"));
+  TTree* backgroundTree11 = (TTree*)(background11->Get("tmva_tree"));
   TFile* background12 = new TFile("mkNtuple_v2/tmva_wz.root");
-  TTree* backgroundTree12 = (TTree*)(background12->Get("tmva_wz"));
+  TTree* backgroundTree12 = (TTree*)(background12->Get("tmva_tree"));
   TFile* background13 = new TFile("mkNtuple_v2/tmva_zz.root");
-  TTree* backgroundTree13 = (TTree*)(background13->Get("tmva_zz"));
+  TTree* backgroundTree13 = (TTree*)(background13->Get("tmva_tree"));
   TFile* background14 = new TFile("mkNtuple_v2/tmva_zjet10to50.root");
-  TTree* backgroundTree14 = (TTree*)(background14->Get("tmva_zjets10to50"));
+  TTree* backgroundTree14 = (TTree*)(background14->Get("tmva_tree"));
   TFile* background15 = new TFile("mkNtuple_v2/tmva_zjets.root");
-  TTree* backgroundTree15 = (TTree*)(background15->Get("tmva_zjets"));
+  TTree* backgroundTree15 = (TTree*)(background15->Get("tmva_tree"));
 
   loader->AddSignalTree(sigTreeA,0.156137331574);
   loader->AddSignalTree(sigTreeB,0.156137331574);
