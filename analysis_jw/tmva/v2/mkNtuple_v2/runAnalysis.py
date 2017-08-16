@@ -29,7 +29,6 @@ inputdir = "/home/minerva1993/fcnc/ntuple_jw/"
 #BigFiles
 """
 #runAna(inputdir+version,"SingleMuon_Run2016.root","DataSingleMu")
-
 for mi in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleMuon_Run2016B"):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleMuon_Run2016B", mi,"SingleMuon_Run2016B_splitted_"+ str(mi).rstrip(".root"))
 
@@ -53,7 +52,7 @@ for mo in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/Si
 
 for mp in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleMuon_Run2016H_v3"):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleMuon_Run2016H_v3", mp,"SingleMuon_Run2016H_v3_splitted_"+ str(mp).rstrip(".root"))
-"""
+
 #runAna(inputdir+version,"SingleElectron_Run2016.root","DataSingleEG")
 for ei in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleElectron_Run2016B"):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleElectron_Run2016B", ei,"SingleElectron_Run2016B_splitted_"+ str(ei).rstrip(".root"))
@@ -78,7 +77,7 @@ for eo in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/Si
 
 for ep in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleElectron_Run2016H_v3"):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleElectron_Run2016H_v3", ep,"SingleElectron_Run2016H_v3_splitted_"+ str(ep).rstrip(".root"))
-"""
+
 #runAna(inputdir+version,"DYJets.root","zjets")
 for i in range(0, 145):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/DYJets","Tree_ttbbLepJets_"+ str(i) + ".root","zjets_split_"+ str(i))
@@ -104,7 +103,9 @@ runAna(inputdir+version,"TT_powheg_ttbb.root","ttbb")
 runAna(inputdir+version,"TT_powheg_ttbj.root","ttbj")
 runAna(inputdir+version,"TT_powheg_ttcc.root","ttcc")
 runAna(inputdir+version,"TT_powheg_ttbkg.root","ttBkg")
+"""
 runAna(inputdir+version,"TT_TopLeptonicDecay_TH_1L3B_Eta_Hct.root","Top_Hct")
+"""
 runAna(inputdir+version,"TT_TopLeptonicDecay_TH_1L3B_Eta_Hut.root","Top_Hut")
 runAna(inputdir+version,"TT_AntitopLeptonicDecay_TH_1L3B_Eta_Hct.root","AntiTop_Hct")
 runAna(inputdir+version,"TT_AntitopLeptonicDecay_TH_1L3B_Eta_Hut.root","AntiTop_Hut")

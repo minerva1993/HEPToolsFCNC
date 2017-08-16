@@ -173,12 +173,70 @@ public :
     float b_m3DR = 0;
     float b_m3LepT = 0;
     float b_m3HadT = 0;
-    float b_DRLepW = 0;
-    float b_DRHadW = 0;
-    float b_DRH = 0;
-    float b_DRDR = 0;
-    float b_DRLepT = 0;
-    float b_DRHadT = 0;
+
+    float b_DRlepWpt = 0;
+    float b_DRlepWeta = 0;
+    float b_DRlepWphi = 0;
+    float b_DRlepWm = 0;
+
+    float b_DRjet0pt = 0;
+    float b_DRjet0eta = 0;
+    float b_DRjet0phi = 0;
+    float b_DRjet0m = 0;
+    float b_DRjet0csv = 0;
+    float b_DRjet0cvsl = 0;
+    float b_DRjet0cvsb = 0;
+
+    float b_DRjet1pt = 0;
+    float b_DRjet1eta = 0;
+    float b_DRjet1phi = 0;
+    float b_DRjet1m = 0;
+    float b_DRjet1csv = 0;
+    float b_DRjet1cvsl = 0;
+    float b_DRjet1cvsb = 0;
+
+    float b_DRjet2pt = 0;
+    float b_DRjet2eta = 0;
+    float b_DRjet2phi = 0;
+    float b_DRjet2m = 0;
+    float b_DRjet2csv = 0;
+    float b_DRjet2cvsl = 0;
+    float b_DRjet2cvsb = 0;
+
+    float b_DRjet3pt = 0;
+    float b_DRjet3eta = 0;
+    float b_DRjet3phi = 0;
+    float b_DRjet3m = 0;
+    float b_DRjet3csv = 0;
+    float b_DRjet3cvsl = 0;
+    float b_DRjet3cvsb = 0;
+
+    float b_DRjet12pt = 0;
+    float b_DRjet12eta = 0;
+    float b_DRjet12phi = 0;
+    float b_DRjet12m = 0;
+    float b_DRjet12DR = 0;
+
+    float b_DRjet23pt = 0;
+    float b_DRjet23eta = 0;
+    float b_DRjet23phi = 0;
+    float b_DRjet23m = 0;
+
+    float b_DRjet31pt = 0;
+    float b_DRjet31eta = 0;
+    float b_DRjet31phi = 0;
+    float b_DRjet31m = 0;
+
+    float b_DRlepTpt = 0;
+    float b_DRlepTeta = 0;
+    float b_DRlepTphi = 0;
+    float b_DRlepTm = 0;
+
+    float b_DRhadTpt = 0;
+    float b_DRhadTeta = 0;
+    float b_DRhadTphi = 0;
+    float b_DRhadTm = 0;
+
 
    ClassDef(tmvaAnalysis,0);
 

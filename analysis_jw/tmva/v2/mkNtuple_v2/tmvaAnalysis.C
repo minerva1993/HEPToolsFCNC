@@ -14,12 +14,13 @@ void tmvaAnalysis::SlaveBegin(TTree * /*tree*/)
    TString option = GetOption();
 
     //treeTMVA = new TTree(Form("tmva_%s",option.Data()), "tree for tmva");
-
     //treeTMVA = new TTree("tmva_DataSingleMu", "tree for tmva");
-    treeTMVA = new TTree("tmva_DataSingleEG", "tree for tmva");
+    //treeTMVA = new TTree("tmva_DataSingleEG", "tree for tmva");
     //treeTMVA = new TTree("tmva_zjets", "tree for tmva");
     //treeTMVA = new TTree("tmva_ttLF", "tree for tmva");
     //treeTMVA = new TTree("tmva_tt", "tree for tmva");
+
+    treeTMVA = new TTree("tmva_tree","tree for tmva");
 
     treeTMVA->Branch("njets", &b_njets, "b_njets/I");
     treeTMVA->Branch("nbjets_m", &b_nbjets_m, "b_nbjets_m/I");
@@ -33,14 +34,15 @@ void tmvaAnalysis::SlaveBegin(TTree * /*tree*/)
     treeTMVA->Branch("dibjetsMass", &b_dibjetm, "b_dibjetm/F");
     treeTMVA->Branch("bjetPt_dibjetsm", &b_bjmpt, "b_bjmpt/F");
     treeTMVA->Branch("cjetPt", &b_cjmpt, "b_cjmpt/F");
-    treeTMVA->Branch("jetPt1", &b_jet1pt, "b_jet1pt/F");
-    treeTMVA->Branch("jetPt2", &b_jet2pt, "b_jet2pt/F");
-    treeTMVA->Branch("jetPt3", &b_jet3pt, "b_jet3pt/F");
-    treeTMVA->Branch("jetPt4", &b_jet4pt, "b_jet4pt/F");
-    treeTMVA->Branch("jetCSV1", &b_jet1csv, "b_jet1csv/F");
-    treeTMVA->Branch("JetCSV2", &b_jet2csv, "b_jet2csv/F");
-    treeTMVA->Branch("JetCSV3", &b_jet3csv, "b_jet3csv/F");
-    treeTMVA->Branch("JetCSV4", &b_jet4csv, "b_jet4csv/F");
+    treeTMVA->Branch("jet1pt", &b_jet1pt, "b_jet1pt/F");
+    treeTMVA->Branch("jet2pt", &b_jet2pt, "b_jet2pt/F");
+    treeTMVA->Branch("jet3pt", &b_jet3pt, "b_jet3pt/F");
+    treeTMVA->Branch("jet4pt", &b_jet4pt, "b_jet4pt/F");
+    treeTMVA->Branch("jet1csv", &b_jet1csv, "b_jet1csv/F");
+    treeTMVA->Branch("jet2csv", &b_jet2csv, "b_jet2csv/F");
+    treeTMVA->Branch("jet3csv", &b_jet3csv, "b_jet3csv/F");
+    treeTMVA->Branch("jet4csv", &b_jet4csv, "b_jet4csv/F");
+
     //kinfit
     treeTMVA->Branch("KinLepWMass", &b_kinLepW, "b_kinLepW/F");
     treeTMVA->Branch("KinLepTopMass", &b_kinLepT, "b_kinLepT/F");
@@ -54,16 +56,73 @@ void tmvaAnalysis::SlaveBegin(TTree * /*tree*/)
     treeTMVA->Branch("M3LepWMass", &b_m3LepW, "b_m3LepW/F");
     treeTMVA->Branch("M3HadWMass", &b_m3HadW, "b_m3HadW/F");
     treeTMVA->Branch("M3HMass", &b_m3H, "b_m3H/F");
-    treeTMVA->Branch("M3R", &b_m3DR, "b_m3DR/F");
+    treeTMVA->Branch("M3DR", &b_m3DR, "b_m3DR/F");
     treeTMVA->Branch("M3LepTopMass", &b_m3LepT, "b_m3LepT/F");
     treeTMVA->Branch("M3HucTopMass", &b_m3HadT, "b_m3HadT/F");
 
-    treeTMVA->Branch("DRLepWMass", &b_DRLepW, "b_DRLepW/F");
-    treeTMVA->Branch("DRHadWMass", &b_DRHadW, "b_DRHadW/F");
-    treeTMVA->Branch("DRHMass", &b_DRH, "b_DRH/F");
-    treeTMVA->Branch("DRDR", &b_DRDR, "b_DRDR/F");
-    treeTMVA->Branch("DRLepTopMass", &b_DRLepT, "b_DRLepT/F");
-    treeTMVA->Branch("DRHucTopMass", &b_DRHadT, "b_DRHadT/F");
+    //DR jets
+    treeTMVA->Branch("DRlepWpt", &b_DRlepWpt, "b_DRlepWpt/F");
+    treeTMVA->Branch("DRlepWeta", &b_DRlepWeta, "b_DRlepWeta/F");
+    treeTMVA->Branch("DRlepWphi", &b_DRlepWphi, "b_DRlepWphi/F");
+    treeTMVA->Branch("DRlepWm", &b_DRlepWm, "b_DRlepWm/F");
+
+    treeTMVA->Branch("DRjet0pt", &b_DRjet0pt, "DRjet0pt/F");
+    treeTMVA->Branch("DRjet0eta", &b_DRjet0eta, "DRjet0eta/F");
+    treeTMVA->Branch("DRjet0phi", &b_DRjet0phi, "DRjet0phi/F");
+    treeTMVA->Branch("DRjet0m", &b_DRjet0m, "DRjet0m/F");
+    treeTMVA->Branch("DRjet0csv", &b_DRjet0csv, "DRjet0csv/F");
+    treeTMVA->Branch("DRjet0cvsl", &b_DRjet0cvsl, "DRjet0cvsl/F");
+    treeTMVA->Branch("DRjet0cvsb", &b_DRjet0cvsb, "DRjet0cvsb/F");
+
+    treeTMVA->Branch("DRjet1pt",&b_DRjet1pt, "DRjet1pt/F");
+    treeTMVA->Branch("DRjet1eta",&b_DRjet1eta, "DRjet1eta/F");
+    treeTMVA->Branch("DRjet1phi",&b_DRjet1phi, "DRjet1phi/F");
+    treeTMVA->Branch("DRjet1m",&b_DRjet1m, "DRjet1m/F");
+    treeTMVA->Branch("DRjet1csv", &b_DRjet1csv, "DRjet1csv/F");
+    treeTMVA->Branch("DRjet1cvsl", &b_DRjet1cvsl, "DRjet1cvsl/F");
+    treeTMVA->Branch("DRjet1cvsb", &b_DRjet1cvsb, "DRjet1cvsb/F");
+
+    treeTMVA->Branch("DRjet2pt",&b_DRjet2pt, "DRjet2pt/F");
+    treeTMVA->Branch("DRjet2eta",&b_DRjet2eta, "DRjet2eta/F");
+    treeTMVA->Branch("DRjet2phi",&b_DRjet2phi, "DRjet2phi/F");
+    treeTMVA->Branch("DRjet2m",&b_DRjet2m, "DRjet2m/F");
+    treeTMVA->Branch("DRjet2csv", &b_DRjet2csv, "DRjet2csv/F");
+    treeTMVA->Branch("DRjet2cvsl", &b_DRjet2cvsl, "DRjet2cvsl/F");
+    treeTMVA->Branch("DRjet2cvsb", &b_DRjet2cvsb, "DRjet2cvsb/F");
+
+    treeTMVA->Branch("DRjet3pt",&b_DRjet3pt, "DRjet3pt/F");
+    treeTMVA->Branch("DRjet3eta",&b_DRjet3eta, "DRjet3eta/F");
+    treeTMVA->Branch("DRjet3phi",&b_DRjet3phi, "DRjet3phi/F");
+    treeTMVA->Branch("DRjet3m",&b_DRjet3m, "DRjet3m/F");
+    treeTMVA->Branch("DRjet3csv", &b_DRjet3csv, "DRjet3csv/F");
+    treeTMVA->Branch("DRjet3cvsl", &b_DRjet3cvsl, "DRjet3cvsl/F");
+    treeTMVA->Branch("DRjet3cvsb", &b_DRjet3cvsb, "DRjet3cvsb/F");
+
+    treeTMVA->Branch("DRjet12pt",&b_DRjet12pt, "DRjet12pt/F");
+    treeTMVA->Branch("DRjet12eta",&b_DRjet12eta, "DRjet12eta/F");
+    treeTMVA->Branch("DRjet12phi",&b_DRjet12phi, "DRjet12phi/F");//mass->higgs
+    treeTMVA->Branch("DRjet12m", &b_DRjet12m, "b_DRjet12m/F");//higgs candidate
+    treeTMVA->Branch("DRjet12DR", &b_DRjet12DR, "b_DRjet12DR/F");
+
+    treeTMVA->Branch("DRjet23pt",&b_DRjet23pt, "DRjet23pt/F");
+    treeTMVA->Branch("DRjet23eta",&b_DRjet23eta, "DRjet23eta/F");
+    treeTMVA->Branch("DRjet23phi",&b_DRjet23phi, "DRjet23phi/F");//mass->had W
+    treeTMVA->Branch("DRjet23m", &b_DRjet23m, "b_DRjet23m/F");//hadW
+
+    treeTMVA->Branch("DRjet31pt",&b_DRjet31pt, "DRjet31pt/F");
+    treeTMVA->Branch("DRjet31eta",&b_DRjet31eta, "DRjet31eta/F");
+    treeTMVA->Branch("DRjet31phi",&b_DRjet31phi, "DRjet31phi/F");
+    treeTMVA->Branch("DRjet31m",&b_DRjet31m, "DRjet31m/F");
+
+    treeTMVA->Branch("DRlepTpt", &b_DRlepTpt, "DRlepTpt/F");
+    treeTMVA->Branch("DRlepTeta", &b_DRlepTeta, "DRlepTeta/F");
+    treeTMVA->Branch("DRlepTphi", &b_DRlepTphi, "DRlepTphi/F");
+    treeTMVA->Branch("DRlepTm", &b_DRlepTm, "b_DRlepTm/F");
+
+    treeTMVA->Branch("DRhadTpt", &b_DRhadTpt, "DRhadTpt/F");
+    treeTMVA->Branch("DRhadTeta", &b_DRhadTeta, "DRhadTeta/F");
+    treeTMVA->Branch("DRhadTphi", &b_DRhadTphi, "DRhadTphi/F");
+    treeTMVA->Branch("DRhadTm", &b_DRhadTm, "b_DRhadTm/F");
 
     fOutput->Add(treeTMVA);   
 } 
@@ -90,7 +149,6 @@ Bool_t tmvaAnalysis::Process(Long64_t entry)
     //Object selection
     int njets = 0;
     int nbjets_m = 0; 
-    int nbjets_t = 0; 
     int ncjets_m = 0; 
 
     TLorentzVector p4met;
@@ -116,13 +174,12 @@ Bool_t tmvaAnalysis::Process(Long64_t entry)
     double bJetPtHm = 9999;
     double cjetPt = 0;
 
-    vector<float> jet_cvsl;
-    vector<float> bjm_csv;
-    vector<float> bjt_csv;
-
     //for Goh's Kin fit
     vector<size_t> jetIdxs;
     int b_kin_bjetcode;
+    vector<float> jetCSVsDR;
+    vector<float> jetCVSLsDR;
+    vector<float> jetCVSBsDR;
 
     //Selection Option
     bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -156,10 +213,9 @@ Bool_t tmvaAnalysis::Process(Long64_t entry)
         if( jet_CSV[iJet] > 0.8484 ){
           nbjets_m++;
           v_bjet_m.push_back(jet);
-          bjm_csv.push_back(jet_CSV[iJet]);
         }
 
-        if( jet_CvsL[iJet] > -0.1 && jet_CvsL[iJet] > 0.08 ){
+        if( jet_CvsL[iJet] > -0.1 && jet_CvsB[iJet] > 0.08 ){
           ncjets_m++;
           v_cjet_m.push_back(jet.Pt());
         }
@@ -273,7 +329,7 @@ Bool_t tmvaAnalysis::Process(Long64_t entry)
           }
         }
       }
-    }
+      }
 
     //M3
     vector<size_t> bestIdxs;
@@ -381,6 +437,9 @@ Bool_t tmvaAnalysis::Process(Long64_t entry)
       for ( size_t i=0; i<4; ++i ) {
         const size_t j = bestIdxsDR[i];
         jetP4sDR[i].SetPtEtaPhiE(jet_pT[j], jet_eta[j], jet_phi[j], jet_E[j]);
+        jetCSVsDR.push_back(jet_CSV[j]);
+        jetCVSLsDR.push_back(jet_CvsL[j]);
+        jetCVSBsDR.push_back(jet_CvsB[j]);
       }
     }
 
@@ -398,12 +457,69 @@ Bool_t tmvaAnalysis::Process(Long64_t entry)
       b_m3DR = jetP4s[1].DeltaR(jetP4s[2]);
       b_m3HadT = (jetP4s[1]+jetP4s[2]+jetP4s[3]).M();
 
-      b_DRLepW = (lepton+p4met).M();
-      b_DRHadW = (jetP4sDR[2]+jetP4sDR[3]).M();
-      b_DRLepT = (lepton+p4met+jetP4sDR[0]).M();
-      b_DRH = (jetP4sDR[1]+jetP4sDR[2]).M();
-      b_DRDR = jetP4sDR[1].DeltaR(jetP4sDR[2]);
-      b_DRHadT = (jetP4sDR[1]+jetP4sDR[2]+jetP4sDR[3]).M();
+      b_DRlepWpt = (lepton+p4met).Pt();
+      b_DRlepWeta = (lepton+p4met).Eta();
+      b_DRlepWphi = (lepton+p4met).Phi();
+      b_DRlepWm = (lepton+p4met).M();
+
+      b_DRjet0pt = jetP4sDR[0].Pt();
+      b_DRjet0eta = jetP4sDR[0].Eta();
+      b_DRjet0phi = jetP4sDR[0].Phi();
+      b_DRjet0m = jetP4sDR[0].M();
+      b_DRjet0csv = jetCSVsDR[0];
+      b_DRjet0cvsl = jetCVSLsDR[0];
+      b_DRjet0cvsb = jetCVSBsDR[0];
+
+      b_DRjet1pt = jetP4sDR[1].Pt();
+      b_DRjet1eta = jetP4sDR[1].Eta();
+      b_DRjet1phi = jetP4sDR[1].Phi();
+      b_DRjet1m = jetP4sDR[1].M();
+      b_DRjet1csv = jetCSVsDR[1];
+      b_DRjet1cvsl = jetCVSLsDR[1];
+      b_DRjet1cvsb = jetCVSBsDR[1];
+
+      b_DRjet2pt = jetP4sDR[2].Pt();
+      b_DRjet2eta = jetP4sDR[2].Eta();
+      b_DRjet2phi = jetP4sDR[2].Phi();
+      b_DRjet2m = jetP4sDR[2].M();
+      b_DRjet2csv = jetCSVsDR[2];
+      b_DRjet2cvsl = jetCVSLsDR[2];
+      b_DRjet2cvsb = jetCVSBsDR[2];
+
+      b_DRjet3pt = jetP4sDR[3].Pt();
+      b_DRjet3eta = jetP4sDR[3].Eta();
+      b_DRjet3phi = jetP4sDR[3].Phi();
+      b_DRjet3m = jetP4sDR[3].M();
+      b_DRjet3csv = jetCSVsDR[3];
+      b_DRjet3cvsl = jetCVSLsDR[3];
+      b_DRjet3cvsb = jetCVSBsDR[3];
+
+      b_DRjet12pt = (jetP4sDR[1]+jetP4sDR[2]).Pt();
+      b_DRjet12eta = (jetP4sDR[1]+jetP4sDR[2]).Eta();
+      b_DRjet12phi = (jetP4sDR[1]+jetP4sDR[2]).Phi();
+      b_DRjet12m = (jetP4sDR[1]+jetP4sDR[2]).M();
+      b_DRjet12DR = jetP4sDR[1].DeltaR(jetP4sDR[2]);
+
+      b_DRjet23pt = (jetP4sDR[2]+jetP4sDR[3]).Pt();
+      b_DRjet23eta = (jetP4sDR[2]+jetP4sDR[3]).Eta();
+      b_DRjet23phi = (jetP4sDR[2]+jetP4sDR[3]).Phi();
+      b_DRjet23m = (jetP4sDR[2]+jetP4sDR[3]).M();
+
+      b_DRjet31pt = (jetP4sDR[1]+jetP4sDR[3]).Pt();
+      b_DRjet31eta = (jetP4sDR[1]+jetP4sDR[3]).Eta();
+      b_DRjet31phi = (jetP4sDR[1]+jetP4sDR[3]).Phi();
+      b_DRjet31m = (jetP4sDR[1]+jetP4sDR[3]).M();
+
+      b_DRlepTpt = (lepton+p4met+jetP4sDR[0]).Pt();
+      b_DRlepTeta = (lepton+p4met+jetP4sDR[0]).Eta();
+      b_DRlepTphi = (lepton+p4met+jetP4sDR[0]).Phi();
+      b_DRlepTm = (lepton+p4met+jetP4sDR[0]).M();
+
+      b_DRhadTpt = (jetP4sDR[1]+jetP4sDR[2]+jetP4sDR[3]).Pt();
+      b_DRhadTeta = (jetP4sDR[1]+jetP4sDR[2]+jetP4sDR[3]).Eta();
+      b_DRhadTphi = (jetP4sDR[1]+jetP4sDR[2]+jetP4sDR[3]).Phi();
+      b_DRhadTm = (jetP4sDR[1]+jetP4sDR[2]+jetP4sDR[3]).M();
+
     }
 
     treeTMVA->Fill();
@@ -425,10 +541,12 @@ void tmvaAnalysis::Terminate()
     TFile hfile(Form("tmva_%s.root",option.Data()), "RECREATE", "Tree for tmva run");
     //fOutput->FindObject(Form("tmva_%s",option.Data()))->Write();
     //fOutput->FindObject("tmva_DataSingleMu")->Write();
-    fOutput->FindObject("tmva_DataSingleEG")->Write();
+    //fOutput->FindObject("tmva_DataSingleEG")->Write();
     //fOutput->FindObject("tmva_zjets")->Write();
     //fOutput->FindObject("tmva_ttLF")->Write();
     //fOutput->FindObject("tmva_tt")->Write();
+
+    fOutput->FindObject("tmva_tree")->Write();
 
     hfile.Write();
     hfile.Close();
