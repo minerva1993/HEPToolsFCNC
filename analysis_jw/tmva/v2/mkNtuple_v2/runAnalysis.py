@@ -77,10 +77,22 @@ for eo in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/Si
 
 for ep in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleElectron_Run2016H_v3"):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleElectron_Run2016H_v3", ep,"SingleElectron_Run2016H_v3_splitted_"+ str(ep).rstrip(".root"))
+"""
+#runAna(inputdir+version,"TT_powheg_ttbb.root","ttbb")
+for o in range(0, 238):
+  runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/TT_powheg_ttbb","Tree_ttbbLepJets_"+ str(o) + ".root","ttbb_split_"+ str(o))
 
-#runAna(inputdir+version,"DYJets.root","zjets")
-for i in range(0, 145):
-  runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/DYJets","Tree_ttbbLepJets_"+ str(i) + ".root","zjets_split_"+ str(i))
+#runAna(inputdir+version,"TT_powheg_ttbj.root","ttbj")
+for p in range(0, 238):
+  runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/TT_powheg_ttbj","Tree_ttbbLepJets_"+ str(p) + ".root","ttbj_split_"+ str(p))
+
+#runAna(inputdir+version,"TT_powheg_ttcc.root","ttcc")
+for q in range(0, 238):
+  runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/TT_powheg_ttcc","Tree_ttbbLepJets_"+ str(q) + ".root","ttcc_split_"+ str(q))
+
+#runAna(inputdir+version,"TT_powheg_ttbkg.root","ttBkg")
+for r in range(0, 238):
+  runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/TT_powheg_ttBkg","Tree_ttbbLepJets_"+ str(r) + ".root","ttBkg_split_"+ str(r))
 
 #runAna(inputdir+version,"TT_powheg_ttlf.root","ttLF")
 for j in range(0, 238):
@@ -90,22 +102,29 @@ for j in range(0, 238):
 for k in range(0, 238):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/TT_powheg_ttother","Tree_ttbbLepJets_"+ str(k) + ".root","tt_split_"+ str(k))
 
-runAna(inputdir+version,"WJets.root","wjets")
+#runAna(inputdir+version,"DYJets.root","zjets")
+for i in range(0, 145):
+  runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/DYJets","Tree_ttbbLepJets_"+ str(i) + ".root","zjets_split_"+ str(i))
+
+#runAna(inputdir+version,"WJets.root","wjets")
+for l in range(0, 30):
+  runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/WJets","Tree_ttbbLepJets_"+ str(l) + ".root","wjets_split_"+ str(l))
+
+#runAna(inputdir+version,"SingleTop_t.root","tchannel")
+for m in range(0, 72):
+  runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleTop_t","Tree_ttbbLepJets_"+ str(m) + ".root","tchannel_split_"+ str(m))
+
+#runAna(inputdir+version,"SingleTbar_t.root","tbarchannel")
+for n in range(0, 41):
+  runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleTbar_t","Tree_ttbbLepJets_"+ str(n) + ".root","tbarchannel_split_"+ str(n))
+"""
 runAna(inputdir+version,"DYJets_10to50.root","zjets10to50")
 runAna(inputdir+version,"WW.root","ww")
 runAna(inputdir+version,"WZ.root","wz")
 runAna(inputdir+version,"ZZ.root","zz")
-runAna(inputdir+version,"SingleTop_t.root","tchannel")
-runAna(inputdir+version,"SingleTbar_t.root","tbarchannel")
 runAna(inputdir+version,"SingleTop_tW.root","tWchannel")
 runAna(inputdir+version,"SingleTbar_tW.root","tbarWchannel")
-runAna(inputdir+version,"TT_powheg_ttbb.root","ttbb")
-runAna(inputdir+version,"TT_powheg_ttbj.root","ttbj")
-runAna(inputdir+version,"TT_powheg_ttcc.root","ttcc")
-runAna(inputdir+version,"TT_powheg_ttbkg.root","ttBkg")
-"""
 runAna(inputdir+version,"TT_TopLeptonicDecay_TH_1L3B_Eta_Hct.root","Top_Hct")
-"""
 runAna(inputdir+version,"TT_TopLeptonicDecay_TH_1L3B_Eta_Hut.root","Top_Hut")
 runAna(inputdir+version,"TT_AntitopLeptonicDecay_TH_1L3B_Eta_Hct.root","AntiTop_Hct")
 runAna(inputdir+version,"TT_AntitopLeptonicDecay_TH_1L3B_Eta_Hut.root","AntiTop_Hut")
