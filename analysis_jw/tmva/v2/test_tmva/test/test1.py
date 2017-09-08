@@ -1,22 +1,15 @@
 #!/usr/bin/env python
 import sys, os
-import google.protobuf
 from ROOT import *
-from keras.models import Sequential
-from keras.layers.core import Dense, Activation
-from keras.regularizers import l2
-from keras import initializations
-from keras.optimizers import SGD
 
 TMVA.Tools.Instance()
-TMVA.PyMethodBase.PyInitialize()
 
-fout = TFile("output_keras.root","recreate")
+fout = TFile("output.root","recreate")
 
 factory = TMVA.Factory("TMVAClassification", fout,
                        "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G;D:AnalysisType=Classification" )
 
-loader = TMVA.DataLoader("keras2")
+loader = TMVA.DataLoader("test")
 loader.AddVariable("njets", "I")
 loader.AddVariable("nbjets_m",'I')
 loader.AddVariable("ncjets_m",'I')
@@ -112,39 +105,33 @@ loader.PrepareTrainingAndTestTree(
 
 factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=850:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:UseBaggedBoost:BaggedSampleFraction=0.5:SeparationType=GiniIndex:nCuts=20")
 
-#factory.BookMethod(loader, TMVA.Types.kDNN, "DNN", '!H:V:ErrorStrategy=CROSSENTROPY:VarTransform=N:WeightInitialization=XAVIERUNIFORM:Architecture=CPU:Layout=TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|200,TANH|100,LINEAR:TrainingStrategy=LearningRate=1e-2,Repetitions=1,ConvergenceSteps=20,Multithreading=True,Regularization=L2,WeightDecay=1e-3,BatchSize=200,TestRepetitions=5,DropConfig=0.0+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.0,Momentum=0.6')
+"""
+# For the DNN
+dnnCommonOpt = "!H:V:ErrorStrategy=CROSSENTROPY:VarTransform=N:WeightInitialization=XAVIERUNIFORM"
+trainingCommonOpt = ["Repetitions=1", "ConvergenceSteps=20", "Multithreading=True", "Regularization=L2",
+                     "WeightDecay=1e-3", "BatchSize=200", "TestRepetitions=5",]
+dnnLayouts = [
+    ["DNN", [
+        ["TANH|128", trainingCommonOpt+["LearningRate=1e-2","Momentum=0.6","DropConfig=0.0+0.3+0.3+0.5"]]],
+    ]
+]
 
-#Keras
-def normal(shape, name=None):
-  return initializations.normal(shape, scale=0.05, name=name)
+for name, dnnLayout in dnnLayouts:
+  dnnOpts = [dnnCommonOpt,
+      ("Layout="+("|".join([x[0] for x in dnnLayout]))+"|64,LINEAR"),
+      ("TrainingStrategy="+("|".join([",".join(x[1]) for x in dnnLayout]))),
+  ]
+  factory.BookMethod(loader, TMVA.Types.kDNN, name, ":".join(dnnOpts))
+"""
 
-model = Sequential()
-model.add(Dense(300, init=normal, activation='relu', W_regularizer=l2(1e-5), input_dim=59))
-model.add(Dense(500, init=normal, activation='relu'))
-model.add(Dense(700, init=normal, activation='relu'))
-model.add(Dense(700, init=normal, activation='relu'))
-model.add(Dense(700, init=normal, activation='relu'))
-model.add(Dense(700, init=normal, activation='relu'))
-model.add(Dense(700, init=normal, activation='relu'))
-model.add(Dense(700, init=normal, activation='relu'))
-model.add(Dense(500, init=normal, activation='relu'))
-model.add(Dense(500, init=normal, activation='relu'))
-model.add(Dense(300, init=normal, activation='relu'))
-model.add(Dense(100, init=normal, activation='relu'))
-model.add(Dense(2, init=normal, activation='softmax'))
-
-model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01), metrics=['accuracy',])
-model.save('model.h5')
-model.summary()
-
-factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model.h5:NumEpochs=20:BatchSize=32")
+factory.BookMethod(loader, TMVA.Types.kDNN, "DNN", '!H:V:ErrorStrategy=CROSSENTROPY:VarTransform=N:WeightInitialization=XAVIERUNIFORM:Layout=TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|200,TANH|60,LINEAR:TrainingStrategy=LearningRate=1e-2,Repetitions=1,ConvergenceSteps=20,Multithreading=True,Regularization=L2,WeightDecay=1e-3,BatchSize=200,TestRepetitions=5,DropConfig=0.0+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.0,Momentum=0.6')
 
 factory.TrainAllMethods()
 factory.TestAllMethods()
 factory.EvaluateAllMethods()
 fout.Close()
 
-TMVA.TMVAGui("output_keras.root")
+TMVA.TMVAGui("output.root")
 
 
 
