@@ -110,23 +110,27 @@ loader.PrepareTrainingAndTestTree(
     "nTrain_Signal=30000:nTrain_Background=30000:nTest_Signal=10000:nTest_Background=10000:SplitMode=Random:NormMode=NumEvents:!V"
 )
 
-#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=850:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:UseBaggedBoost:BaggedSampleFraction=0.5:SeparationType=GiniIndex:nCuts=20")
+factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=850:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:UseBaggedBoost:BaggedSampleFraction=0.5:SeparationType=GiniIndex:nCuts=20")
 
-#factory.BookMethod(loader, TMVA.Types.kDNN, "DNN", '!H:V:ErrorStrategy=CROSSENTROPY:VarTransform=N:WeightInitialization=XAVIERUNIFORM:Layout=TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|200,TANH|60,LINEAR:TrainingStrategy=LearningRate=1e-2,Repetitions=1,ConvergenceSteps=20,Multithreading=True,Regularization=L2,WeightDecay=1e-3,BatchSize=200,TestRepetitions=5,DropConfig=0.0+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.0,Momentum=0.6')
+#factory.BookMethod(loader, TMVA.Types.kDNN, "DNN", '!H:V:ErrorStrategy=CROSSENTROPY:VarTransform=N:WeightInitialization=XAVIERUNIFORM:Architecture=CPU:Layout=TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|300,TANH|200,TANH|100,LINEAR:TrainingStrategy=LearningRate=1e-2,Repetitions=1,ConvergenceSteps=20,Multithreading=True,Regularization=L2,WeightDecay=1e-3,BatchSize=200,TestRepetitions=5,DropConfig=0.0+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.3+0.0,Momentum=0.6')
 
 #Keras
 def normal(shape, name=None):
   return initializations.normal(shape, scale=0.05, name=name)
 
 model = Sequential()
-model.add(Dense(250, init=normal, activation='relu', W_regularizer=l2(1e-5), input_dim=59))
-model.add(Dense(250, init=normal, activation='relu'))
-model.add(Dense(250, init=normal, activation='relu'))
-model.add(Dense(250, init=normal, activation='relu'))
-model.add(Dense(250, init=normal, activation='relu'))
-model.add(Dense(250, init=normal, activation='relu'))
-model.add(Dense(150, init=normal, activation='relu'))
-model.add(Dense(64, init=normal, activation='relu'))
+model.add(Dense(300, init=normal, activation='relu', W_regularizer=l2(1e-5), input_dim=59))
+model.add(Dense(500, init=normal, activation='relu'))
+model.add(Dense(700, init=normal, activation='relu'))
+model.add(Dense(700, init=normal, activation='relu'))
+model.add(Dense(700, init=normal, activation='relu'))
+model.add(Dense(700, init=normal, activation='relu'))
+model.add(Dense(700, init=normal, activation='relu'))
+model.add(Dense(700, init=normal, activation='relu'))
+model.add(Dense(500, init=normal, activation='relu'))
+model.add(Dense(500, init=normal, activation='relu'))
+model.add(Dense(300, init=normal, activation='relu'))
+model.add(Dense(100, init=normal, activation='relu'))
 model.add(Dense(2, init=normal, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01), metrics=['accuracy',])
