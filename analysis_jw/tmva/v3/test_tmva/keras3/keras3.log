@@ -1,0 +1,674 @@
+                         : Some more output
+                         : A TDirectoryFile with name InputVariables_Deco already exists in output_keras.root:/keras3, I will try with InputVariables_Deco_0.
+                         : Ranking input variables (method unspecific)...
+IdTransformation         : Ranking result (top variable is best ranked)
+                         : ----------------------------------------
+                         : Rank : Variable        : Separation
+                         : ----------------------------------------
+                         :    1 : njets           : 9.012e-02
+                         :    2 : DRjet2csv       : 7.175e-02
+                         :    3 : DRjet2cvsb      : 6.953e-02
+                         :    4 : DRjet3cvsl      : 4.933e-02
+                         :    5 : DRjet3csv       : 3.838e-02
+                         :    6 : jet1csv         : 3.680e-02
+                         :    7 : jet1cvsb        : 3.533e-02
+                         :    8 : DRjet1csv       : 3.480e-02
+                         :    9 : DRjet2cvsl      : 3.192e-02
+                         :   10 : jet4pt          : 3.148e-02
+                         :   11 : DRjet3cvsb      : 3.070e-02
+                         :   12 : jet1cvsl        : 2.928e-02
+                         :   13 : jet3csv         : 2.743e-02
+                         :   14 : DRjet1cvsb      : 2.648e-02
+                         :   15 : jet4csv         : 2.636e-02
+                         :   16 : DRjet0pt        : 2.567e-02
+                         :   17 : DRjet0m         : 2.550e-02
+                         :   18 : jet1pt          : 2.514e-02
+                         :   19 : jet2csv         : 2.501e-02
+                         :   20 : DRjet0cvsl      : 2.469e-02
+                         :   21 : DRjet0cvsb      : 2.352e-02
+                         :   22 : jet3pt          : 2.332e-02
+                         :   23 : jet1m           : 2.332e-02
+                         :   24 : DRlepTm         : 2.320e-02
+                         :   25 : jet2cvsb        : 2.293e-02
+                         :   26 : jet2cvsl        : 2.291e-02
+                         :   27 : jet2pt          : 2.281e-02
+                         :   28 : DRjet0csv       : 2.170e-02
+                         :   29 : dibjetsMass     : 2.129e-02
+                         :   30 : jet4cvsb        : 2.114e-02
+                         :   31 : nbjets_m        : 2.064e-02
+                         :   32 : jet3cvsb        : 2.032e-02
+                         :   33 : jet3cvsl        : 2.022e-02
+                         :   34 : jet4cvsl        : 1.958e-02
+                         :   35 : DRjet12m        : 1.941e-02
+                         :   36 : jet4m           : 1.892e-02
+                         :   37 : jet2m           : 1.761e-02
+                         :   38 : jet3m           : 1.654e-02
+                         :   39 : cjetPt          : 1.582e-02
+                         :   40 : DRhadTm         : 1.443e-02
+                         :   41 : ncjets_m        : 1.203e-02
+                         :   42 : bjetmDR         : 1.105e-02
+                         :   43 : DRjet1cvsl      : 1.064e-02
+                         :   44 : DRjet31m        : 9.735e-03
+                         :   45 : DRhadTpt        : 9.545e-03
+                         :   46 : DRjet23m        : 8.029e-03
+                         :   47 : DRjet1m         : 7.924e-03
+                         :   48 : DRjet31pt       : 7.307e-03
+                         :   49 : bjetmDEta       : 6.322e-03
+                         :   50 : bjetmDPhi       : 6.040e-03
+                         :   51 : bjetPt_dibjetsm : 5.807e-03
+                         :   52 : DRjet1pt        : 5.610e-03
+                         :   53 : DRjet12pt       : 5.470e-03
+                         :   54 : DRjet23pt       : 5.174e-03
+                         :   55 : DRjet3pt        : 4.857e-03
+                         :   56 : DRlepTeta       : 4.378e-03
+                         :   57 : DRjet3m         : 3.832e-03
+                         :   58 : DRjet2eta       : 3.497e-03
+                         :   59 : jet1eta         : 3.314e-03
+                         :   60 : DRjet12DR       : 3.018e-03
+                         :   61 : DRjet0eta       : 2.684e-03
+                         :   62 : jet4eta         : 2.475e-03
+                         :   63 : DRjet2pt        : 2.468e-03
+                         :   64 : DRjet12eta      : 2.462e-03
+                         :   65 : jet2eta         : 2.431e-03
+                         :   66 : DRlepTpt        : 2.289e-03
+                         :   67 : DRjet2m         : 2.242e-03
+                         :   68 : jet3eta         : 2.231e-03
+                         :   69 : lepDPhi         : 2.079e-03
+                         :   70 : DRjet1eta       : 1.853e-03
+                         :   71 : missingET       : 1.815e-03
+                         :   72 : DRjet31eta      : 1.456e-03
+                         :   73 : DRjet23eta      : 1.256e-03
+                         :   74 : DRhadTeta       : 1.250e-03
+                         :   75 : DRjet3eta       : 1.178e-03
+                         : ----------------------------------------
+Factory                  : Train method: BDT for Classification
+                         : 
+BDT                      : #events: (reweighted) sig: 30000 bkg: 30000
+                         : #events: (unweighted) sig: 30000 bkg: 30000
+                         : Training 850 Decision Trees ... patience please
+                         : Elapsed time for training with 60000 events: 74.7 sec         
+BDT                      : [keras3] : Evaluation of BDT on training sample (60000 events)
+                         : Elapsed time for evaluation of 60000 events: 5.26 sec       
+                         : Creating xml weight file: keras3/weights/TMVAClassification_BDT.weights.xml
+                         : Creating standalone class: keras3/weights/TMVAClassification_BDT.class.C
+Factory                  : Training finished
+                         : 
+Factory                  : Train method: PyKeras for Classification
+                         : 
+                         : 
+                         : ================================================================
+                         : H e l p   f o r   M V A   m e t h o d   [ PyKeras ] :
+                         : 
+                         : Keras is a high-level API for the Theano and Tensorflow packages.
+                         : This method wraps the training and predictions steps of the Keras
+                         : Python package for TMVA, so that dataloading, preprocessing and
+                         : evaluation can be done within the TMVA system. To use this Keras
+                         : interface, you have to generate a model with Keras first. Then,
+                         : this model can be loaded and trained in TMVA.
+                         : 
+                         : 
+                         : <Suppress this message by specifying "!H" in the booking option>
+                         : ================================================================
+                         : 
+                         : Preparing the Decorrelation transformation...
+                         : Preparing the Gaussian transformation...
+TFHandler_PyKeras        :        Variable               Mean               RMS       [        Min               Max ]
+                         : ----------------------------------------------------------------------------------------------
+                         :           njets:        0.0037130          0.99846   [          -3.3073           5.7307 ]
+                         :        nbjets_m:        0.0043077          0.99791   [          -3.3176           5.7307 ]
+                         :        ncjets_m:        0.0037578          0.99865   [          -3.3175           5.7307 ]
+                         :         lepDPhi:        0.0034709          0.99782   [          -3.2998           5.7307 ]
+                         :       missingET:        0.0033047          0.99781   [          -3.3175           5.7307 ]
+                         :         bjetmDR:        0.0025401          0.99902   [          -3.3964           5.7307 ]
+                         :       bjetmDEta:        0.0036589          0.99822   [          -3.3174           5.7307 ]
+                         :       bjetmDPhi:        0.0033457          0.99944   [          -3.3176           5.7307 ]
+                         :     dibjetsMass:        0.0034428          0.99891   [          -3.3176           5.7307 ]
+                         : bjetPt_dibjetsm:        0.0032692          0.99808   [          -3.3076           5.7307 ]
+                         :          cjetPt:        0.0031802          0.99807   [          -3.3176           5.7307 ]
+                         :          jet1pt:        0.0034159          0.99848   [          -3.3472           5.7307 ]
+                         :          jet2pt:        0.0032163          0.99734   [          -3.3003           5.7307 ]
+                         :          jet3pt:        0.0033102          0.99846   [          -3.3177           5.7307 ]
+                         :          jet4pt:        0.0042887          0.99699   [          -3.3178           5.7307 ]
+                         :         jet1eta:        0.0034126          0.99767   [          -3.3177           5.7307 ]
+                         :         jet2eta:        0.0035899          0.99759   [          -3.3074           5.7307 ]
+                         :         jet3eta:        0.0034393          0.99787   [          -3.3075           5.7307 ]
+                         :         jet4eta:        0.0043243          0.99959   [          -3.3174           5.7307 ]
+                         :           jet1m:        0.0037601          0.99786   [          -3.3176           5.7307 ]
+                         :           jet2m:        0.0038725          0.99888   [          -3.3176           5.7307 ]
+                         :           jet3m:        0.0037233          0.99845   [          -3.3074           5.7307 ]
+                         :           jet4m:        0.0034577          0.99889   [          -3.3001           5.7307 ]
+                         :         jet1csv:        0.0044172           1.0004   [          -3.3473           5.7307 ]
+                         :         jet2csv:        0.0032985          0.99891   [          -3.3280           5.7307 ]
+                         :         jet3csv:        0.0033357          0.99786   [          -3.3175           5.7307 ]
+                         :         jet4csv:        0.0035534          0.99732   [          -3.3473           5.7307 ]
+                         :        jet1cvsl:        0.0031965          0.99816   [          -3.3174           5.7307 ]
+                         :        jet2cvsl:        0.0033138          0.99936   [          -3.3001           5.7307 ]
+                         :        jet3cvsl:        0.0039350          0.99850   [          -3.3002           5.7307 ]
+                         :        jet4cvsl:        0.0040787          0.99848   [          -3.3075           5.7307 ]
+                         :        jet1cvsb:        0.0037216          0.99787   [          -3.3000           5.7307 ]
+                         :        jet2cvsb:        0.0033617          0.99779   [          -3.3101           5.7307 ]
+                         :        jet3cvsb:        0.0036652          0.99849   [          -3.3177           5.7307 ]
+                         :        jet4cvsb:        0.0033386          0.99756   [          -3.3176           5.7307 ]
+                         :        DRjet0pt:        0.0040001          0.99793   [          -3.3176           5.7307 ]
+                         :       DRjet0eta:        0.0028020          0.99808   [          -3.3175           5.7307 ]
+                         :         DRjet0m:        0.0039824          0.99804   [          -3.3176           5.7307 ]
+                         :       DRjet0csv:        0.0040100          0.99894   [          -3.3000           5.7307 ]
+                         :      DRjet0cvsl:        0.0037333          0.99954   [          -3.3175           5.7307 ]
+                         :      DRjet0cvsb:        0.0042140          0.99871   [          -3.3177           5.7307 ]
+                         :        DRjet1pt:        0.0036132          0.99767   [          -3.3175           5.7307 ]
+                         :       DRjet1eta:        0.0026915          0.99902   [          -3.3963           5.7307 ]
+                         :         DRjet1m:        0.0031032          0.99739   [          -3.3176           5.7307 ]
+                         :       DRjet1csv:        0.0036573          0.99861   [          -3.3100           5.7307 ]
+                         :      DRjet1cvsl:        0.0033792          0.99827   [          -3.3100           5.7307 ]
+                         :      DRjet1cvsb:        0.0032461          0.99771   [          -3.3472           5.7307 ]
+                         :        DRjet2pt:        0.0034369          0.99785   [          -3.3002           5.7307 ]
+                         :       DRjet2eta:        0.0040497          0.99792   [          -3.3076           5.7307 ]
+                         :         DRjet2m:        0.0034377          0.99879   [          -3.3001           5.7307 ]
+                         :       DRjet2csv:        0.0038596          0.99793   [          -3.3000           5.7307 ]
+                         :      DRjet2cvsl:        0.0032007          0.99809   [          -3.3175           5.7307 ]
+                         :      DRjet2cvsb:        0.0039059          0.99999   [          -3.3176           5.7307 ]
+                         :        DRjet3pt:        0.0018620           1.0018   [          -5.6144           5.7307 ]
+                         :       DRjet3eta:        0.0027272          0.99756   [          -3.3178           5.7307 ]
+                         :         DRjet3m:        0.0029629          0.99793   [          -3.3586           5.7307 ]
+                         :       DRjet3csv:        0.0035033          0.99809   [          -3.3001           5.7307 ]
+                         :      DRjet3cvsl:        0.0034710          0.99819   [          -3.3175           5.7307 ]
+                         :      DRjet3cvsb:        0.0035402          0.99956   [          -3.3473           5.7307 ]
+                         :       DRjet12pt:        0.0040514          0.99893   [          -3.3074           5.7307 ]
+                         :      DRjet12eta:        0.0027253          0.99857   [          -3.4430           5.7307 ]
+                         :        DRjet12m:        0.0034708          0.99718   [          -3.3003           5.7307 ]
+                         :       DRjet12DR:        0.0022992          0.99758   [          -3.3253           5.7307 ]
+                         :       DRjet23pt:        0.0031684          0.99774   [          -3.3002           5.7307 ]
+                         :      DRjet23eta:        0.0031931          0.99914   [          -3.3003           5.7307 ]
+                         :        DRjet23m:        0.0034879          0.99811   [          -3.3077           5.7307 ]
+                         :       DRjet31pt:        0.0041524          0.99800   [          -3.3175           5.7307 ]
+                         :      DRjet31eta:        0.0035008          0.99886   [          -3.3472           5.7307 ]
+                         :        DRjet31m:        0.0030243          0.99804   [          -3.3174           5.7307 ]
+                         :        DRlepTpt:        0.0026002          0.99826   [          -3.3961           5.7307 ]
+                         :       DRlepTeta:        0.0019495          0.99958   [          -3.4592           5.7307 ]
+                         :         DRlepTm:        0.0032330          0.99811   [          -3.3175           5.7307 ]
+                         :        DRhadTpt:        0.0037041          0.99837   [          -3.3471           5.7307 ]
+                         :       DRhadTeta:        0.0035411          0.99886   [          -3.3000           5.7307 ]
+                         :         DRhadTm:        0.0031308          0.99789   [          -3.3002           5.7307 ]
+                         : ----------------------------------------------------------------------------------------------
+                         : Option SaveBestOnly: Only model weights with smallest validation loss will be stored
+Train on 60000 samples, validate on 20000 samples
+Epoch 1/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.6925 - acc: 0.5506Epoch 00000: val_loss improved from inf to 0.08601, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.6925 - acc: 0.5508 - val_loss: 0.0860 - val_acc: 0.6101
+Epoch 2/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.6725 - acc: 0.6317Epoch 00001: val_loss improved from 0.08601 to 0.07952, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.6724 - acc: 0.6318 - val_loss: 0.0795 - val_acc: 0.6627
+Epoch 3/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.6022 - acc: 0.6820Epoch 00002: val_loss improved from 0.07952 to 0.07218, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.6022 - acc: 0.6819 - val_loss: 0.0722 - val_acc: 0.6982
+Epoch 4/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.5718 - acc: 0.7054Epoch 00003: val_loss improved from 0.07218 to 0.06890, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.5718 - acc: 0.7055 - val_loss: 0.0689 - val_acc: 0.7035
+Epoch 5/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.5556 - acc: 0.7204Epoch 00004: val_loss improved from 0.06890 to 0.06823, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.5555 - acc: 0.7205 - val_loss: 0.0682 - val_acc: 0.7179
+Epoch 6/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.5383 - acc: 0.7351Epoch 00005: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.5385 - acc: 0.7349 - val_loss: 0.0697 - val_acc: 0.7282
+Epoch 7/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.5222 - acc: 0.7480Epoch 00006: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.5223 - acc: 0.7479 - val_loss: 0.0772 - val_acc: 0.7161
+Epoch 8/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.5042 - acc: 0.7599Epoch 00007: val_loss improved from 0.06823 to 0.06370, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.5041 - acc: 0.7600 - val_loss: 0.0637 - val_acc: 0.7482
+Epoch 9/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.4825 - acc: 0.7759Epoch 00008: val_loss improved from 0.06370 to 0.06271, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.4824 - acc: 0.7759 - val_loss: 0.0627 - val_acc: 0.7596
+Epoch 10/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.4658 - acc: 0.7880Epoch 00009: val_loss improved from 0.06271 to 0.06062, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.4656 - acc: 0.7881 - val_loss: 0.0606 - val_acc: 0.7549
+Epoch 11/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.4436 - acc: 0.7998Epoch 00010: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.4436 - acc: 0.7998 - val_loss: 0.0610 - val_acc: 0.7793
+Epoch 12/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.4180 - acc: 0.8170Epoch 00011: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.4181 - acc: 0.8170 - val_loss: 0.0611 - val_acc: 0.7388
+Epoch 13/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.3961 - acc: 0.8295Epoch 00012: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.3963 - acc: 0.8294 - val_loss: 0.0697 - val_acc: 0.7743
+Epoch 14/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.3729 - acc: 0.8438Epoch 00013: val_loss improved from 0.06062 to 0.05768, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.3728 - acc: 0.8439 - val_loss: 0.0577 - val_acc: 0.7730
+Epoch 15/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.3475 - acc: 0.8549Epoch 00014: val_loss improved from 0.05768 to 0.05498, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.3475 - acc: 0.8550 - val_loss: 0.0550 - val_acc: 0.8120
+Epoch 16/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.3249 - acc: 0.8683Epoch 00015: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.3251 - acc: 0.8682 - val_loss: 0.0571 - val_acc: 0.7848
+Epoch 17/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.2973 - acc: 0.8811Epoch 00016: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.2974 - acc: 0.8811 - val_loss: 0.0556 - val_acc: 0.8295
+Epoch 18/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.2717 - acc: 0.8966Epoch 00017: val_loss improved from 0.05498 to 0.05369, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.2715 - acc: 0.8967 - val_loss: 0.0537 - val_acc: 0.8102
+Epoch 19/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.2448 - acc: 0.9114Epoch 00018: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.2449 - acc: 0.9113 - val_loss: 0.0760 - val_acc: 0.7764
+Epoch 20/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.2213 - acc: 0.9212Epoch 00019: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.2213 - acc: 0.9211 - val_loss: 0.0558 - val_acc: 0.8162
+Epoch 21/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.1882 - acc: 0.9372Epoch 00020: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.1880 - acc: 0.9373 - val_loss: 0.0547 - val_acc: 0.8333
+Epoch 22/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.1680 - acc: 0.9494Epoch 00021: val_loss improved from 0.05369 to 0.05282, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.1679 - acc: 0.9494 - val_loss: 0.0528 - val_acc: 0.8561
+Epoch 23/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.1567 - acc: 0.9525Epoch 00022: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.1567 - acc: 0.9525 - val_loss: 0.0532 - val_acc: 0.8482
+Epoch 24/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.1339 - acc: 0.9627Epoch 00023: val_loss improved from 0.05282 to 0.05230, saving model to keras3/weights/TrainedModel_PyKeras.h5
+60000/60000 [==============================] - 15s - loss: 0.1337 - acc: 0.9628 - val_loss: 0.0523 - val_acc: 0.8571
+Epoch 25/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.1116 - acc: 0.9711Epoch 00024: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.1116 - acc: 0.9711 - val_loss: 0.0586 - val_acc: 0.8400
+Epoch 26/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.0924 - acc: 0.9780Epoch 00025: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.0938 - acc: 0.9775 - val_loss: 0.0636 - val_acc: 0.8118
+Epoch 27/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.0793 - acc: 0.9809Epoch 00026: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.0794 - acc: 0.9809 - val_loss: 0.0611 - val_acc: 0.8497
+Epoch 28/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.0902 - acc: 0.9766Epoch 00027: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.0901 - acc: 0.9766 - val_loss: 0.0536 - val_acc: 0.8571
+Epoch 29/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.0854 - acc: 0.9789Epoch 00028: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.0853 - acc: 0.9789 - val_loss: 0.0626 - val_acc: 0.8663
+Epoch 30/30
+59900/60000 [============================>.] - ETA: 0s - loss: 0.0629 - acc: 0.9856Epoch 00029: val_loss did not improve
+60000/60000 [==============================] - 15s - loss: 0.0629 - acc: 0.9856 - val_loss: 0.0577 - val_acc: 0.8510
+                         : Elapsed time for training with 60000 events: 473 sec         
+                         : Creating xml weight file: keras3/weights/TMVAClassification_PyKeras.weights.xml
+                         : Creating standalone class: keras3/weights/TMVAClassification_PyKeras.class.C
+Factory                  : Training finished
+                         : 
+                         : Ranking input variables (method specific)...
+BDT                      : Ranking result (top variable is best ranked)
+                         : -------------------------------------------------
+                         : Rank : Variable        : Variable Importance
+                         : -------------------------------------------------
+                         :    1 : DRjet2cvsb      : 2.266e-02
+                         :    2 : njets           : 2.227e-02
+                         :    3 : DRjet2csv       : 2.207e-02
+                         :    4 : DRjet3cvsl      : 1.992e-02
+                         :    5 : DRjet0cvsl      : 1.938e-02
+                         :    6 : DRjet0cvsb      : 1.848e-02
+                         :    7 : DRjet3cvsb      : 1.764e-02
+                         :    8 : jet4eta         : 1.748e-02
+                         :    9 : lepDPhi         : 1.698e-02
+                         :   10 : jet3cvsl        : 1.673e-02
+                         :   11 : jet1csv         : 1.635e-02
+                         :   12 : jet3csv         : 1.604e-02
+                         :   13 : DRjet2cvsl      : 1.600e-02
+                         :   14 : jet1cvsb        : 1.553e-02
+                         :   15 : DRjet23m        : 1.550e-02
+                         :   16 : DRjet0eta       : 1.540e-02
+                         :   17 : DRjet12m        : 1.534e-02
+                         :   18 : bjetmDR         : 1.522e-02
+                         :   19 : DRlepTpt        : 1.521e-02
+                         :   20 : bjetmDPhi       : 1.518e-02
+                         :   21 : DRjet12DR       : 1.485e-02
+                         :   22 : jet2csv         : 1.479e-02
+                         :   23 : DRjet1m         : 1.472e-02
+                         :   24 : bjetmDEta       : 1.466e-02
+                         :   25 : jet4cvsb        : 1.463e-02
+                         :   26 : DRjet1csv       : 1.458e-02
+                         :   27 : DRjet1cvsb      : 1.456e-02
+                         :   28 : nbjets_m        : 1.456e-02
+                         :   29 : DRjet2eta       : 1.454e-02
+                         :   30 : jet1eta         : 1.447e-02
+                         :   31 : jet4csv         : 1.444e-02
+                         :   32 : jet3eta         : 1.431e-02
+                         :   33 : DRjet1eta       : 1.396e-02
+                         :   34 : jet2cvsl        : 1.375e-02
+                         :   35 : jet3cvsb        : 1.360e-02
+                         :   36 : jet4cvsl        : 1.349e-02
+                         :   37 : DRlepTm         : 1.332e-02
+                         :   38 : DRjet3eta       : 1.331e-02
+                         :   39 : DRjet3m         : 1.294e-02
+                         :   40 : cjetPt          : 1.289e-02
+                         :   41 : jet1m           : 1.275e-02
+                         :   42 : jet2eta         : 1.271e-02
+                         :   43 : DRjet2m         : 1.264e-02
+                         :   44 : DRhadTm         : 1.237e-02
+                         :   45 : DRjet1cvsl      : 1.232e-02
+                         :   46 : jet2cvsb        : 1.226e-02
+                         :   47 : DRlepTeta       : 1.212e-02
+                         :   48 : dibjetsMass     : 1.204e-02
+                         :   49 : DRjet3pt        : 1.200e-02
+                         :   50 : jet1cvsl        : 1.193e-02
+                         :   51 : DRjet31m        : 1.172e-02
+                         :   52 : DRjet12eta      : 1.114e-02
+                         :   53 : jet2m           : 1.102e-02
+                         :   54 : DRjet23pt       : 1.083e-02
+                         :   55 : jet4pt          : 1.070e-02
+                         :   56 : DRjet31pt       : 1.064e-02
+                         :   57 : jet3m           : 1.062e-02
+                         :   58 : jet4m           : 1.046e-02
+                         :   59 : DRhadTpt        : 1.032e-02
+                         :   60 : jet1pt          : 1.031e-02
+                         :   61 : DRjet0m         : 1.027e-02
+                         :   62 : missingET       : 1.024e-02
+                         :   63 : DRjet2pt        : 1.002e-02
+                         :   64 : DRjet23eta      : 9.650e-03
+                         :   65 : jet3pt          : 9.566e-03
+                         :   66 : jet2pt          : 9.394e-03
+                         :   67 : DRjet0pt        : 9.175e-03
+                         :   68 : DRjet12pt       : 8.868e-03
+                         :   69 : bjetPt_dibjetsm : 8.836e-03
+                         :   70 : DRhadTeta       : 8.829e-03
+                         :   71 : DRjet0csv       : 8.765e-03
+                         :   72 : ncjets_m        : 8.751e-03
+                         :   73 : DRjet3csv       : 8.633e-03
+                         :   74 : DRjet31eta      : 8.309e-03
+                         :   75 : DRjet1pt        : 8.015e-03
+                         : -------------------------------------------------
+                         : No variable ranking supplied by classifier: PyKeras
+Factory                  : === Destroy and recreate all methods via weight files for testing ===
+                         : 
+Factory                  : Test all methods
+Factory                  : Test method: BDT for Classification performance
+                         : 
+BDT                      : [keras3] : Evaluation of BDT on testing sample (20000 events)
+                         : Elapsed time for evaluation of 20000 events: 1.11 sec       
+Factory                  : Test method: PyKeras for Classification performance
+                         : 
+                         : Load model from file: keras3/weights/TrainedModel_PyKeras.h5
+Factory                  : Evaluate all methods
+Factory                  : Evaluate classifier: BDT
+                         : 
+BDT                      : [keras3] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_BDT            :        Variable               Mean               RMS       [        Min               Max ]
+                         : ----------------------------------------------------------------------------------------------
+                         :           njets:           5.1175           1.1414   [           4.0000           13.000 ]
+                         :        nbjets_m:           3.0882          0.29708   [           3.0000           5.0000 ]
+                         :        ncjets_m:          0.75334          0.81151   [           0.0000           6.0000 ]
+                         :         lepDPhi:        -0.018548           1.6046   [          -3.1404           3.1413 ]
+                         :       missingET:           69.450           48.495   [          0.63895           693.95 ]
+                         :         bjetmDR:           1.3265          0.52870   [          0.38162           3.4591 ]
+                         :       bjetmDEta:        0.0058983          0.91757   [          -3.3493           3.4561 ]
+                         :       bjetmDPhi:       -0.0030650           1.0941   [          -3.1182           3.1410 ]
+                         :     dibjetsMass:           98.567           48.976   [           19.415           925.86 ]
+                         : bjetPt_dibjetsm:           107.04           61.501   [           30.263           705.72 ]
+                         :          cjetPt:           89.630           69.181   [           30.003           910.75 ]
+                         :          jet1pt:           142.80           80.984   [           33.708           942.78 ]
+                         :          jet2pt:           97.923           48.999   [           31.190           713.90 ]
+                         :          jet3pt:           70.787           30.952   [           30.231           344.47 ]
+                         :          jet4pt:           52.951           21.369   [           30.002           339.13 ]
+                         :         jet1eta:        0.0015774           1.0581   [          -2.3990           2.3998 ]
+                         :         jet2eta:       -0.0064219           1.0788   [          -2.3987           2.3993 ]
+                         :         jet3eta:        -0.010576           1.1072   [          -2.3974           2.3989 ]
+                         :         jet4eta:        -0.013584           1.1462   [          -2.3994           2.3996 ]
+                         :           jet1m:           238.45           169.45   [           39.102           997.77 ]
+                         :           jet2m:           167.75           120.19   [           34.485           996.59 ]
+                         :           jet3m:           125.37           89.940   [           31.046           967.85 ]
+                         :           jet4m:           97.231           68.498   [           30.615           879.56 ]
+                         :         jet1csv:          0.74844          0.33145   [         0.027290          0.99945 ]
+                         :         jet2csv:          0.75588          0.32594   [         0.044484          0.99946 ]
+                         :         jet3csv:          0.72217          0.33965   [         0.042615          0.99961 ]
+                         :         jet4csv:          0.67741          0.34876   [         0.049488          0.99961 ]
+                         :        jet1cvsl:          0.54325          0.48896   [         -0.74829          0.99642 ]
+                         :        jet2cvsl:          0.57178          0.48238   [         -0.58659          0.99704 ]
+                         :        jet3cvsl:          0.53070          0.50415   [         -0.65731          0.99719 ]
+                         :        jet4cvsl:          0.45774          0.52401   [         -0.77740          0.99655 ]
+                         :        jet1cvsb:         -0.26577          0.52815   [         -0.98770          0.83392 ]
+                         :        jet2cvsb:         -0.27936          0.52879   [         -0.98680          0.84025 ]
+                         :        jet3cvsb:         -0.22994          0.54003   [         -0.98604          0.85084 ]
+                         :        jet4cvsb:         -0.15654          0.53743   [         -0.98493          0.83008 ]
+                         :        DRjet0pt:           112.97           79.435   [           30.016           942.78 ]
+                         :       DRjet0eta:        -0.010908           1.1696   [          -2.3993           2.3998 ]
+                         :         DRjet0m:           15.332           9.5203   [           1.1595           140.70 ]
+                         :       DRjet0csv:          0.64594          0.37831   [          -10.000          0.99945 ]
+                         :      DRjet0cvsl:          0.40936          0.52816   [         -0.74829          0.99719 ]
+                         :      DRjet0cvsb:         -0.13565          0.55271   [         -0.98450          0.84025 ]
+                         :        DRjet1pt:           81.355           51.472   [           30.002           690.17 ]
+                         :       DRjet1eta:       -0.0057275          0.98744   [          -2.3987           2.3979 ]
+                         :         DRjet1m:           11.879           6.8137   [           1.8511           139.05 ]
+                         :       DRjet1csv:          0.97773         0.028749   [          0.85020          0.99961 ]
+                         :      DRjet1cvsl:          0.87601          0.16922   [         -0.56755          0.99671 ]
+                         :      DRjet1cvsb:         -0.71358          0.25629   [         -0.98770          0.63244 ]
+                         :        DRjet2pt:           81.459           54.253   [           30.017           682.81 ]
+                         :       DRjet2eta:        -0.010301           1.0572   [          -2.3973           2.3983 ]
+                         :         DRjet2m:           11.991           7.4072   [           2.4510           107.88 ]
+                         :       DRjet2csv:          0.93005         0.045690   [          0.84840          0.99937 ]
+                         :      DRjet2cvsl:          0.80797          0.22829   [         -0.62505          0.99672 ]
+                         :      DRjet2cvsb:         -0.41393          0.34392   [         -0.98173          0.77493 ]
+                         :        DRjet3pt:           70.343           47.250   [           30.006           705.72 ]
+                         :       DRjet3eta:       -0.0054659           1.0928   [          -2.3994           2.3978 ]
+                         :         DRjet3m:           10.841           6.3320   [           1.5582           99.020 ]
+                         :       DRjet3csv:          0.41448          0.69398   [          -10.000          0.99847 ]
+                         :      DRjet3cvsl:          0.14461          0.48342   [         -0.79515          0.99541 ]
+                         :      DRjet3cvsb:          0.20891          0.37666   [         -0.97468          0.85084 ]
+                         :       DRjet12pt:           137.91           76.626   [          0.88950           988.10 ]
+                         :      DRjet12eta:        -0.010203           1.1387   [          -6.0664           4.9170 ]
+                         :        DRjet12m:           106.93           53.709   [           19.415           925.86 ]
+                         :       DRjet12DR:           1.4793          0.60333   [          0.40445           4.5164 ]
+                         :       DRjet23pt:           122.97           72.893   [          0.73262           764.36 ]
+                         :      DRjet23eta:       -0.0021845           1.2685   [          -5.2171           6.5876 ]
+                         :        DRjet23m:           105.77           66.843   [           19.469           856.78 ]
+                         :       DRjet31pt:           121.68           71.586   [          0.57035           797.79 ]
+                         :      DRjet31eta:       -0.0036048           1.2399   [          -5.8393           6.7714 ]
+                         :        DRjet31m:           106.48           64.444   [           18.964           1274.5 ]
+                         :        DRlepTpt:           161.09           94.653   [           1.1876           858.90 ]
+                         :       DRlepTeta:       -0.0074089           1.2142   [          -5.1121           5.9664 ]
+                         :         DRlepTm:           252.18           141.87   [           38.570           1815.9 ]
+                         :        DRhadTpt:           175.63           91.553   [           2.5659           1066.6 ]
+                         :       DRhadTeta:       -0.0031246           1.2452   [          -4.8924           6.4270 ]
+                         :         DRhadTm:           192.45           88.782   [           45.702           1338.7 ]
+                         : ----------------------------------------------------------------------------------------------
+                         : 
+                         : <PlotVariables> Will not produce scatter plots ==> 
+                         : |  The number of 75 input variables and 0 target values would require 2775 two-dimensional
+                         : |  histograms, which would occupy the computer's memory. Note that this
+                         : |  suppression does not have any consequences for your analysis, other
+                         : |  than not disposing of these scatter plots. You can modify the maximum
+                         : |  number of input variables allowed to generate scatter plots in your
+                         : |  script via the command line:
+                         : |  "(TMVA::gConfig().GetVariablePlotting()).fMaxNumOfAllowedVariablesForScatterPlots = <some int>;"
+                         : 
+                         : Some more output
+Factory                  : Evaluate classifier: PyKeras
+                         : 
+TFHandler_PyKeras        :        Variable               Mean               RMS       [        Min               Max ]
+                         : ----------------------------------------------------------------------------------------------
+                         :           njets:        -0.020666           1.0004   [          -3.0382           5.7307 ]
+                         :        nbjets_m:        -0.018460           1.0224   [          -3.1419           3.3482 ]
+                         :        ncjets_m:       -0.0054489          0.98147   [          -3.3175           5.7307 ]
+                         :         lepDPhi:       -0.0095638          0.99271   [          -3.0834           3.5119 ]
+                         :       missingET:         0.016545          0.98896   [          -3.0586           5.7307 ]
+                         :         bjetmDR:        0.0055388          0.99104   [          -3.3340           5.7307 ]
+                         :       bjetmDEta:        0.0097061          0.99900   [          -3.3830           5.7307 ]
+                         :       bjetmDPhi:        0.0023260          0.98072   [          -3.3176           5.7307 ]
+                         :     dibjetsMass:        -0.027596          0.98282   [          -3.1156           5.7307 ]
+                         : bjetPt_dibjetsm:        0.0073514          0.98866   [          -3.0603           5.7307 ]
+                         :          cjetPt:        -0.012743          0.98743   [          -3.3176           4.3830 ]
+                         :          jet1pt:       -0.0077791          0.98563   [          -3.3509           5.7307 ]
+                         :          jet2pt:        0.0032662          0.98649   [          -3.3385           5.7307 ]
+                         :          jet3pt:       -0.0070632          0.99456   [          -3.1975           5.7307 ]
+                         :          jet4pt:        -0.015940          0.98662   [          -3.0408           5.7307 ]
+                         :         jet1eta:        0.0024095          0.98324   [          -4.1163           5.7307 ]
+                         :         jet2eta:        0.0079856          0.99367   [          -3.2102           5.7307 ]
+                         :         jet3eta:        -0.011005          0.98347   [          -3.1079           5.7307 ]
+                         :         jet4eta:        0.0026805          0.98134   [          -3.3174           5.7307 ]
+                         :           jet1m:        -0.013808          0.99219   [          -3.3176           5.7307 ]
+                         :           jet2m:       0.00037095          0.99663   [          -3.6646           5.7307 ]
+                         :           jet3m:        0.0015006          0.99408   [          -3.3465           5.7307 ]
+                         :           jet4m:       -0.0074387          0.98603   [          -3.2256           5.7307 ]
+                         :         jet1csv:         0.016830          0.97931   [          -3.1627           5.7307 ]
+                         :         jet2csv:         0.024905          0.97150   [          -3.3280           5.7307 ]
+                         :         jet3csv:         0.029317          0.97364   [          -3.4510           3.7446 ]
+                         :         jet4csv:         0.023473          0.97747   [          -3.0876           3.5296 ]
+                         :        jet1cvsl:         0.028128          0.98619   [          -3.1327           5.7307 ]
+                         :        jet2cvsl:         0.024090          0.98677   [          -3.2731           3.6049 ]
+                         :        jet3cvsl:         0.027135          0.98535   [          -3.3002           5.7307 ]
+                         :        jet4cvsl:         0.027139          0.98997   [          -3.3102           5.7307 ]
+                         :        jet1cvsb:        -0.014599          0.99093   [          -3.2139           5.7307 ]
+                         :        jet2cvsb:        -0.016233          0.99790   [          -3.0519           5.7307 ]
+                         :        jet3cvsb:        -0.027555           1.0075   [          -3.2894           5.7307 ]
+                         :        jet4cvsb:        -0.027343           1.0006   [          -3.0648           5.7307 ]
+                         :        DRjet0pt:       -0.0078729          0.99068   [          -3.0766           5.7307 ]
+                         :       DRjet0eta:       -0.0041740           1.0043   [          -3.0810           5.7307 ]
+                         :         DRjet0m:      -0.00065282          0.98514   [          -3.3806           5.7307 ]
+                         :       DRjet0csv:        0.0053463          0.97947   [          -3.2961           5.7307 ]
+                         :      DRjet0cvsl:         0.015185          0.97850   [          -3.2655           5.7307 ]
+                         :      DRjet0cvsb:       -0.0088872           1.0015   [          -3.2664           5.7307 ]
+                         :        DRjet1pt:        0.0048305          0.98705   [          -3.7937           5.7307 ]
+                         :       DRjet1eta:       -0.0033427          0.99888   [          -3.4747           5.7307 ]
+                         :         DRjet1m:        0.0014138          0.98941   [          -3.1328           5.7307 ]
+                         :       DRjet1csv:        -0.015854          0.98416   [          -3.2535           5.7307 ]
+                         :      DRjet1cvsl:       -0.0025319          0.98017   [          -3.0883           5.7307 ]
+                         :      DRjet1cvsb:         0.011022          0.97143   [          -3.3472           3.5563 ]
+                         :        DRjet2pt:         0.018879          0.98535   [          -5.7307           3.5917 ]
+                         :       DRjet2eta:        0.0073756          0.98961   [          -3.2055           5.7307 ]
+                         :         DRjet2m:        -0.011214          0.99856   [          -5.7307           5.7307 ]
+                         :       DRjet2csv:         0.026393          0.98653   [          -3.0488           5.7307 ]
+                         :      DRjet2cvsl:         0.011208          0.96754   [          -3.3175           5.7307 ]
+                         :      DRjet2cvsb:        -0.033095          0.99275   [          -3.0994           5.7307 ]
+                         :        DRjet3pt:        0.0015598          0.99111   [          -3.3249           5.7307 ]
+                         :       DRjet3eta:      -0.00019084          0.99095   [          -5.7307           3.4513 ]
+                         :         DRjet3m:        0.0067355          0.99236   [          -3.3054           5.7307 ]
+                         :       DRjet3csv:         0.034592           1.0009   [          -3.3001           5.7307 ]
+                         :      DRjet3cvsl:         0.043737           1.0058   [          -3.0740           5.7307 ]
+                         :      DRjet3cvsb:      -0.00099992           1.0183   [          -3.2064           5.7307 ]
+                         :       DRjet12pt:         0.027846          0.99255   [          -3.2085           5.7307 ]
+                         :      DRjet12eta:       -0.0097747          0.98409   [          -3.4430           5.7307 ]
+                         :        DRjet12m:       -0.0022858          0.98169   [          -3.0465           5.7307 ]
+                         :       DRjet12DR:        0.0015537           1.0013   [          -3.1351           3.5562 ]
+                         :       DRjet23pt:         0.012443          0.98539   [          -3.1280           5.7307 ]
+                         :      DRjet23eta:         0.014229          0.98399   [          -3.1774           5.7307 ]
+                         :        DRjet23m:        0.0018605          0.98432   [          -5.7307           5.7307 ]
+                         :       DRjet31pt:        -0.018370          0.99247   [          -3.2750           3.6093 ]
+                         :      DRjet31eta:        0.0010224           1.0022   [          -3.1926           5.7307 ]
+                         :        DRjet31m:        -0.018450          0.98209   [          -3.0767           5.7307 ]
+                         :        DRlepTpt:         0.015941          0.99231   [          -3.4775           5.7307 ]
+                         :       DRlepTeta:        0.0038771          0.99284   [          -3.2173           5.7307 ]
+                         :         DRlepTm:       -0.0089182          0.98894   [          -3.3175           5.7307 ]
+                         :        DRhadTpt:        -0.012920          0.99486   [          -3.1343           5.7307 ]
+                         :       DRhadTeta:        0.0086907          0.99841   [          -3.1310           5.7307 ]
+                         :         DRhadTm:        -0.011261          0.98703   [          -3.1387           5.7307 ]
+                         : ----------------------------------------------------------------------------------------------
+PyKeras                  : [keras3] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_PyKeras        :        Variable               Mean               RMS       [        Min               Max ]
+                         : ----------------------------------------------------------------------------------------------
+                         :           njets:        -0.020666           1.0004   [          -3.0382           5.7307 ]
+                         :        nbjets_m:        -0.018460           1.0224   [          -3.1419           3.3482 ]
+                         :        ncjets_m:       -0.0054489          0.98147   [          -3.3175           5.7307 ]
+                         :         lepDPhi:       -0.0095638          0.99271   [          -3.0834           3.5119 ]
+                         :       missingET:         0.016545          0.98896   [          -3.0586           5.7307 ]
+                         :         bjetmDR:        0.0055388          0.99104   [          -3.3340           5.7307 ]
+                         :       bjetmDEta:        0.0097061          0.99900   [          -3.3830           5.7307 ]
+                         :       bjetmDPhi:        0.0023260          0.98072   [          -3.3176           5.7307 ]
+                         :     dibjetsMass:        -0.027596          0.98282   [          -3.1156           5.7307 ]
+                         : bjetPt_dibjetsm:        0.0073514          0.98866   [          -3.0603           5.7307 ]
+                         :          cjetPt:        -0.012743          0.98743   [          -3.3176           4.3830 ]
+                         :          jet1pt:       -0.0077791          0.98563   [          -3.3509           5.7307 ]
+                         :          jet2pt:        0.0032662          0.98649   [          -3.3385           5.7307 ]
+                         :          jet3pt:       -0.0070632          0.99456   [          -3.1975           5.7307 ]
+                         :          jet4pt:        -0.015940          0.98662   [          -3.0408           5.7307 ]
+                         :         jet1eta:        0.0024095          0.98324   [          -4.1163           5.7307 ]
+                         :         jet2eta:        0.0079856          0.99367   [          -3.2102           5.7307 ]
+                         :         jet3eta:        -0.011005          0.98347   [          -3.1079           5.7307 ]
+                         :         jet4eta:        0.0026805          0.98134   [          -3.3174           5.7307 ]
+                         :           jet1m:        -0.013808          0.99219   [          -3.3176           5.7307 ]
+                         :           jet2m:       0.00037095          0.99663   [          -3.6646           5.7307 ]
+                         :           jet3m:        0.0015006          0.99408   [          -3.3465           5.7307 ]
+                         :           jet4m:       -0.0074387          0.98603   [          -3.2256           5.7307 ]
+                         :         jet1csv:         0.016830          0.97931   [          -3.1627           5.7307 ]
+                         :         jet2csv:         0.024905          0.97150   [          -3.3280           5.7307 ]
+                         :         jet3csv:         0.029317          0.97364   [          -3.4510           3.7446 ]
+                         :         jet4csv:         0.023473          0.97747   [          -3.0876           3.5296 ]
+                         :        jet1cvsl:         0.028128          0.98619   [          -3.1327           5.7307 ]
+                         :        jet2cvsl:         0.024090          0.98677   [          -3.2731           3.6049 ]
+                         :        jet3cvsl:         0.027135          0.98535   [          -3.3002           5.7307 ]
+                         :        jet4cvsl:         0.027139          0.98997   [          -3.3102           5.7307 ]
+                         :        jet1cvsb:        -0.014599          0.99093   [          -3.2139           5.7307 ]
+                         :        jet2cvsb:        -0.016233          0.99790   [          -3.0519           5.7307 ]
+                         :        jet3cvsb:        -0.027555           1.0075   [          -3.2894           5.7307 ]
+                         :        jet4cvsb:        -0.027343           1.0006   [          -3.0648           5.7307 ]
+                         :        DRjet0pt:       -0.0078729          0.99068   [          -3.0766           5.7307 ]
+                         :       DRjet0eta:       -0.0041740           1.0043   [          -3.0810           5.7307 ]
+                         :         DRjet0m:      -0.00065282          0.98514   [          -3.3806           5.7307 ]
+                         :       DRjet0csv:        0.0053463          0.97947   [          -3.2961           5.7307 ]
+                         :      DRjet0cvsl:         0.015185          0.97850   [          -3.2655           5.7307 ]
+                         :      DRjet0cvsb:       -0.0088872           1.0015   [          -3.2664           5.7307 ]
+                         :        DRjet1pt:        0.0048305          0.98705   [          -3.7937           5.7307 ]
+                         :       DRjet1eta:       -0.0033427          0.99888   [          -3.4747           5.7307 ]
+                         :         DRjet1m:        0.0014138          0.98941   [          -3.1328           5.7307 ]
+                         :       DRjet1csv:        -0.015854          0.98416   [          -3.2535           5.7307 ]
+                         :      DRjet1cvsl:       -0.0025319          0.98017   [          -3.0883           5.7307 ]
+                         :      DRjet1cvsb:         0.011022          0.97143   [          -3.3472           3.5563 ]
+                         :        DRjet2pt:         0.018879          0.98535   [          -5.7307           3.5917 ]
+                         :       DRjet2eta:        0.0073756          0.98961   [          -3.2055           5.7307 ]
+                         :         DRjet2m:        -0.011214          0.99856   [          -5.7307           5.7307 ]
+                         :       DRjet2csv:         0.026393          0.98653   [          -3.0488           5.7307 ]
+                         :      DRjet2cvsl:         0.011208          0.96754   [          -3.3175           5.7307 ]
+                         :      DRjet2cvsb:        -0.033095          0.99275   [          -3.0994           5.7307 ]
+                         :        DRjet3pt:        0.0015598          0.99111   [          -3.3249           5.7307 ]
+                         :       DRjet3eta:      -0.00019084          0.99095   [          -5.7307           3.4513 ]
+                         :         DRjet3m:        0.0067355          0.99236   [          -3.3054           5.7307 ]
+                         :       DRjet3csv:         0.034592           1.0009   [          -3.3001           5.7307 ]
+                         :      DRjet3cvsl:         0.043737           1.0058   [          -3.0740           5.7307 ]
+                         :      DRjet3cvsb:      -0.00099992           1.0183   [          -3.2064           5.7307 ]
+                         :       DRjet12pt:         0.027846          0.99255   [          -3.2085           5.7307 ]
+                         :      DRjet12eta:       -0.0097747          0.98409   [          -3.4430           5.7307 ]
+                         :        DRjet12m:       -0.0022858          0.98169   [          -3.0465           5.7307 ]
+                         :       DRjet12DR:        0.0015537           1.0013   [          -3.1351           3.5562 ]
+                         :       DRjet23pt:         0.012443          0.98539   [          -3.1280           5.7307 ]
+                         :      DRjet23eta:         0.014229          0.98399   [          -3.1774           5.7307 ]
+                         :        DRjet23m:        0.0018605          0.98432   [          -5.7307           5.7307 ]
+                         :       DRjet31pt:        -0.018370          0.99247   [          -3.2750           3.6093 ]
+                         :      DRjet31eta:        0.0010224           1.0022   [          -3.1926           5.7307 ]
+                         :        DRjet31m:        -0.018450          0.98209   [          -3.0767           5.7307 ]
+                         :        DRlepTpt:         0.015941          0.99231   [          -3.4775           5.7307 ]
+                         :       DRlepTeta:        0.0038771          0.99284   [          -3.2173           5.7307 ]
+                         :         DRlepTm:       -0.0089182          0.98894   [          -3.3175           5.7307 ]
+                         :        DRhadTpt:        -0.012920          0.99486   [          -3.1343           5.7307 ]
+                         :       DRhadTeta:        0.0086907          0.99841   [          -3.1310           5.7307 ]
+                         :         DRhadTm:        -0.011261          0.98703   [          -3.1387           5.7307 ]
+                         : ----------------------------------------------------------------------------------------------
+                         : 
+                         : <PlotVariables> Will not produce scatter plots ==> 
+                         : |  The number of 75 input variables and 0 target values would require 2775 two-dimensional
+                         : |  histograms, which would occupy the computer's memory. Note that this
+                         : |  suppression does not have any consequences for your analysis, other
+                         : |  than not disposing of these scatter plots. You can modify the maximum
+                         : |  number of input variables allowed to generate scatter plots in your
+                         : |  script via the command line:
+                         : |  "(TMVA::gConfig().GetVariablePlotting()).fMaxNumOfAllowedVariablesForScatterPlots = <some int>;"
+                         : 
+                         : Some more output
+                         : 
+                         : Evaluation results ranked by best signal efficiency and purity (area)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet       MVA                       
+                         : Name:         Method:          ROC-integ
+                         : keras3        PyKeras        : 0.912
+                         : keras3        BDT            : 0.830
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+                         : Testing efficiency compared to training efficiency (overtraining check)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet              MVA              Signal efficiency: from test sample (from training sample) 
+                         : Name:                Method:          @B=0.01             @B=0.10            @B=0.30   
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : keras3               PyKeras        : 0.193 (0.899)       0.821 (0.931)      0.921 (0.954)
+                         : keras3               BDT            : 0.215 (0.238)       0.543 (0.570)      0.784 (0.801)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+Dataset:keras3           : Created tree 'TestTree' with 20000 events
+                         : 
+Dataset:keras3           : Created tree 'TrainTree' with 60000 events
+                         : 
+Factory                  : Thank you for using TMVA!
+                         : For citation information, please visit: http://tmva.sf.net/citeTMVA.html
+--- Launch TMVA GUI to view input file: output_keras.root
+=== Note: inactive buttons indicate classifiers that were not trained, ===
+===       or functionalities that were not invoked during the training ===
+
