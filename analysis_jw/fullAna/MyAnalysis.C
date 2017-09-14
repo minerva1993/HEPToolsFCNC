@@ -477,8 +477,14 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     if( njets >= 3){
       double minDR = 1e9;
       for ( auto ii1 = jetIdxs.begin(); ii1 != jetIdxs.end(); ++ii1 ) {
+
+        if (jet_pT[*ii1] < 30 || jet_eta[*ii1] > 2.4) continue;
+
         jetP4sDR[1].SetPtEtaPhiE(jet_pT[*ii1], jet_eta[*ii1], jet_phi[*ii1], jet_E[*ii1]);
         for ( auto ii2 = ii1+1; ii2 != jetIdxs.end(); ++ii2 ) {
+
+          if (jet_pT[*ii2] < 30 || jet_eta[*ii2] > 2.4) continue;
+
           int nbjetsInHadW = 0;
           if ( jet_CSV[*ii1] > 0.8484 ) ++nbjetsInHadW;
           if ( jet_CSV[*ii2] > 0.8484 ) ++nbjetsInHadW;
