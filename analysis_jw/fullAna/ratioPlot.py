@@ -103,7 +103,6 @@ AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 356.4)
 AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 356.4)
 AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 356.4)
 AddBkg("hist_tt.root","ttLF",ROOT.kRed, 356.4)
-#AddBkg("hist_ttBkg.root","ttLF",ROOT.kRed, 831.8)
 AddBkg("hist_wjets.root","WJets",ROOT.kYellow,61524)
 AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 6025.2)
 AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
@@ -114,7 +113,6 @@ AddBkg("hist_tbarWchannel.root","Single t",6, 35.85)
 AddBkg("hist_ww.root","DiBoson",ROOT.kCyan, 118.7)
 AddBkg("hist_wz.root","DiBoson",ROOT.kCyan, 47.13)
 AddBkg("hist_zz.root","DiBoson",ROOT.kCyan, 16.523)
-#AddBkg("hist_QCD.root","QCD",ROOT.kGray, 1)
 
 AddBkg("hist_QCD_EGEnr_20to30.root","QCD",ROOT.kGray, 5352960)
 AddBkg("hist_QCD_EGEnr_30to50.root","QCD",ROOT.kGray, 9928000)
@@ -139,7 +137,6 @@ AddHct("hist_Top_Hct.root", "Hct", 602, 6.66)
 #AddHct("hist_AntiTop_Hct.root", "Hct", 3, 3.33) # Top Hct ->xsection twice!
 AddHut("hist_Top_Hut.root", "Hut", 419, 9.14)
 #AddHut("hist_AntiTop_Hut.root", "Hut", 5, 4.57) #used 1610.04857 values
-#### 
 
 qcd = []
 
@@ -234,15 +231,12 @@ for i in range(0, N_hist):
   for fname in hctsamples.keys():
     h_Hct = hctsamples[fname]["file"].Get(hctsamples[fname]["hname"][i])
     nbins = h_Hct.GetNbinsX()
-    h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) 
+    h_Hct.AddBinContent( nbins, h_Hct.GetBinContent( nbins+1 ) ) 
     h_Hct.SetLineColor(hctsamples[fname]["col"])
     h_Hct.SetFillColorAlpha(hctsamples[fname]["col"],0.0)
+
     ## normalization
-    scale = 1.0
-    if hctsamples[fname]["name"] == "QCD": 
-      scale = 1.0
-    else: 
-      scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
+    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
 
     h_Hct.Scale(scale)
 
@@ -271,15 +265,12 @@ for i in range(0, N_hist):
   for fname in hutsamples.keys():
     h_Hut = hutsamples[fname]["file"].Get(hutsamples[fname]["hname"][i])
     nbins = h_Hut.GetNbinsX()
-    h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) 
+    h_Hut.AddBinContent( nbins, h_Hut.GetBinContent( nbins+1 ) ) 
     h_Hut.SetLineColor(hutsamples[fname]["col"])
     h_Hut.SetFillColorAlpha(hutsamples[fname]["col"],0.0)
+
     ## normalization
-    scale = 1.0
-    if hutsamples[fname]["name"] == "QCD":
-      scale = 1.0
-    else:
-      scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
+    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
 
     h_Hut.Scale(scale)
 
@@ -316,7 +307,7 @@ for i in range(0, N_hist):
   pad2.SetGridy()
   pad2.Draw()
 
-  #Draw each plot...
+  #Draw each plot
   pad1.cd()
   h_data.SetMarkerStyle(20)
   h_data.SetMarkerSize(0.5)
@@ -421,6 +412,11 @@ for i in range(0, N_hist):
     c.Print( (filename+")") ) 
   else:
     c.Print(filename)
+
+  del h_data
+  del hs
+  del hsHct
+  del hsHut
 
 if QCDestimate :
  f = ROOT.TFile("hist_qcd.root", "recreate")
