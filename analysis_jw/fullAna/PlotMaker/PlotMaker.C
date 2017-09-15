@@ -7,7 +7,7 @@
 #include "PlotMaker.h"
 const double LUMINOSITY = 35867;
 string INPUT = "../";
-//string OUTPUT = "";
+//string OUTPUT = "../output/pdf/";
 
 
 DataFile::DataFile(string input_data){
@@ -50,16 +50,9 @@ MonteFile::MonteFile(string input_sample, string input_category,  int input_colo
   this->nHist = tmp;
   TH1D *EventInfo = (TH1D *)this->file->Get("EventInfo");
 
-  if(input_sample == "QCD"){
-    this->scale_Mu = 1;
-    this->scale_El = 1;
-  }
-  else{
-    this->scale_Mu = (LUMINOSITY*xsec)/EventInfo->GetBinContent(2);
-    this->scale_El = (LUMINOSITY*xsec)/EventInfo->GetBinContent(2);
-  }
+  this->scale_Mu = (LUMINOSITY*xsec)/EventInfo->GetBinContent(2);
+  this->scale_El = (LUMINOSITY*xsec)/EventInfo->GetBinContent(2);
 }
-
 
 void PlotMaker(){
   std::map<string, DataFile *> m_Data;
@@ -82,7 +75,25 @@ void PlotMaker(){
   char *ww = Form("ww");
   char *wz = Form("wz");
   char *zz = Form("zz");
-  char *QCD = Form("QCD");
+  //char *QCD = Form("QCD");
+  char *QCD_EGEnr_20to30 = Form("QCD_EGEnr_20to30");
+  char *QCD_EGEnr_30to50 = Form("QCD_EGEnr_30to50");
+  char *QCD_EGEnr_50to80 = Form("QCD_EGEnr_50to80");
+  char *QCD_EGEnr_80to120 = Form("QCD_EGEnr_80to120");
+  char *QCD_EGEnr_120to170 = Form("QCD_EGEnr_120to170");
+  char *QCD_EGEnr_170to300 = Form("QCD_EGEnr_170to300");
+  char *QCD_EGEnr_300toInf = Form("QCD_EGEnr_300toInf");
+  char *QCD_MuEnr_20to30 = Form("QCD_MuEnr_20to30");
+  char *QCD_MuEnr_30to50 = Form("QCD_MuEnr_30to50");
+  char *QCD_MuEnr_50to80 = Form("QCD_MuEnr_50to80");
+  char *QCD_MuEnr_80to120 = Form("QCD_MuEnr_80to120");
+  char *QCD_MuEnr_120to170 = Form("QCD_MuEnr_120to170");
+  char *QCD_MuEnr_170to300 = Form("QCD_MuEnr_170to300");
+  char *QCD_MuEnr_300to470 = Form("QCD_MuEnr_300to470");
+  char *QCD_MuEnr_470to600 = Form("QCD_MuEnr_470to600");
+  char *QCD_MuEnr_600to800 = Form("QCD_MuEnr_600to800");
+  char *QCD_MuEnr_800to1000 = Form("QCD_MuEnr_800to1000");
+  char *QCD_MuEnr_1000toInf = Form("QCD_MuEnr_1000toInf");
 
   m_Data["Mu"] = new DataFile("DataSingleMu");
   m_Data["El"] = new DataFile("DataSingleEG");
@@ -102,7 +113,25 @@ void PlotMaker(){
   m_Monte[ww] = new MonteFile("ww", "diBoson", kCyan, 118.7);
   m_Monte[wz] = new MonteFile("wz", "diBoson", kCyan, 47.13);
   m_Monte[zz] = new MonteFile("zz", "diBoson", kCyan, 16.523);
-  m_Monte[QCD] = new MonteFile("QCD", "QCD", kGray, 1);
+  //m_Monte[QCD] = new MonteFile("QCD", "QCD", kGray, 1);
+  m_Monte[QCD_EGEnr_20to30] = new MonteFile("QCD_EGEnr_20to30","QCD", kGray, 5352960);
+  m_Monte[QCD_EGEnr_30to50] = new MonteFile("QCD_EGEnr_30to50","QCD", kGray, 9928000);
+  m_Monte[QCD_EGEnr_50to80] = new MonteFile("QCD_EGEnr_50to80","QCD", kGray, 2890800);
+  m_Monte[QCD_EGEnr_80to120] = new MonteFile("QCD_EGEnr_80to120","QCD", kGray, 350000);
+  m_Monte[QCD_EGEnr_120to170] = new MonteFile("QCD_EGEnr_120to170","QCD", kGray, 62964);
+  m_Monte[QCD_EGEnr_170to300] = new MonteFile("QCD_EGEnr_170to300","QCD", kGray, 18810);
+  m_Monte[QCD_EGEnr_300toInf] = new MonteFile("QCD_EGEnr_300toInf","QCD", kGray, 1350);
+  m_Monte[QCD_MuEnr_20to30] = new MonteFile("QCD_MuEnr_20to30","QCD", kGray, 2960198.4);
+  m_Monte[QCD_MuEnr_30to50] = new MonteFile("QCD_MuEnr_30to50","QCD", kGray, 1652471.46);
+  m_Monte[QCD_MuEnr_50to80] = new MonteFile("QCD_MuEnr_50to80","QCD", kGray, 437504.1);
+  m_Monte[QCD_MuEnr_80to120] = new MonteFile("QCD_MuEnr_80to120","QCD", kGray, 106033.6648);
+  m_Monte[QCD_MuEnr_120to170] = new MonteFile("QCD_MuEnr_120to170","QCD", kGray, 25190.51514);
+  m_Monte[QCD_MuEnr_170to300] = new MonteFile("QCD_MuEnr_170to300","QCD", kGray, 8654.49315);
+  m_Monte[QCD_MuEnr_300to470] = new MonteFile("QCD_MuEnr_300to470","QCD", kGray, 797.35269);
+  m_Monte[QCD_MuEnr_470to600] = new MonteFile("QCD_MuEnr_470to600","QCD", kGray, 79.02553776);
+  m_Monte[QCD_MuEnr_600to800] = new MonteFile("QCD_MuEnr_600to800","QCD", kGray, 25.09505908);
+  m_Monte[QCD_MuEnr_800to1000] = new MonteFile("QCD_MuEnr_800to1000","QCD", kGray, 4.707368272);
+  m_Monte[QCD_MuEnr_1000toInf] = new MonteFile("QCD_MuEnr_1000toInf","QCD", kGray, 1.62131692);
  
   int nHist=0;
   for(auto v_itr = m_Monte[ttbb]->v_histName.begin(); v_itr != m_Monte[ttbb]->v_histName.end(); ++v_itr){
@@ -160,22 +189,22 @@ void PlotMaker(){
         cout << "FUCKING NULL POINTER" << endl;
       }
       if(channel == 0) {
-        h_tmp->Scale(m_itr->second->scale_Mu); 
+  h_tmp->Scale(m_itr->second->scale_Mu); 
       }
       else if(channel == 1){
-        cout << "scale : " << m_itr->second->scale_El << endl;
-        h_tmp->Scale(m_itr->second->scale_El);
+  cout << "scale : " << m_itr->second->scale_El << endl;
+  h_tmp->Scale(m_itr->second->scale_El);
       }
       else break;
 
       auto v_itr2 = find_if(v_postSample.begin(), v_postSample.end(),
-          [m_itr](string postSample)->bool{ return m_itr->second->category == postSample; });
+    [m_itr](string postSample)->bool{ return m_itr->second->category == postSample; });
       h_tmp->SetFillColor(m_itr->second->color);
       h_tmp->SetLineColor(m_itr->second->color);
       if( v_itr2 == v_postSample.end() )
-        leg->AddEntry(h_tmp, (m_itr->second->category).c_str(), "F");
+  leg->AddEntry(h_tmp, (m_itr->second->category).c_str(), "F");
       if( std::next(m_itr) != m_Monte.end() && m_itr->second->category != std::next(m_itr)->second->category )
-        h_tmp->SetLineColor(kBlack);
+  h_tmp->SetLineColor(kBlack);
 
 
       v_postSample.push_back(m_itr->second->category);
@@ -208,9 +237,9 @@ void PlotMaker(){
     h_data->SetMarkerStyle(20);
     h_data->SetMarkerSize(0.9);
     if( h_data->GetMaximum() > hs_tmp->GetMaximum() )
-      h_data->SetMaximum(hs_tmp->GetMaximum()+h_data->GetMaximum()*1.2);
+      h_data->SetMaximum(hs_tmp->GetMaximum()+h_data->GetMaximum()*0.5);
     else
-      h_data->SetMaximum(hs_tmp->GetMaximum()*1.2+h_data->GetMaximum());
+      h_data->SetMaximum(hs_tmp->GetMaximum()*0.5+h_data->GetMaximum());
     h_data->SetMinimum(0.01);
     
     h_data->Draw("P");
@@ -228,7 +257,7 @@ void PlotMaker(){
     
     h_div->SetTitle("");
     
-    h_div->GetYaxis()->SetTitle("Data/MC");
+    h_div->GetYaxis()->SetTitle("Data/Monte");
     h_div->GetYaxis()->SetTitleSize(0.08);
     h_div->GetYaxis()->SetTitleOffset(0.43);
     h_div->GetYaxis()->SetLabelSize(0.08);
@@ -238,13 +267,12 @@ void PlotMaker(){
     h_div->GetXaxis()->SetLabelSize(0.08);
     
     h_div->SetLineColor(kBlack);
-    h_div->SetMinimum(0.8);
-    h_div->SetMaximum(1.2);
+    h_div->SetMinimum(-2.0);
+    h_div->SetMaximum(2.0);
     h_div->Sumw2();
     h_div->SetStats(0);
     
     h_div->Draw();
-
     /*
     if(nHist==0)
       canvas->Print(Form("%sresult_ratio1.pdf(",OUTPUT.c_str()),"pdf");

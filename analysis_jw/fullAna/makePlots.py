@@ -268,6 +268,8 @@ for i in range(0, N_hist):
     hsHct.Add( h_Hct ) #hh_tmp -> add h tmp sig, hs->other
     m = m+1 
 
+  h_Hct = hsHct.GetStack().Last()
+
 #Add Hut
   hsHut = THStack()
 
@@ -307,6 +309,8 @@ for i in range(0, N_hist):
     hsHut.Add( h_Hut ) #hh_tmp -> add h tmp sig, hs->other
     n = n+1
 
+  h_Hut = hsHut.GetStack().Last()
+
   if QCDestimate:
     qcd.append(h_sub)
 
@@ -333,8 +337,8 @@ for i in range(0, N_hist):
   h_data.GetYaxis().SetTitle("Entries")
   hs.Draw("histsame")
   h_data.Draw("psame")
-  hsHct.Draw("hist same")
-  hsHut.Draw("hist same")
+  h_Hct.Draw("hist same")
+  h_Hut.Draw("hist same")
 
 
   l.AddEntry(h_data,"Data","P")
