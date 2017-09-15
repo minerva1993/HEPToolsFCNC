@@ -280,8 +280,8 @@ for i in range(0, N_hist):
     if hutsamples[fname]["name"] is not "QCD" and QCDestimate:
       h_HutSub.Add(h_Hut, -1)
     ## check if the sample is the same as previous process. 
-    if m < N_Hutsamples-1 :
-      post_name = hutsamples.keys()[m+1]
+    if n < N_Hutsamples-1 :
+      post_name = hutsamples.keys()[n+1]
       if hutsamples[fname]["name"] is hutsamples[post_name]["name"]:
         h_Hut.SetLineColor(hutsamples[fname]["col"])
       else:
