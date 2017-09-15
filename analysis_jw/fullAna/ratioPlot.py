@@ -133,10 +133,11 @@ AddBkg("hist_QCD_MuEnr_600to800.root","QCD",ROOT.kGray, 25.09505908)
 AddBkg("hist_QCD_MuEnr_800to1000.root","QCD",ROOT.kGray, 4.707368272)
 AddBkg("hist_QCD_MuEnr_1000toInf.root","QCD",ROOT.kGray, 1.62131692)
 
-AddHct("hist_Top_Hct.root", "Hct", 602, 6.66)
-#AddHct("hist_AntiTop_Hct.root", "Hct", 3, 3.33) # Top Hct ->xsection twice!
-AddHut("hist_Top_Hut.root", "Hut", 419, 9.14)
-#AddHut("hist_AntiTop_Hut.root", "Hut", 5, 4.57) #used 1610.04857 values
+AddHct("hist_Top_Hct.root", "Hct", 602, 3.33)
+AddHct("hist_AntiTop_Hct.root", "Hct", 602, 3.33) 
+AddHut("hist_Top_Hut.root", "Hut", 419, 4.57)
+AddHut("hist_AntiTop_Hut.root", "Hut", 419, 4.57) 
+#used 1610.04857 values
 
 qcd = []
 
@@ -156,19 +157,19 @@ for i in range(0, N_hist):
   hnames = datasamples[datasamples.keys()[mode]]["hname"][i].split("_")
   string0 = "%s \n" %hnames
   #fNevt.write(string0)
-  print string0
+  #print string0
 
   #printHistName = "LepIsoQCD"
   printHistName = "NJet"
 
   ##if hnames[1] == printHistName :
-  ##  print hnames[1], " ", hnames[2], " ", hnames[3]  
+  #print hnames[1], " ", hnames[2], " ", hnames[3]  
 
   hs = THStack()
   #l = TLegend(0.30, 0.99 - 0.8 * N_bkgsamples / 20., 0.89, 0.85)
   l = TLegend(0.15,0.71,0.89,0.87)
   l.SetNColumns(4);
-  l.SetTextSize(0.04);
+  l.SetTextSize(0.05);
   l.SetLineColor(0);
   l.SetFillColor(0);
 
@@ -256,6 +257,8 @@ for i in range(0, N_hist):
     hsHct.Add( h_Hct ) #hh_tmp -> add h tmp sig, hs->other
     m = m+1 
 
+  hs_Hct = hsHct.GetStack().Last()
+
 #Add Hut
   hsHut = THStack()
 
@@ -290,6 +293,8 @@ for i in range(0, N_hist):
     hsHut.Add( h_Hut ) #hh_tmp -> add h tmp sig, hs->other
     n = n+1
 
+  hs_Hut = hsHut.GetStack().Last()
+
   if QCDestimate:
     qcd.append(h_sub)
 
@@ -299,10 +304,13 @@ for i in range(0, N_hist):
     c.SetLogy()
 
   # Upper histogram plot is pad1
-  pad1 = TPad("pad1", "pad1", 0.02, 0.20, 1, 1.0)
+  pad1 = TPad("pad1", "pad1", 0.0, 0.3, 1, 1.0)
+  pad1.SetBottomMargin(0.02)
   pad1.Draw()
   c.cd()  # returns to main canvas before defining pad2
-  pad2 = TPad("pad2", "pad2", 0.02, 0.05, 1, 0.27)
+  pad2 = TPad("pad2", "pad2", 0.0, 0.0, 1, 0.28)
+  pad2.SetBottomMargin(0.3)
+  pad2.SetTopMargin(0.02)
   pad2.SetGridx()
   pad2.SetGridy()
   pad2.Draw()
@@ -327,14 +335,15 @@ for i in range(0, N_hist):
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Entries")
-  h_data.GetYaxis().SetTitleOffset(1.4)
-  #h_data.GetXaxis().SetLabelSize(0)
+  h_data.GetYaxis().SetTitleOffset(1.1)
+  h_data.GetYaxis().SetTitleSize(0.045)
+  h_data.GetXaxis().SetLabelSize(0)#
   #h_data.GetXaxis().SetTitle("")
   h_data.GetXaxis().SetTitleOffset(5.0)
   hs.Draw("histsame")
   h_data.Draw("psame")
-  hsHct.Draw("hist same")
-  hsHut.Draw("hist same")
+  hs_Hct.Draw("hist same")
+  hs_Hut.Draw("hist same")
   h4 = hs.Clone("h4")
   ROOT.SetOwnership( h4,  True )
 
@@ -349,10 +358,10 @@ for i in range(0, N_hist):
   label.AddText("CMS, 35.9 fb^{-1} at #sqrt{s} = 13 TeV")
   label.SetFillStyle(0)
   label.SetBorderSize(0)
-  label.SetTextSize(0.04)
+  label.SetTextSize(0.05)
   label.SetTextAlign(32)
   label.Draw("same")
-
+  
   pad2.cd()
   h3 = h_data.Clone("h3")
   ROOT.SetOwnership( h3,  True )
@@ -369,20 +378,19 @@ for i in range(0, N_hist):
   y = h3.GetYaxis()
   y.SetTitle("Data/MC")
   y.SetNdivisions(505)
-  y.SetTitleSize(0.14)
-  y.SetTitleOffset(0.3)
+  y.SetTitleSize(0.11)
+  y.SetTitleOffset(0.35)
   y.SetLabelSize(0.1)
 
   # Adjust x-axis settings
   x = h3.GetXaxis()
-  x.SetTitleSize(0.13)
-  x.SetTitleOffset(0.37)
-  #x.SetLabelSize(0.1)
-  x.SetLabelSize(0)
+  x.SetTitleSize(0.11)
+  x.SetTitleOffset(1.0)
+  x.SetLabelSize(0.1)
+  #x.SetLabelSize(0)
   h3.Divide(h4.GetStack().Last())
-  #h3.Divide(h4)
   h3.Draw("ep")
-
+  
   ndata= h_data.Integral()
   nsub = ndata-ntotalbkg
   if hnames[1] == printHistName:
@@ -394,9 +402,11 @@ for i in range(0, N_hist):
     fNevt.write(string2)
     fNevt.write(string3)
     #fNevt.write(string4)
+    """
     print "ntotal = " , "{0:.6g}".format(ntotalbkg)
     print "ndata = " , "{0:.0f}".format(ndata)
     print "nsub = ", "{0:.6g}".format(nsub)
+    """
 
   logname = ""
   if log:
@@ -415,8 +425,7 @@ for i in range(0, N_hist):
 
   del h_data
   del hs
-  del hsHct
-  del hsHut
+  del c
 
 if QCDestimate :
  f = ROOT.TFile("hist_qcd.root", "recreate")
