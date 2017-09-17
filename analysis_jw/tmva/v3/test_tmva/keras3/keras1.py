@@ -3,7 +3,8 @@ import sys, os
 import google.protobuf
 from ROOT import *
 from keras.models import Sequential
-from keras.layers.core import Dense, Activation, Dropout
+#from keras.layers.core import Dense, Activation, Dropout
+from keras.layers import LSTM, SimpleRNN
 from keras.regularizers import l2
 from keras.optimizers import SGD, Adam, Adadelta
 
@@ -15,7 +16,7 @@ fout = TFile("output_keras.root","recreate")
 factory = TMVA.Factory("TMVAClassification", fout,
                        "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G;D:AnalysisType=Classification" )
 
-loader = TMVA.DataLoader("keras5")
+loader = TMVA.DataLoader("keras3")
 loader.AddVariable("njets", "I")
 loader.AddVariable("nbjets_m",'I')
 loader.AddVariable("ncjets_m",'I')
@@ -144,36 +145,36 @@ factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=850:MinNodeSize
 
 model = Sequential()
 model.add(Dense(300, kernel_initializer='glorot_uniform', activation='relu', kernel_regularizer=l2(0.00001), input_dim=77))
-model.add(Dropout(0.6))
+model.add(Dropout(0.3))
 model.add(Dense(500, kernel_initializer='glorot_uniform', activation='relu'))
-model.add(Dropout(0.6))
+model.add(Dropout(0.2))
 model.add(Dense(700, kernel_initializer='glorot_uniform', activation='relu'))
-model.add(Dropout(0.6))
+model.add(Dropout(0.3))
+model.add(Dense(900, kernel_initializer='glorot_uniform', activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(900, kernel_initializer='glorot_uniform', activation='relu'))
+model.add(Dropout(0.3))
+model.add(Dense(900, kernel_initializer='glorot_uniform', activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(900, kernel_initializer='glorot_uniform', activation='relu'))
+model.add(Dropout(0.3))
+model.add(Dense(900, kernel_initializer='glorot_uniform', activation='relu'))
+model.add(Dropout(0.2))
 model.add(Dense(700, kernel_initializer='glorot_uniform', activation='relu'))
-model.add(Dropout(0.6))
-#model.add(Dense(700, kernel_initializer='glorot_uniform', activation='relu'))
-#model.add(Dropout(0.6))
-#model.add(Dense(700, kernel_initializer='glorot_uniform', activation='relu'))
-#model.add(Dropout(0.6))
-#model.add(Dense(700, kernel_initializer='glorot_uniform', activation='relu'))
-#model.add(Dropout(0.6))
-#model.add(Dense(700, kernel_initializer='glorot_uniform', activation='relu'))
-#model.add(Dropout(0.6))
-model.add(Dense(700, kernel_initializer='glorot_uniform', activation='relu'))
-model.add(Dropout(0.6))
-model.add(Dense(500, kernel_initializer='glorot_uniform', activation='relu'))
-model.add(Dropout(0.6))
+model.add(Dropout(0.3))
 model.add(Dense(300, kernel_initializer='glorot_uniform', activation='relu'))
-model.add(Dropout(0.6))
+model.add(Dropout(0.2))
+model.add(Dense(100, kernel_initializer='glorot_uniform', activation='relu'))
+model.add(Dropout(0.3))
 model.add(Dense(2, kernel_initializer='glorot_uniform', activation='softmax'))
 
 #model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01), metrics=['accuracy',])
-model.compile(loss='binary_crossentropy', optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0), metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=2E-3), metrics=['accuracy'])
 #model.compile(loss='categorical_crossentropy', optimizer=Adadelta(lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0), metrics=['accuracy'])
 model.save('model.h5')
 model.summary()
 
-factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model.h5:NumEpochs=50:BatchSize=200")
+factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model.h5:NumEpochs=15:BatchSize=200")
 
 factory.TrainAllMethods()
 factory.TestAllMethods()
