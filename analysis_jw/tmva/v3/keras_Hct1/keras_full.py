@@ -2,11 +2,12 @@
 import sys, os
 import google.protobuf
 from ROOT import *
-from keras.models import Sequential
-from keras.layers.core import Dense, Activation, Dropout
+from keras.models import Model, Sequential
+from keras.layers import Input, Dense, Activation, Dropout, add, concatenate
+#from keras.layers.core import Dropout
 from keras.regularizers import l2
-from keras import initializations
-from keras.optimizers import SGD, Adam
+from keras.optimizers import SGD, Adam, Adadelta
+from keras.utils import plot_model
 
 TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
@@ -180,7 +181,7 @@ bkgCut = TCut("missingET > 0 && cjetPt > 0 && jet1csv > 0 &&  jet2csv > 0 &&  je
 
 loader.PrepareTrainingAndTestTree(
     sigCut, bkgCut,
-    "nTrain_Signal=30000:nTrain_Background=40000:nTest_Signal=5000:nTest_Background=5000:SplitMode=Random:NormMode=NumEvents:!V"
+    "nTrain_Signal=30000:nTrain_Background=40000:nTest_Signal=10000:nTest_Background=10000:SplitMode=Random:NormMode=NumEvents:!V"
 )
 
 factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=850:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:UseBaggedBoost:BaggedSampleFraction=0.5:SeparationType=GiniIndex:nCuts=20")
@@ -188,43 +189,60 @@ factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=850:MinNodeSize
 #factory.BookMethod(loader, TMVA.Types.kDNN, "DNN", '!H:V:ErrorStrategy=CROSSENTROPY:VarTransform=N:WeightInitialization=XAVIERUNIFORM:Architecture=CPU:Layout=ReLU|300,ReLU|500,ReLU|700,ReLU|700,ReLU|700,ReLU|700,ReLU|700,ReLU|700,ReLU|700,ReLU|500,ReLU|300,ReLU|100,LINEAR:TrainingStrategy=LearningRate=1e-2,Repetitions=1,ConvergenceSteps=20,Multithreading=True,Regularization=L2,WeightDecay=1e-4,BatchSize=100,TestRepetitions=5,DropConfig=0.2+0.0+0.0+0.0+0.2+0.0+0.0+0.0+0.2+0.0+0.0+0.0+0.0,Momentum=0.7')
 
 #Keras
-#def normal(shape, name=None):
-#  return initializations.normal(shape, scale=0.05, name=name)
+a = 700
+b = 0.6
 
-model = Sequential()
-model.add(Dense(300, init='glorot_uniform', activation='relu', W_regularizer=l2(0.00001), input_dim=77))
-model.add(Dropout(0.3))
-model.add(Dense(500, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(700, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.3))
-model.add(Dense(900, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(900, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.3))
-model.add(Dense(900, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(900, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.3))
-model.add(Dense(900, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.2))
-#model.add(Dense(700, init='glorot_uniform', activation='relu'))
-#model.add(Dropout(0.3))
-model.add(Dense(700, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.3))
-model.add(Dense(300, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(100, init='glorot_uniform', activation='relu'))
-model.add(Dropout(0.3))
-model.add(Dense(2, init='glorot_uniform', activation='softmax'))
+inputs = Input(shape=(77,))
+x = Dense(a)(inputs)
+x = Dropout(b)(x)
 
-#model.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01), metrics=['accuracy',])
-model.compile(loss='categorical_crossentropy', optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=2E-3), metrics=['accuracy'])
-#model.compile(loss='categorical_crossentropy', optimizer=Adadelta(lr=1.0, rho=0.95, epsilon=1e-08, decay=0.0), metrics=['accuracy'])
+branch_point1 = Dense(a, name='branch_point1')(x)
+#branch_layer1 = Dense(500, name='branch_layer1')(branch_point1)
+
+x = Dense(a, activation='relu')(x)
+x = Dropout(b)(x)
+
+branch_point3 = Dense(a, name='branch_point3')(x)
+
+x = Dense(a, activation='relu')(x)
+x = Dropout(b)(x)
+x = Dense(a, activation='relu')(x)
+x = Dropout(b)(x)
+
+x = add([x, branch_point1])
+
+x = Dense(a, activation='relu')(x)
+
+branch_point2 = Dense(a, name='branch_point2')(x)
+
+x = Dense(a, activation='relu')(x)
+x = Dropout(b)(x)
+x = Dense(a, activation='relu')(x)
+x = Dropout(b)(x)
+
+x = add([x, branch_point2])
+
+x = Dense(a, activation='relu')(x)
+x = Dropout(b)(x)
+
+x = add([x, branch_point3])
+
+x = Dense(a, activation='relu')(x)
+x = Dropout(b)(x)#
+
+x = Dense(300, activation='relu')(x)
+x = Dropout(b)(x)#
+
+predictions = Dense(2, activation='softmax')(x)
+
+model = Model(inputs=inputs, outputs=predictions)
+
+model.compile(loss='binary_crossentropy', optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=5E-3), metrics=['accuracy'])
 model.save('model.h5')
 model.summary()
+plot_model(model, to_file='model.png')
 
-factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model.h5:NumEpochs=15:BatchSize=200")
+factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model.h5:NumEpochs=100:BatchSize=200")
 
 factory.TrainAllMethods()
 factory.TestAllMethods()
@@ -232,4 +250,3 @@ factory.EvaluateAllMethods()
 fout.Close()
 
 TMVA.TMVAGui("output_keras.root")
-
