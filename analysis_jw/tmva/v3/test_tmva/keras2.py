@@ -4,11 +4,11 @@ import google.protobuf
 from ROOT import *
 from keras.models import Model, Sequential
 from keras.layers import Input, Dense, Activation, Dropout, add, concatenate
+from keras.layers.normalization import BatchNormalization
 #from keras.layers.core import Dropout
 from keras.regularizers import l2
 from keras.optimizers import SGD, Adam, Adadelta
 from keras.utils import plot_model
-from keras.callbacks import EarlyStopping
 
 TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
@@ -19,7 +19,7 @@ factory = TMVA.Factory("TMVAClassification", fout,
                        "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G;D:AnalysisType=Classification" )
 
 loader = TMVA.DataLoader("keras_res6")
-loader.AddVariable("njets", "I"
+loader.AddVariable("njets", "I")
 loader.AddVariable("nbjets_m",'I')
 loader.AddVariable("ncjets_m",'I')
 loader.AddVariable("lepDPhi",'F')
@@ -147,20 +147,27 @@ b = 0.6
 
 inputs = Input(shape=(77,))
 x = Dense(a)(inputs)
-x = Dropout(b)(x)
+#x = Dropout(b)(x)
+
+x = BatchNormalization()(x)
 
 branch_point1 = Dense(a, name='branch_point1')(x)
 #branch_layer1 = Dense(500, name='branch_layer1')(branch_point1)
 
 x = Dense(a, activation='relu')(x)
-x = Dropout(b)(x)
+#x = Dropout(b)(x)
+
+x = BatchNormalization()(x)
 
 branch_point3 = Dense(a, name='branch_point3')(x)
 
 x = Dense(a, activation='relu')(x)
-x = Dropout(b)(x)
+#x = Dropout(b)(x)
+
+x = BatchNormalization()(x)
 x = Dense(a, activation='relu')(x)
-x = Dropout(b)(x)
+#x = Dropout(b)(x)
+
 ##x = Dense(a, activation='relu')(x)
 ##x = Dropout(b)(x)
 #x = Dense(a, activation='relu')(x)
@@ -169,14 +176,20 @@ x = Dropout(b)(x)
 x = add([x, branch_point1])
 #x = concatenate([x, branch_layer1], axis=-1)
 
+x = BatchNormalization()(x)
+
 x = Dense(a, activation='relu')(x)
 
 branch_point2 = Dense(a, name='branch_point2')(x)
 
+x = BatchNormalization()(x)
 x = Dense(a, activation='relu')(x)
-x = Dropout(b)(x)
+#x = Dropout(b)(x)
+
+x = BatchNormalization()(x)
 x = Dense(a, activation='relu')(x)
-x = Dropout(b)(x)
+#x = Dropout(b)(x)
+
 ##x = Dense(a, activation='relu')(x)
 ##x = Dropout(b)(x)
 #x = Dense(a, activation='relu')(x)#
@@ -184,16 +197,19 @@ x = Dropout(b)(x)
 
 x = add([x, branch_point2])
 
+x = BatchNormalization()(x)
 x = Dense(a, activation='relu')(x)
-x = Dropout(b)(x)
+#x = Dropout(b)(x)
 
 x = add([x, branch_point3])
 
+x = BatchNormalization()(x)
 x = Dense(a, activation='relu')(x)
-x = Dropout(b)(x)#
+#x = Dropout(b)(x)#
 
+x = BatchNormalization()(x)
 x = Dense(300, activation='relu')(x)
-x = Dropout(b)(x)#
+#x = Dropout(b)(x)#
 
 predictions = Dense(2, activation='softmax')(x)
 
@@ -207,7 +223,7 @@ model.summary()
 plot_model(model, to_file='model.png')
 #early_stopping = EarlyStopping(monitor='val_loss', patience=7)
 
-factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model.h5:NumEpochs=100:BatchSize=200")
+factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model.h5:NumEpochs=20:BatchSize=200")
 
 factory.TrainAllMethods()
 factory.TestAllMethods()
