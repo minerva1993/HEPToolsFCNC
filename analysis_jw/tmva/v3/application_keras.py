@@ -15,7 +15,8 @@ reader = TMVA.Reader("Color:!Silent")
 data = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/mkNtuple_v3/tmva_SingleLepton_Run2016.root')
 data_tree = data.Get('tmva_tree')
 
-target = TFile("rd_output.root","RECREATE" )
+#target = TFile("rd_output_Hct.root","RECREATE" )
+target = TFile("rd_output_Hut.root","RECREATE" )
 tree = TTree("tree","tree")
 
 branches = {}
@@ -27,8 +28,14 @@ for branch in data_tree.GetListOfBranches():
       data_tree.SetBranchAddress(branchName, branches[branchName])
 
 # Book methods
-reader.BookMVA('PyKeras', TString('keras_Hct2v2/weights/TMVAClassification_PyKeras.weights.xml'))
-reader.BookMVA('BDT', TString('keras_Hct2v2/weights/TMVAClassification_BDT.weights.xml'))
+#Hct
+#reader.BookMVA('PyKeras', TString('keras_Hct2v2/weights/TMVAClassification_PyKeras.weights.xml'))
+#reader.BookMVA('BDT', TString('keras_Hct2v2/weights/TMVAClassification_BDT.weights.xml'))
+
+#Hut
+reader.BookMVA('PyKeras', TString('keras_Hut1v2/weights/TMVAClassification_PyKeras.weights.xml'))
+reader.BookMVA('BDT', TString('keras_Hut1v2/weights/TMVAClassification_BDT.weights.xml'))
+
 nevt = data_tree.GetEntries()
 
 score1 = np.zeros(1, dtype=float)
