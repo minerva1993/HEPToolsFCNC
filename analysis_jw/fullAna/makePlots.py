@@ -197,8 +197,8 @@ for i in range(0, N_hist):
     #else: 
     scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
 
-    #print fname
-    #print scale
+    print fname
+    print scale
     h_tmp.Scale(scale)
 
     if bkgsamples[fname]["name"] is not "QCD" and QCDestimate: 
@@ -248,8 +248,8 @@ for i in range(0, N_hist):
     else: 
       scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
 
-    #print fname
-    #print scale
+    print fname
+    print scale
     h_Hct.Scale(scale)
 
     if hctsamples[fname]["name"] is not "QCD" and QCDestimate: 
@@ -289,8 +289,8 @@ for i in range(0, N_hist):
     else:
       scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
 
-    #print fname
-    #print scale
+    print fname
+    print scale
     h_Hut.Scale(scale)
 
     if hutsamples[fname]["name"] is not "QCD" and QCDestimate:
