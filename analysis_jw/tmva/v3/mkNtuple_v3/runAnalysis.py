@@ -52,7 +52,7 @@ for mo in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/Si
 
 for mp in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleMuon_Run2016H_v3"):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleMuon_Run2016H_v3", mp,"SingleMuon_Run2016H_v3_splitted_"+ str(mp).rstrip(".root"))
-"""
+
 #runAna(inputdir+version,"SingleElectron_Run2016.root","DataSingleEG")
 for ei in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleElectron_Run2016B"):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/SingleElectron_Run2016B", ei,"SingleElectron_Run2016B_splitted_"+ str(ei).rstrip(".root"))
@@ -81,7 +81,7 @@ for ep in os.listdir("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/Si
 #runAna(inputdir+version,"TT_powheg_ttbb.root","ttbb")
 for o in range(0, 238):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/TT_powheg_ttbb","Tree_ttbbLepJets_"+ str(o) + ".root","ttbb_split_"+ str(o))
-
+"""
 #runAna(inputdir+version,"TT_powheg_ttlf.root","ttLF")
 for j in range(0, 238):
   runAna("/data/users/minerva1993/ntuple_Run2016/v3/v3_production/TT_powheg_ttlf","Tree_ttbbLepJets_"+ str(j) + ".root","ttLF_split_"+ str(j))
