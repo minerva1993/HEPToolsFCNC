@@ -1,0 +1,9 @@
+combine -S 0 -M Asymptotic bdt_hct.txt
+
+-- AsymptoticLimits ( CLs ) --
+Observed Limit: r < 0.0162
+Expected  2.5%: r < 0.0142
+Expected 16.0%: r < 0.0189
+Expected 50.0%: r < 0.0259
+Expected 84.0%: r < 0.0362
+Expected 97.5%: r < 0.0485
