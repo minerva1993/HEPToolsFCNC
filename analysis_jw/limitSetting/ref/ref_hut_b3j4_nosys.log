@@ -1,0 +1,7 @@
+-- AsymptoticLimits ( CLs ) --
+Observed Limit: r < 0.0659
+Expected  2.5%: r < 0.0795
+Expected 16.0%: r < 0.1060
+Expected 50.0%: r < 0.1475
+Expected 84.0%: r < 0.2057
+Expected 97.5%: r < 0.2749
