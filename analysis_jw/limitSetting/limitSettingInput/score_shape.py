@@ -1,10 +1,10 @@
 import os
 from ROOT import *
 
-#ch = 'Hct3'
-ch = 'Hut3'
+ch = 'Hct3'
+#ch = 'Hut3'
 
-target = TFile('shape_'+ch+'.root','RECREATE')
+target = TFile('shape_'+ch+'_v2.root','RECREATE')
 
 for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'):
 
@@ -178,18 +178,18 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
 
     bdt_sig = TH1F('bdt_sig', '', 100, -1, 1)
     tch_tree.Draw('BDTScore>>bdt_sig')
-    bdt_sig.Scale(0.113541253338)
+    bdt_sig.Scale(0.113541253338/2)
     bdt_tbarch = TH1F('bdt_tbarch', '', 100, -1, 1)
     tbarch_tree.Draw('BDTScore>>bdt_tbarch')
-    bdt_tbarch.Scale(0.113541253338)
+    bdt_tbarch.Scale(0.113541253338/2)
     bdt_sig.Add(bdt_sig, bdt_tbarch, 1.0, 1.0)
 
     keras_sig = TH1F('keras_sig', '', 100, 0, 1)
     tch_tree.Draw('KerasScore>>keras_sig')
-    keras_sig.Scale(0.113541253338)
+    keras_sig.Scale(0.113541253338/2)
     keras_tbarch = TH1F('keras_tbarch', '', 100, 0, 1)
     tbarch_tree.Draw('KerasScore>>keras_tbarch')
-    keras_tbarch.Scale(0.113541253338)
+    keras_tbarch.Scale(0.113541253338/2)
     keras_sig.Add(keras_sig, keras_tbarch, 1.0, 1.0)
 
     target.cd()
@@ -204,18 +204,18 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
 
     bdt_sig = TH1F('bdt_sig', '', 100, -1, 1)
     tuh_tree.Draw('BDTScore>>bdt_sig')
-    bdt_sig.Scale(0.15613733157)
+    bdt_sig.Scale(0.15613733157/2)
     bdt_tbaruh = TH1F('bdt_tbaruh', '', 100, -1, 1)
     tbaruh_tree.Draw('BDTScore>>bdt_tbaruh')
-    bdt_tbaruh.Scale(0.15613733157)
+    bdt_tbaruh.Scale(0.15613733157/2)
     bdt_sig.Add(bdt_sig, bdt_tbaruh, 1.0, 1.0)
 
     keras_sig = TH1F('keras_sig', '', 100, 0, 1)
     tuh_tree.Draw('KerasScore>>keras_sig')
-    keras_sig.Scale(0.15613733157)
+    keras_sig.Scale(0.15613733157/2)
     keras_tbaruh = TH1F('keras_tbaruh', '', 100, 0, 1)
     tbaruh_tree.Draw('KerasScore>>keras_tbaruh')
-    keras_tbaruh.Scale(0.15613733157)
+    keras_tbaruh.Scale(0.15613733157/2)
     keras_sig.Add(keras_sig, keras_tbaruh, 1.0, 1.0)
 
     target.cd()

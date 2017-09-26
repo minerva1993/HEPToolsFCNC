@@ -2,7 +2,7 @@ imax *
 jmax *
 kmax *
 ---------------
-shapes * hut_keras /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_Hut3.root keras_$PROCESS
+shapes * hut_keras /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_Hut3_v2.root keras_$PROCESS
 ---------------
 bin hut_keras
 observation 56053
@@ -10,5 +10,5 @@ observation 56053
 bin     hut_keras     hut_keras   hut_keras     hut_keras   hut_keras   hut_keras   hut_keras
 process sig           ttbb        ttLF          ttbj        ttcc        singletop   others
 process 0             1           2             3           4           5           6
-rate    7343.763226   4101.668226 42240.113584  5722.192232 1724.260217 1665.933914 664.443997
+rate    3671.881618   4101.668226 42240.113584  5722.192232 1724.260217 1665.933914 664.443997
 --------------------------------
