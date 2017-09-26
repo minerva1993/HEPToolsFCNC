@@ -1,9 +1,0 @@
-combine -S 0 -M Asymptotic keras_hut.txt
-
--- AsymptoticLimits ( CLs ) --
-Observed Limit: r < 0.0022
-Expected  2.5%: r < 0.0152
-Expected 16.0%: r < 0.0203
-Expected 50.0%: r < 0.0278
-Expected 84.0%: r < 0.0389
-Expected 97.5%: r < 0.0521
