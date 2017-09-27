@@ -12,6 +12,8 @@ TMVA.PyMethodBase.PyInitialize()
 reader = TMVA.Reader("Color:!Silent")
 
 filecount = 0
+ch = 'Hct3'
+#ch = 'Hut3'
 
 # Load data
 for tuples in os.listdir("/home/minerva1993/fcnc/analysis_jw/tmva/v3/mkNtuple_v3/test/"):
@@ -23,8 +25,7 @@ for tuples in os.listdir("/home/minerva1993/fcnc/analysis_jw/tmva/v3/mkNtuple_v3
     data = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/mkNtuple_v3/test/'+tuples)
     data_tree = data.Get('tmva_tree')
 
-    #target = TFile("output_Hct3_"+tuples,"RECREATE" )
-    target = TFile("output_Hut3_"+tuples,"RECREATE" )
+    target = TFile('output_'+ch+'_'+tuples,'RECREATE')
     tree = TTree("tree","tree")
 
     branches = {}
@@ -37,13 +38,8 @@ for tuples in os.listdir("/home/minerva1993/fcnc/analysis_jw/tmva/v3/mkNtuple_v3
 
     if filecount == 1:
       # Book methods
-      #Hct
-      #reader.BookMVA('PyKeras', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v3/keras_Hct3v2/weights/TMVAClassification_PyKeras.weights.xml'))
-      #reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v3/keras_Hct3v2/weights/TMVAClassification_BDT.weights.xml'))
-
-      #Hut
-      reader.BookMVA('PyKeras', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v3/keras_Hut3v2/weights/TMVAClassification_PyKeras.weights.xml'))
-      reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v3/keras_Hut3v2/weights/TMVAClassification_BDT.weights.xml'))
+      reader.BookMVA('PyKeras', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v3/keras_'+ch+'v2/weights/TMVAClassification_PyKeras.weights.xml'))
+      reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v3/keras_'+ch+'v2/weights/TMVAClassification_BDT.weights.xml'))
 
     print "processing "+tuples
     nevt = data_tree.GetEntries()
