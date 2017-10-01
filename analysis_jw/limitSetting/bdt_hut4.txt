@@ -1,0 +1,14 @@
+imax *
+jmax *
+kmax *
+---------------
+shapes * hut_bdt /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_Hut4_v2.root bdt_$PROCESS
+---------------
+bin hut_bdt
+observation 56053
+------------------------------
+bin     hut_bdt       hut_bdt     hut_bdt       hut_bdt     hut_bdt     hut_bdt     hut_bdt
+process sig           ttbb        ttLF          ttbj        ttcc        singletop   others
+process 0             1           2             3           4           5           6
+rate    3671.881618   4101.668226 42240.113584  5722.192232 1724.260217 1665.933914 1943.283153
+--------------------------------
