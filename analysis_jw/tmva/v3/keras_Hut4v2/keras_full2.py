@@ -18,7 +18,7 @@ fout = TFile("output_keras.root","recreate")
 factory = TMVA.Factory("TMVAClassification", fout,
                        "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G;D:AnalysisType=Classification" )
 
-loader = TMVA.DataLoader("keras_Hct5v2")
+loader = TMVA.DataLoader("keras_Hut4v2")
 loader.AddVariable("njets", "I")
 loader.AddVariable("nbjets_m",'I')
 loader.AddVariable("ncjets_m",'I')
@@ -115,14 +115,14 @@ loader.AddVariable("DRhadTm",'F')
 
 
 ## Load input files
-#signalA = TFile("mkNtuple_v3/tmva_AntiTop_Hut.root")
-signalB = TFile("mkNtuple_v3/tmva_AntiTop_Hct.root")
-#signalC = TFile("mkNtuple_v3/tmva_Top_Hut.root")
-signalD = TFile("mkNtuple_v3/tmva_Top_Hct.root")
-#sigTreeA = signalA.Get("tmva_tree")
-sigTreeB = signalB.Get("tmva_tree")
-#sigTreeC = signalC.Get("tmva_tree")
-sigTreeD = signalD.Get("tmva_tree")
+signalA = TFile("mkNtuple_v3/tmva_AntiTop_Hut.root")
+#signalB = TFile("mkNtuple_v3/tmva_AntiTop_Hct.root")
+signalC = TFile("mkNtuple_v3/tmva_Top_Hut.root")
+#signalD = TFile("mkNtuple_v3/tmva_Top_Hct.root")
+sigTreeA = signalA.Get("tmva_tree")
+#sigTreeB = signalB.Get("tmva_tree")
+sigTreeC = signalC.Get("tmva_tree")
+#sigTreeD = signalD.Get("tmva_tree")
 
 background1 = TFile("mkNtuple_v3/tmva_tbarchannel.root")
 background2 = TFile("mkNtuple_v3/tmva_tbarWchannel.root")
@@ -157,10 +157,10 @@ backgroundTree13 = background13.Get("tmva_tree")
 backgroundTree14 = background14.Get("tmva_tree")
 backgroundTree15 = background15.Get("tmva_tree")
 
-#loader.AddSignalTree(sigTreeA,0.0780687)#0.156137331574/2
-loader.AddSignalTree(sigTreeB,0.0567706)#0.113541253338/2
-#loader.AddSignalTree(sigTreeC,0.0780687)
-loader.AddSignalTree(sigTreeD,0.0567706)
+loader.AddSignalTree(sigTreeA,0.0780687)#0.156137331574/2
+#loader.AddSignalTree(sigTreeB,0.0567706)#0.113541253338/2
+loader.AddSignalTree(sigTreeC,0.0780687)
+#loader.AddSignalTree(sigTreeD,0.0567706)
 
 loader.AddBackgroundTree(backgroundTree1,0.024575262909)
 loader.AddBackgroundTree(backgroundTree2,0.193026936331)
@@ -186,7 +186,7 @@ bkgCut = TCut("missingET > 0 && cjetPt > 0 && jet1csv > 0 &&  jet2csv > 0 &&  je
 
 loader.PrepareTrainingAndTestTree(
     sigCut, bkgCut,
-    "nTrain_Signal=40000:nTrain_Background=100000:nTest_Signal=10000:nTest_Background=20000:SplitMode=Random:NormMode=NumEvents:!V"
+    "nTrain_Signal=30000:nTrain_Background=40000:nTest_Signal=10000:nTest_Background=10000:SplitMode=Random:NormMode=NumEvents:!V"
 )
 
 factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=850:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:UseBaggedBoost:BaggedSampleFraction=0.5:SeparationType=GiniIndex:nCuts=20")
@@ -245,7 +245,7 @@ model.save('model.h5')
 model.summary()
 plot_model(model, to_file='model.png')
 
-factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model.h5:NumEpochs=20:BatchSize=200")
+factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model.h5:NumEpochs=35:BatchSize=200")
 
 factory.TrainAllMethods()
 factory.TestAllMethods()

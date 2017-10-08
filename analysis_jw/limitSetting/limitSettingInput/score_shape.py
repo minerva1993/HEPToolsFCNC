@@ -1,17 +1,21 @@
 import os
 from ROOT import *
 
+#tmva_version = 'v33'
+tmva_version = 'v4'
+
 #ch = 'Hct3'
 #ch = 'Hut3'
 #ch = 'Hct4'#Chande signal section also!
-ch = 'Hut4'
+#ch = 'Hut4'
+ch = 'Hct2'
 
-target = TFile('shape_'+ch+'_v2.root','RECREATE')
+target = TFile('shape_'+tmva_version+'_'+ch+'.root','RECREATE')
 
-for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'):
+for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'):
 
   if scores == 'output_'+ch+'_tmva_ttbb.root':
-    ttbb = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+scores)
+    ttbb = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
     ttbb_tree = ttbb.Get('tree')
 
     bdt_ttbb = TH1F('bdt_ttbb', '', 20, -0.3, 0.3)
@@ -27,9 +31,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
     keras_ttbb.Write()
  
   elif scores == 'output_'+ch+'_tmva_ttLF.root':
-    ttLF = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+scores)
+    ttLF = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
     ttLF_tree = ttLF.Get('tree')
-    tt = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_tt.root')
+    tt = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_tt.root')
     tt_tree = tt.Get('tree')
     
     bdt_ttLF = TH1F('bdt_ttLF', '', 20, -0.3, 0.3)
@@ -53,7 +57,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
     keras_ttLF.Write()
  
   elif scores == 'output_'+ch+'_tmva_ttcc.root':
-    ttcc = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+scores)
+    ttcc = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
     ttcc_tree = ttcc.Get('tree')
 
     bdt_ttcc = TH1F('bdt_ttcc', '', 20, -0.3, 0.3)
@@ -69,7 +73,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
     keras_ttcc.Write()
  
   elif scores == 'output_'+ch+'_tmva_ttbj.root':
-    ttbj = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+scores)
+    ttbj = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
     ttbj_tree = ttbj.Get('tree')
 
     bdt_ttbj = TH1F('bdt_ttbj', '', 20, -0.3, 0.3)
@@ -85,13 +89,13 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
     keras_ttbj.Write()
 
   elif scores == 'output_'+ch+'_tmva_tchannel.root':
-    st = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+scores)
+    st = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
     st_tree = st.Get('tree')
-    stbar = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_tbarchannel.root')
+    stbar = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_tbarchannel.root')
     stbar_tree = stbar.Get('tree')
-    tw = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_tWchannel.root')
+    tw = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_tWchannel.root')
     tw_tree = stbar.Get('tree')
-    tbarw = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_tbarWchannel.root')
+    tbarw = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_tbarWchannel.root')
     tbarw_tree = stbar.Get('tree')
 
     bdt_singletop = TH1F('bdt_singletop', '', 20, -0.3, 0.3)
@@ -132,9 +136,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
 
   #no W+Jets
   elif scores == 'output_'+ch+'_tmva_zjets.root':
-    zjets = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+scores)
+    zjets = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
     zjets_tree = zjets.Get('tree')
-    zjets10to50 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_zjets10to50.root')
+    zjets10to50 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_zjets10to50.root')
     zjets10to50_tree = zjets10to50.Get('tree')
 
     bdt_others = TH1F('bdt_others', '', 20, -0.3, 0.3)
@@ -155,19 +159,19 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
     keras_others.Add(keras_others, keras_zjets10to50, 1.0, 1.0)
 
     #QCD
-    eg120to170 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_EGEnr_120to170.root')
+    eg120to170 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_EGEnr_120to170.root')
     eg120to170_tree = eg120to170.Get('tree')
-    eg170to300 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_EGEnr_170to300.root')
+    eg170to300 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_EGEnr_170to300.root')
     eg170to300_tree = eg170to300.Get('tree')
-    eg300toinf = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_EGEnr_300toInf.root')
+    eg300toinf = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_EGEnr_300toInf.root')
     eg300toinf_tree = eg300toinf.Get('tree')
-    mu120to170 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_120to170.root')
+    mu120to170 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_120to170.root')
     mu120to170_tree = mu120to170.Get('tree')
-    mu170to300 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_170to300.root')
+    mu170to300 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_170to300.root')
     mu170to300_tree = mu170to300.Get('tree')
-    mu300to470 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_300to470.root')
+    mu300to470 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_300to470.root')
     mu300to470_tree = mu300to470.Get('tree')
-    mu80to120 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_80to120.root')
+    mu80to120 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_80to120.root')
     mu80to120_tree = mu80to120.Get('tree')
 
     bdt_eg120to170 = TH1F('bdt_eg120to170', '', 20, -0.3, 0.3)
@@ -233,7 +237,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
     keras_others.Write()
 
   elif scores == 'output_'+ch+'_tmva_SingleLepton_Run2016.root':
-    rd = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_SingleLepton_Run2016.root')
+    rd = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_SingleLepton_Run2016.root')
     rd_tree = rd.Get('tree')
 
     bdt_data_obs = TH1F('bdt_data_obs', '', 20, -0.3, 0.3)
@@ -246,10 +250,10 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
     bdt_data_obs.Write()
     keras_data_obs.Write()
 
-  elif scores == 'output_'+ch+'_tmva_Top_Hct.root' and ch == 'Hct4':
-    tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_Top_Hct.root')
+  elif scores == 'output_'+ch+'_tmva_Top_Hct.root' and ch == 'Hct2':
+    tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_Top_Hct.root')
     tch_tree = tch.Get('tree')
-    tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_AntiTop_Hct.root')
+    tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_AntiTop_Hct.root')
     tbarch_tree = tch.Get('tree')
 
     bdt_sig = TH1F('bdt_sig', '', 20, -0.3, 0.3)
@@ -268,14 +272,19 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'
     keras_tbarch.Scale(0.113541253338/2)
     keras_sig.Add(keras_sig, keras_tbarch, 1.0, 1.0)
 
+    #tch_out = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/keras_Hct4v2/output_keras.root')
+    #keras_sig = tch_out.Get('keras_Hct4v2/Method_PyKeras/PyKeras/MVA_PyKeras_S')
+    #keras_sig.Scale(3201.863329/40.955973)
+    #keras_sig.SetName('keras_sig')
+
     target.cd()
     bdt_sig.Write()
     keras_sig.Write()
 
-  elif scores == 'output_'+ch+'_tmva_Top_Hut.root' and ch == 'Hut4':
-    tuh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_Top_Hut.root')
+  elif scores == 'output_'+ch+'_tmva_Top_Hut.root' and ch == 'Hut2':
+    tuh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_Top_Hut.root')
     tuh_tree = tuh.Get('tree')
-    tbaruh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/score_mva/'+ch+'/'+'output_'+ch+'_tmva_AntiTop_Hut.root')
+    tbaruh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_AntiTop_Hut.root')
     tbaruh_tree = tuh.Get('tree')
 
     bdt_sig = TH1F('bdt_sig', '', 20, -0.3, 0.3)
