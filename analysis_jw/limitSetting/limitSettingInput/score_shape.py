@@ -1,14 +1,14 @@
 import os
 from ROOT import *
 
-#tmva_version = 'v33'
+#tmva_version = 'v3'
 tmva_version = 'v4'
 
 #ch = 'Hct3'
-#ch = 'Hut3'
+ch = 'Hut3'
 #ch = 'Hct4'#Chande signal section also!
 #ch = 'Hut4'
-ch = 'Hct2'
+#ch = 'Hct2'
 
 target = TFile('shape_'+tmva_version+'_'+ch+'.root','RECREATE')
 
@@ -250,7 +250,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_data_obs.Write()
     keras_data_obs.Write()
 
-  elif scores == 'output_'+ch+'_tmva_Top_Hct.root' and ch == 'Hct2':
+  elif scores == 'output_'+ch+'_tmva_Top_Hct.root' and ch == 'Hct3':
     tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_Top_Hct.root')
     tch_tree = tch.Get('tree')
     tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_AntiTop_Hct.root')
@@ -281,7 +281,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_sig.Write()
     keras_sig.Write()
 
-  elif scores == 'output_'+ch+'_tmva_Top_Hut.root' and ch == 'Hut2':
+  elif scores == 'output_'+ch+'_tmva_Top_Hut.root' and ch == 'Hut3':
     tuh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_Top_Hut.root')
     tuh_tree = tuh.Get('tree')
     tbaruh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'output_'+ch+'_tmva_AntiTop_Hut.root')
