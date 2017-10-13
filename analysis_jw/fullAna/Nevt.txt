@@ -1,9 +1,9 @@
 ['h', 'NJet', 'Ch0', 'S0', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 9028 
-hist_ttbj :  ttbj = 29735 
-hist_ttcc :  ttcc = 20427 
-hist_ttLF :  ttLF = 595678 
-hist_tt :  ttLF = 1448157 
+hist_ttbb :  ttbb = 9256 
+hist_ttbj :  ttbj = 30486 
+hist_ttcc :  ttcc = 20943 
+hist_ttLF :  ttLF = 610720 
+hist_tt :  ttLF = 1484726 
 hist_wjets :  WJets = 197881817 
 hist_zjets :  ZJets = 9693541 
 hist_zjets10to50 :  ZJets = 1253339 
@@ -14,27 +14,9 @@ hist_tbarWchannel :  Single t = 123021
 hist_ww :  DiBoson = 298948 
 hist_wz :  DiBoson = 76573 
 hist_zz :  DiBoson = 8601 
-hist_QCD_EGEnr_20to30 :  QCD = 423973 
-hist_QCD_EGEnr_30to50 :  QCD = 1864478 
-hist_QCD_EGEnr_50to80 :  QCD = 1104783 
-hist_QCD_EGEnr_80to120 :  QCD = 197568 
-hist_QCD_EGEnr_120to170 :  QCD = 46433 
-hist_QCD_EGEnr_170to300 :  QCD = 18109 
-hist_QCD_EGEnr_300toInf :  QCD = 1627 
-hist_QCD_MuEnr_20to30 :  QCD = 2017754 
-hist_QCD_MuEnr_30to50 :  QCD = 9277459 
-hist_QCD_MuEnr_50to80 :  QCD = 7058974 
-hist_QCD_MuEnr_80to120 :  QCD = 1838615 
-hist_QCD_MuEnr_120to170 :  QCD = 383077 
-hist_QCD_MuEnr_170to300 :  QCD = 115834 
-hist_QCD_MuEnr_300to470 :  QCD = 9544 
-hist_QCD_MuEnr_470to600 :  QCD = 971 
-hist_QCD_MuEnr_600to800 :  QCD = 297 
-hist_QCD_MuEnr_800to1000 :  QCD = 59 
-hist_QCD_MuEnr_1000toInf :  QCD = 22 
-ntotal = 236047320 
+ntotal = 211740841 
 ndata = 220782847 
-nsub = -15264473 
+nsub = 9042005 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S0', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S0', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S0', 'DataSingleMu'] 
@@ -56,11 +38,11 @@ nsub = -15264473
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S0', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S0', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S1', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 8721 
-hist_ttbj :  ttbj = 28037 
-hist_ttcc :  ttcc = 19561 
-hist_ttLF :  ttLF = 548638 
-hist_tt :  ttLF = 1028278 
+hist_ttbb :  ttbb = 8941 
+hist_ttbj :  ttbj = 28745 
+hist_ttcc :  ttcc = 20055 
+hist_ttLF :  ttLF = 562492 
+hist_tt :  ttLF = 1054244 
 hist_wjets :  WJets = 2071820 
 hist_zjets :  ZJets = 219077 
 hist_zjets10to50 :  ZJets = 31955 
@@ -71,27 +53,9 @@ hist_tbarWchannel :  Single t = 59046
 hist_ww :  DiBoson = 29257 
 hist_wz :  DiBoson = 8482 
 hist_zz :  DiBoson = 1291 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 69264 
-hist_QCD_EGEnr_80to120 :  QCD = 31907 
-hist_QCD_EGEnr_120to170 :  QCD = 17519 
-hist_QCD_EGEnr_170to300 :  QCD = 8141 
-hist_QCD_EGEnr_300toInf :  QCD = 1079 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 34037 
-hist_QCD_MuEnr_50to80 :  QCD = 191503 
-hist_QCD_MuEnr_80to120 :  QCD = 205104 
-hist_QCD_MuEnr_120to170 :  QCD = 98241 
-hist_QCD_MuEnr_170to300 :  QCD = 48485 
-hist_QCD_MuEnr_300to470 :  QCD = 5439 
-hist_QCD_MuEnr_470to600 :  QCD = 637 
-hist_QCD_MuEnr_600to800 :  QCD = 203 
-hist_QCD_MuEnr_800to1000 :  QCD = 41 
-hist_QCD_MuEnr_1000toInf :  QCD = 16 
-ntotal = 4844750 
+ntotal = 4174372 
 ndata = 4686828 
-nsub = -157922 
+nsub = 512455 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S1', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S1', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S1', 'DataSingleMu'] 
@@ -113,11 +77,11 @@ nsub = -157922
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S1', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S1', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S2', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 3193 
-hist_ttbj :  ttbj = 9932 
-hist_ttcc :  ttcc = 5178 
-hist_ttLF :  ttLF = 134584 
-hist_tt :  ttLF = 316001 
+hist_ttbb :  ttbb = 3274 
+hist_ttbj :  ttbj = 10183 
+hist_ttcc :  ttcc = 5308 
+hist_ttLF :  ttLF = 137982 
+hist_tt :  ttLF = 323981 
 hist_wjets :  WJets = 18871 
 hist_zjets :  ZJets = 3629 
 hist_zjets10to50 :  ZJets = 619 
@@ -128,27 +92,9 @@ hist_tbarWchannel :  Single t = 8987
 hist_ww :  DiBoson = 283 
 hist_wz :  DiBoson = 399 
 hist_zz :  DiBoson = 74 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 5472 
-hist_QCD_EGEnr_80to120 :  QCD = 965 
-hist_QCD_EGEnr_120to170 :  QCD = 574 
-hist_QCD_EGEnr_170to300 :  QCD = 90 
-hist_QCD_EGEnr_300toInf :  QCD = 36 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 8252 
-hist_QCD_MuEnr_80to120 :  QCD = 5313 
-hist_QCD_MuEnr_120to170 :  QCD = 2951 
-hist_QCD_MuEnr_170to300 :  QCD = 2061 
-hist_QCD_MuEnr_300to470 :  QCD = 274 
-hist_QCD_MuEnr_470to600 :  QCD = 33 
-hist_QCD_MuEnr_600to800 :  QCD = 9 
-hist_QCD_MuEnr_800to1000 :  QCD = 1 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 542293 
+ntotal = 528095 
 ndata = 559710 
-nsub = 17416 
+nsub = 31614 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S2', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S2', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S2', 'DataSingleMu'] 
@@ -170,11 +116,11 @@ nsub = 17416
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S2', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S2', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S3', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 1911 
-hist_ttbj :  ttbj = 3194 
-hist_ttcc :  ttcc = 928 
-hist_ttLF :  ttLF = 10086 
-hist_tt :  ttLF = 20024 
+hist_ttbb :  ttbb = 1959 
+hist_ttbj :  ttbj = 3275 
+hist_ttcc :  ttcc = 951 
+hist_ttLF :  ttLF = 10340 
+hist_tt :  ttLF = 20530 
 hist_wjets :  WJets = 832 
 hist_zjets :  ZJets = 115 
 hist_zjets10to50 :  ZJets = -21 
@@ -185,27 +131,9 @@ hist_tbarWchannel :  Single t = 619
 hist_ww :  DiBoson = 9 
 hist_wz :  DiBoson = 8 
 hist_zz :  DiBoson = 3 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 0 
-hist_QCD_EGEnr_170to300 :  QCD = 62 
-hist_QCD_EGEnr_300toInf :  QCD = 0 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 2315 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 111 
-hist_QCD_MuEnr_120to170 :  QCD = 566 
-hist_QCD_MuEnr_170to300 :  QCD = 290 
-hist_QCD_MuEnr_300to470 :  QCD = 38 
-hist_QCD_MuEnr_470to600 :  QCD = 3 
-hist_QCD_MuEnr_600to800 :  QCD = 1 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 41944 
+ntotal = 39465 
 ndata = 39782 
-nsub = -2162 
+nsub = 316 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S3', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S3', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S3', 'DataSingleMu'] 
@@ -227,11 +155,11 @@ nsub = -2162
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S3', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S3', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S4', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 5104 
-hist_ttbj :  ttbj = 13127 
-hist_ttcc :  ttcc = 6106 
-hist_ttLF :  ttLF = 144670 
-hist_tt :  ttLF = 336025 
+hist_ttbb :  ttbb = 5233 
+hist_ttbj :  ttbj = 13459 
+hist_ttcc :  ttcc = 6260 
+hist_ttLF :  ttLF = 148323 
+hist_tt :  ttLF = 344511 
 hist_wjets :  WJets = 19703 
 hist_zjets :  ZJets = 3745 
 hist_zjets10to50 :  ZJets = 597 
@@ -242,27 +170,9 @@ hist_tbarWchannel :  Single t = 9606
 hist_ww :  DiBoson = 293 
 hist_wz :  DiBoson = 407 
 hist_zz :  DiBoson = 78 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 5472 
-hist_QCD_EGEnr_80to120 :  QCD = 965 
-hist_QCD_EGEnr_120to170 :  QCD = 574 
-hist_QCD_EGEnr_170to300 :  QCD = 153 
-hist_QCD_EGEnr_300toInf :  QCD = 36 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 2315 
-hist_QCD_MuEnr_50to80 :  QCD = 8252 
-hist_QCD_MuEnr_80to120 :  QCD = 5424 
-hist_QCD_MuEnr_120to170 :  QCD = 3517 
-hist_QCD_MuEnr_170to300 :  QCD = 2352 
-hist_QCD_MuEnr_300to470 :  QCD = 312 
-hist_QCD_MuEnr_470to600 :  QCD = 36 
-hist_QCD_MuEnr_600to800 :  QCD = 11 
-hist_QCD_MuEnr_800to1000 :  QCD = 1 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 584238 
+ntotal = 567561 
 ndata = 599492 
-nsub = 15253 
+nsub = 31930 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S4', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S4', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S4', 'DataSingleMu'] 
@@ -284,11 +194,11 @@ nsub = 15253
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S4', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S4', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S5', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 2434 
-hist_ttbj :  ttbj = 3421 
-hist_ttcc :  ttcc = 1008 
-hist_ttLF :  ttLF = 10376 
-hist_tt :  ttLF = 20303 
+hist_ttbb :  ttbb = 2496 
+hist_ttbj :  ttbj = 3508 
+hist_ttcc :  ttcc = 1034 
+hist_ttLF :  ttLF = 10638 
+hist_tt :  ttLF = 20816 
 hist_wjets :  WJets = 832 
 hist_zjets :  ZJets = 114 
 hist_zjets10to50 :  ZJets = -21 
@@ -299,27 +209,9 @@ hist_tbarWchannel :  Single t = 641
 hist_ww :  DiBoson = 9 
 hist_wz :  DiBoson = 8 
 hist_zz :  DiBoson = 3 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 0 
-hist_QCD_EGEnr_170to300 :  QCD = 62 
-hist_QCD_EGEnr_300toInf :  QCD = 0 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 2315 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 111 
-hist_QCD_MuEnr_120to170 :  QCD = 645 
-hist_QCD_MuEnr_170to300 :  QCD = 331 
-hist_QCD_MuEnr_300to470 :  QCD = 40 
-hist_QCD_MuEnr_470to600 :  QCD = 3 
-hist_QCD_MuEnr_600to800 :  QCD = 1 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 43522 
+ntotal = 40956 
 ndata = 41423 
-nsub = -2099 
+nsub = 466 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S5', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S5', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S5', 'DataSingleMu'] 
@@ -341,11 +233,11 @@ nsub = -2099
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S5', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S5', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S6', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 7796 
-hist_ttbj :  ttbj = 23665 
-hist_ttcc :  ttcc = 17134 
-hist_ttLF :  ttLF = 441087 
-hist_tt :  ttLF = 465849 
+hist_ttbb :  ttbb = 7993 
+hist_ttbj :  ttbj = 24262 
+hist_ttcc :  ttcc = 17567 
+hist_ttLF :  ttLF = 452226 
+hist_tt :  ttLF = 477613 
 hist_wjets :  WJets = 421153 
 hist_zjets :  ZJets = 49445 
 hist_zjets10to50 :  ZJets = 6732 
@@ -356,27 +248,9 @@ hist_tbarWchannel :  Single t = 24864
 hist_ww :  DiBoson = 6894 
 hist_wz :  DiBoson = 2263 
 hist_zz :  DiBoson = 353 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 9131 
-hist_QCD_EGEnr_80to120 :  QCD = 5652 
-hist_QCD_EGEnr_120to170 :  QCD = 5875 
-hist_QCD_EGEnr_170to300 :  QCD = 3843 
-hist_QCD_EGEnr_300toInf :  QCD = 596 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 3265 
-hist_QCD_MuEnr_50to80 :  QCD = 25190 
-hist_QCD_MuEnr_80to120 :  QCD = 43406 
-hist_QCD_MuEnr_120to170 :  QCD = 32539 
-hist_QCD_MuEnr_170to300 :  QCD = 19692 
-hist_QCD_MuEnr_300to470 :  QCD = 2920 
-hist_QCD_MuEnr_470to600 :  QCD = 381 
-hist_QCD_MuEnr_600to800 :  QCD = 126 
-hist_QCD_MuEnr_800to1000 :  QCD = 26 
-hist_QCD_MuEnr_1000toInf :  QCD = 10 
-ntotal = 1650550 
+ntotal = 1522020 
 ndata = 1679344 
-nsub = 28793 
+nsub = 157323 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S6', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S6', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S6', 'DataSingleMu'] 
@@ -398,11 +272,11 @@ nsub = 28793
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S6', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S6', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S7', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 2900 
-hist_ttbj :  ttbj = 8901 
-hist_ttcc :  ttcc = 4850 
-hist_ttLF :  ttLF = 120828 
-hist_tt :  ttLF = 172581 
+hist_ttbb :  ttbb = 2973 
+hist_ttbj :  ttbj = 9126 
+hist_ttcc :  ttcc = 4973 
+hist_ttLF :  ttLF = 123879 
+hist_tt :  ttLF = 176939 
 hist_wjets :  WJets = 6273 
 hist_zjets :  ZJets = 1281 
 hist_zjets10to50 :  ZJets = 207 
@@ -413,27 +287,9 @@ hist_tbarWchannel :  Single t = 5453
 hist_ww :  DiBoson = 160 
 hist_wz :  DiBoson = 121 
 hist_zz :  DiBoson = 23 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 367 
-hist_QCD_EGEnr_170to300 :  QCD = 83 
-hist_QCD_EGEnr_300toInf :  QCD = 31 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 132 
-hist_QCD_MuEnr_80to120 :  QCD = 2615 
-hist_QCD_MuEnr_120to170 :  QCD = 1594 
-hist_QCD_MuEnr_170to300 :  QCD = 907 
-hist_QCD_MuEnr_300to470 :  QCD = 193 
-hist_QCD_MuEnr_470to600 :  QCD = 21 
-hist_QCD_MuEnr_600to800 :  QCD = 7 
-hist_QCD_MuEnr_800to1000 :  QCD = 1 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 336755 
+ntotal = 338628 
 ndata = 337142 
-nsub = 386 
+nsub = -1486 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S7', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S7', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S7', 'DataSingleMu'] 
@@ -455,11 +311,11 @@ nsub = 386
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S7', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S7', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S8', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 1863 
-hist_ttbj :  ttbj = 3091 
-hist_ttcc :  ttcc = 910 
-hist_ttLF :  ttLF = 9663 
-hist_tt :  ttLF = 14104 
+hist_ttbb :  ttbb = 1910 
+hist_ttbj :  ttbj = 3169 
+hist_ttcc :  ttcc = 933 
+hist_ttLF :  ttLF = 9907 
+hist_tt :  ttLF = 14460 
 hist_wjets :  WJets = 386 
 hist_zjets :  ZJets = 55 
 hist_zjets10to50 :  ZJets = -46 
@@ -470,27 +326,9 @@ hist_tbarWchannel :  Single t = 502
 hist_ww :  DiBoson = 0 
 hist_wz :  DiBoson = 2 
 hist_zz :  DiBoson = 1 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 0 
-hist_QCD_EGEnr_170to300 :  QCD = 62 
-hist_QCD_EGEnr_300toInf :  QCD = 0 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 111 
-hist_QCD_MuEnr_120to170 :  QCD = 301 
-hist_QCD_MuEnr_170to300 :  QCD = 141 
-hist_QCD_MuEnr_300to470 :  QCD = 20 
-hist_QCD_MuEnr_470to600 :  QCD = 2 
-hist_QCD_MuEnr_600to800 :  QCD = 1 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 31791 
+ntotal = 31897 
 ndata = 31453 
-nsub = -338 
+nsub = -444 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S8', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S8', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S8', 'DataSingleMu'] 
@@ -512,11 +350,11 @@ nsub = -338
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S8', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S8', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S9', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 4763 
-hist_ttbj :  ttbj = 11993 
-hist_ttcc :  ttcc = 5761 
-hist_ttLF :  ttLF = 130491 
-hist_tt :  ttLF = 186685 
+hist_ttbb :  ttbb = 4883 
+hist_ttbj :  ttbj = 12296 
+hist_ttcc :  ttcc = 5906 
+hist_ttLF :  ttLF = 133787 
+hist_tt :  ttLF = 191399 
 hist_wjets :  WJets = 6659 
 hist_zjets :  ZJets = 1336 
 hist_zjets10to50 :  ZJets = 161 
@@ -527,27 +365,9 @@ hist_tbarWchannel :  Single t = 5955
 hist_ww :  DiBoson = 160 
 hist_wz :  DiBoson = 124 
 hist_zz :  DiBoson = 24 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 367 
-hist_QCD_EGEnr_170to300 :  QCD = 146 
-hist_QCD_EGEnr_300toInf :  QCD = 31 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 132 
-hist_QCD_MuEnr_80to120 :  QCD = 2726 
-hist_QCD_MuEnr_120to170 :  QCD = 1895 
-hist_QCD_MuEnr_170to300 :  QCD = 1049 
-hist_QCD_MuEnr_300to470 :  QCD = 214 
-hist_QCD_MuEnr_470to600 :  QCD = 24 
-hist_QCD_MuEnr_600to800 :  QCD = 8 
-hist_QCD_MuEnr_800to1000 :  QCD = 1 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 368547 
+ntotal = 370526 
 ndata = 368595 
-nsub = 47 
+nsub = -1931 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S9', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S9', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S9', 'DataSingleMu'] 
@@ -569,11 +389,11 @@ nsub = 47
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S9', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S9', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S10', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 2386 
-hist_ttbj :  ttbj = 3318 
-hist_ttcc :  ttcc = 990 
-hist_ttLF :  ttLF = 9954 
-hist_tt :  ttLF = 14383 
+hist_ttbb :  ttbb = 2446 
+hist_ttbj :  ttbj = 3402 
+hist_ttcc :  ttcc = 1015 
+hist_ttLF :  ttLF = 10205 
+hist_tt :  ttLF = 14747 
 hist_wjets :  WJets = 386 
 hist_zjets :  ZJets = 54 
 hist_zjets10to50 :  ZJets = -46 
@@ -584,27 +404,9 @@ hist_tbarWchannel :  Single t = 524
 hist_ww :  DiBoson = 0 
 hist_wz :  DiBoson = 2 
 hist_zz :  DiBoson = 1 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 0 
-hist_QCD_EGEnr_170to300 :  QCD = 62 
-hist_QCD_EGEnr_300toInf :  QCD = 0 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 111 
-hist_QCD_MuEnr_120to170 :  QCD = 380 
-hist_QCD_MuEnr_170to300 :  QCD = 182 
-hist_QCD_MuEnr_300to470 :  QCD = 23 
-hist_QCD_MuEnr_470to600 :  QCD = 3 
-hist_QCD_MuEnr_600to800 :  QCD = 1 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 33369 
+ntotal = 33388 
 ndata = 33094 
-nsub = -275 
+nsub = -294 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S10', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S10', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S10', 'DataSingleMu'] 
@@ -626,11 +428,11 @@ nsub = -275
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S10', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S10', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S11', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 3489 
-hist_ttbj :  ttbj = 7855 
-hist_ttcc :  ttcc = 7083 
-hist_ttLF :  ttLF = 113306 
-hist_tt :  ttLF = 4551 
+hist_ttbb :  ttbb = 3577 
+hist_ttbj :  ttbj = 8053 
+hist_ttcc :  ttcc = 7262 
+hist_ttLF :  ttLF = 116167 
+hist_tt :  ttLF = 4666 
 hist_wjets :  WJets = 20354 
 hist_zjets :  ZJets = 2262 
 hist_zjets10to50 :  ZJets = 329 
@@ -641,27 +443,9 @@ hist_tbarWchannel :  Single t = 2700
 hist_ww :  DiBoson = 356 
 hist_wz :  DiBoson = 124 
 hist_zz :  DiBoson = 15 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 349 
-hist_QCD_EGEnr_170to300 :  QCD = 326 
-hist_QCD_EGEnr_300toInf :  QCD = 151 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 1569 
-hist_QCD_MuEnr_120to170 :  QCD = 1302 
-hist_QCD_MuEnr_170to300 :  QCD = 2150 
-hist_QCD_MuEnr_300to470 :  QCD = 481 
-hist_QCD_MuEnr_470to600 :  QCD = 74 
-hist_QCD_MuEnr_600to800 :  QCD = 36 
-hist_QCD_MuEnr_800to1000 :  QCD = 7 
-hist_QCD_MuEnr_1000toInf :  QCD = 2 
-ntotal = 172013 
+ntotal = 169003 
 ndata = 172811 
-nsub = 797 
+nsub = 3807 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S11', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S11', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S11', 'DataSingleMu'] 
@@ -683,11 +467,11 @@ nsub = 797
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S11', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S11', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S12', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 1245 
-hist_ttbj :  ttbj = 3186 
-hist_ttcc :  ttcc = 2352 
-hist_ttLF :  ttLF = 39344 
-hist_tt :  ttLF = 1892 
+hist_ttbb :  ttbb = 1276 
+hist_ttbj :  ttbj = 3267 
+hist_ttcc :  ttcc = 2411 
+hist_ttLF :  ttLF = 40337 
+hist_tt :  ttLF = 1940 
 hist_wjets :  WJets = 462 
 hist_zjets :  ZJets = 107 
 hist_zjets10to50 :  ZJets = 26 
@@ -698,27 +482,9 @@ hist_tbarWchannel :  Single t = 781
 hist_ww :  DiBoson = 4 
 hist_wz :  DiBoson = 5 
 hist_zz :  DiBoson = 1 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 68 
-hist_QCD_EGEnr_170to300 :  QCD = 0 
-hist_QCD_EGEnr_300toInf :  QCD = 7 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 78 
-hist_QCD_MuEnr_170to300 :  QCD = 124 
-hist_QCD_MuEnr_300to470 :  QCD = 54 
-hist_QCD_MuEnr_470to600 :  QCD = 5 
-hist_QCD_MuEnr_600to800 :  QCD = 3 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 50692 
+ntotal = 51561 
 ndata = 48794 
-nsub = -1898 
+nsub = -2767 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S12', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S12', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S12', 'DataSingleMu'] 
@@ -740,11 +506,11 @@ nsub = -1898
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S12', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S12', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S13', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 1018 
-hist_ttbj :  ttbj = 1483 
-hist_ttcc :  ttcc = 550 
-hist_ttLF :  ttLF = 4217 
-hist_tt :  ttLF = 255 
+hist_ttbb :  ttbb = 1043 
+hist_ttbj :  ttbj = 1520 
+hist_ttcc :  ttcc = 564 
+hist_ttLF :  ttLF = 4324 
+hist_tt :  ttLF = 261 
 hist_wjets :  WJets = -40 
 hist_zjets :  ZJets = 3 
 hist_zjets10to50 :  ZJets = 0 
@@ -755,27 +521,9 @@ hist_tbarWchannel :  Single t = 119
 hist_ww :  DiBoson = 0 
 hist_wz :  DiBoson = 0 
 hist_zz :  DiBoson = 0 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 0 
-hist_QCD_EGEnr_170to300 :  QCD = 0 
-hist_QCD_EGEnr_300toInf :  QCD = 0 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 0 
-hist_QCD_MuEnr_170to300 :  QCD = 0 
-hist_QCD_MuEnr_300to470 :  QCD = 8 
-hist_QCD_MuEnr_470to600 :  QCD = 1 
-hist_QCD_MuEnr_600to800 :  QCD = 0 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 7758 
+ntotal = 7937 
 ndata = 7843 
-nsub = 84 
+nsub = -94 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S13', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S13', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S13', 'DataSingleMu'] 
@@ -797,11 +545,11 @@ nsub = 84
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S13', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S13', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S14', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 2263 
-hist_ttbj :  ttbj = 4669 
-hist_ttcc :  ttcc = 2902 
-hist_ttLF :  ttLF = 43561 
-hist_tt :  ttLF = 2148 
+hist_ttbb :  ttbb = 2320 
+hist_ttbj :  ttbj = 4787 
+hist_ttcc :  ttcc = 2976 
+hist_ttLF :  ttLF = 44661 
+hist_tt :  ttLF = 2202 
 hist_wjets :  WJets = 421 
 hist_zjets :  ZJets = 110 
 hist_zjets10to50 :  ZJets = 26 
@@ -812,27 +560,9 @@ hist_tbarWchannel :  Single t = 900
 hist_ww :  DiBoson = 4 
 hist_wz :  DiBoson = 5 
 hist_zz :  DiBoson = 1 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 68 
-hist_QCD_EGEnr_170to300 :  QCD = 0 
-hist_QCD_EGEnr_300toInf :  QCD = 7 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 78 
-hist_QCD_MuEnr_170to300 :  QCD = 124 
-hist_QCD_MuEnr_300to470 :  QCD = 62 
-hist_QCD_MuEnr_470to600 :  QCD = 7 
-hist_QCD_MuEnr_600to800 :  QCD = 3 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 58450 
+ntotal = 59499 
 ndata = 56637 
-nsub = -1813 
+nsub = -2862 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S14', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S14', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S14', 'DataSingleMu'] 
@@ -854,11 +584,11 @@ nsub = -1813
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S14', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S14', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch0', 'S15', 'DataSingleMu'] 
-hist_ttbb :  ttbb = 1391 
-hist_ttbj :  ttbj = 1629 
-hist_ttcc :  ttcc = 608 
-hist_ttLF :  ttLF = 4390 
-hist_tt :  ttLF = 271 
+hist_ttbb :  ttbb = 1426 
+hist_ttbj :  ttbj = 1670 
+hist_ttcc :  ttcc = 623 
+hist_ttLF :  ttLF = 4501 
+hist_tt :  ttLF = 278 
 hist_wjets :  WJets = -40 
 hist_zjets :  ZJets = 0 
 hist_zjets10to50 :  ZJets = 0 
@@ -869,27 +599,9 @@ hist_tbarWchannel :  Single t = 131
 hist_ww :  DiBoson = 0 
 hist_wz :  DiBoson = 0 
 hist_zz :  DiBoson = 0 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 0 
-hist_QCD_EGEnr_170to300 :  QCD = 0 
-hist_QCD_EGEnr_300toInf :  QCD = 0 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 78 
-hist_QCD_MuEnr_170to300 :  QCD = 0 
-hist_QCD_MuEnr_300to470 :  QCD = 10 
-hist_QCD_MuEnr_470to600 :  QCD = 1 
-hist_QCD_MuEnr_600to800 :  QCD = 0 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 8633 
+ntotal = 8750 
 ndata = 8696 
-nsub = 62 
+nsub = -54 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S15', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S15', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S15', 'DataSingleMu'] 
@@ -911,11 +623,11 @@ nsub = 62
 ['h', 'DRFCNHkinTopMWb', 'Ch0', 'S15', 'DataSingleMu'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch0', 'S15', 'DataSingleMu'] 
 ['h', 'NJet', 'Ch1', 'S0', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 6443 
-hist_ttbj :  ttbj = 21006 
-hist_ttcc :  ttcc = 14413 
-hist_ttLF :  ttLF = 417737 
-hist_tt :  ttLF = 991587 
+hist_ttbb :  ttbb = 6606 
+hist_ttbj :  ttbj = 21536 
+hist_ttcc :  ttcc = 14777 
+hist_ttLF :  ttLF = 428286 
+hist_tt :  ttLF = 1016627 
 hist_wjets :  WJets = 97966702 
 hist_zjets :  ZJets = 7603542 
 hist_zjets10to50 :  ZJets = 562320 
@@ -926,27 +638,9 @@ hist_tbarWchannel :  Single t = 87023
 hist_ww :  DiBoson = 189502 
 hist_wz :  DiBoson = 51666 
 hist_zz :  DiBoson = 7582 
-hist_QCD_EGEnr_20to30 :  QCD = 1227855 
-hist_QCD_EGEnr_30to50 :  QCD = 7514396 
-hist_QCD_EGEnr_50to80 :  QCD = 5962291 
-hist_QCD_EGEnr_80to120 :  QCD = 1264417 
-hist_QCD_EGEnr_120to170 :  QCD = 377005 
-hist_QCD_EGEnr_170to300 :  QCD = 196455 
-hist_QCD_EGEnr_300toInf :  QCD = 28964 
-hist_QCD_MuEnr_20to30 :  QCD = 19659 
-hist_QCD_MuEnr_30to50 :  QCD = 124328 
-hist_QCD_MuEnr_50to80 :  QCD = 175449 
-hist_QCD_MuEnr_80to120 :  QCD = 94339 
-hist_QCD_MuEnr_120to170 :  QCD = 34596 
-hist_QCD_MuEnr_170to300 :  QCD = 17242 
-hist_QCD_MuEnr_300to470 :  QCD = 2824 
-hist_QCD_MuEnr_470to600 :  QCD = 375 
-hist_QCD_MuEnr_600to800 :  QCD = 143 
-hist_QCD_MuEnr_800to1000 :  QCD = 33 
-hist_QCD_MuEnr_1000toInf :  QCD = 12 
-ntotal = 125126161 
+ntotal = 108122413 
 ndata = 124280940 
-nsub = -845221 
+nsub = 16158526 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S0', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S0', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S0', 'DataSingleEG'] 
@@ -968,11 +662,11 @@ nsub = -845221
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S0', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S0', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S1', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 6224 
-hist_ttbj :  ttbj = 19836 
-hist_ttcc :  ttcc = 13804 
-hist_ttLF :  ttLF = 385422 
-hist_tt :  ttLF = 705882 
+hist_ttbb :  ttbb = 6381 
+hist_ttbj :  ttbj = 20337 
+hist_ttcc :  ttcc = 14153 
+hist_ttLF :  ttLF = 395155 
+hist_tt :  ttLF = 723708 
 hist_wjets :  WJets = 1456951 
 hist_zjets :  ZJets = 275376 
 hist_zjets10to50 :  ZJets = 22077 
@@ -983,27 +677,9 @@ hist_tbarWchannel :  Single t = 42551
 hist_ww :  DiBoson = 21025 
 hist_wz :  DiBoson = 6495 
 hist_zz :  DiBoson = 1485 
-hist_QCD_EGEnr_20to30 :  QCD = 8514 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 291255 
-hist_QCD_EGEnr_80to120 :  QCD = 212879 
-hist_QCD_EGEnr_120to170 :  QCD = 121549 
-hist_QCD_EGEnr_170to300 :  QCD = 92713 
-hist_QCD_EGEnr_300toInf :  QCD = 18587 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 14637 
-hist_QCD_MuEnr_80to120 :  QCD = 20589 
-hist_QCD_MuEnr_120to170 :  QCD = 14482 
-hist_QCD_MuEnr_170to300 :  QCD = 9590 
-hist_QCD_MuEnr_300to470 :  QCD = 1971 
-hist_QCD_MuEnr_470to600 :  QCD = 292 
-hist_QCD_MuEnr_600to800 :  QCD = 115 
-hist_QCD_MuEnr_800to1000 :  QCD = 28 
-hist_QCD_MuEnr_1000toInf :  QCD = 10 
-ntotal = 3820047 
+ntotal = 3041392 
 ndata = 3805672 
-nsub = -14375 
+nsub = 764279 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S1', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S1', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S1', 'DataSingleEG'] 
@@ -1025,11 +701,11 @@ nsub = -14375
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S1', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S1', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S2', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 2260 
-hist_ttbj :  ttbj = 6974 
-hist_ttcc :  ttcc = 3618 
-hist_ttLF :  ttLF = 94176 
-hist_tt :  ttLF = 214760 
+hist_ttbb :  ttbb = 2318 
+hist_ttbj :  ttbj = 7150 
+hist_ttcc :  ttcc = 3709 
+hist_ttLF :  ttLF = 96555 
+hist_tt :  ttLF = 220183 
 hist_wjets :  WJets = 14879 
 hist_zjets :  ZJets = 4462 
 hist_zjets10to50 :  ZJets = 395 
@@ -1040,27 +716,9 @@ hist_tbarWchannel :  Single t = 6539
 hist_ww :  DiBoson = 217 
 hist_wz :  DiBoson = 279 
 hist_zz :  DiBoson = 79 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 5090 
-hist_QCD_EGEnr_80to120 :  QCD = 1934 
-hist_QCD_EGEnr_120to170 :  QCD = 2031 
-hist_QCD_EGEnr_170to300 :  QCD = 1456 
-hist_QCD_EGEnr_300toInf :  QCD = 303 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 1728 
-hist_QCD_MuEnr_80to120 :  QCD = 940 
-hist_QCD_MuEnr_120to170 :  QCD = 732 
-hist_QCD_MuEnr_170to300 :  QCD = 666 
-hist_QCD_MuEnr_300to470 :  QCD = 147 
-hist_QCD_MuEnr_470to600 :  QCD = 23 
-hist_QCD_MuEnr_600to800 :  QCD = 5 
-hist_QCD_MuEnr_800to1000 :  QCD = 1 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 373797 
+ntotal = 366860 
 ndata = 388747 
-nsub = 14949 
+nsub = 21886 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S2', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S2', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S2', 'DataSingleEG'] 
@@ -1082,11 +740,11 @@ nsub = 14949
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S2', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S2', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S3', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 1355 
-hist_ttbj :  ttbj = 2272 
-hist_ttcc :  ttcc = 648 
-hist_ttLF :  ttLF = 7027 
-hist_tt :  ttLF = 13529 
+hist_ttbb :  ttbb = 1389 
+hist_ttbj :  ttbj = 2330 
+hist_ttcc :  ttcc = 665 
+hist_ttLF :  ttLF = 7205 
+hist_tt :  ttLF = 13871 
 hist_wjets :  WJets = 615 
 hist_zjets :  ZJets = 207 
 hist_zjets10to50 :  ZJets = 22 
@@ -1097,27 +755,9 @@ hist_tbarWchannel :  Single t = 454
 hist_ww :  DiBoson = 5 
 hist_wz :  DiBoson = 14 
 hist_zz :  DiBoson = 2 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 70 
-hist_QCD_EGEnr_170to300 :  QCD = 179 
-hist_QCD_EGEnr_300toInf :  QCD = 35 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 0 
-hist_QCD_MuEnr_170to300 :  QCD = 43 
-hist_QCD_MuEnr_300to470 :  QCD = 11 
-hist_QCD_MuEnr_470to600 :  QCD = 1 
-hist_QCD_MuEnr_600to800 :  QCD = 0 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 27110 
+ntotal = 27395 
 ndata = 27212 
-nsub = 101 
+nsub = -183 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S3', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S3', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S3', 'DataSingleEG'] 
@@ -1139,11 +779,11 @@ nsub = 101
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S3', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S3', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S4', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 3616 
-hist_ttbj :  ttbj = 9247 
-hist_ttcc :  ttcc = 4267 
-hist_ttLF :  ttLF = 101204 
-hist_tt :  ttLF = 228289 
+hist_ttbb :  ttbb = 3707 
+hist_ttbj :  ttbj = 9480 
+hist_ttcc :  ttcc = 4375 
+hist_ttLF :  ttLF = 103760 
+hist_tt :  ttLF = 234054 
 hist_wjets :  WJets = 15494 
 hist_zjets :  ZJets = 4670 
 hist_zjets10to50 :  ZJets = 418 
@@ -1154,27 +794,9 @@ hist_tbarWchannel :  Single t = 6993
 hist_ww :  DiBoson = 222 
 hist_wz :  DiBoson = 294 
 hist_zz :  DiBoson = 82 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 5090 
-hist_QCD_EGEnr_80to120 :  QCD = 1934 
-hist_QCD_EGEnr_120to170 :  QCD = 2101 
-hist_QCD_EGEnr_170to300 :  QCD = 1635 
-hist_QCD_EGEnr_300toInf :  QCD = 339 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 1728 
-hist_QCD_MuEnr_80to120 :  QCD = 940 
-hist_QCD_MuEnr_120to170 :  QCD = 732 
-hist_QCD_MuEnr_170to300 :  QCD = 710 
-hist_QCD_MuEnr_300to470 :  QCD = 158 
-hist_QCD_MuEnr_470to600 :  QCD = 24 
-hist_QCD_MuEnr_600to800 :  QCD = 6 
-hist_QCD_MuEnr_800to1000 :  QCD = 2 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 400907 
+ntotal = 394256 
 ndata = 415959 
-nsub = 15051 
+nsub = 21702 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S4', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S4', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S4', 'DataSingleEG'] 
@@ -1196,11 +818,11 @@ nsub = 15051
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S4', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S4', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S5', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 1733 
-hist_ttbj :  ttbj = 2435 
-hist_ttcc :  ttcc = 704 
-hist_ttLF :  ttLF = 7225 
-hist_tt :  ttLF = 13726 
+hist_ttbb :  ttbb = 1777 
+hist_ttbj :  ttbj = 2496 
+hist_ttcc :  ttcc = 722 
+hist_ttLF :  ttLF = 7408 
+hist_tt :  ttLF = 14073 
 hist_wjets :  WJets = 615 
 hist_zjets :  ZJets = 208 
 hist_zjets10to50 :  ZJets = 22 
@@ -1211,27 +833,9 @@ hist_tbarWchannel :  Single t = 473
 hist_ww :  DiBoson = 5 
 hist_wz :  DiBoson = 16 
 hist_zz :  DiBoson = 3 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 70 
-hist_QCD_EGEnr_170to300 :  QCD = 179 
-hist_QCD_EGEnr_300toInf :  QCD = 35 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 0 
-hist_QCD_MuEnr_170to300 :  QCD = 43 
-hist_QCD_MuEnr_300to470 :  QCD = 11 
-hist_QCD_MuEnr_470to600 :  QCD = 1 
-hist_QCD_MuEnr_600to800 :  QCD = 0 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 28147 
+ntotal = 28457 
 ndata = 28503 
-nsub = 355 
+nsub = 45 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S5', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S5', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S5', 'DataSingleEG'] 
@@ -1253,11 +857,11 @@ nsub = 355
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S5', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S5', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S6', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 5572 
-hist_ttbj :  ttbj = 16817 
-hist_ttcc :  ttcc = 12121 
-hist_ttLF :  ttLF = 310806 
-hist_tt :  ttLF = 321460 
+hist_ttbb :  ttbb = 5713 
+hist_ttbj :  ttbj = 17242 
+hist_ttcc :  ttcc = 12427 
+hist_ttLF :  ttLF = 318654 
+hist_tt :  ttLF = 329578 
 hist_wjets :  WJets = 305775 
 hist_zjets :  ZJets = 64228 
 hist_zjets10to50 :  ZJets = 5072 
@@ -1268,27 +872,9 @@ hist_tbarWchannel :  Single t = 18249
 hist_ww :  DiBoson = 5277 
 hist_wz :  DiBoson = 1711 
 hist_zz :  DiBoson = 416 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 54847 
-hist_QCD_EGEnr_80to120 :  QCD = 49933 
-hist_QCD_EGEnr_120to170 :  QCD = 44006 
-hist_QCD_EGEnr_170to300 :  QCD = 41116 
-hist_QCD_EGEnr_300toInf :  QCD = 10619 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 3416 
-hist_QCD_MuEnr_80to120 :  QCD = 4299 
-hist_QCD_MuEnr_120to170 :  QCD = 6432 
-hist_QCD_MuEnr_170to300 :  QCD = 4731 
-hist_QCD_MuEnr_300to470 :  QCD = 1225 
-hist_QCD_MuEnr_470to600 :  QCD = 188 
-hist_QCD_MuEnr_600to800 :  QCD = 82 
-hist_QCD_MuEnr_800to1000 :  QCD = 20 
-hist_QCD_MuEnr_1000toInf :  QCD = 8 
-ntotal = 1310523 
+ntotal = 1106432 
 ndata = 1309690 
-nsub = -833 
+nsub = 203257 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S6', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S6', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S6', 'DataSingleEG'] 
@@ -1310,11 +896,11 @@ nsub = -833
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S6', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S6', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S7', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 2058 
-hist_ttbj :  ttbj = 6270 
-hist_ttcc :  ttcc = 3403 
-hist_ttLF :  ttLF = 84783 
-hist_tt :  ttLF = 118393 
+hist_ttbb :  ttbb = 2110 
+hist_ttbj :  ttbj = 6428 
+hist_ttcc :  ttcc = 3489 
+hist_ttLF :  ttLF = 86924 
+hist_tt :  ttLF = 121383 
 hist_wjets :  WJets = 5256 
 hist_zjets :  ZJets = 1699 
 hist_zjets10to50 :  ZJets = 171 
@@ -1325,27 +911,9 @@ hist_tbarWchannel :  Single t = 3953
 hist_ww :  DiBoson = 72 
 hist_wz :  DiBoson = 93 
 hist_zz :  DiBoson = 37 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 1302 
-hist_QCD_EGEnr_120to170 :  QCD = 1163 
-hist_QCD_EGEnr_170to300 :  QCD = 987 
-hist_QCD_EGEnr_300toInf :  QCD = 223 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 867 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 409 
-hist_QCD_MuEnr_170to300 :  QCD = 542 
-hist_QCD_MuEnr_300to470 :  QCD = 117 
-hist_QCD_MuEnr_470to600 :  QCD = 19 
-hist_QCD_MuEnr_600to800 :  QCD = 5 
-hist_QCD_MuEnr_800to1000 :  QCD = 1 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 236987 
+ntotal = 236773 
 ndata = 236467 
-nsub = -520 
+nsub = -306 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S7', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S7', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S7', 'DataSingleEG'] 
@@ -1367,11 +935,11 @@ nsub = -520
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S7', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S7', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S8', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 1317 
-hist_ttbj :  ttbj = 2204 
-hist_ttcc :  ttcc = 636 
-hist_ttLF :  ttLF = 6735 
-hist_tt :  ttLF = 9584 
+hist_ttbb :  ttbb = 1350 
+hist_ttbj :  ttbj = 2260 
+hist_ttcc :  ttcc = 652 
+hist_ttLF :  ttLF = 6905 
+hist_tt :  ttLF = 9826 
 hist_wjets :  WJets = 783 
 hist_zjets :  ZJets = 120 
 hist_zjets10to50 :  ZJets = 22 
@@ -1382,27 +950,9 @@ hist_tbarWchannel :  Single t = 375
 hist_ww :  DiBoson = 5 
 hist_wz :  DiBoson = 5 
 hist_zz :  DiBoson = 1 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 70 
-hist_QCD_EGEnr_170to300 :  QCD = 123 
-hist_QCD_EGEnr_300toInf :  QCD = 35 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 0 
-hist_QCD_MuEnr_170to300 :  QCD = 43 
-hist_QCD_MuEnr_300to470 :  QCD = 9 
-hist_QCD_MuEnr_470to600 :  QCD = 1 
-hist_QCD_MuEnr_600to800 :  QCD = 0 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 22535 
+ntotal = 22768 
 ndata = 21668 
-nsub = -867 
+nsub = -1100 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S8', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S8', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S8', 'DataSingleEG'] 
@@ -1424,11 +974,11 @@ nsub = -867
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S8', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S8', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S9', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 3375 
-hist_ttbj :  ttbj = 8474 
-hist_ttcc :  ttcc = 4039 
-hist_ttLF :  ttLF = 91519 
-hist_tt :  ttLF = 127978 
+hist_ttbb :  ttbb = 3461 
+hist_ttbj :  ttbj = 8688 
+hist_ttcc :  ttcc = 4141 
+hist_ttLF :  ttLF = 93830 
+hist_tt :  ttLF = 131209 
 hist_wjets :  WJets = 6040 
 hist_zjets :  ZJets = 1819 
 hist_zjets10to50 :  ZJets = 193 
@@ -1439,27 +989,9 @@ hist_tbarWchannel :  Single t = 4328
 hist_ww :  DiBoson = 78 
 hist_wz :  DiBoson = 99 
 hist_zz :  DiBoson = 39 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 1302 
-hist_QCD_EGEnr_120to170 :  QCD = 1233 
-hist_QCD_EGEnr_170to300 :  QCD = 1110 
-hist_QCD_EGEnr_300toInf :  QCD = 259 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 867 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 409 
-hist_QCD_MuEnr_170to300 :  QCD = 586 
-hist_QCD_MuEnr_300to470 :  QCD = 126 
-hist_QCD_MuEnr_470to600 :  QCD = 20 
-hist_QCD_MuEnr_600to800 :  QCD = 5 
-hist_QCD_MuEnr_800to1000 :  QCD = 1 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 259522 
+ntotal = 259542 
 ndata = 258135 
-nsub = -1387 
+nsub = -1407 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S9', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S9', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S9', 'DataSingleEG'] 
@@ -1481,11 +1013,11 @@ nsub = -1387
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S9', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S9', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S10', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 1695 
-hist_ttbj :  ttbj = 2367 
-hist_ttcc :  ttcc = 691 
-hist_ttLF :  ttLF = 6933 
-hist_tt :  ttLF = 9781 
+hist_ttbb :  ttbb = 1738 
+hist_ttbj :  ttbj = 2427 
+hist_ttcc :  ttcc = 709 
+hist_ttLF :  ttLF = 7108 
+hist_tt :  ttLF = 10028 
 hist_wjets :  WJets = 783 
 hist_zjets :  ZJets = 120 
 hist_zjets10to50 :  ZJets = 22 
@@ -1496,27 +1028,9 @@ hist_tbarWchannel :  Single t = 394
 hist_ww :  DiBoson = 5 
 hist_wz :  DiBoson = 7 
 hist_zz :  DiBoson = 2 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 70 
-hist_QCD_EGEnr_170to300 :  QCD = 123 
-hist_QCD_EGEnr_300toInf :  QCD = 35 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 0 
-hist_QCD_MuEnr_170to300 :  QCD = 43 
-hist_QCD_MuEnr_300to470 :  QCD = 9 
-hist_QCD_MuEnr_470to600 :  QCD = 1 
-hist_QCD_MuEnr_600to800 :  QCD = 0 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 23572 
+ntotal = 23830 
 ndata = 22959 
-nsub = -613 
+nsub = -871 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S10', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S10', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S10', 'DataSingleEG'] 
@@ -1538,11 +1052,11 @@ nsub = -613
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S10', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S10', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S11', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 2522 
-hist_ttbj :  ttbj = 5643 
-hist_ttcc :  ttcc = 5061 
-hist_ttLF :  ttLF = 80959 
-hist_tt :  ttLF = 3202 
+hist_ttbb :  ttbb = 2585 
+hist_ttbj :  ttbj = 5785 
+hist_ttcc :  ttcc = 5189 
+hist_ttLF :  ttLF = 83003 
+hist_tt :  ttLF = 3283 
 hist_wjets :  WJets = 13047 
 hist_zjets :  ZJets = 2913 
 hist_zjets10to50 :  ZJets = -31 
@@ -1553,27 +1067,9 @@ hist_tbarWchannel :  Single t = 2025
 hist_ww :  DiBoson = 215 
 hist_wz :  DiBoson = 99 
 hist_zz :  DiBoson = 17 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 1985 
-hist_QCD_EGEnr_120to170 :  QCD = 2359 
-hist_QCD_EGEnr_170to300 :  QCD = 4986 
-hist_QCD_EGEnr_300toInf :  QCD = 1967 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 655 
-hist_QCD_MuEnr_170to300 :  QCD = 373 
-hist_QCD_MuEnr_300to470 :  QCD = 316 
-hist_QCD_MuEnr_470to600 :  QCD = 52 
-hist_QCD_MuEnr_600to800 :  QCD = 24 
-hist_QCD_MuEnr_800to1000 :  QCD = 6 
-hist_QCD_MuEnr_1000toInf :  QCD = 2 
-ntotal = 130733 
+ntotal = 120462 
 ndata = 131568 
-nsub = 834 
+nsub = 11105 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S11', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S11', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S11', 'DataSingleEG'] 
@@ -1595,11 +1091,11 @@ nsub = 834
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S11', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S11', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S12', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 889 
-hist_ttbj :  ttbj = 2261 
-hist_ttcc :  ttcc = 1669 
-hist_ttLF :  ttLF = 28015 
-hist_tt :  ttLF = 1306 
+hist_ttbb :  ttbb = 912 
+hist_ttbj :  ttbj = 2318 
+hist_ttcc :  ttcc = 1711 
+hist_ttLF :  ttLF = 28722 
+hist_tt :  ttLF = 1339 
 hist_wjets :  WJets = 1168 
 hist_zjets :  ZJets = 100 
 hist_zjets10to50 :  ZJets = 0 
@@ -1610,27 +1106,9 @@ hist_tbarWchannel :  Single t = 574
 hist_ww :  DiBoson = 0 
 hist_wz :  DiBoson = 10 
 hist_zz :  DiBoson = 0 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 324 
-hist_QCD_EGEnr_120to170 :  QCD = 207 
-hist_QCD_EGEnr_170to300 :  QCD = 172 
-hist_QCD_EGEnr_300toInf :  QCD = 58 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 0 
-hist_QCD_MuEnr_170to300 :  QCD = 83 
-hist_QCD_MuEnr_300to470 :  QCD = 37 
-hist_QCD_MuEnr_470to600 :  QCD = 8 
-hist_QCD_MuEnr_600to800 :  QCD = 1 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 37587 
+ntotal = 37555 
 ndata = 35139 
-nsub = -2448 
+nsub = -2416 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S12', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S12', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S12', 'DataSingleEG'] 
@@ -1652,11 +1130,11 @@ nsub = -2448
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S12', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S12', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S13', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 727 
-hist_ttbj :  ttbj = 1064 
-hist_ttcc :  ttcc = 385 
-hist_ttLF :  ttLF = 2984 
-hist_tt :  ttLF = 176 
+hist_ttbb :  ttbb = 745 
+hist_ttbj :  ttbj = 1090 
+hist_ttcc :  ttcc = 395 
+hist_ttLF :  ttLF = 3059 
+hist_tt :  ttLF = 180 
 hist_wjets :  WJets = 155 
 hist_zjets :  ZJets = 4 
 hist_zjets10to50 :  ZJets = 0 
@@ -1667,27 +1145,9 @@ hist_tbarWchannel :  Single t = 89
 hist_ww :  DiBoson = 0 
 hist_wz :  DiBoson = 1 
 hist_zz :  DiBoson = 0 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 0 
-hist_QCD_EGEnr_170to300 :  QCD = 0 
-hist_QCD_EGEnr_300toInf :  QCD = 6 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 0 
-hist_QCD_MuEnr_170to300 :  QCD = 0 
-hist_QCD_MuEnr_300to470 :  QCD = 4 
-hist_QCD_MuEnr_470to600 :  QCD = 0 
-hist_QCD_MuEnr_600to800 :  QCD = 0 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 5707 
+ntotal = 5830 
 ndata = 5533 
-nsub = -174 
+nsub = -297 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S13', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S13', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S13', 'DataSingleEG'] 
@@ -1709,11 +1169,11 @@ nsub = -174
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S13', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S13', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S14', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 1617 
-hist_ttbj :  ttbj = 3325 
-hist_ttcc :  ttcc = 2055 
-hist_ttLF :  ttLF = 30999 
-hist_tt :  ttLF = 1483 
+hist_ttbb :  ttbb = 1657 
+hist_ttbj :  ttbj = 3409 
+hist_ttcc :  ttcc = 2107 
+hist_ttLF :  ttLF = 31782 
+hist_tt :  ttLF = 1520 
 hist_wjets :  WJets = 1324 
 hist_zjets :  ZJets = 105 
 hist_zjets10to50 :  ZJets = 0 
@@ -1724,27 +1184,9 @@ hist_tbarWchannel :  Single t = 664
 hist_ww :  DiBoson = 0 
 hist_wz :  DiBoson = 12 
 hist_zz :  DiBoson = 0 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 324 
-hist_QCD_EGEnr_120to170 :  QCD = 207 
-hist_QCD_EGEnr_170to300 :  QCD = 172 
-hist_QCD_EGEnr_300toInf :  QCD = 64 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 0 
-hist_QCD_MuEnr_170to300 :  QCD = 83 
-hist_QCD_MuEnr_300to470 :  QCD = 41 
-hist_QCD_MuEnr_470to600 :  QCD = 8 
-hist_QCD_MuEnr_600to800 :  QCD = 1 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 43294 
+ntotal = 43385 
 ndata = 40672 
-nsub = -2622 
+nsub = -2713 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S14', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S14', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S14', 'DataSingleEG'] 
@@ -1766,11 +1208,11 @@ nsub = -2622
 ['h', 'DRFCNHkinTopMWb', 'Ch1', 'S14', 'DataSingleEG'] 
 ['h', 'DRFCNHkinTopMHc', 'Ch1', 'S14', 'DataSingleEG'] 
 ['h', 'NJet', 'Ch1', 'S15', 'DataSingleEG'] 
-hist_ttbb :  ttbb = 1002 
-hist_ttbj :  ttbj = 1173 
-hist_ttcc :  ttcc = 427 
-hist_ttLF :  ttLF = 3098 
-hist_tt :  ttLF = 187 
+hist_ttbb :  ttbb = 1028 
+hist_ttbj :  ttbj = 1203 
+hist_ttcc :  ttcc = 438 
+hist_ttLF :  ttLF = 3176 
+hist_tt :  ttLF = 192 
 hist_wjets :  WJets = 155 
 hist_zjets :  ZJets = 7 
 hist_zjets10to50 :  ZJets = 0 
@@ -1781,27 +1223,9 @@ hist_tbarWchannel :  Single t = 98
 hist_ww :  DiBoson = 0 
 hist_wz :  DiBoson = 1 
 hist_zz :  DiBoson = 0 
-hist_QCD_EGEnr_20to30 :  QCD = 0 
-hist_QCD_EGEnr_30to50 :  QCD = 0 
-hist_QCD_EGEnr_50to80 :  QCD = 0 
-hist_QCD_EGEnr_80to120 :  QCD = 0 
-hist_QCD_EGEnr_120to170 :  QCD = 0 
-hist_QCD_EGEnr_170to300 :  QCD = 0 
-hist_QCD_EGEnr_300toInf :  QCD = 6 
-hist_QCD_MuEnr_20to30 :  QCD = 0 
-hist_QCD_MuEnr_30to50 :  QCD = 0 
-hist_QCD_MuEnr_50to80 :  QCD = 0 
-hist_QCD_MuEnr_80to120 :  QCD = 0 
-hist_QCD_MuEnr_120to170 :  QCD = 0 
-hist_QCD_MuEnr_170to300 :  QCD = 0 
-hist_QCD_MuEnr_300to470 :  QCD = 4 
-hist_QCD_MuEnr_470to600 :  QCD = 0 
-hist_QCD_MuEnr_600to800 :  QCD = 0 
-hist_QCD_MuEnr_800to1000 :  QCD = 0 
-hist_QCD_MuEnr_1000toInf :  QCD = 0 
-ntotal = 6283 
+ntotal = 6419 
 ndata = 6205 
-nsub = -78 
+nsub = -214 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S15', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S15', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S15', 'DataSingleEG'] 

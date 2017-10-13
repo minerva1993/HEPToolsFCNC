@@ -1,3 +1,4 @@
+"""
 hist_ttbb
 0.0888153017294
 hist_ttbj
@@ -8,6 +9,17 @@ hist_ttLF
 0.0888153017294
 hist_tt
 0.0888153017294
+"""
+hist_ttbb
+0.0910581123792
+hist_ttbj
+0.0910581123792
+hist_ttcc
+0.0910581123792
+hist_ttLF
+0.0910581123792
+hist_tt
+0.0910581123792
 hist_wjets
 134.276449237
 hist_zjets
