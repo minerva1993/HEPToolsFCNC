@@ -98,11 +98,11 @@ def AddHut(fname, name, color, xsection):
 ####Users should provide these information 
 SetData("hist_DataSingleMu.root","data", 35867) # for now, combination of muon and electron
 SetData("hist_DataSingleEG.root","data", 35867) # for now, combination of muon and electron
-AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 356.4)
-AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 356.4)
-AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 356.4)
-AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 356.4)
-AddBkg("hist_tt.root","ttLF",ROOT.kRed, 356.4)
+AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.4)
+AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 365.4)
+AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.4)
+AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 365.4)
+AddBkg("hist_tt.root","ttLF",ROOT.kRed, 365.4)
 AddBkg("hist_wjets.root","WJets",ROOT.kYellow,61524)
 AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 6025.2)
 AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)

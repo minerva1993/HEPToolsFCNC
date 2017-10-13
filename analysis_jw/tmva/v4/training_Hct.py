@@ -18,7 +18,7 @@ fout = TFile("output_keras_Hct.root","recreate")
 factory = TMVA.Factory("TMVAClassification", fout,
                        "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G;D:AnalysisType=Classification" )
 
-loader = TMVA.DataLoader("keras4_Hct3")
+loader = TMVA.DataLoader("keras4_Hct4")
 loader.AddVariable("njets", "I")
 loader.AddVariable("nbjets_m",'I')
 loader.AddVariable("ncjets_m",'I')
@@ -162,19 +162,19 @@ backgroundTree9 = background9.Get("tmva_tree")
 ##background11 = TFile("mkNtuple_v4/tmva_ww.root")
 ##background12 = TFile("mkNtuple_v4/tmva_wz.root")
 ##background13 = TFile("mkNtuple_v4/tmva_zz.root")
-background14 = TFile("mkNtuple_v4/tmva_zjets10to50.root")
-background15 = TFile("mkNtuple_v4/tmva_zjets.root")
+##background14 = TFile("mkNtuple_v4/tmva_zjets10to50.root")
+##background15 = TFile("mkNtuple_v4/tmva_zjets.root")
 #backgroundTree10 = background10->Get("tmva_tree")
 ##backgroundTree11 = background11.Get("tmva_tree")
 ##backgroundTree12 = background12.Get("tmva_tree")
 ##backgroundTree13 = background13.Get("tmva_tree")
-backgroundTree14 = background14.Get("tmva_tree")
-backgroundTree15 = background15.Get("tmva_tree")
+##backgroundTree14 = background14.Get("tmva_tree")
+##backgroundTree15 = background15.Get("tmva_tree")
 
-#loader.AddSignalTree(sigTreeA,0.0780687)#0.156137331574/2
-loader.AddSignalTree(sigTreeB,0.0567706)#0.113541253338/2
-#loader.AddSignalTree(sigTreeC,0.0780687)
-loader.AddSignalTree(sigTreeD,0.0567706)
+#loader.AddSignalTree(sigTreeA,0.1)#0.156137331574/2=0.0780687
+loader.AddSignalTree(sigTreeB,0.1)#0.113541253338/2=0.0567706
+#loader.AddSignalTree(sigTreeC,0.1)
+loader.AddSignalTree(sigTreeD,0.1)
 
 loader.AddBackgroundTree(backgroundTree1,0.024575262909)
 loader.AddBackgroundTree(backgroundTree2,0.193026936331)
@@ -191,8 +191,8 @@ loader.AddBackgroundTree(backgroundTree9,0.0888153017294)
 ##loader.AddBackgroundTree(backgroundTree11,4.70407414855)
 ##loader.AddBackgroundTree(backgroundTree12,1.69041171)
 ##loader.AddBackgroundTree(backgroundTree13,0.598577911125)
-loader.AddBackgroundTree(backgroundTree14,22.7143748772)
-loader.AddBackgroundTree(backgroundTree15,2.65549294802)
+##loader.AddBackgroundTree(backgroundTree14,22.7143748772)
+##loader.AddBackgroundTree(backgroundTree15,2.65549294802)
 
 sigCut = TCut("missingET > 0 && cjetPt > 0 && jet1csv > 0 &&  jet2csv > 0 &&  jet3csv > 0 && jet4csv > 0 && DRlepWpt > 0 && DRjet0csv > 0 && DRjet1csv > 0 && DRjet2csv > 0 && DRjet3csv > 0")
 
@@ -260,11 +260,11 @@ model.summary()
 plot_model(model, to_file='model.png')
 
 
-factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model_Hct.h5:NumEpochs=200:BatchSize=200")
+factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model_Hct.h5:NumEpochs=100:BatchSize=200")
 
 factory.TrainAllMethods()
 factory.TestAllMethods()
 factory.EvaluateAllMethods()
 fout.Close()
 
-TMVA.TMVAGui("output_keras.root")
+#TMVA.TMVAGui("output_keras.root")
