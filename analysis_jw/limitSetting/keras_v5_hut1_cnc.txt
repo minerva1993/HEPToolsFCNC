@@ -2,8 +2,6 @@ imax *
 jmax *
 kmax *
 ---------------
-shapes * hut_keras /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v5_Hut1.root keras_$PROCESS
----------------
 bin hut_keras
 observation 56053
 ------------------------------

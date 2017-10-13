@@ -2,8 +2,6 @@ imax *
 jmax *
 kmax *
 ---------------
-shapes * hct_bdt /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v5_Hct1.root bdt_$PROCESS
----------------
 bin hct_bdt
 observation 56053
 ------------------------------
