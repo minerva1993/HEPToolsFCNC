@@ -98,11 +98,11 @@ def AddHut(fname, name, color, xsection):
 ####Users should provide these information 
 SetData("hist_DataSingleMu.root","data", 35867) # for now, combination of muon and electron
 SetData("hist_DataSingleEG.root","data", 35867) # for now, combination of muon and electron
-AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 356.4)
-AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 356.4)
-AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 356.4)
-AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 356.4)
-AddBkg("hist_tt.root","ttLF",ROOT.kRed, 356.4)
+AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.4)
+AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 365.4)
+AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.4)
+AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 365.4)
+AddBkg("hist_tt.root","ttLF",ROOT.kRed, 365.4)#356.4
 #AddBkg("hist_ttbkg.root","ttLF",ROOT.kRed, 831.8)
 AddBkg("hist_wjets.root","WJets",ROOT.kYellow,61524)
 AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 6025.2)
@@ -115,7 +115,7 @@ AddBkg("hist_ww.root","DiBoson",ROOT.kCyan, 118.7)
 AddBkg("hist_wz.root","DiBoson",ROOT.kCyan, 47.13)
 AddBkg("hist_zz.root","DiBoson",ROOT.kCyan, 16.523)
 #AddBkg("hist_QCD.root","QCD",ROOT.kGray, 1000)
-
+"""
 AddBkg("hist_QCD_EGEnr_20to30.root","QCD",ROOT.kGray, 5352960)
 AddBkg("hist_QCD_EGEnr_30to50.root","QCD",ROOT.kGray, 9928000)
 AddBkg("hist_QCD_EGEnr_50to80.root","QCD",ROOT.kGray, 2890800)
@@ -134,7 +134,7 @@ AddBkg("hist_QCD_MuEnr_470to600.root","QCD",ROOT.kGray, 79.02553776)
 AddBkg("hist_QCD_MuEnr_600to800.root","QCD",ROOT.kGray, 25.09505908)
 AddBkg("hist_QCD_MuEnr_800to1000.root","QCD",ROOT.kGray, 4.707368272)
 AddBkg("hist_QCD_MuEnr_1000toInf.root","QCD",ROOT.kGray, 1.62131692)
-
+"""
 
 AddHct("hist_Top_Hct.root", "Hct", 602, 3.33)
 #AddHct("hist_AntiTop_Hct.root", "Hct", 3, 3.33) # Top Hct ->xsection twice!
@@ -197,8 +197,8 @@ for i in range(0, N_hist):
     #else: 
     scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
 
-    #print fname
-    #print scale
+    print fname
+    print scale
     h_tmp.Scale(scale)
 
     if bkgsamples[fname]["name"] is not "QCD" and QCDestimate: 
