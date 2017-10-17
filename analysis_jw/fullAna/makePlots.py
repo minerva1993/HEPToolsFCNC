@@ -197,8 +197,8 @@ for i in range(0, N_hist):
     #else: 
     scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
 
-    print fname
-    print scale
+    #print fname
+    #print scale
     h_tmp.Scale(scale)
 
     if bkgsamples[fname]["name"] is not "QCD" and QCDestimate: 
@@ -223,10 +223,11 @@ for i in range(0, N_hist):
       fNevt.write(string)
       print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)  
     ## Add to Stack
-    if bkgsamples[fname]["name"] == "WJets":
-      hs.Add( h_tmp, "E" ) #hh_tmp -> add h tmp sig, hs->other
-    else:
-      hs.Add( h_tmp )
+    #if bkgsamples[fname]["name"] == "WJets":
+    #  hs.Add( h_tmp, "E" ) #hh_tmp -> add h tmp sig, hs->other
+    #else:
+    #  hs.Add( h_tmp )
+    hs.Add( h_tmp )
     k = k+1
 
 #Sig Stack
@@ -335,6 +336,7 @@ for i in range(0, N_hist):
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Entries")
+  h_data.GetYaxis().SetTitleOffset(1.2)
   hs.Draw("histsame")
   h_data.Draw("psame")
   h_Hct.Draw("hist same")
@@ -349,7 +351,7 @@ for i in range(0, N_hist):
   label.SetX2NDC(1.0-gStyle.GetPadRightMargin())
   label.SetY2NDC(1.0)
   label.SetTextFont(42)
-  label.AddText("CMS, 35.9 fb^{-1} at #sqrt{s} = 13 TeV")
+  label.AddText("Work in progress, CMS, 35.9 fb^{-1} at #sqrt{s} = 13 TeV")
   label.SetFillStyle(0)
   label.SetBorderSize(0)
   label.SetTextSize(0.04)

@@ -7,7 +7,7 @@ import os
 from style import *
 
 QCDestimate = False
-log = False 
+log = False
 
 from collections import OrderedDict
 datasamples=OrderedDict()
@@ -113,7 +113,7 @@ AddBkg("hist_tbarWchannel.root","Single t",6, 35.85)
 AddBkg("hist_ww.root","DiBoson",ROOT.kCyan, 118.7)
 AddBkg("hist_wz.root","DiBoson",ROOT.kCyan, 47.13)
 AddBkg("hist_zz.root","DiBoson",ROOT.kCyan, 16.523)
-
+"""
 AddBkg("hist_QCD_EGEnr_20to30.root","QCD",ROOT.kGray, 5352960)
 AddBkg("hist_QCD_EGEnr_30to50.root","QCD",ROOT.kGray, 9928000)
 AddBkg("hist_QCD_EGEnr_50to80.root","QCD",ROOT.kGray, 2890800)
@@ -132,7 +132,7 @@ AddBkg("hist_QCD_MuEnr_470to600.root","QCD",ROOT.kGray, 79.02553776)
 AddBkg("hist_QCD_MuEnr_600to800.root","QCD",ROOT.kGray, 25.09505908)
 AddBkg("hist_QCD_MuEnr_800to1000.root","QCD",ROOT.kGray, 4.707368272)
 AddBkg("hist_QCD_MuEnr_1000toInf.root","QCD",ROOT.kGray, 1.62131692)
-
+"""
 AddHct("hist_Top_Hct.root", "Hct", 602, 3.33)
 AddHct("hist_AntiTop_Hct.root", "Hct", 602, 3.33) 
 AddHut("hist_Top_Hut.root", "Hut", 419, 4.57)
@@ -300,8 +300,6 @@ for i in range(0, N_hist):
 
   #creat canvas
   c = TCanvas("c_"+"{}".format(i),"c", 450, 450)
-  if log:
-    c.SetLogy()
 
   # Upper histogram plot is pad1
   pad1 = TPad("pad1", "pad1", 0.0, 0.3, 1, 1.0)
@@ -322,6 +320,10 @@ for i in range(0, N_hist):
   max_data = h_data.GetMaximum()
   max_hs = hs.GetMaximum()
   maxfrac = 0.5
+
+  if log:
+    pad1.SetLogy()
+
   if log :
     if max_data > 100000:
       maxfrac = 1000 
@@ -335,7 +337,7 @@ for i in range(0, N_hist):
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Entries")
-  h_data.GetYaxis().SetTitleOffset(1.1)
+  h_data.GetYaxis().SetTitleOffset(1.2)
   h_data.GetYaxis().SetTitleSize(0.045)
   h_data.GetXaxis().SetLabelSize(0)#
   #h_data.GetXaxis().SetTitle("")
@@ -352,10 +354,10 @@ for i in range(0, N_hist):
   label = TPaveText()
   label.SetX1NDC(gStyle.GetPadLeftMargin())
   label.SetY1NDC(1.0-gStyle.GetPadTopMargin())
-  label.SetX2NDC(1.0-gStyle.GetPadRightMargin())
+  label.SetX2NDC(1.0-gStyle.GetPadRightMargin()+0.03)
   label.SetY2NDC(1.0)
-  label.SetTextFont(42)
-  label.AddText("CMS, 35.9 fb^{-1} at #sqrt{s} = 13 TeV")
+  label.SetTextFont(62)
+  label.AddText("Work in Progress        CMS, 35.9 fb^{-1} at #sqrt{s} = 13 TeV")
   label.SetFillStyle(0)
   label.SetBorderSize(0)
   label.SetTextSize(0.05)
@@ -370,8 +372,8 @@ for i in range(0, N_hist):
   h3.SetMarkerStyle(20)
   h3.SetMarkerSize(0.5)
   h3.SetTitle("")
-  h3.SetMinimum(0.8)
-  h3.SetMaximum(1.2)
+  h3.SetMinimum(0.6)
+  h3.SetMaximum(1.4)
   #h3.Sumw2()
   h3.SetStats(0)
 
@@ -413,7 +415,11 @@ for i in range(0, N_hist):
     logname = "_log"
 
   #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
-  h_data.SetTitle(hnames[2]+"_"+hnames[3])
+  ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
+  if hnames[2] == 'Ch0':
+    h_data.SetTitle("#mu ch")
+  else:
+    h_data.SetTitle("e ch")
   filename = "result_ratio"+logname+".pdf"
 
   if i == 0 and N_hist > 1:
