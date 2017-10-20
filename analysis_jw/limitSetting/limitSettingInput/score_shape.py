@@ -5,8 +5,8 @@ from ROOT import *
 #tmva_version = 'v4'
 tmva_version = 'v5'
 
-#ch = 'Hct1'
-ch = 'Hut1'
+ch = 'Hct11'
+#ch = 'Hut11'
 
 ttbar = 0.0910581123792
 
@@ -117,16 +117,31 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_singletop.Write()
     keras_singletop.Write()
 
-  #no W+Jets
   elif scores == 'shape_'+ch+'_zjets.root':
     zjets = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
     zjets10to50 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_zjets10to50.root')
+    wjets = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_wjets.root')
+    ww = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_ww.root')
+    wz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_wz.root')
+    zz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_zz.root')
 
     bdt_others = zjets.Get('h_scoreBDT_'+ch+'_zjets')
     bdt_others.Scale(2.65549294802)
     bdt_zjets10to50 = zjets10to50.Get('h_scoreBDT_'+ch+'_zjets10to50')
     bdt_zjets10to50.Scale(22.7143748772)
     bdt_others.Add(bdt_others, bdt_zjets10to50, 1.0, 1.0)
+    bdt_wjets = wjets.Get('h_scoreBDT_'+ch+'_wjets')
+    bdt_wjets.Scale(134.276449237)
+    bdt_others.Add(bdt_others, bdt_wjets, 1.0, 1.0)
+    bdt_ww = ww.Get('h_scoreBDT_'+ch+'_ww')
+    bdt_ww.Scale(4.70407414855)
+    bdt_others.Add(bdt_others, bdt_ww, 1.0, 1.0)
+    bdt_wz = wz.Get('h_scoreBDT_'+ch+'_wz')
+    bdt_wz.Scale(1.69041171)
+    bdt_others.Add(bdt_others, bdt_wz, 1.0, 1.0)
+    bdt_zz = zz.Get('h_scoreBDT_'+ch+'_zz')
+    bdt_zz.Scale(0.598577911125)
+    bdt_others.Add(bdt_others, bdt_zz, 1.0, 1.0)
     bdt_others.SetName('bdt_others')
 
     keras_others = zjets.Get('h_scoreKeras_'+ch+'_zjets')
@@ -134,6 +149,18 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_zjets10to50 = zjets10to50.Get('h_scoreKeras_'+ch+'_zjets10to50')
     keras_zjets10to50.Scale(22.7143748772)
     keras_others.Add(keras_others, keras_zjets10to50, 1.0, 1.0)
+    keras_wjets = wjets.Get('h_scoreKeras_'+ch+'_wjets')
+    keras_wjets.Scale(134.276449237)
+    keras_others.Add(keras_others, keras_wjets, 1.0, 1.0)
+    keras_ww = ww.Get('h_scoreKeras_'+ch+'_ww')
+    keras_ww.Scale(4.70407414855)
+    keras_others.Add(keras_others, keras_ww, 1.0, 1.0)
+    keras_wz = wz.Get('h_scoreKeras_'+ch+'_wz')
+    keras_wz.Scale(1.69041171)
+    keras_others.Add(keras_others, keras_wz, 1.0, 1.0)
+    keras_zz = zz.Get('h_scoreKeras_'+ch+'_zz')
+    keras_zz.Scale(0.598577911125)
+    keras_others.Add(keras_others, keras_zz, 1.0, 1.0)
     keras_others.SetName('keras_others')
     """
     #QCD
@@ -227,7 +254,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_data_obs.Write()
     keras_data_obs.Write()
    
-  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct1':
+  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct11':
     tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hct.root')
     tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hct.root')
 
@@ -258,7 +285,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_sig.Write()
     keras_sig.Write()
 
-  elif scores == 'shape_'+ch+'_Top_Hut.root' and ch == 'Hut1':
+  elif scores == 'shape_'+ch+'_Top_Hut.root' and ch == 'Hut11':
     tuh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hut.root')
     tbaruh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hut.root')
 

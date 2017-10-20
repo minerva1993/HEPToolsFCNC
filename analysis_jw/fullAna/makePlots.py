@@ -136,9 +136,9 @@ AddBkg("hist_QCD_MuEnr_800to1000.root","QCD",ROOT.kGray, 4.707368272)
 AddBkg("hist_QCD_MuEnr_1000toInf.root","QCD",ROOT.kGray, 1.62131692)
 """
 
-AddHct("hist_Top_Hct.root", "Hct", 602, 3.33)
+AddHct("hist_Top_Hct.root", "Hct", 433, 3.33)
 #AddHct("hist_AntiTop_Hct.root", "Hct", 3, 3.33) # Top Hct ->xsection twice!
-AddHut("hist_Top_Hut.root", "Hut", 419, 4.57)
+AddHut("hist_Top_Hut.root", "Hut", 401, 4.57)
 #AddHut("hist_AntiTop_Hut.root", "Hut", 5, 4.57) #used 1610.04857 values
 #### each signal cross section for t + tbar!
 
