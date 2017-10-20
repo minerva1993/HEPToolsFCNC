@@ -133,10 +133,10 @@ AddBkg("hist_QCD_MuEnr_600to800.root","QCD",ROOT.kGray, 25.09505908)
 AddBkg("hist_QCD_MuEnr_800to1000.root","QCD",ROOT.kGray, 4.707368272)
 AddBkg("hist_QCD_MuEnr_1000toInf.root","QCD",ROOT.kGray, 1.62131692)
 """
-AddHct("hist_Top_Hct.root", "Hct", 602, 3.33)
-AddHct("hist_AntiTop_Hct.root", "Hct", 602, 3.33) 
-AddHut("hist_Top_Hut.root", "Hut", 419, 4.57)
-AddHut("hist_AntiTop_Hut.root", "Hut", 419, 4.57) 
+AddHct("hist_Top_Hct.root", "Hct", 433, 3.33)#602
+AddHct("hist_AntiTop_Hct.root", "Hct", 433, 3.33) 
+AddHut("hist_Top_Hut.root", "Hut", 401, 4.57)
+AddHut("hist_AntiTop_Hut.root", "Hut", 401, 4.57)#419
 #used 1610.04857 values
 
 qcd = []
@@ -414,12 +414,14 @@ for i in range(0, N_hist):
   if log:
     logname = "_log"
 
-  #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
-  ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
   if hnames[2] == 'Ch0':
     h_data.SetTitle("#mu ch")
   else:
     h_data.SetTitle("e ch")
+
+  c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+  ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
+
   filename = "result_ratio"+logname+".pdf"
 
   if i == 0 and N_hist > 1:
