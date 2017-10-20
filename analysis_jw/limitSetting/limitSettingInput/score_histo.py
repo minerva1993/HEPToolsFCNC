@@ -3,8 +3,8 @@ from ROOT import *
 
 tmva_version = 'v5'
 
-#ch = 'Hct1'
-ch = 'Hut1'
+ch = 'Hct11'
+#ch = 'Hut11'
 
 c1 = TCanvas( 'c1', 'c1', 500, 400 ) 
 c2 = TCanvas( 'c2', 'c2', 500, 400 )
@@ -24,6 +24,7 @@ bdt_ttbj = shape_file.Get('bdt_ttbj')
 bdt_ttcc = shape_file.Get('bdt_ttcc')
 bdt_ttLF = shape_file.Get('bdt_ttLF')
 bdt_singletop = shape_file.Get('bdt_singletop')
+bdt_others = shape_file.Get('bdt_others')
 bdt_data = shape_file.Get('bdt_data_obs')
 bdt_sig = shape_file.Get('bdt_sig')
 
@@ -32,6 +33,7 @@ bdt_bkg.Add(bdt_ttbj, 1.0)
 bdt_bkg.Add(bdt_ttcc, 1.0)
 bdt_bkg.Add(bdt_ttLF, 1.0)
 bdt_bkg.Add(bdt_singletop, 1.0)
+#bdt_bkg.Add(bdt_others, 1.0)
 
 bdt_sig.Scale(bdt_data.Integral()/bdt_sig.Integral())
 
@@ -40,6 +42,7 @@ keras_ttbj = shape_file.Get('keras_ttbj')
 keras_ttcc = shape_file.Get('keras_ttcc')
 keras_ttLF = shape_file.Get('keras_ttLF')
 keras_singletop = shape_file.Get('keras_singletop')
+keras_others = shape_file.Get('keras_others')
 keras_data = shape_file.Get('keras_data_obs')
 keras_sig = shape_file.Get('keras_sig')
 
@@ -48,6 +51,7 @@ keras_bkg.Add(keras_ttbj, 1.0)
 keras_bkg.Add(keras_ttcc, 1.0)
 keras_bkg.Add(keras_ttLF, 1.0)
 keras_bkg.Add(keras_singletop, 1.0)
+keras_bkg.Add(keras_others, 1.0)
 
 keras_sig.Scale(keras_data.Integral()/keras_sig.Integral())
 
