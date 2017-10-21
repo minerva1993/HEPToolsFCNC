@@ -12,19 +12,19 @@ from keras.regularizers import l2
 from keras.optimizers import SGD, Adam, Adadelta
 from keras.utils import plot_model
 
-#config = tf.ConfigProto()
-#config.gpu_options.visible_device_list = "2,3"
-#keras.backend.tensorflow_backend.set_session(tf.Session(config=config))
+config = tf.ConfigProto()
+config.gpu_options.visible_device_list = "2,3"
+keras.backend.tensorflow_backend.set_session(tf.Session(config=config))
 
 TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
 
-fout = TFile("output_keras_Hut.root","recreate")
+fout = TFile("output_keras_Hct.root","recreate")
 
 factory = TMVA.Factory("TMVAClassification", fout,
                        "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G;D:AnalysisType=Classification" )
 
-loader = TMVA.DataLoader("keras5_Hut11")
+loader = TMVA.DataLoader("keras5_Hct16")
 loader.AddVariable("njets", "I")
 loader.AddVariable("nbjets_m",'I')
 loader.AddVariable("ncjets_m",'I')
@@ -135,14 +135,14 @@ loader.AddVariable("DRhadTm",'F')
 
 
 ## Load input files
-signalA = TFile("input/tmva_AntiTop_Hut.root")
-#signalB = TFile("input/tmva_AntiTop_Hct.root")
-signalC = TFile("input/tmva_Top_Hut.root")
-#signalD = TFile("input/tmva_Top_Hct.root")
-sigTreeA = signalA.Get("tmva_tree")
-#sigTreeB = signalB.Get("tmva_tree")
-sigTreeC = signalC.Get("tmva_tree")
-#sigTreeD = signalD.Get("tmva_tree")
+#signalA = TFile("input/tmva_AntiTop_Hut.root")
+signalB = TFile("input/tmva_AntiTop_Hct.root")
+#signalC = TFile("input/tmva_Top_Hut.root")
+signalD = TFile("input/tmva_Top_Hct.root")
+#sigTreeA = signalA.Get("tmva_tree")
+sigTreeB = signalB.Get("tmva_tree")
+#sigTreeC = signalC.Get("tmva_tree")
+sigTreeD = signalD.Get("tmva_tree")
 
 background1 = TFile("input/tmva_tbarchannel.root")
 background2 = TFile("input/tmva_tbarWchannel.root")
@@ -177,10 +177,10 @@ backgroundTree9 = background9.Get("tmva_tree")
 ##backgroundTree14 = background14.Get("tmva_tree")
 ##backgroundTree15 = background15.Get("tmva_tree")
 
-loader.AddSignalTree(sigTreeA,0.1)#0.156137331574/2=0.0780687
-#loader.AddSignalTree(sigTreeB,0.1)#0.113541253338/2=0.0567706
-loader.AddSignalTree(sigTreeC,0.1)
-#loader.AddSignalTree(sigTreeD,0.1)
+#loader.AddSignalTree(sigTreeA,0.1)#0.156137331574/2=0.0780687
+loader.AddSignalTree(sigTreeB,0.1)#0.113541253338/2=0.0567706
+#loader.AddSignalTree(sigTreeC,0.1)
+loader.AddSignalTree(sigTreeD,0.1)
 
 loader.AddBackgroundTree(backgroundTree1,0.024575262909)
 loader.AddBackgroundTree(backgroundTree2,0.193026936331)
@@ -211,13 +211,14 @@ loader.PrepareTrainingAndTestTree(
     "nTrain_Signal=30000:nTrain_Background=440000:SplitMode=Random:NormMode=NumEvents:!V"
 )
 
-factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=1000:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:UseBaggedBoost:BaggedSampleFraction=0.5:SeparationType=GiniIndex:nCuts=20")
+factory.BookMethod(loader, TMVA.Types.kBDT, "BDT_optimized", "!H:!V:NTrees=850:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=40")
 
 #factory.BookMethod(loader, TMVA.Types.kDNN, "DNN", '!H:V:ErrorStrategy=CROSSENTROPY:VarTransform=N:WeightInitialization=XAVIERUNIFORM:Architecture=CPU:Layout=ReLU|300,ReLU|500,ReLU|700,ReLU|700,ReLU|700,ReLU|700,ReLU|700,ReLU|700,ReLU|700,ReLU|500,ReLU|300,ReLU|100,LINEAR:TrainingStrategy=LearningRate=1e-2,Repetitions=1,ConvergenceSteps=20,Multithreading=True,Regularization=L2,WeightDecay=1e-4,BatchSize=100,TestRepetitions=5,DropConfig=0.2+0.0+0.0+0.0+0.2+0.0+0.0+0.0+0.2+0.0+0.0+0.0+0.0,Momentum=0.7')
 
 #Keras
 a = 1000
-b = 0.4
+b = 0.5
+init = 'glorot_uniform'
 
 inputs = Input(shape=(85,))
 x = Dense(a, kernel_regularizer=l2(1E-2))(inputs)#4E-6
@@ -225,20 +226,20 @@ x = BatchNormalization()(x)
 
 branch_point1 = Dense(a, name='branch_point1')(x)
 
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 x = BatchNormalization()(x)
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 
 x = add([x, branch_point1])
 x = BatchNormalization()(x)
 branch_point2 = Dense(a, name='branch_point2')(x)
 
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 x = BatchNormalization()(x)#
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 
 x = add([x, branch_point2])
@@ -246,10 +247,10 @@ x = add([x, branch_point2])
 x = BatchNormalization()(x)
 branch_point3 = Dense(a, name='branch_point3')(x)
 
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 x = BatchNormalization()(x)
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 
 x = add([x, branch_point3])
@@ -257,10 +258,10 @@ x = add([x, branch_point3])
 x = BatchNormalization()(x)
 branch_point4 = Dense(a, name='branch_point4')(x)
 
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 x = BatchNormalization()(x)
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 
 x = add([x, branch_point4])
@@ -268,10 +269,10 @@ x = add([x, branch_point4])
 x = BatchNormalization()(x)
 branch_point5 = Dense(a, name='branch_point5')(x)
 
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 x = BatchNormalization()(x)
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 
 x = add([x, branch_point5])
@@ -279,28 +280,28 @@ x = add([x, branch_point5])
 x = BatchNormalization()(x)
 branch_point6 = Dense(a, name='branch_point6')(x)
 
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 x = BatchNormalization()(x)
-x = Dense(a, activation='relu')(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 
 x = add([x, branch_point6])
 
-x = BatchNormalization()(x)#
-x = Dense(a, activation='relu')(x)
-x = Dropout(b)(x)#
+x = BatchNormalization()(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
 
 predictions = Dense(2, activation='softmax')(x)
 
 model = Model(inputs=inputs, outputs=predictions)
 
-model.compile(loss='binary_crossentropy', optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=5E-3), metrics=['binary_accuracy'])
-model.save('model_Hut.h5')
+model.compile(loss='binary_crossentropy', optimizer=Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=1E-3), metrics=['binary_accuracy'])
+model.save('model_Hct.h5')
 model.summary()
 #plot_model(model, to_file='model.png')
 
-factory.BookMethod(loader, TMVA.Types.kPyKeras, 'PyKeras',"H:!V:VarTransform=D,G:FilenameModel=model_Hut.h5:NumEpochs=30:BatchSize=1000")#120 epochs
+factory.BookMethod(loader, TMVA.Types.kPyKeras, 'Keras+TF',"H:!V:VarTransform=D,G:FilenameModel=model_Hct.h5:NumEpochs=50:BatchSize=1000")#120 epochs
 
 factory.TrainAllMethods()
 factory.TestAllMethods()
