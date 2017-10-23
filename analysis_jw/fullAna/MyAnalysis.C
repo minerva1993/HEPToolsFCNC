@@ -188,32 +188,32 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       fOutput->Add(h_m3FCNHkinTopMHc[ich][i]);
 */
       h_DRFCNHkinLepWMass[ich][i] = new TH1D(Form("h_DRFCNHkinLepWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from DRFCNHkinfit (Lep)", 29 ,10 ,300);
-      h_DRFCNHkinLepWMass[ich][i]->SetXTitle("W Mass from DRFCNHkinfit (Lep) (GeV)");
+      h_DRFCNHkinLepWMass[ich][i]->SetXTitle("W Mass (Lep) (GeV)");
       h_DRFCNHkinLepWMass[ich][i]->Sumw2();
       fOutput->Add(h_DRFCNHkinLepWMass[ich][i]);
 
       h_DRFCNHkinHadWMass[ich][i] = new TH1D(Form("h_DRFCNHkinHadWMass_Ch%i_S%i_%s",ich,i,option.Data()), "W Mass from DRFCNHkinfit (Had)", 29 ,10 ,300);
-      h_DRFCNHkinHadWMass[ich][i]->SetXTitle("W Mass from DRFCNHkinfit (Had) (GeV)");
+      h_DRFCNHkinHadWMass[ich][i]->SetXTitle("W Mass (Had) (GeV)");
       h_DRFCNHkinHadWMass[ich][i]->Sumw2();
       fOutput->Add(h_DRFCNHkinHadWMass[ich][i]);
 
       h_DRFCNHkinHMass[ich][i] = new TH1D(Form("h_DRFCNHkinHMass_Ch%i_S%i_%s",ich,i,option.Data()), "H Mass from DRFCNHkinfit (bb)", 29 ,10 ,300);
-      h_DRFCNHkinHMass[ich][i]->SetXTitle("H Mass from DRFCNHkinfit (bb)(GeV)");
+      h_DRFCNHkinHMass[ich][i]->SetXTitle("Higgs Mass (GeV)");
       h_DRFCNHkinHMass[ich][i]->Sumw2();
       fOutput->Add(h_DRFCNHkinHMass[ich][i]);
 
       h_DRFCNHkinDR[ich][i] = new TH1D(Form("h_DRFCNHkinDR_Ch%i_S%i_%s",ich,i,option.Data()), "Delta R from DRFCNHkinfit", 39, 0.1 ,4);
-      h_DRFCNHkinDR[ich][i]->SetXTitle("Delta R from DRFCNHkinfit Higgs");
+      h_DRFCNHkinDR[ich][i]->SetXTitle("Delta R of b jets from Higgs");
       h_DRFCNHkinDR[ich][i]->Sumw2();
       fOutput->Add(h_DRFCNHkinDR[ich][i]);
 
       h_DRFCNHkinTopMWb[ich][i] = new TH1D(Form("h_DRFCNHkinTopMWb_Ch%i_S%i_%s",ich,i,option.Data()), "Top Mass from DRFCNHkinfit (Lep)", 35 , 50 , 400);
-      h_DRFCNHkinTopMWb[ich][i]->SetXTitle("Top Mass from DRFCNHkinfit (Lep) (GeV)");
+      h_DRFCNHkinTopMWb[ich][i]->SetXTitle("Top Mass (Lep) (GeV)");
       h_DRFCNHkinTopMWb[ich][i]->Sumw2();
       fOutput->Add(h_DRFCNHkinTopMWb[ich][i]);
 
       h_DRFCNHkinTopMHc[ich][i] = new TH1D(Form("h_DRFCNHkinTopMHc_Ch%i_S%i_%s",ich,i,option.Data()), "Top mass from Hc/u DRFCNHkinfit", 35 , 50 , 400);
-      h_DRFCNHkinTopMHc[ich][i]->SetXTitle("Top Mass from Hc/u DRFCNHkinfit (GeV)");
+      h_DRFCNHkinTopMHc[ich][i]->SetXTitle("Top Mass (Had) (GeV)");
       h_DRFCNHkinTopMHc[ich][i]->Sumw2();
       fOutput->Add(h_DRFCNHkinTopMHc[ich][i]);
       }
