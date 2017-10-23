@@ -7,7 +7,7 @@ import os
 from style import *
 
 QCDestimate = False
-log = False
+log = True
 
 from collections import OrderedDict
 datasamples=OrderedDict()
@@ -249,10 +249,10 @@ for i in range(0, N_hist):
       if hctsamples[fname]["name"] is hctsamples[post_name]["name"]:
         h_Hct.SetLineColor(hctsamples[fname]["col"]) 
       else:
-        l.AddEntry(h_Hct, hctsamples[fname]["name"]  ,"F") 
+        l.AddEntry(h_Hct, hctsamples[fname]["name"]  ,"F")
     else: 
       l.AddEntry(h_Hct, hctsamples[fname]["name"]  ,"F")
- 
+
     ## Add to Stack
     hsHct.Add( h_Hct ) #hh_tmp -> add h tmp sig, hs->other
     m = m+1 
@@ -336,7 +336,7 @@ for i in range(0, N_hist):
 
   h_data.Draw("p")
   h_data.SetTitle("")
-  h_data.GetYaxis().SetTitle("Entries")
+  h_data.GetYaxis().SetTitle("Events")
   h_data.GetYaxis().SetTitleOffset(1.2)
   h_data.GetYaxis().SetTitleSize(0.045)
   h_data.GetXaxis().SetLabelSize(0)#
@@ -344,8 +344,11 @@ for i in range(0, N_hist):
   h_data.GetXaxis().SetTitleOffset(5.0)
   hs.Draw("histsame")
   h_data.Draw("psame")
+  hs_Hct.SetLineWidth(2)
+  hs_Hut.SetLineWidth(2)
   hs_Hct.Draw("hist same")
   hs_Hut.Draw("hist same")
+  h_data.Draw("AXIS SAME")
   h4 = hs.Clone("h4")
   ROOT.SetOwnership( h4,  True )
 
@@ -413,12 +416,14 @@ for i in range(0, N_hist):
   logname = ""
   if log:
     logname = "_log"
-
+  """
   if hnames[2] == 'Ch0':
     h_data.SetTitle("#mu ch")
+    h_data.SetTitleSize(0.7)
   else:
     h_data.SetTitle("e ch")
-
+    h_data.SetTitleSize(0.7)
+  """
   c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
   ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 

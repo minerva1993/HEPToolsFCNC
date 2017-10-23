@@ -5,8 +5,8 @@ from ROOT import *
 #tmva_version = 'v4'
 tmva_version = 'v5'
 
-ch = 'Hct11'
-#ch = 'Hut11'
+ch = 'Hct15'
+#ch = 'Hut15'
 
 ttbar = 0.0910581123792
 
@@ -254,7 +254,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_data_obs.Write()
     keras_data_obs.Write()
    
-  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct11':
+  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct15':
     tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hct.root')
     tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hct.root')
 
@@ -285,7 +285,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_sig.Write()
     keras_sig.Write()
 
-  elif scores == 'shape_'+ch+'_Top_Hut.root' and ch == 'Hut11':
+  elif scores == 'shape_'+ch+'_Top_Hut.root' and ch == 'Hut15':
     tuh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hut.root')
     tbaruh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hut.root')
 
