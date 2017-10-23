@@ -29,7 +29,7 @@ gStyle.SetPadRightMargin(0.1)
 
 gStyle.SetTitleColor(1, "XYZ")
 gStyle.SetTitleFont(42, "XYZ")
-gStyle.SetTitleSize(0.04, "XYZ")
+gStyle.SetTitleSize(0.1, "XYZ")
 gStyle.SetTitleXOffset(0.9)
 gStyle.SetTitleYOffset(1.4)
 

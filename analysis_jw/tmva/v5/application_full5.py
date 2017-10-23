@@ -11,8 +11,8 @@ TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
 reader = TMVA.Reader("Color:!Silent")
 
-ch = 'Hct11'
-#ch = 'Hut11'
+ch = 'Hct15'
+#ch = 'Hut15'
 
 tuples = sys.argv[1]
 
@@ -31,8 +31,8 @@ for branch in data_tree.GetListOfBranches():
       reader.AddVariable(branchName, branches[branchName])
       data_tree.SetBranchAddress(branchName, branches[branchName])
 
-reader.BookMVA('PyKeras', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v5/keras5_'+ch+'/weights/TMVAClassification_PyKeras.weights.xml'))
-reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v5/keras5_'+ch+'/weights/TMVAClassification_BDT.weights.xml'))
+reader.BookMVA('PyKeras', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v5/keras5_'+ch+'/weights/TMVAClassification_Keras+TF.weights.xml'))
+reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v5/keras5_'+ch+'/weights/TMVAClassification_BDT_optimized.weights.xml'))
 
 print "processing "+tuples
 nevt = data_tree.GetEntries()
