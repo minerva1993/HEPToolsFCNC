@@ -133,10 +133,10 @@ AddBkg("hist_QCD_MuEnr_600to800.root","QCD",ROOT.kGray, 25.09505908)
 AddBkg("hist_QCD_MuEnr_800to1000.root","QCD",ROOT.kGray, 4.707368272)
 AddBkg("hist_QCD_MuEnr_1000toInf.root","QCD",ROOT.kGray, 1.62131692)
 """
-AddHct("hist_Top_Hct.root", "Hct", 433, 3.33)#602
-AddHct("hist_AntiTop_Hct.root", "Hct", 433, 3.33) 
-AddHut("hist_Top_Hut.root", "Hut", 401, 4.57)
-AddHut("hist_AntiTop_Hut.root", "Hut", 401, 4.57)#419
+AddHct("hist_Top_Hct.root", "Hct", 433, 1.85)
+AddHct("hist_AntiTop_Hct.root", "Hct", 433, 1.85) 
+AddHut("hist_Top_Hut.root", "Hut", 401, 1.85)
+AddHut("hist_AntiTop_Hut.root", "Hut", 401, 1.85)
 #used 1610.04857 values
 
 qcd = []
@@ -219,6 +219,8 @@ for i in range(0, N_hist):
       fNevt.write(string)
       print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt) # " scale : " ,"{0:.1g}".format(scale)  
 
+    #print fname, " : ", scale
+
     ## Add to Stack
     hs.Add( h_tmp ) #hh_tmp -> add h tmp sig, hs->other
     k = k+1
@@ -237,7 +239,8 @@ for i in range(0, N_hist):
     h_Hct.SetFillColorAlpha(hctsamples[fname]["col"],0.0)
 
     ## normalization
-    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
+    #scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
+    scale = 0.05
 
     h_Hct.Scale(scale)
 
@@ -252,6 +255,17 @@ for i in range(0, N_hist):
         l.AddEntry(h_Hct, hctsamples[fname]["name"]  ,"F")
     else: 
       l.AddEntry(h_Hct, hctsamples[fname]["name"]  ,"F")
+
+    ## print out number of events
+    numevt = h_Hct.Integral()
+    rawevt = h_Hct.GetEntries()
+    if hctsamples[fname]["name"] == "QCD": numqcd = numevt
+    if hnames[1] == printHistName:
+      string = "%s :  %s = %d \n"%(fname,hctsamples[fname]["name"],numevt)
+      fNevt.write(string)
+      print fname, " : ", hctsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
+
+    #print fname, " : ", scale
 
     ## Add to Stack
     hsHct.Add( h_Hct ) #hh_tmp -> add h tmp sig, hs->other
@@ -273,7 +287,8 @@ for i in range(0, N_hist):
     h_Hut.SetFillColorAlpha(hutsamples[fname]["col"],0.0)
 
     ## normalization
-    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
+    #scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
+    scale = 0.05
 
     h_Hut.Scale(scale)
 
@@ -292,6 +307,17 @@ for i in range(0, N_hist):
     ## Add to Stack
     hsHut.Add( h_Hut ) #hh_tmp -> add h tmp sig, hs->other
     n = n+1
+
+    ## print out number of events
+    numevt = h_Hut.Integral()
+    rawevt = h_Hut.GetEntries()
+    if hutsamples[fname]["name"] == "QCD": numqcd = numevt
+    if hnames[1] == printHistName:
+      string = "%s :  %s = %d \n"%(fname,hutsamples[fname]["name"],numevt)
+      fNevt.write(string)
+      print fname, " : ", hutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
+
+    #print fname, " : ", scale
 
   hs_Hut = hsHut.GetStack().Last()
 
