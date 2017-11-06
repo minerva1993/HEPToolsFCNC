@@ -14,8 +14,8 @@ def runAna(dir, file, name):
 
 #p = TProof.Open("", "workers=8")
 
-#ch = "Hct15"
-ch = "Hut15"
+ch = "Hct21"
+#ch = "Hut15"
 version = "v5"
 inputdir = "/home/minerva1993/fcnc/analysis_jw/tmva/"+version+"/score_mva/"+ch
 """
@@ -24,7 +24,7 @@ runAna(inputdir, "output_"+ch+"_tmva_AntiTop_Hut.root", ch+"_AntiTop_Hut")
 runAna(inputdir, "output_"+ch+"_tmva_Top_Hct.root", ch+"_Top_Hct")
 runAna(inputdir, "output_"+ch+"_tmva_Top_Hut.root", ch+"_Top_Hut")
 """
-runAna(inputdir, "output_"+ch+"_tmva_SingleLepton_Run2016.root", ch+"_SingleLepton_Run2016_2")
+runAna(inputdir, "output_"+ch+"_tmva_SingleLepton_Run2016.root", ch+"_SingleLepton_Run2016")
 """
 runAna(inputdir, "output_"+ch+"_tmva_ttbb.root", ch+"_ttbb")
 runAna(inputdir, "output_"+ch+"_tmva_ttbj.root", ch+"_ttbj")
