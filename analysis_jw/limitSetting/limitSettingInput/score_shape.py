@@ -5,7 +5,7 @@ from ROOT import *
 #tmva_version = 'v4'
 tmva_version = 'v5'
 
-ch = 'Hct15'
+ch = 'Hct21'
 #ch = 'Hut15'
 
 ttbar = 0.0910581123792
@@ -254,7 +254,8 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_data_obs.Write()
     keras_data_obs.Write()
    
-  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct15':
+#  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct15':
+  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct21':
     tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hct.root')
     tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hct.root')
 
