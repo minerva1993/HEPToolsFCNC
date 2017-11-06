@@ -1,8 +1,6 @@
 version="v3"
 inputdir="/home/minerva1993/fcnc/ntuple_jw/"
 
-python runAnalysis2.py $version $inputdir "SingleMuon_Run2016.root" "DataSingleMu"&
-python runAnalysis2.py $version $inputdir "SingleElectron_Run2016.root" "DataSingleEG"&
 python runAnalysis2.py $version $inputdir "TT_powheg_ttbb.root" "ttbb"&
 python runAnalysis2.py $version $inputdir "TT_powheg_ttlf.root" "ttLF"&
 python runAnalysis2.py $version $inputdir "TT_powheg_ttbj.root" "ttbj"&

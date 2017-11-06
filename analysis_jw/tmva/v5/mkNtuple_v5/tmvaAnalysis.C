@@ -232,11 +232,11 @@ Bool_t tmvaAnalysis::Process(Long64_t entry)
     bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
 
 
-  if( !passmuon && !passelectron ) return kTRUE;
+  //if( !passmuon && !passelectron ) return kTRUE;
   //if( !passmuon ) return kTRUE;//RDMu
   //if( passelectron) return kTRUE;//RDMu
-  //if( !passelectron ) return kTRUE;//RDelec
-  //if( passmuon ) return kTRUE;//RDelec
+  if( !passelectron ) return kTRUE;//RDelec
+  if( passmuon ) return kTRUE;//RDelec
 
   vector<float> v_cjet_m;
   vector<TLorentzVector> v_bjet_m;
