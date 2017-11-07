@@ -5,16 +5,16 @@ from ROOT import *
 #tmva_version = 'v4'
 tmva_version = 'v5'
 
-ch = 'Hct25'
+ch = 'Hct15'
 #ch = 'Hut15'
 
 ttbar = 0.0910581123792
 
-target = TFile('shape_'+tmva_version+'_'+ch+'.root','RECREATE')
+target = TFile('cnc_'+tmva_version+'_'+ch+'.root','RECREATE')
 
 for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'):
 
-  if scores == 'shape_'+ch+'_ttbb.root':
+  if scores == 'cnc_'+ch+'_ttbb.root':
     ttbb = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
 
     bdt_ttbb = ttbb.Get('h_scoreBDT_'+ch+'_ttbb')
@@ -29,9 +29,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_ttbb.Write()
     keras_ttbb.Write()
  
-  elif scores == 'shape_'+ch+'_ttLF.root':
+  elif scores == 'cnc_'+ch+'_ttLF.root':
     ttLF = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
-    tt = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_tt.root')
+    tt = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_tt.root')
     
     bdt_ttLF = ttLF.Get('h_scoreBDT_'+ch+'_ttLF')
     bdt_ttLF.Scale(ttbar)
@@ -51,7 +51,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_ttLF.Write()
     keras_ttLF.Write()
  
-  elif scores == 'shape_'+ch+'_ttcc.root':
+  elif scores == 'cnc_'+ch+'_ttcc.root':
     ttcc = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
 
     bdt_ttcc = ttcc.Get('h_scoreBDT_'+ch+'_ttcc')
@@ -66,7 +66,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_ttcc.Write()
     keras_ttcc.Write()
  
-  elif scores == 'shape_'+ch+'_ttbj.root':
+  elif scores == 'cnc_'+ch+'_ttbj.root':
     ttbj = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
 
     bdt_ttbj = ttbj.Get('h_scoreBDT_'+ch+'_ttbj')
@@ -81,11 +81,11 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_ttbj.Write()
     keras_ttbj.Write()
 
-  elif scores == 'shape_'+ch+'_tchannel.root':
+  elif scores == 'cnc_'+ch+'_tchannel.root':
     st = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
-    stbar = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_tbarchannel.root')
-    tw = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_tWchannel.root')
-    tbarw = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_tbarWchannel.root')
+    stbar = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_tbarchannel.root')
+    tw = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_tWchannel.root')
+    tbarw = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_tbarWchannel.root')
 
     bdt_singletop = st.Get('h_scoreBDT_'+ch+'_tchannel')
     bdt_singletop.Scale(0.023844899675)
@@ -117,13 +117,13 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_singletop.Write()
     keras_singletop.Write()
 
-  elif scores == 'shape_'+ch+'_zjets.root':
+  elif scores == 'cnc_'+ch+'_zjets.root':
     zjets = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
-    zjets10to50 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_zjets10to50.root')
-    wjets = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_wjets.root')
-    ww = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_ww.root')
-    wz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_wz.root')
-    zz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_zz.root')
+    zjets10to50 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_zjets10to50.root')
+    wjets = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_wjets.root')
+    ww = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_ww.root')
+    wz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_wz.root')
+    zz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_zz.root')
 
     bdt_others = zjets.Get('h_scoreBDT_'+ch+'_zjets')
     bdt_others.Scale(2.65549294802)
@@ -241,8 +241,8 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_others.Write()
     keras_others.Write()
 
-  elif scores == 'shape_'+ch+'_SingleLepton_Run2016.root':
-    rd = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_SingleLepton_Run2016.root')
+  elif scores == 'cnc_'+ch+'_SingleLepton_Run2016.root':
+    rd = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_SingleLepton_Run2016.root')
     
     bdt_data_obs = rd.Get('h_scoreBDT_'+ch+'_SingleLepton_Run2016')
     bdt_data_obs.SetName('bdt_data_obs')
@@ -254,26 +254,25 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_data_obs.Write()
     keras_data_obs.Write()
    
-#  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct15':
-  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct25':
-    tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hct.root')
-    tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hct.root')
+  elif scores == 'cnc_'+ch+'_Top_Hct.root' and ch == 'Hct15':
+    tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_Top_Hct.root')
+    tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_AntiTop_Hct.root')
 
     bdt_sig = tch.Get('h_scoreBDT_'+ch+'_Top_Hct')
     #bdt_sig.Scale(0.113541253338/2)
-    bdt_sig.Scale(0.1/2)
+    bdt_sig.Scale(0.05)
     bdt_tbarch = tbarch.Get('h_scoreBDT_'+ch+'_AntiTop_Hct')
     #bdt_tbarch.Scale(0.113541253338/2)
-    bdt_tbarch.Scale(0.1/2)
+    bdt_tbarch.Scale(0.05)
     bdt_sig.Add(bdt_sig, bdt_tbarch, 1.0, 1.0)
     bdt_sig.SetName('bdt_sig')
 
     keras_sig = tch.Get('h_scoreKeras_'+ch+'_Top_Hct')
     #keras_sig.Scale(0.113541253338/2)
-    keras_sig.Scale(0.1/2)
+    keras_sig.Scale(0.05)
     keras_tbarch = tbarch.Get('h_scoreKeras_'+ch+'_AntiTop_Hct')
     #keras_tbarch.Scale(0.113541253338/2)
-    keras_tbarch.Scale(0.1/2)
+    keras_tbarch.Scale(0.05)
     keras_sig.Add(keras_sig, keras_tbarch, 1.0, 1.0)
     keras_sig.SetName('keras_sig')
 
@@ -286,9 +285,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_sig.Write()
     keras_sig.Write()
 
-  elif scores == 'shape_'+ch+'_Top_Hut.root' and ch == 'Hut15':
-    tuh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hut.root')
-    tbaruh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hut.root')
+  elif scores == 'cnc_'+ch+'_Top_Hut.root' and ch == 'Hut15':
+    tuh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_Top_Hut.root')
+    tbaruh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_AntiTop_Hut.root')
 
     bdt_sig = tuh.Get('h_scoreBDT_'+ch+'_Top_Hut')
     #bdt_sig.Scale(0.15613733157/2)

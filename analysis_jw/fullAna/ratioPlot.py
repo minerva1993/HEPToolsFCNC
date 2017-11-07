@@ -7,7 +7,7 @@ import os
 from style import *
 
 QCDestimate = False
-log = True
+log = False
 
 from collections import OrderedDict
 datasamples=OrderedDict()
@@ -450,7 +450,7 @@ for i in range(0, N_hist):
     h_data.SetTitle("e ch")
     h_data.SetTitleSize(0.7)
   """
-  c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+  #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
   ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
   filename = "result_ratio"+logname+".pdf"
