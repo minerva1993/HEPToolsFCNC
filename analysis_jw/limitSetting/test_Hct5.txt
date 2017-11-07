@@ -1,0 +1,17 @@
+imax *
+jmax *
+kmax *
+---------------
+shapes * hct_bdt /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v5_Hct24_test.root bdt_$PROCESS
+---------------
+bin hct_bdt
+observation 56053
+------------------------------
+bin     hct_bdt hct_bdt 
+process sig     bkg    
+process 0       1       
+rate    2786    55873    
+--------------------------------
+lumi lnN 1.027 1.027
+#tt_norm lnN - 1.055
+

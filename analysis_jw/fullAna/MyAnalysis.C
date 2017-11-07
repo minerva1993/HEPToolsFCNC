@@ -235,6 +235,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     if( !option.Contains("Data") ) lep_SF = lepton_SF[0];
     float genweight = *genWeight;
     float puweight = PUWeight[0];
+    //float jetsf = jet_SF_CSV_30[0];
     float EventWeight = puweight*genweight*lep_SF;
 
     float relIso = *lepton_relIso; 
