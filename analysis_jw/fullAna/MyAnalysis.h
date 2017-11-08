@@ -159,6 +159,12 @@ public :
     //TH1D *h_HMass_t[2][16];
     //TH1D *h_bJetPtHt[2][16];
     TH1D *h_cJetPt[2][16];
+
+    //tagging variables
+    TH1D *h_csvv2[2][16];
+    TH1D *h_cvsl[2][16];
+    TH1D *h_cvsb[2][16];
+
 /*
     ///kin sol
     TH1D *h_kinLepWMass[2][16];
