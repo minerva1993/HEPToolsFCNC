@@ -3,8 +3,8 @@ from ROOT import *
 
 tmva_version = 'v5'
 
-ch = 'Hct25'
-#ch = 'Hut15'
+#ch = 'Hct28'
+ch = 'Hut15'
 
 c1 = TCanvas( 'c1', 'c1', 500, 400 ) 
 c2 = TCanvas( 'c2', 'c2', 500, 400 )

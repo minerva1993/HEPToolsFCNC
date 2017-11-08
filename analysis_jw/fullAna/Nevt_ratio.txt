@@ -1,3 +1,4 @@
+['h', 'NJet', 'Ch0', 'S0', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 9256 
 hist_ttbj :  ttbj = 30486 
 hist_ttcc :  ttcc = 20943 
@@ -20,6 +21,30 @@ hist_AntiTop_Hut :  Hut = 8240
 ntotal = 211740841 
 ndata = 220782847 
 nsub = 9042005 
+['h', 'NBJetCSVv2M', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S1', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 8941 
 hist_ttbj :  ttbj = 28745 
 hist_ttcc :  ttcc = 20055 
@@ -42,6 +67,30 @@ hist_AntiTop_Hut :  Hut = 6393
 ntotal = 4174372 
 ndata = 4686828 
 nsub = 512455 
+['h', 'NBJetCSVv2M', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S2', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 3274 
 hist_ttbj :  ttbj = 10183 
 hist_ttcc :  ttcc = 5308 
@@ -64,6 +113,30 @@ hist_AntiTop_Hut :  Hut = 2476
 ntotal = 528095 
 ndata = 559710 
 nsub = 31614 
+['h', 'NBJetCSVv2M', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S3', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 1959 
 hist_ttbj :  ttbj = 3275 
 hist_ttcc :  ttcc = 951 
@@ -86,6 +159,30 @@ hist_AntiTop_Hut :  Hut = 797
 ntotal = 39465 
 ndata = 39782 
 nsub = 316 
+['h', 'NBJetCSVv2M', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S4', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 5233 
 hist_ttbj :  ttbj = 13459 
 hist_ttcc :  ttcc = 6260 
@@ -108,6 +205,30 @@ hist_AntiTop_Hut :  Hut = 3274
 ntotal = 567561 
 ndata = 599492 
 nsub = 31930 
+['h', 'NBJetCSVv2M', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S5', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 2496 
 hist_ttbj :  ttbj = 3508 
 hist_ttcc :  ttcc = 1034 
@@ -130,6 +251,30 @@ hist_AntiTop_Hut :  Hut = 829
 ntotal = 40956 
 ndata = 41423 
 nsub = 466 
+['h', 'NBJetCSVv2M', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S6', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 7993 
 hist_ttbj :  ttbj = 24262 
 hist_ttcc :  ttcc = 17567 
@@ -152,6 +297,30 @@ hist_AntiTop_Hut :  Hut = 3957
 ntotal = 1522020 
 ndata = 1679344 
 nsub = 157323 
+['h', 'NBJetCSVv2M', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S7', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 2973 
 hist_ttbj :  ttbj = 9126 
 hist_ttcc :  ttcc = 4973 
@@ -174,6 +343,30 @@ hist_AntiTop_Hut :  Hut = 1593
 ntotal = 338628 
 ndata = 337142 
 nsub = -1486 
+['h', 'NBJetCSVv2M', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S8', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 1910 
 hist_ttbj :  ttbj = 3169 
 hist_ttcc :  ttcc = 933 
@@ -196,28 +389,76 @@ hist_AntiTop_Hut :  Hut = 637
 ntotal = 31897 
 ndata = 31453 
 nsub = -444 
-hist_ttbb :  ttbb = 4883 
-hist_ttbj :  ttbj = 12296 
-hist_ttcc :  ttcc = 5906 
-hist_ttLF :  ttLF = 133787 
-hist_tt :  ttLF = 191399 
-hist_wjets :  WJets = 6659 
-hist_zjets :  ZJets = 1336 
-hist_zjets10to50 :  ZJets = 161 
-hist_tchannel :  Single t = 1141 
-hist_tbarchannel :  Single t = 716 
-hist_tWchannel :  Single t = 5972 
-hist_tbarWchannel :  Single t = 5955 
-hist_ww :  DiBoson = 160 
-hist_wz :  DiBoson = 124 
-hist_zz :  DiBoson = 24 
-hist_Top_Hct :  Hct = 2338 
-hist_AntiTop_Hct :  Hct = 2338 
-hist_Top_Hut :  Hut = 2317 
-hist_AntiTop_Hut :  Hut = 2231 
-ntotal = 370526 
-ndata = 368595 
-nsub = -1931 
+['h', 'NBJetCSVv2M', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S9', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 499 
+hist_ttbj :  ttbj = 223 
+hist_ttcc :  ttcc = 79 
+hist_ttLF :  ttLF = 287 
+hist_tt :  ttLF = 283 
+hist_wjets :  WJets = 0 
+hist_zjets :  ZJets = -1 
+hist_zjets10to50 :  ZJets = 0 
+hist_tchannel :  Single t = 4 
+hist_tbarchannel :  Single t = 2 
+hist_tWchannel :  Single t = 25 
+hist_tbarWchannel :  Single t = 21 
+hist_ww :  DiBoson = 0 
+hist_wz :  DiBoson = 0 
+hist_zz :  DiBoson = 0 
+hist_Top_Hct :  Hct = 80 
+hist_AntiTop_Hct :  Hct = 74 
+hist_Top_Hut :  Hut = 30 
+hist_AntiTop_Hut :  Hut = 29 
+ntotal = 1426 
+ndata = 1563 
+nsub = 136 
+['h', 'NBJetCSVv2M', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S10', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 2446 
 hist_ttbj :  ttbj = 3402 
 hist_ttcc :  ttcc = 1015 
@@ -240,6 +481,76 @@ hist_AntiTop_Hut :  Hut = 669
 ntotal = 33388 
 ndata = 33094 
 nsub = -294 
+['h', 'NBJetCSVv2M', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S11', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 536 
+hist_ttbj :  ttbj = 232 
+hist_ttcc :  ttcc = 82 
+hist_ttLF :  ttLF = 297 
+hist_tt :  ttLF = 286 
+hist_wjets :  WJets = 0 
+hist_zjets :  ZJets = -1 
+hist_zjets10to50 :  ZJets = 0 
+hist_tchannel :  Single t = 4 
+hist_tbarchannel :  Single t = 2 
+hist_tWchannel :  Single t = 26 
+hist_tbarWchannel :  Single t = 22 
+hist_ww :  DiBoson = 0 
+hist_wz :  DiBoson = 0 
+hist_zz :  DiBoson = 0 
+hist_Top_Hct :  Hct = 84 
+hist_AntiTop_Hct :  Hct = 78 
+hist_Top_Hut :  Hut = 32 
+hist_AntiTop_Hut :  Hut = 31 
+ntotal = 1490 
+ndata = 1641 
+nsub = 150 
+['h', 'NBJetCSVv2M', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S12', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 3577 
 hist_ttbj :  ttbj = 8053 
 hist_ttcc :  ttcc = 7262 
@@ -262,28 +573,30 @@ hist_AntiTop_Hut :  Hut = 728
 ntotal = 169003 
 ndata = 172811 
 nsub = 3807 
-hist_ttbb :  ttbb = 1276 
-hist_ttbj :  ttbj = 3267 
-hist_ttcc :  ttcc = 2411 
-hist_ttLF :  ttLF = 40337 
-hist_tt :  ttLF = 1940 
-hist_wjets :  WJets = 462 
-hist_zjets :  ZJets = 107 
-hist_zjets10to50 :  ZJets = 26 
-hist_tchannel :  Single t = 105 
-hist_tbarchannel :  Single t = 61 
-hist_tWchannel :  Single t = 772 
-hist_tbarWchannel :  Single t = 781 
-hist_ww :  DiBoson = 4 
-hist_wz :  DiBoson = 5 
-hist_zz :  DiBoson = 1 
-hist_Top_Hct :  Hct = 286 
-hist_AntiTop_Hct :  Hct = 285 
-hist_Top_Hut :  Hut = 305 
-hist_AntiTop_Hut :  Hut = 296 
-ntotal = 51561 
-ndata = 48794 
-nsub = -2767 
+['h', 'NBJetCSVv2M', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S13', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 1043 
 hist_ttbj :  ttbj = 1520 
 hist_ttcc :  ttcc = 564 
@@ -306,6 +619,30 @@ hist_AntiTop_Hut :  Hut = 145
 ntotal = 7937 
 ndata = 7843 
 nsub = -94 
+['h', 'NBJetCSVv2M', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S14', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 2320 
 hist_ttbj :  ttbj = 4787 
 hist_ttcc :  ttcc = 2976 
@@ -328,6 +665,30 @@ hist_AntiTop_Hut :  Hut = 442
 ntotal = 59499 
 ndata = 56637 
 nsub = -2862 
+['h', 'NBJetCSVv2M', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S15', 'DataSingleMu'] 
 hist_ttbb :  ttbb = 1426 
 hist_ttbj :  ttbj = 1670 
 hist_ttcc :  ttcc = 623 
@@ -350,6 +711,30 @@ hist_AntiTop_Hut :  Hut = 163
 ntotal = 8750 
 ndata = 8696 
 nsub = -54 
+['h', 'NBJetCSVv2M', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'HMassM', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'bJetPtHm', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'cJetPt', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'bjmDPhi', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'bjmDEta', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'bjmDR', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'LepIsoQCD', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'csvv2', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'DRFCNHkinLepWMass', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'DRFCNHkinHadWMass', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'DRFCNHkinHMass', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'DRFCNHkinDR', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMWb', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'DRFCNHkinTopMHc', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'NJet', 'Ch1', 'S0', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 6606 
 hist_ttbj :  ttbj = 21536 
 hist_ttcc :  ttcc = 14777 
@@ -372,6 +757,30 @@ hist_AntiTop_Hut :  Hut = 5703
 ntotal = 108122413 
 ndata = 124280940 
 nsub = 16158526 
+['h', 'NBJetCSVv2M', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S0', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S1', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 6381 
 hist_ttbj :  ttbj = 20337 
 hist_ttcc :  ttcc = 14153 
@@ -394,6 +803,30 @@ hist_AntiTop_Hut :  Hut = 4433
 ntotal = 3041392 
 ndata = 3805672 
 nsub = 764279 
+['h', 'NBJetCSVv2M', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S1', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S2', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 2318 
 hist_ttbj :  ttbj = 7150 
 hist_ttcc :  ttcc = 3709 
@@ -416,6 +849,30 @@ hist_AntiTop_Hut :  Hut = 1703
 ntotal = 366860 
 ndata = 388747 
 nsub = 21886 
+['h', 'NBJetCSVv2M', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S2', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S3', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 1389 
 hist_ttbj :  ttbj = 2330 
 hist_ttcc :  ttcc = 665 
@@ -438,6 +895,30 @@ hist_AntiTop_Hut :  Hut = 543
 ntotal = 27395 
 ndata = 27212 
 nsub = -183 
+['h', 'NBJetCSVv2M', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S3', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S4', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 3707 
 hist_ttbj :  ttbj = 9480 
 hist_ttcc :  ttcc = 4375 
@@ -460,6 +941,30 @@ hist_AntiTop_Hut :  Hut = 2246
 ntotal = 394256 
 ndata = 415959 
 nsub = 21702 
+['h', 'NBJetCSVv2M', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S4', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S5', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 1777 
 hist_ttbj :  ttbj = 2496 
 hist_ttcc :  ttcc = 722 
@@ -482,6 +987,30 @@ hist_AntiTop_Hut :  Hut = 565
 ntotal = 28457 
 ndata = 28503 
 nsub = 45 
+['h', 'NBJetCSVv2M', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S5', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S6', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 5713 
 hist_ttbj :  ttbj = 17242 
 hist_ttcc :  ttcc = 12427 
@@ -504,6 +1033,30 @@ hist_AntiTop_Hut :  Hut = 2781
 ntotal = 1106432 
 ndata = 1309690 
 nsub = 203257 
+['h', 'NBJetCSVv2M', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S6', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S7', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 2110 
 hist_ttbj :  ttbj = 6428 
 hist_ttcc :  ttcc = 3489 
@@ -526,6 +1079,30 @@ hist_AntiTop_Hut :  Hut = 1111
 ntotal = 236773 
 ndata = 236467 
 nsub = -306 
+['h', 'NBJetCSVv2M', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S7', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S8', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 1350 
 hist_ttbj :  ttbj = 2260 
 hist_ttcc :  ttcc = 652 
@@ -548,28 +1125,76 @@ hist_AntiTop_Hut :  Hut = 436
 ntotal = 22768 
 ndata = 21668 
 nsub = -1100 
-hist_ttbb :  ttbb = 3461 
-hist_ttbj :  ttbj = 8688 
-hist_ttcc :  ttcc = 4141 
-hist_ttLF :  ttLF = 93830 
-hist_tt :  ttLF = 131209 
-hist_wjets :  WJets = 6040 
-hist_zjets :  ZJets = 1819 
-hist_zjets10to50 :  ZJets = 193 
-hist_tchannel :  Single t = 780 
-hist_tbarchannel :  Single t = 486 
-hist_tWchannel :  Single t = 4343 
-hist_tbarWchannel :  Single t = 4328 
-hist_ww :  DiBoson = 78 
-hist_wz :  DiBoson = 99 
-hist_zz :  DiBoson = 39 
-hist_Top_Hct :  Hct = 1644 
-hist_AntiTop_Hct :  Hct = 1626 
-hist_Top_Hut :  Hut = 1597 
-hist_AntiTop_Hut :  Hut = 1547 
-ntotal = 259542 
-ndata = 258135 
-nsub = -1407 
+['h', 'NBJetCSVv2M', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S8', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S9', 'DataSingleEG'] 
+hist_ttbb :  ttbb = 362 
+hist_ttbj :  ttbj = 161 
+hist_ttcc :  ttcc = 54 
+hist_ttLF :  ttLF = 195 
+hist_tt :  ttLF = 199 
+hist_wjets :  WJets = 0 
+hist_zjets :  ZJets = 0 
+hist_zjets10to50 :  ZJets = 0 
+hist_tchannel :  Single t = 3 
+hist_tbarchannel :  Single t = 1 
+hist_tWchannel :  Single t = 16 
+hist_tbarWchannel :  Single t = 18 
+hist_ww :  DiBoson = 0 
+hist_wz :  DiBoson = 1 
+hist_zz :  DiBoson = 0 
+hist_Top_Hct :  Hct = 59 
+hist_AntiTop_Hct :  Hct = 54 
+hist_Top_Hut :  Hut = 22 
+hist_AntiTop_Hut :  Hut = 20 
+ntotal = 1016 
+ndata = 1236 
+nsub = 219 
+['h', 'NBJetCSVv2M', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S9', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S10', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 1738 
 hist_ttbj :  ttbj = 2427 
 hist_ttcc :  ttcc = 709 
@@ -592,6 +1217,76 @@ hist_AntiTop_Hut :  Hut = 458
 ntotal = 23830 
 ndata = 22959 
 nsub = -871 
+['h', 'NBJetCSVv2M', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S10', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S11', 'DataSingleEG'] 
+hist_ttbb :  ttbb = 387 
+hist_ttbj :  ttbj = 166 
+hist_ttcc :  ttcc = 57 
+hist_ttLF :  ttLF = 203 
+hist_tt :  ttLF = 202 
+hist_wjets :  WJets = 0 
+hist_zjets :  ZJets = 0 
+hist_zjets10to50 :  ZJets = 0 
+hist_tchannel :  Single t = 3 
+hist_tbarchannel :  Single t = 1 
+hist_tWchannel :  Single t = 17 
+hist_tbarWchannel :  Single t = 18 
+hist_ww :  DiBoson = 0 
+hist_wz :  DiBoson = 1 
+hist_zz :  DiBoson = 0 
+hist_Top_Hct :  Hct = 61 
+hist_AntiTop_Hct :  Hct = 56 
+hist_Top_Hut :  Hut = 24 
+hist_AntiTop_Hut :  Hut = 21 
+ntotal = 1061 
+ndata = 1291 
+nsub = 229 
+['h', 'NBJetCSVv2M', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S11', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S12', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 2585 
 hist_ttbj :  ttbj = 5785 
 hist_ttcc :  ttcc = 5189 
@@ -614,28 +1309,30 @@ hist_AntiTop_Hut :  Hut = 528
 ntotal = 120462 
 ndata = 131568 
 nsub = 11105 
-hist_ttbb :  ttbb = 912 
-hist_ttbj :  ttbj = 2318 
-hist_ttcc :  ttcc = 1711 
-hist_ttLF :  ttLF = 28722 
-hist_tt :  ttLF = 1339 
-hist_wjets :  WJets = 1168 
-hist_zjets :  ZJets = 100 
-hist_zjets10to50 :  ZJets = 0 
-hist_tchannel :  Single t = 73 
-hist_tbarchannel :  Single t = 44 
-hist_tWchannel :  Single t = 578 
-hist_tbarWchannel :  Single t = 574 
-hist_ww :  DiBoson = 0 
-hist_wz :  DiBoson = 10 
-hist_zz :  DiBoson = 0 
-hist_Top_Hct :  Hct = 211 
-hist_AntiTop_Hct :  Hct = 210 
-hist_Top_Hut :  Hut = 212 
-hist_AntiTop_Hut :  Hut = 211 
-ntotal = 37555 
-ndata = 35139 
-nsub = -2416 
+['h', 'NBJetCSVv2M', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S12', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S13', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 745 
 hist_ttbj :  ttbj = 1090 
 hist_ttcc :  ttcc = 395 
@@ -658,6 +1355,30 @@ hist_AntiTop_Hut :  Hut = 103
 ntotal = 5830 
 ndata = 5533 
 nsub = -297 
+['h', 'NBJetCSVv2M', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S13', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S14', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 1657 
 hist_ttbj :  ttbj = 3409 
 hist_ttcc :  ttcc = 2107 
@@ -680,6 +1401,30 @@ hist_AntiTop_Hut :  Hut = 314
 ntotal = 43385 
 ndata = 40672 
 nsub = -2713 
+['h', 'NBJetCSVv2M', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S14', 'DataSingleEG'] 
+['h', 'NJet', 'Ch1', 'S15', 'DataSingleEG'] 
 hist_ttbb :  ttbb = 1028 
 hist_ttbj :  ttbj = 1203 
 hist_ttcc :  ttcc = 438 
@@ -702,3 +1447,26 @@ hist_AntiTop_Hut :  Hut = 114
 ntotal = 6419 
 ndata = 6205 
 nsub = -214 
+['h', 'NBJetCSVv2M', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'NBJetCSVv2T', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'NCJetM', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'MET', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'WMass', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'HMassM', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'bJetPtHm', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'cJetPt', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'DPhi', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'bjmDPhi', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'bjmDEta', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'bjmDR', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'LepIso', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'LepIsoQCD', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'csvv2', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'cvsl', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'cvsb', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'DRFCNHkinLepWMass', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'DRFCNHkinHadWMass', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'DRFCNHkinHMass', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'DRFCNHkinDR', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMWb', 'Ch1', 'S15', 'DataSingleEG'] 
+['h', 'DRFCNHkinTopMHc', 'Ch1', 'S15', 'DataSingleEG'] 

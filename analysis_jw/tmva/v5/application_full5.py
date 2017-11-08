@@ -13,7 +13,7 @@ reader = TMVA.Reader("Color:!Silent")
 
 #ch = 'Hct15'
 #ch = 'Hut15'
-ch = 'Hct24'
+ch = 'Hct27'
 
 tuples = sys.argv[1]
 
@@ -28,8 +28,10 @@ branches = {}
 for branch in data_tree.GetListOfBranches():
   branchName = branch.GetName()
   if branchName not in ["lepDPhi", "bjetmDR", "bjetmDEta", "bjetmDPhi", "dibjetsMass", "bjetPt_dibjetsm", "cjetPt", "transverseMass", "jet1phi", "jet2phi", "jet3phi", "jet4phi", "KinLepWMass", "KinLepTopMass", "KinHadWMass", "KinHadTopMass", "FCNHKinLepWMass", "FCNHKinLepTopMass", "FCNHKinHMass", "FCNHKinHucTopMass", "M3LepWMass", "M3HadWMass", "M3HMass", "M3DR", "M3LepTopMass", "M3HucTopMass", "DRlepWphi", "DRjet0phi", "DRjet1phi", "DRjet2phi", "DRjet3phi", "DRjet12phi", "DRjet23phi", "DRjet31phi", "DRlepTphi", "DRhadTphi", "EventWeight", "totnevt", "nevt", "GoodPV",
-  "nbjets_m", 
-  #"jet1cvsl", "jet1cvsb", "jet2cvsl", "jet2cvsb","jet3cvsl", "jet3cvsb","jet4cvsl", "jet4cvsb","DRjet0cvsl", "DRjet0cvsb","DRjet1cvsl", "DRjet1cvsb","DRjet2cvsl", "DRjet2cvsb","DRjet3cvsl", "DRjet3cvsb", "ncjets_m"
+  #"nbjets_m", 
+  "jet1cvsl", "jet1cvsb", "jet2cvsl", "jet2cvsb","jet3cvsl", "jet3cvsb","jet4cvsl", "jet4cvsb",
+  #"DRjet0cvsl", "DRjet0cvsb","DRjet1cvsl", "DRjet1cvsb","DRjet2cvsl", "DRjet2cvsb","DRjet3cvsl", "DRjet3cvsb", 
+  #"ncjets_m"
   ]:
       branches[branchName] = array('f', [-999])
       reader.AddVariable(branchName, branches[branchName])
@@ -38,7 +40,7 @@ for branch in data_tree.GetListOfBranches():
 #reader.BookMVA('PyKeras', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v5/keras5_'+ch+'/weights/TMVAClassification_Keras_TF.weights.xml'))
 #reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v5/keras5_'+ch+'/weights/TMVAClassification_BDT_optimized.weights.xml'))
 
-reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v5/bdt_test_Hct5/weights/TMVAClassification_BDT.weights.xml'))
+reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v5/bdt_test_Hct8/weights/TMVAClassification_BDT.weights.xml'))
 
 print "processing "+tuples
 nevt = data_tree.GetEntries()
