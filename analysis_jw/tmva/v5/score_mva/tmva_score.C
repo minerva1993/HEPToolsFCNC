@@ -46,12 +46,12 @@ void tmva_score::SlaveBegin(TTree * /*tree*/)
 
   TString option = GetOption();
 
-  h_scoreBDT = new TH1D(Form("h_scoreBDT_%s",option.Data()), "BDT score", 40, -0.35, 0.35);
+  h_scoreBDT = new TH1D(Form("h_scoreBDT_%s",option.Data()), "BDT score", 20, -0.4, 0.4);
   h_scoreBDT->SetXTitle("BDT score");
   h_scoreBDT->Sumw2();
   fOutput->Add(h_scoreBDT);
 
-  h_scoreKeras = new TH1D(Form("h_scoreKeras_%s",option.Data()), "Keras score", 20, 0, 1.0);
+  h_scoreKeras = new TH1D(Form("h_scoreKeras_%s",option.Data()), "Keras score", 20, 0, 1);//0-1 20
   h_scoreKeras->SetXTitle("Keras score");
   h_scoreKeras->Sumw2();
   fOutput->Add(h_scoreKeras);
