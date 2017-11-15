@@ -1,11 +1,9 @@
 import os
 from ROOT import *
 
-#tmva_version = 'v3'
-#tmva_version = 'v4'
 tmva_version = 'v5'
 
-ch = 'Hct28'
+ch = 'Hct32'
 #ch = 'Hut15'
 
 ttbar = 0.0910581123792
@@ -24,6 +22,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_ttbb = ttbb.Get('h_scoreKeras_'+ch+'_ttbb')
     keras_ttbb.Scale(ttbar)
     keras_ttbb.SetName('keras_ttbb')
+
+    bdt_ttbb.Scale(5)
+    keras_ttbb.Scale(5)
 
     target.cd()
     bdt_ttbb.Write()
@@ -47,6 +48,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_ttLF.Add(keras_ttLF, keras_tt, 1.0, 1.0)
     keras_ttLF.SetName('keras_ttLF')
 
+    bdt_ttLF.Scale(5)
+    keras_ttLF.Scale(5)
+
     target.cd()
     bdt_ttLF.Write()
     keras_ttLF.Write()
@@ -62,6 +66,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_ttcc.Scale(ttbar)
     keras_ttcc.SetName('keras_ttcc')
 
+    bdt_ttcc.Scale(5)
+    keras_ttcc.Scale(5)
+
     target.cd()
     bdt_ttcc.Write()
     keras_ttcc.Write()
@@ -76,6 +83,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_ttbj = ttbj.Get('h_scoreKeras_'+ch+'_ttbj')
     keras_ttbj.Scale(ttbar)
     keras_ttbj.SetName('keras_ttbj')
+
+    bdt_ttbj.Scale(5)
+    keras_ttbj.Scale(5)
 
     target.cd()
     bdt_ttbj.Write()
@@ -113,6 +123,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_singletop.Add(keras_singletop, keras_tbarw, 1.0, 1.0)
     keras_singletop.SetName('keras_singletop')
 
+    bdt_singletop.Scale(5)
+    keras_singletop.Scale(5)
+
     target.cd()
     bdt_singletop.Write()
     keras_singletop.Write()
@@ -121,9 +134,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     zjets = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
     zjets10to50 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_zjets10to50.root')
     wjets = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_wjets.root')
-    ww = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_ww.root')
-    wz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_wz.root')
-    zz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_zz.root')
+    #ww = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_ww.root')
+    #wz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_wz.root')
+    #zz = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_zz.root')
 
     bdt_others = zjets.Get('h_scoreBDT_'+ch+'_zjets')
     bdt_others.Scale(2.65549294802)
@@ -133,6 +146,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_wjets = wjets.Get('h_scoreBDT_'+ch+'_wjets')
     bdt_wjets.Scale(134.276449237)
     bdt_others.Add(bdt_others, bdt_wjets, 1.0, 1.0)
+    """
     bdt_ww = ww.Get('h_scoreBDT_'+ch+'_ww')
     bdt_ww.Scale(4.70407414855)
     bdt_others.Add(bdt_others, bdt_ww, 1.0, 1.0)
@@ -142,6 +156,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_zz = zz.Get('h_scoreBDT_'+ch+'_zz')
     bdt_zz.Scale(0.598577911125)
     bdt_others.Add(bdt_others, bdt_zz, 1.0, 1.0)
+    """
     bdt_others.SetName('bdt_others')
 
     keras_others = zjets.Get('h_scoreKeras_'+ch+'_zjets')
@@ -152,6 +167,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_wjets = wjets.Get('h_scoreKeras_'+ch+'_wjets')
     keras_wjets.Scale(134.276449237)
     keras_others.Add(keras_others, keras_wjets, 1.0, 1.0)
+    """
     keras_ww = ww.Get('h_scoreKeras_'+ch+'_ww')
     keras_ww.Scale(4.70407414855)
     keras_others.Add(keras_others, keras_ww, 1.0, 1.0)
@@ -161,6 +177,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_zz = zz.Get('h_scoreKeras_'+ch+'_zz')
     keras_zz.Scale(0.598577911125)
     keras_others.Add(keras_others, keras_zz, 1.0, 1.0)
+    """
     keras_others.SetName('keras_others')
     """
     #QCD
@@ -237,6 +254,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_mu80to120.Scale(278.226438007)
     keras_others.Add(keras_others, keras_mu80to120, 1.0, 1.0)
     """
+
     target.cd()
     bdt_others.Write()
     keras_others.Write()
@@ -254,8 +272,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_data_obs.Write()
     keras_data_obs.Write()
    
-#  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct15':
-  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct28':
+  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct32':
     tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hct.root')
     tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hct.root')
 
@@ -277,10 +294,8 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_sig.Add(keras_sig, keras_tbarch, 1.0, 1.0)
     keras_sig.SetName('keras_sig')
 
-    #tch_out = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v3/keras_Hct4v2/output_keras.root')
-    #keras_sig = tch_out.Get('keras_Hct4v2/Method_PyKeras/PyKeras/MVA_PyKeras_S')
-    #keras_sig.Scale(3201.863329/40.955973)
-    #keras_sig.SetName('keras_sig')
+    bdt_sig.Scale(5)
+    keras_sig.Scale(5)
 
     target.cd()
     bdt_sig.Write()
@@ -307,6 +322,9 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     keras_tbaruh.Scale(0.1/2)
     keras_sig.Add(keras_sig, keras_tbaruh, 1.0, 1.0)
     keras_sig.SetName('keras_sig')
+
+    bdt_sig.Scale(5)
+    keras_sig.Scale(5)
 
     target.cd()
     bdt_sig.Write()

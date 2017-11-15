@@ -188,17 +188,17 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       fOutput->Add(h_m3FCNHkinTopMHc[ich][i]);
 */
 
-      h_csvv2[ich][i] = new TH1D(Form("h_csvv2_Ch%i_S%i_%s",ich,i,option.Data()), "CSVv2", 50 ,0 ,1);
+      h_csvv2[ich][i] = new TH1D(Form("h_csvv2_Ch%i_S%i_%s",ich,i,option.Data()), "CSVv2", 30 ,0 ,1);
       h_csvv2[ich][i]->SetXTitle("CSVv2");
       h_csvv2[ich][i]->Sumw2();
       fOutput->Add(h_csvv2[ich][i]);
 
-      h_cvsl[ich][i] = new TH1D(Form("h_cvsl_Ch%i_S%i_%s",ich,i,option.Data()), "CvsL", 50 , -0.1 ,1);
+      h_cvsl[ich][i] = new TH1D(Form("h_cvsl_Ch%i_S%i_%s",ich,i,option.Data()), "CvsL", 30 , -0.1 ,1);
       h_cvsl[ich][i]->SetXTitle("CvsL");
       h_cvsl[ich][i]->Sumw2();
       fOutput->Add(h_cvsl[ich][i]);
 
-      h_cvsb[ich][i] = new TH1D(Form("h_cvsb_Ch%i_S%i_%s",ich,i,option.Data()), "CvsB", 50 , 0.08 ,1);
+      h_cvsb[ich][i] = new TH1D(Form("h_cvsb_Ch%i_S%i_%s",ich,i,option.Data()), "CvsB", 30 , 0.08 ,1);
       h_cvsb[ich][i]->SetXTitle("CvsB");
       h_cvsb[ich][i]->Sumw2();
       fOutput->Add(h_cvsb[ich][i]);
@@ -251,8 +251,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     if( !option.Contains("Data") ) lep_SF = lepton_SF[0];
     float genweight = *genWeight;
     float puweight = PUWeight[0];
-    //float jetsf = jet_SF_CSV_30[0];
-    float EventWeight = puweight*genweight*lep_SF;
+    float jetsf = jet_SF_CSV_30[0];
+    float EventWeight = puweight*genweight*lep_SF*jetsf;
 
     float relIso = *lepton_relIso; 
 
@@ -340,7 +340,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           //cjm_cvsb.push_back(jet_CvsB[iJet]);
         }
       }
-    } 
+    }
+
+    if( option.Contains("ttbb") ) EventWeight = EventWeight * 1.25;
 
     if( ncjets_m != 0 ) cjetPt = *max_element(v_cjet_m.begin(), v_cjet_m.end());
 

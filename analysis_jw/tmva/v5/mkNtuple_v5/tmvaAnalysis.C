@@ -182,6 +182,7 @@ Bool_t tmvaAnalysis::Process(Long64_t entry)
     float puweight = PUWeight[0];
     float EventWeight = puweight*genweight*lep_SF;
     b_EventWeight = EventWeight;
+    if( option.Contains("ttbb") ) b_EventWeight = b_EventWeight * 1.25;
 
     float relIso = *lepton_relIso; 
 
@@ -232,11 +233,11 @@ Bool_t tmvaAnalysis::Process(Long64_t entry)
     bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
 
 
-  //if( !passmuon && !passelectron ) return kTRUE;
+  if( !passmuon && !passelectron ) return kTRUE;
   //if( !passmuon ) return kTRUE;//RDMu
   //if( passelectron) return kTRUE;//RDMu
-  if( !passelectron ) return kTRUE;//RDelec
-  if( passmuon ) return kTRUE;//RDelec
+  //if( !passelectron ) return kTRUE;//RDelec
+  //if( passmuon ) return kTRUE;//RDelec
 
   vector<float> v_cjet_m;
   vector<TLorentzVector> v_bjet_m;

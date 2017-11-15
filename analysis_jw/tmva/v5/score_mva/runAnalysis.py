@@ -14,8 +14,9 @@ def runAna(dir, file, name):
 
 #p = TProof.Open("", "workers=8")
 
-ch = "Hct28"
+ch = "Hct32"
 #ch = "Hut15"
+
 version = "v5"
 inputdir = "/home/minerva1993/fcnc/analysis_jw/tmva/"+version+"/score_mva/"+ch
 
@@ -33,10 +34,11 @@ runAna(inputdir, "output_"+ch+"_tmva_tbarchannel.root", ch+"_tbarchannel")
 runAna(inputdir, "output_"+ch+"_tmva_tbarWchannel.root", ch+"_tbarWchannel")
 runAna(inputdir, "output_"+ch+"_tmva_tchannel.root", ch+"_tchannel")
 runAna(inputdir, "output_"+ch+"_tmva_tWchannel.root", ch+"_tWchannel")
-"""
+
 runAna(inputdir, "output_"+ch+"_tmva_zjets10to50.root", ch+"_zjets10to50")
 runAna(inputdir, "output_"+ch+"_tmva_zjets.root", ch+"_zjets")
 runAna(inputdir, "output_"+ch+"_tmva_wjets.root", ch+"_wjets")
+"""
 runAna(inputdir, "output_"+ch+"_tmva_ww.root", ch+"_ww")
 runAna(inputdir, "output_"+ch+"_tmva_wz.root", ch+"_wz")
 runAna(inputdir, "output_"+ch+"_tmva_zz.root", ch+"_zz")

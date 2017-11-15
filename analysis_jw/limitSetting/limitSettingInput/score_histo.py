@@ -3,8 +3,8 @@ from ROOT import *
 
 tmva_version = 'v5'
 
-#ch = 'Hct28'
-ch = 'Hut15'
+ch = 'Hct32'
+#ch = 'Hut15'
 
 c1 = TCanvas( 'c1', 'c1', 500, 400 ) 
 c2 = TCanvas( 'c2', 'c2', 500, 400 )
@@ -26,20 +26,17 @@ bdt_ttLF = shape_file.Get('bdt_ttLF')
 bdt_singletop = shape_file.Get('bdt_singletop')
 bdt_others = shape_file.Get('bdt_others')
 bdt_data = shape_file.Get('bdt_data_obs')
-#bdt_data.Rebin(2)
 bdt_sig = shape_file.Get('bdt_sig')
-#bdt_sig.Rebin(2)
 
 bdt_bkg = bdt_ttbb.Clone('bdt_bkg')
 bdt_bkg.Add(bdt_ttbj, 1.0)
 bdt_bkg.Add(bdt_ttcc, 1.0)
 bdt_bkg.Add(bdt_ttLF, 1.0)
 bdt_bkg.Add(bdt_singletop, 1.0)
-#bdt_bkg.Rebin(2)
-#bdt_bkg.Add(bdt_others, 1.0)
+bdt_bkg.Add(bdt_others, 1.0)
 
 bdt_sig.Scale(bdt_data.Integral()/bdt_sig.Integral())
-"""
+
 keras_ttbb = shape_file.Get('keras_ttbb')
 keras_ttbj = shape_file.Get('keras_ttbj')
 keras_ttcc = shape_file.Get('keras_ttcc')
@@ -57,8 +54,11 @@ keras_bkg.Add(keras_singletop, 1.0)
 keras_bkg.Add(keras_others, 1.0)
 
 keras_sig.Scale(keras_data.Integral()/keras_sig.Integral())
-"""
+
 c1.cd()
+if bdt_data.GetMaximum() > bdt_bkg.GetMaximum(): bdt_data.GetYaxis().SetRangeUser(0, bdt_data.GetMaximum() * 1.2)
+else: bdt_data.GetYaxis().SetRangeUser(0, bdt_bkg.GetMaximum() * 1.2)
+
 bdt_data.Draw('P')
 bdt_bkg.Draw('HIST SAME E')
 bdt_data.SetMarkerStyle(8)
@@ -71,8 +71,11 @@ l1.AddEntry(bdt_bkg, 'background', 'l')
 l1.AddEntry(bdt_sig, 'signal', 'l')
 l1.Draw('SAME')
 c1.Print('histo_'+tmva_version+'_'+ch+'_bdt.pdf')
-"""
+
 c2.cd()
+if keras_data.GetMaximum() > keras_bkg.GetMaximum(): keras_data.GetYaxis().SetRangeUser(0, keras_data.GetMaximum() * 1.2)
+else: keras_data.GetYaxis().SetRangeUser(0, keras_bkg.GetMaximum() * 1.2)
+
 keras_data.Draw('P')
 keras_bkg.Draw('HIST SAME')
 keras_data.SetMarkerStyle(8)
@@ -85,4 +88,3 @@ l2.AddEntry(bdt_bkg, 'background', 'l')
 l2.AddEntry(bdt_sig, 'signal', 'l')
 l2.Draw('SAME')
 c2.Print('histo_'+tmva_version+'_'+ch+'_keras.pdf')
-"""

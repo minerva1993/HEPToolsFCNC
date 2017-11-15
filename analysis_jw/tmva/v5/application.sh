@@ -13,9 +13,11 @@ python application_full5.py 'tmva_ttbj.root'&
 python application_full5.py 'tmva_ttcc.root'&
 python application_full5.py 'tmva_ttLF.root'&
 python application_full5.py 'tmva_tt.root'&
-#python application_full5.py 'tmva_wjets.root'&
-#python application_full5.py 'tmva_zjets10to50.root'&
-#python application_full5.py 'tmva_zjets.root'&
+
+python application_full5.py 'tmva_wjets.root'&
+python application_full5.py 'tmva_zjets10to50.root'&
+python application_full5.py 'tmva_zjets.root'&
+
 #python application_full5.py 'tmva_ww.root'&
 #python application_full5.py 'tmva_wz.root'&
 #python application_full5.py 'tmva_zz.root'&
