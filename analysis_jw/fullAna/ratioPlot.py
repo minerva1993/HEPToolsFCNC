@@ -98,17 +98,17 @@ def AddHut(fname, name, color, xsection):
 ####Users should provide these information 
 SetData("hist_DataSingleMu.root","data", 35867) # for now, combination of muon and electron
 SetData("hist_DataSingleEG.root","data", 35867) # for now, combination of muon and electron
-AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 363.1)#365.4, (831.76)*2[(0.1086*3)*(0.67)]=363.12
-AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 363.1)
-AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 363.1)
-AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 363.1)
-AddBkg("hist_tt.root","ttLF",ROOT.kRed, 363.1)
-#AddBkg("hist_wjets.root","WJets",ROOT.kYellow,61524)
+AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.3)#(831.76)*2[(0.1086*3)*(0.6741)]
+AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 365.3)
+AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.3)
+AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 365.3)
+AddBkg("hist_tt.root","ttLF",ROOT.kRed, 365.3)
+AddBkg("hist_wjets.root","WJets",ROOT.kYellow,61524)
 AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 6025.2)
 AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
 AddBkg("hist_tchannel.root","Single t",6, 136.02)#44.33 = 136.02*(0.1086*3)
 AddBkg("hist_tbarchannel.root","Single t",6, 80.95)#26.38 = 80.95*(0.1086*3)
-AddBkg("hist_tWchannel.root","Single t",6, 35.85)
+AddBkg("hist_tWchannel.root","Single t",6, 35.85)#35.85?
 AddBkg("hist_tbarWchannel.root","Single t",6, 35.85)
 AddBkg("hist_ww.root","DiBoson",ROOT.kCyan, 118.7)
 AddBkg("hist_wz.root","DiBoson",ROOT.kCyan, 47.13)
@@ -453,8 +453,8 @@ for i in range(0, N_hist):
   #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
   ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
-  #filename = "result_ratio"+logname+".pdf"
-  filename = "result_ratio"+logname+"_noWjets.pdf"
+  filename = "result_ratio"+logname+".pdf"
+  #filename = "result_ratio"+logname+"_noWjets.pdf"
 
   if i == 0 and N_hist > 1:
     c.Print( (filename+"(") )

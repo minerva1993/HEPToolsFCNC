@@ -31,18 +31,18 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
  
   elif scores == 'cnc_'+ch+'_ttLF.root':
     ttLF = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+scores)
-    tt = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_tt.root')
+    tt = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'cnc_'+ch+'_ttother.root')
     
     bdt_ttLF = ttLF.Get('h_scoreBDT_'+ch+'_ttLF')
     bdt_ttLF.Scale(ttbar)
-    bdt_tt = tt.Get('h_scoreBDT_'+ch+'_tt')
+    bdt_tt = tt.Get('h_scoreBDT_'+ch+'_ttother')
     bdt_tt.Scale(ttbar)    
     bdt_ttLF.Add(bdt_ttLF, bdt_tt, 1.0, 1.0)
     bdt_ttLF.SetName('bdt_ttLF')
 
     keras_ttLF = ttLF.Get('h_scoreKeras_'+ch+'_ttLF')
     keras_ttLF.Scale(ttbar)
-    keras_tt = tt.Get('h_scoreKeras_'+ch+'_tt')
+    keras_tt = tt.Get('h_scoreKeras_'+ch+'_ttother')
     keras_tt.Scale(ttbar)
     keras_ttLF.Add(keras_ttLF, keras_tt, 1.0, 1.0)
     keras_ttLF.SetName('keras_ttLF')

@@ -24,7 +24,7 @@ p = TProof.Open("", "workers=8")
 
 version = "v3"
 inputdir = "/home/minerva1993/fcnc/ntuple_jw/"
-
+"""
 runAna(inputdir+version,"SingleElectron_Run2016.root","DataSingleEG")
 runAna(inputdir+version,"SingleMuon_Run2016.root","DataSingleMu")
 runAna(inputdir+version,"WJets.root","wjets")
@@ -37,7 +37,9 @@ runAna(inputdir+version,"SingleTop_t.root","tchannel")
 runAna(inputdir+version,"SingleTbar_t.root","tbarchannel")
 runAna(inputdir+version,"SingleTop_tW.root","tWchannel")
 runAna(inputdir+version,"SingleTbar_tW.root","tbarWchannel")
+"""
 runAna(inputdir+version,"TT_powheg_ttbb.root","ttbb")
+"""
 runAna(inputdir+version,"TT_powheg_ttbj.root","ttbj")
 runAna(inputdir+version,"TT_powheg_ttcc.root","ttcc")
 runAna(inputdir+version,"TT_powheg_ttlf.root","ttLF")
@@ -65,3 +67,4 @@ runAna(inputdir+version,"QCD_MuEnr_470to600.root","QCD_MuEnr_470to600")
 runAna(inputdir+version,"QCD_MuEnr_600to800.root","QCD_MuEnr_600to800")
 runAna(inputdir+version,"QCD_MuEnr_800to1000.root","QCD_MuEnr_800to1000")
 runAna(inputdir+version,"QCD_MuEnr_1000toInf.root","QCD_MuEnr_1000toInf")
+"""
