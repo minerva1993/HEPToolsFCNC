@@ -1,10 +1,10 @@
 import os
 from ROOT import *
 
-tmva_version = 'v5'
+tmva_version = 'v6'
 
-ch = 'Hct32'
-#ch = 'Hut15'
+ch = 'Hct1'
+#ch = 'Hut1'
 
 c1 = TCanvas( 'c1', 'c1', 500, 400 ) 
 c2 = TCanvas( 'c2', 'c2', 500, 400 )
@@ -29,11 +29,12 @@ bdt_data = shape_file.Get('bdt_data_obs')
 bdt_sig = shape_file.Get('bdt_sig')
 
 bdt_bkg = bdt_ttbb.Clone('bdt_bkg')
+bdt_bkg.Scale(1.2)
 bdt_bkg.Add(bdt_ttbj, 1.0)
 bdt_bkg.Add(bdt_ttcc, 1.0)
 bdt_bkg.Add(bdt_ttLF, 1.0)
 bdt_bkg.Add(bdt_singletop, 1.0)
-bdt_bkg.Add(bdt_others, 1.0)
+#bdt_bkg.Add(bdt_others, 1.0)
 
 bdt_sig.Scale(bdt_data.Integral()/bdt_sig.Integral())
 
