@@ -96,9 +96,9 @@ def AddHut(fname, name, color, xsection):
   hutsamples[fname] = tmp
 
 ####Users should provide these information 
-SetData("hist_DataSingleMu.root","data", 35867) # for now, combination of muon and electron
-SetData("hist_DataSingleEG.root","data", 35867) # for now, combination of muon and electron
-AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.3)#(831.76)*2[(0.1086*3)*(0.6741)]
+SetData("hist_DataSingleMu.root","data", 35922) #35867
+SetData("hist_DataSingleEG.root","data", 35922) # for now, combination of muon and electron
+AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.3*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
 AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 365.3)
 AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.3)
 AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 365.3)

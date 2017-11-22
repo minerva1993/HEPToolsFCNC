@@ -1,0 +1,17 @@
+imax *
+jmax *
+kmax *
+---------------
+shapes * hct_keras /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v6_Hct3.root keras_$PROCESS
+---------------
+bin hct_keras
+observation 56053
+------------------------------
+bin     hct_keras hct_keras hct_keras hct_keras hct_keras hct_keras hct_keras
+process sig       ttbb      ttLF      ttbj      ttcc      singletop others
+process 0         1         2         3         4         5         6
+rate    2581.4    4949.4    40845.7   5471.5    1680      2516.2    1542.6      
+--------------------------------
+lumi lnN 1.027 1.027 1.027 1.027 1.027 1.027 1.027
+#Jes lnN 1.05 1.05 1.05 1.05 1.05 1.05 1.05
+tt_norm lnN - 1.055 1.055 1.055 1.055 - -
