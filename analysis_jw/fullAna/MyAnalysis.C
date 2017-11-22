@@ -342,8 +342,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       }
     }
 
-    if( option.Contains("ttbb") ) EventWeight = EventWeight * 1.25;
-
     if( ncjets_m != 0 ) cjetPt = *max_element(v_cjet_m.begin(), v_cjet_m.end());
 
     if( nbjets_m >1 ){
