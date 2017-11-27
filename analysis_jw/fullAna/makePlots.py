@@ -107,7 +107,7 @@ AddBkg("hist_tt.root","ttLF",ROOT.kRed, 365.3)
 AddBkg("hist_wjets.root","WJets",ROOT.kYellow,61524)
 AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 6025.2)
 AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
-AddBkg("hist_tchannel.root","Single t",6, 163.02)#44.33 = 136.02*(0.1086*3)
+AddBkg("hist_tchannel.root","Single t",6, 136.02)#44.33 = 136.02*(0.1086*3)
 AddBkg("hist_tbarchannel.root","Single t",6, 80.95)#26.38 = 80.95*(0.1086*3)
 AddBkg("hist_tWchannel.root","Single t",6, 35.85)#35.85?, 
 AddBkg("hist_tbarWchannel.root","Single t",6, 35.85)
@@ -281,7 +281,7 @@ for i in range(0, N_hist):
     hsHct.Add( h_Hct ) #hh_tmp -> add h tmp sig, hs->other
     m = m+1 
 
-  h_Hct = hsHct.GetStack().Last()
+  hs_Hct = hsHct.GetStack().Last()
 
 #Add Hut
   hsHut = THStack()
@@ -334,7 +334,7 @@ for i in range(0, N_hist):
     hsHut.Add( h_Hut ) #hh_tmp -> add h tmp sig, hs->other
     n = n+1
 
-  h_Hut = hsHut.GetStack().Last()
+  hs_Hut = hsHut.GetStack().Last()
 
   if QCDestimate:
     qcd.append(h_sub)
@@ -347,24 +347,27 @@ for i in range(0, N_hist):
   h_data.SetMarkerSize(0.3)
   max_data = h_data.GetMaximum()
   max_hs = hs.GetMaximum()
+  max_hct = h_Hct.GetMaximum()
   maxfrac = 0.5
-  if log :
-    if max_data > 100000:
-      maxfrac = 1000 
+  if(max_hs > max_hct):
+    if log :
+      if max_data > 100000:
+        maxfrac = 1000 
+      else:
+        maxfrac = 100
+    if max_hs > max_data :
+      h_data.SetMaximum(max_hs+max_hs*maxfrac)
     else:
-      maxfrac = 100
-  if max_hs > max_data :
-    h_data.SetMaximum(max_hs+max_hs*maxfrac)
-  else:
-    h_data.SetMaximum(max_data+max_data*maxfrac)
+      h_data.SetMaximum(max_data+max_data*maxfrac)
+  else: h_data.SetMaximum(max_hct*1.5)
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Entries")
   h_data.GetYaxis().SetTitleOffset(1.2)
   hs.Draw("histsame")
   h_data.Draw("psame")
-  h_Hct.Draw("hist same")
-  h_Hut.Draw("hist same")
+  hs_Hct.Draw("hist same")
+  hs_Hut.Draw("hist same")
 
 
   l.AddEntry(h_data,"Data","P")

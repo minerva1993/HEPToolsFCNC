@@ -22,8 +22,9 @@ def runAna(dir, file, name):
 
 p = TProof.Open("", "workers=8")
 
-version = "v3"
+version = "v4"
 inputdir = "/home/minerva1993/fcnc/ntuple_jw/"
+#inputdir = "/data/users/minerva1993/ntuple_Run2016/"
 
 runAna(inputdir+version,"SingleElectron_Run2016.root","DataSingleEG")
 runAna(inputdir+version,"SingleMuon_Run2016.root","DataSingleMu")
@@ -42,7 +43,7 @@ runAna(inputdir+version,"TT_powheg_ttbj.root","ttbj")
 runAna(inputdir+version,"TT_powheg_ttcc.root","ttcc")
 runAna(inputdir+version,"TT_powheg_ttlf.root","ttLF")
 runAna(inputdir+version,"TT_powheg_ttother.root","tt")
-runAna(inputdir+version,"TT_powheg_ttbkg.root","ttBkg")
+#runAna(inputdir+version,"TT_powheg_ttbkg.root","ttBkg")
 runAna(inputdir+version,"TT_TopLeptonicDecay_TH_1L3B_Eta_Hct.root","Top_Hct")
 runAna(inputdir+version,"TT_TopLeptonicDecay_TH_1L3B_Eta_Hut.root","Top_Hut")
 runAna(inputdir+version,"TT_AntitopLeptonicDecay_TH_1L3B_Eta_Hct.root","AntiTop_Hct")
@@ -65,3 +66,4 @@ runAna(inputdir+version,"QCD_MuEnr_470to600.root","QCD_MuEnr_470to600")
 runAna(inputdir+version,"QCD_MuEnr_600to800.root","QCD_MuEnr_600to800")
 runAna(inputdir+version,"QCD_MuEnr_800to1000.root","QCD_MuEnr_800to1000")
 runAna(inputdir+version,"QCD_MuEnr_1000toInf.root","QCD_MuEnr_1000toInf")
+
