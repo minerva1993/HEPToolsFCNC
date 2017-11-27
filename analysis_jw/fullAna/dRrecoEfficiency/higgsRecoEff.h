@@ -88,14 +88,15 @@ public :
    TTreeReaderArray<float> fcnhkinjet_phi = {fReader, "fcnhkinjet_phi"};
    TTreeReaderArray<float> fcnhkinjet_E = {fReader, "fcnhkinjet_E"};
    TTreeReaderArray<int> fcnhkinjet_index = {fReader, "fcnhkinjet_index"};
-   TTreeReaderValue<Float_t> Hbjet1_pt = {fReader, "Hbjet1_pt"};
-   TTreeReaderValue<Float_t> Hbjet1_eta = {fReader, "Hbjet1_eta"};
-   TTreeReaderValue<Float_t> Hbjet1_phi = {fReader, "Hbjet1_phi"};
-   TTreeReaderValue<Float_t> Hbjet1_e = {fReader, "Hbjet1_e"};
-   TTreeReaderValue<Float_t> Hbjet2_pt = {fReader, "Hbjet2_pt"};
-   TTreeReaderValue<Float_t> Hbjet2_eta = {fReader, "Hbjet2_eta"};
-   TTreeReaderValue<Float_t> Hbjet2_phi = {fReader, "Hbjet2_phi"};
-   TTreeReaderValue<Float_t> Hbjet2_e = {fReader, "Hbjet2_e"};
+   TTreeReaderValue<Float_t> addHbjet1_pt = {fReader, "addHbjet1_pt"};
+   TTreeReaderValue<Float_t> addHbjet1_eta = {fReader, "addHbjet1_eta"};
+   TTreeReaderValue<Float_t> addHbjet1_phi = {fReader, "addHbjet1_phi"};
+   TTreeReaderValue<Float_t> addHbjet1_e = {fReader, "addHbjet1_e"};
+   TTreeReaderValue<Float_t> addHbjet2_pt = {fReader, "addHbjet2_pt"};
+   TTreeReaderValue<Float_t> addHbjet2_eta = {fReader, "addHbjet2_eta"};
+   TTreeReaderValue<Float_t> addHbjet2_phi = {fReader, "addHbjet2_phi"};
+   TTreeReaderValue<Float_t> addHbjet2_e = {fReader, "addHbjet2_e"};
+   TTreeReaderValue<Float_t> dRHbb = {fReader, "dRHbb"};
    //TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
    //TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    //TTreeReaderArray<int> jet_MatchedGenJetIndex = {fReader, "jet_MatchedGenJetIndex"};
@@ -145,37 +146,23 @@ public :
 
    ClassDef(higgsRecoEff,0);
 
-    int matchCount = 0;
     int matchCount2 = 0;
     int n_genH = 0;
     int n_genH2 = 0;
 
     TH1D *h_NJet[2][2];
     TH1D *h_NBJetCSVv2M[2][2];
-    TH1D *h_NCJetM[2][2];
-    TH1D *h_MET[2][2];
-    TH1D *h_WMass[2][2];
-    TH1D *h_LepIso[2][2];
-    TH1D *h_DPhi[2][2];
-    TH1D *h_bjmDPhi[2][2];
-    TH1D *h_bjmDEta[2][2];
-    TH1D *h_bjmDR[2][2];
-    TH1D *h_HMass_m[2][2];
-    TH1D *h_bJetPtHm[2][2];
-    TH1D *h_cJetPt[2][2];
     //DR
-    TH1D *h_DRFCNHkinLepWMass[2][2];
-    TH1D *h_DRFCNHkinHadWMass[2][2];
     TH1D *h_DRFCNHkinHMass[2][2];
     TH1D *h_DRFCNHkinDR[2][2];
-    TH1D *h_DRFCNHkinTopMWb[2][2];
     TH1D *h_DRFCNHkinTopMHc[2][2];
 
     TH1D *h_HbjetsDR[2][2];
-    TH1D *h_Hbjets1DR[2][2];
-    TH1D *h_Hbjets2DR[2][2];
     TH1D *h_Hpt[2][2];
+    TH1D *h_genHm[2][2];
+    TH1D *h_matchHm[2][2];
     TH2D *h_HptDR[2][2];
+    TH1D *h_dRdiff[2][2];
 };
 
 #endif
