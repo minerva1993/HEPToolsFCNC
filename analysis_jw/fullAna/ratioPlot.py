@@ -215,7 +215,7 @@ for i in range(0, N_hist):
     ntotalbkg = ntotalbkg + numevt
     if bkgsamples[fname]["name"] == "QCD": numqcd = numevt
     if hnames[1] == printHistName:
-      string = "%s :  %s = %d \n"%(fname,bkgsamples[fname]["name"],numevt)
+      string = "%s :  %s = %f \n"%(fname,bkgsamples[fname]["name"],numevt)
       fNevt.write(string)
       print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt) # " scale : " ,"{0:.1g}".format(scale)  
 
@@ -261,7 +261,7 @@ for i in range(0, N_hist):
     rawevt = h_Hct.GetEntries()
     if hctsamples[fname]["name"] == "QCD": numqcd = numevt
     if hnames[1] == printHistName:
-      string = "%s :  %s = %d \n"%(fname,hctsamples[fname]["name"],numevt)
+      string = "%s :  %s = %f \n"%(fname,hctsamples[fname]["name"],numevt)
       fNevt.write(string)
       print fname, " : ", hctsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
 
@@ -313,7 +313,7 @@ for i in range(0, N_hist):
     rawevt = h_Hut.GetEntries()
     if hutsamples[fname]["name"] == "QCD": numqcd = numevt
     if hnames[1] == printHistName:
-      string = "%s :  %s = %d \n"%(fname,hutsamples[fname]["name"],numevt)
+      string = "%s :  %s = %f \n"%(fname,hutsamples[fname]["name"],numevt)
       fNevt.write(string)
       print fname, " : ", hutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
 
@@ -345,21 +345,19 @@ for i in range(0, N_hist):
   h_data.SetMarkerSize(0.5)
   max_data = h_data.GetMaximum()
   max_hs = hs.GetMaximum()
+  max_hct = hs_Hct.GetMaximum()
   maxfrac = 0.5
-
-  if log:
-    pad1.SetLogy()
-
-  if log :
-    if max_data > 100000:
-      maxfrac = 1000 
+  if(max_hs > max_hct):
+    if log :
+      if max_data > 100000:
+        maxfrac = 1000
+      else:
+        maxfrac = 100
+    if max_hs > max_data :
+      h_data.SetMaximum(max_hs+max_hs*maxfrac)
     else:
-      maxfrac = 100
-  if max_hs > max_data :
-    h_data.SetMaximum(max_hs+max_hs*maxfrac)
-  else:
-    h_data.SetMaximum(max_data+max_data*maxfrac)
-
+      h_data.SetMaximum(max_data+max_data*maxfrac)
+  else: h_data.SetMaximum(max_hct*1.5)
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Events")
@@ -374,7 +372,7 @@ for i in range(0, N_hist):
   hs_Hut.SetLineWidth(2)
   hs_Hct.Draw("hist same")
   hs_Hut.Draw("hist same")
-  h_data.Draw("AXIS SAME")
+  h_data.Draw("AXIS P SAME")
   h4 = hs.Clone("h4")
   ROOT.SetOwnership( h4,  True )
 
@@ -425,9 +423,9 @@ for i in range(0, N_hist):
   ndata= h_data.Integral()
   nsub = ndata-ntotalbkg
   if hnames[1] == printHistName:
-    string1 = "ntotal = %d \n" % ntotalbkg
+    string1 = "ntotal = %f \n" % ntotalbkg
     string2 = "ndata = %d \n" % ndata
-    string3 = "nsub = %d \n" % nsub
+    string3 = "nsub = %f \n" % nsub
     #string4 = "ratio(qcd/total) = %f \n" % (numqcd/ntotalbkg)
     fNevt.write(string1)
     fNevt.write(string2)

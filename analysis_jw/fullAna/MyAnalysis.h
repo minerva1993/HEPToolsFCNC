@@ -116,7 +116,15 @@ public :
    //TTreeReaderArray<float> genjet_E = {fReader, "genjet_E"};
    //TTreeReaderArray<int> genjet_mom = {fReader, "genjet_mom"};
    //TTreeReaderArray<int> genjet_gencone_mom = {fReader, "genjet_gencone_mom"};
-
+   TTreeReaderValue<Float_t> addHbjet1_pt = {fReader, "addHbjet1_pt"};
+   TTreeReaderValue<Float_t> addHbjet1_eta = {fReader, "addHbjet1_eta"};
+   TTreeReaderValue<Float_t> addHbjet1_phi = {fReader, "addHbjet1_phi"};
+   TTreeReaderValue<Float_t> addHbjet1_e = {fReader, "addHbjet1_e"};
+   TTreeReaderValue<Float_t> addHbjet2_pt = {fReader, "addHbjet2_pt"};
+   TTreeReaderValue<Float_t> addHbjet2_eta = {fReader, "addHbjet2_eta"};
+   TTreeReaderValue<Float_t> addHbjet2_phi = {fReader, "addHbjet2_phi"};
+   TTreeReaderValue<Float_t> addHbjet2_e = {fReader, "addHbjet2_e"};
+   TTreeReaderValue<Float_t> dRHbb = {fReader, "dRHbb"};
 
    MyAnalysis(TTree * /*tree*/ =0) { }
    virtual ~MyAnalysis() { }
@@ -149,15 +157,8 @@ public :
     TH1D *h_bjmDPhi[2][16];
     TH1D *h_bjmDEta[2][16];
     TH1D *h_bjmDR[2][16];
-/*
-    TH1D *h_bjtDPhi[2][16];
-    TH1D *h_bjtDEta[2][16];
-    TH1D *h_bjtDR[2][16];
-*/
     TH1D *h_HMass_m[2][16];
     TH1D *h_bJetPtHm[2][16];
-    //TH1D *h_HMass_t[2][16];
-    //TH1D *h_bJetPtHt[2][16];
     TH1D *h_cJetPt[2][16];
 
     //tagging variables
@@ -165,27 +166,6 @@ public :
     TH1D *h_cvsl[2][16];
     TH1D *h_cvsb[2][16];
 
-/*
-    ///kin sol
-    TH1D *h_kinLepWMass[2][16];
-    TH1D *h_kinHadWMass[2][16];
-    TH1D *h_kinTopMWb[2][16];
-    TH1D *h_kinTopMqqb[2][16];
-
-    TH1D *h_fcnhkinHMass[2][16];
-    TH1D *h_fcnhkinWMass[2][16];
-    TH1D *h_fcnhkinTopMWb[2][16];
-    TH1D *h_fcnhkinTopMHc[2][16];
-    //TH1D *h_fcnhkinNuM[2][16];
-
-    //M3
-    TH1D *h_m3FCNHkinLepWMass[2][16];
-    TH1D *h_m3FCNHkinHadWMass[2][16];
-    TH1D *h_m3FCNHkinHMass[2][16];
-    TH1D *h_m3FCNHkinDR[2][16];
-    TH1D *h_m3FCNHkinTopMWb[2][16];
-    TH1D *h_m3FCNHkinTopMHc[2][16];
-*/
     //DR
     TH1D *h_DRFCNHkinLepWMass[2][16];
     TH1D *h_DRFCNHkinHadWMass[2][16];
@@ -193,6 +173,11 @@ public :
     TH1D *h_DRFCNHkinDR[2][16];
     TH1D *h_DRFCNHkinTopMWb[2][16];
     TH1D *h_DRFCNHkinTopMHc[2][16];
+
+    TH1D *h_genDR[2][16];
+    TH1D *h_matchDR[2][16];
+    TH1D *h_genHm[2][16];
+    TH1D *h_matchHm[2][16];
 };
 
 #endif
