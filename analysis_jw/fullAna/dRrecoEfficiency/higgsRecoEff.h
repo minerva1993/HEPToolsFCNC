@@ -146,9 +146,7 @@ public :
 
    ClassDef(higgsRecoEff,0);
 
-    int matchCount2 = 0;
-    int n_genH = 0;
-    int n_genH2 = 0;
+    int overlap = 0;
 
     TH1D *h_NJet[2][2];
     TH1D *h_NBJetCSVv2M[2][2];
@@ -161,8 +159,14 @@ public :
     TH1D *h_Hpt[2][2];
     TH1D *h_genHm[2][2];
     TH1D *h_matchHm[2][2];
+    TH1D *h_matchDR[2][2];
     TH2D *h_HptDR[2][2];
+    TH2D *h_recoHptDR[2][2];
     TH1D *h_dRdiff[2][2];
+    TH1D *h_hbjet1csv[2][2];
+    TH1D *h_hbjet2csv[2][2];
+    TH1D *h_HbjetsDphi[2][2];
+    TH2D *h_HptDphi[2][2];
 };
 
 #endif
