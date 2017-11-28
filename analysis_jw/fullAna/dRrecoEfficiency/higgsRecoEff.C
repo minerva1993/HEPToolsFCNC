@@ -43,7 +43,7 @@ void higgsRecoEff::SlaveBegin(TTree * /*tree*/)
       fOutput->Add(h_DRFCNHkinTopMHc[ich][i]);
 
       //GenMatching
-      h_HbjetsDR[ich][i] = new TH1D(Form("h_HbjetsDR_Ch%i_S%i_%s",ich,i,option.Data()), "Delta R between gen b jets from Higgs", 40 , 0 , 4);
+      h_HbjetsDR[ich][i] = new TH1D(Form("h_HbjetsDR_Ch%i_S%i_%s",ich,i,option.Data()), "#Delta R between gen b jets from Higgs", 40 , 0 , 4);
       h_HbjetsDR[ich][i]->SetXTitle("#Delta R");
       h_HbjetsDR[ich][i]->Sumw2();
       fOutput->Add(h_HbjetsDR[ich][i]);
@@ -63,16 +63,49 @@ void higgsRecoEff::SlaveBegin(TTree * /*tree*/)
       h_matchHm[ich][i]->Sumw2();
       fOutput->Add(h_matchHm[ich][i]);
 
-      h_HptDR[ich][i] = new TH2D(Form("h_HptDR_Ch%i_S%i_%s",ich,i,option.Data()),"Gen delta R vs Higgs pt", 60, 0, 300, 40, 0, 4);
+      h_matchDR[ich][i] = new TH1D(Form("h_matchDR_Ch%i_S%i_%s",ich,i,option.Data()), "#Delta R between gen and matched b", 40 , 0 , 4);
+      h_matchDR[ich][i]->SetXTitle("matched #Delta R");
+      h_matchDR[ich][i]->Sumw2();
+      fOutput->Add(h_matchDR[ich][i]);
+
+      h_HptDR[ich][i] = new TH2D(Form("h_HptDR_Ch%i_S%i_%s",ich,i,option.Data()),"Gen #Delta R vs Higgs pt", 60, 0, 300, 40, 0, 4);
       h_HptDR[ich][i]->SetXTitle("pt (GeV)");
       h_HptDR[ich][i]->SetYTitle("Higgs->bb #Delta R");
       h_HptDR[ich][i]->Sumw2();
       fOutput->Add(h_HptDR[ich][i]);
 
-      h_dRdiff[ich][i] = new TH1D(Form("h_dRdiff_Ch%i_S%i_%s",ich,i,option.Data()),"#Delta R (reco-gen)", 40, -4, 4);
-      h_dRdiff[ich][i]->SetXTitle("deltaR reco-gen");
+      h_recoHptDR[ich][i] = new TH2D(Form("h_recoHptDR_Ch%i_S%i_%s",ich,i,option.Data()),"reco #Delta R vs reco Higgs pt", 60, 0, 300, 40, 0, 4);
+      h_recoHptDR[ich][i]->SetXTitle("pt (GeV)");
+      h_recoHptDR[ich][i]->SetYTitle("reco Higgs->bb #Delta R");
+      h_recoHptDR[ich][i]->Sumw2();
+      fOutput->Add(h_recoHptDR[ich][i]);
+
+      h_dRdiff[ich][i] = new TH1D(Form("h_dRdiff_Ch%i_S%i_%s",ich,i,option.Data()),"#Delta R (reco-gen)", 40, -4, 20);
+      h_dRdiff[ich][i]->SetXTitle("#DeltaR reco-gen");
       h_dRdiff[ich][i]->Sumw2();
       fOutput->Add(h_dRdiff[ich][i]);
+
+      h_hbjet1csv[ich][i] = new TH1D(Form("h_hbjet1csv_Ch%i_S%i_%s",ich,i,option.Data()),"hbjet1 CSVv2", 40, 0, 1);
+      h_hbjet1csv[ich][i]->SetXTitle("CSVv2 (b1)");
+      h_hbjet1csv[ich][i]->Sumw2();
+      fOutput->Add(h_hbjet1csv[ich][i]);
+
+      h_hbjet2csv[ich][i] = new TH1D(Form("h_hbjet2csv_Ch%i_S%i_%s",ich,i,option.Data()),"hbjet2 CSVv2", 40, 0, 1);
+      h_hbjet2csv[ich][i]->SetXTitle("CSVv2 (b2)");
+      h_hbjet2csv[ich][i]->Sumw2();
+      fOutput->Add(h_hbjet2csv[ich][i]);
+
+      h_HbjetsDphi[ich][i] = new TH1D(Form("h_HbjetsDphi_Ch%i_S%i_%s",ich,i,option.Data()), "#Delta #phi between gen b jets from Higgs", 40 , 0 , 4);
+      h_HbjetsDphi[ich][i]->SetXTitle("#Delta #phi");
+      h_HbjetsDphi[ich][i]->Sumw2();
+      fOutput->Add(h_HbjetsDphi[ich][i]);
+
+      h_HptDphi[ich][i] = new TH2D(Form("h_HptDphi_Ch%i_S%i_%s",ich,i,option.Data()),"Gen #Delta #phi vs Higgs pt", 60, 0, 300, 40, 0, 4);
+      h_HptDphi[ich][i]->SetXTitle("pt (GeV)");
+      h_HptDphi[ich][i]->SetYTitle("Higgs->bb #Delta #phi");
+      h_HptDphi[ich][i]->Sumw2();
+      fOutput->Add(h_HptDphi[ich][i]);
+
       }
     }
 } 
@@ -100,7 +133,6 @@ Bool_t higgsRecoEff::Process(Long64_t entry)
     //Object selection
     int njets = 0;
     int nbjets_m = 0; 
-    int nbjets_t = 0;
 
     TLorentzVector p4met;
     double met = *MET;
@@ -117,19 +149,20 @@ Bool_t higgsRecoEff::Process(Long64_t entry)
     double lepDphi = lepton.DeltaPhi(p4met);
 
     TLorentzVector hbjet1, hbjet2, genH;
-    if((*addHbjet1_pt)*(*addHbjet2_pt) != 0 && *addHbjet1_pt > 30 && *addHbjet2_pt > 30 && abs(*addHbjet1_eta) < 2.4 && abs(*addHbjet2_eta) < 2.4){
+    if(*addHbjet1_pt > 25 && *addHbjet2_pt > 25 && abs(*addHbjet1_eta) < 2.5 && abs(*addHbjet2_eta) < 2.5){
       hbjet1.SetPtEtaPhiE(*addHbjet1_pt, *addHbjet1_eta, *addHbjet1_phi, *addHbjet1_e);
       hbjet2.SetPtEtaPhiE(*addHbjet2_pt, *addHbjet2_eta, *addHbjet2_phi, *addHbjet2_e);
 
       genH = hbjet1 + hbjet2;
-      n_genH++;
     }
+    else return kTRUE;
 
     bool match1 = false;
     bool match2 = false;
 
     //for Goh's Kin fit
     vector<size_t> jetIdxs;
+    int matchbIdx[2] = {-1};
     int b_kin_bjetcode;
 
     //Selection Option
@@ -154,6 +187,9 @@ Bool_t higgsRecoEff::Process(Long64_t entry)
         njets++;
         jetIdxs.push_back(iJet);//Goh's kinfit
         if( jet_CSV[iJet] > 0.8484 ) nbjets_m++;
+ 
+       if( jet.DeltaR(hbjet1) < 0.4 ) matchbIdx[0] = iJet;
+       if( jet.DeltaR(hbjet2) < 0.4 ) matchbIdx[1] = iJet;
       }
     } 
 
@@ -191,7 +227,12 @@ Bool_t higgsRecoEff::Process(Long64_t entry)
 
           jetP4sDR[2].SetPtEtaPhiE(jet_pT[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_E[*ii2]);
           const double dR = jetP4sDR[1].DeltaR(jetP4sDR[2]);
+          //if ( dR < ( -0.01*(jetP4sDR[1]+jetP4sDR[2]).Pt() + 2.4) ||  dR > ( -0.01*(jetP4sDR[1]+jetP4sDR[2]).Pt() + 3.5) ) continue;
+          double tmpPt = (jetP4sDR[1]+jetP4sDR[2]).Pt();
+          if (dR < (2.87463 - 0.0198239 * tmpPt + 0.0000435288 * tmpPt * tmpPt) || dR > (3.68692 - 0.0144628 * tmpPt + 0.0000177433 * tmpPt * tmpPt)) continue;
+
           if ( dR < minDR ) {
+            //bestIdxsDR = { size_t(njets), *ii1, *ii2, size_t(njets)};
             bestIdxsDR = { lepidx, *ii1, *ii2, size_t(njets)};
             minDR = dR;
           }
@@ -202,11 +243,14 @@ Bool_t higgsRecoEff::Process(Long64_t entry)
         jetP4sDR[1].SetPtEtaPhiE(jet_pT[i1], jet_eta[i1], jet_phi[i1], jet_E[i1]);
         jetP4sDR[2].SetPtEtaPhiE(jet_pT[i2], jet_eta[i2], jet_phi[i2], jet_E[i2]);
         const auto wP4 = jetP4sDR[1]+jetP4sDR[2];
-        double minDR2 = 1e9;
+        //double minDR2 = 1e9;
+        double minmassdiff = 1e9;
         for ( auto i3 : jetIdxs ) {
           if ( i3 == i1 or i3 == i2 ) continue;
+          if ( jet_CSV[i3] > 0.8484 ) continue;//
           jetP4sDR[3].SetPtEtaPhiE(jet_pT[i3], jet_eta[i3], jet_phi[i3], jet_E[i3]);
 
+/*
           const double dR = jetP4sDR[3].DeltaR(wP4);
           if ( dR < minDR2 ) {
             bestIdxsDR[3] = i3;
@@ -214,10 +258,21 @@ Bool_t higgsRecoEff::Process(Long64_t entry)
           }
         }
         if ( minDR2 == 1e9 ) bestIdxsDR.clear();
-      }
+*/
+          double mass = (jetP4sDR[3] + wP4).M();
+          double massdiff = (mass - 172.5)*(mass - 172.5);
+          if ( massdiff < minmassdiff) {
+            bestIdxsDR[3] = i3;
+            minmassdiff = massdiff;
+          }
+        }
+        if ( minmassdiff == 1e9 ) bestIdxsDR.clear();
 
+      }
+      if (bestIdxsDR.empty()) return kTRUE;
       stable_sort(next(bestIdxsDR.begin()), bestIdxsDR.end(),
                        [&](size_t a, size_t b){ return jet_CSV[a] > jet_CSV[b]; });
+
 /*
       for ( auto i : jetIdxs ) {
         if ( i == bestIdxsDR[1] or i == bestIdxsDR[2] or i == bestIdxsDR[3] ) continue;
@@ -253,16 +308,14 @@ Bool_t higgsRecoEff::Process(Long64_t entry)
     if( njets >= 4) {
       //STEP10
       if( nbjets_m >= 3 ){
-        if(genH.Pt()>0) n_genH2++;
 
-        double gendR = 10;
+        double gendR = -10;
         double recodR = 10;
         double matchdR = 10;
 
         //Gen vs reco higgs->bjet matching
         if(hbjet1.DeltaR(jetP4sDR[1]) < 0.4 or hbjet1.DeltaR(jetP4sDR[2]) < 0.4) match1 = true;
         if(hbjet2.DeltaR(jetP4sDR[1]) < 0.4 or hbjet2.DeltaR(jetP4sDR[2]) < 0.4) match2 = true;
-        if(match1 && match2) matchCount2++;
 
         h_NJet[mode][1]->Fill(njets, EventWeight);
         h_NBJetCSVv2M[mode][1]->Fill(nbjets_m, EventWeight);
@@ -272,21 +325,26 @@ Bool_t higgsRecoEff::Process(Long64_t entry)
         h_DRFCNHkinTopMHc[mode][1]->Fill((jetP4sDR[1]+jetP4sDR[2]+jetP4sDR[3]).M(),EventWeight);
         recodR = jetP4sDR[1].DeltaR(jetP4sDR[2]);
 
-        if(hbjet1.DeltaR(hbjet2) > 0){
-          h_HbjetsDR[mode][1]->Fill(hbjet1.DeltaR(hbjet2),EventWeight);
-          h_Hpt[mode][1]->Fill(genH.Pt(),EventWeight);
-          h_HptDR[mode][1]->Fill(genH.Pt(),hbjet1.DeltaR(hbjet2),EventWeight);
-          h_genHm[mode][1]->Fill(genH.M(),EventWeight);
-          gendR = hbjet1.DeltaR(hbjet2);
-        }
+        h_HbjetsDR[mode][1]->Fill(hbjet1.DeltaR(hbjet2),EventWeight);
+        h_Hpt[mode][1]->Fill(genH.Pt(),EventWeight);
+        h_HptDR[mode][1]->Fill(genH.Pt(),hbjet1.DeltaR(hbjet2),EventWeight);
+        h_genHm[mode][1]->Fill(genH.M(),EventWeight);
+        gendR = hbjet1.DeltaR(hbjet2);
+
+        h_HbjetsDphi[mode][1]->Fill(hbjet1.DeltaPhi(hbjet2), EventWeight);
+        h_HptDphi[mode][1]->Fill(genH.Pt(),hbjet1.DeltaPhi(hbjet2),EventWeight);
+
+        h_recoHptDR[mode][1]->Fill((jetP4sDR[1]+jetP4sDR[2]).Pt(),jetP4sDR[1].DeltaR(jetP4sDR[2]),EventWeight);
 
         if(match1 && match2){
           h_matchHm[mode][1]->Fill((jetP4sDR[1]+jetP4sDR[2]).M(),EventWeight);
           matchdR = jetP4sDR[1].DeltaR(jetP4sDR[2]);
+          h_matchDR[mode][1]->Fill(matchdR, EventWeight);
         }
 
         h_dRdiff[mode][1]->Fill(recodR-gendR, EventWeight);
-
+        if(matchbIdx[0] != -1) h_hbjet1csv[mode][1]->Fill(jet_CSV[matchbIdx[0]], EventWeight);
+        if(matchbIdx[1] != -1) h_hbjet2csv[mode][1]->Fill(jet_CSV[matchbIdx[1]], EventWeight);
       }
     }
   }
@@ -318,10 +376,6 @@ void higgsRecoEff::Terminate()
 
   out->Write();
   out->Close();
-
-  cout << "Matched Higgs b jets with event selection:" << matchCount2 << endl;
-  cout << "number of gen level Higgs :" << n_genH << endl;
-  cout << "number of gen level Higgs with event selection:" << n_genH2 << endl;
 }
 
 double higgsRecoEff::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){

@@ -273,8 +273,10 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       }
     }
 
+    //if( (option.Contains("Hct") || option.Contains("Hut")) && (*addHbjet1_pt)*(*addHbjet2_pt) == 0) return kTRUE;
+
     TLorentzVector hbjet1, hbjet2, genH;
-    if((*addHbjet1_pt)*(*addHbjet2_pt) != 0 && *addHbjet1_pt > 30 && *addHbjet2_pt > 30 && abs(*addHbjet1_eta) < 2.4 && abs(*addHbjet2_eta) < 2.4){
+    if(*addHbjet1_pt > 25 && *addHbjet2_pt > 25 && abs(*addHbjet1_eta) < 2.5 && abs(*addHbjet2_eta) < 2.5){
       hbjet1.SetPtEtaPhiE(*addHbjet1_pt, *addHbjet1_eta, *addHbjet1_phi, *addHbjet1_e);
       hbjet2.SetPtEtaPhiE(*addHbjet2_pt, *addHbjet2_eta, *addHbjet2_phi, *addHbjet2_e);
 
@@ -364,11 +366,12 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         jetP4sDR[1].SetPtEtaPhiE(jet_pT[i1], jet_eta[i1], jet_phi[i1], jet_E[i1]);
         jetP4sDR[2].SetPtEtaPhiE(jet_pT[i2], jet_eta[i2], jet_phi[i2], jet_E[i2]);
         const auto wP4 = jetP4sDR[1]+jetP4sDR[2];
-        double minDR2 = 1e9;
+        double minmassdiff = 1e9;
+        //double minDR2 = 1e9;
         for ( auto i3 : jetIdxs ) {
           if ( i3 == i1 or i3 == i2 ) continue;
           jetP4sDR[3].SetPtEtaPhiE(jet_pT[i3], jet_eta[i3], jet_phi[i3], jet_E[i3]);
-
+        /*
           const double dR = jetP4sDR[3].DeltaR(wP4);
           if ( dR < minDR2 ) {
             bestIdxsDR[3] = i3;
@@ -376,6 +379,15 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           }
         }
         if ( minDR2 == 1e9 ) bestIdxsDR.clear();
+        */
+          double mass = (jetP4sDR[3] + wP4).M();
+          double massdiff = (mass - 172.5)*(mass - 172.5);
+          if ( massdiff < minmassdiff) {
+            bestIdxsDR[3] = i3;
+            minmassdiff = massdiff;
+          }
+        }
+        if ( minmassdiff == 1e9 ) bestIdxsDR.clear();
       }
 
       stable_sort(next(bestIdxsDR.begin()), bestIdxsDR.end(),
