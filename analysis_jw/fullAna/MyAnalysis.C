@@ -204,13 +204,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     double bjmDPhi = 999;
     double bjmDEta = 999;
     double bjmDR = 999;
-    double bjtDPhi = 999;
-    double bjtDEta = 999;
-    double bjtDR = 999;
     double higgsMass_m = 9999;
-    double higgsMass_t = 9999;
     double bJetPtHm = 9999;
-    double bJetPtHt = 9999;
     double cjetPt = 0;
 
     vector<float> bjm_csv;
@@ -250,6 +245,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
       TLorentzVector jet;
       jet.SetPtEtaPhiE(jet_pT[iJet], jet_eta[iJet], jet_phi[iJet], jet_E[iJet]);
+      if( !option.Contains("Data") ) jet = jet * jet_JER_Nom[iJet];
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
@@ -276,7 +272,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     //if( (option.Contains("Hct") || option.Contains("Hut")) && (*addHbjet1_pt)*(*addHbjet2_pt) == 0) return kTRUE;
 
     TLorentzVector hbjet1, hbjet2, genH;
-    if(*addHbjet1_pt > 25 && *addHbjet2_pt > 25 && abs(*addHbjet1_eta) < 2.5 && abs(*addHbjet2_eta) < 2.5){
+    if(*addHbjet1_pt > 20 && *addHbjet2_pt > 20 && abs(*addHbjet1_eta) < 2.4 && abs(*addHbjet2_eta) < 2.4){
       hbjet1.SetPtEtaPhiE(*addHbjet1_pt, *addHbjet1_eta, *addHbjet1_phi, *addHbjet1_e);
       hbjet2.SetPtEtaPhiE(*addHbjet2_pt, *addHbjet2_eta, *addHbjet2_phi, *addHbjet2_e);
 
@@ -365,21 +361,18 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         const auto i1 = bestIdxsDR[1], i2 = bestIdxsDR[2];
         jetP4sDR[1].SetPtEtaPhiE(jet_pT[i1], jet_eta[i1], jet_phi[i1], jet_E[i1]);
         jetP4sDR[2].SetPtEtaPhiE(jet_pT[i2], jet_eta[i2], jet_phi[i2], jet_E[i2]);
+        if( !option.Contains("Data") ){
+          jetP4sDR[1] = jetP4sDR[1] *  jet_JER_Nom[i1];
+          jetP4sDR[2] = jetP4sDR[2] *  jet_JER_Nom[i2];
+        }
         const auto wP4 = jetP4sDR[1]+jetP4sDR[2];
         double minmassdiff = 1e9;
-        //double minDR2 = 1e9;
         for ( auto i3 : jetIdxs ) {
           if ( i3 == i1 or i3 == i2 ) continue;
+          //if ( jet_CSV[i3] > 0.8484 ) continue;
           jetP4sDR[3].SetPtEtaPhiE(jet_pT[i3], jet_eta[i3], jet_phi[i3], jet_E[i3]);
-        /*
-          const double dR = jetP4sDR[3].DeltaR(wP4);
-          if ( dR < minDR2 ) {
-            bestIdxsDR[3] = i3;
-            minDR2 = dR;
-          }
-        }
-        if ( minDR2 == 1e9 ) bestIdxsDR.clear();
-        */
+          if( !option.Contains("Data") ) jetP4sDR[3] = jetP4sDR[3] * jet_JER_Nom[i3];
+
           double mass = (jetP4sDR[3] + wP4).M();
           double massdiff = (mass - 172.5)*(mass - 172.5);
           if ( massdiff < minmassdiff) {
@@ -389,27 +382,21 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         }
         if ( minmassdiff == 1e9 ) bestIdxsDR.clear();
       }
-
+      if (bestIdxsDR.empty()) return kTRUE;
       stable_sort(next(bestIdxsDR.begin()), bestIdxsDR.end(),
                        [&](size_t a, size_t b){ return jet_CSV[a] > jet_CSV[b]; });
-
-      /*
-      for ( auto i : jetIdxs ) {
-        if ( i == bestIdxsDR[1] or i == bestIdxsDR[2] or i == bestIdxsDR[3] ) continue;
-        if ( bestIdxsDR[0] == size_t(njets) or jet_pT[bestIdxsDR[0]] < jet_pT[i] ) {
-          bestIdxsDR[0] = i;
-        }
-      }
-      */
 
       for ( size_t i=0; i<4; ++i ) {
         const size_t j = bestIdxsDR[i];
         jetP4sDR[i].SetPtEtaPhiE(jet_pT[j], jet_eta[j], jet_phi[j], jet_E[j]);
+        if( !option.Contains("Data") ) jetP4sDR[i] = jetP4sDR[i] * jet_JER_Nom[j];
       }
 
       //Gen vs reco higgs->bjet matching
-      if(hbjet1.DeltaR(jetP4sDR[1]) < 0.4 or hbjet1.DeltaR(jetP4sDR[2]) < 0.4) match1 = true;
-      if(hbjet2.DeltaR(jetP4sDR[1]) < 0.4 or hbjet2.DeltaR(jetP4sDR[2]) < 0.4) match2 = true;
+      if( option.Contains("Hct") || option.Contains("Hut") ){
+        if(hbjet1.DeltaR(jetP4sDR[1]) < 0.4 or hbjet1.DeltaR(jetP4sDR[2]) < 0.4) match1 = true;
+        if(hbjet2.DeltaR(jetP4sDR[1]) < 0.4 or hbjet2.DeltaR(jetP4sDR[2]) < 0.4) match2 = true;
+      }
     }
 
     /////Fill histograms

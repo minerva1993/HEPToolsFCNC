@@ -9,7 +9,7 @@ hist_ttLF
 hist_tt
 0.0911727864721
 hist_wjets
-134.482354518
+13.7154173117
 hist_zjets
 2.65956499509
 hist_zjets10to50
