@@ -2,7 +2,7 @@
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 from ROOT import *
 import keras
@@ -134,18 +134,12 @@ loader.AddVariable("DRhadTm",'F')
 
 
 ## Load input files
-#signalA = TFile("input/tmva_AntiTop_Hut.root")
+signalA = TFile("input/tmva_Top_Hct.root")
 signalB = TFile("input/tmva_AntiTop_Hct.root")
-#signalC = TFile("input/tmva_Top_Hut.root")
-signalD = TFile("input/tmva_Top_Hct.root")
-#sigTreeA = signalA.Get("tmva_tree")
+sigTreeA = signalA.Get("tmva_tree")
 sigTreeB = signalB.Get("tmva_tree")
-#sigTreeC = signalC.Get("tmva_tree")
-sigTreeD = signalD.Get("tmva_tree")
-#loader.AddSignalTree(sigTreeA,0.1)#0.156137331574/2=0.0780687
-loader.AddSignalTree(sigTreeB,0.1)#0.113541253338/2=0.0567706
-#loader.AddSignalTree(sigTreeC,0.1)
-loader.AddSignalTree(sigTreeD,0.1)
+loader.AddSignalTree(sigTreeA,0.06316)
+loader.AddSignalTree(sigTreeB,0.06317)
 
 background1 = TFile("input/tmva_tchannel.root")
 background2 = TFile("input/tmva_tbarchannel.root")
@@ -175,30 +169,37 @@ loader.AddBackgroundTree(backgroundTree6,0.09117)
 loader.AddBackgroundTree(backgroundTree7,0.09117)
 loader.AddBackgroundTree(backgroundTree8,0.09117)
 loader.AddBackgroundTree(backgroundTree9,0.09117)
-
+"""
+background10 = TFile("input/tmva_Top_Hct.root")
+background11 = TFile("input/tmva_AntiTop_Hct.root")
+backgroundTree10 = background10.Get("tmva_tree")
+backgroundTree11 = background11.Get("tmva_tree")
+loader.AddBackgroundTree(backgroundTree10,0.06316)
+loader.AddBackgroundTree(backgroundTree11,0.06317)
+"""
 loader.SetWeightExpression("EventWeight")
 loader.AddSpectator("GoodPV")
 loader.AddSpectator("EventCategory")
 loader.AddSpectator("GenMatch")
 
-sigCut = TCut("nevt/totnevt < 0.8")
+sigCut = TCut("nevt/totnevt < 0.8")# && GenMatch == 2")
 
-bkgCut = TCut("nevt/totnevt < 0.8")
+bkgCut = TCut("nevt/totnevt < 0.8")# && GenMatch < 2")
 
 loader.PrepareTrainingAndTestTree(
     sigCut, bkgCut,
     "nTrain_Signal=33000:nTrain_Background=370000:SplitMode=Random:NormMode=NumEvents:!V"
+#    "nTrain_Signal=16000:nTrain_Background=370000:SplitMode=Random:NormMode=NumEvents:!V"
 )
 
-factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=200:MinNodeSize=2%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=10")
+factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=400:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20")
 
 #Keras
 a = 1000
-b = 0.7
+b = 0.65
 init = 'glorot_uniform'
 
 inputs = Input(shape=(59,))
-#inputs = Input(shape=(85,))
 x = Dense(a, kernel_regularizer=l2(1E-2))(inputs)
 x = BatchNormalization()(x)
 
@@ -217,7 +218,7 @@ branch_point2 = Dense(a, name='branch_point2')(x)
 
 x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
-x = BatchNormalization()(x)#
+x = BatchNormalization()(x)
 x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
 x = Dropout(b)(x)
 
