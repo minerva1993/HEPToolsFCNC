@@ -136,9 +136,9 @@ AddBkg("hist_QCD_MuEnr_800to1000.root","QCD",ROOT.kGray, 4.707368272)
 AddBkg("hist_QCD_MuEnr_1000toInf.root","QCD",ROOT.kGray, 1.62131692)
 """
 
-AddHct("hist_Top_Hct.root", "Hct", 433, 3.70) #here, 36.98 * 0.1
+AddHct("hist_Top_Hct.root", "Hct", 433, 3.7) #here, 36.98 * 0.1
 #AddHct("hist_AntiTop_Hct.root", "Hct", 3, 3.33) # Top Hct ->xsection twice!
-AddHut("hist_Top_Hut.root", "Hut", 401, 3.70)
+AddHut("hist_Top_Hut.root", "Hut", 401, 3.7)
 #AddHut("hist_AntiTop_Hut.root", "Hut", 5, 4.57) #used 1610.04857 values
 #### each signal cross section for t + tbar!
 
@@ -243,14 +243,11 @@ for i in range(0, N_hist):
     h_Hct.SetLineColor(hctsamples[fname]["col"])
     h_Hct.SetFillColorAlpha(hctsamples[fname]["col"],0.0)
     ## normalization
-    """
     scale = 1.0
     if hctsamples[fname]["name"] == "QCD": 
       scale = 1.0
     else: 
       scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
-    """
-    scale = 0.1
 
     #print fname
     #print scale
@@ -296,14 +293,11 @@ for i in range(0, N_hist):
     h_Hut.SetLineColor(hutsamples[fname]["col"])
     h_Hut.SetFillColorAlpha(hutsamples[fname]["col"],0.0)
     ## normalization
-    """
     scale = 1.0
     if hutsamples[fname]["name"] == "QCD":
       scale = 1.0
     else:
       scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
-    """
-    scale = 0.1
 
     #print fname
     #print scale

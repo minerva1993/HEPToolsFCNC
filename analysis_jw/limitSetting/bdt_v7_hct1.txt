@@ -2,15 +2,15 @@ imax *
 jmax *
 kmax *
 ---------------
-shapes * hct_bdt /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v6_Hct3.root bdt_$PROCESS
+shapes * hct_bdt /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v7_Hct1.root bdt_$PROCESS
 ---------------
 bin hct_bdt
-observation 56053
+observation 56051
 ------------------------------
 bin     hct_bdt hct_bdt hct_bdt hct_bdt hct_bdt hct_bdt   hct_bdt
 process sig     ttbb    ttLF    ttbj    ttcc    singletop others
 process 0       1       2       3       4       5         6
-rate    2581.4  4949.4  40845.7 5471.5  1680    2516.2    1542.6
+rate    3264.5  4938.9  40945.3 5457.6  1682.1  2457.1    987.8
 --------------------------------
 lumi lnN 1.027 1.027 1.027 1.027 1.027 1.027 1.027
 #Jes lnN 1.05 1.05 1.05 1.05 1.05 1.05 1.05
