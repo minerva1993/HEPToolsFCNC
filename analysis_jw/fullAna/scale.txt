@@ -15,7 +15,7 @@ hist_zjets
 hist_zjets10to50
 22.7492060763
 hist_tchannel
-0.0878221596616
+0.0732767154777
 hist_tbarchannel
 0.0755276009929
 hist_tWchannel
@@ -66,9 +66,8 @@ hist_QCD_MuEnr_800to1000
 hist_QCD_MuEnr_1000toInf
 0.00605128586366
 hist_Top_Hct
-#0.113541253338
-0.1
+0.0631644530114(Top)
+0.063175201321(AntiTop)
 hist_Top_Hut
-#0.156137331574
-0.1
-
+0.0648001216909(Top)
+0.0633035021123(AntiTop)

@@ -240,9 +240,8 @@ for i in range(0, N_hist):
     h_Hct.SetFillColorAlpha(hctsamples[fname]["col"],0.0)
 
     ## normalization
-    #scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
-    scale = 0.05
-
+    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
+    #scale = 0.1
     h_Hct.Scale(scale)
 
     if hctsamples[fname]["name"] is not "QCD" and QCDestimate: 
@@ -288,9 +287,8 @@ for i in range(0, N_hist):
     h_Hut.SetFillColorAlpha(hutsamples[fname]["col"],0.0)
 
     ## normalization
-    #scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
-    scale = 0.05
-
+    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
+    #scale = 0.1
     h_Hut.Scale(scale)
 
     if hutsamples[fname]["name"] is not "QCD" and QCDestimate:
@@ -452,7 +450,7 @@ for i in range(0, N_hist):
   #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
   ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
-  filename = "result_ratio"+logname+"2.pdf"
+  filename = "result_ratio"+logname+".pdf"
   #filename = "result_ratio"+logname+"_noWjets.pdf"
 
   if i == 0 and N_hist > 1:
