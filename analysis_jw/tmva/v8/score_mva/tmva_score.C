@@ -13,15 +13,25 @@ void tmva_score::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
 
-  h_scoreBDT = new TH1D(Form("h_scoreBDT_%s",option.Data()), "BDT score", 20, -0.8, 0.8);
+  h_scoreBDT = new TH1D(Form("h_scoreBDT_%s",option.Data()), "BDT score", 20, -0.8, 0.55);
   h_scoreBDT->SetXTitle("BDT score");
   h_scoreBDT->Sumw2();
   fOutput->Add(h_scoreBDT);
 
-  h_scoreKeras = new TH1D(Form("h_scoreKeras_%s",option.Data()), "Keras score", 20, 0, 1);//0-1 20
+  h_scoreKeras = new TH1D(Form("h_scoreKeras_%s",option.Data()), "Keras score", 20, 0, 1);
   h_scoreKeras->SetXTitle("Keras score");
   h_scoreKeras->Sumw2();
   fOutput->Add(h_scoreKeras);
+
+  h_scoreBDTGen = new TH1D(Form("h_scoreBDTGen_%s",option.Data()), "BDT score", 20, -0.8, 0.55);
+  h_scoreBDTGen->SetXTitle("BDT score (gen Matched)");
+  h_scoreBDTGen->Sumw2();
+  fOutput->Add(h_scoreBDTGen);
+
+  h_scoreKerasGen = new TH1D(Form("h_scoreKerasGen_%s",option.Data()), "Keras score", 20, 0, 1);
+  h_scoreKerasGen->SetXTitle("Keras score (gen Matched)");
+  h_scoreKerasGen->Sumw2();
+  fOutput->Add(h_scoreKerasGen);
 }
 
 Bool_t tmva_score::Process(Long64_t entry)
@@ -32,6 +42,11 @@ Bool_t tmva_score::Process(Long64_t entry)
 
   h_scoreBDT->Fill(*BDTScore, *Event_Weight);
   h_scoreKeras->Fill(*KerasScore, *Event_Weight);
+
+  if(*genMatch == 2){
+    h_scoreBDTGen->Fill(*BDTScore, *Event_Weight);
+    h_scoreKerasGen->Fill(*KerasScore, *Event_Weight);
+  }
 
   return kTRUE;
 }
@@ -45,6 +60,11 @@ void tmva_score::SlaveTerminate()
 void tmva_score::Terminate()
 {
   TString option = GetOption();
+
+  h_scoreBDT->AddBinContent(20, h_scoreBDT->GetBinContent(21));
+  h_scoreKeras->AddBinContent(20, h_scoreKeras->GetBinContent(21));
+  h_scoreBDTGen->AddBinContent(20, h_scoreBDTGen->GetBinContent(21));
+  h_scoreKerasGen->AddBinContent(20, h_scoreKerasGen->GetBinContent(21));
 
   TFile * out = TFile::Open(Form("shape_%s.root",option.Data()),"RECREATE");
 

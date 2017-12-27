@@ -5,19 +5,22 @@ from array import array
 from subprocess import call
 from os.path import isfile
 import numpy as np
+import google.protobuf
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 # Setup TMVA
 TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
 reader = TMVA.Reader("Color:!Silent")
 
-ch = 'Hct3'
-#ch = 'Hut1'
+ch = 'Hct20'
+#ch = 'Hut14'
 
 tuples = sys.argv[1]
 
 # Load data
-data = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v6/mkNtuple_v6/'+tuples)
+data = TFile.Open('/home/minerva1993/tmva/v8/input/'+tuples)
 data_tree = data.Get('tmva_tree')
 
 target = TFile('output_'+ch+'_'+tuples,'RECREATE')
@@ -26,7 +29,7 @@ tree = TTree("tree","tree")
 branches = {}
 for branch in data_tree.GetListOfBranches():
   branchName = branch.GetName()
-  if branchName not in ["lepDPhi", "bjetmDR", "bjetmDEta", "bjetmDPhi", "dibjetsMass", "bjetPt_dibjetsm", "cjetPt", "transverseMass", "jet1phi", "jet2phi", "jet3phi", "jet4phi", "KinLepWMass", "KinLepTopMass", "KinHadWMass", "KinHadTopMass", "FCNHKinLepWMass", "FCNHKinLepTopMass", "FCNHKinHMass", "FCNHKinHucTopMass", "M3LepWMass", "M3HadWMass", "M3HMass", "M3DR", "M3LepTopMass", "M3HucTopMass", "DRlepWphi", "DRjet0phi", "DRjet1phi", "DRjet2phi", "DRjet3phi", "DRjet12phi", "DRjet23phi", "DRjet31phi", "DRlepTphi", "DRhadTphi", "EventWeight", "totnevt", "nevt", "GoodPV", "EventCategory",
+  if branchName not in ["lepDPhi", "bjetmDR", "bjetmDEta", "bjetmDPhi", "dibjetsMass", "bjetPt_dibjetsm", "cjetPt", "transverseMass", "jet1phi", "jet2phi", "jet3phi", "jet4phi", "DRlepWphi", "DRjet0phi", "DRjet1phi", "DRjet2phi", "DRjet3phi", "DRjet12phi", "DRjet23phi", "DRjet31phi", "DRlepTphi", "DRhadTphi", "EventWeight", "totnevt", "nevt", "GoodPV", "EventCategory","GenMatch",
   "ncjets_m", "missingET",
   "jet1pt", "jet2pt", "jet3pt", "jet4pt",
   "jet1eta", "jet2eta", "jet3eta", "jet4eta",
@@ -44,13 +47,12 @@ for branch in data_tree.GetListOfBranches():
       reader.AddVariable(branchName, branches[branchName])
       data_tree.SetBranchAddress(branchName, branches[branchName])
 
-  elif branchName in ["GoodPV", "EventCategory"]:
+  elif branchName in ["GoodPV", "EventCategory", "GenMatch"]:
     branches[branchName] = array('f', [-999])
     reader.AddSpectator(branchName, branches[branchName])
-    #data_tree.SetBranchAddress("GoodPV", branches["GoodPV"])
 
-reader.BookMVA('PyKeras', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v6/keras6_'+ch+'/weights/TMVAClassification_Keras_TF.weights.xml'))
-reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v6/keras6_'+ch+'/weights/TMVAClassification_BDT.weights.xml'))
+reader.BookMVA('PyKeras', TString('/home/minerva1993/tmva/v8/keras_'+ch+'/weights/TMVAClassification_Keras_TF.weights.xml'))
+reader.BookMVA('BDT', TString('/home/minerva1993/tmva/v8/keras_'+ch+'/weights/TMVAClassification_BDT.weights.xml'))
 
 print "processing "+tuples
 totalevt = data_tree.GetEntries()
@@ -61,16 +63,19 @@ score2 = np.zeros(1, dtype=float)
 event_weight = np.zeros(1, dtype=float)
 pileup =  np.zeros(1, dtype=int)
 category = np.zeros(1, dtype=int)
+genMatch = np.zeros(1, dtype=int)
 
 tree.Branch('KerasScore', score1, 'KerasScore/D')
 tree.Branch('BDTScore', score2, 'BDTScore/D')
 tree.Branch('Event_Weight', event_weight, 'Event_Weight/D')
 tree.Branch("PU", pileup, 'PU/I')
 tree.Branch("category", category, 'category/I')
+tree.Branch("genMatch", genMatch, 'genMatch/I')
 
 for i in xrange(totalevt-1):
   data_tree.GetEntry(i)
   nevt = data_tree.GetLeaf("nevt").GetValue(0)
+#  nevt = data_tree.nevt
 
   if tuples in ["tmva_SingleLepton_Run2016.root"]:
     score1[0] = reader.EvaluateMVA('PyKeras')
@@ -78,6 +83,7 @@ for i in xrange(totalevt-1):
     event_weight[0] = data_tree.EventWeight
     pileup[0] = data_tree.GoodPV
     category[0] = data_tree.EventCategory
+    genMatch[0] = data_tree.GenMatch
   else:
     if nevt == i:
       if tuples in ["tmva_wjets.root", "tmva_zjets10to50.root", "tmva_zjets.root"]:
@@ -86,34 +92,32 @@ for i in xrange(totalevt-1):
         event_weight[0] = data_tree.EventWeight
         pileup[0] = data_tree.GoodPV
         category[0] = data_tree.EventCategory
-        #print data_tree.GoodPV
-        #print data_tree.GetLeaf("nevt").GetValue(0)
-        #print i
+        genMatch[0] = data_tree.GenMatch
       else:
-        if float(nevt)/totalevt > 0.8:
+#        if float(nevt)/totalevt > 0.8:
+        if nevt % 5 == 0:
           score1[0] = reader.EvaluateMVA('PyKeras')
           score2[0] = reader.EvaluateMVA('BDT')
           event_weight[0] = data_tree.EventWeight
           pileup[0] = data_tree.GoodPV
           category[0] = data_tree.EventCategory
-          #if i%1000 == 0: print data_tree.GoodPV
-          #if i%1000 == 0: print data_tree.GetLeaf("nevt").GetValue(0)
-          #if i%1000 == 0: print i
+          genMatch[0] = data_tree.GenMatch
         else:
           score1[0] = 2
           score2[0] = 2
           event_weight[0] = 10
           pileup[0] = -1
           category[0] = -1
-      
-  s = str(i)
+          genMatch[0] = 5
+     
+  s = str(nevt)
 
   if totalevt > 100000:
-    if i%20000 == 0: print "processing "+tuples+" "+s
+    if nevt%20000 == 0: print "processing "+tuples+" "+s
   elif totalevt > 10000 and nevt < 100000:
-    if i%10000 == 0: print "processing "+tuples+" "+s
+    if nevt%10000 == 0: print "processing "+tuples+" "+s
   elif totalevt < 10000:
-    if i%1000 == 0: print "processing "+tuples+" "+s
+    if nevt%1000 == 0: print "processing "+tuples+" "+s
 
   tree.Fill()
 
