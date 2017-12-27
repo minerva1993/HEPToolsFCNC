@@ -1,10 +1,10 @@
 import os
 from ROOT import *
 
-tmva_version = 'v7'
+tmva_version = 'v8'
 
-ch = 'Hct1'
-#ch = 'Hut1'
+ch = 'Hct20'
+#ch = 'Hut14'
 
 ttbar = 0.0911727864721
 
@@ -200,57 +200,105 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_data_obs.Write()
     keras_data_obs.Write()
    
-  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct1':
+  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct20':
     tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hct.root')
     tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hct.root')
 
     bdt_sig = tch.Get('h_scoreBDT_'+ch+'_Top_Hct')
     bdt_sig.Scale(0.0631644530114)
-    bdt_sig.Scale(1625.4/bdt_sig.Integral())
+    bdt_scale1 = 1625.4/bdt_sig.Integral()
+    bdt_sig.Scale(bdt_scale1)
     bdt_tbarch = tbarch.Get('h_scoreBDT_'+ch+'_AntiTop_Hct')
     bdt_tbarch.Scale(0.063175201321)
-    bdt_tbarch.Scale(1639.1/bdt_tbarch.Integral())
+    bdt_scale2 = 1639.1/bdt_tbarch.Integral()
+    bdt_tbarch.Scale(bdt_scale2)
     bdt_sig.Add(bdt_sig, bdt_tbarch, 1.0, 1.0)
     bdt_sig.SetName('bdt_sig')
 
     keras_sig = tch.Get('h_scoreKeras_'+ch+'_Top_Hct')
     keras_sig.Scale(0.0631644530114)
-    keras_sig.Scale(1625.4/keras_sig.Integral())
+    keras_scale1 = 1625.4/keras_sig.Integral()
+    keras_sig.Scale(keras_scale1)
     keras_tbarch = tbarch.Get('h_scoreKeras_'+ch+'_AntiTop_Hct')
     keras_tbarch.Scale(0.063175201321)
-    keras_tbarch.Scale(1639.1/keras_tbarch.Integral())
+    keras_scale2 = 1639.1/keras_tbarch.Integral()
+    keras_tbarch.Scale(keras_scale2)
     keras_sig.Add(keras_sig, keras_tbarch, 1.0, 1.0)
     keras_sig.SetName('keras_sig')
+
+    bdt_sig_gen = tch.Get('h_scoreBDTGen_'+ch+'_Top_Hct')
+    bdt_sig_gen.Scale(0.0631644530114)
+    bdt_sig_gen.Scale(bdt_scale1)
+    bdt_tbarch_gen = tbarch.Get('h_scoreBDTGen_'+ch+'_AntiTop_Hct')
+    bdt_tbarch_gen.Scale(0.063175201321)
+    bdt_tbarch_gen.Scale(bdt_scale2)
+    bdt_sig_gen.Add(bdt_sig_gen, bdt_tbarch_gen, 1.0, 1.0)
+    bdt_sig_gen.SetName('bdt_sig_gen')
+
+    keras_sig_gen = tch.Get('h_scoreKerasGen_'+ch+'_Top_Hct')
+    keras_sig_gen.Scale(0.0631644530114)
+    keras_sig_gen.Scale(keras_scale1)
+    keras_tbarch_gen = tbarch.Get('h_scoreKerasGen_'+ch+'_AntiTop_Hct')
+    keras_tbarch_gen.Scale(0.063175201321)
+    keras_tbarch_gen.Scale(keras_scale2)
+    keras_sig_gen.Add(keras_sig_gen, keras_tbarch_gen, 1.0, 1.0)
+    keras_sig_gen.SetName('keras_sig_gen')
 
     target.cd()
     bdt_sig.Write()
     keras_sig.Write()
+    bdt_sig_gen.Write()
+    keras_sig_gen.Write()
 
-  elif scores == 'shape_'+ch+'_Top_Hut.root' and ch == 'Hut1':
+  elif scores == 'shape_'+ch+'_Top_Hut.root' and ch == 'Hut14':
     tuh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hut.root')
     tbaruh = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hut.root')
 
     bdt_sig = tuh.Get('h_scoreBDT_'+ch+'_Top_Hut')
     bdt_sig.Scale(0.0648001216909)
-    bdt_sig.Scale(1358/bdt_sig.Integral())
+    bdt_scale1 = 1358/bdt_sig.Integral()
+    bdt_sig.Scale(bdt_scale1)
     bdt_tbaruh = tbaruh.Get('h_scoreBDT_'+ch+'_AntiTop_Hut')
     bdt_tbaruh.Scale(0.0633035021123)
-    bdt_tbaruh.Scale(1357.1/bdt_tbaruh.Integral())
+    bdt_scale2 = 1357.1/bdt_tbaruh.Integral()
+    bdt_tbaruh.Scale(bdt_scale2)
     bdt_sig.Add(bdt_sig, bdt_tbaruh, 1.0, 1.0)
     bdt_sig.SetName('bdt_sig')
 
     keras_sig = tuh.Get('h_scoreKeras_'+ch+'_Top_Hut')
     keras_sig.Scale(0.0648001216909)
-    keras_sig.Scale(1358/keras_sig.Integral())
+    keras_scale1 = 1358/keras_sig.Integral()
+    keras_sig.Scale(keras_scale1)
     keras_tbaruh = tbaruh.Get('h_scoreKeras_'+ch+'_AntiTop_Hut')
     keras_tbaruh.Scale(0.0633035021123)
-    keras_tbaruh.Scale(1357.1/keras_tbaruh.Integral())
+    keras_scale2 = 1357.1/keras_tbaruh.Integral()
+    keras_tbaruh.Scale(keras_scale2)
     keras_sig.Add(keras_sig, keras_tbaruh, 1.0, 1.0)
     keras_sig.SetName('keras_sig')
+
+    bdt_sig_gen = tuh.Get('h_scoreBDTGen_'+ch+'_Top_Hut')
+    bdt_sig_gen.Scale(0.0648001216909)
+    bdt_sig_gen.Scale(bdt_scale1)
+    bdt_tbaruh_gen = tbaruh.Get('h_scoreBDTGen_'+ch+'_AntiTop_Hut')
+    bdt_tbaruh_gen.Scale(0.0633035021123)
+    bdt_tbaruh_gen.Scale(bdt_scale2)
+    bdt_sig_gen.Add(bdt_sig_gen, bdt_tbaruh_gen, 1.0, 1.0)
+    bdt_sig_gen.SetName('bdt_sig_gen')
+
+    keras_sig_gen = tuh.Get('h_scoreKerasGen_'+ch+'_Top_Hut')
+    keras_sig_gen.Scale(0.0648001216909)
+    keras_sig_gen.Scale(keras_scale1)
+    keras_tbaruh_gen = tbaruh.Get('h_scoreKerasGen_'+ch+'_AntiTop_Hut')
+    keras_tbaruh_gen.Scale(0.0633035021123)
+    keras_tbaruh_gen.Scale(keras_scale2)
+    keras_sig_gen.Add(keras_sig_gen, keras_tbaruh_gen, 1.0, 1.0)
+    keras_sig_gen.SetName('keras_sig_gen')
 
     target.cd()
     bdt_sig.Write()
     keras_sig.Write()
+    bdt_sig_gen.Write()
+    keras_sig_gen.Write()
 
   else: continue
   

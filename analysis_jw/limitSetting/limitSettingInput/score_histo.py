@@ -2,17 +2,20 @@ from ROOT import TStyle, TF1, TFile, TCanvas, gDirectory, TTree, TH1F, TH2F, THS
 import ROOT
 import os
 
-tmva_version = 'v7'
+tmva_version = 'v8'
 
-ch = 'Hct1'
-#ch = 'Hut1'
+ch = 'Hct20'
+#ch = 'Hut14'
+
+gen = True
 
 bdt_data = TH1F('bdt_data',ch+' BDT Score',20,-0.3,0.3)
 bdt_sig = TH1F('bdt_sig','',20,-0.3,0.3)
+bdt_sig_gen = TH1F('bdt_sig_gen','',20,-0.3,0.3)
 
 keras_data = TH1F('keras_data',ch+' Keras Score',20,0,1)
 keras_sig = TH1F('keras_sig','',20,0,1)
-keras_bkg = TH1F('keras_bkg','',20,0,1)
+keras_sig_gen = TH1F('keras_sig_gen','',20,0,1)
 
 hs_bdt_bkg = THStack()
 hs_keras_bkg = THStack()
@@ -28,6 +31,7 @@ bdt_singletop = shape_file.Get('bdt_singletop')
 bdt_others = shape_file.Get('bdt_others')
 bdt_data = shape_file.Get('bdt_data_obs')
 bdt_sig = shape_file.Get('bdt_sig')
+bdt_sig_gen = shape_file.Get('bdt_sig_gen')
 
 bdt_ttbb.SetFillColor(ROOT.kRed+4)
 bdt_ttbj.SetFillColor(ROOT.kRed+3)
@@ -49,9 +53,13 @@ hs_bdt_bkg.Add(bdt_ttLF)
 hs_bdt_bkg.Add(bdt_singletop)
 hs_bdt_bkg.Add(bdt_others)
 
-bdt_sig.Scale(bdt_data.Integral()/bdt_sig.Integral())
+scale1 = bdt_data.Integral()/bdt_sig.Integral()
+bdt_sig.Scale(scale1)
 bdt_sig.SetLineColor(8)
 bdt_sig.SetLineWidth(3)
+bdt_sig_gen.Scale(scale1)
+bdt_sig_gen.SetLineColor(9)
+bdt_sig_gen.SetLineWidth(3)
 
 ########################################
 keras_ttbb = shape_file.Get('keras_ttbb')
@@ -62,7 +70,18 @@ keras_singletop = shape_file.Get('keras_singletop')
 keras_others = shape_file.Get('keras_others')
 keras_data = shape_file.Get('keras_data_obs')
 keras_sig = shape_file.Get('keras_sig')
-
+keras_sig_gen = shape_file.Get('keras_sig_gen')
+"""
+keras_ttbb.AddBinContent(20, keras_ttbb.GetBinContent(21))
+keras_ttbj.AddBinContent(20, keras_ttbj.GetBinContent(21))
+keras_ttcc.AddBinContent(20, keras_ttcc.GetBinContent(21))
+keras_ttLF.AddBinContent(20, keras_ttLF.GetBinContent(21))
+keras_singletop.AddBinContent(20, keras_singletop.GetBinContent(21))
+keras_others.AddBinContent(20, keras_others.GetBinContent(21))
+keras_data.AddBinContent(20, keras_data.GetBinContent(21))
+keras_sig.AddBinContent(20, keras_sig.GetBinContent(21))
+keras_sig_gen.AddBinContent(20, keras_sig_gen.GetBinContent(21))
+"""
 keras_ttbb.SetFillColor(ROOT.kRed+4)
 keras_ttbj.SetFillColor(ROOT.kRed+3)
 keras_ttcc.SetFillColor(ROOT.kRed+2)
@@ -83,9 +102,13 @@ hs_keras_bkg.Add(keras_ttLF)
 hs_keras_bkg.Add(keras_singletop)
 hs_keras_bkg.Add(keras_others)
 
-keras_sig.Scale(keras_data.Integral()/keras_sig.Integral())
+scale2 = keras_data.Integral()/keras_sig.Integral()
+keras_sig.Scale(scale2)
 keras_sig.SetLineColor(8)
 keras_sig.SetLineWidth(3)
+keras_sig_gen.Scale(scale2)
+keras_sig_gen.SetLineColor(9)
+keras_sig_gen.SetLineWidth(3)
 
 ########################################
 c1 = TCanvas( 'c1', 'c1', 450, 450 )
@@ -102,8 +125,8 @@ pad2.SetGridx()
 pad2.SetGridy()
 pad2.Draw()
 
-l = TLegend(0.5,0.70,0.89,0.89)
-l.SetNColumns(3)
+l = TLegend(0.15,0.77,0.89,0.87)
+l.SetNColumns(5)
 l.SetTextFont(62)
 l.SetTextSize(0.05)
 l.SetLineColor(0)
@@ -113,9 +136,12 @@ l.AddEntry(bdt_ttbj, 'ttbj', 'F')
 l.AddEntry(bdt_ttcc, 'ttcc', 'F')
 l.AddEntry(bdt_ttLF, 'ttLF', 'F')
 l.AddEntry(bdt_singletop, 'ST', 'F')
-l.AddEntry(bdt_others, 'W+j/DY', 'F')
-l.AddEntry(0, "", "")
+l.AddEntry(bdt_others, 'V+j', 'F')
+if not gen:
+  l.AddEntry(0, "", "")
 l.AddEntry(bdt_sig, "Sig", "F")
+if gen:
+  l.AddEntry(bdt_sig_gen, "Gen", "F")
 l.AddEntry(bdt_data, 'Data', 'P')
 
 label = TPaveText()
@@ -136,7 +162,7 @@ bdt_data.SetTitle("")
 bdt_data.SetMarkerStyle(20)
 bdt_data.SetMarkerSize(0.5)
 bdt_data.SetStats(0)
-bdt_data.SetMaximum(bdt_data.GetMaximum() * 1.35)
+bdt_data.SetMaximum(bdt_data.GetMaximum() * 1.3)
 bdt_data.GetYaxis().SetTitle("Events")
 bdt_data.GetYaxis().SetTitleOffset(1.2)
 bdt_data.GetYaxis().SetTitleSize(0.045)
@@ -147,6 +173,9 @@ hs_bdt_bkg.Draw('HIST SAME E')
 bdt_data.Draw('P SAME')
 bdt_sig.SetFillStyle(0)
 bdt_sig.Draw('HIST SAME E')
+if gen:
+  bdt_sig_gen.SetFillStyle(0)
+  bdt_sig_gen.Draw('HIST SAME E')
 bdt_data.Draw("axis same")
 l.Draw("same")
 label.Draw("same")
@@ -179,7 +208,7 @@ keras_data.SetTitle("")
 keras_data.SetMarkerStyle(20)
 keras_data.SetMarkerSize(0.5)
 keras_data.SetStats(0)
-keras_data.SetMaximum(keras_data.GetMaximum() * 1.35)
+keras_data.SetMaximum(keras_data.GetMaximum() * 1.3)
 keras_data.GetYaxis().SetTitle("Events")
 keras_data.GetYaxis().SetTitleOffset(1.2)
 keras_data.GetYaxis().SetTitleSize(0.045)
@@ -190,6 +219,9 @@ hs_keras_bkg.Draw('HIST SAME E')
 keras_data.Draw('P SAME')
 keras_sig.SetFillStyle(0)
 keras_sig.Draw('HIST SAME E')
+if gen:
+  keras_sig_gen.SetFillStyle(0)
+  keras_sig_gen.Draw('HIST SAME E')
 keras_data.Draw("axis same")
 l.Draw("same")
 label.Draw("same")

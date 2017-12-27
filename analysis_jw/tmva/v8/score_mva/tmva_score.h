@@ -29,7 +29,9 @@ public :
    TTreeReaderValue<Double_t> KerasScore = {fReader, "KerasScore"};
    TTreeReaderValue<Double_t> BDTScore = {fReader, "BDTScore"};
    TTreeReaderValue<Double_t> Event_Weight = {fReader, "Event_Weight"};
-
+   TTreeReaderValue<Int_t> PU = {fReader, "PU"};
+   TTreeReaderValue<Int_t> category = {fReader, "category"};
+   TTreeReaderValue<Int_t> genMatch = {fReader, "genMatch"};
 
    tmva_score(TTree * /*tree*/ =0) { }
    virtual ~tmva_score() { }
@@ -51,7 +53,8 @@ public :
 
    TH1D *h_scoreBDT;
    TH1D *h_scoreKeras;
-
+   TH1D *h_scoreBDTGen;
+   TH1D *h_scoreKerasGen;
 };
 
 #endif
