@@ -2,10 +2,10 @@ imax *
 jmax *
 kmax *
 ---------------
-shapes * hct_bdt /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v7_Hct1.root bdt_$PROCESS
+shapes * hct_bdt /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v8_Hct20.root bdt_$PROCESS
 ---------------
 bin hct_bdt
-observation 56051
+observation 56053
 ------------------------------
 bin     hct_bdt hct_bdt hct_bdt hct_bdt hct_bdt hct_bdt   hct_bdt
 process sig     ttbb    ttLF    ttbj    ttcc    singletop others

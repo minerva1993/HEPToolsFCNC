@@ -7,7 +7,7 @@ import os
 from style import *
 
 QCDestimate = False
-log = False
+log = True
 
 from collections import OrderedDict
 datasamples=OrderedDict()
@@ -340,6 +340,8 @@ for i in range(0, N_hist):
 
   #Draw each plot
   pad1.cd()
+  if log:
+    pad1.SetLogy()
   h_data.SetMarkerStyle(20)
   h_data.SetMarkerSize(0.5)
   max_data = h_data.GetMaximum()
@@ -356,7 +358,13 @@ for i in range(0, N_hist):
       h_data.SetMaximum(max_hs+max_hs*maxfrac)
     else:
       h_data.SetMaximum(max_data+max_data*maxfrac)
-  else: h_data.SetMaximum(max_hct*1.5)
+  else:
+    if log:
+      maxfrac = 100
+      h_data.SetMaximum(max_hct+max_hct*maxfrac)
+    else:
+      h_data.SetMaximum(max_hct*1.5)
+  if log: h_data.SetMinimum(0.5)
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Events")
@@ -447,7 +455,7 @@ for i in range(0, N_hist):
     h_data.SetTitle("e ch")
     h_data.SetTitleSize(0.7)
   """
-  #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+  c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
   ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
   filename = "result_ratio"+logname+".pdf"

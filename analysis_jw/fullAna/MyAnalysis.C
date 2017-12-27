@@ -323,17 +323,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     size_t lepidx = 0;
 
     if( njets >= 3){
-      double minDRlep = 1e9;
-      for ( auto ii0 = jetIdxs.begin(); ii0 != jetIdxs.end(); ++ii0 ) {
-        jetP4sDR[0].SetPtEtaPhiE(jet_pT[*ii0], jet_eta[*ii0], jet_phi[*ii0], jet_E[*ii0]);
-        if ( jet_CSV[*ii0] < 0.8484 ) continue;
-        const double dRlep = jetP4sDR[0].DeltaR(lepton);
-        if ( dRlep < minDRlep ) {
-          lepidx = *ii0;
-          minDRlep = dRlep;
-        }
-      }
-
       double minDR = 1e9;
       for ( auto ii1 = jetIdxs.begin(); ii1 != jetIdxs.end(); ++ii1 ) {
         if ( *ii1 == lepidx ) continue;
@@ -352,7 +341,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           jetP4sDR[2].SetPtEtaPhiE(jet_pT[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_E[*ii2]);
           const double dR = jetP4sDR[1].DeltaR(jetP4sDR[2]);
           if ( dR < minDR ) {
-            bestIdxsDR = { lepidx, *ii1, *ii2, size_t(njets)};
+            bestIdxsDR = { size_t(njets), *ii1, *ii2, size_t(njets)};
             minDR = dR;
           }
         }
@@ -385,6 +374,19 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       if (bestIdxsDR.empty()) return kTRUE;
       stable_sort(next(bestIdxsDR.begin()), bestIdxsDR.end(),
                        [&](size_t a, size_t b){ return jet_CSV[a] > jet_CSV[b]; });
+
+      double minDRlep = 1e9;
+      for ( auto ii0 = jetIdxs.begin(); ii0 != jetIdxs.end(); ++ii0 ) {
+        if ( *ii0 == bestIdxsDR[1] || *ii0 == bestIdxsDR[2] ) continue;
+
+        jetP4sDR[0].SetPtEtaPhiE(jet_pT[*ii0], jet_eta[*ii0], jet_phi[*ii0], jet_E[*ii0]);
+        if ( jet_CSV[*ii0] < 0.8484 ) continue;
+        const double dRlep = jetP4sDR[0].DeltaR(lepton);
+        if ( dRlep < minDRlep ) {
+          bestIdxsDR[0] = *ii0;
+          minDRlep = dRlep;
+        }
+      }
 
       for ( size_t i=0; i<4; ++i ) {
         const size_t j = bestIdxsDR[i];
