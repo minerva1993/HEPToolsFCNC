@@ -18,7 +18,7 @@ void tmva_score::SlaveBegin(TTree * /*tree*/)
   h_scoreBDT->Sumw2();
   fOutput->Add(h_scoreBDT);
 
-  h_scoreKeras = new TH1D(Form("h_scoreKeras_%s",option.Data()), "Keras score", 20, 0, 1);
+  h_scoreKeras = new TH1D(Form("h_scoreKeras_%s",option.Data()), "Keras score", 20, 0, 0.5);
   h_scoreKeras->SetXTitle("Keras score");
   h_scoreKeras->Sumw2();
   fOutput->Add(h_scoreKeras);
@@ -28,7 +28,7 @@ void tmva_score::SlaveBegin(TTree * /*tree*/)
   h_scoreBDTGen->Sumw2();
   fOutput->Add(h_scoreBDTGen);
 
-  h_scoreKerasGen = new TH1D(Form("h_scoreKerasGen_%s",option.Data()), "Keras score", 20, 0, 1);
+  h_scoreKerasGen = new TH1D(Form("h_scoreKerasGen_%s",option.Data()), "Keras score", 20, 0, 0.5);
   h_scoreKerasGen->SetXTitle("Keras score (gen Matched)");
   h_scoreKerasGen->Sumw2();
   fOutput->Add(h_scoreKerasGen);
