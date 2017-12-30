@@ -3,8 +3,8 @@ from ROOT import *
 
 tmva_version = 'v8'
 
-ch = 'Hct20'
-#ch = 'Hut14'
+#ch = 'Hct14'
+ch = 'Hut14'
 
 ttbar = 0.0911727864721
 
@@ -200,7 +200,7 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
     bdt_data_obs.Write()
     keras_data_obs.Write()
    
-  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct20':
+  elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct14':
     tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hct.root')
     tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hct.root')
 
@@ -303,79 +303,3 @@ for scores in os.listdir('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version
   else: continue
   
 target.Close()
-"""
-#QCD
-eg120to170 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_EGEnr_120to170.root')
-eg120to170_tree = eg120to170.Get('tree')
-eg170to300 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_EGEnr_170to300.root')
-eg170to300_tree = eg170to300.Get('tree')
-eg300toinf = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_EGEnr_300toInf.root')
-eg300toinf_tree = eg300toinf.Get('tree')
-mu120to170 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_120to170.root')
-mu120to170_tree = mu120to170.Get('tree')
-mu170to300 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_170to300.root')
-mu170to300_tree = mu170to300.Get('tree')
-mu300to470 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_300to470.root')
-mu300to470_tree = mu300to470.Get('tree')
-mu80to120 = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/output_'+ch+'_tmva_QCD_MuEnr_80to120.root')
-mu80to120_tree = mu80to120.Get('tree')
-
-bdt_eg120to170 = TH1F('bdt_eg120to170', '', 20, -0.3, 0.3)
-eg120to170_tree.Draw('BDTScore>>bdt_eg120to170')
-bdt_eg120to170.Scale(66.8174520871)
-bdt_others.Add(bdt_others, bdt_eg120to170, 1.0, 1.0)
-bdt_eg170to300 = TH1F('bdt_eg170to300', '', 20, -0.3, 0.3)
-eg170to300_tree.Draw('BDTScore>>bdt_eg170to300')
-bdt_eg170to300.Scale(58.6084594604)
-bdt_others.Add(bdt_others, bdt_eg170to300, 1.0, 1.0)
-bdt_eg300toinf = TH1F('bdt_eg300toinf', '', 20, -0.3, 0.3)
-eg300toinf_tree.Draw('BDTScore>>bdt_eg300toinf')
-bdt_eg300toinf.Scale(6.60760047123)
-bdt_others.Add(bdt_others, bdt_eg300toinf, 1.0, 1.0)
-bdt_mu120to170 = TH1F('bdt_mu120to170', '', 20, -0.3, 0.3)
-mu120to170_tree.Draw('BDTScore>>bdt_mu120to170')
-bdt_mu120to170.Scale(75.6824937994)
-bdt_others.Add(bdt_others, bdt_mu120to170, 1.0, 1.0)
-bdt_mu170to300 = TH1F('bdt_mu170to300', '', 20, -0.3, 0.3)
-mu170to300_tree.Draw('BDTScore>>bdt_mu170to300')
-bdt_mu170to300.Scale(39.0593299833)
-bdt_others.Add(bdt_others, bdt_mu170to300, 1.0, 1.0)
-bdt_mu300to470 = TH1F('bdt_mu300to470', '', 20, -0.3, 0.3)
-mu300to470_tree.Draw('BDTScore>>bdt_mu300to470')
-bdt_mu300to470.Scale(1.82404861053)
-bdt_others.Add(bdt_others, bdt_mu300to470, 1.0, 1.0)
-bdt_mu80to120 = TH1F('bdt_mu80to120', '', 20, -0.3, 0.3)
-mu80to120_tree.Draw('BDTScore>>bdt_mu80to120')
-bdt_mu80to120.Scale(278.226438007)
-bdt_others.Add(bdt_others, bdt_mu80to120, 1.0, 1.0)
-
-keras_eg120to170 = TH1F('keras_eg120to170', '', 20, -0, 1)
-eg120to170_tree.Draw('KerasScore>>keras_eg120to170')
-keras_eg120to170.Scale(66.8174520871)
-keras_others.Add(keras_others, keras_eg120to170, 1.0, 1.0)
-keras_eg170to300 = TH1F('keras_eg170to300', '', 20, -0, 1)
-eg170to300_tree.Draw('KerasScore>>keras_eg170to300')
-keras_eg170to300.Scale(58.6084594604)
-keras_others.Add(keras_others, keras_eg170to300, 1.0, 1.0)
-keras_eg300toinf = TH1F('keras_eg300toinf', '', 20, -0, 1)
-eg300toinf_tree.Draw('KerasScore>>keras_eg300toinf')
-keras_eg300toinf.Scale(6.60760047123)
-keras_others.Add(keras_others, keras_eg300toinf, 1.0, 1.0)
-keras_mu120to170 = TH1F('keras_mu120to170', '', 20, -0, 1)
-mu120to170_tree.Draw('KerasScore>>keras_mu120to170')
-keras_mu120to170.Scale(75.6824937994)
-keras_others.Add(keras_others, keras_mu120to170, 1.0, 1.0)
-keras_mu170to300 = TH1F('keras_mu170to300', '', 20, -0, 1)
-mu170to300_tree.Draw('KerasScore>>keras_mu170to300')
-keras_mu170to300.Scale(39.0593299833)
-keras_others.Add(keras_others, keras_mu170to300, 1.0, 1.0)
-keras_mu300to470 = TH1F('keras_mu300to470', '', 20, -0, 1)
-mu300to470_tree.Draw('KerasScore>>keras_mu300to470')
-keras_mu300to470.Scale(1.824048611)
-keras_others.Add(keras_others, keras_mu300to470, 1.0, 1.0)
-keras_mu80to120 = TH1F('keras_mu80to120', '', 20, -0, 1)
-mu80to120_tree.Draw('KerasScore>>keras_mu80to120')
-keras_mu80to120.Scale(278.226438007)
-keras_others.Add(keras_others, keras_mu80to120, 1.0, 1.0)
-"""
-

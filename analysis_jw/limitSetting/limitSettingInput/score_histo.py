@@ -4,8 +4,8 @@ import os
 
 tmva_version = 'v8'
 
-ch = 'Hct20'
-#ch = 'Hut14'
+#ch = 'Hct14'
+ch = 'Hut14'
 
 gen = True
 
