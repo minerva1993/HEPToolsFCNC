@@ -13,7 +13,7 @@ void tmva_score::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
 
-  h_scoreBDT = new TH1D(Form("h_scoreBDT_%s",option.Data()), "BDT score", 20, -0.8, 0.55);
+  h_scoreBDT = new TH1D(Form("h_scoreBDT_%s",option.Data()), "BDT score", 20, -0.5, 0.5);
   h_scoreBDT->SetXTitle("BDT score");
   h_scoreBDT->Sumw2();
   fOutput->Add(h_scoreBDT);
@@ -23,7 +23,7 @@ void tmva_score::SlaveBegin(TTree * /*tree*/)
   h_scoreKeras->Sumw2();
   fOutput->Add(h_scoreKeras);
 
-  h_scoreBDTGen = new TH1D(Form("h_scoreBDTGen_%s",option.Data()), "BDT score", 20, -0.8, 0.55);
+  h_scoreBDTGen = new TH1D(Form("h_scoreBDTGen_%s",option.Data()), "BDT score", 20, -0.5, 0.5);
   h_scoreBDTGen->SetXTitle("BDT score (gen Matched)");
   h_scoreBDTGen->Sumw2();
   fOutput->Add(h_scoreBDTGen);
@@ -65,6 +65,10 @@ void tmva_score::Terminate()
   h_scoreKeras->AddBinContent(20, h_scoreKeras->GetBinContent(21));
   h_scoreBDTGen->AddBinContent(20, h_scoreBDTGen->GetBinContent(21));
   h_scoreKerasGen->AddBinContent(20, h_scoreKerasGen->GetBinContent(21));
+  h_scoreBDT->AddBinContent(1, h_scoreBDT->GetBinContent(0));
+  h_scoreKeras->AddBinContent(1, h_scoreKeras->GetBinContent(0));
+  h_scoreBDTGen->AddBinContent(1, h_scoreBDTGen->GetBinContent(0));
+  h_scoreKerasGen->AddBinContent(1, h_scoreKerasGen->GetBinContent(0));
 
   TFile * out = TFile::Open(Form("shape_%s.root",option.Data()),"RECREATE");
 
