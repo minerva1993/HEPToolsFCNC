@@ -14,8 +14,9 @@ TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
 reader = TMVA.Reader("Color:!Silent")
 
-ch = 'Hct20'
-#ch = 'Hut14'
+#ch = 'Hct29'
+ch = 'Hut28'
+keras = False
 
 tuples = sys.argv[1]
 
@@ -51,7 +52,8 @@ for branch in data_tree.GetListOfBranches():
     branches[branchName] = array('f', [-999])
     reader.AddSpectator(branchName, branches[branchName])
 
-reader.BookMVA('PyKeras', TString('/home/minerva1993/tmva/v8/keras_'+ch+'/weights/TMVAClassification_Keras_TF.weights.xml'))
+if keras:
+  reader.BookMVA('PyKeras', TString('/home/minerva1993/tmva/v8/keras_'+ch+'/weights/TMVAClassification_Keras_TF.weights.xml'))
 reader.BookMVA('BDT', TString('/home/minerva1993/tmva/v8/keras_'+ch+'/weights/TMVAClassification_BDT.weights.xml'))
 
 print "processing "+tuples
@@ -78,7 +80,8 @@ for i in xrange(totalevt-1):
 #  nevt = data_tree.nevt
 
   if tuples in ["tmva_SingleLepton_Run2016.root"]:
-    score1[0] = reader.EvaluateMVA('PyKeras')
+    if keras:
+      score1[0] = reader.EvaluateMVA('PyKeras')
     score2[0] = reader.EvaluateMVA('BDT')
     event_weight[0] = data_tree.EventWeight
     pileup[0] = data_tree.GoodPV
@@ -87,16 +90,17 @@ for i in xrange(totalevt-1):
   else:
     if nevt == i:
       if tuples in ["tmva_wjets.root", "tmva_zjets10to50.root", "tmva_zjets.root"]:
-        score1[0] = reader.EvaluateMVA('PyKeras')
+        if keras:
+          score1[0] = reader.EvaluateMVA('PyKeras')
         score2[0] = reader.EvaluateMVA('BDT')
         event_weight[0] = data_tree.EventWeight
         pileup[0] = data_tree.GoodPV
         category[0] = data_tree.EventCategory
         genMatch[0] = data_tree.GenMatch
       else:
-#        if float(nevt)/totalevt > 0.8:
         if nevt % 5 == 0:
-          score1[0] = reader.EvaluateMVA('PyKeras')
+          if keras:
+            score1[0] = reader.EvaluateMVA('PyKeras')
           score2[0] = reader.EvaluateMVA('BDT')
           event_weight[0] = data_tree.EventWeight
           pileup[0] = data_tree.GoodPV
