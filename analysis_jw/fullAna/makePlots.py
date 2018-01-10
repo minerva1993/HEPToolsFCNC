@@ -197,8 +197,8 @@ for i in range(0, N_hist):
     #else: 
     scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
 
-    print fname
-    print scale
+    #print fname
+    #print scale
     h_tmp.Scale(scale)
 
     if bkgsamples[fname]["name"] is not "QCD" and QCDestimate: 
@@ -229,6 +229,8 @@ for i in range(0, N_hist):
     #  hs.Add( h_tmp )
     hs.Add( h_tmp )
     k = k+1
+
+  h_bkg = hs.GetStack().Last()
 
 #Sig Stack
   hsHct = THStack()
@@ -279,6 +281,7 @@ for i in range(0, N_hist):
     m = m+1 
 
   hs_Hct = hsHct.GetStack().Last()
+  if h_data.Integral > 0 and hs_Hct.Integral() > 0 and h_bkg.Integral() != 0: hs_Hct.Scale(h_data.Integral()/hs_Hct.Integral())
 
 #Add Hut
   hsHut = THStack()
@@ -329,6 +332,7 @@ for i in range(0, N_hist):
     n = n+1
 
   hs_Hut = hsHut.GetStack().Last()
+  if h_data.Integral > 0 and hs_Hut.Integral() > 0 and h_bkg.Integral() != 0: hs_Hut.Scale(h_data.Integral()/hs_Hut.Integral())
 
   if QCDestimate:
     qcd.append(h_sub)
@@ -341,19 +345,26 @@ for i in range(0, N_hist):
   h_data.SetMarkerSize(0.3)
   max_data = h_data.GetMaximum()
   max_hs = hs.GetMaximum()
-  max_hct = h_Hct.GetMaximum()
+  if hs_Hut.GetMaximum() > hs_Hct.GetMaximum(): max_sig = hs_Hut.GetMaximum()
+  else: max_sig = hs_Hct.GetMaximum()
   maxfrac = 0.5
-  if(max_hs > max_hct):
+  if(max_hs > max_sig):
     if log :
       if max_data > 100000:
-        maxfrac = 1000 
+        maxfrac = 1000
       else:
         maxfrac = 100
     if max_hs > max_data :
       h_data.SetMaximum(max_hs+max_hs*maxfrac)
     else:
       h_data.SetMaximum(max_data+max_data*maxfrac)
-  else: h_data.SetMaximum(max_hct*1.5)
+  else:
+    if log:
+      maxfrac = 100
+      h_data.SetMaximum(max_sig+max_sig*maxfrac)
+    else:
+      h_data.SetMaximum(max_sig*1.5)
+  if log: h_data.SetMinimum(0.5)
   h_data.Draw("p")
   h_data.SetTitle("")
   h_data.GetYaxis().SetTitle("Entries")

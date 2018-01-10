@@ -7,7 +7,7 @@ import os
 from style import *
 
 QCDestimate = False
-log = True
+log = False
 
 from collections import OrderedDict
 datasamples=OrderedDict()
@@ -226,6 +226,8 @@ for i in range(0, N_hist):
     hs.Add( h_tmp ) #hh_tmp -> add h tmp sig, hs->other
     k = k+1
 
+  h_bkg = hs.GetStack().Last()
+
 #Sig Stack
   hsHct = THStack()
 
@@ -272,6 +274,7 @@ for i in range(0, N_hist):
     m = m+1 
 
   hs_Hct = hsHct.GetStack().Last()
+  if h_data.Integral > 0 and hs_Hct.Integral() > 0 and h_bkg.Integral() != 0: hs_Hct.Scale(h_data.Integral()/hs_Hct.Integral())
 
 #Add Hut
   hsHut = THStack()
@@ -319,6 +322,7 @@ for i in range(0, N_hist):
     #print fname, " : ", scale
 
   hs_Hut = hsHut.GetStack().Last()
+  if h_data.Integral > 0 and hs_Hut.Integral() > 0 and h_bkg.Integral() != 0: hs_Hut.Scale(h_data.Integral()/hs_Hut.Integral())
 
   if QCDestimate:
     qcd.append(h_sub)
@@ -346,9 +350,10 @@ for i in range(0, N_hist):
   h_data.SetMarkerSize(0.5)
   max_data = h_data.GetMaximum()
   max_hs = hs.GetMaximum()
-  max_hct = hs_Hct.GetMaximum()
+  if hs_Hut.GetMaximum() > hs_Hct.GetMaximum(): max_sig = hs_Hut.GetMaximum()
+  else: max_sig = hs_Hct.GetMaximum()
   maxfrac = 0.5
-  if(max_hs > max_hct):
+  if(max_hs > max_sig):
     if log :
       if max_data > 100000:
         maxfrac = 1000
@@ -361,9 +366,9 @@ for i in range(0, N_hist):
   else:
     if log:
       maxfrac = 100
-      h_data.SetMaximum(max_hct+max_hct*maxfrac)
+      h_data.SetMaximum(max_sig+max_sig*maxfrac)
     else:
-      h_data.SetMaximum(max_hct*1.5)
+      h_data.SetMaximum(max_sig*1.5)
   if log: h_data.SetMinimum(0.5)
   h_data.Draw("p")
   h_data.SetTitle("")
@@ -374,11 +379,11 @@ for i in range(0, N_hist):
   #h_data.GetXaxis().SetTitle("")
   h_data.GetXaxis().SetTitleOffset(5.0)
   hs.Draw("histsame")
-  h_data.Draw("psame")
   hs_Hct.SetLineWidth(2)
   hs_Hut.SetLineWidth(2)
   hs_Hct.Draw("hist same")
   hs_Hut.Draw("hist same")
+  h_data.Draw("psame")
   h_data.Draw("AXIS P SAME")
   h4 = hs.Clone("h4")
   ROOT.SetOwnership( h4,  True )
