@@ -149,7 +149,11 @@ public :
     TH1D *h_NBJetCSVv2M[2][16];
     TH1D *h_NBJetCSVv2T[2][16];
     TH1D *h_NCJetM[2][16];
+    TH1D *h_LepPt[2][16];
+    TH1D *h_LepPhi[2][16];
+    TH1D *h_LepEta[2][16];
     TH1D *h_MET[2][16];
+
     TH1D *h_WMass[2][16];
     TH1D *h_LepIso[2][16];
     TH1D *h_LepIsoQCD[2][16];
@@ -173,6 +177,15 @@ public :
     TH1D *h_DRFCNHkinDR[2][16];
     TH1D *h_DRFCNHkinTopMWb[2][16];
     TH1D *h_DRFCNHkinTopMHc[2][16];
+    TH1D *h_DRFCNHkinHPt[2][16];
+    TH1D *h_DRFCNHkinHdPhi[2][16];
+    TH1D *h_DRFCNHkinHdEta[2][16];
+    //TH1D *h_DRFCNHkinHb1Pt[2][16];
+    //TH1D *h_DRFCNHkinHb2Pt[2][16];
+    TH1D *h_DRFCNHkinHb1CSV[2][16];
+    TH1D *h_DRFCNHkinHb2CSV[2][16];
+    TH1D *h_DRFCNHkinLepTopPt[2][16];
+    TH1D *h_DRFCNHkinHadTopPt[2][16];
 
     TH1D *h_genDR[2][16];
     TH1D *h_matchDR[2][16];
