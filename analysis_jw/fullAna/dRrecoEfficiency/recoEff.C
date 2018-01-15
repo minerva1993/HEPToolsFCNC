@@ -199,7 +199,7 @@ Bool_t recoEff::Process(Long64_t entry)
     TLorentzVector jetP4sDR[4];
     size_t lepidx = 0;
 
-    if ( njets >= 3 ){
+    if ( njets >= 4 ){
       double minDRlep = 1e9;
       for ( auto ii0 = jetIdxs.begin(); ii0 != jetIdxs.end(); ++ii0 ) {
         jetP4sDR[0].SetPtEtaPhiE(jet_pT[*ii0], jet_eta[*ii0], jet_phi[*ii0], jet_E[*ii0]);
@@ -238,7 +238,7 @@ Bool_t recoEff::Process(Long64_t entry)
         }
       }
       if ( !bestIdxsDR.empty() ) {
-        const auto i1 = bestIdxsDR[1], i2 = bestIdxsDR[2];
+        const auto ilep = bestIdxsDR[0], i1 = bestIdxsDR[1], i2 = bestIdxsDR[2];
         jetP4sDR[1].SetPtEtaPhiE(jet_pT[i1], jet_eta[i1], jet_phi[i1], jet_E[i1]);
         jetP4sDR[2].SetPtEtaPhiE(jet_pT[i2], jet_eta[i2], jet_phi[i2], jet_E[i2]);
         jetP4sDR[1] = jetP4sDR[1] *  jet_JER_Nom[i1];
@@ -247,7 +247,7 @@ Bool_t recoEff::Process(Long64_t entry)
         //double minDR2 = 1e9;
         double minmassdiff = 1e9;
         for ( auto i3 : jetIdxs ) {
-          if ( i3 == i1 or i3 == i2 ) continue;
+          if ( i3 == i1 or i3 == i2 or i3 == ilep) continue;
           //if ( jet_CSV[i3] > 0.8484 ) continue;//
           jetP4sDR[3].SetPtEtaPhiE(jet_pT[i3], jet_eta[i3], jet_phi[i3], jet_E[i3]);
           jetP4sDR[3] = jetP4sDR[3] * jet_JER_Nom[i3];
