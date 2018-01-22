@@ -6,7 +6,7 @@ tmva_version = 'v8'
 keras = True
 
 #ch = 'Hct29'
-ch = 'Hut28'
+ch = 'Hut29'
 
 gen = True
 

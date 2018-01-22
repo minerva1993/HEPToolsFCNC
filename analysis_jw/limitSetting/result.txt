@@ -35,6 +35,7 @@ Expected 84.0%: r < 0.2085
 Expected 97.5%: r < 0.2775
 
 
+
 [gen match]
 Hct25
 bdt
@@ -72,6 +73,7 @@ Expected 84.0%: r < 0.2288
 Expected 97.5%: r < 0.3041
 
 
+
 [gen match, small stat.]
 Hct28
 bdt
@@ -107,4 +109,42 @@ Expected 16.0%: r < 0.1001
 Expected 50.0%: r < 0.1392
 Expected 84.0%: r < 0.1935
 Expected 97.5%: r < 0.2572
+
+
+
+[full, no lepWdeta]
+Hct29
+bdt
+Observed Limit: r < 0.1090
+Expected  2.5%: r < 0.0532
+Expected 16.0%: r < 0.0709
+Expected 50.0%: r < 0.0986
+Expected 84.0%: r < 0.1376
+Expected 97.5%: r < 0.1839
+
+keras
+Observed Limit: r < 0.0817
+Expected  2.5%: r < 0.0740
+Expected 16.0%: r < 0.0983
+Expected 50.0%: r < 0.1362
+Expected 84.0%: r < 0.1900
+Expected 97.5%: r < 0.2522
+
+
+Hut29
+bdt
+Observed Limit: r < 0.1228
+Expected  2.5%: r < 0.0603
+Expected 16.0%: r < 0.0804
+Expected 50.0%: r < 0.1118
+Expected 84.0%: r < 0.1559
+Expected 97.5%: r < 0.2084
+
+keras
+Observed Limit: r < 0.1733
+Expected  2.5%: r < 0.0790
+Expected 16.0%: r < 0.1050
+Expected 50.0%: r < 0.1455
+Expected 84.0%: r < 0.2029
+Expected 97.5%: r < 0.2694
 

@@ -2,7 +2,7 @@ imax *
 jmax *
 kmax *
 ---------------
-shapes * hct_keras /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v8_Hct29.root keras_$PROCESS
+shapes * hct_keras /home/minerva1993/fcnc/analysis_jw/limitSetting/limitSettingInput/shape_v8_Hct30.root keras_$PROCESS
 ---------------
 bin hct_keras
 observation 56053
