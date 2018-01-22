@@ -14,7 +14,7 @@ def runAna(dir, file, name):
 
 #p = TProof.Open("", "workers=8")
 
-ch = "Hct27"
+ch = "Hct29"
 #ch = "Hut14"
 
 version = "v8"
