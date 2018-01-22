@@ -2,7 +2,7 @@
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 from ROOT import *
 import keras
@@ -19,7 +19,7 @@ fout = TFile("output_keras_Hut.root","recreate")
 
 factory = TMVA.Factory("TMVAClassification", fout, "!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification" )
 
-loader = TMVA.DataLoader("keras_Hut25")
+loader = TMVA.DataLoader("keras_Hut29")
 loader.AddVariable("njets", "I")
 loader.AddVariable("nbjets_m",'I')
 #loader.AddVariable("ncjets_m",'I')
@@ -34,7 +34,7 @@ loader.AddVariable("nbjets_m",'I')
 ##loader.AddVariable("cjetPt",'F')
 loader.AddVariable("DRlepWpt",'F')
 loader.AddVariable("DRlepWeta",'F')
-loader.AddVariable("DRlepWdeta",'F')
+#loader.AddVariable("DRlepWdeta",'F')
 loader.AddVariable("DRlepWdphi",'F')
 loader.AddVariable("DRlepWm",'F')
 loader.AddVariable("DRjet0pt",'F')
@@ -139,23 +139,24 @@ loader.AddSpectator("GoodPV")
 loader.AddSpectator("EventCategory")
 loader.AddSpectator("GenMatch")
 
-sigCut = TCut("nevt %5 != 0 && GenMatch == 2")
+sigCut = TCut("nevt %5 != 0")# GenMatch == 2")
 
-bkgCut = TCut("nevt %5 != 0")
+bkgCut = TCut("nevt %5 != 0")# && GenMatch < 2")
 
 loader.PrepareTrainingAndTestTree(
     sigCut, bkgCut,
-    "nTrain_Signal=14000:nTrain_Background=370000:SplitMode=Random:NormMode=NumEvents:!V"
+    "nTrain_Signal=27000:nTrain_Background=370000:SplitMode=Random:NormMode=NumEvents:!V"
+#    "nTrain_Signal=33000:nTrain_Background=90000:SplitMode=Random:NormMode=NumEvents:!V"
 )
 
-factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=250:MinNodeSize=12.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=15")
+factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=250:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=15")
 
 #Keras
 a = 1000
-b = 0.65
+b = 0.6
 init = 'glorot_uniform'
 
-inputs = Input(shape=(59,))
+inputs = Input(shape=(58,))
 x = Dense(a, kernel_regularizer=l2(5E-3))(inputs)
 x = BatchNormalization()(x)
 
@@ -236,7 +237,7 @@ model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0.9, be
 model.save('model_Hut.h5')
 model.summary()
 
-factory.BookMethod(loader, TMVA.Types.kPyKeras, 'Keras_TF',"H:!V:VarTransform=G,D,P:FilenameModel=model_Hut.h5:NumEpochs=50:BatchSize=1000")
+factory.BookMethod(loader, TMVA.Types.kPyKeras, 'Keras_TF',"H:!V:VarTransform=G,D,P:FilenameModel=model_Hut.h5:NumEpochs=40:BatchSize=1000")
 
 factory.TrainAllMethods()
 factory.TestAllMethods()

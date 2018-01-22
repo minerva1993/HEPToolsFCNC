@@ -15,11 +15,11 @@ from keras.optimizers import Adam
 TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
 
-fout = TFile("output_keras_Hut.root","recreate")
+fout = TFile("output_keras_Hct.root","recreate")
 
 factory = TMVA.Factory("TMVAClassification", fout, "!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification" )
 
-loader = TMVA.DataLoader("keras_Hut14")
+loader = TMVA.DataLoader("keras_Hct29")
 loader.AddVariable("njets", "I")
 loader.AddVariable("nbjets_m",'I')
 #loader.AddVariable("ncjets_m",'I')
@@ -34,7 +34,7 @@ loader.AddVariable("nbjets_m",'I')
 ##loader.AddVariable("cjetPt",'F')
 loader.AddVariable("DRlepWpt",'F')
 loader.AddVariable("DRlepWeta",'F')
-loader.AddVariable("DRlepWdeta",'F')
+#loader.AddVariable("DRlepWdeta",'F')
 loader.AddVariable("DRlepWdphi",'F')
 loader.AddVariable("DRlepWm",'F')
 loader.AddVariable("DRjet0pt",'F')
@@ -91,8 +91,8 @@ loader.AddVariable("DRhadTWbdphi",'F')
 loader.AddVariable("DRhadTm",'F')
 
 ## Load input files
-signalA = TFile("input/tmva_Top_Hut.root")
-signalB = TFile("input/tmva_AntiTop_Hut.root")
+signalA = TFile("input/tmva_Top_Hct.root")
+signalB = TFile("input/tmva_AntiTop_Hct.root")
 background1 = TFile("input/tmva_tchannel.root")
 background2 = TFile("input/tmva_tbarchannel.root")
 background3 = TFile("input/tmva_tWchannel.root")
@@ -115,8 +115,8 @@ backgroundTree7 = background7.Get("tmva_tree")
 backgroundTree8 = background8.Get("tmva_tree")
 backgroundTree9 = background9.Get("tmva_tree")
 
-loader.AddSignalTree(sigTreeA,0.06480)
-loader.AddSignalTree(sigTreeB,0.06330)
+loader.AddSignalTree(sigTreeA,0.06316)
+loader.AddSignalTree(sigTreeB,0.06317)
 loader.AddBackgroundTree(backgroundTree1,0.08782)
 loader.AddBackgroundTree(backgroundTree2,0.07553)
 loader.AddBackgroundTree(backgroundTree3,0.19063)
@@ -145,7 +145,7 @@ bkgCut = TCut("nevt %5 != 0")# && GenMatch < 2")
 
 loader.PrepareTrainingAndTestTree(
     sigCut, bkgCut,
-    "nTrain_Signal=27000:nTrain_Background=370000:SplitMode=Random:NormMode=NumEvents:!V"
+    "nTrain_Signal=33000:nTrain_Background=370000:SplitMode=Random:NormMode=NumEvents:!V"
 #    "nTrain_Signal=33000:nTrain_Background=90000:SplitMode=Random:NormMode=NumEvents:!V"
 )
 
@@ -156,7 +156,7 @@ a = 1000
 b = 0.6
 init = 'glorot_uniform'
 
-inputs = Input(shape=(59,))
+inputs = Input(shape=(58,))
 x = Dense(a, kernel_regularizer=l2(5E-3))(inputs)
 x = BatchNormalization()(x)
 
@@ -234,10 +234,10 @@ predictions = Dense(2, activation='softmax')(x)
 model = Model(inputs=inputs, outputs=predictions)
 
 model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=1E-3), metrics=['binary_accuracy'])
-model.save('model_Hut.h5')
+model.save('model_Hct.h5')
 model.summary()
 
-factory.BookMethod(loader, TMVA.Types.kPyKeras, 'Keras_TF',"H:!V:VarTransform=G,D,P:FilenameModel=model_Hut.h5:NumEpochs=50:BatchSize=1000")
+factory.BookMethod(loader, TMVA.Types.kPyKeras, 'Keras_TF',"H:!V:VarTransform=G,D,P:FilenameModel=model_Hct.h5:NumEpochs=40:BatchSize=1000")
 
 factory.TrainAllMethods()
 factory.TestAllMethods()
