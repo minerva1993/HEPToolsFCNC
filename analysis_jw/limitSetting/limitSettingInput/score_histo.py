@@ -5,8 +5,8 @@ import os
 tmva_version = 'v8'
 keras = True
 
-#ch = 'Hct29'
-ch = 'Hut29'
+#ch = 'Hct30'
+ch = 'Hut30'
 
 gen = True
 
