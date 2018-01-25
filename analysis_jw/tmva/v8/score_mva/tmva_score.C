@@ -13,22 +13,22 @@ void tmva_score::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
 
-  h_scoreBDT = new TH1D(Form("h_scoreBDT_%s",option.Data()), "BDT score", 20, -0.5, 0.5);
+  h_scoreBDT = new TH1D(Form("h_scoreBDT_%s",option.Data()), "BDT score", 20, -0.6, 0.6);
   h_scoreBDT->SetXTitle("BDT score");
   h_scoreBDT->Sumw2();
   fOutput->Add(h_scoreBDT);
 
-  h_scoreKeras = new TH1D(Form("h_scoreKeras_%s",option.Data()), "Keras score", 20, 0, 0.3);
+  h_scoreKeras = new TH1D(Form("h_scoreKeras_%s",option.Data()), "Keras score", 20, 0, 0.5);
   h_scoreKeras->SetXTitle("Keras score");
   h_scoreKeras->Sumw2();
   fOutput->Add(h_scoreKeras);
 
-  h_scoreBDTGen = new TH1D(Form("h_scoreBDTGen_%s",option.Data()), "BDT score", 20, -0.5, 0.5);
+  h_scoreBDTGen = new TH1D(Form("h_scoreBDTGen_%s",option.Data()), "BDT score", 20, -0.6, 0.6);
   h_scoreBDTGen->SetXTitle("BDT score (gen Matched)");
   h_scoreBDTGen->Sumw2();
   fOutput->Add(h_scoreBDTGen);
 
-  h_scoreKerasGen = new TH1D(Form("h_scoreKerasGen_%s",option.Data()), "Keras score", 20, 0, 0.3);
+  h_scoreKerasGen = new TH1D(Form("h_scoreKerasGen_%s",option.Data()), "Keras score", 20, 0, 0.5);
   h_scoreKerasGen->SetXTitle("Keras score (gen Matched)");
   h_scoreKerasGen->Sumw2();
   fOutput->Add(h_scoreKerasGen);
