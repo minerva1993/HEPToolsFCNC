@@ -7,7 +7,16 @@ from os.path import isfile
 import numpy as np
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+tuples = sys.argv[1]
+
+if tuples == 'tmva_SingleLepton_Run2016.root':
+  os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+elif tuples == 'tmva_ttLF.root':
+  os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+elif tuples == 'tmva_ttother.root':
+  os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+else:
+  os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 # Setup TMVA
 TMVA.Tools.Instance()
@@ -16,9 +25,7 @@ reader = TMVA.Reader("Color:!Silent")
 
 #ch = 'Hct29'
 ch = 'Hut28'
-keras = False
-
-tuples = sys.argv[1]
+keras = True
 
 # Load data
 data = TFile.Open('/home/minerva1993/tmva/v8/input/'+tuples)

@@ -14,8 +14,8 @@ def runAna(dir, file, name):
 
 #p = TProof.Open("", "workers=8")
 
-ch = "Hct29"
-#ch = "Hut14"
+#ch = "Hct30"
+ch = "Hut30"
 
 version = "v8"
 inputdir = "/home/minerva1993/fcnc/analysis_jw/tmva/"+version+"/score_mva/"+ch
