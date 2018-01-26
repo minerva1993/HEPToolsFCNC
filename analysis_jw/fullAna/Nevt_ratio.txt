@@ -4,9 +4,9 @@ hist_ttbj :  ttbj = 31510.489908
 hist_ttcc :  ttcc = 21491.710820 
 hist_ttLF :  ttLF = 629516.090049 
 hist_tt :  ttLF = 1502177.085961 
-hist_wjets2 :  WJets = 198379997.043259 
+hist_wjetsV2 :  WJets = 198384797.322353 
 hist_zjets :  ZJets = 9756272.627722 
-hist_zjets10to50 :  ZJets = 1256938.286332 
+hist_zjets10to50V2 :  ZJets = 1255707.649142 
 hist_tchannel :  Single t = 236631.379961 
 hist_tbarchannel :  Single t = 150021.682015 
 hist_tWchannel :  Single t = 125646.766748 
@@ -18,9 +18,9 @@ hist_Top_Hct :  Hct = 10889.525574
 hist_AntiTop_Hct :  Hct = 10877.508703 
 hist_Top_Hut :  Hut = 10926.414296 
 hist_AntiTop_Hut :  Hut = 10932.756101 
-ntotal = 212615447.656745 
+ntotal = 212619017.298650 
 ndata = 220782847 
-nsub = 8167399.343255 
+nsub = 8163829.701350 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S0', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S0', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S0', 'DataSingleMu'] 
@@ -64,9 +64,9 @@ hist_ttbj :  ttbj = 29752.126951
 hist_ttcc :  ttcc = 20600.620074 
 hist_ttLF :  ttLF = 580937.573636 
 hist_tt :  ttLF = 1068545.118605 
-hist_wjets2 :  WJets = 2186739.916829 
+hist_wjetsV2 :  WJets = 2187701.203711 
 hist_zjets :  ZJets = 233920.410603 
-hist_zjets10to50 :  ZJets = 34213.553670 
+hist_zjets10to50V2 :  ZJets = 32304.871542 
 hist_tchannel :  Single t = 38095.024231 
 hist_tbarchannel :  Single t = 24539.852534 
 hist_tWchannel :  Single t = 60761.383062 
@@ -78,9 +78,9 @@ hist_Top_Hct :  Hct = 8342.807673
 hist_AntiTop_Hct :  Hct = 8353.832120 
 hist_Top_Hut :  Hut = 8498.017683 
 hist_AntiTop_Hut :  Hut = 8491.289880 
-ntotal = 4391410.299251 
+ntotal = 4390462.904004 
 ndata = 4686828 
-nsub = 295417.700749 
+nsub = 296365.095996 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S1', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S1', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S1', 'DataSingleMu'] 
@@ -124,9 +124,9 @@ hist_ttbj :  ttbj = 10094.882085
 hist_ttcc :  ttcc = 5190.684144 
 hist_ttLF :  ttLF = 133591.085366 
 hist_tt :  ttLF = 306763.985224 
-hist_wjets2 :  WJets = 18484.692537 
+hist_wjetsV2 :  WJets = 18529.692872 
 hist_zjets :  ZJets = 3664.722039 
-hist_zjets10to50 :  ZJets = 581.416515 
+hist_zjets10to50V2 :  ZJets = 543.301698 
 hist_tchannel :  Single t = 9440.218708 
 hist_tbarchannel :  Single t = 6110.316999 
 hist_tWchannel :  Single t = 8864.374779 
@@ -138,9 +138,9 @@ hist_Top_Hct :  Hct = 3137.694509
 hist_AntiTop_Hct :  Hct = 3145.027901 
 hist_Top_Hut :  Hut = 3145.899835 
 hist_AntiTop_Hut :  Hut = 3165.577123 
-ntotal = 516420.973744 
+ntotal = 516427.859262 
 ndata = 559710 
-nsub = 43289.026256 
+nsub = 43282.140738 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S2', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S2', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S2', 'DataSingleMu'] 
@@ -184,9 +184,9 @@ hist_ttbj :  ttbj = 3056.991843
 hist_ttcc :  ttcc = 922.403912 
 hist_ttLF :  ttLF = 10226.012133 
 hist_tt :  ttLF = 19537.579430 
-hist_wjets2 :  WJets = 827.190827 
+hist_wjetsV2 :  WJets = 857.840967 
 hist_zjets :  ZJets = 111.689064 
-hist_zjets10to50 :  ZJets = -27.319738 
+hist_zjets10to50V2 :  ZJets = -35.224514 
 hist_tchannel :  Single t = 400.546941 
 hist_tbarchannel :  Single t = 263.277000 
 hist_tWchannel :  Single t = 597.931746 
@@ -198,9 +198,9 @@ hist_Top_Hct :  Hct = 1130.054952
 hist_AntiTop_Hct :  Hct = 1113.471339 
 hist_Top_Hut :  Hut = 951.237653 
 hist_AntiTop_Hut :  Hut = 950.366017 
-ntotal = 38879.405164 
+ntotal = 38902.150527 
 ndata = 39782 
-nsub = 902.594836 
+nsub = 879.849473 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S3', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S3', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S3', 'DataSingleMu'] 
@@ -244,9 +244,9 @@ hist_ttbj :  ttbj = 13151.873928
 hist_ttcc :  ttcc = 6113.088056 
 hist_ttLF :  ttLF = 143817.097499 
 hist_tt :  ttLF = 326301.564654 
-hist_wjets2 :  WJets = 19311.883365 
+hist_wjetsV2 :  WJets = 19387.533839 
 hist_zjets :  ZJets = 3776.411103 
-hist_zjets10to50 :  ZJets = 554.096777 
+hist_zjets10to50V2 :  ZJets = 508.077183 
 hist_tchannel :  Single t = 9840.765648 
 hist_tbarchannel :  Single t = 6373.593999 
 hist_tWchannel :  Single t = 9462.306524 
@@ -258,9 +258,9 @@ hist_Top_Hct :  Hct = 4267.749460
 hist_AntiTop_Hct :  Hct = 4258.499240 
 hist_Top_Hut :  Hut = 4097.137489 
 hist_AntiTop_Hut :  Hut = 4115.943140 
-ntotal = 555300.378908 
+ntotal = 555330.009789 
 ndata = 599492 
-nsub = 44191.621092 
+nsub = 44161.990211 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S4', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S4', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S4', 'DataSingleMu'] 
@@ -304,9 +304,9 @@ hist_ttbj :  ttbj = 3280.694160
 hist_ttcc :  ttcc = 1003.713426 
 hist_ttLF :  ttLF = 10541.885615 
 hist_tt :  ttLF = 19822.697539 
-hist_wjets2 :  WJets = 807.482455 
+hist_wjetsV2 :  WJets = 839.956493 
 hist_zjets :  ZJets = 106.221035 
-hist_zjets10to50 :  ZJets = -27.319738 
+hist_zjets10to50V2 :  ZJets = -35.224514 
 hist_tchannel :  Single t = 415.204688 
 hist_tbarchannel :  Single t = 269.817589 
 hist_tWchannel :  Single t = 622.843228 
@@ -318,9 +318,9 @@ hist_Top_Hct :  Hct = 1220.349767
 hist_AntiTop_Hct :  Hct = 1211.446275 
 hist_Top_Hut :  Hut = 989.508852 
 hist_AntiTop_Hut :  Hut = 988.349615 
-ntotal = 40432.592252 
+ntotal = 40457.161514 
 ndata = 41423 
-nsub = 990.407748 
+nsub = 965.838486 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S5', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S5', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S5', 'DataSingleMu'] 
@@ -364,9 +364,9 @@ hist_ttbj :  ttbj = 25197.520462
 hist_ttcc :  ttcc = 18099.748199 
 hist_ttLF :  ttLF = 469180.370077 
 hist_tt :  ttLF = 488444.132641 
-hist_wjets2 :  WJets = 451539.027075 
+hist_wjetsV2 :  WJets = 452597.255784 
 hist_zjets :  ZJets = 54046.535382 
-hist_zjets10to50 :  ZJets = 6712.744664 
+hist_zjets10to50V2 :  ZJets = 6481.159989 
 hist_tchannel :  Single t = 11639.647978 
 hist_tbarchannel :  Single t = 7194.116555 
 hist_tWchannel :  Single t = 25853.943997 
@@ -378,9 +378,9 @@ hist_Top_Hct :  Hct = 5169.891080
 hist_AntiTop_Hct :  Hct = 5173.448756 
 hist_Top_Hut :  Hut = 5299.044670 
 hist_AntiTop_Hut :  Hut = 5316.976218 
-ntotal = 1604419.361624 
+ntotal = 1605246.005658 
 ndata = 1679344 
-nsub = 74924.638376 
+nsub = 74097.994342 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S6', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S6', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S6', 'DataSingleMu'] 
@@ -424,9 +424,9 @@ hist_ttbj :  ttbj = 9093.548312
 hist_ttcc :  ttcc = 4874.109869 
 hist_ttLF :  ttLF = 120328.435265 
 hist_tt :  ttLF = 169303.538995 
-hist_wjets2 :  WJets = 7511.372730 
+hist_wjetsV2 :  WJets = 7439.800822 
 hist_zjets :  ZJets = 1335.745541 
-hist_zjets10to50 :  ZJets = 136.635127 
+hist_zjets10to50V2 :  ZJets = 131.407844 
 hist_tchannel :  Single t = 3175.138462 
 hist_tbarchannel :  Single t = 1982.253013 
 hist_tWchannel :  Single t = 5344.586816 
@@ -438,9 +438,9 @@ hist_Top_Hct :  Hct = 2005.584820
 hist_AntiTop_Hct :  Hct = 2009.781675 
 hist_Top_Hut :  Hut = 2051.970657 
 hist_AntiTop_Hut :  Hut = 2083.304675 
-ntotal = 332552.782680 
+ntotal = 332475.983489 
 ndata = 337142 
-nsub = 4589.217320 
+nsub = 4666.016511 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S7', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S7', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S7', 'DataSingleMu'] 
@@ -484,9 +484,9 @@ hist_ttbj :  ttbj = 2960.444582
 hist_ttcc :  ttcc = 905.218714 
 hist_ttLF :  ttLF = 9817.775152 
 hist_tt :  ttLF = 13853.944418 
-hist_wjets2 :  WJets = 597.066676 
+hist_wjetsV2 :  WJets = 585.591750 
 hist_zjets :  ZJets = 51.695899 
-hist_zjets10to50 :  ZJets = -52.207472 
+hist_zjets10to50V2 :  ZJets = -25.063863 
 hist_tchannel :  Single t = 232.514179 
 hist_tbarchannel :  Single t = 149.322808 
 hist_tWchannel :  Single t = 479.028272 
@@ -498,9 +498,9 @@ hist_Top_Hct :  Hct = 871.870523
 hist_AntiTop_Hct :  Hct = 860.910346 
 hist_Top_Hut :  Hut = 766.539960 
 hist_AntiTop_Hut :  Hut = 761.869320 
-ntotal = 31769.276448 
+ntotal = 31784.945131 
 ndata = 31453 
-nsub = -316.276448 
+nsub = -331.945131 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S8', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S8', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S8', 'DataSingleMu'] 
@@ -544,9 +544,9 @@ hist_ttbj :  ttbj = 214.722918
 hist_ttcc :  ttcc = 77.950909 
 hist_ttLF :  ttLF = 302.928146 
 hist_tt :  ttLF = 282.107333 
-hist_wjets2 :  WJets = -19.708373 
+hist_wjetsV2 :  WJets = -17.884473 
 hist_zjets :  ZJets = -5.468029 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 0.000000 
 hist_tchannel :  Single t = 14.347654 
 hist_tbarchannel :  Single t = 6.397542 
 hist_tWchannel :  Single t = 24.136626 
@@ -558,9 +558,9 @@ hist_Top_Hct :  Hct = 86.109388
 hist_AntiTop_Hct :  Hct = 93.228313 
 hist_Top_Hut :  Hut = 36.221521 
 hist_AntiTop_Hut :  Hut = 35.996514 
-ntotal = 1481.412827 
+ntotal = 1483.236727 
 ndata = 1563 
-nsub = 81.587173 
+nsub = 79.763273 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S9', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S9', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S9', 'DataSingleMu'] 
@@ -604,9 +604,9 @@ hist_ttbj :  ttbj = 3184.146899
 hist_ttcc :  ttcc = 986.528229 
 hist_ttLF :  ttLF = 10133.648634 
 hist_tt :  ttLF = 14139.062527 
-hist_wjets2 :  WJets = 577.358303 
+hist_wjetsV2 :  WJets = 567.707276 
 hist_zjets :  ZJets = 46.227870 
-hist_zjets10to50 :  ZJets = -52.207472 
+hist_zjets10to50V2 :  ZJets = -25.063863 
 hist_tchannel :  Single t = 247.171926 
 hist_tbarchannel :  Single t = 155.863397 
 hist_tWchannel :  Single t = 503.939754 
@@ -618,9 +618,9 @@ hist_Top_Hct :  Hct = 962.165338
 hist_AntiTop_Hct :  Hct = 958.885283 
 hist_Top_Hut :  Hut = 804.811160 
 hist_AntiTop_Hut :  Hut = 799.852918 
-ntotal = 33322.463536 
+ntotal = 33339.956118 
 ndata = 33094 
-nsub = -228.463536 
+nsub = -245.956118 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S10', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S10', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S10', 'DataSingleMu'] 
@@ -664,9 +664,9 @@ hist_ttbj :  ttbj = 223.702317
 hist_ttcc :  ttcc = 81.309515 
 hist_ttLF :  ttLF = 315.873482 
 hist_tt :  ttLF = 285.118109 
-hist_wjets2 :  WJets = -19.708373 
+hist_wjetsV2 :  WJets = -17.884473 
 hist_zjets :  ZJets = -5.468029 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 0.000000 
 hist_tchannel :  Single t = 14.657747 
 hist_tbarchannel :  Single t = 6.540589 
 hist_tWchannel :  Single t = 24.911482 
@@ -678,9 +678,9 @@ hist_Top_Hct :  Hct = 90.294815
 hist_AntiTop_Hct :  Hct = 97.974936 
 hist_Top_Hut :  Hut = 38.271199 
 hist_AntiTop_Hut :  Hut = 37.983598 
-ntotal = 1553.187088 
+ntotal = 1555.010987 
 ndata = 1641 
-nsub = 87.812912 
+nsub = 85.989013 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S11', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S11', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S11', 'DataSingleMu'] 
@@ -724,9 +724,9 @@ hist_ttbj :  ttbj = 8542.072044
 hist_ttcc :  ttcc = 7616.489573 
 hist_ttLF :  ttLF = 123694.168108 
 hist_tt :  ttLF = 5455.926898 
-hist_wjets2 :  WJets = 21595.527745 
+hist_wjetsV2 :  WJets = 21562.334439 
 hist_zjets :  ZJets = 2600.439142 
-hist_zjets10to50 :  ZJets = 333.019206 
+hist_zjets10to50V2 :  ZJets = 356.063431 
 hist_tchannel :  Single t = 1072.930842 
 hist_tbarchannel :  Single t = 620.153695 
 hist_tWchannel :  Single t = 2824.460289 
@@ -738,9 +738,9 @@ hist_Top_Hct :  Hct = 982.650932
 hist_AntiTop_Hct :  Hct = 970.272229 
 hist_Top_Hut :  Hut = 999.551458 
 hist_AntiTop_Hut :  Hut = 1008.011733 
-ntotal = 182559.058028 
+ntotal = 182548.908947 
 ndata = 172811 
-nsub = -9748.058028 
+nsub = -9737.908947 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S12', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S12', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S12', 'DataSingleMu'] 
@@ -784,9 +784,9 @@ hist_ttbj :  ttbj = 1455.260977
 hist_ttcc :  ttcc = 554.248619 
 hist_ttLF :  ttLF = 4388.006335 
 hist_tt :  ttLF = 282.448912 
-hist_wjets2 :  WJets = 189.856775 
+hist_wjetsV2 :  WJets = 168.558218 
 hist_zjets :  ZJets = 0.215656 
-hist_zjets10to50 :  ZJets = -23.538198 
+hist_zjets10to50V2 :  ZJets = 0.084025 
 hist_tchannel :  Single t = 45.550608 
 hist_tbarchannel :  Single t = 29.655306 
 hist_tWchannel :  Single t = 120.312734 
@@ -798,9 +798,9 @@ hist_Top_Hct :  Hct = 200.448300
 hist_AntiTop_Hct :  Hct = 196.456722 
 hist_Top_Hut :  Hut = 181.088432 
 hist_AntiTop_Hut :  Hut = 182.809135 
-ntotal = 8446.064117 
+ntotal = 8448.387783 
 ndata = 7843 
-nsub = -603.064117 
+nsub = -605.387783 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S13', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S13', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S13', 'DataSingleMu'] 
@@ -844,9 +844,9 @@ hist_ttbj :  ttbj = 4821.774579
 hist_ttcc :  ttcc = 2963.845464 
 hist_ttLF :  ttLF = 44617.041307 
 hist_tt :  ttLF = 2411.531886 
-hist_wjets2 :  WJets = 984.855397 
+hist_wjetsV2 :  WJets = 945.243534 
 hist_zjets :  ZJets = 107.465039 
-hist_zjets10to50 :  ZJets = -26.576254 
+hist_zjets10to50V2 :  ZJets = 4.155479 
 hist_tchannel :  Single t = 372.109869 
 hist_tbarchannel :  Single t = 220.353785 
 hist_tWchannel :  Single t = 906.605627 
@@ -858,9 +858,9 @@ hist_Top_Hct :  Hct = 575.676271
 hist_AntiTop_Hct :  Hct = 569.880718 
 hist_Top_Hut :  Hut = 577.808679 
 hist_AntiTop_Hut :  Hut = 586.843124 
-ntotal = 61293.860056 
+ntotal = 61284.979925 
 ndata = 56637 
-nsub = -4656.860056 
+nsub = -4647.979925 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S14', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S14', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S14', 'DataSingleMu'] 
@@ -904,9 +904,9 @@ hist_ttbj :  ttbj = 1602.364329
 hist_ttcc :  ttcc = 613.524253 
 hist_ttLF :  ttLF = 4577.422984 
 hist_tt :  ttLF = 301.492189 
-hist_wjets2 :  WJets = 189.856775 
+hist_wjetsV2 :  WJets = 168.558218 
 hist_zjets :  ZJets = -2.918920 
-hist_zjets10to50 :  ZJets = -23.538198 
+hist_zjets10to50V2 :  ZJets = 0.084025 
 hist_tchannel :  Single t = 51.988589 
 hist_tbarchannel :  Single t = 31.765936 
 hist_tWchannel :  Single t = 132.668327 
@@ -918,9 +918,9 @@ hist_Top_Hct :  Hct = 234.322132
 hist_AntiTop_Hct :  Hct = 230.596974 
 hist_Top_Hut :  Hut = 202.261708 
 hist_AntiTop_Hut :  Hut = 204.146598 
-ntotal = 9328.271273 
+ntotal = 9330.594939 
 ndata = 8696 
-nsub = -632.271273 
+nsub = -634.594939 
 ['h', 'NBJetCSVv2M', 'Ch0', 'S15', 'DataSingleMu'] 
 ['h', 'NBJetCSVv2T', 'Ch0', 'S15', 'DataSingleMu'] 
 ['h', 'NCJetM', 'Ch0', 'S15', 'DataSingleMu'] 
@@ -964,9 +964,9 @@ hist_ttbj :  ttbj = 22260.962856
 hist_ttcc :  ttcc = 15167.036020 
 hist_ttLF :  ttLF = 441528.762810 
 hist_tt :  ttLF = 1028870.595203 
-hist_wjets2 :  WJets = 98207624.625695 
+hist_wjetsV2 :  WJets = 98213560.191728 
 hist_zjets :  ZJets = 7832299.087735 
-hist_zjets10to50 :  ZJets = 565062.459162 
+hist_zjets10to50V2 :  ZJets = 566130.094373 
 hist_tchannel :  Single t = 149514.881351 
 hist_tbarchannel :  Single t = 95006.397110 
 hist_tWchannel :  Single t = 88555.849481 
@@ -978,9 +978,9 @@ hist_Top_Hct :  Hct = 7481.572239
 hist_AntiTop_Hct :  Hct = 7505.134932 
 hist_Top_Hut :  Hut = 7573.705097 
 hist_AntiTop_Hut :  Hut = 7542.044767 
-ntotal = 108794792.467055 
+ntotal = 108801795.668299 
 ndata = 124280940 
-nsub = 15486147.532945 
+nsub = 15479144.331701 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S0', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S0', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S0', 'DataSingleEG'] 
@@ -1024,9 +1024,9 @@ hist_ttbj :  ttbj = 21043.867981
 hist_ttcc :  ttcc = 14540.660210 
 hist_ttLF :  ttLF = 408147.690123 
 hist_tt :  ttLF = 733745.506240 
-hist_wjets2 :  WJets = 1566686.743455 
+hist_wjetsV2 :  WJets = 1564120.082396 
 hist_zjets :  ZJets = 302147.026400 
-hist_zjets10to50 :  ZJets = 23158.636446 
+hist_zjets10to50V2 :  ZJets = 23553.359887 
 hist_tchannel :  Single t = 25347.925693 
 hist_tbarchannel :  Single t = 16324.348325 
 hist_tWchannel :  Single t = 43702.648323 
@@ -1038,9 +1038,9 @@ hist_Top_Hct :  Hct = 5775.191002
 hist_AntiTop_Hct :  Hct = 5799.234933 
 hist_Top_Hut :  Hut = 5907.297896 
 hist_AntiTop_Hut :  Hut = 5895.832113 
-ntotal = 3237290.130513 
+ntotal = 3235118.192895 
 ndata = 3805672 
-nsub = 568381.869487 
+nsub = 570553.807105 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S1', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S1', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S1', 'DataSingleEG'] 
@@ -1084,9 +1084,9 @@ hist_ttbj :  ttbj = 7082.968121
 hist_ttcc :  ttcc = 3622.377031 
 hist_ttLF :  ttLF = 93464.784611 
 hist_tt :  ttLF = 208458.864622 
-hist_wjets2 :  WJets = 14042.269608 
+hist_wjetsV2 :  WJets = 14134.823921 
 hist_zjets :  ZJets = 4471.839864 
-hist_zjets10to50 :  ZJets = 431.879647 
+hist_zjets10to50V2 :  ZJets = 344.411179 
 hist_tchannel :  Single t = 6266.954723 
 hist_tbarchannel :  Single t = 4052.266073 
 hist_tWchannel :  Single t = 6321.425179 
@@ -1098,9 +1098,9 @@ hist_Top_Hct :  Hct = 2167.278297
 hist_AntiTop_Hct :  Hct = 2172.727332 
 hist_Top_Hut :  Hut = 2166.017355 
 hist_AntiTop_Hut :  Hut = 2170.953068 
-ntotal = 358048.545653 
+ntotal = 358053.631498 
 ndata = 388747 
-nsub = 30698.454347 
+nsub = 30693.368502 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S2', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S2', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S2', 'DataSingleEG'] 
@@ -1144,9 +1144,9 @@ hist_ttbj :  ttbj = 2177.122879
 hist_ttcc :  ttcc = 650.566572 
 hist_ttLF :  ttLF = 7126.368415 
 hist_tt :  ttLF = 13196.790029 
-hist_wjets2 :  WJets = 468.938891 
+hist_wjetsV2 :  WJets = 494.260640 
 hist_zjets :  ZJets = 194.900472 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 19.637087 
 hist_tchannel :  Single t = 267.991947 
 hist_tbarchannel :  Single t = 179.299454 
 hist_tWchannel :  Single t = 451.386807 
@@ -1158,9 +1158,9 @@ hist_Top_Hct :  Hct = 779.741632
 hist_AntiTop_Hct :  Hct = 783.196588 
 hist_Top_Hut :  Hut = 649.444640 
 hist_AntiTop_Hut :  Hut = 654.806712 
-ntotal = 26828.480546 
+ntotal = 26873.439381 
 ndata = 27212 
-nsub = 383.519454 
+nsub = 338.560619 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S3', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S3', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S3', 'DataSingleEG'] 
@@ -1204,9 +1204,9 @@ hist_ttbj :  ttbj = 9260.091000
 hist_ttcc :  ttcc = 4272.943602 
 hist_ttLF :  ttLF = 100591.153027 
 hist_tt :  ttLF = 221655.654651 
-hist_wjets2 :  WJets = 14511.208499 
+hist_wjetsV2 :  WJets = 14629.084561 
 hist_zjets :  ZJets = 4666.740335 
-hist_zjets10to50 :  ZJets = 431.879647 
+hist_zjets10to50V2 :  ZJets = 364.048266 
 hist_tchannel :  Single t = 6534.946670 
 hist_tbarchannel :  Single t = 4231.565527 
 hist_tWchannel :  Single t = 6772.811986 
@@ -1218,9 +1218,9 @@ hist_Top_Hct :  Hct = 2947.019928
 hist_AntiTop_Hct :  Hct = 2955.923920 
 hist_Top_Hut :  Hut = 2815.461995 
 hist_AntiTop_Hut :  Hut = 2825.759780 
-ntotal = 384877.026199 
+ntotal = 384927.070879 
 ndata = 415959 
-nsub = 31081.973801 
+nsub = 31031.929121 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S4', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S4', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S4', 'DataSingleEG'] 
@@ -1264,9 +1264,9 @@ hist_ttbj :  ttbj = 2336.809732
 hist_ttcc :  ttcc = 707.970896 
 hist_ttLF :  ttLF = 7343.211075 
 hist_tt :  ttLF = 13397.405719 
-hist_wjets2 :  WJets = 478.682435 
+hist_wjetsV2 :  WJets = 503.102473 
 hist_zjets :  ZJets = 198.169299 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 19.637087 
 hist_tchannel :  Single t = 277.934287 
 hist_tbarchannel :  Single t = 184.268642 
 hist_tWchannel :  Single t = 467.300318 
@@ -1278,9 +1278,9 @@ hist_Top_Hct :  Hct = 844.787693
 hist_AntiTop_Hct :  Hct = 854.484570 
 hist_Top_Hut :  Hut = 675.840620 
 hist_AntiTop_Hut :  Hut = 683.497616 
-ntotal = 27965.599253 
+ntotal = 28009.656378 
 ndata = 28503 
-nsub = 537.400747 
+nsub = 493.343622 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S5', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S5', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S5', 'DataSingleEG'] 
@@ -1324,9 +1324,9 @@ hist_ttbj :  ttbj = 17893.715852
 hist_ttcc :  ttcc = 12802.335928 
 hist_ttLF :  ttLF = 330631.820576 
 hist_tt :  ttLF = 337044.488930 
-hist_wjets2 :  WJets = 332661.550266 
+hist_wjetsV2 :  WJets = 331980.085816 
 hist_zjets :  ZJets = 72062.947706 
-hist_zjets10to50 :  ZJets = 5422.802005 
+hist_zjets10to50V2 :  ZJets = 4958.646547 
 hist_tchannel :  Single t = 7977.160220 
 hist_tbarchannel :  Single t = 4933.310826 
 hist_tWchannel :  Single t = 18823.291293 
@@ -1338,9 +1338,9 @@ hist_Top_Hct :  Hct = 3608.299147
 hist_AntiTop_Hct :  Hct = 3621.155082 
 hist_Top_Hut :  Hut = 3733.188308 
 hist_AntiTop_Hut :  Hut = 3707.662875 
-ntotal = 1174666.039340 
+ntotal = 1173520.419431 
 ndata = 1309690 
-nsub = 135023.960660 
+nsub = 136169.580569 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S6', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S6', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S6', 'DataSingleEG'] 
@@ -1384,9 +1384,9 @@ hist_ttbj :  ttbj = 6398.746576
 hist_ttcc :  ttcc = 3414.230558 
 hist_ttLF :  ttLF = 84430.859209 
 hist_tt :  ttLF = 116068.985796 
-hist_wjets2 :  WJets = 5202.525130 
+hist_wjetsV2 :  WJets = 5256.674986 
 hist_zjets :  ZJets = 1747.629023 
-hist_zjets10to50 :  ZJets = 212.868305 
+hist_zjets10to50V2 :  ZJets = 85.190141 
 hist_tchannel :  Single t = 2163.329974 
 hist_tbarchannel :  Single t = 1346.911318 
 hist_tWchannel :  Single t = 3860.959896 
@@ -1398,9 +1398,9 @@ hist_Top_Hct :  Hct = 1401.543017
 hist_AntiTop_Hct :  Hct = 1406.281601 
 hist_Top_Hut :  Hut = 1431.227365 
 hist_AntiTop_Hut :  Hut = 1432.847700 
-ntotal = 231608.320606 
+ntotal = 231534.792298 
 ndata = 236467 
-nsub = 4858.679394 
+nsub = 4932.207702 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S7', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S7', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S7', 'DataSingleEG'] 
@@ -1444,9 +1444,9 @@ hist_ttbj :  ttbj = 2113.780124
 hist_ttcc :  ttcc = 638.240238 
 hist_ttLF :  ttLF = 6840.234537 
 hist_tt :  ttLF = 9414.940541 
-hist_wjets2 :  WJets = 285.341902 
+hist_wjetsV2 :  WJets = 343.924475 
 hist_zjets :  ZJets = 118.077479 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 13.858162 
 hist_tchannel :  Single t = 162.049553 
 hist_tbarchannel :  Single t = 102.575415 
 hist_tWchannel :  Single t = 364.738239 
@@ -1458,9 +1458,9 @@ hist_Top_Hct :  Hct = 598.160401
 hist_AntiTop_Hct :  Hct = 608.948418 
 hist_Top_Hut :  Hut = 526.777998 
 hist_AntiTop_Hut :  Hut = 528.462947 
-ntotal = 22027.234408 
+ntotal = 22099.675143 
 ndata = 21668 
-nsub = -359.234408 
+nsub = -431.675143 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S8', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S8', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S8', 'DataSingleEG'] 
@@ -1504,9 +1504,9 @@ hist_ttbj :  ttbj = 153.894087
 hist_ttcc :  ttcc = 54.740413 
 hist_ttLF :  ttLF = 207.245105 
 hist_tt :  ttLF = 197.595826 
-hist_wjets2 :  WJets = 9.743543 
+hist_wjetsV2 :  WJets = 8.841833 
 hist_zjets :  ZJets = 3.268827 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 0.000000 
 hist_tchannel :  Single t = 9.619110 
 hist_tbarchannel :  Single t = 4.879578 
 hist_tWchannel :  Single t = 15.337060 
@@ -1518,9 +1518,9 @@ hist_Top_Hct :  Hct = 62.544783
 hist_AntiTop_Hct :  Hct = 69.100329 
 hist_Top_Hut :  Hut = 24.528776 
 hist_AntiTop_Hut :  Hut = 27.240734 
-ntotal = 1086.526321 
+ntotal = 1085.624611 
 ndata = 1236 
-nsub = 149.473679 
+nsub = 150.375389 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S9', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S9', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S9', 'DataSingleEG'] 
@@ -1564,9 +1564,9 @@ hist_ttbj :  ttbj = 2273.466977
 hist_ttcc :  ttcc = 695.644563 
 hist_ttLF :  ttLF = 7057.077197 
 hist_tt :  ttLF = 9615.556231 
-hist_wjets2 :  WJets = 295.085446 
+hist_wjetsV2 :  WJets = 352.766308 
 hist_zjets :  ZJets = 121.346306 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 13.858162 
 hist_tchannel :  Single t = 171.991893 
 hist_tbarchannel :  Single t = 107.544603 
 hist_tWchannel :  Single t = 380.651750 
@@ -1578,9 +1578,9 @@ hist_Top_Hct :  Hct = 663.206463
 hist_AntiTop_Hct :  Hct = 680.236400 
 hist_Top_Hut :  Hut = 553.173978 
 hist_AntiTop_Hut :  Hut = 557.153851 
-ntotal = 23164.353115 
+ntotal = 23235.892140 
 ndata = 22959 
-nsub = -205.353115 
+nsub = -276.892140 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S10', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S10', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S10', 'DataSingleEG'] 
@@ -1624,9 +1624,9 @@ hist_ttbj :  ttbj = 159.686853
 hist_ttcc :  ttcc = 57.404324 
 hist_ttLF :  ttLF = 216.842660 
 hist_tt :  ttLF = 200.615690 
-hist_wjets2 :  WJets = 9.743543 
+hist_wjetsV2 :  WJets = 8.841833 
 hist_zjets :  ZJets = 3.268827 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 0.000000 
 hist_tchannel :  Single t = 9.942340 
 hist_tbarchannel :  Single t = 4.969188 
 hist_tWchannel :  Single t = 15.913511 
@@ -1638,9 +1638,9 @@ hist_Top_Hct :  Hct = 65.046062
 hist_AntiTop_Hct :  Hct = 71.287983 
 hist_Top_Hut :  Hut = 26.395980 
 hist_AntiTop_Hut :  Hut = 28.690904 
-ntotal = 1137.118707 
+ntotal = 1136.216997 
 ndata = 1291 
-nsub = 153.881293 
+nsub = 154.783003 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S11', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S11', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S11', 'DataSingleEG'] 
@@ -1684,9 +1684,9 @@ hist_ttbj :  ttbj = 6132.176034
 hist_ttcc :  ttcc = 5438.950881 
 hist_ttLF :  ttLF = 88376.171084 
 hist_tt :  ttLF = 3833.929188 
-hist_wjets2 :  WJets = 17221.558120 
+hist_wjetsV2 :  WJets = 17040.324341 
 hist_zjets :  ZJets = 3388.444831 
-hist_zjets10to50 :  ZJets = -33.034536 
+hist_zjets10to50V2 :  ZJets = 31.827256 
 hist_tchannel :  Single t = 758.212775 
 hist_tbarchannel :  Single t = 447.067435 
 hist_tWchannel :  Single t = 2132.831225 
@@ -1698,9 +1698,9 @@ hist_Top_Hct :  Hct = 692.160462
 hist_AntiTop_Hct :  Hct = 693.217163 
 hist_Top_Hut :  Hut = 736.620070 
 hist_AntiTop_Hut :  Hut = 712.180692 
-ntotal = 133658.058542 
+ntotal = 133541.686556 
 ndata = 131568 
-nsub = -2090.058542 
+nsub = -1973.686556 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S12', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S12', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S12', 'DataSingleEG'] 
@@ -1744,9 +1744,9 @@ hist_ttbj :  ttbj = 1039.831653
 hist_ttcc :  ttcc = 393.043551 
 hist_ttLF :  ttLF = 3107.647465 
 hist_tt :  ttLF = 201.352699 
-hist_wjets2 :  WJets = 108.206733 
+hist_wjetsV2 :  WJets = 114.393870 
 hist_zjets :  ZJets = 3.317675 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 6.040123 
 hist_tchannel :  Single t = 34.197489 
 hist_tbarchannel :  Single t = 19.232991 
 hist_tWchannel :  Single t = 91.811989 
@@ -1758,9 +1758,9 @@ hist_Top_Hct :  Hct = 137.161075
 hist_AntiTop_Hct :  Hct = 141.234721 
 hist_Top_Hut :  Hut = 129.682874 
 hist_AntiTop_Hut :  Hut = 129.724231 
-ntotal = 6000.790333 
+ntotal = 6013.017594 
 ndata = 5533 
-nsub = -467.790333 
+nsub = -480.017594 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S13', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S13', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S13', 'DataSingleEG'] 
@@ -1804,9 +1804,9 @@ hist_ttbj :  ttbj = 3427.213015
 hist_ttcc :  ttcc = 2100.789172 
 hist_ttLF :  ttLF = 31741.777307 
 hist_tt :  ttLF = 1667.264264 
-hist_wjets2 :  WJets = 611.777120 
+hist_wjetsV2 :  WJets = 693.784013 
 hist_zjets :  ZJets = 98.644534 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 6.040123 
 hist_tchannel :  Single t = 262.729497 
 hist_tbarchannel :  Single t = 160.003938 
 hist_tWchannel :  Single t = 674.590724 
@@ -1818,9 +1818,9 @@ hist_Top_Hct :  Hct = 410.880370
 hist_AntiTop_Hct :  Hct = 413.178941 
 hist_Top_Hut :  Hut = 413.814642 
 hist_AntiTop_Hut :  Hut = 408.927133 
-ntotal = 43543.628588 
+ntotal = 43631.675604 
 ndata = 40672 
-nsub = -2871.628588 
+nsub = -2959.675604 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S14', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S14', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S14', 'DataSingleEG'] 
@@ -1864,9 +1864,9 @@ hist_ttbj :  ttbj = 1147.923045
 hist_ttcc :  ttcc = 437.376440 
 hist_ttLF :  ttLF = 3235.118733 
 hist_tt :  ttLF = 214.318112 
-hist_wjets2 :  WJets = 108.206733 
+hist_wjetsV2 :  WJets = 114.393870 
 hist_zjets :  ZJets = 6.697265 
-hist_zjets10to50 :  ZJets = 0.000000 
+hist_zjets10to50V2 :  ZJets = 6.040123 
 hist_tchannel :  Single t = 38.601493 
 hist_tbarchannel :  Single t = 21.707019 
 hist_tWchannel :  Single t = 98.417866 
@@ -1878,9 +1878,9 @@ hist_Top_Hct :  Hct = 160.068752
 hist_AntiTop_Hct :  Hct = 166.985741 
 hist_Top_Hut :  Hut = 143.651354 
 hist_AntiTop_Hut :  Hut = 144.494757 
-ntotal = 6639.219925 
+ntotal = 6651.447185 
 ndata = 6205 
-nsub = -434.219925 
+nsub = -446.447185 
 ['h', 'NBJetCSVv2M', 'Ch1', 'S15', 'DataSingleEG'] 
 ['h', 'NBJetCSVv2T', 'Ch1', 'S15', 'DataSingleEG'] 
 ['h', 'NCJetM', 'Ch1', 'S15', 'DataSingleEG'] 

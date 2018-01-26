@@ -115,25 +115,24 @@ Expected 97.5%: r < 0.2572
 [full, no lepWdeta]
 Hct29
 bdt
-Observed Limit: r < 0.1090
-Expected  2.5%: r < 0.0532
-Expected 16.0%: r < 0.0709
-Expected 50.0%: r < 0.0986
-Expected 84.0%: r < 0.1376
-Expected 97.5%: r < 0.1839
+Observed Limit: r < 0.1223
+Expected  2.5%: r < 0.0526
+Expected 16.0%: r < 0.0702
+Expected 50.0%: r < 0.0977
+Expected 84.0%: r < 0.1362
+Expected 97.5%: r < 0.1820
 
 keras
-Observed Limit: r < 0.0817
-Expected  2.5%: r < 0.0740
-Expected 16.0%: r < 0.0983
+Observed Limit: r < 0.0777
+Expected  2.5%: r < 0.0734
+Expected 16.0%: r < 0.0980
 Expected 50.0%: r < 0.1362
-Expected 84.0%: r < 0.1900
-Expected 97.5%: r < 0.2522
-
+Expected 84.0%: r < 0.1894
+Expected 97.5%: r < 0.2518
 
 Hut29
 bdt
-Observed Limit: r < 0.1228
+Observed Limit: r < 0.1103
 Expected  2.5%: r < 0.0603
 Expected 16.0%: r < 0.0804
 Expected 50.0%: r < 0.1118
@@ -141,37 +140,35 @@ Expected 84.0%: r < 0.1559
 Expected 97.5%: r < 0.2084
 
 keras
-Observed Limit: r < 0.1733
-Expected  2.5%: r < 0.0790
+Observed Limit: r < 0.1496
+Expected  2.5%: r < 0.0787
 Expected 16.0%: r < 0.1050
-Expected 50.0%: r < 0.1455
-Expected 84.0%: r < 0.2029
+Expected 50.0%: r < 0.1460
+Expected 84.0%: r < 0.2024
 Expected 97.5%: r < 0.2694
-
 
 
 [matched, no lepWdeta]
 Hct30
 bdt
-Observed Limit: r < 0.0843
-Expected  2.5%: r < 0.0640
-Expected 16.0%: r < 0.0853
-Expected 50.0%: r < 0.1187
-Expected 84.0%: r < 0.1650
-Expected 97.5%: r < 0.2193
+Observed Limit: r < 0.0597
+Expected  2.5%: r < 0.0536
+Expected 16.0%: r < 0.0717
+Expected 50.0%: r < 0.1001
+Expected 84.0%: r < 0.1400
+Expected 97.5%: r < 0.1869
 
 keras
-Observed Limit: r < 0.0843
+Observed Limit: r < 0.0791
 Expected  2.5%: r < 0.0640
 Expected 16.0%: r < 0.0853
 Expected 50.0%: r < 0.1187
-Expected 84.0%: r < 0.1650
-Expected 97.5%: r < 0.2193
-
+Expected 84.0%: r < 0.1655
+Expected 97.5%: r < 0.2196
 
 Hut30
 bdt
-Observed Limit: r < 0.0757
+Observed Limit: r < 0.0726
 Expected  2.5%: r < 0.0630
 Expected 16.0%: r < 0.0843
 Expected 50.0%: r < 0.1177
@@ -179,10 +176,9 @@ Expected 84.0%: r < 0.1641
 Expected 97.5%: r < 0.2194
 
 keras
-Observed Limit: r < 0.1024
-Expected  2.5%: r < 0.0753
-Expected 16.0%: r < 0.1004
+Observed Limit: r < 0.0890
+Expected  2.5%: r < 0.0758
+Expected 16.0%: r < 0.1008
 Expected 50.0%: r < 0.1396
-Expected 84.0%: r < 0.1942
-Expected 97.5%: r < 0.2581
-
+Expected 84.0%: r < 0.1948
+Expected 97.5%: r < 0.2585

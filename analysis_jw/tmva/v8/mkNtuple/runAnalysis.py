@@ -15,7 +15,7 @@ def runAna(dir, file, name):
   chain = TChain("ttbbLepJets/tree","events")
   chain.Add(dir+"/"+file)
   chain.Process("makeTuple.C+",name)
-  
+
   f = TFile("tmva_"+name+".root","update")
   tr = f.Get("tmva_tree")
   totalnevt = np.zeros(1, dtype=float)

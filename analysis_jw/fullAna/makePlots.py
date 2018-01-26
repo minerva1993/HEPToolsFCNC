@@ -104,9 +104,10 @@ AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.3)
 AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 365.3)
 AddBkg("hist_tt.root","ttLF",ROOT.kRed, 365.3)
 #AddBkg("hist_wjets.root","WJets",ROOT.kYellow,61524)
-AddBkg("hist_wjets2.root","WJets",ROOT.kYellow,61526.7)
+AddBkg("hist_wjetsV2.root","WJets",ROOT.kYellow,61526.7)
 AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 6025.2)
-AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
+#AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
+AddBkg("hist_zjets10to50V2.root","ZJets",ROOT.kBlue, 18610.0)
 AddBkg("hist_tchannel.root","Single t",6, 136.02)#44.33 = 136.02*(0.1086*3)
 AddBkg("hist_tbarchannel.root","Single t",6, 80.95)#26.38 = 80.95*(0.1086*3)
 AddBkg("hist_tWchannel.root","Single t",6, 35.85)#35.85?, 
@@ -197,8 +198,8 @@ for i in range(0, N_hist):
     #else: 
     scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
 
-    #print fname
-    #print scale
+    print fname
+    print scale
     h_tmp.Scale(scale)
 
     if bkgsamples[fname]["name"] is not "QCD" and QCDestimate: 

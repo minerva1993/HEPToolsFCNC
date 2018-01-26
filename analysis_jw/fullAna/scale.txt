@@ -8,12 +8,12 @@ hist_ttLF
 0.0911727864721
 hist_tt
 0.0911727864721
-hist_wjets
-13.7154173117
+hist_wjetsV2
+12.4461324996
 hist_zjets
 2.65956499509
-hist_zjets10to50
-22.7492060763
+hist_zjets10to50V2
+6.69636342062
 hist_tchannel
 0.0732767154777
 hist_tbarchannel
