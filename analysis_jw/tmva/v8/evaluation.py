@@ -23,12 +23,12 @@ TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
 reader = TMVA.Reader("Color:!Silent")
 
-#ch = 'Hct29'
-ch = 'Hut28'
+ch = 'Hct30'
+#ch = 'Hut30'
 keras = True
 
 # Load data
-data = TFile.Open('/home/minerva1993/tmva/v8/input/'+tuples)
+data = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/v8/mkNtuple/'+tuples)
 data_tree = data.Get('tmva_tree')
 
 target = TFile('output_'+ch+'_'+tuples,'RECREATE')
@@ -50,6 +50,7 @@ for branch in data_tree.GetListOfBranches():
   #"DRlepTpt", "DRlepTeta", "DRlepTdeta","DRlepTdphi","DRlepTm",
   #"DRjet0cvsl", "DRjet1cvsl","DRjet2cvsl","DRjet3cvsl",
   #"DRjet0cvsb", "DRjet1cvsb", "DRjet2cvsb", "DRjet3cvsb", 
+  "DRlepWdeta"
   ]:
       branches[branchName] = array('f', [-999])
       reader.AddVariable(branchName, branches[branchName])
@@ -60,8 +61,8 @@ for branch in data_tree.GetListOfBranches():
     reader.AddSpectator(branchName, branches[branchName])
 
 if keras:
-  reader.BookMVA('PyKeras', TString('/home/minerva1993/tmva/v8/keras_'+ch+'/weights/TMVAClassification_Keras_TF.weights.xml'))
-reader.BookMVA('BDT', TString('/home/minerva1993/tmva/v8/keras_'+ch+'/weights/TMVAClassification_BDT.weights.xml'))
+  reader.BookMVA('PyKeras', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v8/keras_'+ch+'/weights/TMVAClassification_Keras_TF.weights.xml'))
+reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_jw/tmva/v8/keras_'+ch+'/weights/TMVAClassification_BDT.weights.xml'))
 
 print "processing "+tuples
 totalevt = data_tree.GetEntries()
@@ -96,7 +97,7 @@ for i in xrange(totalevt-1):
     genMatch[0] = data_tree.GenMatch
   else:
     if nevt == i:
-      if tuples in ["tmva_wjets.root", "tmva_zjets10to50.root", "tmva_zjets.root"]:
+      if tuples in ["tmva_wjets.root", "tmva_zjets10to50.root", "tmva_zjets.root", "tmva_wjetsV2.root","tmva_zjets10to50V2.root","tmva_ww.root", "tmva_wz.root", "tmva_zz.root"]:
         if keras:
           score1[0] = reader.EvaluateMVA('PyKeras')
         score2[0] = reader.EvaluateMVA('BDT')
