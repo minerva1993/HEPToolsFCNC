@@ -5,8 +5,8 @@ import os
 tmva_version = 'v8'
 keras = True
 
-#ch = 'Hct30'
-ch = 'Hut30'
+ch = 'Hct30'
+#ch = 'Hut30'
 
 gen = True
 
@@ -128,7 +128,7 @@ l.AddEntry(bdt_ttbj, 'ttbj', 'F')
 l.AddEntry(bdt_ttcc, 'ttcc', 'F')
 l.AddEntry(bdt_ttLF, 'ttLF', 'F')
 l.AddEntry(bdt_singletop, 'ST', 'F')
-l.AddEntry(bdt_others, 'V+j', 'F')
+l.AddEntry(bdt_others, 'Others', 'F')
 if not gen:
   l.AddEntry(0, "", "")
 l.AddEntry(bdt_sig, "Sig", "F")
