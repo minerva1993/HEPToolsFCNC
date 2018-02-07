@@ -5,8 +5,8 @@
 // found on file: /xrootd/store/user/brochero/v8-0-4/Tree_LepJets_NewCSVSF_v8-0-4_Spring16-80X_36814pb-1_ttbar_PowhegPythia.root
 //////////////////////////////////////////////////////////
 
-#ifndef selection_h
-#define selection_h
+#ifndef makeTuple_h
+#define makeTuple_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -23,7 +23,7 @@
 
 #include <iostream>
 
-class selection : public TSelector {
+class makeTuple : public TSelector {
 public :
    TTreeReader     fReader;  //!the tree reader
    TTree          *fChain = 0;   //!pointer to the analyzed TTree or TChain
@@ -61,6 +61,7 @@ public :
    TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
    TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    //TTreeReaderValue<Int_t> jet_number = {fReader, "jet_number"};
+
    TTreeReaderArray<int> jet_partonFlavour = {fReader, "jet_partonFlavour"};
    TTreeReaderArray<int> jet_hadronFlavour = {fReader, "jet_hadronFlavour"};
    TTreeReaderArray<float> jet_JES_Up = {fReader, "jet_JES_Up"};
@@ -68,6 +69,7 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
+/*
    TTreeReaderValue<Float_t> kin_chi2 = {fReader, "kin_chi2"};
    TTreeReaderValue<Float_t> kinnu_pT = {fReader, "kinnu_pT"};
    TTreeReaderValue<Float_t> kinnu_eta = {fReader, "kinnu_eta"};
@@ -88,6 +90,35 @@ public :
    TTreeReaderArray<float> fcnhkinjet_phi = {fReader, "fcnhkinjet_phi"};
    TTreeReaderArray<float> fcnhkinjet_E = {fReader, "fcnhkinjet_E"};
    TTreeReaderArray<int> fcnhkinjet_index = {fReader, "fcnhkinjet_index"};
+*/
+   TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
+   TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
+   TTreeReaderArray<int> jet_MatchedGenJetIndex = {fReader, "jet_MatchedGenJetIndex"};
+   TTreeReaderArray<int> genconecatid = {fReader, "genconecatid"};
+   TTreeReaderArray<float> gencone_gjet_pT = {fReader, "gencone_gjet_pT"};
+   TTreeReaderArray<float> gencone_gjet_eta = {fReader, "gencone_gjet_eta"};
+   TTreeReaderArray<float> gencone_gjet_phi = {fReader, "gencone_gjet_phi"};
+   TTreeReaderArray<float> gencone_gjet_E = {fReader, "gencone_gjet_E"};
+   TTreeReaderArray<int> gencone_gjetIndex = {fReader, "gencone_gjetIndex"};
+   TTreeReaderArray<int> gencone_gJetFlavW = {fReader, "gencone_gJetFlavW"};
+   TTreeReaderValue<Int_t> b_GenCone_NgJetsW = {fReader, "gencone_NgjetsW"};
+   TTreeReaderValue<Float_t> DRAddJets = {fReader, "draddjets"};
+   TTreeReaderValue<Int_t> genhiggscatid = {fReader, "genhiggscatid"};
+   TTreeReaderValue<Int_t> genchannel = {fReader, "genchannel"};
+   TTreeReaderValue<Float_t> genlepton_pT = {fReader, "genlepton_pT"};
+   TTreeReaderValue<Float_t> genlepton_eta = {fReader, "genlepton_eta"};
+   TTreeReaderValue<Float_t> genlepton_phi = {fReader, "genlepton_phi"};
+   TTreeReaderValue<Float_t> genlepton_E = {fReader, "genlepton_E"};
+   TTreeReaderValue<Float_t> gennu_pT = {fReader, "gennu_pT"};
+   TTreeReaderValue<Float_t> gennu_eta = {fReader, "gennu_eta"};
+   TTreeReaderValue<Float_t> gennu_phi = {fReader, "gennu_phi"};
+   TTreeReaderValue<Float_t> gennu_E = {fReader, "gennu_E"};
+   TTreeReaderArray<float> genjet_pT = {fReader, "genjet_pT"};
+   TTreeReaderArray<float> genjet_eta = {fReader, "genjet_eta"};
+   TTreeReaderArray<float> genjet_phi = {fReader, "genjet_phi"};
+   TTreeReaderArray<float> genjet_E = {fReader, "genjet_E"};
+   TTreeReaderArray<int> genjet_mom = {fReader, "genjet_mom"};
+   TTreeReaderArray<int> genjet_gencone_mom = {fReader, "genjet_gencone_mom"};
    TTreeReaderValue<Float_t> addHbjet1_pt = {fReader, "addHbjet1_pt"};
    TTreeReaderValue<Float_t> addHbjet1_eta = {fReader, "addHbjet1_eta"};
    TTreeReaderValue<Float_t> addHbjet1_phi = {fReader, "addHbjet1_phi"};
@@ -97,38 +128,9 @@ public :
    TTreeReaderValue<Float_t> addHbjet2_phi = {fReader, "addHbjet2_phi"};
    TTreeReaderValue<Float_t> addHbjet2_e = {fReader, "addHbjet2_e"};
    TTreeReaderValue<Float_t> dRHbb = {fReader, "dRHbb"};
-   //TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
-   //TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
-   //TTreeReaderArray<int> jet_MatchedGenJetIndex = {fReader, "jet_MatchedGenJetIndex"};
-   //TTreeReaderArray<int> genconecatid = {fReader, "genconecatid"};
-   //TTreeReaderArray<float> gencone_gjet_pT = {fReader, "gencone_gjet_pT"};
-   //TTreeReaderArray<float> gencone_gjet_eta = {fReader, "gencone_gjet_eta"};
-   //TTreeReaderArray<float> gencone_gjet_phi = {fReader, "gencone_gjet_phi"};
-   //TTreeReaderArray<float> gencone_gjet_E = {fReader, "gencone_gjet_E"};
-   //TTreeReaderArray<int> gencone_gjetIndex = {fReader, "gencone_gjetIndex"};
-   //TTreeReaderArray<int> gencone_gJetFlavW = {fReader, "gencone_gJetFlavW"};
-   //TTreeReaderValue<Int_t> b_GenCone_NgJetsW = {fReader, "gencone_NgjetsW"};
-   //TTreeReaderValue<Float_t> DRAddJets = {fReader, "draddjets"};
-   //TTreeReaderValue<Int_t> genhiggscatid = {fReader, "genhiggscatid"};
-   //TTreeReaderValue<Int_t> genchannel = {fReader, "genchannel"};
-   //TTreeReaderValue<Float_t> genlepton_pT = {fReader, "genlepton_pT"};
-   //TTreeReaderValue<Float_t> genlepton_eta = {fReader, "genlepton_eta"};
-   //TTreeReaderValue<Float_t> genlepton_phi = {fReader, "genlepton_phi"};
-   //TTreeReaderValue<Float_t> genlepton_E = {fReader, "genlepton_E"};
-   //TTreeReaderValue<Float_t> gennu_pT = {fReader, "gennu_pT"};
-   //TTreeReaderValue<Float_t> gennu_eta = {fReader, "gennu_eta"};
-   //TTreeReaderValue<Float_t> gennu_phi = {fReader, "gennu_phi"};
-   //TTreeReaderValue<Float_t> gennu_E = {fReader, "gennu_E"};
-   //TTreeReaderArray<float> genjet_pT = {fReader, "genjet_pT"};
-   //TTreeReaderArray<float> genjet_eta = {fReader, "genjet_eta"};
-   //TTreeReaderArray<float> genjet_phi = {fReader, "genjet_phi"};
-   //TTreeReaderArray<float> genjet_E = {fReader, "genjet_E"};
-   //TTreeReaderArray<int> genjet_mom = {fReader, "genjet_mom"};
-   //TTreeReaderArray<int> genjet_gencone_mom = {fReader, "genjet_gencone_mom"};
 
-
-   selection(TTree * /*tree*/ =0) { }
-   virtual ~selection() { }
+   makeTuple(TTree * /*tree*/ =0) { }
+   virtual ~makeTuple() { }
    virtual Int_t   Version() const { return 2; }
    virtual void    Begin(TTree *tree);
    virtual void    SlaveBegin(TTree *tree);
@@ -142,18 +144,123 @@ public :
    virtual TList  *GetOutputList() const { return fOutput; }
    virtual void    SlaveTerminate();
    virtual void    Terminate();
-   double transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
+   double transverseMass(const TLorentzVector & l, const TLorentzVector & nu);
+   //int totalevt = fChain->GetTree()->GetEntries();
 
-   ClassDef(selection,0);
+    TTree *sigTree = 0;
+    TTree *bkgTree = 0;
 
-    TH1D *h_muPt[2][4];
-    TH1D *h_elPt[2][4];
+    int nevt = 0;
+
+    //objects for ntuple
+    int b_nevt = 0;
+    int b_file = -1;
+    int b_GoodPV = 0;
+    int b_EventCategory = -1;
+    float b_EventWeight = 1.0;
+    int b_genMatch = -1;
+
+    int b_njets = 0;
+    int b_nbjets_m = 0;
+    float b_met = 0;
+    float b_met_phi = -10;
+    float b_lepdphi = 0;
+    float b_transversem = 0;
+
+    float b_lepWpt = 0;
+    float b_lepWeta = 10;
+    float b_lepWphi = 10;
+    float b_lepWdphi = 10;
+    float b_lepWm = 0;
+
+    float b_jet0pt = 0;
+    float b_jet0eta = 10;
+    float b_jet0phi = 10;
+    float b_jet0m = 0;
+    float b_jet0csv = 5;
+    float b_jet0cvsl = 5;
+    float b_jet0cvsb = 5;
+
+    float b_jet1pt = 0;
+    float b_jet1eta = 10;
+    float b_jet1phi = 10;
+    float b_jet1m = 0;
+    float b_jet1csv = 5;
+    float b_jet1cvsl = 5;
+    float b_jet1cvsb = 5;
+
+    float b_jet2pt = 0;
+    float b_jet2eta = 10;
+    float b_jet2phi = 10;
+    float b_jet2m = 0;
+    float b_jet2csv = 5;
+    float b_jet2cvsl = 5;
+    float b_jet2cvsb = 5;
+
+    float b_jet3pt = 0;
+    float b_jet3eta = 10;
+    float b_jet3phi = 10;
+    float b_jet3m = 0;
+    float b_jet3csv = 5;
+    float b_jet3cvsl = 5;
+    float b_jet3cvsb = 5;
+
+    float b_jet12pt = 0;
+    float b_jet12eta = 10;
+    float b_jet12deta = 10;
+    float b_jet12phi = 10;
+    float b_jet12dphi = 10;
+    float b_jet12m = 0;
+    float b_jet12dR = 0;
+    float b_jet12DR = 0;
+
+    float b_jet23pt = 0;
+    float b_jet23eta = 10;
+    float b_jet23deta = 10;
+    float b_jet23phi = 10;
+    float b_jet23dphi = 10;
+    float b_jet23dR = 0;
+    float b_jet23m = 0;
+
+    float b_jet31pt = 0;
+    float b_jet31eta = 10;
+    float b_jet31deta = 10;
+    float b_jet31phi = 10;
+    float b_jet31dphi = 10;
+    float b_jet31dR = 0;
+    float b_jet31m = 0;
+
+    float b_lepTpt = 0;
+    float b_lepTeta = 10;
+    float b_lepTdeta = 10;
+    float b_lepTphi = 10;
+    float b_lepTdphi = 10;
+    float b_lepTdR = 0;
+    float b_lepTm = 0;
+
+    float b_hadTpt = 0;
+    float b_hadTeta = 10;
+    float b_hadT12_3deta = 10;
+    float b_hadT23_1deta = 10;
+    float b_hadT31_2deta = 10;
+    float b_hadTphi = 10;
+    float b_hadT12_3dphi = 10;
+    float b_hadT23_1dphi = 10;
+    float b_hadT31_2dphi = 10;
+    float b_hadT12_3dR = 0;
+    float b_hadT23_1dR = 0;
+    float b_hadT31_2dR = 0;
+    float b_hadTm = 0;
+
+
+   ClassDef(makeTuple,0);
+
 };
 
 #endif
 
-#ifdef selection_cxx
-void selection::Init(TTree *tree)
+#ifdef makeTuple_cxx
+void makeTuple::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the reader is initialized.
@@ -166,7 +273,7 @@ void selection::Init(TTree *tree)
 
 }
 
-Bool_t selection::Notify()
+Bool_t makeTuple::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -178,4 +285,4 @@ Bool_t selection::Notify()
 }
 
 
-#endif // #ifdef selection_cxx
+#endif // #ifdef makeTuple_cxx
