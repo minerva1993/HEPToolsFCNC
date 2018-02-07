@@ -3,8 +3,9 @@ from ROOT import *
 
 tmva_version = 'v8'
 
+for ch in ['Hct29']:
 #for ch in ['Hct29','Hut29']:
-for ch in ['Hct30','Hut30']:
+#for ch in ['Hct30','Hut30']:
 
   ttbar = 0.0911727864721
 
@@ -196,7 +197,7 @@ for ch in ['Hct30','Hut30']:
       bdt_data_obs.Write()
       keras_data_obs.Write()
      
-    elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct30':
+    elif scores == 'shape_'+ch+'_Top_Hct.root' and ch == 'Hct29':
       tch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_Top_Hct.root')
       tbarch = TFile.Open('/home/minerva1993/fcnc/analysis_jw/tmva/'+tmva_version+'/score_mva/'+ch+'/'+'shape_'+ch+'_AntiTop_Hct.root')
 
