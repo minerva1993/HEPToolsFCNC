@@ -34,7 +34,7 @@ def runAna(dir, file, name):
 #runAna(inputdir+version, tuples, name)
 #runAna("/data/users/minerva1993/ntuple_Run2016/v4","TT_powheg_ttbb.root","ttbb")
 
-for bb in range(0, 1):
+for bb in range(0, 96):
   runAna("/data/users/minerva1993/ntuple_Run2016/v4/production/TT_powheg_ttbb","Tree_ttbbLepJets_"+ str(bb)+".root","ttbb_"+ str(bb))
 """
 for lf in range(0, 96):
