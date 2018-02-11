@@ -32,11 +32,11 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     sigTree->Branch("transverseMass", &b_transversem, "transverseMass/F");
 
     //jet assignment
-    sigTree->Branch("lepWpt", &b_lepWpt, "b_lepWpt/F");
-    sigTree->Branch("lepWeta", &b_lepWeta, "b_lepWeta/F");
-    sigTree->Branch("lepWphi", &b_lepWphi, "b_lepWphi/F");
-    sigTree->Branch("lepWdphi", &b_lepWdphi, "b_lepWdphi/F");
-    sigTree->Branch("lepWm", &b_lepWm, "b_lepWm/F");
+    sigTree->Branch("lepWpt", &b_lepWpt, "lepWpt/F");
+    sigTree->Branch("lepWeta", &b_lepWeta, "lepWeta/F");
+    sigTree->Branch("lepWphi", &b_lepWphi, "lepWphi/F");
+    sigTree->Branch("lepWdphi", &b_lepWdphi, "lepWdphi/F");
+    sigTree->Branch("lepWm", &b_lepWm, "lepWm/F");
 
     sigTree->Branch("jet0pt", &b_jet0pt, "jet0pt/F");
     sigTree->Branch("jet0eta", &b_jet0eta, "jet0eta/F");
@@ -75,23 +75,23 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     sigTree->Branch("jet12deta",&b_jet12deta, "jet12deta/F");
     sigTree->Branch("jet12phi",&b_jet12phi, "jet12phi/F");
     sigTree->Branch("jet12dphi",&b_jet12dphi, "jet12dphi/F");
-    sigTree->Branch("jet12dR", &b_jet12dR, "b_jet12dR/F");
-    sigTree->Branch("jet12m", &b_jet12m, "b_jet12m/F");
+    sigTree->Branch("jet12dR", &b_jet12dR, "jet12dR/F");
+    sigTree->Branch("jet12m", &b_jet12m, "jet12m/F");
 
     sigTree->Branch("jet23pt",&b_jet23pt, "jet23pt/F");
     sigTree->Branch("jet23eta",&b_jet23eta, "jet23eta/F");
     sigTree->Branch("jet23deta",&b_jet23deta, "jet23deta/F");
     sigTree->Branch("jet23phi",&b_jet23phi, "jet23phi/F");
     sigTree->Branch("jet23dphi",&b_jet23dphi, "jet23dphi/F");
-    sigTree->Branch("jet23dR", &b_jet23dR, "b_jet23dR/F");
-    sigTree->Branch("jet23m", &b_jet23m, "b_jet23m/F");
+    sigTree->Branch("jet23dR", &b_jet23dR, "jet23dR/F");
+    sigTree->Branch("jet23m", &b_jet23m, "jet23m/F");
 
     sigTree->Branch("jet31pt",&b_jet31pt, "jet31pt/F");
     sigTree->Branch("jet31eta",&b_jet31eta, "jet31eta/F");
     sigTree->Branch("jet31deta",&b_jet31deta, "jet31deta/F");
     sigTree->Branch("jet31phi",&b_jet31phi, "jet31phi/F");
     sigTree->Branch("jet31dphi",&b_jet31dphi, "jet31dphi/F");
-    sigTree->Branch("jet31dR", &b_jet31dR, "b_jet31dR/F");
+    sigTree->Branch("jet31dR", &b_jet31dR, "jet31dR/F");
     sigTree->Branch("jet31m",&b_jet31m, "jet31m/F");
 
     sigTree->Branch("lepTpt", &b_lepTpt, "lepTpt/F");
@@ -100,7 +100,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     sigTree->Branch("lepTphi", &b_lepTphi, "lepTphi/F");
     sigTree->Branch("lepTdphi", &b_lepTdphi, "lepTdphi/F");//W and b
     sigTree->Branch("lepTdR", &b_lepTdR, "lepTdR/F");
-    sigTree->Branch("lepTm", &b_lepTm, "b_lepTm/F");
+    sigTree->Branch("lepTm", &b_lepTm, "lepTm/F");
 
     sigTree->Branch("hadTpt", &b_hadTpt, "hadTpt/F");
     sigTree->Branch("hadTeta", &b_hadTeta, "hadTeta/F");
@@ -114,7 +114,8 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     sigTree->Branch("hadT12_3dR", &b_hadT12_3dR, "hadT12_3dR/F");
     sigTree->Branch("hadT23_1dR", &b_hadT23_1dR, "hadT23_1dR/F");
     sigTree->Branch("hadT31_2dR", &b_hadT31_2dR, "hadT31_2dR/F");
-    sigTree->Branch("hadTm", &b_hadTm, "b_hadTm/F");
+    sigTree->Branch("hadTm", &b_hadTm, "hadTm/F");
+    sigTree->Branch("genHadW", &b_genHadW, "genHadW/F");
 
     fOutput->Add(sigTree);
 
@@ -136,11 +137,11 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     bkgTree->Branch("transverseMass", &b_transversem, "transverseMass/F");
 
     //jet assignment
-    bkgTree->Branch("lepWpt", &b_lepWpt, "b_lepWpt/F");
-    bkgTree->Branch("lepWeta", &b_lepWeta, "b_lepWeta/F");
-    bkgTree->Branch("lepWphi", &b_lepWphi, "b_lepWphi/F");
-    bkgTree->Branch("lepWdphi", &b_lepWdphi, "b_lepWdphi/F");
-    bkgTree->Branch("lepWm", &b_lepWm, "b_lepWm/F");
+    bkgTree->Branch("lepWpt", &b_lepWpt, "lepWpt/F");
+    bkgTree->Branch("lepWeta", &b_lepWeta, "lepWeta/F");
+    bkgTree->Branch("lepWphi", &b_lepWphi, "lepWphi/F");
+    bkgTree->Branch("lepWdphi", &b_lepWdphi, "lepWdphi/F");
+    bkgTree->Branch("lepWm", &b_lepWm, "lepWm/F");
 
     bkgTree->Branch("jet0pt", &b_jet0pt, "jet0pt/F");
     bkgTree->Branch("jet0eta", &b_jet0eta, "jet0eta/F");
@@ -179,23 +180,23 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     bkgTree->Branch("jet12deta",&b_jet12deta, "jet12deta/F");
     bkgTree->Branch("jet12phi",&b_jet12phi, "jet12phi/F");
     bkgTree->Branch("jet12dphi",&b_jet12dphi, "jet12dphi/F");
-    bkgTree->Branch("jet12dR", &b_jet12dR, "b_jet12dR/F");
-    bkgTree->Branch("jet12m", &b_jet12m, "b_jet12m/F");
+    bkgTree->Branch("jet12dR", &b_jet12dR, "jet12dR/F");
+    bkgTree->Branch("jet12m", &b_jet12m, "jet12m/F");
 
     bkgTree->Branch("jet23pt",&b_jet23pt, "jet23pt/F");
     bkgTree->Branch("jet23eta",&b_jet23eta, "jet23eta/F");
     bkgTree->Branch("jet23deta",&b_jet23deta, "jet23deta/F");
     bkgTree->Branch("jet23phi",&b_jet23phi, "jet23phi/F");
     bkgTree->Branch("jet23dphi",&b_jet23dphi, "jet23dphi/F");
-    bkgTree->Branch("jet23dR", &b_jet23dR, "b_jet23dR/F");
-    bkgTree->Branch("jet23m", &b_jet23m, "b_jet23m/F");
+    bkgTree->Branch("jet23dR", &b_jet23dR, "jet23dR/F");
+    bkgTree->Branch("jet23m", &b_jet23m, "jet23m/F");
 
     bkgTree->Branch("jet31pt",&b_jet31pt, "jet31pt/F");
     bkgTree->Branch("jet31eta",&b_jet31eta, "jet31eta/F");
     bkgTree->Branch("jet31deta",&b_jet31deta, "jet31deta/F");
     bkgTree->Branch("jet31phi",&b_jet31phi, "jet31phi/F");
     bkgTree->Branch("jet31dphi",&b_jet31dphi, "jet31dphi/F");
-    bkgTree->Branch("jet31dR", &b_jet31dR, "b_jet31dR/F");
+    bkgTree->Branch("jet31dR", &b_jet31dR, "jet31dR/F");
     bkgTree->Branch("jet31m",&b_jet31m, "jet31m/F");
 
     bkgTree->Branch("lepTpt", &b_lepTpt, "lepTpt/F");
@@ -204,7 +205,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     bkgTree->Branch("lepTphi", &b_lepTphi, "lepTphi/F");
     bkgTree->Branch("lepTdphi", &b_lepTdphi, "lepTdphi/F");//W and b
     bkgTree->Branch("lepTdR", &b_lepTdR, "lepTdR/F");
-    bkgTree->Branch("lepTm", &b_lepTm, "b_lepTm/F");
+    bkgTree->Branch("lepTm", &b_lepTm, "lepTm/F");
 
     bkgTree->Branch("hadTpt", &b_hadTpt, "hadTpt/F");
     bkgTree->Branch("hadTeta", &b_hadTeta, "hadTeta/F");
@@ -218,7 +219,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     bkgTree->Branch("hadT12_3dR", &b_hadT12_3dR, "hadT12_3dR/F");
     bkgTree->Branch("hadT23_1dR", &b_hadT23_1dR, "hadT23_1dR/F");
     bkgTree->Branch("hadT31_2dR", &b_hadT31_2dR, "hadT31_2dR/F");
-    bkgTree->Branch("hadTm", &b_hadTm, "b_hadTm/F");
+    bkgTree->Branch("hadTm", &b_hadTm, "hadTm/F");
 
     fOutput->Add(bkgTree);
 } 
@@ -307,6 +308,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   const int nCombi = njets * (njets -1) * (njets -2) *(njets -3) / 2;
   if ( nCombi < 12 ) return kTRUE;
 
+
   if( njets <  4 || nbjets_m < 2 ) return kTRUE;
   
   //cout << nevt << endl;
@@ -323,25 +325,39 @@ Bool_t makeTuple::Process(Long64_t entry)
 
 
   //gen particles
-  TLorentzVector gen_lep, gen_nu, gen_lepB, gen_hadJ1, gen_hadJ2, gen_hadJ3, candj0, candj1;
+  TLorentzVector gen_lep, gen_nu, gen_lepB, gen_hadJ1, gen_hadJ2, gen_hadJ3;
+  //leptonic W is okay
   gen_lep.SetPtEtaPhiE(*genlepton_pT, *genlepton_eta, *genlepton_phi, *genlepton_E);
   gen_nu.SetPtEtaPhiE(*gennu_pT, *gennu_eta, *gennu_phi, *gennu_E);
-  candj0.SetPtEtaPhiE(gencone_gjet_pT[0], gencone_gjet_eta[0], gencone_gjet_phi[0], gencone_gjet_E[0]);
-  candj1.SetPtEtaPhiE(gencone_gjet_pT[1], gencone_gjet_eta[1], gencone_gjet_phi[1], gencone_gjet_E[1]);
+
+  //scan over the gen jets
+  vector<int> wPlusIdx;
+  vector<int> wMinusIdx;
+  for( int genIdx = 0; genIdx != static_cast<int>(genjet_mom.GetSize()); ++genIdx ){
+    if( genjet_mom[genIdx] == 0 and *b_GenCone_NgJetsW != 2) continue;
+    //if( abs(genjet_mom[genIdx] == 6) ) cout << "top!" << endl;
+    if( genjet_mom[genIdx] == 24 ) wPlusIdx.push_back(genIdx);
+    else if( genjet_mom[genIdx] == -24 ) wMinusIdx.push_back(genIdx);
+  }
+  //cout << wPlusIdx.size() << " " << wMinusIdx.size() << " " << wPlusIdx.size() +  wMinusIdx.size() << endl;
+  if( wPlusIdx.size() == 0 and wMinusIdx.size() == 2 ){
+    gen_hadJ2.SetPtEtaPhiE(genjet_pT[2* wMinusIdx[0]], genjet_eta[wMinusIdx[0]], genjet_phi[wMinusIdx[0]], genjet_E[wMinusIdx[0]]);
+    gen_hadJ3.SetPtEtaPhiE(genjet_pT[2* wMinusIdx[1]], genjet_eta[wMinusIdx[1]], genjet_phi[wMinusIdx[1]], genjet_E[wMinusIdx[1]]);
+  }
+  else if( wPlusIdx.size() == 2 and wMinusIdx.size() == 0 ){
+    gen_hadJ2.SetPtEtaPhiE(genjet_pT[2* wPlusIdx[0]], genjet_eta[wPlusIdx[0]], genjet_phi[wPlusIdx[0]], genjet_E[wPlusIdx[0]]);
+    gen_hadJ3.SetPtEtaPhiE(genjet_pT[2* wPlusIdx[1]], genjet_eta[wPlusIdx[1]], genjet_phi[wPlusIdx[1]], genjet_E[wPlusIdx[1]]);
+  }
+  //if( (wPlusIdx.size() == 0 and wMinusIdx.size() == 2) or ( wPlusIdx.size() == 2 and wMinusIdx.size() == 0) )cout << wPlusIdx.size()/2 +  wMinusIdx.size()/2  << endl;
+  //if(wPlusIdx.size()/2 +  wMinusIdx.size()/2 != 1) cout << wPlusIdx.size()/2 +  wMinusIdx.size()/2  << endl;
+  //cout << *b_GenCone_NgJetsW << endl;
+
   gen_hadJ2.SetPtEtaPhiE(gencone_gjet_pT[2], gencone_gjet_eta[2], gencone_gjet_phi[2], gencone_gjet_E[2]);
   gen_hadJ3.SetPtEtaPhiE(gencone_gjet_pT[3], gencone_gjet_eta[3], gencone_gjet_phi[3], gencone_gjet_E[3]);
-
-  if( (172.5 - (candj1+gen_hadJ2+gen_hadJ3).M() < 10) or (172.5 - (candj1+gen_hadJ2+gen_hadJ3).M() > -10) ){
-    gen_hadJ1 = candj1;
-    gen_lepB = candj0;
-  }
-  else{
-    gen_hadJ1 = candj0;
-    gen_lepB = candj1;
-    if( (172.5 - (gen_lepB+gen_nu+gen_lepB).M() > 10) or (172.5 - (gen_lepB+gen_nu+gen_lepB).M() < -10) ) cout << "oops!" << endl;
-  }
+  b_genHadW = (gen_hadJ2+gen_hadJ3).M();
 
 
+  //fill trees
   b_EventWeight = EventWeight;
   b_GoodPV = *GoodPV;
   b_nevt = nevt;
@@ -362,7 +378,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   b_lepWphi   = lepW.Phi();
   b_lepWdphi  = lepton.DeltaPhi(metP4);
   b_lepWm     = lepW.M();
-
+/*
   //int count = 0;
   TLorentzVector jetP4[4];
   for ( auto ii0 = jetIdxs.begin(); ii0 != jetIdxs.end(); ++ii0 ){
@@ -423,20 +439,20 @@ Bool_t makeTuple::Process(Long64_t entry)
           if ( gen_hadJ3.Pt() > 0 and (gen_hadJ3.DeltaR(jetP4[2]) < 0.4 or gen_hadJ3.DeltaR(jetP4[3]) < 0.4) ) b_genMatch += 1;
 
           if ( b_genMatch < 1 ) continue;
-          if ( b_genMatch%10000 == 1111 ) sigTree->Fill();
+          if ( b_genMatch%100 == 11 ) sigTree->Fill();
           else bkgTree->Fill();
 
         }
       }
     }
   }
-
+*/
   //cout << nCombi << " real count is " << count << endl;
 
   nevt++;
 
-  //sigTree->Fill();
-  //bkgTree->Fill();
+  sigTree->Fill();
+  bkgTree->Fill();
 
   return kTRUE;
 }

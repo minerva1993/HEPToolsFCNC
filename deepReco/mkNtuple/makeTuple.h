@@ -251,6 +251,7 @@ public :
     float b_hadT23_1dR = 0;
     float b_hadT31_2dR = 0;
     float b_hadTm = 0;
+    float b_genHadW = 0;
 
 
    ClassDef(makeTuple,0);
