@@ -470,6 +470,13 @@ void analyzer::Loop(const string outFileName)
   testTree->Branch("hadT31_2dR"  , &b_hadT31_2dR  , "hadT31_2dR/F");
   testTree->Branch("hadTm"       , &b_hadTm       , "hadTm/F");
 
+/*
+  //channel
+  bool fcnc;
+  if ( outFileName.Contains("ttLJ") ) fcnc = false;
+  else if ( outFileName.Contains("tch") ) fcnc = true;
+  else break
+*/
 
   if (fChain == 0) return;
 
@@ -484,7 +491,6 @@ void analyzer::Loop(const string outFileName)
 
     cout << jentry << '/' << 493549 << '\r';
     b_nevt = nevt;
-
 
     //Lepton
     TLorentzVector leptonP4;
@@ -532,7 +538,7 @@ void analyzer::Loop(const string outFileName)
     TLorentzVector gen_lep, gen_nu, gen_lepB, gen_hadJ1, gen_hadJ2, gen_hadJ3;
     for ( size_t i=0; i<nGenParticle; ++i ) {
       const int absId = abs(GenParticle_pdgId[i]);
-      if ( absId != 24 ) continue;
+      if ( absId != 24 and absId != 25 ) continue;
 
       const int mother = GenParticle_mother[i];
       if ( mother < 0 or abs(GenParticle_pdgId[mother]) != 6 ) continue; // Should be from top quark decay
@@ -629,7 +635,7 @@ void analyzer::Loop(const string outFileName)
             b_jet0Idx = *ii0; b_jet1Idx = *ii3; b_jet2Idx = *ii2; b_jet3Idx = *ii1;
 
             const auto lepT = lepW + jetP4[0];
-            const auto had12 = jetP4[1] + jetP4[2];//This is W
+            const auto had12 = jetP4[1] + jetP4[2];//This is W or H
             const auto had23 = jetP4[2] + jetP4[3];
             const auto had31 = jetP4[3] + jetP4[1];
             const auto hadT = jetP4[1] + jetP4[2] + jetP4[3];
@@ -665,6 +671,7 @@ void analyzer::Loop(const string outFileName)
             testTree->Fill();
             if ( b_genMatch == 101111 ) sigTree->Fill();
             else bkgTree->Fill();
+            //else continue;
             count++;
           }
         }
@@ -673,7 +680,6 @@ void analyzer::Loop(const string outFileName)
 
     nevt++;
   }
-
   fout->Write();
 
 }
