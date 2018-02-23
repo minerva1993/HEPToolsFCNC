@@ -1,0 +1,14 @@
+executable = job.sh
+universe   = vanilla
+arguments  = $(Process)
+
+log = condor.log
+
+getenv     = True
+should_transfer_files = NO
+#when_to_transfer_output = ON_EXIT
+#output = job_$(Process).log
+#error = job_$(Process).err
+#transfer_input_files = job.tar.gz
+
+queue 96
