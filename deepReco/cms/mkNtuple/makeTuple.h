@@ -91,8 +91,8 @@ public :
    TTreeReaderArray<float> fcnhkinjet_E = {fReader, "fcnhkinjet_E"};
    TTreeReaderArray<int> fcnhkinjet_index = {fReader, "fcnhkinjet_index"};
 */
-   TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
-   TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
+   //TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
+   //TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    TTreeReaderArray<int> jet_MatchedGenJetIndex = {fReader, "jet_MatchedGenJetIndex"};
    TTreeReaderArray<int> genconecatid = {fReader, "genconecatid"};
    TTreeReaderArray<float> gencone_gjet_pT = {fReader, "gencone_gjet_pT"};
@@ -149,6 +149,7 @@ public :
 
     TTree *sigTree = 0;
     TTree *bkgTree = 0;
+    TTree *testTree = 0;
 
     int nevt = 0;
 
@@ -162,8 +163,11 @@ public :
 
     int b_njets = 0;
     int b_nbjets_m = 0;
+    float b_lepton_pt = 0;
+    float b_lepton_phi = 10;
+    float b_lepton_eta = 10;
     float b_met = 0;
-    float b_met_phi = -10;
+    float b_met_phi = +10;
     float b_lepdphi = 0;
     float b_transversem = 0;
 
@@ -180,6 +184,7 @@ public :
     float b_jet0csv = 5;
     float b_jet0cvsl = 5;
     float b_jet0cvsb = 5;
+    int b_jet0Idx = -1;
 
     float b_jet1pt = 0;
     float b_jet1eta = 10;
@@ -188,6 +193,7 @@ public :
     float b_jet1csv = 5;
     float b_jet1cvsl = 5;
     float b_jet1cvsb = 5;
+    int b_jet1Idx = -1;
 
     float b_jet2pt = 0;
     float b_jet2eta = 10;
@@ -196,6 +202,7 @@ public :
     float b_jet2csv = 5;
     float b_jet2cvsl = 5;
     float b_jet2cvsb = 5;
+    int b_jet2Idx = -1;
 
     float b_jet3pt = 0;
     float b_jet3eta = 10;
@@ -204,6 +211,7 @@ public :
     float b_jet3csv = 5;
     float b_jet3cvsl = 5;
     float b_jet3cvsb = 5;
+    int b_jet3Idx = -1;
 
     float b_jet12pt = 0;
     float b_jet12eta = 10;
