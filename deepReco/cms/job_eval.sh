@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd /cms/ldap_home/minerva1993/catTools/CMSSW_9_4_0_pre3
+eval `scram runtime -sh`
+cd -
+
+MAX=96
+NPERJOB=1
+
+BEGIN=$(($1*$NPERJOB))
+for i in `seq $BEGIN $(($BEGIN+$NPERJOB-1))`; do
+    [ $i -ge $MAX ] && break
+    python evaluation.py 03 mc deepReco_ttother_${i}.root
+done
