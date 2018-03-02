@@ -1,12 +1,16 @@
 #include "idxToNtuple.h"
+#include <TSystem.h>
+
 R__LOAD_LIBRARY(idxToNtuple.C+)
 
-void run()
+void run( TString name )
 {
   TChain assign("tree");
-  assign.Add("score/score_deepReco_ttbb_44.root");
+  assign.Add("score03/"+name);
 
   idxToNtuple t(&assign);
 
   t.Loop();
+
+  gSystem->Exit(0);
 }
