@@ -31,6 +31,8 @@ public :
    Int_t           jet1Idx;
    Int_t           jet2Idx;
    Int_t           jet3Idx;
+   Double_t        lepPt;
+   Double_t        missinget;
 
    // List of branches
    TBranch        *b_BDTScore;   //!
@@ -42,6 +44,8 @@ public :
    TBranch        *b_jet1Idx;   //!
    TBranch        *b_jet2Idx;   //!
    TBranch        *b_jet3Idx;   //!
+   TBranch        *b_lepPt;   //!
+   TBranch        *b_missinget;   //!
 
    idxToNtuple(TTree *tree=0);
    virtual ~idxToNtuple();
@@ -122,6 +126,8 @@ void idxToNtuple::Init(TTree *tree)
    fChain->SetBranchAddress("jet1Idx", &jet1Idx, &b_jet1Idx);
    fChain->SetBranchAddress("jet2Idx", &jet2Idx, &b_jet2Idx);
    fChain->SetBranchAddress("jet3Idx", &jet3Idx, &b_jet3Idx);
+   fChain->SetBranchAddress("lepPt", &lepPt, &b_lepPt);
+   fChain->SetBranchAddress("missinget", &missinget, &b_missinget);
    Notify();
 }
 

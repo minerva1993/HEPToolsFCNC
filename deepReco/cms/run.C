@@ -6,7 +6,7 @@ R__LOAD_LIBRARY(idxToNtuple.C+)
 void run( TString name )
 {
   TChain assign("tree");
-  assign.Add("score03/"+name);
+  assign.Add("score04/"+name);
 
   idxToNtuple t(&assign);
 

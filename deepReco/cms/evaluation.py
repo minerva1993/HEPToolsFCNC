@@ -16,7 +16,7 @@ filename = sys.argv[3]
 
 # Load data
 
-data = TFile.Open('mkNtuple/ntuple_'+filetype+'/'+filename)
+data = TFile.Open('mkNtuple/j4b2/ntuple_'+filetype+'/'+filename)
 data_tree = data.Get('test_tree')
 
 target = TFile('score_'+filename,'RECREATE')
@@ -38,11 +38,12 @@ for branch in data_tree.GetListOfBranches():
     "genHadJ3_pt", "genHadJ3_eta", "genHadJ3_phi", "genHadJ3_m",
     "genHadW_pt", "genHadW_eta", "genHadW_phi", "genHadW_m", "genHadW_dR",
     "genHadT_pt", "genHadT_eta", "genHadT_phi", "genHadT_m",
-    #"jet0csv", "jet1csv", "jet2csv", "jet3csv",
+    "jet0csv", "jet1csv", "jet2csv", "jet3csv",
     "jet0cvsl", "jet1cvsl", "jet2cvsl", "jet3cvsl",
     "jet0cvsb", "jet1cvsb", "jet2cvsb", "jet3cvsb",
     "genHadW",
     "lepWeta", "lepTeta", "lepTdeta", "lepTdR",
+    "hadTpt", "lepTpt",
   ]:
       branches[branchName] = array('f', [-999])
       reader.AddVariable(branchName, branches[branchName])
@@ -66,6 +67,8 @@ jet0Idx       = np.zeros(1, dtype=int)
 jet1Idx       = np.zeros(1, dtype=int)
 jet2Idx       = np.zeros(1, dtype=int)
 jet3Idx       = np.zeros(1, dtype=int)
+lepPt         = np.zeros(1, dtype=float)
+missinget     = np.zeros(1, dtype=float)
 
 tree.Branch('BDTScore'     , score2       , 'BDTScore/D')
 tree.Branch('nevt'         , nevt         , 'nevt/I')
@@ -76,6 +79,9 @@ tree.Branch('jet0Idx'      , jet0Idx      , 'jet0Idx/I')
 tree.Branch('jet1Idx'      , jet1Idx      , 'jet1Idx/I')
 tree.Branch('jet2Idx'      , jet2Idx      , 'jet2Idx/I')
 tree.Branch('jet3Idx'      , jet3Idx      , 'jet3Idx/I')
+tree.Branch('lepPt'        , lepPt        , 'lepPt/D')
+tree.Branch('missinget'    , missinget    , 'missinget/D')
+
 
 for i in xrange(totalevt):
   data_tree.GetEntry(i)
@@ -90,7 +96,9 @@ for i in xrange(totalevt):
   jet1Idx[0]       = data_tree.jet1Idx
   jet2Idx[0]       = data_tree.jet2Idx
   jet3Idx[0]       = data_tree.jet3Idx
-  
+  lepPt[0]         = data_tree.lepton_pt
+  missinget[0]     = data_tree.MET
+
   #print('processing '+str(Nevt)+'th event', end='\r')
   
   tree.Fill()

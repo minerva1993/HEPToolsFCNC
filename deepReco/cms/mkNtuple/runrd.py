@@ -60,7 +60,7 @@ for elc in range(0, 22):
 
 for eld in range(0, 37):
   runAna("/data/users/minerva1993/ntuple_Run2016/v4/production/SingleElectron_Run2016D","Tree_ttbbLepJets_"+str(eld)+".root","DataSingleEGD_"+ str(eld))
-"""
+
 for ele in range(0, 31):
   runAna("/data/users/minerva1993/ntuple_Run2016/v4/production/SingleElectron_Run2016E","Tree_ttbbLepJets_"+str(ele)+".root","DataSingleEGE_"+ str(ele))
 
@@ -75,4 +75,7 @@ for elh2 in range(0, 58):
 
 for elh3 in range(0, 2):
   runAna("/data/users/minerva1993/ntuple_Run2016/v4/production/SingleElectron_Run2016H_v3","Tree_ttbbLepJets_"+str(elh3)+".root","DataSingleEGHv3_"+ str(elh3))
+"""
+for hct in range(0, 16):
+  runAna("/data/users/minerva1993/ntuple_Run2016/v4/production/TT_TopLeptonicDecay_TH_1L3B_Eta_Hct","Tree_ttbbLepJets_"+str(hct)+".root","Top_Hct_"+ str(hct))
 
