@@ -350,9 +350,9 @@ Bool_t makeTuple::Process(Long64_t entry)
   fReader.SetEntry(entry);
   TString option = GetOption();
 
-  string name = option.Data();
-  if( option.Contains("ttother") ) b_file = stoi(name.substr(8));
-  else b_file = stoi(name.substr(5));
+//  string name = option.Data();
+//  if( option.Contains("ttother") ) b_file = stoi(name.substr(8));
+//  else b_file = stoi(name.substr(5));
 
   int mode = 999; 
   mode = *channel;
@@ -442,10 +442,14 @@ Bool_t makeTuple::Process(Long64_t entry)
   else if( option.Contains("ttcc") ) b_EventCategory = 3;
   else if( option.Contains("ttLF") ) b_EventCategory = 4;
   else if( option.Contains("ttother") ) b_EventCategory = 5;
-  //else if( option.Contains("channel") ) b_EventCategory = 5; //singletop
-  //else if( option.Contains("zjets") ) b_EventCategory = 6; //DY
+  else if( option.Contains("channel") ) b_EventCategory = 5; //singletop
+  else if( option.Contains("zjets") ) b_EventCategory = 6; //DY
   else b_EventCategory = 10;
 
+  /////////////////////////////////////
+  // REMARK :: genjet2+3 = W
+  //           jet1+2 = W
+  ////////////////////////////////////
 
   //gen particles
   TLorentzVector gen_lep, gen_nu, gen_lepB, gen_hadJ1, gen_hadJ2, gen_hadJ3;
@@ -453,50 +457,58 @@ Bool_t makeTuple::Process(Long64_t entry)
   gen_lep.SetPtEtaPhiE(*genlepton_pT, *genlepton_eta, *genlepton_phi, *genlepton_E);
   gen_nu.SetPtEtaPhiE(*gennu_pT, *gennu_eta, *gennu_phi, *gennu_E);
 
-/*
-  //scan over the gen jets
-  vector<int> wPlusIdx;
-  vector<int> wMinusIdx;
-
-  for( unsigned int genIdx = 0; genIdx < genjet_E.GetSize(); ++genIdx ){
-    if( genjet_mom[genIdx] == 0 or *b_GenCone_NgJetsW != 2 ) continue;
-    if( gencone_gjetIndex[2] < 0 and gencone_gjetIndex[3] < 0 ) continue;
-    if( genjet_mom[genIdx] == 24 ){
-      wPlusIdx.push_back(genIdx);
-    }
-    if ( genjet_mom[genIdx] == -24 ) {//wMinusIdx.push_back(genIdx);
-      wMinusIdx.push_back(genIdx);
-    }
-  }
-  cout << wPlusIdx.size() << " " << wMinusIdx.size() << " " << wPlusIdx.size() +  wMinusIdx.size() << endl;
-
-  if( wPlusIdx.size() == 0 and wMinusIdx.size() == 2 ){
-    gen_hadJ2.SetPtEtaPhiE(genjet_pT[2* wMinusIdx[0]], genjet_eta[wMinusIdx[0]], genjet_phi[wMinusIdx[0]], genjet_E[wMinusIdx[0]]);
-    gen_hadJ3.SetPtEtaPhiE(genjet_pT[2* wMinusIdx[1]], genjet_eta[wMinusIdx[1]], genjet_phi[wMinusIdx[1]], genjet_E[wMinusIdx[1]]);
-  }
-  else if( wPlusIdx.size() == 2 and wMinusIdx.size() == 0 ){
-    gen_hadJ2.SetPtEtaPhiE(genjet_pT[2* wPlusIdx[0]], genjet_eta[wPlusIdx[0]], genjet_phi[wPlusIdx[0]], genjet_E[wPlusIdx[0]]);
-    gen_hadJ3.SetPtEtaPhiE(genjet_pT[2* wPlusIdx[1]], genjet_eta[wPlusIdx[1]], genjet_phi[wPlusIdx[1]], genjet_E[wPlusIdx[1]]);
-  }
-  //if( (wPlusIdx.size() == 0 and wMinusIdx.size() == 2) or ( wPlusIdx.size() == 2 and wMinusIdx.size() == 0) )cout << wPlusIdx.size()/2 +  wMinusIdx.size()/2  << endl;
-  //if(wPlusIdx.size()/2 +  wMinusIdx.size()/2 != 1) cout << wPlusIdx.size()/2 +  wMinusIdx.size()/2  << endl;
-  //cout << *b_GenCone_NgJetsW << endl;
-*/
-
-  gen_hadJ2.SetPtEtaPhiE(gencone_gjet_pT[2], gencone_gjet_eta[2], gencone_gjet_phi[2], gencone_gjet_E[2]);
-  gen_hadJ3.SetPtEtaPhiE(gencone_gjet_pT[3], gencone_gjet_eta[3], gencone_gjet_phi[3], gencone_gjet_E[3]);
-
-  TLorentzVector cand1, cand2;
-  cand1.SetPtEtaPhiE(gencone_gjet_pT[0], gencone_gjet_eta[0], gencone_gjet_phi[0], gencone_gjet_E[0]);
-  cand2.SetPtEtaPhiE(gencone_gjet_pT[1], gencone_gjet_eta[1], gencone_gjet_phi[1], gencone_gjet_E[1]);
-
-  if ( (172.5 - (cand1+gen_hadJ2+gen_hadJ3).M())*(172.5 - (cand1+gen_hadJ2+gen_hadJ3).M()) + (172.5 - (cand2+gen_nu+gen_lep).M())*(172.5 - (cand2+gen_nu+gen_lep).M()) < (172.5 - (cand2+gen_hadJ2+gen_hadJ3).M())*(172.5 - (cand2+gen_hadJ2+gen_hadJ3).M()) + (172.5 - (cand1+gen_nu+gen_lep).M())*(172.5 - (cand1+gen_nu+gen_lep).M()) ){
-    gen_hadJ1 = cand1;
-    gen_lepB = cand2;
+  if( option.Contains("Hct") || option.Contains("Hut") ){
+    gen_hadJ2.SetPtEtaPhiE(*addHbjet1_pt, *addHbjet1_eta, *addHbjet1_phi, *addHbjet1_e);
+    gen_hadJ3.SetPtEtaPhiE(*addHbjet2_pt, *addHbjet2_eta, *addHbjet2_phi, *addHbjet2_e);
+    gen_hadJ1.SetPtEtaPhiE(gencone_gjet_pT[1], gencone_gjet_eta[1], gencone_gjet_phi[1], gencone_gjet_E[1]);
+    gen_lepB.SetPtEtaPhiE(gencone_gjet_pT[0], gencone_gjet_eta[0], gencone_gjet_phi[0], gencone_gjet_E[0]);
   }
   else{
-    gen_hadJ1 = cand2;
-    gen_lepB = cand1;
+  /*
+    //scan over the gen jets
+    vector<int> wPlusIdx;
+    vector<int> wMinusIdx;
+
+    for( unsigned int genIdx = 0; genIdx < genjet_E.GetSize(); ++genIdx ){
+      if( genjet_mom[genIdx] == 0 or *b_GenCone_NgJetsW != 2 ) continue;
+      if( gencone_gjetIndex[2] < 0 and gencone_gjetIndex[3] < 0 ) continue;
+      if( genjet_mom[genIdx] == 24 ){
+        wPlusIdx.push_back(genIdx);
+      }
+      if ( genjet_mom[genIdx] == -24 ) {//wMinusIdx.push_back(genIdx);
+        wMinusIdx.push_back(genIdx);
+      }
+    }
+    cout << wPlusIdx.size() << " " << wMinusIdx.size() << " " << wPlusIdx.size() +  wMinusIdx.size() << endl;
+
+    if( wPlusIdx.size() == 0 and wMinusIdx.size() == 2 ){
+      gen_hadJ2.SetPtEtaPhiE(genjet_pT[2* wMinusIdx[0]], genjet_eta[wMinusIdx[0]], genjet_phi[wMinusIdx[0]], genjet_E[wMinusIdx[0]]);
+      gen_hadJ3.SetPtEtaPhiE(genjet_pT[2* wMinusIdx[1]], genjet_eta[wMinusIdx[1]], genjet_phi[wMinusIdx[1]], genjet_E[wMinusIdx[1]]);
+    }
+    else if( wPlusIdx.size() == 2 and wMinusIdx.size() == 0 ){
+      gen_hadJ2.SetPtEtaPhiE(genjet_pT[2* wPlusIdx[0]], genjet_eta[wPlusIdx[0]], genjet_phi[wPlusIdx[0]], genjet_E[wPlusIdx[0]]);
+      gen_hadJ3.SetPtEtaPhiE(genjet_pT[2* wPlusIdx[1]], genjet_eta[wPlusIdx[1]], genjet_phi[wPlusIdx[1]], genjet_E[wPlusIdx[1]]);
+    }
+    //if( (wPlusIdx.size() == 0 and wMinusIdx.size() == 2) or ( wPlusIdx.size() == 2 and wMinusIdx.size() == 0) )cout << wPlusIdx.size()/2 +  wMinusIdx.size()/2  << endl;
+    //if(wPlusIdx.size()/2 +  wMinusIdx.size()/2 != 1) cout << wPlusIdx.size()/2 +  wMinusIdx.size()/2  << endl;
+    //cout << *b_GenCone_NgJetsW << endl;
+  */
+
+    gen_hadJ2.SetPtEtaPhiE(gencone_gjet_pT[2], gencone_gjet_eta[2], gencone_gjet_phi[2], gencone_gjet_E[2]); //fcnc=>addHbjets
+    gen_hadJ3.SetPtEtaPhiE(gencone_gjet_pT[3], gencone_gjet_eta[3], gencone_gjet_phi[3], gencone_gjet_E[3]);
+
+    TLorentzVector cand1, cand2;
+    cand1.SetPtEtaPhiE(gencone_gjet_pT[0], gencone_gjet_eta[0], gencone_gjet_phi[0], gencone_gjet_E[0]);
+    cand2.SetPtEtaPhiE(gencone_gjet_pT[1], gencone_gjet_eta[1], gencone_gjet_phi[1], gencone_gjet_E[1]);
+
+    if ( (172.5 - (cand1+gen_hadJ2+gen_hadJ3).M())*(172.5 - (cand1+gen_hadJ2+gen_hadJ3).M()) + (172.5 - (cand2+gen_nu+gen_lep).M())*(172.5 - (cand2+gen_nu+gen_lep).M()) < (172.5 - (cand2+gen_hadJ2+gen_hadJ3).M())*(172.5 - (cand2+gen_hadJ2+gen_hadJ3).M()) + (172.5 - (cand1+gen_nu+gen_lep).M())*(172.5 - (cand1+gen_nu+gen_lep).M()) ){
+      gen_hadJ1 = cand1;
+      gen_lepB = cand2;
+    }
+    else{
+      gen_hadJ1 = cand2;
+      gen_lepB = cand1;
+    }
   }
 
   b_genHadW = (gen_hadJ2+gen_hadJ3).M();
@@ -527,30 +539,34 @@ Bool_t makeTuple::Process(Long64_t entry)
   //int count = 0;
   TLorentzVector jetP4[4];
   for ( auto ii0 = jetIdxs.begin(); ii0 != jetIdxs.end(); ++ii0 ){
+    if ( (!option.Contains("Hct") && !option.Contains("Hut")) && jet_CSV[*ii0] < 0.8484 ) continue;
     jetP4[0].SetPtEtaPhiE(jet_pT[*ii0], jet_eta[*ii0], jet_phi[*ii0], jet_E[*ii0]);
 
     for ( auto ii1 = jetIdxs.begin(); ii1 != jetIdxs.end(); ++ii1 ) {
       if ( *ii1 == *ii0 ) continue;
+      if ( (!option.Contains("Hct") && !option.Contains("Hut")) && jet_CSV[*ii1] < 0.8484 ) continue;
       jetP4[3].SetPtEtaPhiE(jet_pT[*ii1], jet_eta[*ii1], jet_phi[*ii1], jet_E[*ii1]);
 
       for ( auto ii2 = jetIdxs.begin(); ii2 != jetIdxs.end(); ++ii2 ) {
         if ( *ii2 == *ii0 or *ii2 == *ii1 ) continue;
+        if ( (option.Contains("Hct") || option.Contains("Hut")) && jet_CSV[*ii2] < 0.8484 ) continue;//fcnc
         jetP4[2].SetPtEtaPhiE(jet_pT[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_E[*ii2]);
 
         for ( auto ii3 = ii2+1; ii3 != jetIdxs.end(); ++ii3 ) {
           if ( *ii3 == *ii0 or *ii3 == *ii1 or *ii3 == *ii2 ) continue;
+          if ( (option.Contains("Hct") || option.Contains("Hut")) && jet_CSV[*ii3] < 0.8484 ) continue;//fcnc
           jetP4[1].SetPtEtaPhiE(jet_pT[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_E[*ii3]);
           //count++;
 
-          //construct particles: lepB = j0, hadB = j1, hadW = j2+j3
+          //construct particles: lepB = j0, hadB = j3, hadW = j1+j2
           b_jet0pt = jetP4[0].Pt(); b_jet0eta = jetP4[0].Eta(); b_jet0phi = jetP4[0].Phi(); b_jet0m = jetP4[0].M();
           b_jet1pt = jetP4[1].Pt(); b_jet1eta = jetP4[1].Eta(); b_jet1phi = jetP4[1].Phi(); b_jet1m = jetP4[1].M();
           b_jet2pt = jetP4[2].Pt(); b_jet2eta = jetP4[2].Eta(); b_jet2phi = jetP4[2].Phi(); b_jet2m = jetP4[2].M();
           b_jet3pt = jetP4[3].Pt(); b_jet3eta = jetP4[3].Eta(); b_jet3phi = jetP4[3].Phi(); b_jet3m = jetP4[3].M();
           b_jet0csv = jet_CSV[*ii0]; b_jet0cvsl = jet_CvsL[*ii0]; b_jet0cvsb = jet_CvsB[*ii0];
-          b_jet1csv = jet_CSV[*ii1]; b_jet1cvsl = jet_CvsL[*ii1]; b_jet1cvsb = jet_CvsB[*ii1];
+          b_jet1csv = jet_CSV[*ii3]; b_jet1cvsl = jet_CvsL[*ii3]; b_jet1cvsb = jet_CvsB[*ii3];
           b_jet2csv = jet_CSV[*ii2]; b_jet2cvsl = jet_CvsL[*ii2]; b_jet2cvsb = jet_CvsB[*ii2];
-          b_jet3csv = jet_CSV[*ii3]; b_jet3cvsl = jet_CvsL[*ii3]; b_jet3cvsb = jet_CvsB[*ii3];
+          b_jet3csv = jet_CSV[*ii1]; b_jet3cvsl = jet_CvsL[*ii1]; b_jet3cvsb = jet_CvsB[*ii1];//ii3 = jet1
           b_jet0Idx = *ii0; b_jet1Idx = *ii3; b_jet2Idx = *ii2; b_jet3Idx = *ii1;
 
           const auto lepT = lepW + jetP4[0];
@@ -584,7 +600,6 @@ Bool_t makeTuple::Process(Long64_t entry)
           if ( gen_hadJ2.Pt() > 0 and (gen_hadJ2.DeltaR(jetP4[1]) < 0.4 or gen_hadJ2.DeltaR(jetP4[2]) < 0.4) ) b_genMatch += 10;
           if ( gen_hadJ3.Pt() > 0 and (gen_hadJ3.DeltaR(jetP4[1]) < 0.4 or gen_hadJ3.DeltaR(jetP4[2]) < 0.4) ) b_genMatch += 1;
 
-          if ( b_genMatch < 1 ) continue;
           testTree->Fill();
 
           if ( b_genMatch == 1111 ) sigTree->Fill();
