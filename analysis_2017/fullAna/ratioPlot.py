@@ -418,7 +418,7 @@ for i in range(0, N_hist):
   label.AddText("Work in Progress, RunIISummer16 MC vs Run2017 Single Muon (L=41.3 fb^{-1})")
   label.SetFillStyle(0)
   label.SetBorderSize(0)
-  label.SetTextSize(0.03)
+  label.SetTextSize(0.033)
   label.SetTextAlign(32)
   label.Draw("same")
   
