@@ -15,134 +15,134 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
 
     treeTMVA = new TTree("tmva_tree","tree for tmva");
 
-    treeTMVA->Branch("nevt", &b_nevt, "nevt/I");
-    treeTMVA->Branch("GoodPV", &b_GoodPV, "b_GoodPV/I");
-    treeTMVA->Branch("EventCategory", &b_EventCategory, "b_EventCategory/I");
-    treeTMVA->Branch("GenMatch", &b_GenMatch, "b_GenMatch/I");
-    treeTMVA->Branch("EventWeight", &b_EventWeight, "b_EventWeight/F");
+    treeTMVA->Branch("nevt"         , &b_nevt         , "nevt/I");
+    treeTMVA->Branch("GoodPV"       , &b_GoodPV       , "GoodPV/I");
+    treeTMVA->Branch("EventCategory", &b_EventCategory, "EventCategory/I");
+    treeTMVA->Branch("GenMatch"     , &b_GenMatch     , "GenMatch/I");
+    treeTMVA->Branch("EventWeight"  , &b_EventWeight  , "EventWeight/F");
 
-    treeTMVA->Branch("njets", &b_njets, "b_njets/I");
-    treeTMVA->Branch("nbjets_m", &b_nbjets_m, "b_nbjets_m/I");
-    treeTMVA->Branch("ncjets_m", &b_ncjets_m, "b_ncjets_m/I");
-    treeTMVA->Branch("transverseMass", &b_transversem, "b_transversem/F");
-    treeTMVA->Branch("lepDPhi", &b_lepdphi, "b_lepdphi/F");
-    treeTMVA->Branch("missingET", &b_met, "b_met/F");
-    treeTMVA->Branch("bjetmDR", &b_bjmdr, "b_bjmdr/F");
-    treeTMVA->Branch("bjetmDEta", &b_bjmdeta, "b_bjmdeta/F");
-    treeTMVA->Branch("bjetmDPhi", &b_bjmdphi, "b_bjmdphi/F");
-    treeTMVA->Branch("dibjetsMass", &b_dibjetm, "b_dibjetm/F");
-    treeTMVA->Branch("bjetPt_dibjetsm", &b_bjmpt, "b_bjmpt/F");
-    treeTMVA->Branch("cjetPt", &b_cjmpt, "b_cjmpt/F");
+    treeTMVA->Branch("njets"          , &b_njets      , "njets/I");
+    treeTMVA->Branch("nbjets_m"       , &b_nbjets_m   , "nbjets_m/I");
+    treeTMVA->Branch("ncjets_m"       , &b_ncjets_m   , "ncjets_m/I");
+    treeTMVA->Branch("transverseMass" , &b_transversem, "transversem/F");
+    treeTMVA->Branch("lepDPhi"        , &b_lepdphi    , "lepdphi/F");
+    treeTMVA->Branch("missingET"      , &b_met        , "met/F");
+    treeTMVA->Branch("bjetmDR"        , &b_bjmdr      , "bjmdr/F");
+    treeTMVA->Branch("bjetmDEta"      , &b_bjmdeta    , "bjmdeta/F");
+    treeTMVA->Branch("bjetmDPhi"      , &b_bjmdphi    , "bjmdphi/F");
+    treeTMVA->Branch("dibjetsMass"    , &b_dibjetm    , "dibjetm/F");
+    treeTMVA->Branch("bjetPt_dibjetsm", &b_bjmpt      , "bjmpt/F");
+    treeTMVA->Branch("cjetPt"         , &b_cjmpt      , "cjmpt/F");
 
-    treeTMVA->Branch("jet1pt", &b_jet1pt, "b_jet1pt/F");
-    treeTMVA->Branch("jet1eta", &b_jet1eta, "b_jet1eta/F");
-    treeTMVA->Branch("jet1phi", &b_jet1phi, "b_jet1phi/F");
-    treeTMVA->Branch("jet1m", &b_jet1m, "b_jet1m/F");
-    treeTMVA->Branch("jet1csv", &b_jet1csv, "b_jet1csv/F");
-    treeTMVA->Branch("jet1cvsl", &b_jet1cvsl, "b_jet1cvsl/F");
-    treeTMVA->Branch("jet1cvsb", &b_jet1cvsb, "b_jet1cvsb/F");
+    treeTMVA->Branch("jet1pt"  , &b_jet1pt  , "jet1pt/F");
+    treeTMVA->Branch("jet1eta" , &b_jet1eta , "jet1eta/F");
+    treeTMVA->Branch("jet1phi" , &b_jet1phi , "jet1phi/F");
+    treeTMVA->Branch("jet1m"   , &b_jet1m   , "jet1m/F");
+    treeTMVA->Branch("jet1csv" , &b_jet1csv , "jet1csv/F");
+    treeTMVA->Branch("jet1cvsl", &b_jet1cvsl, "jet1cvsl/F");
+    treeTMVA->Branch("jet1cvsb", &b_jet1cvsb, "jet1cvsb/F");
 
-    treeTMVA->Branch("jet2pt", &b_jet2pt, "b_jet2pt/F");
-    treeTMVA->Branch("jet2eta", &b_jet2eta, "b_jet2eta/F");
-    treeTMVA->Branch("jet2phi", &b_jet2phi, "b_jet2phi/F");
-    treeTMVA->Branch("jet2m", &b_jet2m, "b_jet2m/F");
-    treeTMVA->Branch("jet2csv", &b_jet2csv, "b_jet2csv/F");
-    treeTMVA->Branch("jet2cvsl", &b_jet2cvsl, "b_jet2cvsl/F");
-    treeTMVA->Branch("jet2cvsb", &b_jet2cvsb, "b_jet2cvsb/F");
+    treeTMVA->Branch("jet2pt"  , &b_jet2pt  , "jet2pt/F");
+    treeTMVA->Branch("jet2eta" , &b_jet2eta , "jet2eta/F");
+    treeTMVA->Branch("jet2phi" , &b_jet2phi , "jet2phi/F");
+    treeTMVA->Branch("jet2m"   , &b_jet2m   , "jet2m/F");
+    treeTMVA->Branch("jet2csv" , &b_jet2csv , "jet2csv/F");
+    treeTMVA->Branch("jet2cvsl", &b_jet2cvsl, "jet2cvsl/F");
+    treeTMVA->Branch("jet2cvsb", &b_jet2cvsb, "jet2cvsb/F");
 
-    treeTMVA->Branch("jet3pt", &b_jet3pt, "b_jet3pt/F");
-    treeTMVA->Branch("jet3eta", &b_jet3eta, "b_jet3eta/F");
-    treeTMVA->Branch("jet3phi", &b_jet3phi, "b_jet3phi/F");
-    treeTMVA->Branch("jet3m", &b_jet3m, "b_jet3m/F");
-    treeTMVA->Branch("jet3csv", &b_jet3csv, "b_jet3csv/F");
-    treeTMVA->Branch("jet3cvsl", &b_jet3cvsl, "b_jet3cvsl/F");
-    treeTMVA->Branch("jet3cvsb", &b_jet3cvsb, "b_jet3cvsb/F");
+    treeTMVA->Branch("jet3pt"  , &b_jet3pt  , "jet3pt/F");
+    treeTMVA->Branch("jet3eta" , &b_jet3eta , "jet3eta/F");
+    treeTMVA->Branch("jet3phi" , &b_jet3phi , "jet3phi/F");
+    treeTMVA->Branch("jet3m"   , &b_jet3m   , "jet3m/F");
+    treeTMVA->Branch("jet3csv" , &b_jet3csv , "jet3csv/F");
+    treeTMVA->Branch("jet3cvsl", &b_jet3cvsl, "jet3cvsl/F");
+    treeTMVA->Branch("jet3cvsb", &b_jet3cvsb, "jet3cvsb/F");
 
-    treeTMVA->Branch("jet4pt", &b_jet4pt, "b_jet4pt/F");
-    treeTMVA->Branch("jet4eta", &b_jet4eta, "b_jet4eta/F");
-    treeTMVA->Branch("jet4phi", &b_jet4phi, "b_jet4phi/F");
-    treeTMVA->Branch("jet4m", &b_jet4m, "b_jet4m/F");
-    treeTMVA->Branch("jet4csv", &b_jet4csv, "b_jet4csv/F");
-    treeTMVA->Branch("jet4cvsl", &b_jet4cvsl, "b_jet4cvsl/F");
-    treeTMVA->Branch("jet4cvsb", &b_jet4cvsb, "b_jet4cvsb/F");
+    treeTMVA->Branch("jet4pt"  , &b_jet4pt  , "jet4pt/F");
+    treeTMVA->Branch("jet4eta" , &b_jet4eta , "jet4eta/F");
+    treeTMVA->Branch("jet4phi" , &b_jet4phi , "jet4phi/F");
+    treeTMVA->Branch("jet4m"   , &b_jet4m   , "jet4m/F");
+    treeTMVA->Branch("jet4csv" , &b_jet4csv , "jet4csv/F");
+    treeTMVA->Branch("jet4cvsl", &b_jet4cvsl, "jet4cvsl/F");
+    treeTMVA->Branch("jet4cvsb", &b_jet4cvsb, "jet4cvsb/F");
 
     //DR jets
-    treeTMVA->Branch("DRlepWpt", &b_DRlepWpt, "b_DRlepWpt/F");
-    treeTMVA->Branch("DRlepWeta", &b_DRlepWeta, "b_DRlepWeta/F");
-    treeTMVA->Branch("DRlepWdeta", &b_DRlepWdeta, "b_DRlepWdeta/F");
-    treeTMVA->Branch("DRlepWphi", &b_DRlepWphi, "b_DRlepWphi/F");
-    treeTMVA->Branch("DRlepWdphi", &b_DRlepWdphi, "b_DRlepWdphi/F");
-    treeTMVA->Branch("DRlepWm", &b_DRlepWm, "b_DRlepWm/F");
+    treeTMVA->Branch("DRlepWpt"  , &b_DRlepWpt  , "DRlepWpt/F");
+    treeTMVA->Branch("DRlepWeta" , &b_DRlepWeta , "DRlepWeta/F");
+    treeTMVA->Branch("DRlepWdeta", &b_DRlepWdeta, "DRlepWdeta/F");
+    treeTMVA->Branch("DRlepWphi" , &b_DRlepWphi , "DRlepWphi/F");
+    treeTMVA->Branch("DRlepWdphi", &b_DRlepWdphi, "DRlepWdphi/F");
+    treeTMVA->Branch("DRlepWm"   , &b_DRlepWm   , "DRlepWm/F");
 
-    treeTMVA->Branch("DRjet0pt", &b_DRjet0pt, "DRjet0pt/F");
-    treeTMVA->Branch("DRjet0eta", &b_DRjet0eta, "DRjet0eta/F");
-    treeTMVA->Branch("DRjet0phi", &b_DRjet0phi, "DRjet0phi/F");
-    treeTMVA->Branch("DRjet0m", &b_DRjet0m, "DRjet0m/F");
-    treeTMVA->Branch("DRjet0csv", &b_DRjet0csv, "DRjet0csv/F");
+    treeTMVA->Branch("DRjet0pt"  , &b_DRjet0pt  , "DRjet0pt/F");
+    treeTMVA->Branch("DRjet0eta" , &b_DRjet0eta , "DRjet0eta/F");
+    treeTMVA->Branch("DRjet0phi" , &b_DRjet0phi , "DRjet0phi/F");
+    treeTMVA->Branch("DRjet0m"   , &b_DRjet0m   , "DRjet0m/F");
+    treeTMVA->Branch("DRjet0csv" , &b_DRjet0csv , "DRjet0csv/F");
     treeTMVA->Branch("DRjet0cvsl", &b_DRjet0cvsl, "DRjet0cvsl/F");
     treeTMVA->Branch("DRjet0cvsb", &b_DRjet0cvsb, "DRjet0cvsb/F");
 
-    treeTMVA->Branch("DRjet1pt",&b_DRjet1pt, "DRjet1pt/F");
-    treeTMVA->Branch("DRjet1eta",&b_DRjet1eta, "DRjet1eta/F");
-    treeTMVA->Branch("DRjet1phi",&b_DRjet1phi, "DRjet1phi/F");
-    treeTMVA->Branch("DRjet1m",&b_DRjet1m, "DRjet1m/F");
-    treeTMVA->Branch("DRjet1csv", &b_DRjet1csv, "DRjet1csv/F");
+    treeTMVA->Branch("DRjet1pt"  , &b_DRjet1pt  , "DRjet1pt/F");
+    treeTMVA->Branch("DRjet1eta" , &b_DRjet1eta , "DRjet1eta/F");
+    treeTMVA->Branch("DRjet1phi" , &b_DRjet1phi , "DRjet1phi/F");
+    treeTMVA->Branch("DRjet1m"   , &b_DRjet1m   , "DRjet1m/F");
+    treeTMVA->Branch("DRjet1csv" , &b_DRjet1csv , "DRjet1csv/F");
     treeTMVA->Branch("DRjet1cvsl", &b_DRjet1cvsl, "DRjet1cvsl/F");
     treeTMVA->Branch("DRjet1cvsb", &b_DRjet1cvsb, "DRjet1cvsb/F");
 
-    treeTMVA->Branch("DRjet2pt",&b_DRjet2pt, "DRjet2pt/F");
-    treeTMVA->Branch("DRjet2eta",&b_DRjet2eta, "DRjet2eta/F");
-    treeTMVA->Branch("DRjet2phi",&b_DRjet2phi, "DRjet2phi/F");
-    treeTMVA->Branch("DRjet2m",&b_DRjet2m, "DRjet2m/F");
-    treeTMVA->Branch("DRjet2csv", &b_DRjet2csv, "DRjet2csv/F");
+    treeTMVA->Branch("DRjet2pt"  , &b_DRjet2pt  , "DRjet2pt/F");
+    treeTMVA->Branch("DRjet2eta" , &b_DRjet2eta , "DRjet2eta/F");
+    treeTMVA->Branch("DRjet2phi" , &b_DRjet2phi , "DRjet2phi/F");
+    treeTMVA->Branch("DRjet2m"   , &b_DRjet2m   , "DRjet2m/F");
+    treeTMVA->Branch("DRjet2csv" , &b_DRjet2csv , "DRjet2csv/F");
     treeTMVA->Branch("DRjet2cvsl", &b_DRjet2cvsl, "DRjet2cvsl/F");
     treeTMVA->Branch("DRjet2cvsb", &b_DRjet2cvsb, "DRjet2cvsb/F");
 
-    treeTMVA->Branch("DRjet3pt",&b_DRjet3pt, "DRjet3pt/F");
-    treeTMVA->Branch("DRjet3eta",&b_DRjet3eta, "DRjet3eta/F");
-    treeTMVA->Branch("DRjet3phi",&b_DRjet3phi, "DRjet3phi/F");
-    treeTMVA->Branch("DRjet3m",&b_DRjet3m, "DRjet3m/F");
-    treeTMVA->Branch("DRjet3csv", &b_DRjet3csv, "DRjet3csv/F");
+    treeTMVA->Branch("DRjet3pt"  , &b_DRjet3pt  , "DRjet3pt/F");
+    treeTMVA->Branch("DRjet3eta" , &b_DRjet3eta , "DRjet3eta/F");
+    treeTMVA->Branch("DRjet3phi" , &b_DRjet3phi , "DRjet3phi/F");
+    treeTMVA->Branch("DRjet3m"   , &b_DRjet3m   , "DRjet3m/F");
+    treeTMVA->Branch("DRjet3csv" , &b_DRjet3csv , "DRjet3csv/F");
     treeTMVA->Branch("DRjet3cvsl", &b_DRjet3cvsl, "DRjet3cvsl/F");
     treeTMVA->Branch("DRjet3cvsb", &b_DRjet3cvsb, "DRjet3cvsb/F");
 
-    treeTMVA->Branch("DRjet12pt",&b_DRjet12pt, "DRjet12pt/F");
-    treeTMVA->Branch("DRjet12eta",&b_DRjet12eta, "DRjet12eta/F");
-    treeTMVA->Branch("DRjet12deta",&b_DRjet12deta, "DRjet12deta/F");
-    treeTMVA->Branch("DRjet12phi",&b_DRjet12phi, "DRjet12phi/F");//mass->higgs
-    treeTMVA->Branch("DRjet12dphi",&b_DRjet12dphi, "DRjet12dphi/F");
-    treeTMVA->Branch("DRjet12m", &b_DRjet12m, "b_DRjet12m/F");//higgs candidate
-    treeTMVA->Branch("DRjet12DR", &b_DRjet12DR, "b_DRjet12DR/F");
+    treeTMVA->Branch("DRjet12pt"  , &b_DRjet12pt  , "DRjet12pt/F");
+    treeTMVA->Branch("DRjet12eta" , &b_DRjet12eta , "DRjet12eta/F");
+    treeTMVA->Branch("DRjet12deta", &b_DRjet12deta, "DRjet12deta/F");
+    treeTMVA->Branch("DRjet12phi" , &b_DRjet12phi , "DRjet12phi/F");//mass->higgs
+    treeTMVA->Branch("DRjet12dphi", &b_DRjet12dphi, "DRjet12dphi/F");
+    treeTMVA->Branch("DRjet12m"   , &b_DRjet12m   , "DRjet12m/F");//higgs candidate
+    treeTMVA->Branch("DRjet12DR"  , &b_DRjet12DR  , "DRjet12DR/F");
 
-    treeTMVA->Branch("DRjet23pt",&b_DRjet23pt, "DRjet23pt/F");
-    treeTMVA->Branch("DRjet23eta",&b_DRjet23eta, "DRjet23eta/F");
-    treeTMVA->Branch("DRjet23deta",&b_DRjet23deta, "DRjet23deta/F");
-    treeTMVA->Branch("DRjet23phi",&b_DRjet23phi, "DRjet23phi/F");//mass->had W
-    treeTMVA->Branch("DRjet23dphi",&b_DRjet23dphi, "DRjet23dphi/F");
-    treeTMVA->Branch("DRjet23m", &b_DRjet23m, "b_DRjet23m/F");//hadW
+    treeTMVA->Branch("DRjet23pt"  , &b_DRjet23pt  , "DRjet23pt/F");
+    treeTMVA->Branch("DRjet23eta" , &b_DRjet23eta , "DRjet23eta/F");
+    treeTMVA->Branch("DRjet23deta", &b_DRjet23deta, "DRjet23deta/F");
+    treeTMVA->Branch("DRjet23phi" , &b_DRjet23phi , "DRjet23phi/F");//mass->had W
+    treeTMVA->Branch("DRjet23dphi", &b_DRjet23dphi, "DRjet23dphi/F");
+    treeTMVA->Branch("DRjet23m"   , &b_DRjet23m   , "DRjet23m/F");//hadW
 
-    treeTMVA->Branch("DRjet31pt",&b_DRjet31pt, "DRjet31pt/F");
-    treeTMVA->Branch("DRjet31eta",&b_DRjet31eta, "DRjet31eta/F");
-    treeTMVA->Branch("DRjet31deta",&b_DRjet31deta, "DRjet31deta/F");
-    treeTMVA->Branch("DRjet31phi",&b_DRjet31phi, "DRjet31phi/F");
-    treeTMVA->Branch("DRjet31dphi",&b_DRjet31dphi, "DRjet31dphi/F");
-    treeTMVA->Branch("DRjet31m",&b_DRjet31m, "DRjet31m/F");
+    treeTMVA->Branch("DRjet31pt"  , &b_DRjet31pt  , "DRjet31pt/F");
+    treeTMVA->Branch("DRjet31eta" , &b_DRjet31eta , "DRjet31eta/F");
+    treeTMVA->Branch("DRjet31deta", &b_DRjet31deta, "DRjet31deta/F");
+    treeTMVA->Branch("DRjet31phi" , &b_DRjet31phi , "DRjet31phi/F");
+    treeTMVA->Branch("DRjet31dphi", &b_DRjet31dphi, "DRjet31dphi/F");
+    treeTMVA->Branch("DRjet31m"   , &b_DRjet31m   , "DRjet31m/F");
 
-    treeTMVA->Branch("DRlepTpt", &b_DRlepTpt, "DRlepTpt/F");
-    treeTMVA->Branch("DRlepTeta", &b_DRlepTeta, "DRlepTeta/F");
+    treeTMVA->Branch("DRlepTpt"  , &b_DRlepTpt  , "DRlepTpt/F");
+    treeTMVA->Branch("DRlepTeta" , &b_DRlepTeta , "DRlepTeta/F");
     treeTMVA->Branch("DRlepTdeta", &b_DRlepTdeta, "DRlepTdeta/F");
-    treeTMVA->Branch("DRlepTphi", &b_DRlepTphi, "DRlepTphi/F");
+    treeTMVA->Branch("DRlepTphi" , &b_DRlepTphi , "DRlepTphi/F");
     treeTMVA->Branch("DRlepTdphi", &b_DRlepTdphi, "DRlepTdphi/F");//W and b
-    treeTMVA->Branch("DRlepTm", &b_DRlepTm, "b_DRlepTm/F");
+    treeTMVA->Branch("DRlepTm"   , &b_DRlepTm   , "DRlepTm/F");
 
-    treeTMVA->Branch("DRhadTpt", &b_DRhadTpt, "DRhadTpt/F");
-    treeTMVA->Branch("DRhadTeta", &b_DRhadTeta, "DRhadTeta/F");
+    treeTMVA->Branch("DRhadTpt"    , &b_DRhadTpt    , "DRhadTpt/F");
+    treeTMVA->Branch("DRhadTeta"   , &b_DRhadTeta   , "DRhadTeta/F");
     treeTMVA->Branch("DRhadTHbdeta", &b_DRhadTHbdeta, "DRhadTHbdeta/F");
     treeTMVA->Branch("DRhadTWbdeta", &b_DRhadTWbdeta, "DRhadTWbdeta/F");
-    treeTMVA->Branch("DRhadTphi", &b_DRhadTphi, "DRhadTphi/F");
+    treeTMVA->Branch("DRhadTphi"   , &b_DRhadTphi   , "DRhadTphi/F");
     treeTMVA->Branch("DRhadTHbdphi", &b_DRhadTHbdphi, "DRhadTHbdphi/F");//H and b
     treeTMVA->Branch("DRhadTWbdphi", &b_DRhadTWbdphi, "DRhadTWbdphi/F");//W and b
-    treeTMVA->Branch("DRhadTm", &b_DRhadTm, "b_DRhadTm/F");
+    treeTMVA->Branch("DRhadTm"     , &b_DRhadTm     , "DRhadTm/F");
 
     fOutput->Add(treeTMVA);
 } 
