@@ -10,6 +10,7 @@ from sklearn.preprocessing import StandardScaler, label_binarize
 from sklearn.decomposition import PCA
 from sklearn.utils import shuffle, class_weight
 from sklearn.metrics import roc_auc_score, roc_curve
+from sklearn.metrics import confusion_matrix, f1_score, precision_score, recall_score
 import numpy as np
 from root_numpy import array2tree, tree2array
 from ROOT import TFile, TTree
@@ -24,7 +25,7 @@ from keras.regularizers import l2
 from keras.optimizers import Adam, SGD
 from keras.callbacks import Callback, ModelCheckpoint
 
-ch = 'Hct42'
+ch = 'Hct43'
 configDir = '/home/minerva1993/tmva/test/'
 
 if not os.path.exists(configDir+'keras_'+ch):
@@ -81,15 +82,41 @@ def correlations(data, name, **kwds):
     else: print('Wrong class name!')
 
 
+#####################
+#Plot input variables
+#####################
+def inputvars(sigdata, bkgdata, signame, bkgname, **kwds):
+    print('Plotting input variables')
+    bins = 40
+    for colname in sigdata:
+      dataset = [sigdata, bkgdata]
+      low = min(np.min(d[colname].values) for d in dataset)
+      high = max(np.max(d[colname].values) for d in dataset)
+      if high > 500: low_high = (low,500)
+      else: low_high = (low,high)
+
+      plt.figure()
+      sigdata[colname].plot.hist(color='b', density=True, range=low_high, bins=bins, histtype='step', label='signal')
+      bkgdata[colname].plot.hist(color='r', density=True, range=low_high, bins=bins, histtype='step', label='background')
+      plt.xlabel(colname)
+      plt.ylabel('A.U.')
+      plt.title('Intput variables')
+      plt.legend(loc='upper right')
+      plt.savefig(configDir+'keras_'+ch+'/fig_'+colname+'.pdf')
+      plt.gcf().clear()
+      plt.close()
+
+
 ########################################
 #Compute AUC after training and plot ROC
 ########################################
 class roc_callback(Callback):
-  def __init__(self, training_data, validation_data):
+  def __init__(self, training_data, validation_data, model):
       self.x = training_data[0]
       self.y = training_data[1]
       self.x_val = validation_data[0]
       self.y_val = validation_data[1]
+      self.model_to_save = model
 
   def on_train_begin(self, logs={}):
       return
@@ -104,12 +131,22 @@ class roc_callback(Callback):
       ############
       #compute AUC
       ############
-      print('Calculating AUC')
+      print('Calculating AUC of epoch '+str(epoch+1))
       y_pred = self.model.predict(self.x, batch_size=2000)
       roc = roc_auc_score(self.y, y_pred)
       y_pred_val = self.model.predict(self.x_val, batch_size=2000)
       roc_val = roc_auc_score(self.y_val, y_pred_val)
       print('\rroc-auc: %s - roc-auc_val: %s' % (str(round(roc,4)), str(round(roc_val,4))),end=100*' '+'\n')
+
+      ###################
+      #Calculate f1 score
+      ###################
+      val_predict = (y_pred_val[:,1]).round()
+      val_targ = self.y_val[:,1]
+      val_f1 = f1_score(val_targ, val_predict)
+      val_recall = recall_score(val_targ, val_predict)
+      val_precision = precision_score(val_targ, val_predict)
+      print('val_f1: %.4f, val_precision: %.4f, val_recall %.4f' %(val_f1, val_precision, val_recall))
 
       ###############
       #Plot ROC curve
@@ -168,6 +205,14 @@ class roc_callback(Callback):
       plt.gcf().clear()
       print('ROC curve and overtraining check plots are saved!')
       del y_pred, y_pred_val, fpr, tpr, roc_auc
+
+      ###############################
+      #Save single gpu model manually
+      ###############################
+      modelfile = 'model_%d_%.4f.h5' %(epoch+1,round(roc_val,4))
+      self.model_to_save.save(configDir+'recoTT'+ver+'/'+modelfile)
+      print('Current model is saved')
+
       return
 
   def on_batch_begin(self, batch, logs={}):
@@ -175,6 +220,7 @@ class roc_callback(Callback):
 
   def on_batch_end(self, batch, logs={}):
       return
+
 
 ####################
 #read input and skim
@@ -218,6 +264,8 @@ data.astype('float32')
 correlations(data.loc[data['EventCategory'] == 0].drop('EventCategory', axis=1), 'bkg')
 correlations(data.loc[data['EventCategory'] == 1].drop('EventCategory', axis=1), 'sig')
 
+inputvars(data.loc[data['EventCategory'] == 1].drop('EventCategory', axis=1), data.loc[data['EventCategory'] == 0].drop('EventCategory', axis=1), 'sig', 'bkg')
+
 data = data.drop('EventCategory', axis=1) #then drop label
 
 
@@ -237,8 +285,7 @@ data_test = data.loc[test_idx,:].copy()
 labels_train = labels.loc[train_idx,:].copy()
 labels_test = labels.loc[test_idx,:].copy()
 
-#print(str(totcombi))
-print(str(len(train_sig))+' '+str(len(test_sig))+' '+str(len(train_bkg))+' '+str(len(test_bkg)))
+print('Training signal: '+str(len(train_sig))+' / testing signal: '+str(len(test_sig))+' / training background: '+str(len(train_bkg))+' / testing background: '+str(len(test_bkg)))
 #print(str(len(data_train)) +' '+ str(len(labels_train)) +' ' + str(len(data_test)) +' '+ str(len(labels_test)))
 #print(labels)
 
@@ -262,6 +309,7 @@ X_test = pca.fit_transform(data_test_sc)
 """
 X_train = data_train_sc
 X_test = data_test_sc
+
 
 #################################
 #Keras model compile and training
@@ -366,7 +414,7 @@ history = model.fit(X_train, Y_train,
                              epochs=50, batch_size=1024, 
                              validation_data=(X_test, Y_test), 
                              class_weight={ 1: 11, 0: 1 }, 
-                             callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test)), checkpoint]
+                             callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model), checkpoint]
                              )
 
 #print(history.history.keys())
@@ -387,4 +435,3 @@ plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper right')
 plt.savefig(configDir+'keras_'+ch+'/fig_loss.pdf')
 plt.gcf().clear() 
-
