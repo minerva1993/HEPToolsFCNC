@@ -427,7 +427,7 @@ for i in range(0, N_hist):
     if sthutsamples[fname]["name"] is not "QCD" and QCDestimate:
       h_stHutSub.Add(h_Hut, -1)
     ## check if the sample is the same as previous process. 
-    if n < N_stHutsamples-1 :
+    if stn < N_stHutsamples-1 :
       post_name = sthutsamples.keys()[n+1]
       if sthutsamples[fname]["name"] is sthutsamples[post_name]["name"]:
         h_stHut.SetLineColor(sthutsamples[fname]["col"])
