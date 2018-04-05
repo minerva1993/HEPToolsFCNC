@@ -14,6 +14,8 @@ datasamples=OrderedDict()
 bkgsamples=OrderedDict()
 hctsamples=OrderedDict()
 hutsamples=OrderedDict()
+sthctsamples=OrderedDict()
+sthutsamples=OrderedDict()
 
 def SetData(fname, name, lumi):
   tmp = {}
@@ -21,7 +23,6 @@ def SetData(fname, name, lumi):
   #fnames = f.GetName().split('.')
   #fname = fnames[0]
   fname = os.path.basename(fname)[:-5]
-
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
   tmp["hname"].remove("EventInfo")
@@ -35,16 +36,13 @@ def AddBkg(fname, name, color, xsection):
   fname = os.path.basename(fname)[:-5]
   #fnames = f.GetName().split('.')
   #fname = fnames[0]
-
   nevt = 1
- 
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
   if xsection is not 1:
     tmp["hname"].remove("EventInfo")
     h = f.Get("EventInfo")
     nevt = h.GetBinContent(2)
-
   tmp["total"] = nevt 
   tmp["col"] = color
   tmp["xsection"] = xsection
@@ -57,16 +55,13 @@ def AddHct(fname, name, color, xsection):
   fname = os.path.basename(fname)[:-5]
   #fnames = f.GetName().split('.')
   #fname = fnames[0]
-
   nevt = 1
-
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
   if xsection is not 1:
     tmp["hname"].remove("EventInfo")
     h = f.Get("EventInfo")
     nevt = h.GetBinContent(2)
-
   tmp["total"] = nevt
   tmp["col"] = color
   tmp["xsection"] = xsection
@@ -79,21 +74,56 @@ def AddHut(fname, name, color, xsection):
   fname = os.path.basename(fname)[:-5]
   #fnames = f.GetName().split('.')
   #fname = fnames[0]
-
   nevt = 1
-
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
   if xsection is not 1:
     tmp["hname"].remove("EventInfo")
     h = f.Get("EventInfo")
     nevt = h.GetBinContent(2)
-
   tmp["total"] = nevt
   tmp["col"] = color
   tmp["xsection"] = xsection
   tmp["name"] = name
   hutsamples[fname] = tmp
+
+def AddSTHct(fname, name, color, xsection):
+  tmp = {}
+  f = TFile(fname)
+  fname = os.path.basename(fname)[:-5]
+  #fnames = f.GetName().split('.')
+  #fname = fnames[0]
+  nevt = 1
+  tmp["file"] = f
+  tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
+  if xsection is not 1:
+    tmp["hname"].remove("EventInfo")
+    h = f.Get("EventInfo")
+    nevt = h.GetBinContent(2)
+  tmp["total"] = nevt
+  tmp["col"] = color
+  tmp["xsection"] = xsection
+  tmp["name"] = name
+  sthctsamples[fname] = tmp
+
+def AddSTHut(fname, name, color, xsection):
+  tmp = {}
+  f = TFile(fname)
+  fname = os.path.basename(fname)[:-5]
+  #fnames = f.GetName().split('.')
+  #fname = fnames[0]
+  nevt = 1
+  tmp["file"] = f
+  tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
+  if xsection is not 1:
+    tmp["hname"].remove("EventInfo")
+    h = f.Get("EventInfo")
+    nevt = h.GetBinContent(2)
+  tmp["total"] = nevt
+  tmp["col"] = color
+  tmp["xsection"] = xsection
+  tmp["name"] = name
+  sthutsamples[fname] = tmp
 
 ####Users should provide these information 
 SetData("hist_DataSingleMu.root","data", 35922) #35867
@@ -139,6 +169,8 @@ AddHct("hist_Top_Hct.root", "Hct", 433, 1.85)
 AddHct("hist_AntiTop_Hct.root", "Hct", 433, 1.85) 
 AddHut("hist_Top_Hut.root", "Hut", 401, 1.85)
 AddHut("hist_AntiTop_Hut.root", "Hut", 401, 1.85)
+AddSTHct("hist_singleTop_Hct.root", "STHct", 435, 1.38)
+AddSTHut("hist_singleTop_Hut.root", "STHut", 403, 0.19)
 #used 1610.04857 values
 
 qcd = []
@@ -147,6 +179,8 @@ N_hist = len(datasamples[datasamples.keys()[0]]["hname"])
 N_bkgsamples = len(bkgsamples)
 N_Hctsamples = len(hctsamples)
 N_Hutsamples = len(hutsamples)
+N_stHctsamples = len(sthctsamples)
+N_stHutsamples = len(sthutsamples)
 
 fNevt = open("Nevt_ratio.txt",'w')
 
@@ -229,7 +263,7 @@ for i in range(0, N_hist):
 
   h_bkg = hs.GetStack().Last()
 
-#Sig Stack
+  #Sig Stack
   hsHct = THStack()
 
   ntotalHct = 0
@@ -240,7 +274,6 @@ for i in range(0, N_hist):
     nbins = h_Hct.GetNbinsX()
     h_Hct.AddBinContent( nbins, h_Hct.GetBinContent( nbins+1 ) ) 
     h_Hct.SetLineColor(hctsamples[fname]["col"])
-    h_Hct.SetFillColorAlpha(hctsamples[fname]["col"],0.0)
 
     ## normalization
     scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
@@ -277,7 +310,8 @@ for i in range(0, N_hist):
   hs_Hct = hsHct.GetStack().Last()
   if h_data.Integral > 0 and hs_Hct.Integral() > 0 and h_bkg.Integral() != 0: hs_Hct.Scale(h_data.Integral()/hs_Hct.Integral())
 
-#Add Hut
+
+  #Add Hut
   hsHut = THStack()
 
   ntotalHut = 0
@@ -288,7 +322,6 @@ for i in range(0, N_hist):
     nbins = h_Hut.GetNbinsX()
     h_Hut.AddBinContent( nbins, h_Hut.GetBinContent( nbins+1 ) ) 
     h_Hut.SetLineColor(hutsamples[fname]["col"])
-    h_Hut.SetFillColorAlpha(hutsamples[fname]["col"],0.0)
 
     ## normalization
     scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
@@ -325,6 +358,103 @@ for i in range(0, N_hist):
   hs_Hut = hsHut.GetStack().Last()
   if h_data.Integral > 0 and hs_Hut.Integral() > 0 and h_bkg.Integral() != 0: hs_Hut.Scale(h_data.Integral()/hs_Hut.Integral())
 
+
+  #Add singletop Hct
+  hsSTHct = THStack()
+
+  ntotalSTHct = 0
+  stm = 0
+
+  for fname in sthctsamples.keys():
+    h_stHct = sthctsamples[fname]["file"].Get(sthctsamples[fname]["hname"][i])
+    nbins = h_stHct.GetNbinsX()
+    h_stHct.AddBinContent( nbins, h_stHct.GetBinContent( nbins+1 ) )
+    h_stHct.SetLineColor(sthctsamples[fname]["col"])
+
+    ## normalization
+    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(sthctsamples[fname]["total"]/sthctsamples[fname]["xsection"])
+    #scale = 0.1
+    h_stHct.Scale(scale)
+
+    if sthctsamples[fname]["name"] is not "QCD" and QCDestimate:
+      h_stHctSub.Add(h_Hct, -1)
+    ## check if the sample is the same as previous process. 
+    if stm < N_stHctsamples-1 :
+      post_name = sthctsamples.keys()[m+1]
+      if sthctsamples[fname]["name"] is sthctsamples[post_name]["name"]:
+        h_stHct.SetLineColor(sthctsamples[fname]["col"])
+      else:
+        l.AddEntry(h_stHct, sthctsamples[fname]["name"]  ,"F")
+    else:
+      l.AddEntry(h_stHct, sthctsamples[fname]["name"]  ,"F")
+
+    ## print out number of events
+    numevt = h_stHct.Integral()
+    rawevt = h_stHct.GetEntries()
+    if sthctsamples[fname]["name"] == "QCD": numqcd = numevt
+    if hnames[1] == printHistName:
+      string = "%s :  %s = %f \n"%(fname,sthctsamples[fname]["name"],numevt)
+      fNevt.write(string)
+      print fname, " : ", sthctsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
+
+    #print fname, " : ", scale
+
+    ## Add to Stack
+    hsSTHct.Add( h_stHct ) #hh_tmp -> add h tmp sig, hs->other
+    stm = stm+1
+
+  hs_stHct = hsSTHct.GetStack().Last()
+  if h_data.Integral > 0 and hs_stHct.Integral() > 0 and h_bkg.Integral() != 0: hs_stHct.Scale(h_data.Integral()/hs_stHct.Integral())
+
+
+  #Add singletop Hut
+  hsSTHut = THStack()
+
+  ntotalSTHut = 0
+  stn = 0
+
+  for fname in sthutsamples.keys():
+    h_stHut = sthutsamples[fname]["file"].Get(sthutsamples[fname]["hname"][i])
+    nbins = h_stHut.GetNbinsX()
+    h_stHut.AddBinContent( nbins, h_stHut.GetBinContent( nbins+1 ) )
+    h_stHut.SetLineColor(sthutsamples[fname]["col"])
+
+    ## normalization
+    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(sthutsamples[fname]["total"]/sthutsamples[fname]["xsection"])
+    #scale = 0.1
+    h_stHut.Scale(scale)
+
+    if sthutsamples[fname]["name"] is not "QCD" and QCDestimate:
+      h_stHutSub.Add(h_Hut, -1)
+    ## check if the sample is the same as previous process. 
+    if n < N_stHutsamples-1 :
+      post_name = sthutsamples.keys()[n+1]
+      if sthutsamples[fname]["name"] is sthutsamples[post_name]["name"]:
+        h_stHut.SetLineColor(sthutsamples[fname]["col"])
+      else:
+        l.AddEntry(h_stHut, sthutsamples[fname]["name"]  ,"F")
+    else:
+      l.AddEntry(h_stHut, sthutsamples[fname]["name"]  ,"F")
+
+    ## Add to Stack
+    hsSTHut.Add( h_stHut ) #hh_tmp -> add h tmp sig, hs->other
+    stn = stn+1
+
+    ## print out number of events
+    numevt = h_stHut.Integral()
+    rawevt = h_stHut.GetEntries()
+    if sthutsamples[fname]["name"] == "QCD": numqcd = numevt
+    if hnames[1] == printHistName:
+      string = "%s :  %s = %f \n"%(fname,sthutsamples[fname]["name"],numevt)
+      fNevt.write(string)
+      print fname, " : ", sthutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
+
+    #print fname, " : ", scale
+
+  hs_stHut = hsSTHut.GetStack().Last()
+  if h_data.Integral > 0 and hs_stHut.Integral() > 0 and h_bkg.Integral() != 0: hs_stHut.Scale(h_data.Integral()/hs_stHut.Integral())
+
+
   if QCDestimate:
     qcd.append(h_sub)
 
@@ -351,8 +481,8 @@ for i in range(0, N_hist):
   h_data.SetMarkerSize(0.5)
   max_data = h_data.GetMaximum()
   max_hs = hs.GetMaximum()
-  if hs_Hut.GetMaximum() > hs_Hct.GetMaximum(): max_sig = hs_Hut.GetMaximum()
-  else: max_sig = hs_Hct.GetMaximum()
+  sigmaximums = [hs_Hct.GetMaximum(), hs_Hut.GetMaximum(), hs_stHct.GetMaximum(), hs_stHut.GetMaximum()]
+  max_sig = max(sigmaximums)
   maxfrac = 0.5
   if(max_hs > max_sig):
     if log :
@@ -382,8 +512,12 @@ for i in range(0, N_hist):
   hs.Draw("histsame")
   hs_Hct.SetLineWidth(2)
   hs_Hut.SetLineWidth(2)
+  hs_stHct.SetLineWidth(2)
+  hs_stHut.SetLineWidth(2)
   hs_Hct.Draw("hist same")
   hs_Hut.Draw("hist same")
+  hs_stHct.Draw("hist same")
+  hs_stHut.Draw("hist same")
   h_data.Draw("psame")
   h_data.Draw("AXIS P SAME")
   h4 = hs.Clone("h4")
@@ -473,9 +607,7 @@ for i in range(0, N_hist):
   else:
     c.Print(filename)
 
-  del h_data
-  del hs
-  del c
+  del h_data, hs, c
 
 if QCDestimate :
  f = ROOT.TFile("hist_qcd.root", "recreate")

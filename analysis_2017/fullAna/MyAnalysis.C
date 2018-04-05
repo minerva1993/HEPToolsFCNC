@@ -16,7 +16,12 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
    cout << "SlaveBegin" << endl;
    for(int ich=0; ich < 2; ich++){
      for(int i=0; i < 16; i++){
-     
+ 
+      h_PV[ich][i] = new TH1D(Form("h_PV_Ch%i_S%i_%s",ich,i,option.Data()), "Number of primary vertices", 50, 0, 150);
+      h_PV[ich][i]->SetXTitle("Good PV");
+      h_PV[ich][i]->Sumw2();
+      fOutput->Add(h_PV[ich][i]);
+    
       h_NJet[ich][i] = new TH1D(Form("h_NJet_Ch%i_S%i_%s",ich,i,option.Data()), "Number of jets", 12, 0, 12);
       h_NJet[ich][i]->SetXTitle("Jet Multiplicity");
       h_NJet[ich][i]->Sumw2();
@@ -37,7 +42,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_NCJetM[ich][i]->Sumw2();
       fOutput->Add(h_NCJetM[ich][i]);  
 
-      h_MET[ich][i] = new TH1D(Form("h_MET_Ch%i_S%i_%s",ich,i,option.Data()), "MET", 30,0,300);
+      h_MET[ich][i] = new TH1D(Form("h_MET_Ch%i_S%i_%s",ich,i,option.Data()), "MET", 40,0,200);
       h_MET[ich][i]->SetXTitle("MET (GeV)");
       h_MET[ich][i]->Sumw2();
       fOutput->Add(h_MET[ich][i]);
@@ -61,7 +66,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_WMass[ich][i]->SetXTitle("Transverse Mass (GeV)");
       h_WMass[ich][i]->Sumw2();
       fOutput->Add(h_WMass[ich][i]);
-
+/*
       h_HMass_m[ich][i] = new TH1D(Form("h_HMassM_Ch%i_S%i_%s",ich,i,option.Data()), "Di-bjet Mass (medium) wrt min DR", 30 ,0 ,300);
       h_HMass_m[ich][i]->SetXTitle("Di-bjet (medium) Mass (GeV)");
       h_HMass_m[ich][i]->Sumw2();
@@ -71,7 +76,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bJetPtHm[ich][i]->SetXTitle("b Jet (medium) pT from di-bjets (GeV)");
       h_bJetPtHm[ich][i]->Sumw2();
       fOutput->Add(h_bJetPtHm[ich][i]);
-
+*/
       h_cJetPt[ich][i] = new TH1D(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()), "leading c jet (medium) pT", 30 , 0 ,300);
       h_cJetPt[ich][i]->SetXTitle("leading c Jet (medium) pT (GeV)");
       h_cJetPt[ich][i]->Sumw2();
@@ -81,7 +86,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_DPhi[ich][i]->SetXTitle("|#Delta#phi_{l,MET}|");
       h_DPhi[ich][i]->Sumw2();
       fOutput->Add(h_DPhi[ich][i]);
-
+/*
       h_bjmDPhi[ich][i] = new TH1D(Form("h_bjmDPhi_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta Phi", 30 ,0 ,3.2);
       h_bjmDPhi[ich][i]->SetXTitle("bjet_m |#Delta#phi|");
       h_bjmDPhi[ich][i]->Sumw2();
@@ -96,17 +101,12 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_bjmDR[ich][i]->SetXTitle("bjet_m #Delta R");
       h_bjmDR[ich][i]->Sumw2();
       fOutput->Add(h_bjmDR[ich][i]);
-
-      h_LepIso[ich][i] = new TH1D(Form("h_LepIso_Ch%i_S%i_%s",ich,i,option.Data()), "LepIso", 20 ,0 ,0.2);
+*/
+      h_LepIso[ich][i] = new TH1D(Form("h_LepIso_Ch%i_S%i_%s",ich,i,option.Data()), "LepIso", 20 ,0 ,0.15);
       h_LepIso[ich][i]->SetXTitle("Relative Isolation");
       h_LepIso[ich][i]->Sumw2();
       fOutput->Add(h_LepIso[ich][i]);
-
-      h_LepIsoQCD[ich][i] = new TH1D(Form("h_LepIsoQCD_Ch%i_S%i_%s",ich,i,option.Data()), "LepIsoQCD", 20 ,0 ,0.2);
-      h_LepIsoQCD[ich][i]->SetXTitle("Relative Isolation (QCD)");
-      h_LepIsoQCD[ich][i]->Sumw2();
-      fOutput->Add(h_LepIsoQCD[ich][i]);
-
+/*
       h_csvv2[ich][i] = new TH1D(Form("h_csvv2_Ch%i_S%i_%s",ich,i,option.Data()), "CSVv2", 20 ,0 ,1);
       h_csvv2[ich][i]->SetXTitle("CSVv2");
       h_csvv2[ich][i]->Sumw2();
@@ -166,7 +166,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_DRFCNHkinHdEta[ich][i]->SetXTitle("|#Delta#eta_{bb}|");
       h_DRFCNHkinHdEta[ich][i]->Sumw2();
       fOutput->Add(h_DRFCNHkinHdEta[ich][i]);
-/*
+
       h_DRFCNHkinHb1Pt[ich][i] = new TH1D(Form("h_DRFCNHkinHb1Pt_Ch%i_S%i_%s",ich,i,option.Data()), "Higgs b_{1} p_{T}", 30, 0,300);
       h_DRFCNHkinHb1Pt[ich][i]->SetXTitle("Higgs b_{1} p_{T} (GeV)");
       h_DRFCNHkinHb1Pt[ich][i]->Sumw2();
@@ -176,7 +176,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_DRFCNHkinHb2Pt[ich][i]->SetXTitle("Higgs b_{2} p_{T} (GeV)");
       h_DRFCNHkinHb2Pt[ich][i]->Sumw2();
       fOutput->Add(h_DRFCNHkinHb2Pt[ich][i]);
-*/
+
       h_DRFCNHkinHb1CSV[ich][i] = new TH1D(Form("h_DRFCNHkinHb1CSV_Ch%i_S%i_%s",ich,i,option.Data()), "Higgs b_{1} CSVv2", 20, 0.8 ,1);
       h_DRFCNHkinHb1CSV[ich][i]->SetXTitle("Higgs b_{1} CSVv2 (GeV)");
       h_DRFCNHkinHb1CSV[ich][i]->Sumw2();
@@ -217,6 +217,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_matchHm[ich][i]->SetXTitle("gen matched Higgs Mass (GeV)");
       h_matchHm[ich][i]->Sumw2();
       fOutput->Add(h_matchHm[ich][i]);
+*/
       }
     }
 } 
@@ -233,11 +234,11 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     if( mode > 2) return kTRUE;
 
     float lep_SF = 1.0;
-    if( !option.Contains("Data") ) lep_SF = lepton_SF[0];
+    //if( !option.Contains("Data") ) lep_SF = lepton_SF[0];
     float genweight = *genWeight;
     float puweight = PUWeight[0];
-    float jetsf = jet_SF_CSV_30[0];
-    float EventWeight = puweight*genweight*lep_SF*jetsf;
+    //float jetsf = jet_SF_CSV_30[0];
+    float EventWeight = puweight*genweight;//*lep_SF*jetsf;
 
     float relIso = *lepton_relIso; 
 
@@ -292,7 +293,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     //Event selection 
     bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.1);
-    bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
+    bool passelectron = (mode == 1) && (lepton.Pt() > 38) && (abs(lepton.Eta()) <= 2.1);
 
   if( passmuon || passelectron ){
 
@@ -305,22 +306,22 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
       TLorentzVector jet;
       jet.SetPtEtaPhiE(jet_pT[iJet], jet_eta[iJet], jet_phi[iJet], jet_E[iJet]);
-      if( !option.Contains("Data") ) jet = jet * jet_JER_Nom[iJet];
+      //if( !option.Contains("Data") ) jet = jet * jet_JER_Nom[iJet];
 
       if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
         njets++;
         jetIdxs.push_back(iJet);//Goh's kinfit
-        if( jet_CSV[iJet] > 0.8484 ){
+        if( jet_CSV[iJet] > 0.8838 ){ //new WP
           nbjets_m++;
           v_bjet_m.push_back(jet);
           //bjm_csv.push_back(jet_CSV[iJet]);
         }
-        if( jet_CSV[iJet] > 0.9535 ){
+        if( jet_CSV[iJet] > 0.9693 ){ //new WP
           nbjets_t++;
           v_bjet_t.push_back(jet);
           //bjt_csv.push_back(jet_CSV[iJet]);
         }
-        if( jet_CvsL[iJet] > -0.1 && jet_CvsB[iJet] > 0.08 ){
+        if( jet_CvsL[iJet] > 0.07 && jet_CvsB[iJet] > -0.10 ){ //new WP
           ncjets_m++;
           v_cjet_m.push_back(jet.Pt());
           //cjm_cvsl.push_back(jet_CvsL[iJet]);
@@ -343,41 +344,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
 */
     if( ncjets_m != 0 ) cjetPt = *max_element(v_cjet_m.begin(), v_cjet_m.end());
-
-    if( nbjets_m >1 ){
-
-      double tmp_bjmDR = 999;
-      double tmp_higgsMass_m  = 9999;
-      double tmp_bjmDEta = 999;
-      double tmp_bjmDPhi = 999;
-      double tmp_bjmPt1 = 9999;
-      double tmp_bjmPt2 = 9999;
-
-      for(int m = 0; m < nbjets_m; m++){
-        for(int n = 1; n <  nbjets_m; n++){
-          if(m < n){
-            tmp_bjmDR = v_bjet_m[m].DeltaR(v_bjet_m[n]);
-            tmp_higgsMass_m = (v_bjet_m[m] + v_bjet_m[n]).M();
-            tmp_bjmDEta = v_bjet_m[m].Eta()-v_bjet_m[n].Eta();
-            tmp_bjmDPhi = v_bjet_m[m].DeltaPhi(v_bjet_m[n]);
-            tmp_bjmPt1 = v_bjet_m[m].Pt();
-            tmp_bjmPt2 = v_bjet_m[n].Pt();
-
-            if( tmp_bjmDR < bjmDR ){
-              bjmDR = tmp_bjmDR;
-              higgsMass_m = tmp_higgsMass_m;
-              bjmDEta = tmp_bjmDEta;
-              bjmDPhi = tmp_bjmDPhi;
-
-              if( tmp_bjmPt1 > tmp_bjmPt2) bJetPtHm = tmp_bjmPt1;
-              else                         bJetPtHm = tmp_bjmPt2;
-
-            }
-          }
-        }
-      }
-    }
-
+/*
     //DR kin
     std::vector<size_t> bestIdxsDR;
     TLorentzVector jetP4sDR[4];
@@ -453,14 +420,13 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         if( !option.Contains("Data") ) jetP4sDR[i] = jetP4sDR[i] * jet_JER_Nom[j];
       }
 
-/*
       //Gen vs reco higgs->bjet matching
       if( option.Contains("Hct") || option.Contains("Hut") ){
         if(hbjet1.DeltaR(jetP4sDR[1]) < 0.4 or hbjet1.DeltaR(jetP4sDR[2]) < 0.4) match1 = true;
         if(hbjet2.DeltaR(jetP4sDR[1]) < 0.4 or hbjet2.DeltaR(jetP4sDR[2]) < 0.4) match2 = true;
       }
-*/
     }
+*/
 
     /////Fill histograms
 
@@ -479,7 +445,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     eventSelection[8] = ( njets >= 4 ) && ( nbjets_m == 3 );
     eventSelection[9] = ( njets >= 4 ) && ( nbjets_m == 4 );
     eventSelection[10] = ( njets >= 4 ) && ( nbjets_m >= 3 );
-    eventSelection[11] = ( njets >= 3 ) && ( nbjets_m >= 4 );
+    eventSelection[11] = ( njets >= 4 ) && ( nbjets_m >= 4 );
     eventSelection[12] = ( njets >= 6 ); 
     eventSelection[13] = ( njets >= 6 ) && ( nbjets_m == 3 );
     eventSelection[14] = ( njets >= 6 ) && ( nbjets_m == 2 || nbjets_m == 3 );
@@ -487,6 +453,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     for( int cut = 0; cut < 16; cut++){
       if(eventSelection[cut]){
+        h_PV[mode][cut]->Fill(*GoodPV,EventWeight);
         h_NJet[mode][cut]->Fill(njets, EventWeight);
         h_NBJetCSVv2M[mode][cut]->Fill(nbjets_m, EventWeight);
         h_NBJetCSVv2T[mode][cut]->Fill(nbjets_t, EventWeight);
@@ -498,8 +465,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         h_WMass[mode][cut]->Fill(transverseM, EventWeight);
         h_DPhi[mode][cut]->Fill(lepDphi, EventWeight);
         h_LepIso[mode][cut]->Fill(relIso, EventWeight);
-        if( isQCD ) h_LepIsoQCD[mode][cut]->Fill(relIso, EventWeight);
-
+/*
         if( !bestIdxsDR.empty() ){
           for( int i=0; i<bestIdxsDR.size(); ++i ){
             const size_t j = bestIdxsDR[i];
@@ -522,17 +488,10 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_DRFCNHkinHadTopPt[mode][cut]->Fill((jetP4sDR[1]+jetP4sDR[2]+jetP4sDR[3]).Pt(),EventWeight);
         }
 
-        if( nbjets_m >1 ){
-          h_bjmDPhi[mode][cut]->Fill(bjmDPhi, EventWeight);
-          h_bjmDEta[mode][cut]->Fill(bjmDEta, EventWeight);
-          h_bjmDR[mode][cut]->Fill(bjmDR, EventWeight);
-          h_HMass_m[mode][cut]->Fill(higgsMass_m, EventWeight);
-          h_bJetPtHm[mode][cut]->Fill(bJetPtHm, EventWeight);
-        }
         if( ncjets_m >0 ){
           h_cJetPt[mode][cut]->Fill(cjetPt, EventWeight);
         }
-/*
+
         if(genH.Pt() > 0){
           h_genDR[mode][cut]->Fill(gendR, EventWeight);
           h_genHm[mode][cut]->Fill(genHm, EventWeight);
