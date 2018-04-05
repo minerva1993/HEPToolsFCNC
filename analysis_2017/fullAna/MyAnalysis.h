@@ -127,6 +127,7 @@ public :
 
    ClassDef(MyAnalysis,0);
 
+    TH1D *h_PV[2][16];
     TH1D *h_NJet[2][16];
     TH1D *h_NBJetCSVv2M[2][16];
     TH1D *h_NBJetCSVv2T[2][16];
@@ -140,13 +141,8 @@ public :
     TH1D *h_LepIso[2][16];
     TH1D *h_LepIsoQCD[2][16];
     TH1D *h_DPhi[2][16];
-    TH1D *h_bjmDPhi[2][16];
-    TH1D *h_bjmDEta[2][16];
-    TH1D *h_bjmDR[2][16];
-    TH1D *h_HMass_m[2][16];
-    TH1D *h_bJetPtHm[2][16];
     TH1D *h_cJetPt[2][16];
-
+/*
     //tagging variables
     TH1D *h_csvv2[2][16];
     TH1D *h_cvsl[2][16];
@@ -173,6 +169,7 @@ public :
     TH1D *h_matchDR[2][16];
     TH1D *h_genHm[2][16];
     TH1D *h_matchHm[2][16];
+*/
 };
 
 #endif

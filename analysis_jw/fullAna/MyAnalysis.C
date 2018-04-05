@@ -476,7 +476,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     eventSelection[8] = ( njets >= 4 ) && ( nbjets_m == 3 );
     eventSelection[9] = ( njets >= 4 ) && ( nbjets_m == 4 );
     eventSelection[10] = ( njets >= 4 ) && ( nbjets_m >= 3 );
-    eventSelection[11] = ( njets >= 3 ) && ( nbjets_m >= 4 );
+    eventSelection[11] = ( njets >= 4 ) && ( nbjets_m >= 4 );//WRONG CUT for old hists
     eventSelection[12] = ( njets >= 6 ); 
     eventSelection[13] = ( njets >= 6 ) && ( nbjets_m == 3 );
     eventSelection[14] = ( njets >= 6 ) && ( nbjets_m == 2 || nbjets_m == 3 );
