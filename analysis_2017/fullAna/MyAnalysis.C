@@ -66,17 +66,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_WMass[ich][i]->SetXTitle("Transverse Mass (GeV)");
       h_WMass[ich][i]->Sumw2();
       fOutput->Add(h_WMass[ich][i]);
-/*
-      h_HMass_m[ich][i] = new TH1D(Form("h_HMassM_Ch%i_S%i_%s",ich,i,option.Data()), "Di-bjet Mass (medium) wrt min DR", 30 ,0 ,300);
-      h_HMass_m[ich][i]->SetXTitle("Di-bjet (medium) Mass (GeV)");
-      h_HMass_m[ich][i]->Sumw2();
-      fOutput->Add(h_HMass_m[ich][i]);
 
-      h_bJetPtHm[ich][i] = new TH1D(Form("h_bJetPtHm_Ch%i_S%i_%s",ich,i,option.Data()), "Leading b jet (medium) pT from di-bjets", 30 , 0, 300);
-      h_bJetPtHm[ich][i]->SetXTitle("b Jet (medium) pT from di-bjets (GeV)");
-      h_bJetPtHm[ich][i]->Sumw2();
-      fOutput->Add(h_bJetPtHm[ich][i]);
-*/
       h_cJetPt[ich][i] = new TH1D(Form("h_cJetPt_Ch%i_S%i_%s",ich,i,option.Data()), "leading c jet (medium) pT", 30 , 0 ,300);
       h_cJetPt[ich][i]->SetXTitle("leading c Jet (medium) pT (GeV)");
       h_cJetPt[ich][i]->Sumw2();
@@ -86,22 +76,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       h_DPhi[ich][i]->SetXTitle("|#Delta#phi_{l,MET}|");
       h_DPhi[ich][i]->Sumw2();
       fOutput->Add(h_DPhi[ich][i]);
-/*
-      h_bjmDPhi[ich][i] = new TH1D(Form("h_bjmDPhi_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta Phi", 30 ,0 ,3.2);
-      h_bjmDPhi[ich][i]->SetXTitle("bjet_m |#Delta#phi|");
-      h_bjmDPhi[ich][i]->Sumw2();
-      fOutput->Add(h_bjmDPhi[ich][i]);
 
-      h_bjmDEta[ich][i] = new TH1D(Form("h_bjmDEta_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta Eta", 30 ,0 ,3.2);
-      h_bjmDEta[ich][i]->SetXTitle("bjet_m |#Delta#eta|");
-      h_bjmDEta[ich][i]->Sumw2();
-      fOutput->Add(h_bjmDEta[ich][i]);
-
-      h_bjmDR[ich][i] = new TH1D(Form("h_bjmDR_Ch%i_S%i_%s",ich,i,option.Data()), "bjet_m Delta R", 30 ,0 ,4);
-      h_bjmDR[ich][i]->SetXTitle("bjet_m #Delta R");
-      h_bjmDR[ich][i]->Sumw2();
-      fOutput->Add(h_bjmDR[ich][i]);
-*/
       h_LepIso[ich][i] = new TH1D(Form("h_LepIso_Ch%i_S%i_%s",ich,i,option.Data()), "LepIso", 20 ,0 ,0.15);
       h_LepIso[ich][i]->SetXTitle("Relative Isolation");
       h_LepIso[ich][i]->Sumw2();
@@ -239,6 +214,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     float puweight = PUWeight[0];
     //float jetsf = jet_SF_CSV_30[0];
     float EventWeight = puweight*genweight;//*lep_SF*jetsf;
+    if( option.Contains("Data") ) EventWeight = 1;
 
     float relIso = *lepton_relIso; 
 
@@ -496,8 +472,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_genDR[mode][cut]->Fill(gendR, EventWeight);
           h_genHm[mode][cut]->Fill(genHm, EventWeight);
           if(match1 && match2){
-            h_matchDR[mode][cut]->Fill(gendR, EventWeight);
-            h_matchHm[mode][cut]->Fill(genHm, EventWeight);
+            h_matchDR[mode][cut]->Fill(jetP4sDR[1].DeltaR(jetP4sDR[2]), EventWeight);
+            h_matchHm[mode][cut]->Fill((jetP4sDR[1]+jetP4sDR[2]).M(), EventWeight);
           }
         }
 */

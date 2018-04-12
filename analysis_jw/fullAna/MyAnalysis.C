@@ -534,8 +534,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_genDR[mode][cut]->Fill(gendR, EventWeight);
           h_genHm[mode][cut]->Fill(genHm, EventWeight);
           if(match1 && match2){
-            h_matchDR[mode][cut]->Fill(gendR, EventWeight);
-            h_matchHm[mode][cut]->Fill(genHm, EventWeight);
+            h_matchDR[mode][cut]->Fill(jetP4sDR[1].DeltaR(jetP4sDR[2]), EventWeight);
+            h_matchHm[mode][cut]->Fill((jetP4sDR[1]+jetP4sDR[2]).M(), EventWeight);
           }
         }
       }
