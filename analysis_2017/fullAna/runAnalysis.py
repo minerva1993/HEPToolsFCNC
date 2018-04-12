@@ -25,10 +25,11 @@ p = TProof.Open("", "workers=8")
 version = "V9_1"
 inputdir = "/data/users/minerva1993/ntuple_Run2017/"
 
-runAna(inputdir+version,"W1JetsToLNu_400-inf.root","w1jets400toinf")
-"""
+#runAna(inputdir+version,"W1JetsToLNu_400-inf.root","w1jets400toinf")
+
 runAna(inputdir+version,"SingleElectron_Run2017.root","DataSingleEG")
 runAna(inputdir+version,"SingleMuon_Run2017.root","DataSingleMu")
+"""
 runAna(inputdir+version,"W1JetsToLNu_50-150.root","w1jets50to150")
 runAna(inputdir+version,"W1JetsToLNu_250-400.root","w1jets250to400")
 runAna(inputdir+version,"W1JetsToLNu_400-inf.root","w1jets400toinf")

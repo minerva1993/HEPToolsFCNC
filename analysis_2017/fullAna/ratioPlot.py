@@ -195,7 +195,8 @@ for i in range(0, N_hist):
   nbins = h_data.GetNbinsX()
   h_data.AddBinContent( nbins, h_data.GetBinContent( nbins+1 ) )  #overflow
 
-  h_sub = h_data.Clone("h_sub") 
+  h_sub = h_data.Clone("h_sub")
+  ROOT.SetOwnership( h_sub, True )
   if QCDestimate : 
     h_sub.SetName(hnames[0]+"_"+hnames[1]+"_"+hnames[2]+"_"+hnames[3]+"_qcd")
 
@@ -515,7 +516,7 @@ for i in range(0, N_hist):
   label.SetX2NDC(1.0-gStyle.GetPadRightMargin()+0.03)
   label.SetY2NDC(1.0)
   label.SetTextFont(62)
-  label.AddText("Work in Progress        CMS, 35.9 fb^{-1} at #sqrt{s} = 13 TeV")
+  label.AddText("Work in Progress        CMS, 41.3 fb^{-1} at #sqrt{s} = 13 TeV")
   label.SetFillStyle(0)
   label.SetBorderSize(0)
   label.SetTextSize(0.05)
@@ -567,6 +568,7 @@ for i in range(0, N_hist):
     print "ndata = " , "{0:.0f}".format(ndata)
     print "nsub = ", "{0:.6g}".format(nsub)
     """
+  del pad1, pad2, h_tmp, h3, h4, h_sub, h_data, hs, h_bkg, hs_stHct, hs_stHut, hsSTHut, hsSTHct#, hs_Hct, hs_Hut, hsHut, hsHct
 
   logname = ""
   if log:
@@ -579,7 +581,7 @@ for i in range(0, N_hist):
     h_data.SetTitle("e ch")
     h_data.SetTitleSize(0.7)
   """
-  c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+  #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
   ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
   filename = "result_ratio"+logname+".pdf"
@@ -591,7 +593,7 @@ for i in range(0, N_hist):
   else:
     c.Print(filename)
 
-  del h_data, hs, c
+  del c
 
 if QCDestimate :
  f = ROOT.TFile("hist_qcd.root", "recreate")
