@@ -53,13 +53,16 @@ public :
    TTreeReaderArray<int> jet_index = {fReader, "jet_index"};
    TTreeReaderArray<int> jet_gencone_mom = {fReader, "jet_gencone_mom"};
    TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
-   TTreeReaderArray<float> jet_SF_CSV_25 = {fReader, "jet_SF_CSV_25"};
-   TTreeReaderArray<float> jet_SF_CSV_30 = {fReader, "jet_SF_CSV_30"};
-   TTreeReaderArray<float> jet_SF_CSV_35 = {fReader, "jet_SF_CSV_35"};
-   TTreeReaderArray<float> jet_SF_CSV_40 = {fReader, "jet_SF_CSV_40"};
-   TTreeReaderArray<float> jet_SF_CSV = {fReader, "jet_SF_CSV"};
+   TTreeReaderArray<float> jet_deepCSV = {fReader, "jet_deepCSV"};
+   TTreeReaderArray<float> jet_SF_deepCSV_25 = {fReader, "jet_SF_deepCSV_25"};
+   TTreeReaderArray<float> jet_SF_deepCSV_30 = {fReader, "jet_SF_deepCSV_30"};
+   TTreeReaderArray<float> jet_SF_deepCSV_35 = {fReader, "jet_SF_deepCSV_35"};
+   TTreeReaderArray<float> jet_SF_deepCSV_40 = {fReader, "jet_SF_deepCSV_40"};
+   TTreeReaderArray<float> jet_SF_dppeCSV = {fReader, "jet_SF_deepCSV"};
    TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
    TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
+   TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
+   TTreeReaderArray<float> jet_deepCvsB = {fReader, "jet_deepCvsB"};
    //TTreeReaderValue<Int_t> jet_number = {fReader, "jet_number"};
    TTreeReaderArray<int> jet_partonFlavour = {fReader, "jet_partonFlavour"};
    TTreeReaderArray<int> jet_hadronFlavour = {fReader, "jet_hadronFlavour"};
@@ -149,21 +152,21 @@ public :
     TH1D *h_cvsb[2][16];
 
     //DR
-    TH1D *h_DRFCNHkinLepWMass[2][16];
-    TH1D *h_DRFCNHkinHadWMass[2][16];
-    TH1D *h_DRFCNHkinHMass[2][16];
-    TH1D *h_DRFCNHkinDR[2][16];
-    TH1D *h_DRFCNHkinTopMWb[2][16];
-    TH1D *h_DRFCNHkinTopMHc[2][16];
-    TH1D *h_DRFCNHkinHPt[2][16];
-    TH1D *h_DRFCNHkinHdPhi[2][16];
-    TH1D *h_DRFCNHkinHdEta[2][16];
-    //TH1D *h_DRFCNHkinHb1Pt[2][16];
-    //TH1D *h_DRFCNHkinHb2Pt[2][16];
-    TH1D *h_DRFCNHkinHb1CSV[2][16];
-    TH1D *h_DRFCNHkinHb2CSV[2][16];
-    TH1D *h_DRFCNHkinLepTopPt[2][16];
-    TH1D *h_DRFCNHkinHadTopPt[2][16];
+    TH1D *h_FCNHkinLepWMass[2][16];
+    TH1D *h_FCNHkinHadWMass[2][16];
+    TH1D *h_FCNHkinHMass[2][16];
+    TH1D *h_FCNHkinDR[2][16];
+    TH1D *h_FCNHkinTopMWb[2][16];
+    TH1D *h_FCNHkinTopMHc[2][16];
+    TH1D *h_FCNHkinHPt[2][16];
+    TH1D *h_FCNHkinHdPhi[2][16];
+    TH1D *h_FCNHkinHdEta[2][16];
+    //TH1D *h_FCNHkinHb1Pt[2][16];
+    //TH1D *h_FCNHkinHb2Pt[2][16];
+    TH1D *h_FCNHkinHb1CSV[2][16];
+    TH1D *h_FCNHkinHb2CSV[2][16];
+    TH1D *h_FCNHkinLepTopPt[2][16];
+    TH1D *h_FCNHkinHadTopPt[2][16];
 
     TH1D *h_genDR[2][16];
     TH1D *h_matchDR[2][16];

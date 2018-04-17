@@ -1,0 +1,18 @@
+#!/bin/bash
+#for ST FCNC
+root -l 'run.C("score_deepReco_TopHct_0.root")'
+root -l 'run.C("score_deepReco_TopHct_1.root")'
+root -l 'run.C("score_deepReco_TopHct_2.root")'
+root -l 'run.C("score_deepReco_AntiTopHct_0.root")'
+root -l 'run.C("score_deepReco_AntiTopHct_1.root")'
+root -l 'run.C("score_deepReco_AntiTopHct_2.root")'
+root -l 'run.C("score_deepReco_TopHut_0.root")'
+root -l 'run.C("score_deepReco_TopHut_1.root")'
+root -l 'run.C("score_deepReco_TopHut_2.root")'
+root -l 'run.C("score_deepReco_AntiTopHut_0.root")'
+root -l 'run.C("score_deepReco_AntiTopHut_1.root")'
+root -l 'run.C("score_deepReco_AntiTopHut_2.root")'
+root -l 'run.C("score_deepReco_singleTopHct_0.root")'
+root -l 'run.C("score_deepReco_singleTopHct_2.root")'
+root -l 'run.C("score_deepReco_singleTopHut_0.root")'
+root -l 'run.C("score_deepReco_singleTopHut_2.root")'
