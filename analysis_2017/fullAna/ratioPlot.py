@@ -126,8 +126,10 @@ def AddSTHut(fname, name, color, xsection):
   sthutsamples[fname] = tmp
 
 ####Users should provide these information 
-SetData("hist_DataSingleMu.root","data", 41298) #certified
-SetData("hist_DataSingleEG.root","data", 41298) 
+#SetData("hist_DataSingleMu.root","data", 41298) #certified
+#SetData("hist_DataSingleEG.root","data", 41298) 
+SetData("hist_DataSingleMu.root","data", 4792)
+SetData("hist_DataSingleEG.root","data", 4792)
 #AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.34*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
 #AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 365.34)
 #AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.34)
@@ -135,19 +137,23 @@ SetData("hist_DataSingleEG.root","data", 41298)
 #AddBkg("hist_ttother.root","ttLF",ROOT.kRed, 365.34)
 AddBkg("hist_tt.root","ttbar",ROOT.kRed, 365.34)
 AddBkg("hist_w1jets50to150.root","WJets",ROOT.kYellow, 2661) #https://hypernews.cern.ch/HyperNews/CMS/get/generators/3883/1/1.html
+AddBkg("hist_w1jets150to250.root","WJets",ROOT.kYellow, 387.6)
 AddBkg("hist_w1jets250to400.root","WJets",ROOT.kYellow, 8.05)
 AddBkg("hist_w1jets400toinf.root","WJets",ROOT.kYellow, 0.885)
+AddBkg("hist_w2jets250to400.root","WJets",ROOT.kYellow, 41.21)
+#AddBkg("hist_w2jets400toinf.root","WJets",ROOT.kYellow, 3.037)
 AddBkg("hist_w3jets.root","WJets",ROOT.kYellow, 944.4) #From AN-15-097
 AddBkg("hist_w4jets.root","WJets",ROOT.kYellow, 494.4)
-AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 5765.4) #updated
-AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
-AddBkg("hist_tchannel.root","Single t",6, 136.02)#44.33 = 136.02*(0.1086*3)
-AddBkg("hist_tbarchannel.root","Single t",6, 80.95)#26.38 = 80.95*(0.1086*3)
-AddBkg("hist_tWchannel.root","Single t",6, 35.85)#35.85?
-AddBkg("hist_tbarWchannel.root","Single t",6, 35.85)
-AddBkg("hist_ww.root","DiBoson",ROOT.kCyan, 118.7)
-AddBkg("hist_wz.root","DiBoson",ROOT.kCyan, 47.13)
-AddBkg("hist_zz.root","DiBoson",ROOT.kCyan, 16.523)
+#AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 5765.4) #updated
+#AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
+#AddBkg("hist_tchannel.root","Single t",6, 136.02)#44.33 = 136.02*(0.1086*3)
+#AddBkg("hist_tbarchannel.root","Single t",6, 80.95)#26.38 = 80.95*(0.1086*3)
+#AddBkg("hist_tWchannel.root","Single t",6, 35.85)#35.85?
+#AddBkg("hist_tbarWchannel.root","Single t",6, 35.85)
+#AddBkg("hist_ww.root","DiBoson",ROOT.kCyan, 118.7)
+#AddBkg("hist_wz.root","DiBoson",ROOT.kCyan, 47.13)
+#AddBkg("hist_zz.root","DiBoson",ROOT.kCyan, 16.523)
+
 #AddHct("hist_Top_Hct.root", "Hct", 433, 1.85)
 #AddHct("hist_AntiTop_Hct.root", "Hct", 433, 1.85) 
 #AddHut("hist_Top_Hut.root", "Hut", 401, 1.85)
@@ -177,7 +183,6 @@ for i in range(0, N_hist):
   fNevt.write(string0)
   #print string0
 
-  #printHistName = "LepIsoQCD"
   printHistName = "NJet"
 
   ##if hnames[1] == printHistName :
@@ -227,7 +232,7 @@ for i in range(0, N_hist):
         l.AddEntry(h_tmp, bkgsamples[fname]["name"]  ,"F") 
     else: 
       l.AddEntry(h_tmp, bkgsamples[fname]["name"]  ,"F")
- 
+
     ## print out number of events
     numevt = h_tmp.Integral()
     rawevt = h_tmp.GetEntries()
@@ -237,7 +242,6 @@ for i in range(0, N_hist):
       string = "%s :  %s = %f \n"%(fname,bkgsamples[fname]["name"],numevt)
       fNevt.write(string)
       print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt) # " scale : " ,"{0:.1g}".format(scale)  
-
     #print fname, " : ", scale
 
     ## Add to Stack
@@ -284,7 +288,6 @@ for i in range(0, N_hist):
       string = "%s :  %s = %f \n"%(fname,hctsamples[fname]["name"],numevt)
       fNevt.write(string)
       print fname, " : ", hctsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
-
     #print fname, " : ", scale
 
     ## Add to Stack
@@ -336,7 +339,6 @@ for i in range(0, N_hist):
       string = "%s :  %s = %f \n"%(fname,hutsamples[fname]["name"],numevt)
       fNevt.write(string)
       print fname, " : ", hutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
-
     #print fname, " : ", scale
 
   hs_Hut = hsHut.GetStack().Last()
@@ -344,7 +346,7 @@ for i in range(0, N_hist):
   """
 
   #Add singletop Hct
-  hsSTHct = THStack()
+  #hsSTHct = THStack()
 
   ntotalSTHct = 0
   stm = 0
@@ -361,7 +363,7 @@ for i in range(0, N_hist):
     h_stHct.Scale(scale)
 
     if sthctsamples[fname]["name"] is not "QCD" and QCDestimate:
-      h_stHctSub.Add(h_Hct, -1)
+      h_stHctSub.Add(h_stHct, -1)
     ## check if the sample is the same as previous process. 
     if stm < N_stHctsamples-1 :
       post_name = sthctsamples.keys()[m+1]
@@ -372,6 +374,10 @@ for i in range(0, N_hist):
     else:
       l.AddEntry(h_stHct, sthctsamples[fname]["name"]  ,"F")
 
+    ## Add to Stack
+    #hsSTHct.Add( h_stHct ) #hh_tmp -> add h tmp sig, hs->other
+    stm = stm+1
+
     ## print out number of events
     numevt = h_stHct.Integral()
     rawevt = h_stHct.GetEntries()
@@ -380,19 +386,15 @@ for i in range(0, N_hist):
       string = "%s :  %s = %f \n"%(fname,sthctsamples[fname]["name"],numevt)
       fNevt.write(string)
       print fname, " : ", sthctsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
-
     #print fname, " : ", scale
 
-    ## Add to Stack
-    hsSTHct.Add( h_stHct ) #hh_tmp -> add h tmp sig, hs->other
-    stm = stm+1
-
-  hs_stHct = hsSTHct.GetStack().Last()
+  #hs_stHct = hsSTHct.GetStack().Last()
+  hs_stHct = h_stHct.Clone("hs_shHct")
   if h_data.Integral > 0 and hs_stHct.Integral() > 0 and h_bkg.Integral() != 0: hs_stHct.Scale(h_data.Integral()/hs_stHct.Integral())
 
 
   #Add singletop Hut
-  hsSTHut = THStack()
+  #hsSTHut = THStack()
 
   ntotalSTHut = 0
   stn = 0
@@ -409,7 +411,7 @@ for i in range(0, N_hist):
     h_stHut.Scale(scale)
 
     if sthutsamples[fname]["name"] is not "QCD" and QCDestimate:
-      h_stHutSub.Add(h_Hut, -1)
+      h_stHutSub.Add(h_stHut, -1)
     ## check if the sample is the same as previous process. 
     if stn < N_stHutsamples-1 :
       post_name = sthutsamples.keys()[n+1]
@@ -421,7 +423,7 @@ for i in range(0, N_hist):
       l.AddEntry(h_stHut, sthutsamples[fname]["name"]  ,"F")
 
     ## Add to Stack
-    hsSTHut.Add( h_stHut ) #hh_tmp -> add h tmp sig, hs->other
+    #hsSTHut.Add( h_stHut ) #hh_tmp -> add h tmp sig, hs->other
     stn = stn+1
 
     ## print out number of events
@@ -432,168 +434,177 @@ for i in range(0, N_hist):
       string = "%s :  %s = %f \n"%(fname,sthutsamples[fname]["name"],numevt)
       fNevt.write(string)
       print fname, " : ", sthutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
-
     #print fname, " : ", scale
 
-  hs_stHut = hsSTHut.GetStack().Last()
+  #hs_stHut = hsSTHut.GetStack().Last()
+  hs_stHut = h_stHut.Clone("hs_shHut")
   if h_data.Integral > 0 and hs_stHut.Integral() > 0 and h_bkg.Integral() != 0: hs_stHut.Scale(h_data.Integral()/hs_stHut.Integral())
-
 
   if QCDestimate:
     qcd.append(h_sub)
 
-  #creat canvas
-  c = TCanvas("c_"+"{}".format(i),"c", 450, 450)
+  def createCanvasPads():
+    #creat canvas
+    c = TCanvas("c_"+"{}".format(i),"c", 450, 450)
 
-  # Upper histogram plot is pad1
-  pad1 = TPad("pad1", "pad1", 0.0, 0.3, 1, 1.0)
-  pad1.SetBottomMargin(0.02)
-  pad1.Draw()
-  c.cd()  # returns to main canvas before defining pad2
-  pad2 = TPad("pad2", "pad2", 0.0, 0.0, 1, 0.28)
-  pad2.SetBottomMargin(0.3)
-  pad2.SetTopMargin(0.02)
-  pad2.SetGridx()
-  pad2.SetGridy()
-  pad2.Draw()
+    # Upper histogram plot is pad1
+    pad1 = TPad("pad1", "pad1", 0.0, 0.3, 1, 1.0)
+    pad1.SetBottomMargin(0.02)
+    pad1.Draw()
+    c.cd()  # returns to main canvas before defining pad2
+    pad2 = TPad("pad2", "pad2", 0.0, 0.0, 1, 0.28)
+    pad2.SetBottomMargin(0.3)
+    pad2.SetTopMargin(0.02)
+    pad2.SetGridx()
+    pad2.SetGridy()
+    pad2.Draw()
 
-  #Draw each plot
-  pad1.cd()
-  if log:
-    pad1.SetLogy()
-  h_data.SetMarkerStyle(20)
-  h_data.SetMarkerSize(0.5)
-  max_data = h_data.GetMaximum()
-  max_hs = hs.GetMaximum()
-  #sigmaximums = [hs_Hct.GetMaximum(), hs_Hut.GetMaximum(), hs_stHct.GetMaximum(), hs_stHut.GetMaximum()]
-  sigmaximums = [hs_stHct.GetMaximum(), hs_stHut.GetMaximum()]
-  max_sig = max(sigmaximums)
-  maxfrac = 0.5
-  if(max_hs > max_sig):
-    if log :
-      if max_data > 100000:
-        maxfrac = 1000
-      else:
-        maxfrac = 100
-    if max_hs > max_data :
-      h_data.SetMaximum(max_hs+max_hs*maxfrac)
-    else:
-      h_data.SetMaximum(max_data+max_data*maxfrac)
-  else:
+    return c, pad1, pad2
+
+  def createRatio(mc, data):
+    h4 = mc.Clone("h4")
+    ROOT.SetOwnership( h4,  True )
+    h3 = data.Clone("h3")
+    ROOT.SetOwnership( h3,  True )
+    h3.SetDirectory(0)
+    h3.SetLineColor(1)
+    h3.SetMarkerStyle(20)
+    h3.SetMarkerSize(0.5)
+    h3.SetTitle("")
+    h3.SetMinimum(0.6)
+    h3.SetMaximum(1.4)
+    #h3.Sumw2()
+    h3.SetStats(0)
+
+    y = h3.GetYaxis()
+    y.SetTitle("Data/MC")
+    y.SetNdivisions(505)
+    y.SetTitleSize(0.11)
+    y.SetTitleOffset(0.35)
+    y.SetLabelSize(0.1)
+
+    # Adjust x-axis settings
+    x = h3.GetXaxis()
+    x.SetTitleSize(0.11)
+    x.SetTitleOffset(1.0)
+    x.SetLabelSize(0.1)
+    #x.SetLabelSize(0)
+    h3.Divide(h4)
+
+    return h3
+
+  def ratioplot():
+    h3 = createRatio(h_bkg, h_data)
+    c, pad1, pad2 = createCanvasPads()
+
+    #Draw each plot
+    pad1.cd()
     if log:
-      maxfrac = 100
-      h_data.SetMaximum(max_sig+max_sig*maxfrac)
+      pad1.SetLogy()
+    h_data.SetMarkerStyle(20)
+    h_data.SetMarkerSize(0.5)
+    max_data = h_data.GetMaximum()
+    max_hs = hs.GetMaximum()
+    #sigmaximums = [hs_Hct.GetMaximum(), hs_Hut.GetMaximum(), hs_stHct.GetMaximum(), hs_stHut.GetMaximum()]
+    sigmaximums = [hs_stHct.GetMaximum(), hs_stHut.GetMaximum()]
+    max_sig = max(sigmaximums)
+    maxfrac = 0.5
+    if(max_hs > max_sig):
+      if log :
+        if max_data > 100000:
+          maxfrac = 1000
+        else:
+          maxfrac = 100
+      if max_hs > max_data :
+        h_data.SetMaximum(max_hs+max_hs*maxfrac)
+      else:
+        h_data.SetMaximum(max_data+max_data*maxfrac)
     else:
-      h_data.SetMaximum(max_sig*1.5)
-  if log: h_data.SetMinimum(0.5)
-  h_data.Draw("p")
-  h_data.SetTitle("")
-  h_data.GetYaxis().SetTitle("Events")
-  h_data.GetYaxis().SetTitleOffset(1.2)
-  h_data.GetYaxis().SetTitleSize(0.045)
-  h_data.GetXaxis().SetLabelSize(0)#
-  #h_data.GetXaxis().SetTitle("")
-  h_data.GetXaxis().SetTitleOffset(5.0)
-  hs.Draw("histsame")
-  #hs_Hct.SetLineWidth(2)
-  #hs_Hut.SetLineWidth(2)
-  hs_stHct.SetLineWidth(2)
-  hs_stHut.SetLineWidth(2)
-  #hs_Hct.Draw("hist same")
-  #hs_Hut.Draw("hist same")
-  hs_stHct.Draw("hist same")
-  hs_stHut.Draw("hist same")
-  h_data.Draw("psame")
-  h_data.Draw("AXIS P SAME")
-  h4 = hs.Clone("h4")
-  ROOT.SetOwnership( h4,  True )
+      if log:
+        maxfrac = 100
+        h_data.SetMaximum(max_sig+max_sig*maxfrac)
+      else:
+        h_data.SetMaximum(max_sig*1.5)
+    if log: h_data.SetMinimum(0.5)
+    h_data.Draw("p")
+    h_data.SetTitle("")
+    h_data.GetYaxis().SetTitle("Events")
+    h_data.GetYaxis().SetTitleOffset(1.2)
+    h_data.GetYaxis().SetTitleSize(0.045)
+    h_data.GetXaxis().SetLabelSize(0)#
+    #h_data.GetXaxis().SetTitle("")
+    h_data.GetXaxis().SetTitleOffset(5.0)
+    hs.Draw("histsame")
+    #hs_Hct.SetLineWidth(2)
+    #hs_Hut.SetLineWidth(2)
+    hs_stHct.SetLineWidth(2)
+    hs_stHut.SetLineWidth(2)
+    #hs_Hct.Draw("hist same")
+    #hs_Hut.Draw("hist same")
+    hs_stHct.Draw("hist same")
+    hs_stHut.Draw("hist same")
+    h_data.Draw("psame")
+    h_data.Draw("AXIS P SAME")
 
-  l.AddEntry(h_data,"Data","P")
-  l.Draw()
-  label = TPaveText()
-  label.SetX1NDC(gStyle.GetPadLeftMargin())
-  label.SetY1NDC(1.0-gStyle.GetPadTopMargin())
-  label.SetX2NDC(1.0-gStyle.GetPadRightMargin()+0.03)
-  label.SetY2NDC(1.0)
-  label.SetTextFont(62)
-  label.AddText("Work in Progress        CMS, 41.3 fb^{-1} at #sqrt{s} = 13 TeV")
-  label.SetFillStyle(0)
-  label.SetBorderSize(0)
-  label.SetTextSize(0.05)
-  label.SetTextAlign(32)
-  label.Draw("same")
+    l.AddEntry(h_data,"Data","P")
+    l.Draw()
+    label = TPaveText()
+    label.SetX1NDC(gStyle.GetPadLeftMargin())
+    label.SetY1NDC(1.0-gStyle.GetPadTopMargin())
+    label.SetX2NDC(1.0-gStyle.GetPadRightMargin()+0.03)
+    label.SetY2NDC(1.0)
+    label.SetTextFont(62)
+    label.AddText("Work in Progress        CMS, 41.3 fb^{-1} at #sqrt{s} = 13 TeV")
+    label.SetFillStyle(0)
+    label.SetBorderSize(0)
+    label.SetTextSize(0.05)
+    label.SetTextAlign(32)
+    label.Draw("same")
+    
+    pad2.cd()
+    h3.Draw("ep")
   
-  pad2.cd()
-  h3 = h_data.Clone("h3")
-  ROOT.SetOwnership( h3,  True )
-  h3.SetDirectory(0)
-  h3.SetLineColor(1)
-  h3.SetMarkerStyle(20)
-  h3.SetMarkerSize(0.5)
-  h3.SetTitle("")
-  h3.SetMinimum(0.6)
-  h3.SetMaximum(1.4)
-  #h3.Sumw2()
-  h3.SetStats(0)
+    ndata= h_data.Integral()
+    nsub = ndata-ntotalbkg
+    if hnames[1] == printHistName:
+      string1 = "ntotal = %f \n" % ntotalbkg
+      string2 = "ndata = %d \n" % ndata
+      string3 = "nsub = %f \n" % nsub
+      #string4 = "ratio(qcd/total) = %f \n" % (numqcd/ntotalbkg)
+      fNevt.write(string1)
+      fNevt.write(string2)
+      fNevt.write(string3)
+      #fNevt.write(string4)
+      #print "ntotal = " , "{0:.6g}".format(ntotalbkg)
+      #print "ndata = " , "{0:.0f}".format(ndata)
+      #print "nsub = ", "{0:.6g}".format(nsub)
 
-  y = h3.GetYaxis()
-  y.SetTitle("Data/MC")
-  y.SetNdivisions(505)
-  y.SetTitleSize(0.11)
-  y.SetTitleOffset(0.35)
-  y.SetLabelSize(0.1)
-
-  # Adjust x-axis settings
-  x = h3.GetXaxis()
-  x.SetTitleSize(0.11)
-  x.SetTitleOffset(1.0)
-  x.SetLabelSize(0.1)
-  #x.SetLabelSize(0)
-  h3.Divide(h4.GetStack().Last())
-  h3.Draw("ep")
-  
-  ndata= h_data.Integral()
-  nsub = ndata-ntotalbkg
-  if hnames[1] == printHistName:
-    string1 = "ntotal = %f \n" % ntotalbkg
-    string2 = "ndata = %d \n" % ndata
-    string3 = "nsub = %f \n" % nsub
-    #string4 = "ratio(qcd/total) = %f \n" % (numqcd/ntotalbkg)
-    fNevt.write(string1)
-    fNevt.write(string2)
-    fNevt.write(string3)
-    #fNevt.write(string4)
+    logname = ""
+    if log:
+      logname = "_log"
     """
-    print "ntotal = " , "{0:.6g}".format(ntotalbkg)
-    print "ndata = " , "{0:.0f}".format(ndata)
-    print "nsub = ", "{0:.6g}".format(nsub)
+    if hnames[2] == 'Ch0':
+      h_data.SetTitle("#mu ch")
+      h_data.SetTitleSize(0.7)
+    else:
+      h_data.SetTitle("e ch")
+      h_data.SetTitleSize(0.7)
     """
-  del pad1, pad2, h_tmp, h3, h4, h_sub, h_data, hs, h_bkg, hs_stHct, hs_stHut, hsSTHut, hsSTHct#, hs_Hct, hs_Hut, hsHut, hsHct
+    #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+    ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
-  logname = ""
-  if log:
-    logname = "_log"
-  """
-  if hnames[2] == 'Ch0':
-    h_data.SetTitle("#mu ch")
-    h_data.SetTitleSize(0.7)
-  else:
-    h_data.SetTitle("e ch")
-    h_data.SetTitleSize(0.7)
-  """
-  #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
-  ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
+    filename = "result_ratio"+logname+".pdf"    
+    if i == 0 and N_hist > 1:
+      c.Print( (filename+"(") )
+    elif i > 0 and i == N_hist-1:
+      c.Print( (filename+")") ) 
+    else:
+      c.Print(filename)
+    
+    del c, pad1, pad2
 
-  filename = "result_ratio"+logname+".pdf"
+  ratioplot()
 
-  if i == 0 and N_hist > 1:
-    c.Print( (filename+"(") )
-  elif i > 0 and i == N_hist-1:
-    c.Print( (filename+")") ) 
-  else:
-    c.Print(filename)
-
-  del c
 
 if QCDestimate :
  f = ROOT.TFile("hist_qcd.root", "recreate")
