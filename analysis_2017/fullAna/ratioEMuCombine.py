@@ -127,24 +127,28 @@ def AddSTHut(fname, name, color, xsection):
 
 ####Users should provide these information 
 SetData("hist_DataSingleMu.root","data", 41298) #certified
-SetData("hist_DataSingleEG.root","data", 41298)
+SetData("hist_DataSingleEG.root","data", 41298) 
+
 AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.34*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
+#AddBkg("hist_ttbbLL.root","ttbb",ROOT.kRed+4, 88.29*1.25)
+#AddBkg("hist_ttbbHad.root","ttbb",ROOT.kRed+4, 377.96*1.25)
+
 AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 365.34)
+#AddBkg("hist_ttbjLL.root","ttbj",ROOT.kRed+3, 88.29)
+#AddBkg("hist_ttbjHad.root","ttbj",ROOT.kRed+3, 377.96)
+
 AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.34)
+##AddBkg("hist_ttccLL.root","ttcc",ROOT.kRed+2, 88.29) #0 Event
+#AddBkg("hist_ttccHad.root","ttcc",ROOT.kRed+2, 377.96)
+
 AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 365.34)
+#AddBkg("hist_ttLFLL.root","ttLF",ROOT.kRed, 88.29)
+#AddBkg("hist_ttLFHad.root","ttLF",ROOT.kRed, 377.96)
+
 AddBkg("hist_ttother.root","ttLF",ROOT.kRed, 365.34)
-"""
-AddBkg("hist_ttbbLL.root","ttbb",ROOT.kRed+4, 88.29*1.25)
-AddBkg("hist_ttbjLL.root","ttbj",ROOT.kRed+3, 88.29)
-#AddBkg("hist_ttccLL.root","ttcc",ROOT.kRed+2, 88.29) #0 Event
-AddBkg("hist_ttLFLL.root","ttLF",ROOT.kRed, 88.29)
-AddBkg("hist_ttotherLL.root","ttLF",ROOT.kRed, 88.29)
-AddBkg("hist_ttbbHad.root","ttbb",ROOT.kRed+4, 377.96*1.25)
-AddBkg("hist_ttbjHad.root","ttbj",ROOT.kRed+3, 377.96)
-AddBkg("hist_ttccHad.root","ttcc",ROOT.kRed+2, 377.96)
-AddBkg("hist_ttLFHad.root","ttLF",ROOT.kRed, 377.96)
-AddBkg("hist_ttotherHad.root","ttLF",ROOT.kRed, 377.96)
-"""
+#AddBkg("hist_ttotherLL.root","ttLF",ROOT.kRed, 88.29)
+#AddBkg("hist_ttotherHad.root","ttLF",ROOT.kRed, 377.96)
+
 AddBkg("hist_w1jets50to150.root","WJets",ROOT.kYellow, 2661) #https://hypernews.cern.ch/HyperNews/CMS/get/generators/3883/1/1.html
 AddBkg("hist_w1jets150to250.root","WJets",ROOT.kYellow, 387.6)
 AddBkg("hist_w1jets250to400.root","WJets",ROOT.kYellow, 8.05)
@@ -179,13 +183,15 @@ N_bkgsamples = len(bkgsamples)
 N_stHctsamples = len(sthctsamples)
 N_stHutsamples = len(sthutsamples)
 
-fNevt = open("Nevt_ratio.txt",'w')
+fNevt = open("Nevt_EMu.txt",'w')
 
 for i in range(0, N_hist):
   if "Ch0" in datasamples[datasamples.keys()[0]]["hname"][i]:
     mode = 0
   else:
-    mode = 1 
+    continue
+
+  j = N_hist/2 + i
 
   hnames = datasamples[datasamples.keys()[mode]]["hname"][i].split("_")
   string0 = "%s \n" %hnames
@@ -206,6 +212,7 @@ for i in range(0, N_hist):
   l.SetFillColor(0);
 
   h_data = datasamples[datasamples.keys()[mode]]["file"].Get(datasamples[datasamples.keys()[mode]]["hname"][i])
+  h_data.Add(datasamples[datasamples.keys()[mode+1]]["file"].Get(datasamples[datasamples.keys()[mode+1]]["hname"][j]))
   nbins = h_data.GetNbinsX()
   h_data.AddBinContent( nbins, h_data.GetBinContent( nbins+1 ) )  #overflow
 
@@ -217,6 +224,7 @@ for i in range(0, N_hist):
   k = 0
   for fname in bkgsamples.keys():
     h_tmp = bkgsamples[fname]["file"].Get(bkgsamples[fname]["hname"][i])
+    h_tmp.Add(bkgsamples[fname]["file"].Get(bkgsamples[fname]["hname"][j]))
     nbins = h_tmp.GetNbinsX()
     h_tmp.AddBinContent( nbins, h_tmp.GetBinContent( nbins+1 ) ) #overflow
     h_tmp.SetFillColor(bkgsamples[fname]["col"])
@@ -361,6 +369,7 @@ for i in range(0, N_hist):
 
   for fname in sthctsamples.keys():
     h_stHct = sthctsamples[fname]["file"].Get(sthctsamples[fname]["hname"][i])
+    h_stHct.Add(sthctsamples[fname]["file"].Get(sthctsamples[fname]["hname"][j]))
     nbins = h_stHct.GetNbinsX()
     h_stHct.AddBinContent( nbins, h_stHct.GetBinContent( nbins+1 ) )
     h_stHct.SetLineColor(sthctsamples[fname]["col"])
@@ -398,6 +407,7 @@ for i in range(0, N_hist):
 
   #hs_stHct = hsSTHct.GetStack().Last()
   hs_stHct = h_stHct.Clone("hs_shHct")
+
   if h_data.Integral > 0 and hs_stHct.Integral() > 0 and h_bkg.Integral() != 0: hs_stHct.Scale(h_data.Integral()/hs_stHct.Integral())
 
 
@@ -409,6 +419,7 @@ for i in range(0, N_hist):
 
   for fname in sthutsamples.keys():
     h_stHut = sthutsamples[fname]["file"].Get(sthutsamples[fname]["hname"][i])
+    h_stHut.Add(sthutsamples[fname]["file"].Get(sthutsamples[fname]["hname"][j]))
     nbins = h_stHut.GetNbinsX()
     h_stHut.AddBinContent( nbins, h_stHut.GetBinContent( nbins+1 ) )
     h_stHut.SetLineColor(sthutsamples[fname]["col"])
@@ -441,7 +452,7 @@ for i in range(0, N_hist):
     if hnames[1] == printHistName:
       string = "%s :  %s = %f \n"%(fname,sthutsamples[fname]["name"],numevt)
       fNevt.write(string)
-      print fname, " : ", sthutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
+      print fname, " : ", sthutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
     #print fname, " : ", scale
 
   #hs_stHut = hsSTHut.GetStack().Last()
@@ -502,7 +513,7 @@ for i in range(0, N_hist):
   def ratioplot():
     h3 = createRatio(h_bkg, h_data)
     c, pad1, pad2 = createCanvasPads()
-
+    
     #Draw each plot
     pad1.cd()
     if log:
@@ -588,27 +599,21 @@ for i in range(0, N_hist):
     logname = ""
     if log:
       logname = "_log"
-    """
-    if hnames[2] == 'Ch0':
-      h_data.SetTitle("#mu ch")
-      h_data.SetTitleSize(0.7)
-    else:
-      h_data.SetTitle("e ch")
-      h_data.SetTitleSize(0.7)
-    """
-    #c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+
+    c.Print("emu"+datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
     ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
-    filename = "result_ratio"+logname+".pdf"    
+    filename = "result_ratio_EMu"+logname+".pdf"    
+
     if i == 0 and N_hist > 1:
       c.Print( (filename+"(") )
-    elif i > 0 and i == N_hist-1:
+    elif i >= 0 and i == N_hist/2-1:
       c.Print( (filename+")") ) 
     else:
       c.Print(filename)
-    
+ 
     c.Clear()
-
+ 
   ratioplot()
 
 
