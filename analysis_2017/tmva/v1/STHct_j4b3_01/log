@@ -1,0 +1,441 @@
+python training_Hct.py 
+TUnixSystem::SetDisplay:0: RuntimeWarning: DISPLAY not set, setting it to htop.local:0.0
+DataSetInfo              : [STHct_j4b3_01] : Added class "Signal"
+                         : Add Tree tmva_tree of type Signal with 542732 events
+DataSetInfo              : [STHct_j4b3_01] : Added class "Background"
+                         : Add Tree tmva_tree of type Background with 22434 events
+                         : Add Tree tmva_tree of type Background with 15996 events
+                         : Add Tree tmva_tree of type Background with 101634 events
+                         : Add Tree tmva_tree of type Background with 103544 events
+                         : Add Tree tmva_tree of type Background with 69321 events
+                         : Add Tree tmva_tree of type Background with 182090 events
+                         : Add Tree tmva_tree of type Background with 79451 events
+                         : Add Tree tmva_tree of type Background with 2796376 events
+                         : Add Tree tmva_tree of type Background with 5085960 events
+Factory                  : Booking method: BDT
+                         : 
+DataSetFactory           : [STHct_j4b3_01] : Number of events in input trees
+                         : Dataset[STHct_j4b3_01] :     Signal     requirement: "nevt %3!=0 && njets==4 && nbjets_m==3"
+                         : Dataset[STHct_j4b3_01] :     Signal          -- number of events passed: 39917  / sum of weights: 198.922
+                         : Dataset[STHct_j4b3_01] :     Signal          -- efficiency             : 0.0671122
+                         : Dataset[STHct_j4b3_01] :     Background requirement: "nevt %3!=0 && njets==4 && nbjets_m==3"
+                         : Dataset[STHct_j4b3_01] :     Background      -- number of events passed: 137551  / sum of weights: 15917.3
+                         : Dataset[STHct_j4b3_01] :     Background      -- efficiency             : 0.0153176
+                         : Dataset[STHct_j4b3_01] :  you have opted for interpreting the requested number of training/testing events
+                         :  to be the number of events AFTER your preselection cuts
+                         : 
+                         : Dataset[STHct_j4b3_01] :  you have opted for interpreting the requested number of training/testing events
+                         :  to be the number of events AFTER your preselection cuts
+                         : 
+                         : Number of training and testing events
+                         : ---------------------------------------------------------------------------
+                         : Signal     -- training events            : 26000
+                         : Signal     -- testing events             : 13917
+                         : Signal     -- training and testing events: 39917
+                         : Dataset[STHct_j4b3_01] : Signal     -- due to the preselection a scaling factor has been applied to the numbers of requested events: 0.0735483
+                         : Background -- training events            : 90000
+                         : Background -- testing events             : 47551
+                         : Background -- training and testing events: 137551
+                         : Dataset[STHct_j4b3_01] : Background -- due to the preselection a scaling factor has been applied to the numbers of requested events: 0.0162651
+                         : 
+DataSetInfo              : Correlation matrix (Signal):
+                         : ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                         :             lepWpt lepWdphi   lepWm  jet0pt jet0eta   jet0m  jet1pt jet1eta   jet1m  jet2pt jet2eta   jet2m jet12pt jet12eta jet12deta jet12dphi  jet12m jet12DR lepTdphi   lepTm
+                         :    lepWpt:  +1.000   +0.008  +0.122  -0.068  -0.005  -0.070  +0.365  +0.001  +0.301  +0.330  +0.001  +0.278  +0.502   +0.002    -0.005    +0.005  +0.123  -0.374   -0.000  +0.161
+                         :  lepWdphi:  +0.008   +1.000  -0.011  +0.000  +0.003  +0.002  +0.008  -0.002  +0.003  +0.010  -0.006  +0.012  +0.011   -0.005    +0.002    +0.003  +0.007  -0.001   -0.206  -0.016
+                         :     lepWm:  +0.122   -0.011  +1.000  +0.026  -0.008  +0.040  +0.074  +0.003  +0.067  +0.073  -0.006  +0.067  +0.116   +0.002    +0.011    +0.002  -0.026  -0.117   +0.010  +0.739
+                         :    jet0pt:  -0.068   +0.000  +0.026  +1.000  +0.013  +0.806  +0.347  +0.000  +0.296  +0.301  +0.004  +0.243  +0.482   +0.004    -0.004    +0.000  +0.077  -0.404   -0.000  +0.299
+                         :   jet0eta:  -0.005   +0.003  -0.008  +0.013  +1.000  +0.005  +0.003  +0.141  +0.003  +0.013  +0.144  +0.011  +0.012   +0.132    +0.007    +0.016  +0.000  -0.014   -0.007  -0.005
+                         :     jet0m:  -0.070   +0.002  +0.040  +0.806  +0.005  +1.000  +0.268  +0.004  +0.247  +0.243  +0.010  +0.217  +0.383   +0.006    -0.003    -0.002  +0.059  -0.334   -0.003  +0.295
+                         :    jet1pt:  +0.365   +0.008  +0.074  +0.347  +0.003  +0.268  +1.000  -0.009  +0.838  -0.001  -0.001  -0.011  +0.713   -0.003    -0.010    -0.001  +0.265  -0.484   -0.008  +0.119
+                         :   jet1eta:  +0.001   -0.002  +0.003  +0.000  +0.141  +0.004  -0.009  +1.000  -0.008  +0.009  +0.664  +0.008  -0.003   +0.871    +0.386    -0.004  +0.001  +0.005   -0.007  -0.006
+                         :     jet1m:  +0.301   +0.003  +0.067  +0.296  +0.003  +0.247  +0.838  -0.008  +1.000  -0.011  +0.000  +0.002  +0.590   -0.003    -0.009    -0.006  +0.248  -0.414   -0.006  +0.109
+                         :    jet2pt:  +0.330   +0.010  +0.073  +0.301  +0.013  +0.243  -0.001  +0.009  -0.011  +1.000  +0.010  +0.836  +0.640   +0.010    -0.002    -0.001  +0.251  -0.453   +0.000  +0.110
+                         :   jet2eta:  +0.001   -0.006  -0.006  +0.004  +0.144  +0.010  -0.001  +0.664  +0.000  +0.010  +1.000  +0.005  +0.005   +0.862    -0.284    +0.008  +0.006  -0.006   -0.011  -0.012
+                         :     jet2m:  +0.278   +0.012  +0.067  +0.243  +0.011  +0.217  -0.011  +0.008  +0.002  +0.836  +0.005  +1.000  +0.523   +0.006    +0.004    -0.001  +0.249  -0.378   +0.001  +0.096
+                         :   jet12pt:  +0.502   +0.011  +0.116  +0.482  +0.012  +0.383  +0.713  -0.003  +0.590  +0.640  +0.005  +0.523  +1.000   +0.003    -0.010    -0.000  +0.222  -0.808   -0.002  +0.179
+                         :  jet12eta:  +0.002   -0.005  +0.002  +0.004  +0.132  +0.006  -0.003  +0.871  -0.003  +0.010  +0.862  +0.006  +0.003   +1.000    +0.058    +0.000  +0.002  -0.004   -0.007  -0.005
+                         : jet12deta:  -0.005   +0.002  +0.011  -0.004  +0.007  -0.003  -0.010  +0.386  -0.009  -0.002  -0.284  +0.004  -0.010   +0.058    +1.000    -0.011  -0.002  +0.008   +0.007  +0.010
+                         : jet12dphi:  +0.005   +0.003  +0.002  +0.000  +0.016  -0.002  -0.001  -0.004  -0.006  -0.001  +0.008  -0.001  -0.000   +0.000    -0.011    +1.000  +0.003  +0.003   +0.031  +0.002
+                         :    jet12m:  +0.123   +0.007  -0.026  +0.077  +0.000  +0.059  +0.265  +0.001  +0.248  +0.251  +0.006  +0.249  +0.222   +0.002    -0.002    +0.003  +1.000  +0.160   -0.006  -0.016
+                         :   jet12DR:  -0.374   -0.001  -0.117  -0.404  -0.014  -0.334  -0.484  +0.005  -0.414  -0.453  -0.006  -0.378  -0.808   -0.004    +0.008    +0.003  +0.160  +1.000   -0.009  -0.176
+                         :  lepTdphi:  -0.000   -0.206  +0.010  -0.000  -0.007  -0.003  -0.008  -0.007  -0.006  +0.000  -0.011  +0.001  -0.002   -0.007    +0.007    +0.031  -0.006  -0.009   +1.000  +0.006
+                         :     lepTm:  +0.161   -0.016  +0.739  +0.299  -0.005  +0.295  +0.119  -0.006  +0.109  +0.110  -0.012  +0.096  +0.179   -0.005    +0.010    +0.002  -0.016  -0.176   +0.006  +1.000
+                         : ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DataSetInfo              : Correlation matrix (Background):
+                         : ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                         :             lepWpt lepWdphi   lepWm  jet0pt jet0eta   jet0m  jet1pt jet1eta   jet1m  jet2pt jet2eta   jet2m jet12pt jet12eta jet12deta jet12dphi  jet12m jet12DR lepTdphi   lepTm
+                         :    lepWpt:  +1.000   +0.000  +0.173  -0.037  -0.006  -0.040  +0.325  -0.003  +0.280  +0.300  +0.003  +0.259  +0.481   -0.001    -0.009    -0.004  +0.114  -0.319   -0.003  +0.246
+                         :  lepWdphi:  +0.000   +1.000  +0.002  -0.004  +0.014  -0.002  -0.005  -0.007  -0.002  +0.003  -0.008  +0.002  -0.000   -0.008    +0.001    -0.010  -0.002  +0.003   -0.163  -0.002
+                         :     lepWm:  +0.173   +0.002  +1.000  +0.033  +0.001  +0.044  +0.077  -0.001  +0.067  +0.082  -0.003  +0.072  +0.133   -0.002    -0.000    +0.006  +0.002  -0.116   -0.001  +0.671
+                         :    jet0pt:  -0.037   -0.004  +0.033  +1.000  +0.007  +0.810  +0.268  +0.010  +0.224  +0.271  +0.007  +0.221  +0.421   +0.009    +0.002    +0.003  +0.113  -0.299   -0.011  +0.335
+                         :   jet0eta:  -0.006   +0.014  +0.001  +0.007  +1.000  +0.001  -0.002  +0.195  -0.002  -0.004  +0.192  -0.006  +0.000   +0.193    +0.017    -0.000  -0.008  -0.007   -0.019  -0.004
+                         :     jet0m:  -0.040   -0.002  +0.044  +0.810  +0.001  +1.000  +0.204  +0.005  +0.183  +0.211  +0.006  +0.188  +0.330   +0.005    -0.002    +0.002  +0.080  -0.245   -0.012  +0.332
+                         :    jet1pt:  +0.325   -0.005  +0.077  +0.268  -0.002  +0.204  +1.000  -0.002  +0.853  -0.008  +0.005  +0.001  +0.653   +0.001    -0.014    -0.001  +0.394  -0.285   -0.003  +0.116
+                         :   jet1eta:  -0.003   -0.007  -0.001  +0.010  +0.195  +0.005  -0.002  +1.000  -0.009  +0.001  +0.648  -0.004  -0.001   +0.868    +0.371    +0.001  +0.005  +0.002   -0.008  -0.002
+                         :     jet1m:  +0.280   -0.002  +0.067  +0.224  -0.002  +0.183  +0.853  -0.009  +1.000  -0.009  +0.001  +0.016  +0.552   -0.004    -0.016    +0.001  +0.355  -0.228   -0.008  +0.106
+                         :    jet2pt:  +0.300   +0.003  +0.082  +0.271  -0.004  +0.211  -0.008  +0.001  -0.009  +1.000  +0.001  +0.840  +0.631   +0.001    +0.001    -0.010  +0.299  -0.334   -0.009  +0.112
+                         :   jet2eta:  +0.003   -0.008  -0.003  +0.007  +0.192  +0.006  +0.005  +0.648  +0.001  +0.001  +1.000  -0.008  +0.003   +0.858    -0.319    +0.001  +0.000  -0.005   -0.014  -0.006
+                         :     jet2m:  +0.259   +0.002  +0.072  +0.221  -0.006  +0.188  +0.001  -0.004  +0.016  +0.840  -0.008  +1.000  +0.529   -0.006    +0.007    -0.010  +0.276  -0.267   -0.005  +0.094
+                         :   jet12pt:  +0.481   -0.000  +0.133  +0.421  +0.000  +0.330  +0.653  -0.001  +0.552  +0.631  +0.003  +0.529  +1.000   +0.001    -0.008    -0.008  +0.262  -0.691   -0.008  +0.185
+                         :  jet12eta:  -0.001   -0.008  -0.002  +0.009  +0.193  +0.005  +0.001  +0.868  -0.004  +0.001  +0.858  -0.006  +0.001   +1.000    +0.041    +0.000  +0.001  -0.003   -0.010  -0.003
+                         : jet12deta:  -0.009   +0.001  -0.000  +0.002  +0.017  -0.002  -0.014  +0.371  -0.016  +0.001  -0.319  +0.007  -0.008   +0.041    +1.000    -0.003  +0.004  +0.009   +0.005  +0.001
+                         : jet12dphi:  -0.004   -0.010  +0.006  +0.003  -0.000  +0.002  -0.001  +0.001  +0.001  -0.010  +0.001  -0.010  -0.008   +0.000    -0.003    +1.000  +0.003  +0.010   +0.033  +0.003
+                         :    jet12m:  +0.114   -0.002  +0.002  +0.113  -0.008  +0.080  +0.394  +0.005  +0.355  +0.299  +0.000  +0.276  +0.262   +0.001    +0.004    +0.003  +1.000  +0.325   -0.010  +0.019
+                         :   jet12DR:  -0.319   +0.003  -0.116  -0.299  -0.007  -0.245  -0.285  +0.002  -0.228  -0.334  -0.005  -0.267  -0.691   -0.003    +0.009    +0.010  +0.325  +1.000   -0.001  -0.150
+                         :  lepTdphi:  -0.003   -0.163  -0.001  -0.011  -0.019  -0.012  -0.003  -0.008  -0.008  -0.009  -0.014  -0.005  -0.008   -0.010    +0.005    +0.033  -0.010  -0.001   +1.000  -0.017
+                         :     lepTm:  +0.246   -0.002  +0.671  +0.335  -0.004  +0.332  +0.116  -0.002  +0.106  +0.112  -0.006  +0.094  +0.185   -0.003    +0.001    +0.003  +0.019  -0.150   -0.017  +1.000
+                         : ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DataSetFactory           : [STHct_j4b3_01] :  
+                         : 
+Factory                  : Train all methods
+Factory                  : [STHct_j4b3_01] : Create Transformation "I" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'lepWpt' <---> Output : variable 'lepWpt'
+                         : Input : variable 'lepWdphi' <---> Output : variable 'lepWdphi'
+                         : Input : variable 'lepWm' <---> Output : variable 'lepWm'
+                         : Input : variable 'jet0pt' <---> Output : variable 'jet0pt'
+                         : Input : variable 'jet0eta' <---> Output : variable 'jet0eta'
+                         : Input : variable 'jet0m' <---> Output : variable 'jet0m'
+                         : Input : variable 'jet1pt' <---> Output : variable 'jet1pt'
+                         : Input : variable 'jet1eta' <---> Output : variable 'jet1eta'
+                         : Input : variable 'jet1m' <---> Output : variable 'jet1m'
+                         : Input : variable 'jet2pt' <---> Output : variable 'jet2pt'
+                         : Input : variable 'jet2eta' <---> Output : variable 'jet2eta'
+                         : Input : variable 'jet2m' <---> Output : variable 'jet2m'
+                         : Input : variable 'jet12pt' <---> Output : variable 'jet12pt'
+                         : Input : variable 'jet12eta' <---> Output : variable 'jet12eta'
+                         : Input : variable 'jet12deta' <---> Output : variable 'jet12deta'
+                         : Input : variable 'jet12dphi' <---> Output : variable 'jet12dphi'
+                         : Input : variable 'jet12m' <---> Output : variable 'jet12m'
+                         : Input : variable 'jet12DR' <---> Output : variable 'jet12DR'
+                         : Input : variable 'lepTdphi' <---> Output : variable 'lepTdphi'
+                         : Input : variable 'lepTm' <---> Output : variable 'lepTm'
+TFHandler_Factory        :  Variable         Mean         RMS   [        Min         Max ]
+                         : ----------------------------------------------------------------
+                         :    lepWpt:     105.16     65.414   [    0.24910     916.20 ]
+                         :  lepWdphi: -0.0025361     1.6735   [    -3.1415     3.1415 ]
+                         :     lepWm:     94.448     46.814   [    0.37131     534.65 ]
+                         :    jet0pt:     80.342     45.891   [     30.000     906.17 ]
+                         :   jet0eta: -0.0053187    0.98388   [    -2.4000     2.3998 ]
+                         :     jet0m:     11.387     5.1093   [    0.86222     118.10 ]
+                         :    jet1pt:     77.483     50.017   [     30.000     914.20 ]
+                         :   jet1eta: -0.0098507     1.1375   [    -2.3998     2.4000 ]
+                         :     jet1m:     11.387     6.3963   [     1.7020     164.23 ]
+                         :    jet2pt:     77.841     46.157   [     30.001     786.90 ]
+                         :   jet2eta:  -0.017259     1.0798   [    -2.3999     2.3995 ]
+                         :     jet2m:     11.292     5.5552   [     2.1525     175.71 ]
+                         :   jet12pt:     118.73     76.932   [    0.13663     1024.3 ]
+                         :  jet12eta:  -0.017932     1.4444   [    -6.2398     7.3731 ]
+                         : jet12deta:  0.0036682     1.0723   [    -5.9692     6.4486 ]
+                         : jet12dphi:   0.019977     1.7222   [    -3.1415     3.1415 ]
+                         :    jet12m:     112.79     47.769   [     16.504     1854.7 ]
+                         :   jet12DR:     1.8268    0.69916   [    0.38604     5.1417 ]
+                         :  lepTdphi:  0.0028048     1.7243   [    -3.1416     3.1415 ]
+                         :     lepTm:     186.68     66.872   [     34.706     1644.9 ]
+                         : ----------------------------------------------------------------
+                         : Ranking input variables (method unspecific)...
+IdTransformation         : Ranking result (top variable is best ranked)
+                         : ----------------------------------
+                         : Rank : Variable  : Separation
+                         : ----------------------------------
+                         :    1 : jet12m    : 5.154e-02
+                         :    2 : jet12DR   : 6.675e-03
+                         :    3 : jet12pt   : 6.514e-03
+                         :    4 : jet1pt    : 5.413e-03
+                         :    5 : lepWpt    : 5.031e-03
+                         :    6 : jet1eta   : 4.604e-03
+                         :    7 : jet12eta  : 4.047e-03
+                         :    8 : jet1m     : 3.736e-03
+                         :    9 : lepWdphi  : 3.653e-03
+                         :   10 : jet12dphi : 2.480e-03
+                         :   11 : jet2eta   : 2.253e-03
+                         :   12 : jet12deta : 2.033e-03
+                         :   13 : lepTm     : 1.984e-03
+                         :   14 : jet0m     : 1.870e-03
+                         :   15 : lepWm     : 1.314e-03
+                         :   16 : jet2m     : 1.285e-03
+                         :   17 : jet2pt    : 1.221e-03
+                         :   18 : jet0pt    : 9.633e-04
+                         :   19 : jet0eta   : 7.175e-04
+                         :   20 : lepTdphi  : 4.716e-04
+                         : ----------------------------------
+Factory                  : Train method: BDT for Classification
+                         : 
+<WARNING>                : Events with negative event weights are USED during the BDT training. This might cause problems with small node sizes or with the boosting. Please remove negative events from training using the option *IgnoreEventsWithNegWeightsInTraining* in case you observe problems with the boosting
+BDT                      : #events: (reweighted) sig: 58000 bkg: 58000
+                         : #events: (unweighted) sig: 26000 bkg: 90000
+                         : Training 800 Decision Trees ... patience please
+^Z                       : [>>>............] (24%, time left: 93 sec)  
+[1]+  Stopped                 python training_Hct.py
+(python27)[minerva1993@compute-0-2 v1]$ !ki
+kill -9 %1
+
+[1]+  Stopped                 python training_Hct.py
+(python27)[minerva1993@compute-0-2 v1]$ 
+[1]+  Killed                  python training_Hct.py
+(python27)[minerva1993@compute-0-2 v1]$ 
+(python27)[minerva1993@compute-0-2 v1]$ vi training_Hct.py 
+(python27)[minerva1993@compute-0-2 v1]$ ls
+application.sh  evaluation.py  mkNtuple  output.root  plots  score_mva  STHct_j3b3_01  STHct_j4b3_01  training_Hct.py
+(python27)[minerva1993@compute-0-2 v1]$ !py
+python training_Hct.py 
+TUnixSystem::SetDisplay:0: RuntimeWarning: DISPLAY not set, setting it to htop.local:0.0
+DataSetInfo              : [STHct_j4b3_01] : Added class "Signal"
+                         : Add Tree tmva_tree of type Signal with 542732 events
+DataSetInfo              : [STHct_j4b3_01] : Added class "Background"
+                         : Add Tree tmva_tree of type Background with 22434 events
+                         : Add Tree tmva_tree of type Background with 15996 events
+                         : Add Tree tmva_tree of type Background with 101634 events
+                         : Add Tree tmva_tree of type Background with 103544 events
+                         : Add Tree tmva_tree of type Background with 69321 events
+                         : Add Tree tmva_tree of type Background with 182090 events
+                         : Add Tree tmva_tree of type Background with 79451 events
+                         : Add Tree tmva_tree of type Background with 2796376 events
+                         : Add Tree tmva_tree of type Background with 5085960 events
+Factory                  : Booking method: BDT
+                         : 
+DataSetFactory           : [STHct_j4b3_01] : Number of events in input trees
+                         : Dataset[STHct_j4b3_01] :     Signal     requirement: "nevt %3!=0 && njets==4 && nbjets_m==3"
+                         : Dataset[STHct_j4b3_01] :     Signal          -- number of events passed: 39917  / sum of weights: 198.922
+                         : Dataset[STHct_j4b3_01] :     Signal          -- efficiency             : 0.0671122
+                         : Dataset[STHct_j4b3_01] :     Background requirement: "nevt %3!=0 && njets==4 && nbjets_m==3"
+                         : Dataset[STHct_j4b3_01] :     Background      -- number of events passed: 137551  / sum of weights: 15917.3
+                         : Dataset[STHct_j4b3_01] :     Background      -- efficiency             : 0.0153176
+                         : Dataset[STHct_j4b3_01] :  you have opted for interpreting the requested number of training/testing events
+                         :  to be the number of events AFTER your preselection cuts
+                         : 
+                         : Dataset[STHct_j4b3_01] :  you have opted for interpreting the requested number of training/testing events
+                         :  to be the number of events AFTER your preselection cuts
+                         : 
+                         : Number of training and testing events
+                         : ---------------------------------------------------------------------------
+                         : Signal     -- training events            : 26000
+                         : Signal     -- testing events             : 13917
+                         : Signal     -- training and testing events: 39917
+                         : Dataset[STHct_j4b3_01] : Signal     -- due to the preselection a scaling factor has been applied to the numbers of requested events: 0.0735483
+                         : Background -- training events            : 90000
+                         : Background -- testing events             : 47551
+                         : Background -- training and testing events: 137551
+                         : Dataset[STHct_j4b3_01] : Background -- due to the preselection a scaling factor has been applied to the numbers of requested events: 0.0162651
+                         : 
+DataSetInfo              : Correlation matrix (Signal):
+                         : ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                         :             lepWpt lepWdphi   lepWm  jet0pt jet0eta   jet0m  jet1pt jet1eta   jet1m  jet2pt jet2eta   jet2m jet12pt jet12eta jet12deta jet12dphi  jet12m jet12DR lepTdphi   lepTm
+                         :    lepWpt:  +1.000   +0.008  +0.122  -0.068  -0.005  -0.070  +0.365  +0.001  +0.301  +0.330  +0.001  +0.278  +0.502   +0.002    -0.005    +0.005  +0.123  -0.374   -0.000  +0.161
+                         :  lepWdphi:  +0.008   +1.000  -0.011  +0.000  +0.003  +0.002  +0.008  -0.002  +0.003  +0.010  -0.006  +0.012  +0.011   -0.005    +0.002    +0.003  +0.007  -0.001   -0.206  -0.016
+                         :     lepWm:  +0.122   -0.011  +1.000  +0.026  -0.008  +0.040  +0.074  +0.003  +0.067  +0.073  -0.006  +0.067  +0.116   +0.002    +0.011    +0.002  -0.026  -0.117   +0.010  +0.739
+                         :    jet0pt:  -0.068   +0.000  +0.026  +1.000  +0.013  +0.806  +0.347  +0.000  +0.296  +0.301  +0.004  +0.243  +0.482   +0.004    -0.004    +0.000  +0.077  -0.404   -0.000  +0.299
+                         :   jet0eta:  -0.005   +0.003  -0.008  +0.013  +1.000  +0.005  +0.003  +0.141  +0.003  +0.013  +0.144  +0.011  +0.012   +0.132    +0.007    +0.016  +0.000  -0.014   -0.007  -0.005
+                         :     jet0m:  -0.070   +0.002  +0.040  +0.806  +0.005  +1.000  +0.268  +0.004  +0.247  +0.243  +0.010  +0.217  +0.383   +0.006    -0.003    -0.002  +0.059  -0.334   -0.003  +0.295
+                         :    jet1pt:  +0.365   +0.008  +0.074  +0.347  +0.003  +0.268  +1.000  -0.009  +0.838  -0.001  -0.001  -0.011  +0.713   -0.003    -0.010    -0.001  +0.265  -0.484   -0.008  +0.119
+                         :   jet1eta:  +0.001   -0.002  +0.003  +0.000  +0.141  +0.004  -0.009  +1.000  -0.008  +0.009  +0.664  +0.008  -0.003   +0.871    +0.386    -0.004  +0.001  +0.005   -0.007  -0.006
+                         :     jet1m:  +0.301   +0.003  +0.067  +0.296  +0.003  +0.247  +0.838  -0.008  +1.000  -0.011  +0.000  +0.002  +0.590   -0.003    -0.009    -0.006  +0.248  -0.414   -0.006  +0.109
+                         :    jet2pt:  +0.330   +0.010  +0.073  +0.301  +0.013  +0.243  -0.001  +0.009  -0.011  +1.000  +0.010  +0.836  +0.640   +0.010    -0.002    -0.001  +0.251  -0.453   +0.000  +0.110
+                         :   jet2eta:  +0.001   -0.006  -0.006  +0.004  +0.144  +0.010  -0.001  +0.664  +0.000  +0.010  +1.000  +0.005  +0.005   +0.862    -0.284    +0.008  +0.006  -0.006   -0.011  -0.012
+                         :     jet2m:  +0.278   +0.012  +0.067  +0.243  +0.011  +0.217  -0.011  +0.008  +0.002  +0.836  +0.005  +1.000  +0.523   +0.006    +0.004    -0.001  +0.249  -0.378   +0.001  +0.096
+                         :   jet12pt:  +0.502   +0.011  +0.116  +0.482  +0.012  +0.383  +0.713  -0.003  +0.590  +0.640  +0.005  +0.523  +1.000   +0.003    -0.010    -0.000  +0.222  -0.808   -0.002  +0.179
+                         :  jet12eta:  +0.002   -0.005  +0.002  +0.004  +0.132  +0.006  -0.003  +0.871  -0.003  +0.010  +0.862  +0.006  +0.003   +1.000    +0.058    +0.000  +0.002  -0.004   -0.007  -0.005
+                         : jet12deta:  -0.005   +0.002  +0.011  -0.004  +0.007  -0.003  -0.010  +0.386  -0.009  -0.002  -0.284  +0.004  -0.010   +0.058    +1.000    -0.011  -0.002  +0.008   +0.007  +0.010
+                         : jet12dphi:  +0.005   +0.003  +0.002  +0.000  +0.016  -0.002  -0.001  -0.004  -0.006  -0.001  +0.008  -0.001  -0.000   +0.000    -0.011    +1.000  +0.003  +0.003   +0.031  +0.002
+                         :    jet12m:  +0.123   +0.007  -0.026  +0.077  +0.000  +0.059  +0.265  +0.001  +0.248  +0.251  +0.006  +0.249  +0.222   +0.002    -0.002    +0.003  +1.000  +0.160   -0.006  -0.016
+                         :   jet12DR:  -0.374   -0.001  -0.117  -0.404  -0.014  -0.334  -0.484  +0.005  -0.414  -0.453  -0.006  -0.378  -0.808   -0.004    +0.008    +0.003  +0.160  +1.000   -0.009  -0.176
+                         :  lepTdphi:  -0.000   -0.206  +0.010  -0.000  -0.007  -0.003  -0.008  -0.007  -0.006  +0.000  -0.011  +0.001  -0.002   -0.007    +0.007    +0.031  -0.006  -0.009   +1.000  +0.006
+                         :     lepTm:  +0.161   -0.016  +0.739  +0.299  -0.005  +0.295  +0.119  -0.006  +0.109  +0.110  -0.012  +0.096  +0.179   -0.005    +0.010    +0.002  -0.016  -0.176   +0.006  +1.000
+                         : ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DataSetInfo              : Correlation matrix (Background):
+                         : ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                         :             lepWpt lepWdphi   lepWm  jet0pt jet0eta   jet0m  jet1pt jet1eta   jet1m  jet2pt jet2eta   jet2m jet12pt jet12eta jet12deta jet12dphi  jet12m jet12DR lepTdphi   lepTm
+                         :    lepWpt:  +1.000   +0.000  +0.173  -0.037  -0.006  -0.040  +0.325  -0.003  +0.280  +0.300  +0.003  +0.259  +0.481   -0.001    -0.009    -0.004  +0.114  -0.319   -0.003  +0.246
+                         :  lepWdphi:  +0.000   +1.000  +0.002  -0.004  +0.014  -0.002  -0.005  -0.007  -0.002  +0.003  -0.008  +0.002  -0.000   -0.008    +0.001    -0.010  -0.002  +0.003   -0.163  -0.002
+                         :     lepWm:  +0.173   +0.002  +1.000  +0.033  +0.001  +0.044  +0.077  -0.001  +0.067  +0.082  -0.003  +0.072  +0.133   -0.002    -0.000    +0.006  +0.002  -0.116   -0.001  +0.671
+                         :    jet0pt:  -0.037   -0.004  +0.033  +1.000  +0.007  +0.810  +0.268  +0.010  +0.224  +0.271  +0.007  +0.221  +0.421   +0.009    +0.002    +0.003  +0.113  -0.299   -0.011  +0.335
+                         :   jet0eta:  -0.006   +0.014  +0.001  +0.007  +1.000  +0.001  -0.002  +0.195  -0.002  -0.004  +0.192  -0.006  +0.000   +0.193    +0.017    -0.000  -0.008  -0.007   -0.019  -0.004
+                         :     jet0m:  -0.040   -0.002  +0.044  +0.810  +0.001  +1.000  +0.204  +0.005  +0.183  +0.211  +0.006  +0.188  +0.330   +0.005    -0.002    +0.002  +0.080  -0.245   -0.012  +0.332
+                         :    jet1pt:  +0.325   -0.005  +0.077  +0.268  -0.002  +0.204  +1.000  -0.002  +0.853  -0.008  +0.005  +0.001  +0.653   +0.001    -0.014    -0.001  +0.394  -0.285   -0.003  +0.116
+                         :   jet1eta:  -0.003   -0.007  -0.001  +0.010  +0.195  +0.005  -0.002  +1.000  -0.009  +0.001  +0.648  -0.004  -0.001   +0.868    +0.371    +0.001  +0.005  +0.002   -0.008  -0.002
+                         :     jet1m:  +0.280   -0.002  +0.067  +0.224  -0.002  +0.183  +0.853  -0.009  +1.000  -0.009  +0.001  +0.016  +0.552   -0.004    -0.016    +0.001  +0.355  -0.228   -0.008  +0.106
+                         :    jet2pt:  +0.300   +0.003  +0.082  +0.271  -0.004  +0.211  -0.008  +0.001  -0.009  +1.000  +0.001  +0.840  +0.631   +0.001    +0.001    -0.010  +0.299  -0.334   -0.009  +0.112
+                         :   jet2eta:  +0.003   -0.008  -0.003  +0.007  +0.192  +0.006  +0.005  +0.648  +0.001  +0.001  +1.000  -0.008  +0.003   +0.858    -0.319    +0.001  +0.000  -0.005   -0.014  -0.006
+                         :     jet2m:  +0.259   +0.002  +0.072  +0.221  -0.006  +0.188  +0.001  -0.004  +0.016  +0.840  -0.008  +1.000  +0.529   -0.006    +0.007    -0.010  +0.276  -0.267   -0.005  +0.094
+                         :   jet12pt:  +0.481   -0.000  +0.133  +0.421  +0.000  +0.330  +0.653  -0.001  +0.552  +0.631  +0.003  +0.529  +1.000   +0.001    -0.008    -0.008  +0.262  -0.691   -0.008  +0.185
+                         :  jet12eta:  -0.001   -0.008  -0.002  +0.009  +0.193  +0.005  +0.001  +0.868  -0.004  +0.001  +0.858  -0.006  +0.001   +1.000    +0.041    +0.000  +0.001  -0.003   -0.010  -0.003
+                         : jet12deta:  -0.009   +0.001  -0.000  +0.002  +0.017  -0.002  -0.014  +0.371  -0.016  +0.001  -0.319  +0.007  -0.008   +0.041    +1.000    -0.003  +0.004  +0.009   +0.005  +0.001
+                         : jet12dphi:  -0.004   -0.010  +0.006  +0.003  -0.000  +0.002  -0.001  +0.001  +0.001  -0.010  +0.001  -0.010  -0.008   +0.000    -0.003    +1.000  +0.003  +0.010   +0.033  +0.003
+                         :    jet12m:  +0.114   -0.002  +0.002  +0.113  -0.008  +0.080  +0.394  +0.005  +0.355  +0.299  +0.000  +0.276  +0.262   +0.001    +0.004    +0.003  +1.000  +0.325   -0.010  +0.019
+                         :   jet12DR:  -0.319   +0.003  -0.116  -0.299  -0.007  -0.245  -0.285  +0.002  -0.228  -0.334  -0.005  -0.267  -0.691   -0.003    +0.009    +0.010  +0.325  +1.000   -0.001  -0.150
+                         :  lepTdphi:  -0.003   -0.163  -0.001  -0.011  -0.019  -0.012  -0.003  -0.008  -0.008  -0.009  -0.014  -0.005  -0.008   -0.010    +0.005    +0.033  -0.010  -0.001   +1.000  -0.017
+                         :     lepTm:  +0.246   -0.002  +0.671  +0.335  -0.004  +0.332  +0.116  -0.002  +0.106  +0.112  -0.006  +0.094  +0.185   -0.003    +0.001    +0.003  +0.019  -0.150   -0.017  +1.000
+                         : ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DataSetFactory           : [STHct_j4b3_01] :  
+                         : 
+Factory                  : Train all methods
+Factory                  : [STHct_j4b3_01] : Create Transformation "I" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'lepWpt' <---> Output : variable 'lepWpt'
+                         : Input : variable 'lepWdphi' <---> Output : variable 'lepWdphi'
+                         : Input : variable 'lepWm' <---> Output : variable 'lepWm'
+                         : Input : variable 'jet0pt' <---> Output : variable 'jet0pt'
+                         : Input : variable 'jet0eta' <---> Output : variable 'jet0eta'
+                         : Input : variable 'jet0m' <---> Output : variable 'jet0m'
+                         : Input : variable 'jet1pt' <---> Output : variable 'jet1pt'
+                         : Input : variable 'jet1eta' <---> Output : variable 'jet1eta'
+                         : Input : variable 'jet1m' <---> Output : variable 'jet1m'
+                         : Input : variable 'jet2pt' <---> Output : variable 'jet2pt'
+                         : Input : variable 'jet2eta' <---> Output : variable 'jet2eta'
+                         : Input : variable 'jet2m' <---> Output : variable 'jet2m'
+                         : Input : variable 'jet12pt' <---> Output : variable 'jet12pt'
+                         : Input : variable 'jet12eta' <---> Output : variable 'jet12eta'
+                         : Input : variable 'jet12deta' <---> Output : variable 'jet12deta'
+                         : Input : variable 'jet12dphi' <---> Output : variable 'jet12dphi'
+                         : Input : variable 'jet12m' <---> Output : variable 'jet12m'
+                         : Input : variable 'jet12DR' <---> Output : variable 'jet12DR'
+                         : Input : variable 'lepTdphi' <---> Output : variable 'lepTdphi'
+                         : Input : variable 'lepTm' <---> Output : variable 'lepTm'
+TFHandler_Factory        :  Variable         Mean         RMS   [        Min         Max ]
+                         : ----------------------------------------------------------------
+                         :    lepWpt:     105.16     65.414   [    0.24910     916.20 ]
+                         :  lepWdphi: -0.0025361     1.6735   [    -3.1415     3.1415 ]
+                         :     lepWm:     94.448     46.814   [    0.37131     534.65 ]
+                         :    jet0pt:     80.342     45.891   [     30.000     906.17 ]
+                         :   jet0eta: -0.0053187    0.98388   [    -2.4000     2.3998 ]
+                         :     jet0m:     11.387     5.1093   [    0.86222     118.10 ]
+                         :    jet1pt:     77.483     50.017   [     30.000     914.20 ]
+                         :   jet1eta: -0.0098507     1.1375   [    -2.3998     2.4000 ]
+                         :     jet1m:     11.387     6.3963   [     1.7020     164.23 ]
+                         :    jet2pt:     77.841     46.157   [     30.001     786.90 ]
+                         :   jet2eta:  -0.017259     1.0798   [    -2.3999     2.3995 ]
+                         :     jet2m:     11.292     5.5552   [     2.1525     175.71 ]
+                         :   jet12pt:     118.73     76.932   [    0.13663     1024.3 ]
+                         :  jet12eta:  -0.017932     1.4444   [    -6.2398     7.3731 ]
+                         : jet12deta:  0.0036682     1.0723   [    -5.9692     6.4486 ]
+                         : jet12dphi:   0.019977     1.7222   [    -3.1415     3.1415 ]
+                         :    jet12m:     112.79     47.769   [     16.504     1854.7 ]
+                         :   jet12DR:     1.8268    0.69916   [    0.38604     5.1417 ]
+                         :  lepTdphi:  0.0028048     1.7243   [    -3.1416     3.1415 ]
+                         :     lepTm:     186.68     66.872   [     34.706     1644.9 ]
+                         : ----------------------------------------------------------------
+                         : Ranking input variables (method unspecific)...
+IdTransformation         : Ranking result (top variable is best ranked)
+                         : ----------------------------------
+                         : Rank : Variable  : Separation
+                         : ----------------------------------
+                         :    1 : jet12m    : 5.154e-02
+                         :    2 : jet12DR   : 6.675e-03
+                         :    3 : jet12pt   : 6.514e-03
+                         :    4 : jet1pt    : 5.413e-03
+                         :    5 : lepWpt    : 5.031e-03
+                         :    6 : jet1eta   : 4.604e-03
+                         :    7 : jet12eta  : 4.047e-03
+                         :    8 : jet1m     : 3.736e-03
+                         :    9 : lepWdphi  : 3.653e-03
+                         :   10 : jet12dphi : 2.480e-03
+                         :   11 : jet2eta   : 2.253e-03
+                         :   12 : jet12deta : 2.033e-03
+                         :   13 : lepTm     : 1.984e-03
+                         :   14 : jet0m     : 1.870e-03
+                         :   15 : lepWm     : 1.314e-03
+                         :   16 : jet2m     : 1.285e-03
+                         :   17 : jet2pt    : 1.221e-03
+                         :   18 : jet0pt    : 9.633e-04
+                         :   19 : jet0eta   : 7.175e-04
+                         :   20 : lepTdphi  : 4.716e-04
+                         : ----------------------------------
+Factory                  : Train method: BDT for Classification
+                         : 
+<WARNING>                : Events with negative event weights are USED during the BDT training. This might cause problems with small node sizes or with the boosting. Please remove negative events from training using the option *IgnoreEventsWithNegWeightsInTraining* in case you observe problems with the boosting
+BDT                      : #events: (reweighted) sig: 58000 bkg: 58000
+                         : #events: (unweighted) sig: 26000 bkg: 90000
+                         : Training 800 Decision Trees ... patience please
+                         : Elapsed time for training with 116000 events: 127 sec         
+BDT                      : [STHct_j4b3_01] : Evaluation of BDT on training sample (116000 events)
+                         : Elapsed time for evaluation of 116000 events: 11 sec       
+                         : Creating xml weight file: STHct_j4b3_01/weights/TMVAClassification_BDT.weights.xml
+                         : Creating standalone class: STHct_j4b3_01/weights/TMVAClassification_BDT.class.C
+Factory                  : Training finished
+                         : 
+                         : Ranking input variables (method specific)...
+BDT                      : Ranking result (top variable is best ranked)
+                         : -------------------------------------------
+                         : Rank : Variable  : Variable Importance
+                         : -------------------------------------------
+                         :    1 : jet12m    : 7.808e-02
+                         :    2 : jet12DR   : 6.057e-02
+                         :    3 : lepWpt    : 5.760e-02
+                         :    4 : lepTdphi  : 5.661e-02
+                         :    5 : jet0eta   : 5.622e-02
+                         :    6 : lepWdphi  : 5.478e-02
+                         :    7 : jet12pt   : 5.424e-02
+                         :    8 : jet12dphi : 5.081e-02
+                         :    9 : lepWm     : 5.016e-02
+                         :   10 : jet0pt    : 4.675e-02
+                         :   11 : jet1eta   : 4.611e-02
+                         :   12 : jet2eta   : 4.530e-02
+                         :   13 : jet1m     : 4.521e-02
+                         :   14 : jet12deta : 4.465e-02
+                         :   15 : jet0m     : 4.463e-02
+                         :   16 : jet2pt    : 4.268e-02
+                         :   17 : jet2m     : 4.266e-02
+                         :   18 : lepTm     : 4.255e-02
+                         :   19 : jet1pt    : 4.209e-02
+                         :   20 : jet12eta  : 3.829e-02
+                         : -------------------------------------------
+Factory                  : === Destroy and recreate all methods via weight files for testing ===
+                         : 
+Factory                  : Test all methods
+Factory                  : Test method: BDT for Classification performance
+                         : 
+BDT                      : [STHct_j4b3_01] : Evaluation of BDT on testing sample (61468 events)
+                         : Elapsed time for evaluation of 61468 events: 3.96 sec       
+Factory                  : Evaluate all methods
+Factory                  : Evaluate classifier: BDT
+                         : 
+BDT                      : [STHct_j4b3_01] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_BDT            :  Variable         Mean         RMS   [        Min         Max ]
+                         : ----------------------------------------------------------------
+                         :    lepWpt:     106.55     66.394   [    0.71836     737.66 ]
+                         :  lepWdphi:   0.023858     1.6572   [    -3.1416     3.1415 ]
+                         :     lepWm:     94.250     47.874   [    0.32504     589.15 ]
+                         :    jet0pt:     80.545     46.592   [     30.003     823.13 ]
+                         :   jet0eta:  0.0016722    0.98375   [    -2.3999     2.3995 ]
+                         :     jet0m:     11.362     5.1102   [     1.5520     106.05 ]
+                         :    jet1pt:     76.426     49.067   [     30.001     749.06 ]
+                         :   jet1eta: -0.0074858     1.1456   [    -2.4000     2.3999 ]
+                         :     jet1m:     11.319     6.4858   [     1.8771     121.21 ]
+                         :    jet2pt:     77.764     45.653   [     30.000     661.92 ]
+                         :   jet2eta: -0.0093659     1.0850   [    -2.3998     2.3998 ]
+                         :     jet2m:     11.355     5.5281   [     2.4065     100.50 ]
+                         :   jet12pt:     116.69     75.269   [    0.64911     815.42 ]
+                         :  jet12eta:  -0.010693     1.4570   [    -6.3881     6.4258 ]
+                         : jet12deta: -0.0042945     1.0675   [    -5.2972     5.1213 ]
+                         : jet12dphi:   0.013224     1.7399   [    -3.1415     3.1415 ]
+                         :    jet12m:     113.48     51.859   [     19.203     1391.9 ]
+                         :   jet12DR:     1.8408    0.71064   [    0.39959     4.9683 ]
+                         :  lepTdphi:  0.0018732     1.7278   [    -3.1415     3.1415 ]
+                         :     lepTm:     187.41     69.834   [     33.839     2038.0 ]
+                         : ----------------------------------------------------------------
+                         : 
+                         : Evaluation results ranked by best signal efficiency and purity (area)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet       MVA                       
+                         : Name:         Method:          ROC-integ
+                         : STHct_j4b3_01 BDT            : 0.664
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+                         : Testing efficiency compared to training efficiency (overtraining check)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet              MVA              Signal efficiency: from test sample (from training sample) 
+                         : Name:                Method:          @B=0.01             @B=0.10            @B=0.30   
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : STHct_j4b3_01        BDT            : 0.048 (0.061)       0.249 (0.281)      0.519 (0.551)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+Dataset:STHct_j4b3_01    : Created tree 'TestTree' with 61468 events
+                         : 
+Dataset:STHct_j4b3_01    : Created tree 'TrainTree' with 116000 events
+                         : 
+Factory                  : Thank you for using TMVA!
+                         : For citation information, please visit: http://tmva.sf.net/citeTMVA.html
