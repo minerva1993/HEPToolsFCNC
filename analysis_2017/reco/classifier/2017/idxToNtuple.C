@@ -16,12 +16,8 @@ void idxToNtuple::Loop()
   //cout << totevt << endl;
 
   string fn = fChain->GetCurrentFile()->GetName();
-  //string fn2 = "assign_" + fn.substr(73);
-  //string pt = "root://cms-xrdr.sdfarm.kr:1094//xrd/store/user/minerva1993/reco/assign04/";
-  //string fn2 = "assign_" + fn.substr(56);
-  //string pt = "/home/minerva1993/recoFCNC/classifier/cms/assign04/";
-  string fn2 = "assign_" + fn.substr(75);
-  string pt = "/home/minerva1993/fcnc/analysis_2017/reco/classifier/2016/assignST02/";
+  string fn2 = "assign_" + fn.substr(74);
+  string pt = "/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/assignST01/";
   string pt2 = pt + fn2;
   const char *path = pt2.c_str();
   TFile* fout = TFile::Open(path, "recreate");

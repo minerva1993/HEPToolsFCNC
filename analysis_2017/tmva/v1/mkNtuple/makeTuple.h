@@ -5,8 +5,8 @@
 // found on file: /xrootd/store/user/brochero/v8-0-4/Tree_LepJets_NewCSVSF_v8-0-4_Spring16-80X_36814pb-1_ttbar_PowhegPythia.root
 //////////////////////////////////////////////////////////
 
-#ifndef MyAnalysis_h
-#define MyAnalysis_h
+#ifndef makeTuple_h
+#define makeTuple_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -23,9 +23,8 @@
 #include <TLeaf.h>
 #include <string>
 #include <iostream>
-using namespace std;
 
-class MyAnalysis : public TSelector {
+class makeTuple : public TSelector {
 public :
    TTreeReader     fReader;  //!the tree reader
    TTree          *fChain = 0;   //!pointer to the analyzed TTree or TChain
@@ -61,12 +60,13 @@ public :
    TTreeReaderArray<float> jet_SF_deepCSV_30 = {fReader, "jet_SF_deepCSV_30"};
    TTreeReaderArray<float> jet_SF_deepCSV_35 = {fReader, "jet_SF_deepCSV_35"};
    TTreeReaderArray<float> jet_SF_deepCSV_40 = {fReader, "jet_SF_deepCSV_40"};
-   TTreeReaderArray<float> jet_SF_deepCSV = {fReader, "jet_SF_deepCSV"};
+   TTreeReaderArray<float> jet_SF_dppeCSV = {fReader, "jet_SF_deepCSV"};
    TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
    TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
    TTreeReaderArray<float> jet_deepCvsB = {fReader, "jet_deepCvsB"};
    //TTreeReaderValue<Int_t> jet_number = {fReader, "jet_number"};
+
    TTreeReaderArray<int> jet_partonFlavour = {fReader, "jet_partonFlavour"};
    TTreeReaderArray<int> jet_hadronFlavour = {fReader, "jet_hadronFlavour"};
    TTreeReaderArray<float> jet_JES_Up = {fReader, "jet_JES_Up"};
@@ -74,6 +74,28 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
+/*
+   TTreeReaderValue<Float_t> kin_chi2 = {fReader, "kin_chi2"};
+   TTreeReaderValue<Float_t> kinnu_pT = {fReader, "kinnu_pT"};
+   TTreeReaderValue<Float_t> kinnu_eta = {fReader, "kinnu_eta"};
+   TTreeReaderValue<Float_t> kinnu_phi = {fReader, "kinnu_phi"};
+   TTreeReaderValue<Float_t> kinnu_E = {fReader, "kinnu_E"};
+   TTreeReaderArray<float> kinjet_pT = {fReader, "kinjet_pT"};
+   TTreeReaderArray<float> kinjet_eta = {fReader, "kinjet_eta"};
+   TTreeReaderArray<float> kinjet_phi = {fReader, "kinjet_phi"};
+   TTreeReaderArray<float> kinjet_E = {fReader, "kinjet_E"};
+   TTreeReaderArray<int> kinjet_index = {fReader, "kinjet_index"};
+   TTreeReaderValue<Float_t> fcnhkin_chi2 = {fReader, "fcnhkin_chi2"};
+   TTreeReaderValue<Float_t> fcnhkinnu_pT = {fReader, "fcnhkinnu_pT"};
+   TTreeReaderValue<Float_t> fcnhkinnu_eta = {fReader, "fcnhkinnu_eta"};
+   TTreeReaderValue<Float_t> fcnhkinnu_phi = {fReader, "fcnhkinnu_phi"};
+   TTreeReaderValue<Float_t> fcnhkinnu_E = {fReader, "fcnhkinnu_E"};
+   TTreeReaderArray<float> fcnhkinjet_pT = {fReader, "fcnhkinjet_pT"};
+   TTreeReaderArray<float> fcnhkinjet_eta = {fReader, "fcnhkinjet_eta"};
+   TTreeReaderArray<float> fcnhkinjet_phi = {fReader, "fcnhkinjet_phi"};
+   TTreeReaderArray<float> fcnhkinjet_E = {fReader, "fcnhkinjet_E"};
+   TTreeReaderArray<int> fcnhkinjet_index = {fReader, "fcnhkinjet_index"};
+*/
    //TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
    //TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    //TTreeReaderArray<int> jet_MatchedGenJetIndex = {fReader, "jet_MatchedGenJetIndex"};
@@ -112,8 +134,8 @@ public :
    TTreeReaderValue<Float_t> addHbjet2_e = {fReader, "addHbjet2_e"};
    TTreeReaderValue<Float_t> dRHbb = {fReader, "dRHbb"};
 
-   MyAnalysis(TTree * /*tree*/ =0) { }
-   virtual ~MyAnalysis() { }
+   makeTuple(TTree * /*tree*/ =0) { }
+   virtual ~makeTuple() { }
    virtual Int_t   Version() const { return 2; }
    virtual void    Begin(TTree *tree);
    virtual void    SlaveBegin(TTree *tree);
@@ -127,52 +149,103 @@ public :
    virtual TList  *GetOutputList() const { return fOutput; }
    virtual void    SlaveTerminate();
    virtual void    Terminate();
-   double transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
+   double transverseMass(const TLorentzVector & l, const TLorentzVector & nu);
+   //int totalevt = fChain->GetTree()->GetEntries();
 
-   ClassDef(MyAnalysis,0);
+    TTree *treeTMVA = 0;
 
-    TH1D *h_PV[2][18];
-    TH1D *h_NJet[2][18];
-    TH1D *h_NBJetCSVv2M[2][18];
-    TH1D *h_NBJetCSVv2T[2][18];
-    TH1D *h_NCJetM[2][18];
-    TH1D *h_LepPt[2][18];
-    TH1D *h_LepPhi[2][18];
-    TH1D *h_LepEta[2][18];
-    TH1D *h_MET[2][18];
+    int nevt = 0;
 
-    TH1D *h_WMass[2][18];
-    TH1D *h_LepIso[2][18];
-    TH1D *h_LepIsoQCD[2][18];
-    TH1D *h_DPhi[2][18];
-    TH1D *h_JetCSV[2][18];
+    //objects for ntuple
+    int b_nevt = 0;
+    int b_GoodPV = 0;
+    int b_EventCategory = -1;
+    float b_EventWeight = 1.0;
+    int b_GenMatch = -1;
+    int b_njets = 0;
+    int b_nbjets_m = 0;
+    int b_ncjets_m = 0;
+    float b_met = 0;
+    float b_transversem = 0;
+    float b_lepdphi = 0;
+    float b_cjmpt = 0;
 
-    //tagging variables
-    TH1D *h_csv[2][18];
-    TH1D *h_cvsl[2][18];
-    TH1D *h_cvsb[2][18];
+    float b_lepWpt = 0;
+    float b_lepWeta = 10;
+    float b_lepWdeta = 10;
+    float b_lepWphi = 10;
+    float b_lepWdphi = 10;
+    float b_lepWm = 0;
 
-    //DR
-    TH1D *h_FCNHkinLepWMass[2][18];
-    TH1D *h_FCNHkinHadWMass[2][18];
-    TH1D *h_FCNHkinHMass[2][18];
-    TH1D *h_FCNHkinDR[2][18];
-    TH1D *h_FCNHkinLepTopM[2][18];
-    TH1D *h_FCNHkinHadTopM[2][18];
-    TH1D *h_FCNHkinHPt[2][18];
-    TH1D *h_FCNHkinHdPhi[2][18];
-    TH1D *h_FCNHkinHdEta[2][18];
-    TH1D *h_FCNHkinHb1Pt[2][18];
-    TH1D *h_FCNHkinHb2Pt[2][18];
-    TH1D *h_FCNHkinHb1CSV[2][18];
-    TH1D *h_FCNHkinHb2CSV[2][18];
-    TH1D *h_FCNHkinLepTopPt[2][18];
-    TH1D *h_FCNHkinHadTopPt[2][18];
+    float b_jet0pt = 0;
+    float b_jet0eta = 10;
+    float b_jet0phi = 10;
+    float b_jet0m = 0;
+    float b_jet0csv = 5;
+    float b_jet0cvsl = 5;
+    float b_jet0cvsb = 5;
 
-    TH1D *h_genDR[2][18];
-    TH1D *h_matchDR[2][18];
-    TH1D *h_genHm[2][18];
-    TH1D *h_matchHm[2][18];
+    float b_jet1pt = 0;
+    float b_jet1eta = 10;
+    float b_jet1phi = 10;
+    float b_jet1m = 0;
+    float b_jet1csv = 5;
+    float b_jet1cvsl = 5;
+    float b_jet1cvsb = 5;
+
+    float b_jet2pt = 0;
+    float b_jet2eta = 10;
+    float b_jet2phi = 10;
+    float b_jet2m = 0;
+    float b_jet2csv = 5;
+    float b_jet2cvsl = 5;
+    float b_jet2cvsb = 5;
+
+    float b_jet3pt = 0;
+    float b_jet3eta = 10;
+    float b_jet3phi = 10;
+    float b_jet3m = 0;
+    float b_jet3csv = 5;
+    float b_jet3cvsl = 5;
+    float b_jet3cvsb = 5;
+
+    float b_jet12pt = 0;
+    float b_jet12eta = 10;
+    float b_jet12deta = 10;
+    float b_jet12phi = 10;
+    float b_jet12dphi = 10;
+    float b_jet12m = 0;
+    float b_jet12DR = 0;
+
+    float b_jet23pt = 0;
+    float b_jet23eta = 10;
+    float b_jet23deta = 10;
+    float b_jet23phi = 10;
+    float b_jet23dphi = 10;
+    float b_jet23m = 0;
+
+    float b_jet31pt = 0;
+    float b_jet31eta = 10;
+    float b_jet31deta = 10;
+    float b_jet31phi = 10;
+    float b_jet31dphi = 10;
+    float b_jet31m = 0;
+
+    float b_lepTpt = 0;
+    float b_lepTeta = 10;
+    float b_lepTdeta = 10;
+    float b_lepTphi = 10;
+    float b_lepTdphi = 10;
+    float b_lepTm = 0;
+
+    float b_hadTpt = 0;
+    float b_hadTeta = 10;
+    float b_hadTHbdeta = 10;
+    float b_hadTWbdeta = 10;
+    float b_hadTphi = 10;
+    float b_hadTHbdphi = 10;
+    float b_hadTWbdphi = 10;
+    float b_hadTm = 0;
 
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");
@@ -186,12 +259,15 @@ public :
     vector<int> dupCheck;
     int lepcount = 0;
     int evtNum = 0;
+
+   ClassDef(makeTuple,0);
+
 };
 
 #endif
 
-#ifdef MyAnalysis_cxx
-void MyAnalysis::Init(TTree *tree)
+#ifdef makeTuple_cxx
+void makeTuple::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the reader is initialized.
@@ -204,7 +280,7 @@ void MyAnalysis::Init(TTree *tree)
 
 }
 
-Bool_t MyAnalysis::Notify()
+Bool_t makeTuple::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -216,4 +292,4 @@ Bool_t MyAnalysis::Notify()
 }
 
 
-#endif // #ifdef MyAnalysis_cxx
+#endif // #ifdef makeTuple_cxx

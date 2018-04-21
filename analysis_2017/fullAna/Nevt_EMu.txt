@@ -1,0 +1,1080 @@
+['h', 'PV', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S0', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 17643.255777 
+hist_ttbj :  ttbj = 48467.530959 
+hist_ttcc :  ttcc = 30728.597160 
+hist_ttLF :  ttLF = 1280458.805401 
+hist_ttother :  ttLF = 2463780.107917 
+hist_w1jets50to150 :  WJets = 23967808.606420 
+hist_w1jets150to250 :  WJets = 5450946.769452 
+hist_w1jets250to400 :  WJets = 140969.375994 
+hist_w1jets400toinf :  WJets = 18524.519812 
+hist_w2jets250to400 :  WJets = 702985.985255 
+hist_w2jets400toinf :  WJets = 61416.606426 
+hist_w3jets :  WJets = 7579245.676056 
+hist_w4jets :  WJets = 4155299.443570 
+hist_zjets :  ZJets = 16123590.320657 
+hist_zjets10to50 :  ZJets = 1485042.591879 
+hist_tchannel :  Single t = 409489.341354 
+hist_tbarchannel :  Single t = 255674.693401 
+hist_tWchannel :  Single t = 221493.811462 
+hist_tbarWchannel :  Single t = 221600.016912 
+hist_ww :  DiBoson = 544230.116988 
+hist_wz :  DiBoson = 138323.316107 
+hist_zz :  DiBoson = 16310.353330 
+hist_singleTopHct :  STHct = 8357.343736 
+hist_singleTopHut :  STHut = 1178.670458 
+ntotal = 65334029.842287 
+ndata = 353193188 
+nsub = 287859158.157713 
+['h', 'NBJetCSVv2M', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S0', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S1', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 2035.823172 
+hist_ttbj :  ttbj = 8185.578078 
+hist_ttcc :  ttcc = 4043.289885 
+hist_ttLF :  ttLF = 275546.028460 
+hist_ttother :  ttLF = 961521.443752 
+hist_w1jets50to150 :  WJets = 76908.596735 
+hist_w1jets150to250 :  WJets = 23626.271527 
+hist_w1jets250to400 :  WJets = 641.545147 
+hist_w1jets400toinf :  WJets = 92.467848 
+hist_w2jets250to400 :  WJets = 165205.154812 
+hist_w2jets400toinf :  WJets = 16139.887949 
+hist_w3jets :  WJets = 757738.691110 
+hist_w4jets :  WJets = 1009841.300659 
+hist_zjets :  ZJets = 280529.209836 
+hist_zjets10to50 :  ZJets = 37623.349480 
+hist_tchannel :  Single t = 43656.626680 
+hist_tbarchannel :  Single t = 28203.657178 
+hist_tWchannel :  Single t = 61913.230072 
+hist_tbarWchannel :  Single t = 61809.328353 
+hist_ww :  DiBoson = 35584.371619 
+hist_wz :  DiBoson = 9988.213118 
+hist_zz :  DiBoson = 1630.703892 
+hist_singleTopHct :  STHct = 2861.382224 
+hist_singleTopHut :  STHut = 344.655967 
+ntotal = 3862464.769363 
+ndata = 5110783 
+nsub = 1248318.230637 
+['h', 'NBJetCSVv2M', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S1', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S2', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 698.532986 
+hist_ttbj :  ttbj = 2251.971585 
+hist_ttcc :  ttcc = 618.931835 
+hist_ttLF :  ttLF = 45731.498610 
+hist_ttother :  ttLF = 282767.218139 
+hist_w1jets50to150 :  WJets = 306.214900 
+hist_w1jets150to250 :  WJets = 101.927586 
+hist_w1jets250to400 :  WJets = 2.282318 
+hist_w1jets400toinf :  WJets = 0.311129 
+hist_w2jets250to400 :  WJets = 1121.595547 
+hist_w2jets400toinf :  WJets = 102.062240 
+hist_w3jets :  WJets = 4869.738393 
+hist_w4jets :  WJets = 6328.885558 
+hist_zjets :  ZJets = 3792.275820 
+hist_zjets10to50 :  ZJets = 413.820311 
+hist_tchannel :  Single t = 12648.927153 
+hist_tbarchannel :  Single t = 8415.919120 
+hist_tWchannel :  Single t = 7206.774462 
+hist_tbarWchannel :  Single t = 7206.621163 
+hist_ww :  DiBoson = 179.121124 
+hist_wz :  DiBoson = 501.190361 
+hist_zz :  DiBoson = 84.606490 
+hist_singleTopHct :  STHct = 1236.698491 
+hist_singleTopHut :  STHut = 138.896134 
+ntotal = 385350.426829 
+ndata = 453876 
+nsub = 68525.573171 
+['h', 'NBJetCSVv2M', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S2', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S3', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 126.358237 
+hist_ttbj :  ttbj = 243.386142 
+hist_ttcc :  ttcc = 34.919551 
+hist_ttLF :  ttLF = 1217.089631 
+hist_ttother :  ttLF = 10977.731266 
+hist_w1jets50to150 :  WJets = 15.260754 
+hist_w1jets150to250 :  WJets = 1.523060 
+hist_w1jets250to400 :  WJets = 0.047944 
+hist_w1jets400toinf :  WJets = 0.000000 
+hist_w2jets250to400 :  WJets = 25.399878 
+hist_w2jets400toinf :  WJets = 2.027990 
+hist_w3jets :  WJets = 99.543874 
+hist_w4jets :  WJets = 148.411421 
+hist_zjets :  ZJets = 66.507685 
+hist_zjets10to50 :  ZJets = 22.385636 
+hist_tchannel :  Single t = 312.147605 
+hist_tbarchannel :  Single t = 230.204596 
+hist_tWchannel :  Single t = 223.598430 
+hist_tbarWchannel :  Single t = 234.931415 
+hist_ww :  DiBoson = 3.959807 
+hist_wz :  DiBoson = 14.142966 
+hist_zz :  DiBoson = 1.781850 
+hist_singleTopHct :  STHct = 496.567537 
+hist_singleTopHut :  STHut = 47.523532 
+ntotal = 14001.359739 
+ndata = 15865 
+nsub = 1863.640261 
+['h', 'NBJetCSVv2M', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S3', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S4', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 824.891222 
+hist_ttbj :  ttbj = 2495.357728 
+hist_ttcc :  ttcc = 653.851386 
+hist_ttLF :  ttLF = 46948.588241 
+hist_ttother :  ttLF = 293744.949405 
+hist_w1jets50to150 :  WJets = 321.475654 
+hist_w1jets150to250 :  WJets = 103.450646 
+hist_w1jets250to400 :  WJets = 2.330262 
+hist_w1jets400toinf :  WJets = 0.311129 
+hist_w2jets250to400 :  WJets = 1146.995425 
+hist_w2jets400toinf :  WJets = 104.090230 
+hist_w3jets :  WJets = 4969.282267 
+hist_w4jets :  WJets = 6477.296978 
+hist_zjets :  ZJets = 3858.783504 
+hist_zjets10to50 :  ZJets = 436.205946 
+hist_tchannel :  Single t = 12961.074758 
+hist_tbarchannel :  Single t = 8646.123716 
+hist_tWchannel :  Single t = 7430.372893 
+hist_tbarWchannel :  Single t = 7441.552578 
+hist_ww :  DiBoson = 183.080931 
+hist_wz :  DiBoson = 515.333328 
+hist_zz :  DiBoson = 86.388340 
+hist_singleTopHct :  STHct = 1733.266029 
+hist_singleTopHut :  STHut = 186.419667 
+ntotal = 399351.786568 
+ndata = 469741 
+nsub = 70389.213432 
+['h', 'NBJetCSVv2M', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S4', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S5', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 126.358237 
+hist_ttbj :  ttbj = 243.386142 
+hist_ttcc :  ttcc = 34.919551 
+hist_ttLF :  ttLF = 1217.089631 
+hist_ttother :  ttLF = 10977.731266 
+hist_w1jets50to150 :  WJets = 15.260754 
+hist_w1jets150to250 :  WJets = 1.523060 
+hist_w1jets250to400 :  WJets = 0.047944 
+hist_w1jets400toinf :  WJets = 0.000000 
+hist_w2jets250to400 :  WJets = 25.399878 
+hist_w2jets400toinf :  WJets = 2.027990 
+hist_w3jets :  WJets = 99.543874 
+hist_w4jets :  WJets = 148.411421 
+hist_zjets :  ZJets = 66.507685 
+hist_zjets10to50 :  ZJets = 22.385636 
+hist_tchannel :  Single t = 312.147605 
+hist_tbarchannel :  Single t = 230.204596 
+hist_tWchannel :  Single t = 223.598430 
+hist_tbarWchannel :  Single t = 234.931415 
+hist_ww :  DiBoson = 3.959807 
+hist_wz :  DiBoson = 14.142966 
+hist_zz :  DiBoson = 1.781850 
+hist_singleTopHct :  STHct = 496.567537 
+hist_singleTopHut :  STHut = 47.523532 
+ntotal = 14001.359739 
+ndata = 15865 
+nsub = 1863.640261 
+['h', 'NBJetCSVv2M', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S5', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S6', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 11472.583896 
+hist_ttbj :  ttbj = 23257.414690 
+hist_ttcc :  ttcc = 9979.780249 
+hist_ttLF :  ttLF = 341656.495285 
+hist_ttother :  ttLF = 622295.496367 
+hist_w1jets50to150 :  WJets = 439.350245 
+hist_w1jets150to250 :  WJets = 122.868480 
+hist_w1jets250to400 :  WJets = 2.771221 
+hist_w1jets400toinf :  WJets = 0.487898 
+hist_w2jets250to400 :  WJets = 2313.748919 
+hist_w2jets400toinf :  WJets = 253.592695 
+hist_w3jets :  WJets = 5254.659453 
+hist_w4jets :  WJets = 14886.940381 
+hist_zjets :  ZJets = 5666.638619 
+hist_zjets10to50 :  ZJets = 658.430390 
+hist_tchannel :  Single t = 19190.747073 
+hist_tbarchannel :  Single t = 12344.904118 
+hist_tWchannel :  Single t = 17946.916405 
+hist_tbarWchannel :  Single t = 17931.728365 
+hist_ww :  DiBoson = 338.329514 
+hist_wz :  DiBoson = 703.638312 
+hist_zz :  DiBoson = 128.393958 
+hist_singleTopHct :  STHct = 2909.679601 
+hist_singleTopHut :  STHut = 316.435115 
+ntotal = 1106845.916533 
+ndata = 1141993 
+nsub = 35147.083467 
+['h', 'NBJetCSVv2M', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S6', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S7', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 5174.996721 
+hist_ttbj :  ttbj = 6239.344112 
+hist_ttcc :  ttcc = 1583.786931 
+hist_ttLF :  ttLF = 20807.899503 
+hist_ttother :  ttLF = 33853.445539 
+hist_w1jets50to150 :  WJets = 24.868504 
+hist_w1jets150to250 :  WJets = 2.341113 
+hist_w1jets250to400 :  WJets = 0.080954 
+hist_w1jets400toinf :  WJets = 0.019546 
+hist_w2jets250to400 :  WJets = 91.582662 
+hist_w2jets400toinf :  WJets = 10.594994 
+hist_w3jets :  WJets = 111.384095 
+hist_w4jets :  WJets = 545.038432 
+hist_zjets :  ZJets = 168.129991 
+hist_zjets10to50 :  ZJets = 43.593432 
+hist_tchannel :  Single t = 686.716825 
+hist_tbarchannel :  Single t = 480.704740 
+hist_tWchannel :  Single t = 1015.084136 
+hist_tbarWchannel :  Single t = 1021.545625 
+hist_ww :  DiBoson = 12.429464 
+hist_wz :  DiBoson = 20.265061 
+hist_zz :  DiBoson = 4.411277 
+hist_singleTopHct :  STHct = 933.824124 
+hist_singleTopHut :  STHut = 91.084733 
+ntotal = 71898.263656 
+ndata = 73385 
+nsub = 1486.736344 
+['h', 'NBJetCSVv2M', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S7', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S8', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 3930.710964 
+hist_ttbj :  ttbj = 13223.749455 
+hist_ttcc :  ttcc = 7279.066805 
+hist_ttLF :  ttLF = 378701.822671 
+hist_ttother :  ttLF = 588114.221722 
+hist_w1jets50to150 :  WJets = 6518.996698 
+hist_w1jets150to250 :  WJets = 1948.895807 
+hist_w1jets250to400 :  WJets = 55.543346 
+hist_w1jets400toinf :  WJets = 7.217882 
+hist_w2jets250to400 :  WJets = 52691.200986 
+hist_w2jets400toinf :  WJets = 6438.979730 
+hist_w3jets :  WJets = 29811.325139 
+hist_w4jets :  WJets = 411906.903880 
+hist_zjets :  ZJets = 55152.244915 
+hist_zjets10to50 :  ZJets = 8411.296785 
+hist_tchannel :  Single t = 12729.170679 
+hist_tbarchannel :  Single t = 7711.398542 
+hist_tWchannel :  Single t = 27782.832126 
+hist_tbarWchannel :  Single t = 27926.756954 
+hist_ww :  DiBoson = 7789.097209 
+hist_wz :  DiBoson = 2427.215694 
+hist_zz :  DiBoson = 411.163196 
+hist_singleTopHct :  STHct = 1268.895635 
+hist_singleTopHut :  STHut = 150.461180 
+ntotal = 1650969.811185 
+ndata = 1810023 
+nsub = 159053.188815 
+['h', 'NBJetCSVv2M', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S8', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S9', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 1598.473003 
+hist_ttbj :  ttbj = 4902.019465 
+hist_ttcc :  ttcc = 1726.487852 
+hist_ttLF :  ttLF = 99398.937481 
+hist_ttother :  ttLF = 241856.226493 
+hist_w1jets50to150 :  WJets = 98.923931 
+hist_w1jets150to250 :  WJets = 16.457453 
+hist_w1jets250to400 :  WJets = 0.330826 
+hist_w1jets400toinf :  WJets = 0.120291 
+hist_w2jets250to400 :  WJets = 696.289901 
+hist_w2jets400toinf :  WJets = 79.486625 
+hist_w3jets :  WJets = 248.831344 
+hist_w4jets :  WJets = 5290.172815 
+hist_zjets :  ZJets = 1242.180374 
+hist_zjets10to50 :  ZJets = 120.787223 
+hist_tchannel :  Single t = 4166.359575 
+hist_tbarchannel :  Single t = 2500.261584 
+hist_tWchannel :  Single t = 6035.691261 
+hist_tbarWchannel :  Single t = 6004.965710 
+hist_ww :  DiBoson = 106.964289 
+hist_wz :  DiBoson = 138.985606 
+hist_zz :  DiBoson = 28.739080 
+hist_singleTopHct :  STHct = 548.827442 
+hist_singleTopHut :  STHut = 63.322134 
+ntotal = 376257.692183 
+ndata = 369202 
+nsub = -7055.692183 
+['h', 'NBJetCSVv2M', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S9', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S10', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 686.068644 
+hist_ttbj :  ttbj = 1193.700078 
+hist_ttcc :  ttcc = 196.053990 
+hist_ttLF :  ttLF = 4857.597320 
+hist_ttother :  ttLF = 16422.731194 
+hist_w1jets50to150 :  WJets = 9.607750 
+hist_w1jets150to250 :  WJets = 0.653867 
+hist_w1jets250to400 :  WJets = 0.033010 
+hist_w1jets400toinf :  WJets = 0.019546 
+hist_w2jets250to400 :  WJets = 32.307767 
+hist_w2jets400toinf :  WJets = 3.459967 
+hist_w3jets :  WJets = 11.840221 
+hist_w4jets :  WJets = 223.473674 
+hist_zjets :  ZJets = 70.784766 
+hist_zjets10to50 :  ZJets = 21.207796 
+hist_tchannel :  Single t = 212.202343 
+hist_tbarchannel :  Single t = 136.446208 
+hist_tWchannel :  Single t = 374.726186 
+hist_tbarWchannel :  Single t = 382.420997 
+hist_ww :  DiBoson = 4.092003 
+hist_wz :  DiBoson = 3.760110 
+hist_zz :  DiBoson = 1.345362 
+hist_singleTopHct :  STHct = 292.992455 
+hist_singleTopHut :  STHut = 29.482956 
+ntotal = 24844.532799 
+ndata = 24810 
+nsub = -34.532799 
+['h', 'NBJetCSVv2M', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S10', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S11', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 62.669562 
+hist_ttbj :  ttbj = 34.049364 
+hist_ttcc :  ttcc = 6.922503 
+hist_ttLF :  ttLF = 45.895160 
+hist_ttother :  ttLF = 189.276166 
+hist_w1jets50to150 :  WJets = 0.000000 
+hist_w1jets150to250 :  WJets = 0.000000 
+hist_w1jets250to400 :  WJets = 0.000000 
+hist_w1jets400toinf :  WJets = 0.000000 
+hist_w2jets250to400 :  WJets = 0.396939 
+hist_w2jets400toinf :  WJets = 0.092812 
+hist_w3jets :  WJets = 0.000000 
+hist_w4jets :  WJets = 6.228145 
+hist_zjets :  ZJets = 6.880268 
+hist_zjets10to50 :  ZJets = 0.000000 
+hist_tchannel :  Single t = 7.089553 
+hist_tbarchannel :  Single t = 1.441679 
+hist_tWchannel :  Single t = 3.791323 
+hist_tbarWchannel :  Single t = 4.853378 
+hist_ww :  DiBoson = 0.000000 
+hist_wz :  DiBoson = 0.000000 
+hist_zz :  DiBoson = 0.000000 
+hist_singleTopHct :  STHct = 12.779990 
+hist_singleTopHut :  STHut = 0.803464 
+ntotal = 369.586852 
+ndata = 515 
+nsub = 145.413148 
+['h', 'NBJetCSVv2M', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S11', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S12', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 2347.211209 
+hist_ttbj :  ttbj = 6129.768907 
+hist_ttcc :  ttcc = 1929.464346 
+hist_ttLF :  ttLF = 104302.429961 
+hist_ttother :  ttLF = 258468.233854 
+hist_w1jets50to150 :  WJets = 108.531681 
+hist_w1jets150to250 :  WJets = 17.111320 
+hist_w1jets250to400 :  WJets = 0.363836 
+hist_w1jets400toinf :  WJets = 0.139837 
+hist_w2jets250to400 :  WJets = 728.994608 
+hist_w2jets400toinf :  WJets = 83.039405 
+hist_w3jets :  WJets = 260.671565 
+hist_w4jets :  WJets = 5519.874634 
+hist_zjets :  ZJets = 1319.845407 
+hist_zjets10to50 :  ZJets = 141.995020 
+hist_tchannel :  Single t = 4385.651471 
+hist_tbarchannel :  Single t = 2638.149470 
+hist_tWchannel :  Single t = 6414.208770 
+hist_tbarWchannel :  Single t = 6392.240085 
+hist_ww :  DiBoson = 111.056292 
+hist_wz :  DiBoson = 142.745716 
+hist_zz :  DiBoson = 30.084442 
+hist_singleTopHct :  STHct = 854.599887 
+hist_singleTopHut :  STHut = 93.608554 
+ntotal = 401471.811834 
+ndata = 394527 
+nsub = -6944.811834 
+['h', 'NBJetCSVv2M', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S12', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S13', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 748.738206 
+hist_ttbj :  ttbj = 1227.749442 
+hist_ttcc :  ttcc = 202.976494 
+hist_ttLF :  ttLF = 4903.492480 
+hist_ttother :  ttLF = 16612.007360 
+hist_w1jets50to150 :  WJets = 9.607750 
+hist_w1jets150to250 :  WJets = 0.653867 
+hist_w1jets250to400 :  WJets = 0.033010 
+hist_w1jets400toinf :  WJets = 0.019546 
+hist_w2jets250to400 :  WJets = 32.704706 
+hist_w2jets400toinf :  WJets = 3.552779 
+hist_w3jets :  WJets = 11.840221 
+hist_w4jets :  WJets = 229.701819 
+hist_zjets :  ZJets = 77.665033 
+hist_zjets10to50 :  ZJets = 21.207796 
+hist_tchannel :  Single t = 219.291896 
+hist_tbarchannel :  Single t = 137.887886 
+hist_tWchannel :  Single t = 378.517509 
+hist_tbarWchannel :  Single t = 387.274375 
+hist_ww :  DiBoson = 4.092003 
+hist_wz :  DiBoson = 3.760110 
+hist_zz :  DiBoson = 1.345362 
+hist_singleTopHct :  STHct = 305.772445 
+hist_singleTopHut :  STHut = 30.286421 
+ntotal = 25214.119651 
+ndata = 25325 
+nsub = 110.880349 
+['h', 'NBJetCSVv2M', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S13', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S14', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 62.669562 
+hist_ttbj :  ttbj = 34.049364 
+hist_ttcc :  ttcc = 6.922503 
+hist_ttLF :  ttLF = 45.895160 
+hist_ttother :  ttLF = 189.276166 
+hist_w1jets50to150 :  WJets = 0.000000 
+hist_w1jets150to250 :  WJets = 0.000000 
+hist_w1jets250to400 :  WJets = 0.000000 
+hist_w1jets400toinf :  WJets = 0.000000 
+hist_w2jets250to400 :  WJets = 0.396939 
+hist_w2jets400toinf :  WJets = 0.092812 
+hist_w3jets :  WJets = 0.000000 
+hist_w4jets :  WJets = 6.228145 
+hist_zjets :  ZJets = 6.880268 
+hist_zjets10to50 :  ZJets = 0.000000 
+hist_tchannel :  Single t = 7.089553 
+hist_tbarchannel :  Single t = 1.441679 
+hist_tWchannel :  Single t = 3.791323 
+hist_tbarWchannel :  Single t = 4.853378 
+hist_ww :  DiBoson = 0.000000 
+hist_wz :  DiBoson = 0.000000 
+hist_zz :  DiBoson = 0.000000 
+hist_singleTopHct :  STHct = 12.779990 
+hist_singleTopHut :  STHut = 0.803464 
+ntotal = 369.586852 
+ndata = 515 
+nsub = 145.413148 
+['h', 'NBJetCSVv2M', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S14', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S15', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 10647.692674 
+hist_ttbj :  ttbj = 20762.056962 
+hist_ttcc :  ttcc = 9325.928862 
+hist_ttLF :  ttLF = 294707.907044 
+hist_ttother :  ttLF = 328550.546962 
+hist_w1jets50to150 :  WJets = 117.874591 
+hist_w1jets150to250 :  WJets = 19.417834 
+hist_w1jets250to400 :  WJets = 0.440959 
+hist_w1jets400toinf :  WJets = 0.176769 
+hist_w2jets250to400 :  WJets = 1166.753493 
+hist_w2jets400toinf :  WJets = 149.502465 
+hist_w3jets :  WJets = 285.377186 
+hist_w4jets :  WJets = 8409.643403 
+hist_zjets :  ZJets = 1807.855115 
+hist_zjets10to50 :  ZJets = 222.224444 
+hist_tchannel :  Single t = 6229.672315 
+hist_tbarchannel :  Single t = 3698.780401 
+hist_tWchannel :  Single t = 10516.543512 
+hist_tbarWchannel :  Single t = 10490.175787 
+hist_ww :  DiBoson = 155.248583 
+hist_wz :  DiBoson = 188.304984 
+hist_zz :  DiBoson = 42.005618 
+hist_singleTopHct :  STHct = 1176.413572 
+hist_singleTopHut :  STHut = 130.015449 
+ntotal = 707494.129965 
+ndata = 672252 
+nsub = -35242.129965 
+['h', 'NBJetCSVv2M', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S15', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S16', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 5048.638484 
+hist_ttbj :  ttbj = 5995.957969 
+hist_ttcc :  ttcc = 1548.867380 
+hist_ttLF :  ttLF = 19590.809872 
+hist_ttother :  ttLF = 22875.714272 
+hist_w1jets50to150 :  WJets = 9.607750 
+hist_w1jets150to250 :  WJets = 0.818052 
+hist_w1jets250to400 :  WJets = 0.033010 
+hist_w1jets400toinf :  WJets = 0.019546 
+hist_w2jets250to400 :  WJets = 66.182784 
+hist_w2jets400toinf :  WJets = 8.567003 
+hist_w3jets :  WJets = 11.840221 
+hist_w4jets :  WJets = 396.627012 
+hist_zjets :  ZJets = 101.622306 
+hist_zjets10to50 :  ZJets = 21.207796 
+hist_tchannel :  Single t = 374.569219 
+hist_tbarchannel :  Single t = 250.500144 
+hist_tWchannel :  Single t = 791.485705 
+hist_tbarWchannel :  Single t = 786.614211 
+hist_ww :  DiBoson = 8.469657 
+hist_wz :  DiBoson = 6.122095 
+hist_zz :  DiBoson = 2.629427 
+hist_singleTopHct :  STHct = 437.256587 
+hist_singleTopHut :  STHut = 43.561200 
+ntotal = 57896.903917 
+ndata = 57520 
+nsub = -376.903917 
+['h', 'NBJetCSVv2M', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S16', 'DataSingleMu'] 
+['h', 'PV', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'NJet', 'Ch0', 'S17', 'DataSingleMu'] 
+hist_ttbb :  ttbb = 1175.456307 
+hist_ttbj :  ttbj = 362.820935 
+hist_ttcc :  ttcc = 114.051821 
+hist_ttLF :  ttLF = 422.926289 
+hist_ttother :  ttLF = 364.177766 
+hist_w1jets50to150 :  WJets = 0.000000 
+hist_w1jets150to250 :  WJets = 0.000000 
+hist_w1jets250to400 :  WJets = 0.000000 
+hist_w1jets400toinf :  WJets = 0.000000 
+hist_w2jets250to400 :  WJets = 2.554766 
+hist_w2jets400toinf :  WJets = 0.405817 
+hist_w3jets :  WJets = 0.000000 
+hist_w4jets :  WJets = 11.424999 
+hist_zjets :  ZJets = 6.792340 
+hist_zjets10to50 :  ZJets = 0.000000 
+hist_tchannel :  Single t = 22.188066 
+hist_tbarchannel :  Single t = 10.671990 
+hist_tWchannel :  Single t = 26.703560 
+hist_tbarWchannel :  Single t = 27.948133 
+hist_ww :  DiBoson = 0.000000 
+hist_wz :  DiBoson = 0.000000 
+hist_zz :  DiBoson = 0.000000 
+hist_singleTopHct :  STHct = 24.977277 
+hist_singleTopHut :  STHut = 1.711240 
+ntotal = 2548.122790 
+ndata = 2837 
+nsub = 288.877210 
+['h', 'NBJetCSVv2M', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'NBJetCSVv2T', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'NCJetM', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'MET', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'LepPt', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'LepPhi', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'LepEta', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'WMass', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'DPhi', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'LepIso', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'JetCSV', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'csv', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'cvsl', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'cvsb', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinLepWMass', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinHadWMass', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinHMass', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinDR', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopM', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopM', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinHPt', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinHdPhi', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinHdEta', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinHb1CSV', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinHb2CSV', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinLepTopPt', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'FCNHkinHadTopPt', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'genDR', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'matchDR', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'genHm', 'Ch0', 'S17', 'DataSingleMu'] 
+['h', 'matchHm', 'Ch0', 'S17', 'DataSingleMu'] 
