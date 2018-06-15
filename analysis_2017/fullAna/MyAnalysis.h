@@ -61,6 +61,7 @@ public :
    TTreeReaderArray<float> jet_SF_deepCSV_30 = {fReader, "jet_SF_deepCSV_30"};
    TTreeReaderArray<float> jet_SF_deepCSV_35 = {fReader, "jet_SF_deepCSV_35"};
    TTreeReaderArray<float> jet_SF_deepCSV_40 = {fReader, "jet_SF_deepCSV_40"};
+   TTreeReaderArray<float> jet_SF_deepCSV_38 = {fReader, "jet_SF_deepCSV_38"};
    TTreeReaderArray<float> jet_SF_deepCSV = {fReader, "jet_SF_deepCSV"};
    TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
    TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
@@ -132,6 +133,7 @@ public :
    ClassDef(MyAnalysis,0);
 
     TH1D *h_PV[2][18];
+    TH1D *h_EventWeight[2][18];
     TH1D *h_NJet[2][18];
     TH1D *h_NBJetCSVv2M[2][18];
     TH1D *h_NBJetCSVv2T[2][18];
@@ -186,6 +188,8 @@ public :
     vector<int> dupCheck;
     int lepcount = 0;
     int evtNum = 0;
+
+    bool reco;
 };
 
 #endif
@@ -193,27 +197,13 @@ public :
 #ifdef MyAnalysis_cxx
 void MyAnalysis::Init(TTree *tree)
 {
-   // The Init() function is called when the selector needs to initialize
-   // a new tree or chain. Typically here the reader is initialized.
-   // It is normally not necessary to make changes to the generated
-   // code, but the routine can be extended by the user if needed.
-   // Init() will be called many times when running on PROOF
-   // (once per file to be processed).
-  
    fReader.SetTree(tree);
 
 }
 
 Bool_t MyAnalysis::Notify()
 {
-   // The Notify() function is called when a new file is opened. This
-   // can be either for a new TTree in a TChain or when when a new TTree
-   // is started when using PROOF. It is normally not necessary to make changes
-   // to the generated code, but the routine can be extended by the
-   // user if needed. The return value is currently not used.
-
    return kTRUE;
 }
-
 
 #endif // #ifdef MyAnalysis_cxx
