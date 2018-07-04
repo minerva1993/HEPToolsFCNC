@@ -1,16 +1,16 @@
-#define dataTuple_cxx
+#define makeOtherTuple_cxx
 
-#include "dataTuple.h"
+#include "makeOtherTuple.h"
 #include <TH2.h>
 #include <TStyle.h>
 #include <string>
 
-void dataTuple::Begin(TTree * /*tree*/)
+void makeOtherTuple::Begin(TTree * /*tree*/)
 {
    TString option = GetOption();
 }
 
-void dataTuple::SlaveBegin(TTree * /*tree*/)
+void makeOtherTuple::SlaveBegin(TTree * /*tree*/)
 {
    TString option = GetOption();
 
@@ -125,7 +125,7 @@ void dataTuple::SlaveBegin(TTree * /*tree*/)
     fOutput->Add(testTree);
 } 
 
-Bool_t dataTuple::Process(Long64_t entry)
+Bool_t makeOtherTuple::Process(Long64_t entry)
 {
   fReader.SetEntry(entry);
   TString option = GetOption();
@@ -137,14 +137,14 @@ Bool_t dataTuple::Process(Long64_t entry)
   mode = *channel;
 
   if( mode > 2) return kTRUE;
-  if( !option.Contains("Data") && *TruePV == 0 ) return kTRUE;
+  if( !option.Contains("Run2017") && *TruePV == 0 ) return kTRUE;
 
   float lep_SF = 1.0;
   float genweight = 1.0;
   float puweight = 1.0;
   float jetsf = 1.0;
   float wrongPVrate = 1;
-  if( !option.Contains("Data") ){
+  if( !option.Contains("Run2017") ){
     lep_SF = lepton_SF[0];
     genweight = *genWeight;
     puweight = PUWeight[0];
@@ -189,7 +189,7 @@ Bool_t dataTuple::Process(Long64_t entry)
     if( !passmuon ) return kTRUE;//RDMu
     if( passelectron) return kTRUE;//RDMu
   }
-  else if( option.Contains("DataSingleEG") ){
+  else if( option.Contains("SingleElectron_Run2017") ){
     if( !passelectron ) return kTRUE;//RDelec
     if( passmuon ) return kTRUE;//RDelec
   }
@@ -204,7 +204,7 @@ Bool_t dataTuple::Process(Long64_t entry)
 
     TLorentzVector jet;
     jet.SetPtEtaPhiE(jet_pT[iJet], jet_eta[iJet], jet_phi[iJet], jet_E[iJet]);
-    //if( !option.Contains("Data") ) jet = jet * jet_JER_Nom[iJet];
+    //if( !option.Contains("Run2017") ) jet = jet * jet_JER_Nom[iJet];
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
       jetIdxs.push_back(iJet);
@@ -226,7 +226,7 @@ Bool_t dataTuple::Process(Long64_t entry)
   else if ( njets <  3 || nbjets_m < 2 ) return kTRUE;
 
   //cout << nevt << endl;
-  if( option.Contains("Data") ) b_EventCategory = -1;
+  if( option.Contains("Run2017") ) b_EventCategory = -1;
   else if( option.Contains("Hct") || option.Contains("Hut") ) b_EventCategory = 0;
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
   else if( option.Contains("ttbj") ) b_EventCategory = 2;
@@ -290,7 +290,7 @@ Bool_t dataTuple::Process(Long64_t entry)
 
           //construct particles: lepB = j0, hadB = j3, hadW = j1+j2
           /*
-          if( !option.Contains("Data") ){
+          if( !option.Contains("Run2017") ){
             jetP4[0] = jetP4[0] * jet_JER_Nom[*ii0];
             jetP4[1] = jetP4[1] * jet_JER_Nom[*ii3];
             jetP4[2] = jetP4[2] * jet_JER_Nom[*ii2];
@@ -343,18 +343,18 @@ Bool_t dataTuple::Process(Long64_t entry)
   return kTRUE;
 }
 
-void dataTuple::SlaveTerminate()
+void makeOtherTuple::SlaveTerminate()
 {
   TString option = GetOption();
 }
    
 
-void dataTuple::Terminate()
+void makeOtherTuple::Terminate()
 {
   TString option = GetOption();
 
     //TFile *hfile = TFile::Open(Form("root://cms-xrdr.sdfarm.kr:1094//xrd/store/user/minerva1993/reco/ntuple/deepReco_%s.root",option.Data()), "RECREATE");
-    TFile *hfile = TFile::Open(Form("j3b2_st/deepReco_%s.root",option.Data()), "RECREATE");
+    TFile *hfile = TFile::Open(Form("dummy/deepReco_%s.root",option.Data()), "RECREATE");
 
     fOutput->FindObject("test_tree")->Write();
 
@@ -363,7 +363,7 @@ void dataTuple::Terminate()
 
 }
 
-double dataTuple::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){
+double makeOtherTuple::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){
 
   TLorentzVector leptonT(lepton.Px(),lepton.Py(),0.,lepton.E()*TMath::Sin(lepton.Theta()));
   TLorentzVector metT(met.Px(), met.Py(), 0, met.E());
