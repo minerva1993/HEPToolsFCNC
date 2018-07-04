@@ -5,8 +5,8 @@
 // found on file: /xrootd/store/user/brochero/v8-0-4/Tree_LepJets_NewCSVSF_v8-0-4_Spring16-80X_36814pb-1_ttbar_PowhegPythia.root
 //////////////////////////////////////////////////////////
 
-#ifndef dataTuple_h
-#define dataTuple_h
+#ifndef makeSignalTuple_h
+#define makeSignalTuple_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -23,7 +23,7 @@
 
 #include <iostream>
 
-class dataTuple : public TSelector {
+class makeSignalTuple : public TSelector {
 public :
    TTreeReader     fReader;  //!the tree reader
    TTree          *fChain = 0;   //!pointer to the analyzed TTree or TChain
@@ -73,9 +73,46 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
+   //TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
+   //TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
+   TTreeReaderArray<int> jet_MatchedGenJetIndex = {fReader, "jet_MatchedGenJetIndex"};
+   TTreeReaderArray<int> genconecatid = {fReader, "genconecatid"};
+   TTreeReaderArray<float> gencone_gjet_pT = {fReader, "gencone_gjet_pT"};
+   TTreeReaderArray<float> gencone_gjet_eta = {fReader, "gencone_gjet_eta"};
+   TTreeReaderArray<float> gencone_gjet_phi = {fReader, "gencone_gjet_phi"};
+   TTreeReaderArray<float> gencone_gjet_E = {fReader, "gencone_gjet_E"};
+   TTreeReaderArray<int> gencone_gjetIndex = {fReader, "gencone_gjetIndex"};
+   TTreeReaderArray<int> gencone_gJetFlavW = {fReader, "gencone_gJetFlavW"};
+   TTreeReaderValue<Int_t> b_GenCone_NgJetsW = {fReader, "gencone_NgjetsW"};
+   TTreeReaderValue<Float_t> DRAddJets = {fReader, "draddjets"};
+   TTreeReaderValue<Int_t> genhiggscatid = {fReader, "genhiggscatid"};
+   TTreeReaderValue<Int_t> genchannel = {fReader, "genchannel"};
+   TTreeReaderValue<Float_t> genlepton_pT = {fReader, "genlepton_pT"};
+   TTreeReaderValue<Float_t> genlepton_eta = {fReader, "genlepton_eta"};
+   TTreeReaderValue<Float_t> genlepton_phi = {fReader, "genlepton_phi"};
+   TTreeReaderValue<Float_t> genlepton_E = {fReader, "genlepton_E"};
+   TTreeReaderValue<Float_t> gennu_pT = {fReader, "gennu_pT"};
+   TTreeReaderValue<Float_t> gennu_eta = {fReader, "gennu_eta"};
+   TTreeReaderValue<Float_t> gennu_phi = {fReader, "gennu_phi"};
+   TTreeReaderValue<Float_t> gennu_E = {fReader, "gennu_E"};
+   TTreeReaderArray<float> genjet_pT = {fReader, "genjet_pT"};
+   TTreeReaderArray<float> genjet_eta = {fReader, "genjet_eta"};
+   TTreeReaderArray<float> genjet_phi = {fReader, "genjet_phi"};
+   TTreeReaderArray<float> genjet_E = {fReader, "genjet_E"};
+   TTreeReaderArray<int> genjet_mom = {fReader, "genjet_mom"};
+   TTreeReaderArray<int> genjet_gencone_mom = {fReader, "genjet_gencone_mom"};
+   TTreeReaderValue<Float_t> addHbjet1_pt = {fReader, "addHbjet1_pt"};
+   TTreeReaderValue<Float_t> addHbjet1_eta = {fReader, "addHbjet1_eta"};
+   TTreeReaderValue<Float_t> addHbjet1_phi = {fReader, "addHbjet1_phi"};
+   TTreeReaderValue<Float_t> addHbjet1_e = {fReader, "addHbjet1_e"};
+   TTreeReaderValue<Float_t> addHbjet2_pt = {fReader, "addHbjet2_pt"};
+   TTreeReaderValue<Float_t> addHbjet2_eta = {fReader, "addHbjet2_eta"};
+   TTreeReaderValue<Float_t> addHbjet2_phi = {fReader, "addHbjet2_phi"};
+   TTreeReaderValue<Float_t> addHbjet2_e = {fReader, "addHbjet2_e"};
+   TTreeReaderValue<Float_t> dRHbb = {fReader, "dRHbb"};
 
-   dataTuple(TTree * /*tree*/ =0) { }
-   virtual ~dataTuple() { }
+   makeSignalTuple(TTree * /*tree*/ =0) { }
+   virtual ~makeSignalTuple() { }
    virtual Int_t   Version() const { return 2; }
    virtual void    Begin(TTree *tree);
    virtual void    SlaveBegin(TTree *tree);
@@ -207,14 +244,14 @@ public :
     float b_genHadW = 0;
 
 
-   ClassDef(dataTuple,0);
+   ClassDef(makeSignalTuple,0);
 
 };
 
 #endif
 
-#ifdef dataTuple_cxx
-void dataTuple::Init(TTree *tree)
+#ifdef makeSignalTuple_cxx
+void makeSignalTuple::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the reader is initialized.
@@ -227,7 +264,7 @@ void dataTuple::Init(TTree *tree)
 
 }
 
-Bool_t dataTuple::Notify()
+Bool_t makeSignalTuple::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -239,4 +276,4 @@ Bool_t dataTuple::Notify()
 }
 
 
-#endif // #ifdef dataTuple_cxx
+#endif // #ifdef makeSignalTuple_cxx
