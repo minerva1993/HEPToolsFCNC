@@ -191,10 +191,12 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     }
   }
 
-  reco = false;
+  if( option.Contains("_") ) reco = true;
+  else reco = false;
 
   if( reco ){
-    if(option.Contains("Data")) sample.erase(sample.find_first_of("_")-1,string::npos);
+    //to merge data, delete name upto era
+    if( option.Contains("Run2017")) sample.erase(sample.find_first_of("_")-1,string::npos);
     else sample.erase(sample.find_first_of("_"),string::npos);
 
     assignF = TFile::Open(Form("/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/assignST01/assign_deepReco_%s.root", option.Data()), "READ");
@@ -221,97 +223,57 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   mode = *channel;
 
   if( mode > 2) return kTRUE;
-  //if( !option.Contains("Data") && (*TruePV < 10 || *TruePV > 75) ) return kTRUE;
-  if( !option.Contains("Data") && (*TruePV==0) ) return kTRUE;
+  if( !option.Contains("Run2017") && (*TruePV < 10 || *TruePV > 75) ) return kTRUE;
+  //if( !option.Contains("Run2017") && (*TruePV==0) ) return kTRUE;
 
   float lep_SF = 1.0;
   float genweight = 1.0;
   float puweight = 1.0;
   float jetsf = 1.0;
   float wrongPVrate = 1;
-  if( !option.Contains("Data") ){
+  if( !option.Contains("Run2017") ){
     lep_SF = lepton_SF[0];
     genweight = *genWeight;
     puweight = PUWeight[0];
-    //180614
-    if      ( option.Contains("zjets4to50HT100to200") ) wrongPVrate = 1.02578469877;
-    else if ( option.Contains("zjets4to50HT200to400") ) wrongPVrate = 1.01779162688;
-    else if ( option.Contains("zjets4to50HT400to600") ) wrongPVrate = 1.02474158053;
-    else if ( option.Contains("zjets4to50HT600toinf") ) wrongPVrate = 1.00006039134;
-    else if ( option.Contains("zjets4to50HT70to100") ) wrongPVrate  = 1.0240249231;
-    else if ( option.Contains("zjets") and !option.Contains("4to50") ) wrongPVrate = 1.02516727289;
-    else if ( option.Contains("singleTopHct") ) wrongPVrate =   1.02734061266;
-    else if ( option.Contains("singleTopHut") ) wrongPVrate =   1.01911363648;
-    else if ( option.Contains("tbarchannel") ) wrongPVrate =    1.02413591347;
-    else if ( option.Contains("tbarWchannel") ) wrongPVrate =   1.02611936512;
-    else if ( option.Contains("schannel") ) wrongPVrate =       1.0238073626;
-    else if ( option.Contains("tchannel") ) wrongPVrate =       1.02134600138;
-    else if ( option.Contains("tWchannel") ) wrongPVrate =      1.02592416703;
-    else if ( option.Contains("ttbb") ) wrongPVrate =           1.02991792712;
-    else if ( option.Contains("ttbj") ) wrongPVrate =           1.02966918038;
-    else if ( option.Contains("ttcc") ) wrongPVrate =           1.02912739583;
-    else if ( option.Contains("ttLF") ) wrongPVrate =           1.02930690387;
-    else if ( option.Contains("ttother") ) wrongPVrate =        1.02942564062;
-    else if ( option.Contains("ttwjetsToLNu") ) wrongPVrate =   1.0214621457;
-    else if ( option.Contains("ttwjetsToQQ") ) wrongPVrate =    1.01350687048;
-    else if ( option.Contains("ttzToLLNuNu") ) wrongPVrate =    1.02461480291;
-    else if ( option.Contains("ttzToQQ") ) wrongPVrate =        1.02398043907;
-    else if ( option.Contains("w1jets150to250") ) wrongPVrate = 1.01946816476;
-    else if ( option.Contains("w1jets250to400") ) wrongPVrate = 1.02124175084;
-    else if ( option.Contains("w1jets400toinf") ) wrongPVrate = 1.01793953094;
-    else if ( option.Contains("w1jets50to150") ) wrongPVrate =  1.01811502154;
-    else if ( option.Contains("w2jets250to400") ) wrongPVrate = 1.02057937043;
-    else if ( option.Contains("w2jets400toinf") ) wrongPVrate = 1.01730747976;
-    else if ( option.Contains("w2jets50to150") ) wrongPVrate =  1.00003459843;
-    else if ( option.Contains("w3jets") ) wrongPVrate =         1.02370719895;
-    else if ( option.Contains("w4jets") ) wrongPVrate =         1.02530782028;
-    else if ( option.Contains("ww") ) wrongPVrate =             1.02983838807;
-    else if ( option.Contains("wz") ) wrongPVrate =             1.02310649569;
-    else if ( option.Contains("zz") ) wrongPVrate =             1.01575478051;
-    else if ( option.Contains("ttHToNonbb") ) wrongPVrate =     1.01674235574;
-    else if ( option.Contains("ttHTobb") ) wrongPVrate =        1.02240323605;
-    else if ( option.Contains("ttLL") or option.Contains("ttHad") ) wrongPVrate = 1.0;
-    else wrongPVrate = 1;
-/*
-    if      ( option.Contains("zjets4to50HT100to200") ) wrongPVrate = 1.04059676558;
-    else if ( option.Contains("zjets4to50HT200to400") ) wrongPVrate = 1.03509539042;
-    else if ( option.Contains("zjets4to50HT400to600") ) wrongPVrate = 1.03988748128;
-    else if ( option.Contains("zjets4to50HT600toinf") ) wrongPVrate = 1.00150493182;
-    else if ( option.Contains("zjets4to50HT70to100") ) wrongPVrate  = 1.04522367306;
-    else if ( option.Contains("zjets") and !option.Contains("4to50") ) wrongPVrate = 1.04279642153;
-    else if ( option.Contains("singleTopHct") ) wrongPVrate =   1.04386772383;
-    else if ( option.Contains("singleTopHut") ) wrongPVrate =   1.03101359762;
-    else if ( option.Contains("tbarchannel") ) wrongPVrate =    1.04154416733;
-    else if ( option.Contains("tbarWchannel") ) wrongPVrate =   1.04268560697;
-    else if ( option.Contains("schannel") ) wrongPVrate =       1.03969454611;
-    else if ( option.Contains("tchannel") ) wrongPVrate =       1.04022088987;
-    else if ( option.Contains("tWchannel") ) wrongPVrate =      1.04479598928;
-    else if ( option.Contains("ttbb") ) wrongPVrate =           1.04842653457;
-    else if ( option.Contains("ttbj") ) wrongPVrate =           1.0479470241;
-    else if ( option.Contains("ttcc") ) wrongPVrate =           1.04749175457;
-    else if ( option.Contains("ttLF") ) wrongPVrate =           1.04746926449;
-    else if ( option.Contains("ttother") ) wrongPVrate =        1.04769134083;
-    else if ( option.Contains("ttwjetsToLNu") ) wrongPVrate =   1.04023612158;
-    else if ( option.Contains("ttwjetsToQQ") ) wrongPVrate =    1.02459007014;
-    else if ( option.Contains("ttzToLLNuNu") ) wrongPVrate =    1.04207234639;
-    else if ( option.Contains("ttzToQQ") ) wrongPVrate =        1.04748335622;
-    else if ( option.Contains("w1jets150to250") ) wrongPVrate = 1.03428060364;
-    else if ( option.Contains("w1jets250to400") ) wrongPVrate = 1.03583723492;
-    else if ( option.Contains("w1jets400toinf") ) wrongPVrate = 1.0325363304;
-    else if ( option.Contains("w1jets50to150") ) wrongPVrate =  1.03274633437;
-    else if ( option.Contains("w2jets250to400") ) wrongPVrate = 1.0348559803;
-    else if ( option.Contains("w2jets400toinf") ) wrongPVrate = 1.03178822231;
-    else if ( option.Contains("w2jets50to150") ) wrongPVrate =  1.00151107443;
-    else if ( option.Contains("w3jets") ) wrongPVrate =         1.04148412486;
-    else if ( option.Contains("w4jets") ) wrongPVrate =         1.04351155791;
-    else if ( option.Contains("ww") ) wrongPVrate =             1.04688438194;
-    else if ( option.Contains("wz") ) wrongPVrate =             1.04267647452;
-    else if ( option.Contains("zz") ) wrongPVrate =             1.02930884449;
-    else if ( option.Contains("ttHToNonbb") ) wrongPVrate =     1.03121323363;
-    else if ( option.Contains("ttHTobb") ) wrongPVrate =        1.03789172193;
-    else if ( option.Contains("ttLL") or option.Contains("ttHad") ) wrongPVrate = 1.0;
-    else wrongPVrate = 1;
-*/
+
+    //180703, 10-75
+    if      ( option.Contains("DYJets_4to50_HT100to200_v2") or option.Contains("DYJets4to50HT100to200v2") ) wrongPVrate = 1.04044583396;
+    else if ( option.Contains("DYJets_4to50_HT200to400") or option.Contains("DYJets4to50HT200to400") ) wrongPVrate = 1.03548601524;
+    else if ( option.Contains("DYJets_4to50_HT400to600") or option.Contains("DYJets4to50HT400to600") ) wrongPVrate = 1.04007039394;
+    else if ( option.Contains("DYJets_4to50_HT600toinf") or option.Contains("DYJets4to50HT600toinf") ) wrongPVrate = 1.00150187987;
+    else if ( option.Contains("DYJets_4to50_HT70to100") or option.Contains("DYJets4to50HT70to100") ) wrongPVrate = 1.04510609321;
+    else if ( option.Contains("DYJets_v2") or option.Contains("DYJetsv2") ) wrongPVrate = 1.04228353195;
+    else if ( option.Contains("ST_TH_1L3B_Hct") or option.Contains("STTH1L3BHct") ) wrongPVrate = 1.04386426774;
+    else if ( option.Contains("ST_TH_1L3B_Hut") or option.Contains("STTH1L3BHut") ) wrongPVrate = 1.03094683784;
+    else if ( option.Contains("SingleTbar_t") or option.Contains("SingleTbart") ) wrongPVrate = 1.04162486525;
+    else if ( option.Contains("SingleTbar_tW") or option.Contains("SingleTbartW") ) wrongPVrate = 1.04264471988;
+    else if ( option.Contains("SingleTop_s") or option.Contains("SingleTops") ) wrongPVrate = 1.03967280483;
+    else if ( option.Contains("SingleTop_t") or option.Contains("SingleTopt") ) wrongPVrate = 1.04020417817;
+    else if ( option.Contains("SingleTop_tW") or option.Contains("SingleToptW") ) wrongPVrate = 1.04474130408;
+    else if ( option.Contains("TTWJetsToLNu_PSweight") or option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04021612264;
+    else if ( option.Contains("TTWJetsToQQ") or option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02450278629;
+    else if ( option.Contains("TTZToLLNuNu") or option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04205962372;
+    else if ( option.Contains("TTZToQQ") or option.Contains("TTZToQQ") ) wrongPVrate = 1.04739932325;
+    else if ( option.Contains("TT_powheg_ttbb") or option.Contains("TTpowhegttbb") ) wrongPVrate = 1.0484454797;
+    else if ( option.Contains("TT_powheg_ttbj") or option.Contains("TTpowhegttbj") ) wrongPVrate = 1.04795518207;
+    else if ( option.Contains("TT_powheg_ttcc") or option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04737048218;
+    else if ( option.Contains("TT_powheg_ttlf") or option.Contains("TTpowhegttlf") ) wrongPVrate = 1.047466385;
+    else if ( option.Contains("TT_powheg_ttother") or option.Contains("TTpowhegttother") ) wrongPVrate = 1.04766363512;
+    else if ( option.Contains("W1JetsToLNu_150-250") or option.Contains("W1JetsToLNu150-250") ) wrongPVrate = 1.03420702039;
+    else if ( option.Contains("W1JetsToLNu_250-400") or option.Contains("W1JetsToLNu250-400") ) wrongPVrate = 1.03580555626;
+    else if ( option.Contains("W1JetsToLNu_400-inf") or option.Contains("W1JetsToLNu400-inf") ) wrongPVrate = 1.03252405725;
+    else if ( option.Contains("W1JetsToLNu_50-150") or option.Contains("W1JetsToLNu50-150") ) wrongPVrate = 1.03266766201;
+    else if ( option.Contains("W2JetsToLNu_250-400") or option.Contains("W2JetsToLNu250-400") ) wrongPVrate = 1.03481315504;
+    else if ( option.Contains("W2JetsToLNu_400-inf") or option.Contains("W2JetsToLNu400-inf") ) wrongPVrate = 1.0317626647;
+    else if ( option.Contains("W2JetsToLNu_50-150") or option.Contains("W2JetsToLNu50-150") ) wrongPVrate = 1.00150425214;
+    else if ( option.Contains("W3JetsToLNu") or option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04141687195;
+    else if ( option.Contains("W4JetsToLNu") or option.Contains("W4JetsToLNu") ) wrongPVrate = 1.04339321182;
+    else if ( option.Contains("WW") or option.Contains("WW") ) wrongPVrate = 1.04679128652;
+    else if ( option.Contains("WZ") or option.Contains("WZ") ) wrongPVrate = 1.04266907923;
+    else if ( option.Contains("ZZ") or option.Contains("ZZ") ) wrongPVrate = 1.02940993982;
+    else if ( option.Contains("ttHToNonbb") or option.Contains("ttHToNonbb") ) wrongPVrate = 1.02082052772;
+    else if ( option.Contains("ttHTobb") or option.Contains("ttHTobb") ) wrongPVrate = 1.03782992744;
+    else    wrongPVrate = 1.0;
   }
   float EventWeight = puweight*genweight*lep_SF*wrongPVrate;
 
@@ -358,11 +320,11 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   bool passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
 
   //Single Lepton only
-  if( option.Contains("DataSingleMu") ){
+  if( option.Contains("SingleMuon") ){
     if( !passmuon ) return kTRUE;//RDMu
     if( passelectron) return kTRUE;//RDMu
   }
-  else if( option.Contains("DataSingleEG") ){
+  else if( option.Contains("SingleElectron") ){
     if( !passelectron ) return kTRUE;//RDelec
     if( passmuon ) return kTRUE;//RDelec
   }
@@ -381,13 +343,13 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     TLorentzVector jet;
     jet.SetPtEtaPhiE(jet_pT[iJet], jet_eta[iJet], jet_phi[iJet], jet_E[iJet]);
-    //if( !option.Contains("Data") ) jet = jet * jet_JER_Nom[iJet];
+    //if( !option.Contains("Run2017") ) jet = jet * jet_JER_Nom[iJet];
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
       if( passelectron and  iJet==0 and jet_pT[iJet] < 38 ) continue;
-
       njets++;
-      jetIdxs.push_back(iJet);      
+      jetIdxs.push_back(iJet);
+
       if( jet_deepCSV[iJet] > 0.4941){
         nbjets_m++;
       }
@@ -442,7 +404,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       jetP4s[3].SetPtEtaPhiE(jet_pT[i3], jet_eta[i3], jet_phi[i3], jet_E[i3]);
 
       /*
-      if( !option.Contains("Data") ){
+      if( !option.Contains("Run2017") ){
         jetP4s[0] = jetP4s[0] * jet_JER_Nom[i0];
         jetP4s[1] = jetP4s[1] * jet_JER_Nom[i1];
         jetP4s[2] = jetP4s[2] * jet_JER_Nom[i2];
@@ -549,6 +511,8 @@ void MyAnalysis::Terminate()
 {
   TString option = GetOption();
 
+  //if( reco) TFile *out = TFile::Open(Form("temp/hist_%s.root",option.Data()),"RECREATE");
+  //else TFile *out = TFile::Open(Form("hist_%s.root",option.Data()),"RECREATE");
   TFile *out = TFile::Open(Form("temp/hist_%s.root",option.Data()),"RECREATE");
 
   TList * l = GetOutputList();

@@ -126,8 +126,8 @@ def AddSTHut(fname, name, color, xsection):
   sthutsamples[fname] = tmp
 
 ####Users should provide these information 
-SetData("hist_DataSingleMu.root","data", 41298) #certified
-SetData("hist_DataSingleEG.root","data", 41298) 
+SetData("hist_DataSingleMu.root","data", 41529) #certified
+SetData("hist_DataSingleEG.root","data", 41529) 
 AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.34*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
 AddBkg("hist_ttLLbb.root","ttbb",ROOT.kRed+4, 88.29*1.25)
 AddBkg("hist_ttHadbb.root","ttbb",ROOT.kRed+4, 377.96*1.25)
@@ -150,7 +150,7 @@ AddBkg("hist_ttwjetsToQQ.root","ttV",ROOT.kPink+1, 0.4026)
 AddBkg("hist_ttzToLLNuNu.root","ttV",ROOT.kPink+1, 0.2529)
 AddBkg("hist_ttzToQQ.root","ttV",ROOT.kPink+1, 0.5297)
 AddBkg("hist_w1jets50to150.root","WJets",ROOT.kYellow, 2581) #2661 #https://hypernews.cern.ch/HyperNews/CMS/get/generators/3883/1/1.html and GenXSecAnalyzer
-AddBkg("hist_w1jets150to250.root","WJets",ROOT.kYellow, 28.8) #71.9
+AddBkg("hist_w1jets150to250.root","WJets",ROOT.kYellow, 77.1) #71.9
 AddBkg("hist_w1jets250to400.root","WJets",ROOT.kYellow, 8.05)
 AddBkg("hist_w1jets400toinf.root","WJets",ROOT.kYellow, 0.885)
 #AddBkg("hist_w2jets50to150.root","WJets",ROOT.kYellow, )
@@ -577,7 +577,7 @@ for i in range(0, N_hist):
     label.SetX2NDC(1.0-gStyle.GetPadRightMargin()+0.03)
     label.SetY2NDC(1.0)
     label.SetTextFont(62)
-    label.AddText("Work in Progress        CMS, 41.3 fb^{-1} at #sqrt{s} = 13 TeV")
+    label.AddText("Work in Progress        CMS, 41.5 fb^{-1} at #sqrt{s} = 13 TeV")
     label.SetFillStyle(0)
     label.SetBorderSize(0)
     label.SetTextSize(0.05)
