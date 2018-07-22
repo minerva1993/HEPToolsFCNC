@@ -126,8 +126,8 @@ def AddSTHut(fname, name, color, xsection):
   sthutsamples[fname] = tmp
 
 ####Users should provide these information 
-SetData("hist_DataSingleMu.root","data", 41298) #certified
-SetData("hist_DataSingleEG.root","data", 41298)
+SetData("hist_DataSingleMu.root","data", 41529) #certified
+SetData("hist_DataSingleEG.root","data", 41529)
 AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.34*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
 AddBkg("hist_ttLLbb.root","ttbb",ROOT.kRed+4, 88.29*1.25)
 AddBkg("hist_ttHadbb.root","ttbb",ROOT.kRed+4, 377.96*1.25)
@@ -570,7 +570,7 @@ for i in range(0, N_hist):
     label.SetX2NDC(1.0-gStyle.GetPadRightMargin()+0.03)
     label.SetY2NDC(1.0)
     label.SetTextFont(62)
-    label.AddText("Work in Progress        CMS, 41.3 fb^{-1} at #sqrt{s} = 13 TeV")
+    label.AddText("Work in Progress        CMS, 41.5 fb^{-1} at #sqrt{s} = 13 TeV")
     label.SetFillStyle(0)
     label.SetBorderSize(0)
     label.SetTextSize(0.05)

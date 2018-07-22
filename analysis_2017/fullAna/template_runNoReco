@@ -1,31 +1,29 @@
 #!/usr/bin/python
-from ROOT import TFile, TChain, gSystem
+from ROOT import *
 import os, sys
 gROOT.SetBatch(True)
 
-file_path = sys.argv[1]
-name = sys.argv[2]
-
-test = os.listdir("./temp")
+test = os.listdir("/home/minerva1993/fcnc/analysis_2017/fullAna/temp")
 for item in test:
-  if item.endswith(name + ".root"):
-    print 'Previous verion of histogram ' + name + '.root exists!! Please remove them first.'
-    dupl = true
+  if item.endswith(".root"):
+    os.remove(os.path.join("/home/minerva1993/fcnc/analysis_2017/fullAna/temp", item))
 
 def runAna(file_path, name):
   print 'processing ' + file_path
   chain = TChain("fcncLepJets/tree","events")
   chain.Add(file_path)
-  chain.Process("MyAnalysis.C+",name)
+  chain.SetProof();
+  chain.Process("MyAnalysis.C+", name)
   #print chain.GetCurrentFile().GetName()
 
   f = TFile.Open(file_path, "READ")
 
   ## save Event Summary histogram ##
-  out = TFile("temp/hist_"+name+".root","update")
+  out = TFile("temp/hist_" + name + ".root", "update")
   hevt = f.Get("fcncLepJets/EventInfo")
   hevt.Write()
   out.Write()
   out.Close()
 
-if not dupl: runAna(file_path, name)
+p = TProof.Open("", "workers=8")
+
