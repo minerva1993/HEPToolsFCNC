@@ -8,6 +8,7 @@ import numpy as np
 #import google.protobuf
 
 tuples = sys.argv[1]
+ch = sys.argv[2]
 """
 if tuples == 'tmva_SingleLepton_Run2016.root':
   os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -23,19 +24,24 @@ TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
 reader = TMVA.Reader("Color:!Silent")
 
-#ch = 'STHct_j3b3_01'
-#ch = 'STHct_j4b2_01'
-#ch = 'STHct_j4b3_01'
-#ch = 'STHut_j3b3_01'
-#ch = 'STHut_j4b2_01'
-ch = 'STHut_j4b3_01'
+path='/home/minerva1993/fcnc/analysis_2017/tmva/v1/score_mva/'
+if not os.path.exists(path+ch):
+  os.makedirs(path+ch)
+
+if   'j3b2' in ch: jetcut = [3,2]
+elif 'j3b3' in ch: jetcut = [3,3]
+elif 'j4b2' in ch: jetcut = [4,2]
+elif 'j4b3' in ch: jetcut = [4,3]
+elif 'j4b4' in ch: jetcut = [4,4]
+
 keras = False
 
 # Load data
+
 data = TFile.Open('/home/minerva1993/fcnc/analysis_2017/tmva/v1/mkNtuple/'+tuples)
 data_tree = data.Get('tmva_tree')
 
-target = TFile('output_'+ch+'_'+tuples,'RECREATE')
+target = TFile(path+ch+'/output_'+ch+'_'+tuples,'RECREATE')
 tree = TTree("tree","tree")
 
 branches = {}
@@ -94,7 +100,7 @@ for i in xrange(totalevt-1):
   data_tree.GetEntry(i)
   nevt = data_tree.GetLeaf("nevt").GetValue(0)
 #  nevt = data_tree.nevt
-  if data_tree.njets != 3 or data_tree.nbjets_m != 3: continue
+  if data_tree.njets != jetcut[0] or data_tree.nbjets_m != jetcut[1]: continue
 
   if tuples in ["tmva_SingleLepton_Run2017.root"]:
     if keras:
