@@ -26,7 +26,7 @@ from keras.callbacks import Callback
 
 bestModel = sys.argv[1]
 ver = '03'
-configDir = '/home/minerva1993/fcnc_reco_test/'
+configDir = '~/HEPToolsFCNC/analysis_2017/reco/classifier/2017/'
 weightDir = 'recoSTFCNC'
 scoreDir = 'scoreSTFCNC'
 

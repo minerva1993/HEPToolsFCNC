@@ -1,7 +1,7 @@
 import os
 import shutil
 
-path_to_fileList = '../fileList/file_noreco.txt'
+path_to_fileList = '../commonTools/file_noreco.txt'
 
 run_file_name = 'runNoReco.py'
 string_for_run = ''

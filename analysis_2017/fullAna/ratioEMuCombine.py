@@ -126,59 +126,59 @@ def AddSTHut(fname, name, color, xsection):
   sthutsamples[fname] = tmp
 
 ####Users should provide these information 
-SetData("hist_DataSingleMu.root","data", 41529) #certified
-SetData("hist_DataSingleEG.root","data", 41529) 
-AddBkg("hist_ttbb.root","ttbb",ROOT.kRed+4, 365.34*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
-AddBkg("hist_ttLLbb.root","ttbb",ROOT.kRed+4, 88.29*1.25)
-AddBkg("hist_ttHadbb.root","ttbb",ROOT.kRed+4, 377.96*1.25)
-AddBkg("hist_ttbj.root","ttbj",ROOT.kRed+3, 365.34)
-AddBkg("hist_ttLLbj.root","ttbj",ROOT.kRed+3, 88.29)
-AddBkg("hist_ttHadbj.root","ttbj",ROOT.kRed+3, 377.96)
-AddBkg("hist_ttcc.root","ttcc",ROOT.kRed+2, 365.34)
-#AddBkg("hist_ttLLcc.root","ttcc",ROOT.kRed+2, 88.29) #0 Event
-AddBkg("hist_ttHadcc.root","ttcc",ROOT.kRed+2, 377.96)
-AddBkg("hist_ttLF.root","ttLF",ROOT.kRed, 365.34)
-AddBkg("hist_ttLLLF.root","ttLF",ROOT.kRed, 88.29)
-AddBkg("hist_ttHadLF.root","ttLF",ROOT.kRed, 377.96)
-AddBkg("hist_ttother.root","ttLF",ROOT.kRed, 365.34)
-AddBkg("hist_ttLLother.root","ttLF",ROOT.kRed, 88.29)
-AddBkg("hist_ttHadother.root","ttLF",ROOT.kRed, 377.96)
+SetData("hist_SingleElectronRun2017.root","data", 41529) #certified
+SetData("hist_SingleMuonRun2017.root","data", 41529) 
+AddBkg("hist_TTpowhegttbb.root","ttbb",ROOT.kRed+4, 365.34*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
+AddBkg("hist_TTLLpowhegttbb.root","ttbb",ROOT.kRed+4, 88.29*1.25)
+AddBkg("hist_TTHadpowhegttbb.root","ttbb",ROOT.kRed+4, 377.96*1.25)
+AddBkg("hist_TTpowhegttbj.root","ttbj",ROOT.kRed+3, 365.34)
+AddBkg("hist_TTLLpowhegttbj.root","ttbj",ROOT.kRed+3, 88.29)
+AddBkg("hist_TTHadpowhegttbj.root","ttbj",ROOT.kRed+3, 377.96)
+AddBkg("hist_TTpowhegttcc.root","ttcc",ROOT.kRed+2, 365.34)
+#AddBkg("hist_TTLLpowhegttcc.root","ttcc",ROOT.kRed+2, 88.29) #0 Event
+AddBkg("hist_TTHadpowhegttcc.root","ttcc",ROOT.kRed+2, 377.96)
+AddBkg("hist_TTpowhegttlf.root","ttLF",ROOT.kRed, 365.34)
+AddBkg("hist_TTLLpowhegttlf.root","ttLF",ROOT.kRed, 88.29)
+AddBkg("hist_TTHadpowhegttlf.root","ttLF",ROOT.kRed, 377.96)
+AddBkg("hist_TTpowhegttother.root","ttLF",ROOT.kRed, 365.34)
+AddBkg("hist_TTLLpowhegttother.root","ttLF",ROOT.kRed, 88.29)
+AddBkg("hist_TTHadpowhegttother.root","ttLF",ROOT.kRed, 377.96)
 AddBkg("hist_ttHTobb.root","ttV",ROOT.kPink+1, 0.2934)
 AddBkg("hist_ttHToNonbb.root","ttV",ROOT.kPink+1, 0.2151)
-AddBkg("hist_ttwjetsToLNu.root","ttV",ROOT.kPink+1, 0.2043)
-AddBkg("hist_ttwjetsToQQ.root","ttV",ROOT.kPink+1, 0.4026)
-AddBkg("hist_ttzToLLNuNu.root","ttV",ROOT.kPink+1, 0.2529)
-AddBkg("hist_ttzToQQ.root","ttV",ROOT.kPink+1, 0.5297)
-AddBkg("hist_w1jets50to150.root","WJets",ROOT.kYellow, 2581) #2661 #https://hypernews.cern.ch/HyperNews/CMS/get/generators/3883/1/1.html and GenXSecAnalyzer
-AddBkg("hist_w1jets150to250.root","WJets",ROOT.kYellow, 77.1) #71.9
-AddBkg("hist_w1jets250to400.root","WJets",ROOT.kYellow, 8.05)
-AddBkg("hist_w1jets400toinf.root","WJets",ROOT.kYellow, 0.885)
-#AddBkg("hist_w2jets50to150.root","WJets",ROOT.kYellow, )
-AddBkg("hist_w2jets250to400.root","WJets",ROOT.kYellow, 41.21)
-AddBkg("hist_w2jets400toinf.root","WJets",ROOT.kYellow, 3.037)
-AddBkg("hist_w3jets.root","WJets",ROOT.kYellow, 944.4) #From AN-15-097
-AddBkg("hist_w4jets.root","WJets",ROOT.kYellow, 494.4)
-AddBkg("hist_zjets.root","ZJets",ROOT.kBlue, 5765.4) #updated
+AddBkg("hist_TTWJetsToLNuPSweight.root","ttV",ROOT.kPink+1, 0.2043)
+AddBkg("hist_TTWJetsToQQ.root","ttV",ROOT.kPink+1, 0.4026)
+AddBkg("hist_TTZToLLNuNu.root","ttV",ROOT.kPink+1, 0.2529)
+AddBkg("hist_TTZToQQ.root","ttV",ROOT.kPink+1, 0.5297)
+AddBkg("hist_W1JetsToLNu50-150.root","WJets",ROOT.kYellow, 2581) #2661 #https://hypernews.cern.ch/HyperNews/CMS/get/generators/3883/1/1.html and GenXSecAnalyzer
+AddBkg("hist_W1JetsToLNu150-250.root","WJets",ROOT.kYellow, 77.1) #71.9
+AddBkg("hist_W1JetsToLNu250-400.root","WJets",ROOT.kYellow, 8.05)
+AddBkg("hist_W1JetsToLNu400-inf.root","WJets",ROOT.kYellow, 0.885)
+#AddBkg("hist_W2JetsToLNu50-150.root","WJets",ROOT.kYellow, )
+AddBkg("hist_W2JetsToLNu250-400.root","WJets",ROOT.kYellow, 41.21)
+AddBkg("hist_W2JetsToLNu400-inf.root","WJets",ROOT.kYellow, 3.037)
+AddBkg("hist_W3JetsToLNu.root","WJets",ROOT.kYellow, 944.4) #From AN-15-097
+AddBkg("hist_W4JetsToLNu.root","WJets",ROOT.kYellow, 494.4)
+AddBkg("hist_DYJetsv2.root","ZJets",ROOT.kBlue, 5765.4) #updated
 #AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
-AddBkg("hist_zjets4to50HT70to100.root","ZJets",ROOT.kBlue, 809.9) #GenXSecAnalyzer
-AddBkg("hist_zjets4to50HT100to200.root","ZJets",ROOT.kBlue, 203.1)
-AddBkg("hist_zjets4to50HT200to400.root","ZJets",ROOT.kBlue, 54.18)
-AddBkg("hist_zjets4to50HT400to600.root","ZJets",ROOT.kBlue, 5.708)
-AddBkg("hist_zjets4to50HT600toinf.root","ZJets",ROOT.kBlue, 1.849)
-AddBkg("hist_schannel.root","Single t",6, 11.36)
-AddBkg("hist_tchannel.root","Single t",6, 136.02)#44.33 = 136.02*(0.1086*3)
-AddBkg("hist_tbarchannel.root","Single t",6, 80.95)#26.38 = 80.95*(0.1086*3)
-AddBkg("hist_tWchannel.root","Single t",6, 35.85)#35.85?
-AddBkg("hist_tbarWchannel.root","Single t",6, 35.85)
-AddBkg("hist_ww.root","VV",ROOT.kCyan, 118.7)
-AddBkg("hist_wz.root","VV",ROOT.kCyan, 47.13)
-AddBkg("hist_zz.root","VV",ROOT.kCyan, 16.523)
+AddBkg("hist_DYJets4to50HT70to100.root","ZJets",ROOT.kBlue, 809.9) #GenXSecAnalyzer
+AddBkg("hist_DYJets4to50HT100to200v2.root","ZJets",ROOT.kBlue, 203.1)
+AddBkg("hist_DYJets4to50HT200to400.root","ZJets",ROOT.kBlue, 54.18)
+AddBkg("hist_DYJets4to50HT400to600.root","ZJets",ROOT.kBlue, 5.708)
+AddBkg("hist_DYJets4to50HT600toinf.root","ZJets",ROOT.kBlue, 1.849)
+AddBkg("hist_SingleTops.root ","Single t",6, 11.36)
+AddBkg("hist_SingleTopt.root","Single t",6, 136.02)#44.33 = 136.02*(0.1086*3)
+AddBkg("hist_SingleTbart.root","Single t",6, 80.95)#26.38 = 80.95*(0.1086*3)
+AddBkg("hist_SingleToptW.root","Single t",6, 35.85)#35.85?
+AddBkg("hist_SingleTbartW.root","Single t",6, 35.85)
+AddBkg("hist_WW.root","VV",ROOT.kCyan, 118.7)
+AddBkg("hist_WZ.root","VV",ROOT.kCyan, 47.13)
+AddBkg("hist_ZZ.root","VV",ROOT.kCyan, 16.523)
 #AddHct("hist_Top_Hct.root", "Hct", 433, 1.85)
 #AddHct("hist_AntiTop_Hct.root", "Hct", 433, 1.85) 
 #AddHut("hist_Top_Hut.root", "Hut", 401, 1.85)
 #AddHut("hist_AntiTop_Hut.root", "Hut", 401, 1.85)
-AddSTHct("hist_singleTopHct.root", "STHct", 435, 0.55)#13.84*0.04
-AddSTHut("hist_singleTopHut.root", "STHut", 403, 0.076)#1.9*0.04
+AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 0.55)#13.84*0.04
+AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 0.076)#1.9*0.04
 
 qcd = []
 
