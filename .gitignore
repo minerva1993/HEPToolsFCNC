@@ -4,3 +4,6 @@
 *.so
 *.pcm
 *.pyc
+*.h5
+*.class.C
+*.pdf
