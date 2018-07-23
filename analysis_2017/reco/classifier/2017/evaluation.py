@@ -12,18 +12,13 @@ reader = TMVA.Reader("Color:!Silent")
 
 #ver = sys.argv[1]
 ver = '01'
-verBDT= '02'
 filename = sys.argv[2]
 
 # Load data
-
-#data = TFile.Open('root://cms-xrdr.sdfarm.kr:1094//xrd/store/user/minerva1993/reco/ntuple/'+filename)
-data = TFile.Open('/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/mkNtuple/j3b2_st/'+filename)
+data = TFile.Open('mkNtuple/dummy/'+filename)
 data_tree = data.Get('test_tree')
 
-#target = TFile.Open('/home/minerva1993/fcnc/analysis_2017/reco/classifier/2016/training/scoreFCNC'+ver+'/score_'+filename,'RECREATE')
-#target = TFile.Open('/home/minerva1993/fcnc/analysis_2017/reco/classifier/2016/training/scoreTT'+ver+'/score_'+filename,'RECREATE')
-target = TFile.Open('/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/scoreST'+ver+'/score_'+filename,'RECREATE')
+target = TFile.Open('scoreST'+ver+'/score_'+filename,'RECREATE')
 tree = TTree("tree","tree")
 
 branches = {}
@@ -62,7 +57,7 @@ for branch in data_tree.GetListOfBranches():
     branches[branchName] = array('f', [-999])
     reader.AddSpectator(branchName, branches[branchName])
 
-reader.BookMVA('BDT', TString('/home/minerva1993/fcnc/analysis_2017/reco/classifier/2016/training/deepRecoSTFCNC'+verBDT+'/weights/TMVAClassification_BDT.weights.xml'))
+reader.BookMVA('BDT', TString('training/recoSTFCNC'+ver+'/weights/TMVAClassification_BDT.weights.xml'))
 
 totalevt = data_tree.GetEntries()
 #print("this sample contains "+str(totalevt)+" combinations")
