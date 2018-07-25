@@ -9,7 +9,7 @@ python create_input_file_list.py
 python countZeroPU.py
 source merge_ntuples.sh
 ```
-From TruePVWeight.txt, you can find the overall weights for MC events, which compensate the effect of clean up with respect to TruePV in MC. Copy and paste the lines into MyAnalysis.C
+From TruePVWeight.txt, you can find the overall weights for MC events, which compensate the effect of clean up with respect to TruePV in MC. Copy and paste the lines into MyAnalysis.C, and reco ntuplizers.
 
   * Control plots without reconstruction
 You can make control plots without signal reconstruction to save time and check Data/MC agreement. You need to compile the code, before launch parallel jobs!
