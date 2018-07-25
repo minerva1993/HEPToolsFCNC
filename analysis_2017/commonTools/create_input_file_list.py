@@ -14,9 +14,6 @@ string_for_signal_processing = ''
 input_list_bkg_file_name = 'file_other.txt'
 string_for_bkg_processing = ''
 
-input_list_noreco_file_name = 'file_noreco.txt'
-string_for_noreco_processing = ''
-
 
 #This part is for making script file for ntuple merging
 string_for_merge += '#!/bin/sh\n'
@@ -25,7 +22,7 @@ string_for_merge += 'for i in ' + path_to_prod + '*; do hadd $i.root $i/*.root; 
 for dataset_folder in os.listdir(path_to_prod):
   if "part2" in dataset_folder:
     dataset_folder = dataset_folder[:-6]
-    string_for_merge += 'hadd ' + path_to_prod + dataset_folder + '_v2.root ' + path_to_prod + dataset_folder + '*.root\n'
+    string_for_merge += 'hadd ' + path_to_prod + dataset_folder + '_v2.root ' + path_to_prod + dataset_folder+ '.root ' + path_to_prod + dataset_folder + '_part2.root\n'
     string_for_merge += 'rm ' + path_to_prod + dataset_folder+ '.root ' + path_to_prod + dataset_folder + '_part2.root\n'
 string_for_merge += 'hadd ' + path_to_prod + 'SingleElectron_Run2017.root ' + path_to_prod + 'SingleElectron_Run2017*.root\n'
 string_for_merge += 'hadd ' + path_to_prod + 'SingleMuon_Run2017.root ' + path_to_prod + 'SingleMuon_Run2017*.root\n'
@@ -58,20 +55,5 @@ with open(input_list_bkg_file_name, 'w') as f:
   f.write(string_for_bkg_processing) 
 
 
-#This part is for bypass reconstruction
-for file_name in os.listdir(path_to_prod_noreco):
-  if file_name.endswith(".root"):
-    dataset_path = os.path.join(path_to_prod_noreco, file_name)
-    tmp_string = ''
-    file_id = file_name.split('_')[-1].split('.')[0]
-    tmp_string += dataset_path
-    output_file_name = file_name.replace("_",'')
-    output_file_name = output_file_name.replace(".root",'')
-    tmp_string += ' ' + output_file_name
-    string_for_noreco_processing += tmp_string + '\n'
 
-with open(input_list_noreco_file_name, 'w') as f:
-  f.write(string_for_noreco_processing)
-
-
-print("{0}, {1}, and {2}  written.\nPlease check the signal file list as the criteria is to have 'ST' in the name to be signal (some background with this pattern may appear in the future).".format(input_list_signal_file_name, input_list_bkg_file_name, input_list_noreco_file_name))
+print("{0} and {1}  written.\nPlease check the signal file list as the criteria is to have 'ST' in the name to be signal (some background with this pattern may appear in the future).".format(input_list_signal_file_name, input_list_bkg_file_name))

@@ -1,16 +1,17 @@
 #!/usr/bin/python
-from ROOT import TFile, TChain, gSystem
+from ROOT import *
 import os, sys
 gROOT.SetBatch(True)
 
 file_path = sys.argv[1]
 name = sys.argv[2]
 
-test = os.listdir("./temp")
+test = os.listdir("./doReco")
+dupl = False
 for item in test:
   if item.endswith(name + ".root"):
-    print 'Previous verion of histogram ' + name + '.root exists!! Please remove them first.'
-    dupl = true
+    dupl = True
+if dupl == True: print 'Previous verion of histogram root file exists!! Please remove them first.'
 
 def runAna(file_path, name):
   print 'processing ' + file_path
@@ -22,7 +23,7 @@ def runAna(file_path, name):
   f = TFile.Open(file_path, "READ")
 
   ## save Event Summary histogram ##
-  out = TFile("temp/hist_"+name+".root","update")
+  out = TFile("doReco/hist_"+name+".root","update")
   hevt = f.Get("fcncLepJets/EventInfo")
   hevt.Write()
   out.Write()

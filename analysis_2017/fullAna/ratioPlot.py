@@ -20,8 +20,6 @@ sthutsamples=OrderedDict()
 def SetData(fname, name, lumi):
   tmp = {}
   f = TFile(fname)
-  #fnames = f.GetName().split('.')
-  #fname = fnames[0]
   fname = os.path.basename(fname)[:-5]
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
@@ -34,8 +32,6 @@ def AddBkg(fname, name, color, xsection):
   tmp = {}
   f = TFile(fname)
   fname = os.path.basename(fname)[:-5]
-  #fnames = f.GetName().split('.')
-  #fname = fnames[0]
   nevt = 1
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
@@ -53,8 +49,6 @@ def AddHct(fname, name, color, xsection):
   tmp = {}
   f = TFile(fname)
   fname = os.path.basename(fname)[:-5]
-  #fnames = f.GetName().split('.')
-  #fname = fnames[0]
   nevt = 1
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
@@ -72,8 +66,6 @@ def AddHut(fname, name, color, xsection):
   tmp = {}
   f = TFile(fname)
   fname = os.path.basename(fname)[:-5]
-  #fnames = f.GetName().split('.')
-  #fname = fnames[0]
   nevt = 1
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
@@ -91,8 +83,6 @@ def AddSTHct(fname, name, color, xsection):
   tmp = {}
   f = TFile(fname)
   fname = os.path.basename(fname)[:-5]
-  #fnames = f.GetName().split('.')
-  #fname = fnames[0]
   nevt = 1
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
@@ -110,8 +100,6 @@ def AddSTHut(fname, name, color, xsection):
   tmp = {}
   f = TFile(fname)
   fname = os.path.basename(fname)[:-5]
-  #fnames = f.GetName().split('.')
-  #fname = fnames[0]
   nevt = 1
   tmp["file"] = f
   tmp["hname"] = [x.GetName() for x in f.GetListOfKeys()]
@@ -126,8 +114,8 @@ def AddSTHut(fname, name, color, xsection):
   sthutsamples[fname] = tmp
 
 ####Users should provide these information 
-SetData("hist_SingleElectronRun2017.root","data", 41529) #certified
 SetData("hist_SingleMuonRun2017.root","data", 41529)
+SetData("hist_SingleElectronRun2017.root","data", 41529) #certified
 AddBkg("hist_TTpowhegttbb.root","ttbb",ROOT.kRed+4, 365.34*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
 AddBkg("hist_TTLLpowhegttbb.root","ttbb",ROOT.kRed+4, 88.29*1.25)
 AddBkg("hist_TTHadpowhegttbb.root","ttbb",ROOT.kRed+4, 377.96*1.25)
@@ -451,7 +439,7 @@ for i in range(0, N_hist):
     if hnames[1] == printHistName:
       string = "%s :  %s = %f \n"%(fname,sthutsamples[fname]["name"],numevt)
       fNevt.write(string)
-      print fname, " : ", sthutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.1g}".format(scale)
+      print fname, " : ", sthutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
     #print fname, " : ", scale
 
   #hs_stHut = hsSTHut.GetStack().Last()

@@ -22,8 +22,8 @@ hut_recoHm = TH1D('hut_recoHm','Mass of reco H (Hut)', 30, 0, 250)
 hct_matchHm = TH1D('hct_matchHm','Mass of gen matched H (Hct)', 30, 0, 250)
 hut_matchHm = TH1D('hut_matchHm','Mass of gen matched H (Hut)', 30, 0, 250)
 
-tch = TFile.Open('/home/minerva1993/fcnc/analysis_2017/fullAna/hist_singleTopHct.root')
-tuh = TFile.Open('/home/minerva1993/fcnc/analysis_2017/fullAna/hist_singleTopHut.root ')
+tch = TFile.Open('/home/minerva1993/HEPToolsFCNC/analysis_2017/fullAna/hist_STTH1L3BHct.root')
+tuh = TFile.Open('/home/minerva1993/HEPToolsFCNC/analysis_2017/fullAna/hist_STTH1L3BHut.root ')
 
 label = TPaveText()
 label.SetX1NDC(gStyle.GetPadLeftMargin())
@@ -31,7 +31,7 @@ label.SetY1NDC(1.0-gStyle.GetPadTopMargin())
 label.SetX2NDC(1.0-gStyle.GetPadRightMargin()+0.03)
 label.SetY2NDC(1.0)
 label.SetTextFont(62)
-label.AddText("Work in Progress        CMS, 41.3 fb^{-1} at #sqrt{s} = 13 TeV")
+label.AddText("Work in Progress        CMS, 41.5 fb^{-1} at #sqrt{s} = 13 TeV")
 label.SetFillStyle(0)
 label.SetBorderSize(0)
 label.SetTextSize(0.035)
@@ -40,10 +40,10 @@ label.SetTextAlign(32)
 ##all histos with event selection!
 ###########################################################
 ##j>=3, b >=2
-tch_gendR_ch0 = tch.Get('h_genDR_Ch0_S6_singleTopHct')
-tuh_gendR_ch0 = tuh.Get('h_genDR_Ch0_S6_singleTopHut')
-tch_gendR_ch1 = tch.Get('h_genDR_Ch1_S6_singleTopHct')
-tuh_gendR_ch1 = tuh.Get('h_genDR_Ch1_S6_singleTopHut')
+tch_gendR_ch0 = tch.Get('h_genDR_Ch0_S6_STTH1L3BHct')
+tuh_gendR_ch0 = tuh.Get('h_genDR_Ch0_S6_STTH1L3BHut')
+tch_gendR_ch1 = tch.Get('h_genDR_Ch1_S6_STTH1L3BHct')
+tuh_gendR_ch1 = tuh.Get('h_genDR_Ch1_S6_STTH1L3BHut')
 
 hct_gendR = tch_gendR_ch0.Clone('hct_gendR')
 hct_gendR.Add(tch_gendR_ch1,1.0)
@@ -70,10 +70,10 @@ label.Draw("same")
 
 ###########################################################
 
-tch_recodR_ch0 = tch.Get('h_FCNHkinDR_Ch0_S6_singleTopHct')
-tuh_recodR_ch0 = tuh.Get('h_FCNHkinDR_Ch0_S6_singleTopHut')
-tch_recodR_ch1 = tch.Get('h_FCNHkinDR_Ch1_S6_singleTopHct')
-tuh_recodR_ch1 = tuh.Get('h_FCNHkinDR_Ch1_S6_singleTopHut')
+tch_recodR_ch0 = tch.Get('h_FCNHkinDR_Ch0_S6_STTH1L3BHct')
+tuh_recodR_ch0 = tuh.Get('h_FCNHkinDR_Ch0_S6_STTH1L3BHut')
+tch_recodR_ch1 = tch.Get('h_FCNHkinDR_Ch1_S6_STTH1L3BHct')
+tuh_recodR_ch1 = tuh.Get('h_FCNHkinDR_Ch1_S6_STTH1L3BHut')
 
 hct_recodR = tch_recodR_ch0.Clone('hct_recodR')
 hct_recodR.Add(tch_recodR_ch1,1.0)
@@ -158,10 +158,10 @@ label.Draw("same")
 ###########################################################
 ###########################################################
 
-tch_genHm_ch0 = tch.Get('h_genHm_Ch0_S6_singleTopHct')
-tuh_genHm_ch0 = tuh.Get('h_genHm_Ch0_S6_singleTopHut')
-tch_genHm_ch1 = tch.Get('h_genHm_Ch1_S6_singleTopHct')
-tuh_genHm_ch1 = tuh.Get('h_genHm_Ch1_S6_singleTopHut')
+tch_genHm_ch0 = tch.Get('h_genHm_Ch0_S6_STTH1L3BHct')
+tuh_genHm_ch0 = tuh.Get('h_genHm_Ch0_S6_STTH1L3BHut')
+tch_genHm_ch1 = tch.Get('h_genHm_Ch1_S6_STTH1L3BHct')
+tuh_genHm_ch1 = tuh.Get('h_genHm_Ch1_S6_STTH1L3BHut')
 
 hct_genHm = tch_genHm_ch0.Clone('hct_genHm')
 hct_genHm.Add(tch_genHm_ch1,1.0)
@@ -190,10 +190,10 @@ label.Draw("same")
 
 ###########################################################
 
-tch_recoHm_ch0 = tch.Get('h_FCNHkinHMass_Ch0_S6_singleTopHct')
-tuh_recoHm_ch0 = tuh.Get('h_FCNHkinHMass_Ch0_S6_singleTopHut')
-tch_recoHm_ch1 = tch.Get('h_FCNHkinHMass_Ch1_S6_singleTopHct')
-tuh_recoHm_ch1 = tuh.Get('h_FCNHkinHMass_Ch1_S6_singleTopHut')
+tch_recoHm_ch0 = tch.Get('h_FCNHkinHMass_Ch0_S6_STTH1L3BHct')
+tuh_recoHm_ch0 = tuh.Get('h_FCNHkinHMass_Ch0_S6_STTH1L3BHut')
+tch_recoHm_ch1 = tch.Get('h_FCNHkinHMass_Ch1_S6_STTH1L3BHct')
+tuh_recoHm_ch1 = tuh.Get('h_FCNHkinHMass_Ch1_S6_STTH1L3BHut')
 
 hct_recoHm = tch_recoHm_ch0.Clone('hct_recoHm')
 hct_recoHm.Add(tch_recoHm_ch1,1.0)
@@ -284,10 +284,10 @@ label.Draw("same")
 ###########################################################
 ###########################################################
 
-tch_matchHm_ch0 = tch.Get('h_matchHm_Ch0_S6_singleTopHct')
-tuh_matchHm_ch0 = tuh.Get('h_matchHm_Ch0_S6_singleTopHut')
-tch_matchHm_ch1 = tch.Get('h_matchHm_Ch1_S6_singleTopHct')
-tuh_matchHm_ch1 = tuh.Get('h_matchHm_Ch1_S6_singleTopHut')
+tch_matchHm_ch0 = tch.Get('h_matchHm_Ch0_S6_STTH1L3BHct')
+tuh_matchHm_ch0 = tuh.Get('h_matchHm_Ch0_S6_STTH1L3BHut')
+tch_matchHm_ch1 = tch.Get('h_matchHm_Ch1_S6_STTH1L3BHct')
+tuh_matchHm_ch1 = tuh.Get('h_matchHm_Ch1_S6_STTH1L3BHut')
 
 hct_matchHm = tch_matchHm_ch0.Clone('hct_matchHm')
 hct_matchHm.Add(tch_matchHm_ch1,1.0)
@@ -377,10 +377,10 @@ c1.Print('h_hut_reco_match_Hm.pdf')
 
 ############################3
 
-tch_matchdR_ch0 = tch.Get('h_matchDR_Ch0_S6_singleTopHct')
-tuh_matchdR_ch0 = tuh.Get('h_matchDR_Ch0_S6_singleTopHut')
-tch_matchdR_ch1 = tch.Get('h_matchDR_Ch1_S6_singleTopHct')
-tuh_matchdR_ch1 = tuh.Get('h_matchDR_Ch1_S6_singleTopHut')
+tch_matchdR_ch0 = tch.Get('h_matchDR_Ch0_S6_STTH1L3BHct')
+tuh_matchdR_ch0 = tuh.Get('h_matchDR_Ch0_S6_STTH1L3BHut')
+tch_matchdR_ch1 = tch.Get('h_matchDR_Ch1_S6_STTH1L3BHct')
+tuh_matchdR_ch1 = tuh.Get('h_matchDR_Ch1_S6_STTH1L3BHut')
 
 hct_matchdR = tch_matchdR_ch0.Clone('hct_matchdR')
 hct_matchdR.Add(tch_matchdR_ch1,1.0)

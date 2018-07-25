@@ -184,6 +184,8 @@ public :
     int evtNum = 0;
 
     bool reco;
+
+    TFile *out;
 };
 
 #endif

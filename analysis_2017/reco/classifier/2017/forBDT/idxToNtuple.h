@@ -12,8 +12,6 @@
 #include <TChain.h>
 #include <TFile.h>
 
-#include <iostream>
-#include <string>
 // Header file for the classes stored in the TTree if any.
 
 class idxToNtuple {
@@ -24,25 +22,26 @@ public :
 // Fixed size dimensions of array or collections stored in the TTree if any.
 
    // Declaration of leaf types
-   Float_t        KerasScore;
+   Double_t        BDTScore;
    Int_t           nevt;
-   Int_t           file;
+   Int_t           nbjet;
    Int_t           EventCategory;
    Int_t           genMatch;
    Int_t           jet0Idx;
    Int_t           jet1Idx;
    Int_t           jet2Idx;
    Int_t           jet3Idx;
-   Float_t        lepPt;
-   Float_t        missinget;
-   Float_t        whMass;
-   Float_t        leptMass;
-   Float_t        hadtMass;
+   Double_t        lepPt;
+   Double_t        missinget;
+   Double_t        whMass;
+   Double_t        leptMass;
+   Double_t        hadtMass;
 
    // List of branches
-   TBranch        *b_KerasScore;   //!
+   TBranch        *b_BDTScore;   //!
    TBranch        *b_nevt;   //!
-   TBranch        *b_file;   //!
+   TBranch        *b_njet;   //!
+   TBranch        *b_nbjet;   //!
    TBranch        *b_EventCategory;   //!
    TBranch        *b_genMatch;   //!
    TBranch        *b_jet0Idx;   //!
@@ -64,7 +63,6 @@ public :
    virtual void     Loop();
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
-
 };
 
 #endif
@@ -126,9 +124,10 @@ void idxToNtuple::Init(TTree *tree)
    fCurrent = -1;
    fChain->SetMakeClass(1);
 
-   fChain->SetBranchAddress("KerasScore", &KerasScore, &b_KerasScore);
+   fChain->SetBranchAddress("BDTScore", &BDTScore, &b_BDTScore);
    fChain->SetBranchAddress("nevt", &nevt, &b_nevt);
-   fChain->SetBranchAddress("file", &file, &b_file);
+   fChain->SetBranchAddress("njet", &njet, &b_njet);
+   fChain->SetBranchAddress("nbjet", &nbjet, &b_nbjet);
    fChain->SetBranchAddress("EventCategory", &EventCategory, &b_EventCategory);
    fChain->SetBranchAddress("genMatch", &genMatch, &b_genMatch);
    fChain->SetBranchAddress("jet0Idx", &jet0Idx, &b_jet0Idx);

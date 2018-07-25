@@ -12,8 +12,10 @@ basedir = '/data/users/minerva1993/ntuple_Run2017/V9_2/180703/'
 
 path = os.listdir(basedir)
 filelist = []
+ext_dataset = []
 for item in path:
   if item.endswith(".root"): filelist.append(item)
+  if "v2" in item: ext_dataset.append(item)
 
 filelist.sort()
 
@@ -21,7 +23,7 @@ for item in filelist:
   if item.startswith("SingleElectron") or item.startswith("SingleMuon") or item.startswith("TTHad") or item.startswith("TTLL") : continue
     #text_file.write(item + " : " + str(1.0) + "\n")
 
-  else: 
+  else:
     filepath = os.path.join(basedir, item)
     print filepath
     data = TFile.Open(filepath)
@@ -38,8 +40,12 @@ for item in filelist:
     else: ratio = float(h1.Integral())/h2.Integral()
 
     if item == filelist[0]: 
-      text_file.write('    if      ( option.Contains("' + item[:-5] + '") or option.Contains("' + item.replace("_","")[:-5] + '") ) wrongPVrate = ' + str(ratio) + ";\n")
-    else: 
-      text_file.write('    else if ( option.Contains("' + item[:-5] + '") or option.Contains("' + item.replace("_","")[:-5] + '") ) wrongPVrate = ' + str(ratio) + ";\n")
+      text_file.write('    if      ( option.Contains("' + item.replace("_","")[:-5] + '") ) wrongPVrate = ' + str(ratio) + ";\n")
+      if item in ext_dataset:
+        text_file.write('    else if ( option.Contains("' + item.replace("_","")[:-7] + '_") or option.Contains("' + item.replace("_","")[:-7] + 'part2") ) wrongPVrate = ' + str(ratio) + ";\n")
+    else:
+      text_file.write('    else if ( option.Contains("' + item.replace("_","")[:-5] + '") ) wrongPVrate = ' + str(ratio) + ";\n")
+      if item in ext_dataset:
+        text_file.write('    else if ( option.Contains("' + item.replace("_","")[:-7] + '_") or option.Contains("' + item.replace("_","")[:-7] + 'part2") ) wrongPVrate = ' + str(ratio) + ";\n")
 
 text_file.write('    else    wrongPVrate = 1.0' + ";\n")    
