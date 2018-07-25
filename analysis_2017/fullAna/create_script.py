@@ -1,7 +1,8 @@
 import os
 import shutil
 
-path_to_fileList = '../commonTools/file_noreco.txt'
+version = 'V9_2/180703/'
+path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 
 run_file_name = 'runNoReco.py'
 string_for_run = ''
@@ -9,28 +10,43 @@ string_for_run = ''
 merge_file_name = 'job_merge.sh'
 string_for_merge = ''
 
-print("Write options for bypassing reconstruction script from %s"%path_to_fileList)
-with open(path_to_fileList, 'r') as f:
-  if os.path.exists(run_file_name): os.remove(run_file_name)
-  shutil.copy2('template_runNoReco', run_file_name)
+print("Write options for bypassing reconstruction")
+#This part is for bypass reconstruction
+noreco_list = []
+for file_name in os.listdir(path_to_prod_noreco):
+  if file_name.endswith(".root"):
+    dataset_path = os.path.join(path_to_prod_noreco, file_name)
+    tmp_string = ''
+    file_id = file_name.split('_')[-1].split('.')[0]
+    tmp_string += dataset_path
+    output_file_name = file_name.replace("_",'')
+    output_file_name = output_file_name.replace(".root",'')
+    tmp_string += ' ' + output_file_name
+    noreco_list.append(tmp_string)
 
-  with open(run_file_name, 'a') as target:
-    content = f.readlines()
+if os.path.exists(run_file_name): os.remove(run_file_name)
+shutil.copy2('template_runNoReco', run_file_name)
 
-    for lines in content:
-      string_for_run += 'runAna("' + lines.split(' ')[0] + '", "' + (lines.split(' ')[1])[:-1] + '")\n'
+for lines in noreco_list:
+  string_for_run += '  runAna("' + lines.split(' ')[0] + '", "' + (lines.split(' ')[1]) + '")\n'
 
-    target.write(string_for_run)
+with open(run_file_name, 'a') as target:
+  target.write(string_for_run)
 
 
 print("Write script for mergeing histograms")
+ext_dataset = []
 string_for_merge += '#!/bin/sh\n'
 string_for_merge += 'rm hist_*.root\n'
-with open(path_to_fileList, 'r') as f:
-  content = f.readlines()
 
-  for lines in content:
-    string_for_merge += "hadd hist_" + (lines.split(' ')[1])[:-1] + ".root temp/hist_" + (lines.split(' ')[1])[:-1] + "*.root\n"
+for lines in noreco_list:
+  if "v2" in lines.split(' ')[1]: ext_dataset.append(lines.split(' ')[1])
+  elif "Run2017" in lines.split(' ')[1]:
+    string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + ".root doReco/hist_" + (lines.split(' ')[1]) + "*.root\n"
+  else: string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + ".root doReco/hist_" + (lines.split(' ')[1]) + "_*.root\n"
+
+for exts in ext_dataset:
+  string_for_merge += "hadd hist_" + (exts) + ".root doReco/hist_" + (exts)[:-2] + "_*.root doReco/hist_" + (exts)[:-2] + "part2_*.root\n"
 
 if os.path.exists(merge_file_name): os.remove(merge_file_name)
 with open(merge_file_name, 'w') as g:
