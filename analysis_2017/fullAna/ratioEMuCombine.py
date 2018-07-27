@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 from ROOT import TStyle, TF1, TFile, TCanvas, gDirectory, TTree, TH1F, TH2F, THStack, TLegend, gROOT , TPad
+gROOT.SetBatch(True)
 import ROOT
 import os
 
