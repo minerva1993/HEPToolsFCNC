@@ -63,7 +63,7 @@ void idxToNtuple::Loop()
     // if (Cut(ientry) < 0) continue;
 
     if(genMatch == 1011){
-      tmpScoreDummy[nevt] = KerasScore;
+      tmpScoreDummy[nevt] = MLScore;
       tmpMatchDummy[nevt] = genMatch;
       //fij++;
     }
@@ -71,8 +71,8 @@ void idxToNtuple::Loop()
     //cout << nevt << endl;
     ncombi++;
 
-    if(tmpScore[nevt] <= KerasScore){
-      tmpScore[nevt]     = KerasScore;
+    if(tmpScore[nevt] <= MLScore){
+      tmpScore[nevt]     = MLScore;
       tmpJetIdx[nevt][0] = jet0Idx;
       tmpJetIdx[nevt][1] = jet1Idx;
       tmpJetIdx[nevt][2] = jet2Idx;

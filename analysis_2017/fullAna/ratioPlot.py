@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
-from ROOT import TStyle, TF1, TFile, TCanvas, gDirectory, TTree, TH1F, TH2F, THStack, TLegend, gROOT , TPad
+from ROOT import TStyle, TF1, TFile, TCanvas, gDirectory, TTree, TH1F, TH2F, THStack, TLegend, gROOT, TPad
+gROOT.SetBatch(True)
 import ROOT
 import os
 
@@ -185,12 +186,14 @@ for i in range(0, N_hist):
   else:
     mode = 1 
 
+  string_fname = ''
+  string_nevt =  ''
   hnames = datasamples[datasamples.keys()[mode]]["hname"][i].split("_")
-  string0 = "%s \n" %hnames
-  fNevt.write(string0)
-  #print string0
-
   printHistName = "NJet"
+  if hnames[1] == printHistName:
+    print hnames[2] + "_" + hnames[3]
+    string_fname += "%s \n" %hnames
+    string_nevt += "%s \n" %hnames
 
   ##if hnames[1] == printHistName :
   #print hnames[1], " ", hnames[2], " ", hnames[3]  
@@ -245,9 +248,9 @@ for i in range(0, N_hist):
     ntotalbkg = ntotalbkg + numevt
     if bkgsamples[fname]["name"] == "QCD": numqcd = numevt
     if hnames[1] == printHistName:
-      string = "%s :  %s = %f \n"%(fname,bkgsamples[fname]["name"],numevt)
-      fNevt.write(string)
-      print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt), " scale : " ,"{0:.3g}".format(scale)  
+      string_nevt += "%f \n"%(numevt)
+      string_fname += "%s :  %s = %f \n"%(fname,bkgsamples[fname]["name"],numevt)
+      print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt), " scale : " ,"{0:.3g}".format(scale)
     #print fname, " : ", scale
 
     ## Add to Stack
@@ -291,8 +294,8 @@ for i in range(0, N_hist):
     rawevt = h_Hct.GetEntries()
     if hctsamples[fname]["name"] == "QCD": numqcd = numevt
     if hnames[1] == printHistName:
-      string = "%s :  %s = %f \n"%(fname,hctsamples[fname]["name"],numevt)
-      fNevt.write(string)
+      string_nevt += "%f \n"%(numevt)
+      string_fname += "%s :  %s = %f \n"%(fname,hctsamples[fname]["name"],numevt)
       print fname, " : ", hctsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
     #print fname, " : ", scale
 
@@ -333,19 +336,19 @@ for i in range(0, N_hist):
     else:
       l.AddEntry(h_Hut, hutsamples[fname]["name"]  ,"F")
 
-    ## Add to Stack
-    hsHut.Add( h_Hut ) #hh_tmp -> add h tmp sig, hs->other
-    n = n+1
-
     ## print out number of events
     numevt = h_Hut.Integral()
     rawevt = h_Hut.GetEntries()
     if hutsamples[fname]["name"] == "QCD": numqcd = numevt
     if hnames[1] == printHistName:
-      string = "%s :  %s = %f \n"%(fname,hutsamples[fname]["name"],numevt)
-      fNevt.write(string)
+      string_nevt += "%f \n"%(numevt)
+      string_fname += "%s :  %s = %f \n"%(fname,hutsamples[fname]["name"],numevt)
       print fname, " : ", hutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
     #print fname, " : ", scale
+
+    ## Add to Stack
+    hsHut.Add( h_Hut ) #hh_tmp -> add h tmp sig, hs->other
+    n = n+1
 
   hs_Hut = hsHut.GetStack().Last()
   if h_data.Integral > 0 and hs_Hut.Integral() > 0 and h_bkg.Integral() != 0: hs_Hut.Scale(h_data.Integral()/hs_Hut.Integral())
@@ -380,19 +383,19 @@ for i in range(0, N_hist):
     else:
       l.AddEntry(h_stHct, sthctsamples[fname]["name"]  ,"F")
 
-    ## Add to Stack
-    #hsSTHct.Add( h_stHct ) #hh_tmp -> add h tmp sig, hs->other
-    stm = stm+1
-
     ## print out number of events
     numevt = h_stHct.Integral()
     rawevt = h_stHct.GetEntries()
     if sthctsamples[fname]["name"] == "QCD": numqcd = numevt
     if hnames[1] == printHistName:
-      string = "%s :  %s = %f \n"%(fname,sthctsamples[fname]["name"],numevt)
-      fNevt.write(string)
+      string_nevt += "%f \n"%(numevt)
+      string_fname += "%s :  %s = %f \n"%(fname,sthctsamples[fname]["name"],numevt)
       print fname, " : ", sthctsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
     #print fname, " : ", scale
+
+    ## Add to Stack
+    #hsSTHct.Add( h_stHct ) #hh_tmp -> add h tmp sig, hs->other
+    stm = stm+1
 
   #hs_stHct = hsSTHct.GetStack().Last()
   hs_stHct = h_stHct.Clone("hs_shHct")
@@ -428,19 +431,19 @@ for i in range(0, N_hist):
     else:
       l.AddEntry(h_stHut, sthutsamples[fname]["name"]  ,"F")
 
-    ## Add to Stack
-    #hsSTHut.Add( h_stHut ) #hh_tmp -> add h tmp sig, hs->other
-    stn = stn+1
-
     ## print out number of events
     numevt = h_stHut.Integral()
     rawevt = h_stHut.GetEntries()
     if sthutsamples[fname]["name"] == "QCD": numqcd = numevt
     if hnames[1] == printHistName:
-      string = "%s :  %s = %f \n"%(fname,sthutsamples[fname]["name"],numevt)
-      fNevt.write(string)
+      string_nevt += "%f \n"%(numevt)
+      string_fname += "%s :  %s = %f \n"%(fname,sthutsamples[fname]["name"],numevt)
       print fname, " : ", sthutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
     #print fname, " : ", scale
+
+    ## Add to Stack
+    #hsSTHut.Add( h_stHut ) #hh_tmp -> add h tmp sig, hs->other
+    stn = stn+1
 
   #hs_stHut = hsSTHut.GetStack().Last()
   hs_stHut = h_stHut.Clone("hs_shHut")
@@ -448,6 +451,23 @@ for i in range(0, N_hist):
 
   if QCDestimate:
     qcd.append(h_sub)
+
+  ndata= h_data.Integral()
+  nsub = ndata-ntotalbkg
+  if hnames[1] == printHistName:
+    string_nevt += "ntotal = %f \n" % ntotalbkg
+    string_nevt += "ndata = %d \n" % ndata
+    string_nevt += "nsub = %f \n" % nsub
+    string_fname += "ntotal = %f \n" % ntotalbkg
+    string_fname += "ndata = %d \n" % ndata
+    string_fname += "nsub = %f \n" % nsub
+    #string4 = "ratio(qcd/total) = %f \n" % (numqcd/ntotalbkg)
+    fNevt.write(string_nevt)
+    fNevt.write(string_fname)
+    #fNevt.write(string4)
+    print "ntotal = " , "{0:.6g}".format(ntotalbkg)
+    print "ndata = " , "{0:.0f}".format(ndata)
+    print "nsub = ", "{0:.6g}".format(nsub)
 
   def createCanvasPads():
     #creat canvas
@@ -567,21 +587,6 @@ for i in range(0, N_hist):
     
     pad2.cd()
     h3.Draw("ep")
-  
-    ndata= h_data.Integral()
-    nsub = ndata-ntotalbkg
-    if hnames[1] == printHistName:
-      string1 = "ntotal = %f \n" % ntotalbkg
-      string2 = "ndata = %d \n" % ndata
-      string3 = "nsub = %f \n" % nsub
-      #string4 = "ratio(qcd/total) = %f \n" % (numqcd/ntotalbkg)
-      fNevt.write(string1)
-      fNevt.write(string2)
-      fNevt.write(string3)
-      #fNevt.write(string4)
-      #print "ntotal = " , "{0:.6g}".format(ntotalbkg)
-      #print "ndata = " , "{0:.0f}".format(ndata)
-      #print "nsub = ", "{0:.6g}".format(nsub)
 
     logname = ""
     if log:
@@ -609,6 +614,7 @@ for i in range(0, N_hist):
 
   ratioplot()
 
+fNevt.close()
 
 if QCDestimate :
  f = ROOT.TFile("hist_qcd.root", "recreate")
@@ -622,4 +628,3 @@ if QCDestimate :
  f.cd()
  f.Write()
  f.Close()
- fNevt.close()

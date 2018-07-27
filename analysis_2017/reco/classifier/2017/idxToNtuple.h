@@ -24,25 +24,27 @@ public :
 // Fixed size dimensions of array or collections stored in the TTree if any.
 
    // Declaration of leaf types
-   Float_t        KerasScore;
+   Float_t         MLScore;
    Int_t           nevt;
-   Int_t           file;
+   Int_t           njet;
+   Int_t           nbjets_m;
    Int_t           EventCategory;
    Int_t           genMatch;
    Int_t           jet0Idx;
    Int_t           jet1Idx;
    Int_t           jet2Idx;
    Int_t           jet3Idx;
-   Float_t        lepPt;
-   Float_t        missinget;
-   Float_t        whMass;
-   Float_t        leptMass;
-   Float_t        hadtMass;
+   Float_t         lepPt;
+   Float_t         missinget;
+   Float_t         whMass;
+   Float_t         leptMass;
+   Float_t         hadtMass;
 
    // List of branches
-   TBranch        *b_KerasScore;   //!
+   TBranch        *b_MLScore;   //!
    TBranch        *b_nevt;   //!
-   TBranch        *b_file;   //!
+   TBranch        *b_njet;   //!
+   TBranch        *b_nbjets_m;   //!
    TBranch        *b_EventCategory;   //!
    TBranch        *b_genMatch;   //!
    TBranch        *b_jet0Idx;   //!
@@ -126,9 +128,10 @@ void idxToNtuple::Init(TTree *tree)
    fCurrent = -1;
    fChain->SetMakeClass(1);
 
-   fChain->SetBranchAddress("KerasScore", &KerasScore, &b_KerasScore);
+   fChain->SetBranchAddress("MLScore", &MLScore, &b_MLScore);
    fChain->SetBranchAddress("nevt", &nevt, &b_nevt);
-   fChain->SetBranchAddress("file", &file, &b_file);
+   fChain->SetBranchAddress("njet", &njet, &b_njet);
+   fChain->SetBranchAddress("nbjets_m", &nbjets_m, &b_nbjets_m);
    fChain->SetBranchAddress("EventCategory", &EventCategory, &b_EventCategory);
    fChain->SetBranchAddress("genMatch", &genMatch, &b_genMatch);
    fChain->SetBranchAddress("jet0Idx", &jet0Idx, &b_jet0Idx);

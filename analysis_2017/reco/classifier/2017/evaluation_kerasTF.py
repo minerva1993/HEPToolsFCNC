@@ -25,7 +25,7 @@ from keras.optimizers import Adam, SGD
 from keras.callbacks import Callback
 
 bestModel = sys.argv[1]
-ver = '01'
+ver = '04'
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/classifier/2017/'
 weightDir = 'training/recoSTFCNC'
 scoreDir = 'scoreSTFCNC'
@@ -48,9 +48,9 @@ for filename in os.listdir(os.path.join(configDir, 'mkNtuple/hdf')):
   outfile = TFile.Open(os.path.join(scoreDir+ver, 'score_' + filename.replace('h5','root')),'RECREATE')
   outtree = TTree("tree","tree")
 
-  spectator = eval_df.filter(['nevt', 'file', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx', 'lepton_pt', 'MET', 'jet12m', 'lepTm', 'hadTm'], axis=1)
+  spectator = eval_df.filter(['nevt', 'njet', 'nbjets_m', 'file', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx', 'lepton_pt', 'MET', 'jet12m', 'lepTm', 'hadTm'], axis=1)
   eval_df = eval_df.filter(['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m',
-                            'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
+                            'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', #'jet12dR', 'jet12m',
                             'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
                           ], axis=1)
   eval_df.astype('float32')
@@ -60,7 +60,7 @@ for filename in os.listdir(os.path.join(configDir, 'mkNtuple/hdf')):
   eval_df_sc = eval_scaler.transform(eval_df)
   X = eval_df_sc
   y = model_best.predict(X, batch_size=4000)
-  y.dtype = [('KerasScore', np.float32)]
+  y.dtype = [('MLScore', np.float32)]
   y = y[:,1]
   array2tree(y, name='tree', tree=outtree)
 
@@ -73,7 +73,7 @@ for filename in os.listdir(os.path.join(configDir, 'mkNtuple/hdf')):
     elif colname == 'hadTm'  : branchname = 'hadtMass'
     else: branchname = colname
 
-    if branchname in ['nevt', 'file', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx' ]: spect.dtype = [(branchname, np.int32)]
+    if branchname in ['nevt', 'njet', 'nbjet_m', 'file', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx' ]: spect.dtype = [(branchname, np.int32)]
     else:
       spect.dtype = [(branchname, np.float32)]
     #print(branchname)

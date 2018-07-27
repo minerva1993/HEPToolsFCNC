@@ -35,22 +35,32 @@ ver = '01'
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/classifier/2017/'
 weightDir = 'training/recoSTFCNC'
 scoreDir = 'scoreSTFCNC'
+assignDir = 'assignSTFCNC'
 
 #Options for data preparation
 input_files = ['deepReco_STTH1L3BHct_000.h5',
               ]
+input_features = ['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m',
+                  'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
+                  'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
+                  'genMatch',] #Must include label as well
 label_name = 'genMatch'
 signal_label = 1011
 bkg_drop_rate = 0.8
 train_test_rate = 0.8
+plot_figures = False
+mass_name = "jet12m"
+mass_decorr = False
+sklearn_based_overtraining_check = False #If it set to false, directly plot DNN scores
 
 #Check if the model and files already exist
 if not os.path.exists( os.path.join(configDir, weightDir+ver) ):
   os.makedirs( os.path.join(configDir, weightDir+ver) )
 if not os.path.exists( os.path.join(configDir, scoreDir+ver) ):
-  os.makedirs(configDir+scoreDir+ver)
-test = os.listdir( os.path.join(configDir, weightDir+ver) )
-for item in test:
+  os.makedirs( os.path.join(configDir, scoreDir+ver) )
+if not os.path.exists( os.path.join(configDir, assignDir+ver) ):
+  os.makedirs( os.path.join(configDir, assignDir+ver) )
+for item in os.listdir( os.path.join(configDir, weightDir+ver) ) or os.listdir( os.path.join(configDir, scoreDir+ver) ) or os.listdir( os.path.join(configDir, assignDir+ver) ):
   if item.endswith(".pdf") or item.endswith(".h5") or item.endswith("log"):
     #os.remove(os.path.join(os.path.join(configDir, weightDir+ver), item))
     print("Remove previous files or move on to next version!")
@@ -188,6 +198,21 @@ class roc_callback(Callback):
       #Overtraining Check, as well as bkg & sig discrimination
       ########################################################
       bins = 40
+
+      if not sklearn_based_overtraining_check:
+        ltpr1 = []; ltpr2 = []; lfpr1 = []; lfpr2 = []
+        for i in range(len(self.y_val[:,1])):
+          if self.y_val[:,1][i] > 0.5: ltpr1.append(y_pred_val[:,1][i])
+          else: lfpr1.append(y_pred_val[:,1][i])
+        for i in range(len(self.y[:,1])):
+          if self.y[:,1][i] > 0.5: ltpr2.append(y_pred[:,1][i])
+          else: lfpr2.append(y_pred[:,1][i])
+
+        tpr[1] = ltpr1
+        tpr[2] = ltpr2
+        fpr[1] = lfpr1
+        fpr[2] = lfpr2
+
       scores = [tpr[1], fpr[1], tpr[2], fpr[2]]
       low = min(np.min(d) for d in scores)
       high = max(np.max(d) for d in scores)
@@ -247,6 +272,8 @@ for files in input_files:
   else: data = pd.concat([data,data_temp], ignore_index=True)
 #print(daaxis=data.index.is_unique)#check if indices are duplicated
 data[label_name] = (data[label_name] == signal_label).astype(int)
+if mass_decorr:
+  data.loc[:, mass_name] = 50
 data = shuffle(data)
 NumEvt = data[label_name].value_counts(sort=True, ascending=True)
 #print(NumEvt)
@@ -262,17 +289,14 @@ print('bkg/sig events after bkg skim : '+ str(NumEvt2.tolist()))
 ##########################################
 #col_names = list(data_train)
 labels = data.filter([label_name], axis=1)
-data = data.filter(['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m',
-                    'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m', 
-                    'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
-                    'genMatch',
-                  ], axis=1)
+data = data.filter(input_features, axis=1)
 data.astype('float32')
 #print list(data_train)
 
-#correlations(data.loc[data[label_name] == 0].drop(label_name, axis=1), 'bkg')
-#correlations(data.loc[data[label_name] == 1].drop(label_name, axis=1), 'sig')
-#inputvars(data.loc[data[label_name] == 1].drop(label_name, axis=1), data.loc[data[label_name] == 0].drop(label_name, axis=1), 'sig', 'bkg')
+if plot_figures:
+  correlations(data.loc[data[label_name] == 0].drop(label_name, axis=1), 'bkg')
+  correlations(data.loc[data[label_name] == 1].drop(label_name, axis=1), 'sig')
+  inputvars(data.loc[data[label_name] == 1].drop(label_name, axis=1), data.loc[data[label_name] == 0].drop(label_name, axis=1), 'sig', 'bkg')
 
 data = data.drop(label_name, axis=1) #then drop label
 
@@ -321,7 +345,7 @@ b = 0.2
 init = 'glorot_uniform'
 
 with tf.device("/cpu:0"):
-  inputs = Input(shape=(20,))
+  inputs = Input(shape=(data.shape[1],))
   x = Dense(a, kernel_regularizer=l2(1E-2))(inputs)
   x = BatchNormalization()(x)
 
