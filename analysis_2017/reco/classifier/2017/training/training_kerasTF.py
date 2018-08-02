@@ -1,5 +1,5 @@
 from __future__ import print_function
-import sys, os
+import sys, os, shutil
 import google.protobuf
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
@@ -27,11 +27,11 @@ from keras.callbacks import Callback, ModelCheckpoint
 
 #MultiGPU option
 multiGPU = True
-if os.environ["CUDA_VISIBLE_DEVICES"] in ["1","2","3","4"]:
+if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
   multiGPU = False
 
 #Version of classifier
-ver = '01'
+ver = '02'
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/classifier/2017/'
 weightDir = 'training/recoSTFCNC'
 scoreDir = 'scoreSTFCNC'
@@ -39,6 +39,7 @@ assignDir = 'assignSTFCNC'
 
 #Options for data preparation
 input_files = ['deepReco_STTH1L3BHct_000.h5',
+               'deepReco_STTH1L3BHut_000.h5',
               ]
 input_features = ['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m',
                   'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
@@ -46,7 +47,7 @@ input_features = ['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'j
                   'genMatch',] #Must include label as well
 label_name = 'genMatch'
 signal_label = 1011
-bkg_drop_rate = 0.8
+bkg_drop_rate = 0.0
 train_test_rate = 0.8
 plot_figures = False
 mass_name = "jet12m"
@@ -60,11 +61,23 @@ if not os.path.exists( os.path.join(configDir, scoreDir+ver) ):
   os.makedirs( os.path.join(configDir, scoreDir+ver) )
 if not os.path.exists( os.path.join(configDir, assignDir+ver) ):
   os.makedirs( os.path.join(configDir, assignDir+ver) )
+if not os.path.exists( os.path.join(configDir, weightDir+ver, 'training_kerasTF.py') ):
+  shutil.copy2('training_kerasTF.py', os.path.join(configDir, weightDir+ver, 'training_kerasTF.py'))
 for item in os.listdir( os.path.join(configDir, weightDir+ver) ) or os.listdir( os.path.join(configDir, scoreDir+ver) ) or os.listdir( os.path.join(configDir, assignDir+ver) ):
   if item.endswith(".pdf") or item.endswith(".h5") or item.endswith("log"):
     #os.remove(os.path.join(os.path.join(configDir, weightDir+ver), item))
     print("Remove previous files or move on to next version!")
     sys.exit()
+
+#list for scores for plotting
+f1_list = []
+val_f1_list = []
+auc_list = []
+val_auc_list = []
+recall_list = []
+val_recall_list = []
+precision_list = []
+val_precision_list = []
 
 #######################
 #Plot correlaton matrix
@@ -79,7 +92,7 @@ def correlations(data, name, **kwds):
     corrmat = data.corr(**kwds)
 
     fig, ax1 = plt.subplots(ncols=1, figsize=(6,5))
-    
+
     opts = {'cmap': plt.get_cmap("RdBu"),
             'vmin': -1, 'vmax': +1}
     heatmap1 = ax1.pcolor(corrmat, **opts)
@@ -95,16 +108,16 @@ def correlations(data, name, **kwds):
         ax.set_yticks(np.arange(len(labels))+0.5, minor=False)
         ax.set_xticklabels(labels, minor=False, ha='right', rotation=90)
         ax.set_yticklabels(labels, minor=False)
-        
+
     plt.tight_layout()
     #plt.show()
     if name == 'sig':
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_corr_s.pdf'))
       print('Correlation matrix for signal is saved!')
-      plt.gcf().clear() 
+      plt.gcf().clear()
     elif name == 'bkg':
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_corr_b.pdf'))
-      plt.gcf().clear() 
+      plt.gcf().clear()
       print('Correlation matrix for background is saved!')
     else: print('Wrong class name!')
 
@@ -164,16 +177,29 @@ class roc_callback(Callback):
       y_pred_val = self.model.predict(self.x_val, batch_size=2000)
       roc_val = roc_auc_score(self.y_val, y_pred_val)
       print('\rroc-auc: %s - roc-auc_val: %s' % (str(round(roc,4)), str(round(roc_val,4))),end=100*' '+'\n')
+      auc_list.append(roc)
+      val_auc_list.append(roc_val)
 
       ###################
       #Calculate f1 score
       ###################
+      predict = (y_pred[:,1]).round()
+      targ = self.y[:,1]
       val_predict = (y_pred_val[:,1]).round()
       val_targ = self.y_val[:,1]
+      f1 = f1_score(targ, predict)
       val_f1 = f1_score(val_targ, val_predict)
+      recall = recall_score(targ, predict)
       val_recall = recall_score(val_targ, val_predict)
+      precision = precision_score(targ, predict)
       val_precision = precision_score(val_targ, val_predict)
       print('val_f1: %.4f, val_precision: %.4f, val_recall %.4f' %(val_f1, val_precision, val_recall))
+      f1_list.append(f1)
+      val_f1_list.append(val_f1)
+      recall_list.append(recall)
+      val_recall_list.append(val_recall)
+      precision_list.append(precision)
+      val_precision_list.append(val_precision)
 
       ###############
       #Plot ROC curve
@@ -185,13 +211,13 @@ class roc_callback(Callback):
       fpr[1], tpr[1], thresholds1 = roc_curve(self.y_val[:,1], y_pred_val[:,1], pos_label=1)#w.r.t sig is truth in val set
       fpr[2], tpr[2], thresholds2 = roc_curve(self.y[:,1], y_pred[:,1], pos_label=1)#w.r.t sig is truth in training set, for overtraining check
       #plt.plot(1-fpr[0], 1-(1-tpr[0]), 'b')#same as [1]
-      plt.plot(tpr[1], 1-fpr[1], 'r')#HEP style ROC
-      #plt.plot([0,1], [0,1], 'r--')
-      #plt.legend(['class 1'], loc = 'lower right')
+      plt.plot(tpr[1], 1-fpr[1])#HEP style ROC
+      plt.plot(tpr[2], 1-fpr[2])#training ROC
       plt.xlabel('Signal Efficiency')
       plt.ylabel('Background Rejection')
       plt.title('ROC Curve')
-      plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_roc_%d_%.4f.pdf' %(epoch+1,round(roc_val,4)) ))
+      plt.legend(['Train', 'Test'], loc='lower left')
+      plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_roc_%d_%.4f.pdf' %(epoch+1,round(roc_val,4))))
       plt.gcf().clear()
 
       ########################################################
@@ -241,7 +267,7 @@ class roc_callback(Callback):
       plt.xlabel("Deep Learning Score")
       plt.ylabel("Arbitrary units")
       plt.legend(loc='best')
-      plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_overtraining_%d_%.4f.pdf' %(epoch+1,round(roc_val,4)) ))
+      plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_overtraining_%d_%.4f.pdf' %(epoch+1,round(roc_val,4))))
       plt.gcf().clear()
       print('ROC curve and overtraining check plots are saved!')
 
@@ -420,30 +446,67 @@ train_model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0
 
 modelfile = 'model_{epoch:02d}_{val_binary_accuracy:.4f}.h5'
 checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile), monitor='val_binary_accuracy', verbose=1, save_best_only=False)#, mode='max')
-history = train_model.fit(X_train, Y_train, 
-                          epochs=30, batch_size=4000, 
-                          validation_data=(X_test, Y_test), 
+history = train_model.fit(X_train, Y_train,
+                          epochs=5, batch_size=1000,
+                          validation_data=(X_test, Y_test),
                           #class_weight={ 0: 14, 1: 1 }, 
                           callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model)]
                           )
 model.save(os.path.join(configDir, weightDir+ver, 'model.h5'))#save template model, rather than the model returned by multi_gpu_model.
 
-
+print("Plotting scores")
 #print(history.history.keys())
 plt.plot(history.history['binary_accuracy'])
 plt.plot(history.history['val_binary_accuracy'])
-plt.title('model accuracy')
-plt.ylabel('accuracy')
-plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='lower right')
-plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_accuracy.pdf'))
-plt.gcf().clear() 
+plt.title('Model Accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='lower right')
+plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_accuracy.pdf'))
+plt.gcf().clear()
 
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
-plt.title('binary crossentropy')
-plt.ylabel('loss')
-plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper right')
-plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_loss.pdf'))
-plt.gcf().clear() 
+plt.title('Binary Crossentropy')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='upper right')
+plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_loss.pdf'))
+plt.gcf().clear()
+
+plt.plot(auc_list)
+plt.plot(val_auc_list)
+plt.title('Area Under Curve')
+plt.ylabel('AUC')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='upper right')
+plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_auc.pdf'))
+plt.gcf().clear()
+
+plt.plot(f1_list)
+plt.plot(val_f1_list)
+plt.title('F1 Score')
+plt.ylabel('F1 Score')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='upper right')
+plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_f1.pdf'))
+plt.gcf().clear()
+
+plt.plot(recall_list)
+plt.plot(val_recall_list)
+plt.title('Recall')
+plt.ylabel('Recall')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='upper right')
+plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_recall.pdf'))
+plt.gcf().clear()
+
+plt.plot(precision_list)
+plt.plot(val_precision_list)
+plt.title('Precision')
+plt.ylabel('Precision')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='upper right')
+plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_precision.pdf'))
+plt.gcf().clear()
+print("Training ended!")

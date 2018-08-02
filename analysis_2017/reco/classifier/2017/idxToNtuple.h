@@ -26,7 +26,7 @@ public :
    // Declaration of leaf types
    Float_t         MLScore;
    Int_t           nevt;
-   Int_t           njet;
+   Int_t           njets;
    Int_t           nbjets_m;
    Int_t           EventCategory;
    Int_t           genMatch;
@@ -43,7 +43,7 @@ public :
    // List of branches
    TBranch        *b_MLScore;   //!
    TBranch        *b_nevt;   //!
-   TBranch        *b_njet;   //!
+   TBranch        *b_njets;   //!
    TBranch        *b_nbjets_m;   //!
    TBranch        *b_EventCategory;   //!
    TBranch        *b_genMatch;   //!
@@ -130,7 +130,7 @@ void idxToNtuple::Init(TTree *tree)
 
    fChain->SetBranchAddress("MLScore", &MLScore, &b_MLScore);
    fChain->SetBranchAddress("nevt", &nevt, &b_nevt);
-   fChain->SetBranchAddress("njet", &njet, &b_njet);
+   fChain->SetBranchAddress("njets", &njets, &b_njets);
    fChain->SetBranchAddress("nbjets_m", &nbjets_m, &b_nbjets_m);
    fChain->SetBranchAddress("EventCategory", &EventCategory, &b_EventCategory);
    fChain->SetBranchAddress("genMatch", &genMatch, &b_genMatch);

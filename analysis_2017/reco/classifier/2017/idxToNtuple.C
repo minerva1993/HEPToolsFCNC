@@ -94,7 +94,7 @@ void idxToNtuple::Loop()
     if(tmpMatch[i] == 1011) matchCount++;
     if(tmpMatchDummy[i] == 1011) dummyCount++;
   }
-  cout <<  matchCount << " , " << dummyCount << " , " << totevt  << " , " << ncombi << endl;
+  cout <<  matchCount << " , " << dummyCount << " , " << totevt  << " , " << ncombi << " , efficiency = " << float(matchCount)/dummyCount << endl;
   //cout << fij << endl;
 
   /////////////////////////////////////////////////

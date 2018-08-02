@@ -136,8 +136,8 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   int mode = 999; 
   mode = *channel;
 
-  if( mode > 2) return kTRUE;
-  if( !option.Contains("Run2017") && *TruePV == 0 ) return kTRUE;
+  if( mode > 2 ) return kTRUE;
+  if( !option.Contains("Run2017") && (*TruePV < 10 || *TruePV > 75) ) return kTRUE;
 
   float lep_SF = 1.0;
   float genweight = 1.0;
@@ -148,7 +148,6 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
     lep_SF = lepton_SF[0];
     genweight = *genWeight;
     puweight = PUWeight[0];
-    jetsf = jet_SF_deepCSV_30[0];
 
     if      ( option.Contains("DYJets4to50HT100to200v2") ) wrongPVrate = 1.04044583396;
     else if ( option.Contains("DYJets4to50HT100to200_") or option.Contains("DYJets4to50HT100to200part2") ) wrongPVrate = 1.04044583396;
@@ -224,17 +223,20 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.1);
   bool passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
 
-  if( option.Contains("DataSingleMu") ){
+  if( option.Contains("SingleMuon") ){
     if( !passmuon ) return kTRUE;//RDMu
     if( passelectron) return kTRUE;//RDMu
   }
-  else if( option.Contains("SingleElectron_Run2017") ){
+  else if( option.Contains("SingleElectron") ){
     if( !passelectron ) return kTRUE;//RDelec
     if( passmuon ) return kTRUE;//RDelec
   }
   else{
     if( !passmuon && !passelectron ) return kTRUE;
   }
+
+  //if( passelectron )  EventWeight *= jet_SF_deepCSV_38[0];
+  //else if ( passmuon) EventWeight *= jet_SF_deepCSV_30[0];
 
   b_lepton_pt = lepton.Pt(); b_lepton_eta = lepton.Eta(); b_lepton_phi = lepton.Phi();
 
@@ -246,7 +248,8 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
     //if( !option.Contains("Run2017") ) jet = jet * jet_JER_Nom[iJet];
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
-      if( passelectron and  iJet==0 and jet_pT[iJet] < 38 ) continue;
+      if( passelectron and  njets == 0 and jet_pT[iJet] < 38 ) continue;
+      njets++;
       jetIdxs.push_back(iJet);
 
       if( jet_deepCSV[iJet] > 0.4941 ){
@@ -254,11 +257,6 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
       }
     }
   }
-  njets = jetIdxs.size();
-  const int nCombi = njets * (njets -1) * (njets -2) *(njets -3) / 2;
-  const int nCombi_st = njets *  (njets -1) *(njets -2) / 2;
-  if ( isTT && nCombi < 12 ) return kTRUE;
-  if ( !isTT && nCombi_st < 3 ) return kTRUE;
 
   if ( isTT ){
     if ( njets <  4 || nbjets_m < 2 ) return kTRUE;
@@ -314,28 +312,42 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
     jetP4[0].SetPtEtaPhiE(jet_pT[*ii0], jet_eta[*ii0], jet_phi[*ii0], jet_E[*ii0]);
 
     for ( auto ii1 = jetIdxs.begin(); ii1 != jetIdxs.end(); ++ii1 ) {
-      if ( *ii1 == *ii0 ) continue;
+      if ( isTT and *ii1 == *ii0 ) continue;
       //if ( jet_deepCSV[*ii1] < 0.4941 ) continue; //for ttbar reco signal
       if ( isTT ) jetP4[3].SetPtEtaPhiE(jet_pT[*ii1], jet_eta[*ii1], jet_phi[*ii1], jet_E[*ii1]);
 
       for ( auto ii2 = jetIdxs.begin(); ii2 != jetIdxs.end(); ++ii2 ) {
         if ( *ii2 == *ii0 ) continue;
-        if ( isTT && *ii2 == *ii1 ) continue;
+        if ( isTT and *ii2 == *ii1 ) continue;
         if ( jet_deepCSV[*ii2] < 0.4941 ) continue;
-        jetP4[2].SetPtEtaPhiE(jet_pT[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_E[*ii2]);
 
         for ( auto ii3 = ii2+1; ii3 != jetIdxs.end(); ++ii3 ) {
-          if ( *ii3 == *ii0 or *ii3 == *ii1 or *ii3 == *ii2 ) continue;
+          if ( *ii3 == *ii0 or *ii3 == *ii2 ) continue;
+          if ( isTT and *ii3 == *ii1 ) continue;
           if ( jet_deepCSV[*ii3] < 0.4941 ) continue;
-          jetP4[1].SetPtEtaPhiE(jet_pT[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_E[*ii3]);
+          if ( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
+            jetP4[1].SetPtEtaPhiE(jet_pT[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_E[*ii2]);
+            jetP4[2].SetPtEtaPhiE(jet_pT[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_E[*ii3]);
+          }
+          else{
+            jetP4[1].SetPtEtaPhiE(jet_pT[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_E[*ii3]);
+            jetP4[2].SetPtEtaPhiE(jet_pT[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_E[*ii2]);
+          }
           //count++;
 
+          if ( !isTT and *ii1 != 0 ) continue;
           //construct particles: lepB = j0, hadB = j3, hadW = j1+j2
           /*
           if( !option.Contains("Run2017") ){
             jetP4[0] = jetP4[0] * jet_JER_Nom[*ii0];
-            jetP4[1] = jetP4[1] * jet_JER_Nom[*ii3];
-            jetP4[2] = jetP4[2] * jet_JER_Nom[*ii2];
+            if ( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
+              jetP4[1] = jetP4[1] * jet_JER_Nom[*ii2];
+              jetP4[2] = jetP4[2] * jet_JER_Nom[*ii3];
+            }
+            else{
+              jetP4[1] = jetP4[1] * jet_JER_Nom[*ii3];
+              jetP4[2] = jetP4[2] * jet_JER_Nom[*ii2];
+            }
             jetP4[3] = jetP4[3] * jet_JER_Nom[*ii1];
           }
           */
@@ -344,10 +356,18 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
           b_jet2pt = jetP4[2].Pt(); b_jet2eta = jetP4[2].Eta(); b_jet2phi = jetP4[2].Phi(); b_jet2m = jetP4[2].M();
           b_jet3pt = jetP4[3].Pt(); b_jet3eta = jetP4[3].Eta(); b_jet3phi = jetP4[3].Phi(); b_jet3m = jetP4[3].M();
           b_jet0csv = jet_deepCSV[*ii0]; b_jet0cvsl = jet_deepCvsL[*ii0]; b_jet0cvsb = jet_deepCvsB[*ii0];
-          b_jet1csv = jet_deepCSV[*ii3]; b_jet1cvsl = jet_deepCvsL[*ii3]; b_jet1cvsb = jet_deepCvsB[*ii3];
-          b_jet2csv = jet_deepCSV[*ii2]; b_jet2cvsl = jet_deepCvsL[*ii2]; b_jet2cvsb = jet_deepCvsB[*ii2];
+          if ( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
+            b_jet1csv = jet_deepCSV[*ii2]; b_jet1cvsl = jet_deepCvsL[*ii2]; b_jet1cvsb = jet_deepCvsB[*ii2];
+            b_jet2csv = jet_deepCSV[*ii3]; b_jet2cvsl = jet_deepCvsL[*ii3]; b_jet2cvsb = jet_deepCvsB[*ii3];
+            b_jet1Idx = *ii2; b_jet2Idx = *ii3;
+          }
+          else{
+            b_jet1csv = jet_deepCSV[*ii3]; b_jet1cvsl = jet_deepCvsL[*ii3]; b_jet1cvsb = jet_deepCvsB[*ii3];
+            b_jet2csv = jet_deepCSV[*ii2]; b_jet2cvsl = jet_deepCvsL[*ii2]; b_jet2cvsb = jet_deepCvsB[*ii2];
+            b_jet1Idx = *ii3; b_jet2Idx = *ii2;
+          }
           b_jet3csv = jet_deepCSV[*ii1]; b_jet3cvsl = jet_deepCvsL[*ii1]; b_jet3cvsb = jet_deepCvsB[*ii1];//ii3 = jet1
-          b_jet0Idx = *ii0; b_jet1Idx = *ii3; b_jet2Idx = *ii2; b_jet3Idx = *ii1;
+          b_jet0Idx = *ii0; b_jet3Idx = *ii1;
 
           const auto lepT = lepW + jetP4[0];
           const auto had12 = jetP4[1] + jetP4[2];//This is W or H
@@ -377,11 +397,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
       }
     }
   }
-
-  //cout << nCombi << " real count is " << count << endl;
-
   nevt++;
-
   return kTRUE;
 }
 

@@ -96,7 +96,7 @@ public :
     TTree *bkgTree = 0;
     TTree *testTree = 0;
 
-    int nevt = 0;
+    int nevt = 1;
 
     //objects for ntuple
     int b_nevt = 0;

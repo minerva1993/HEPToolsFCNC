@@ -166,8 +166,8 @@ AddBkg("hist_ZZ.root","VV",ROOT.kCyan, 16.523)
 #AddHct("hist_AntiTop_Hct.root", "Hct", 433, 1.85) 
 #AddHut("hist_Top_Hut.root", "Hut", 401, 1.85)
 #AddHut("hist_AntiTop_Hut.root", "Hut", 401, 1.85)
-AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 0.55)#13.84*0.04
-AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 0.076)#1.9*0.04
+AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 0.076)#1.9*0.04
+AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 0.55)#13.84*0.04
 
 qcd = []
 
@@ -462,9 +462,9 @@ for i in range(0, N_hist):
   ndata= h_data.Integral()
   nsub = ndata-ntotalbkg
   if hnames[1] == printHistName:
-    string_nevt += "ntotal = %f \n" % ntotalbkg
-    string_nevt += "ndata = %d \n" % ndata
-    string_nevt += "nsub = %f \n" % nsub
+    string_nevt += "%f \n" % ntotalbkg
+    string_nevt += "%d \n" % ndata
+    string_nevt += "%f \n" % nsub
     string_fname += "ntotal = %f \n" % ntotalbkg
     string_fname += "ndata = %d \n" % ndata
     string_fname += "nsub = %f \n" % nsub

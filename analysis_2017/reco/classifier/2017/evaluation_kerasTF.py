@@ -25,10 +25,11 @@ from keras.optimizers import Adam, SGD
 from keras.callbacks import Callback
 
 bestModel = sys.argv[1]
-ver = '04'
+ver = '01'
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/classifier/2017/'
 weightDir = 'training/recoSTFCNC'
 scoreDir = 'scoreSTFCNC'
+signal_only = False
 
 if not os.path.exists(os.path.join(configDir, scoreDir+ver)):
   os.makedirs(os.path.join(configDir, scoreDir+ver))
@@ -41,6 +42,8 @@ for filename in os.listdir(os.path.join(configDir, 'mkNtuple/hdf')):
   if os.path.exists(os.path.join(configDir, scoreDir+ver, 'score_' + filename.replace('h5','root'))):
     print('score_' + filename.replace('h5','root') + (' is already exist!').rjust(50-len(filename)))
     continue
+  if signal_only: 
+    if "STTH1L3BH" not in filename: continue
 
   eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple/hdf', filename))
   print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
@@ -48,9 +51,9 @@ for filename in os.listdir(os.path.join(configDir, 'mkNtuple/hdf')):
   outfile = TFile.Open(os.path.join(scoreDir+ver, 'score_' + filename.replace('h5','root')),'RECREATE')
   outtree = TTree("tree","tree")
 
-  spectator = eval_df.filter(['nevt', 'njet', 'nbjets_m', 'file', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx', 'lepton_pt', 'MET', 'jet12m', 'lepTm', 'hadTm'], axis=1)
+  spectator = eval_df.filter(['nevt', 'njets', 'nbjets_m', 'file', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx', 'lepton_pt', 'MET', 'jet12m', 'lepTm', 'hadTm'], axis=1)
   eval_df = eval_df.filter(['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m',
-                            'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', #'jet12dR', 'jet12m',
+                            'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                             'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
                           ], axis=1)
   eval_df.astype('float32')
@@ -73,7 +76,7 @@ for filename in os.listdir(os.path.join(configDir, 'mkNtuple/hdf')):
     elif colname == 'hadTm'  : branchname = 'hadtMass'
     else: branchname = colname
 
-    if branchname in ['nevt', 'njet', 'nbjet_m', 'file', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx' ]: spect.dtype = [(branchname, np.int32)]
+    if branchname in ['nevt', 'njets', 'nbjets_m', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx' ]: spect.dtype = [(branchname, np.int32)]
     else:
       spect.dtype = [(branchname, np.float32)]
     #print(branchname)

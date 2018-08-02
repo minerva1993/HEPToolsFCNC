@@ -11,7 +11,7 @@ TMVA.Tools.Instance()
 reader = TMVA.Reader("Color:!Silent")
 
 #ver = sys.argv[1]
-ver = '05'
+ver = '06'
 filename = sys.argv[2]
 
 # Load data
@@ -25,7 +25,7 @@ branches = {}
 for branch in data_tree.GetListOfBranches():
   branchName = branch.GetName()
   if branchName in ['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m',
-                  'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', #'jet12dR', 'jet12m',
+                  'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                   'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',]:
       branches[branchName] = array('f', [-999])
       reader.AddVariable(branchName, branches[branchName])
@@ -42,7 +42,7 @@ totalevt = data_tree.GetEntries()
 
 score2        = np.zeros(1, dtype=np.float32)
 nevt          = np.zeros(1, dtype=int)
-njet          = np.zeros(1, dtype=int)
+njets         = np.zeros(1, dtype=int)
 nbjets_m      = np.zeros(1, dtype=int)
 EventCategory = np.zeros(1, dtype=int)
 genMatch      = np.zeros(1, dtype=int)
@@ -58,7 +58,7 @@ hadtMass      = np.zeros(1, dtype=np.float32)
 
 tree.Branch('MLScore'      , score2       , 'MLScore/F')
 tree.Branch('nevt'         , nevt         , 'nevt/I')
-tree.Branch('njet'         , njet         , 'njet/I')
+tree.Branch('njets'        , njets        , 'njets/I')
 tree.Branch('nbjets_m'     , nbjets_m     , 'nbjets_m/I')
 tree.Branch('EventCategory', EventCategory, 'EventCategory/I')
 tree.Branch('genMatch'     , genMatch     , 'genMatch/I')
@@ -81,7 +81,7 @@ for i in xrange(totalevt):
 
     score2[0]        = reader.EvaluateMVA('BDT')
     nevt[0]          = data_tree.nevt
-    njet[0]          = data_tree.njets
+    njets[0]         = data_tree.njets
     nbjets_m[0]      = data_tree.nbjets_m
     EventCategory[0] = data_tree.GetLeaf("EventCategory").GetValue(0)
     genMatch[0]      = data_tree.genMatch

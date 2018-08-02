@@ -35,8 +35,8 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       if( nevt > 0){
         for(int i = 0; i < nevt; i++){
           assignT->GetEntry(i);
-          double pt = assignT->GetLeaf("leptonPt")->GetValue(0);
-          double met = assignT->GetLeaf("missingET")->GetValue(0);
+          float pt = assignT->GetLeaf("leptonPt")->GetValue(0);
+          float met = assignT->GetLeaf("missingET")->GetValue(0);
           lepPt.push_back(pt);
           missET.push_back(met);
         }
@@ -343,8 +343,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }
   //if( passmuon || passelectron ){
 
-  if( passelectron )  EventWeight *= jet_SF_deepCSV_38[0];
-  else if ( passmuon) EventWeight *= jet_SF_deepCSV_30[0];
+  //if( passelectron )  EventWeight *= jet_SF_deepCSV_38[0];
+  //else if ( passmuon) EventWeight *= jet_SF_deepCSV_30[0];
 
   int jetIdx[4];
   TLorentzVector jetP4s[4];
@@ -356,7 +356,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     //if( !option.Contains("Run2017") ) jet = jet * jet_JER_Nom[iJet];
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
-      if( passelectron and  iJet==0 and jet_pT[iJet] < 38 ) continue;
+      if( passelectron and  njets == 0 and jet_pT[iJet] < 38 ) continue;
       njets++;
       jetIdxs.push_back(iJet);
 
@@ -490,8 +490,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           h_FCNHkinHPt[mode][cut]->Fill((jetP4s[1]+jetP4s[2]).Pt(),EventWeight);
           h_FCNHkinHdPhi[mode][cut]->Fill(abs(jetP4s[1].DeltaPhi(jetP4s[2])),EventWeight);
           h_FCNHkinHdEta[mode][cut]->Fill(abs((jetP4s[1]-jetP4s[2]).Eta()),EventWeight);
-          h_FCNHkinHb1CSV[mode][cut]->Fill(jet_deepCSV[jetIdx[2]],EventWeight);
-          h_FCNHkinHb2CSV[mode][cut]->Fill(jet_deepCSV[jetIdx[1]],EventWeight);
+          h_FCNHkinHb1CSV[mode][cut]->Fill(jet_deepCSV[jetIdx[1]],EventWeight);
+          h_FCNHkinHb2CSV[mode][cut]->Fill(jet_deepCSV[jetIdx[2]],EventWeight);
           h_FCNHkinLepTopPt[mode][cut]->Fill((lepton+p4met+jetP4s[0]).Pt(),EventWeight);
           h_FCNHkinHadTopPt[mode][cut]->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(),EventWeight);
         }
@@ -550,7 +550,8 @@ void MyAnalysis::Terminate()
     if(file_tmp.is_open()){
       //cout << lepcount << endl;
       auto it = unique( dupCheck.begin(), dupCheck.end() );
-      cout << ((it == dupCheck.end()) ? "Unique\n" : "Duplicate(s)\n");
+      if( it != dupCheck.end() ) cout << string(option.Data()) + string(": Duplicate(s)") << endl;
+      //cout << ((it == dupCheck.end()) ? "Unique" : "Duplicate(s)\n");
     }
   }
 }
