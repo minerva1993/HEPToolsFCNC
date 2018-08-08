@@ -31,7 +31,7 @@ if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
   multiGPU = False
 
 #Version of classifier
-ver = '02'
+ver = '01'
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/classifier/2017/'
 weightDir = 'training/recoSTFCNC'
 scoreDir = 'scoreSTFCNC'
@@ -49,7 +49,7 @@ label_name = 'genMatch'
 signal_label = 1011
 bkg_drop_rate = 0.0
 train_test_rate = 0.8
-plot_figures = False
+plot_figures = True
 mass_name = "jet12m"
 mass_decorr = False
 sklearn_based_overtraining_check = False #If it set to false, directly plot DNN scores
@@ -447,7 +447,7 @@ train_model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0
 modelfile = 'model_{epoch:02d}_{val_binary_accuracy:.4f}.h5'
 checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile), monitor='val_binary_accuracy', verbose=1, save_best_only=False)#, mode='max')
 history = train_model.fit(X_train, Y_train,
-                          epochs=5, batch_size=1000,
+                          epochs=100, batch_size=1000,
                           validation_data=(X_test, Y_test),
                           #class_weight={ 0: 14, 1: 1 }, 
                           callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model)]

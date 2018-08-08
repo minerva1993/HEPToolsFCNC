@@ -446,9 +446,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   eventSelection[9] = ( njets == 4 ) && ( nbjets_m == 2 );
   eventSelection[10] = ( njets == 4 ) && ( nbjets_m == 3 );
   eventSelection[11] = ( njets == 4 ) && ( nbjets_m == 4 );
-  eventSelection[12] = ( njets == 4 ) && ( nbjets_m >= 2 ); 
-  eventSelection[13] = ( njets == 4 ) && ( nbjets_m >= 3 );
-  eventSelection[14] = ( njets == 4 ) && ( nbjets_m >= 4 );//it's dummy LoL
+  eventSelection[12] = ( njets >= 4 ) && ( nbjets_m == 2 ); 
+  eventSelection[13] = ( njets >= 4 ) && ( nbjets_m == 3 );
+  eventSelection[14] = ( njets >= 4 ) && ( nbjets_m == 4 );
   eventSelection[15] = ( njets >= 4 ) && ( nbjets_m >= 2 );
   eventSelection[16] = ( njets >= 4 ) && ( nbjets_m >= 3 );
   eventSelection[17] = ( njets >= 4 ) && ( nbjets_m >= 4 );

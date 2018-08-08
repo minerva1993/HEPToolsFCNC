@@ -62,6 +62,8 @@ void idxToNtuple::Loop()
     nb = fChain->GetEntry(jentry);   nbytes += nb;
     // if (Cut(ientry) < 0) continue;
 
+    //if(not(njets>=4 and nbjets_m==4)) continue;
+
     if(genMatch == 1011){
       tmpScoreDummy[nevt] = MLScore;
       tmpMatchDummy[nevt] = genMatch;
