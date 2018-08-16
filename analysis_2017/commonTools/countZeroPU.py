@@ -8,7 +8,7 @@ import numpy as np
 if os.path.isfile('TruePVWeight.txt'):
   os.remove('TruePVWeight.txt')
 
-basedir = '/data/users/minerva1993/ntuple_Run2017/V9_2/180703/'
+basedir = '/data/users/minerva1993/ntuple_Run2017/V9_2/180815/'
 
 path = os.listdir(basedir)
 filelist = []
@@ -20,7 +20,7 @@ for item in path:
 filelist.sort()
 
 for item in filelist:
-  if item.startswith("SingleElectron") or item.startswith("SingleMuon") or item.startswith("TTHad") or item.startswith("TTLL") : continue
+  if item.startswith("SingleElectron") or item.startswith("SingleMuon"): continue
     #text_file.write(item + " : " + str(1.0) + "\n")
 
   else:

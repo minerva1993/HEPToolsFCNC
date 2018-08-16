@@ -1,6 +1,6 @@
 import os
 
-version = 'V9_2/180703/'
+version = 'V9_2/180815/'
 path_to_prod = '/data/users/minerva1993/ntuple_Run2017/' + version + 'production/'
 path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 print("Looking for files in %s"%path_to_prod)
@@ -8,7 +8,7 @@ print("Looking for files in %s"%path_to_prod)
 merge_file_name = 'merge_ntuples.sh'
 string_for_merge = ''
 
-input_list_signal_file_name = 'file_signal.txt'
+input_list_signal_file_name = 'file_top.txt'
 string_for_signal_processing = ''
 
 input_list_bkg_file_name = 'file_other.txt'
@@ -43,7 +43,7 @@ for dataset_folder in os.listdir(path_to_prod):
     tmp_string += os.path.join(dataset_path, file_name)
     output_file_name = dataset_folder.replace("_",'')
     tmp_string += ' ' + output_file_name + "_" + file_id
-    if 'ST' in dataset_folder:
+    if ('ST_' in dataset_folder) or ('TT_powheg' in dataset_folder):
       string_for_signal_processing += tmp_string + '\n'
     else:
       string_for_bkg_processing += tmp_string + '\n'
@@ -56,4 +56,4 @@ with open(input_list_bkg_file_name, 'w') as f:
 
 
 
-print("{0} and {1}  written.\nPlease check the signal file list as the criteria is to have 'ST' in the name to be signal (some background with this pattern may appear in the future).".format(input_list_signal_file_name, input_list_bkg_file_name))
+print("{0} and {1}  written.".format(input_list_signal_file_name, input_list_bkg_file_name))

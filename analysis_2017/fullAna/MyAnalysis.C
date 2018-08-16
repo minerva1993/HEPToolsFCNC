@@ -23,7 +23,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     if     (option.Contains("Run2017")) sample.erase(sample.find_first_of("_")-1,string::npos);
     else if(option.Contains("part")) sample.erase(sample.find_last_of("p"),string::npos);
     else   sample.erase(sample.find_first_of("_"),string::npos);
-    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/classifier/2017/assignSTFCNC01/assign_deepReco_%s.root", option.Data());
+    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignSTFCNC01/assign_deepReco_%s.root", option.Data());
 
     bool file_exist = true;
     string file_tmp_path = assign_file;
@@ -260,10 +260,12 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     else if ( option.Contains("SingleTops") ) wrongPVrate = 1.03967280483;
     else if ( option.Contains("SingleTopt") ) wrongPVrate = 1.04020417817;
     else if ( option.Contains("SingleToptW") ) wrongPVrate = 1.04474130408;
-    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04021612264;
-    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02450278629;
-    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04205962372;
-    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04739932325;
+    else if ( option.Contains("TTHadpowheg") ) wrongPVrate = 1.0291005291;
+    else if ( option.Contains("TTLLpowheg") ) wrongPVrate = 1.04702469553;
+    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04082113542;
+    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02437268044;
+    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.0422449044;
+    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04927473075;
     else if ( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.0484454797;
     else if ( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.04795518207;
     else if ( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04737048218;
@@ -281,8 +283,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     else if ( option.Contains("WW") ) wrongPVrate = 1.04679128652;
     else if ( option.Contains("WZ") ) wrongPVrate = 1.04266907923;
     else if ( option.Contains("ZZ") ) wrongPVrate = 1.02940993982;
-    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.02082052772;
-    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.03782992744;
+    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.03165135091;
+    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.03745367642;
     else    wrongPVrate = 1.0;
   }
   float EventWeight = puweight*genweight*lep_SF*wrongPVrate;
@@ -343,8 +345,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }
   //if( passmuon || passelectron ){
 
-  //if( passelectron )  EventWeight *= jet_SF_deepCSV_38[0];
-  //else if ( passmuon) EventWeight *= jet_SF_deepCSV_30[0];
+  if( passelectron )  EventWeight *= jet_SF_deepCSV_38[0];
+  else if ( passmuon) EventWeight *= jet_SF_deepCSV_30[0];
 
   int jetIdx[4];
   TLorentzVector jetP4s[4];

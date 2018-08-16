@@ -118,26 +118,28 @@ def AddSTHut(fname, name, color, xsection):
 SetData("hist_SingleMuonRun2017.root","data", 41529)
 SetData("hist_SingleElectronRun2017.root","data", 41529) #certified
 AddBkg("hist_TTpowhegttbb.root","ttbb",ROOT.kRed+4, 365.34*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
-AddBkg("hist_TTLLpowhegttbb.root","ttbb",ROOT.kRed+4, 88.29*1.25)
-AddBkg("hist_TTHadpowhegttbb.root","ttbb",ROOT.kRed+4, 377.96*1.25)
+#AddBkg("hist_TTLLpowhegttbb.root","ttbb",ROOT.kRed+4, 88.29*1.25)
+#AddBkg("hist_TTHadpowhegttbb.root","ttbb",ROOT.kRed+4, 377.96*1.25)
 AddBkg("hist_TTpowhegttbj.root","ttbj",ROOT.kRed+3, 365.34)
-AddBkg("hist_TTLLpowhegttbj.root","ttbj",ROOT.kRed+3, 88.29)
-AddBkg("hist_TTHadpowhegttbj.root","ttbj",ROOT.kRed+3, 377.96)
+#AddBkg("hist_TTLLpowhegttbj.root","ttbj",ROOT.kRed+3, 88.29)
+#AddBkg("hist_TTHadpowhegttbj.root","ttbj",ROOT.kRed+3, 377.96)
 AddBkg("hist_TTpowhegttcc.root","ttcc",ROOT.kRed+2, 365.34)
-#AddBkg("hist_TTLLpowhegttcc.root","ttcc",ROOT.kRed+2, 88.29) #0 Event
-AddBkg("hist_TTHadpowhegttcc.root","ttcc",ROOT.kRed+2, 377.96)
+##AddBkg("hist_TTLLpowhegttcc.root","ttcc",ROOT.kRed+2, 88.29) #0 Event
+#AddBkg("hist_TTHadpowhegttcc.root","ttcc",ROOT.kRed+2, 377.96)
 AddBkg("hist_TTpowhegttlf.root","ttLF",ROOT.kRed, 365.34)
-AddBkg("hist_TTLLpowhegttlf.root","ttLF",ROOT.kRed, 88.29)
-AddBkg("hist_TTHadpowhegttlf.root","ttLF",ROOT.kRed, 377.96)
-AddBkg("hist_TTpowhegttother.root","ttLF",ROOT.kRed, 365.34)
-AddBkg("hist_TTLLpowhegttother.root","ttLF",ROOT.kRed, 88.29)
-AddBkg("hist_TTHadpowhegttother.root","ttLF",ROOT.kRed, 377.96)
-AddBkg("hist_ttHTobb.root","ttV",ROOT.kPink+1, 0.2934)
-AddBkg("hist_ttHToNonbb.root","ttV",ROOT.kPink+1, 0.2151)
-AddBkg("hist_TTWJetsToLNuPSweight.root","ttV",ROOT.kPink+1, 0.2043)
-AddBkg("hist_TTWJetsToQQ.root","ttV",ROOT.kPink+1, 0.4026)
-AddBkg("hist_TTZToLLNuNu.root","ttV",ROOT.kPink+1, 0.2529)
-AddBkg("hist_TTZToQQ.root","ttV",ROOT.kPink+1, 0.5297)
+#AddBkg("hist_TTLLpowhegttlf.root","ttLF",ROOT.kRed, 88.29)
+#AddBkg("hist_TTHadpowhegttlf.root","ttLF",ROOT.kRed, 377.96)
+AddBkg("hist_TTpowhegttother.root","ttBkg",ROOT.kRed-7, 365.34)
+#AddBkg("hist_TTLLpowhegttother.root","ttLF",ROOT.kRed, 88.29)
+#AddBkg("hist_TTHadpowhegttother.root","ttLF",ROOT.kRed, 377.96)
+AddBkg("hist_TTHadpowheg.root","ttBkg",ROOT.kRed-7, 377.96)
+AddBkg("hist_TTLLpowheg.root","ttBkg",ROOT.kRed-7, 88.29)
+AddBkg("hist_ttHTobb.root","ttV",ROOT.kMagenta-7, 0.2934)
+AddBkg("hist_ttHToNonbb.root","ttV",ROOT.kMagenta-7, 0.2151)
+AddBkg("hist_TTWJetsToLNuPSweight.root","ttV",ROOT.kMagenta-7, 0.2043)
+AddBkg("hist_TTWJetsToQQ.root","ttV",ROOT.kMagenta-7, 0.4026)
+AddBkg("hist_TTZToLLNuNu.root","ttV",ROOT.kMagenta-7, 0.2529)
+AddBkg("hist_TTZToQQ.root","ttV",ROOT.kMagenta-7, 0.5297)
 AddBkg("hist_W1JetsToLNu50-150.root","WJets",ROOT.kYellow, 2581) #2661 #https://hypernews.cern.ch/HyperNews/CMS/get/generators/3883/1/1.html and GenXSecAnalyzer
 AddBkg("hist_W1JetsToLNu150-250.root","WJets",ROOT.kYellow, 77.1) #71.9
 AddBkg("hist_W1JetsToLNu250-400.root","WJets",ROOT.kYellow, 8.05)
@@ -599,7 +601,7 @@ for i in range(0, N_hist):
     if log:
       logname = "_log"
 
-    #c.Print("emu"+datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+    c.Print("emu"+datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
     ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
     filename = "result_ratio_EMu"+logname+".pdf"    
