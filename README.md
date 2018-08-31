@@ -50,3 +50,5 @@ python ratioEMuCombine.py
 1. Rearrange BDT codes for reco
 2. Final MVA
 3. Systematic-ready
+
+  *All rights for plotIt: https://github.com/cp3-llbb/plotIt/
