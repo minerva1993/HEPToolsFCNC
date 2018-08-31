@@ -31,7 +31,7 @@ plots:
   include: ['histos.yml']
 
 legend:
-  position: [0.18, 0.71, 0.92, 0.89]
+  position: [0.18, 0.65, 0.92, 0.89]
   columns: 5
 
 groups:

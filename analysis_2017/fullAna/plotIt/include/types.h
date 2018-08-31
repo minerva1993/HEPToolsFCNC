@@ -292,6 +292,7 @@ namespace plotIt {
     std::string ratio_y_axis_title = "Data / MC";
 
     // Axis range
+    bool y_axis_auto_range = true; //not for log plot
     Range x_axis_range;
     Range log_x_axis_range;
     Range y_axis_range;

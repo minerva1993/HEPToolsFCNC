@@ -640,6 +640,9 @@ namespace plotIt {
       if (node["log-x-axis-range"])
         plot.log_x_axis_range = node["log-x-axis-range"].as<Range>();
 
+      if (node["y-axis-auto-range"])
+        plot.y_axis_auto_range = node["y-axis-auto-range"].as<bool>();
+
       if (node["y-axis-range"])
         plot.y_axis_range = node["y-axis-range"].as<Range>();
       plot.log_y_axis_range = plot.y_axis_range;

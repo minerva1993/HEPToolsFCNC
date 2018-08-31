@@ -14,6 +14,7 @@
 #include <commandlinecfg.h>
 #include <pool.h>
 #include <utilities.h>
+#include <vector>
 
 namespace plotIt {
 
@@ -582,7 +583,36 @@ namespace plotIt {
 
     if (! y_axis_range.valid()) {
       maximum *= 1 + safe_margin;
-      setMaximum(toDraw[0].first, maximum);
+      if (!plot.y_axis_auto_range) setMaximum(toDraw[0].first, maximum);
+      else {
+        float maxfrac = 0.4;
+        std::vector<float> sigMax;
+        for (File& signal: signal_files) {
+          TH1* h_sig_temp = dynamic_cast<TH1*>(signal.object);
+          if (plot.signal_normalize_data) h_sig_temp->Scale(h_data->Integral()/h_sig_temp->Integral());
+          sigMax.push_back(h_sig_temp->GetMaximum());
+        }          
+        float max_sig = *std::max_element(sigMax.begin(), sigMax.end());
+        auto& mc_stack = mc_stacks.begin()->second;
+        float max_mc = mc_stack.stack->GetMaximum();
+        int max_data = h_data->GetMaximum();
+
+        if (max_mc > max_sig) {
+          if (plot.log_y) {
+            if (max_data > 100000) maxfrac = 1000;
+            else maxfrac = 100;
+          }
+          if (max_mc > max_data) setMaximum(toDraw[0].first, max_mc + max_mc*maxfrac);
+          else setMaximum(toDraw[0].first, max_data + max_data*maxfrac);
+        }
+        else {
+          if (plot.log_y) {
+            maxfrac = 100;
+            setMaximum(toDraw[0].first, max_sig + max_sig*maxfrac);
+          }
+          else setMaximum(toDraw[0].first, max_sig*1.5);
+        }
+      }
 
       if (minimum <= 0 && plot.log_y) {
         double old_minimum = minimum;
