@@ -1,0 +1,60 @@
+'h_NJet_Ch0_S6':
+  for-yields: true
+  x-axis: "Jet Multiplicities"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.0f GeV"
+  y-axis-show-zero: true
+  show-overflow: true
+  show-ratio: true
+  save-extensions: ['pdf']
+
+'h_NJet_Ch1_S6':
+  for-yields: true
+  x-axis: "Jet Multiplicities"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.0f GeV"
+  y-axis-show-zero: true
+  show-overflow: true
+  show-ratio: true
+  save-extensions: ['pdf']
+
+'h_NJet_Ch2_S6':
+  for-yields: true
+  x-axis: "Jet Multiplicities"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.0f GeV"
+  y-axis-show-zero: true
+  show-overflow: true
+  show-ratio: true
+  save-extensions: ['pdf']
+
+'h_NJet_Ch0_S12':
+  for-yields: true
+  x-axis: "Jet Multiplicities"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.0f GeV"
+  y-axis-show-zero: true
+  show-overflow: true
+  show-ratio: true
+  save-extensions: ['pdf']
+
+'h_NJet_Ch1_S12':
+  for-yields: true
+  x-axis: "Jet Multiplicities"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.0f GeV"
+  y-axis-show-zero: true
+  show-overflow: true
+  show-ratio: true
+  save-extensions: ['pdf']
+
+'h_NJet_Ch2_S12':
+  for-yields: true
+  x-axis: "Jet Multiplicities"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.0f GeV"
+  y-axis-show-zero: true
+  show-overflow: true
+  show-ratio: true
+  #signal-normalize-data: true
+  save-extensions: ['pdf']

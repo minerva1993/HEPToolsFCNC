@@ -1,0 +1,333 @@
+'hist_SingleMuonRun2017.root':
+  type: data
+  legend: 'Data'
+  pretty-name: 'Data'
+  group: GData
+
+'hist_SingleElectronRun2017.root':
+  type: data
+  legend: 'Data'
+  pretty-name: 'Data'
+  group: GData
+
+'hist_TTpowhegttbb.root':
+  type: mc
+  pretty-name: 'TTpowhegttbb'
+  cross-section: 365.34
+  generated-events: 110353454
+  fill-color: "#330000"
+  legend: "ttbb"
+  order: 0
+
+'hist_TTpowhegttbj.root':
+  type: mc
+  pretty-name: 'TTpowhegttbj'
+  cross-section: 365.34
+  generated-events: 110353454
+  fill-color: '#660000'
+  legend: 'ttbj'
+  order: 1
+
+'hist_TTpowhegttcc.root':
+  type: mc
+  pretty-name: 'TTpowhegttcc'
+  cross-section: 365.34
+  generated-events: 110353454
+  fill-color: '#990000'
+  legend: 'ttcc'
+  order: 2
+
+'hist_TTpowhegttlf.root':
+  type: mc
+  pretty-name: 'TTpowhegttlf'
+  cross-section: 365.34
+  generated-events: 110353454
+  fill-color: '#ff0000'
+  legend: 'ttLF'
+  order: 3
+
+'hist_TTpowhegttother.root':
+  type: mc
+  pretty-name: 'TTpowhegttother'
+  cross-section: 365.34
+  generated-events: 110353454
+  fill-color: '#ff6666'
+  legend: 'ttBkg'
+  group: GttBkg
+  order: 4
+
+'hist_TTHadpowheg.root':
+  type: mc
+  pretty-name: 'TTHadpowheg'
+  cross-section: 377.96
+  generated-events: 129599948
+  fill-color: '#ff6666'
+  legend: 'ttBkg'
+  group: GttBkg
+  order: 5
+
+'hist_TTLLpowheg.root':
+  type: mc
+  pretty-name: 'TTLLpowheg'
+  cross-section: 88.29
+  generated-events: 66251694
+  fill-color: '#ff6666'
+  legend: 'ttBkg'
+  group: GttBkg
+  order: 6
+
+'hist_ttHTobb.root':
+  type: mc
+  pretty-name: 'ttHTobb'
+  cross-section: 0.2934
+  generated-events: 7833734
+  fill-color: '#ff66ff'
+  legend: 'ttV'
+  group: GttV
+  order: 7
+
+'hist_ttHToNonbb.root':
+  type: mc
+  pretty-name: 'ttHToNonbb'
+  cross-section: 0.2151
+  generated-events: 7522972
+  fill-color: '#ff66ff'
+  legend: 'ttV'
+  group: GttV
+  order: 8
+
+'hist_TTWJetsToLNuPSweight.root':
+  type: mc
+  pretty-name: 'TTWJetsToLNuPSweight'
+  cross-section: 0.2043 
+  generated-events: 2692366
+  fill-color: '#ff66ff'
+  legend: 'ttV'
+  group: GttV
+  order: 9
+
+'hist_TTWJetsToQQ.root':
+  type: mc
+  pretty-name: 'TTWJetsToQQ'
+  cross-section: 0.4062
+  generated-events: 441560
+  fill-color: '#ff66ff'
+  legend: 'ttV'
+  group: GttV
+  order: 10
+
+'hist_TTZToLLNuNu.root':
+  type: mc
+  pretty-name: 'TTZToLLNuNu'
+  cross-section: 0.2529
+  generated-events: 3570720
+  fill-color: '#ff66ff'
+  legend: 'ttV'
+  group: GttV
+  order: 11
+
+'hist_TTZToQQ.root':
+  type: mc
+  pretty-name: 'TTZToQQ'
+  cross-section: 0.5297
+  generated-events: 356286
+  fill-color: '#ff66ff'
+  legend: 'ttV'
+  group: GttV
+  order: 12
+
+'hist_W1JetsToLNu.root':
+  type: mc
+  pretty-name: 'W1JetsToLNu'
+  cross-section: 9625
+  generated-events: 54106926
+  fill-color: '#ffff00'
+  legend: 'WJets'
+  group: GWJets
+  order: 27
+
+'hist_W2JetsToLNu.root':
+  type: mc
+  pretty-name: 'W2JetsToLNu'
+  cross-section: 2793
+  generated-events: 6570442
+  fill-color: '#ffff00'
+  legend: 'WJets'
+  group: GWJets
+  order: 28
+
+'hist_W3JetsToLNu.root':
+  type: mc
+  pretty-name: 'W3JetsToLNu'
+  cross-section: 992.5
+  generated-events: 19669693
+  fill-color: '#ffff00'
+  legend: 'WJets'
+  group: GWJets
+  order: 29
+
+'hist_W4JetsToLNu.root':
+  type: mc
+  pretty-name: 'W4JetsToLNu'
+  cross-section: 544.3
+  generated-events: 11303425
+  fill-color: '#ffff00'
+  legend: 'WJets'
+  group: GWJets
+  order: 30
+
+'hist_DYJetsv2.root':
+  type: mc
+  pretty-name: 'DYJets'
+  cross-section: 5765.4
+  generated-events: 142161151
+  fill-color: '#0000ff'
+  legend: 'ZJets'
+  group: GZJets
+  order: 21
+
+'hist_DYJets4to50HT70to100.root':
+  type: mc
+  pretty-name: 'DYJets4to50HT70to100'
+  cross-section: 809.9
+  generated-events: 8955697
+  fill-color: '#0000ff'
+  legend: 'ZJets'
+  group: GZJets
+  order: 22
+
+'hist_DYJets4to50HT100to200v2.root':
+  type: mc
+  pretty-name: 'DYJets4to50HT100to200'
+  cross-section: 203.1
+  generated-events: 9866654
+  fill-color: '#0000ff'
+  legend: 'ZJets'
+  group: GZJets
+  order: 23
+
+'hist_DYJets4to50HT200to400.root':
+  type: mc
+  pretty-name: 'DYJets4to50HT200to400'
+  cross-section: 54.18
+  generated-events: 1018593
+  fill-color: '#0000ff'
+  legend: 'ZJets'
+  group: GZJets
+  order: 24
+
+'hist_DYJets4to50HT400to600.root':
+  type: mc
+  pretty-name: 'DYJets4to50HT400to600'
+  cross-section: 5.708
+  generated-events: 989898
+  fill-color: '#0000ff'
+  legend: 'ZJets'
+  group: GZJets
+  order: 25
+
+'hist_DYJets4to50HT600toinf.root':
+  type: mc
+  pretty-name: 'DYJets4to50HT600toinf'
+  cross-section: 1.849
+  generated-events: 1974671
+  fill-color: '#0000ff'
+  legend: 'ZJets'
+  group: GZJets
+  order: 26
+
+'hist_SingleTops.root':
+  type: mc
+  pretty-name: 'SingleTops'
+  cross-section: 11.36
+  generated-events: 6179792
+  fill-color: '#ff00ff'
+  legend: 'SingleT'
+  group: GSingleT
+  order: 13
+
+'hist_SingleTopt.root':
+  type: mc
+  pretty-name: 'SingleTopt'
+  cross-section: 136.02
+  generated-events: 5865875
+  fill-color: '#ff00ff'
+  legend: 'SingleT'
+  group: GSingleT
+  order: 14
+
+'hist_SingleTbart.root':
+  type: mc
+  pretty-name: 'SingleTbart'
+  cross-section: 80.95
+  generated-events: 3939990
+  fill-color: '#ff00ff'
+  legend: 'SingleT'
+  group: GSingleT
+  order: 15
+
+'hist_SingleToptW.root':
+  type: mc
+  pretty-name: 'SingleToptW'
+  cross-section: 35.85
+  generated-events: 7601399
+  fill-color: '#ff00ff'
+  legend: 'SingleT'
+  group: GSingleT
+  order: 16
+
+'hist_SingleTbartW.root':
+  type: mc
+  pretty-name: 'SingleTbartW'
+  cross-section: 35.85
+  generated-events: 7932626
+  fill-color: '#ff00ff'
+  legend: 'SingleT'
+  group: GSingleT
+  order: 17
+
+'hist_WW.root':
+  type: mc
+  pretty-name: 'WW'
+  cross-section: 118.7
+  generated-events: 7791498
+  fill-color: '#00ffff'
+  legend: 'VV'
+  group: GVV
+  order: 18
+
+'hist_WZ.root':
+  type: mc
+  pretty-name: 'WZ'
+  cross-section: 47.13
+  generated-events: 3928630
+  fill-color: '#00ffff'
+  legend: 'VV'
+  group: GVV
+  order: 19
+
+'hist_ZZ.root':
+  type: mc
+  pretty-name: 'ZZ'
+  cross-section: 16.523
+  generated-events: 1949768
+  fill-color: '#00ffff'
+  legend: 'VV'
+  group: GVV
+  order: 20
+
+'hist_STTH1L3BHct.root':
+  type: signal
+  pretty-name: 'STTH1L3BHct'
+  cross-section: 0.076
+  generated-events: 3937632
+  line-color: '#006666'
+  legend: 'STHct'
+
+'hist_STTH1L3BHut.root':
+  type: signal
+  pretty-name: 'STTH1L3BHut'
+  cross-section: 0.55
+  generated-events: 3938126
+  line-color: '#666600'
+  legend: 'STHut'

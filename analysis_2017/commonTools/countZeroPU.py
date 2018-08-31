@@ -19,6 +19,8 @@ for item in path:
 
 filelist.sort()
 
+string_nevt = ''
+
 for item in filelist:
   if item.startswith("SingleElectron") or item.startswith("SingleMuon"): continue
     #text_file.write(item + " : " + str(1.0) + "\n")
@@ -39,6 +41,9 @@ for item in filelist:
     if h2.Integral() == 0 : ratio = 1.0
     else: ratio = float(h1.Integral())/h2.Integral()
 
+    info = data.Get("fcncLepJets/EventInfo")
+    string_nevt += "hist_" + item.replace("_","") + " : " + str(info.GetBinContent(2)).replace(".0","") +'\n'
+
     if item == filelist[0]: 
       text_file.write('    if      ( option.Contains("' + item.replace("_","")[:-5] + '") ) wrongPVrate = ' + str(ratio) + ";\n")
       if item in ext_dataset:
@@ -48,4 +53,5 @@ for item in filelist:
       if item in ext_dataset:
         text_file.write('    else if ( option.Contains("' + item.replace("_","")[:-7] + '_") or option.Contains("' + item.replace("_","")[:-7] + 'part2") ) wrongPVrate = ' + str(ratio) + ";\n")
 
-text_file.write('    else    wrongPVrate = 1.0' + ";\n")    
+text_file.write('    else    wrongPVrate = 1.0' + ";\n")
+text_file.write(string_nevt)

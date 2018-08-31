@@ -18,5 +18,6 @@ if sig_only == "True":
     if "TTTH1L3B" not in file_name: sys.exit(0)
   elif ch == "TTBKG":
     if "TTpowheg"  not in file_name: sys.exit(0)
+    if not file_name.endswith(('010','011','012','013','014')): sys.exit(0)
 
 call(["root", "-l", 'run.C("'+ ch + '","' + ver + '","' + file_path + ' ' + file_name + '")'], shell=False)

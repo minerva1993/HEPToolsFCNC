@@ -116,50 +116,35 @@ def AddSTHut(fname, name, color, xsection):
 
 ####Users should provide these information 
 SetData("hist_SingleMuonRun2017.root","data", 41529)
-SetData("hist_SingleElectronRun2017.root","data", 41529) #certified
-AddBkg("hist_TTpowhegttbb.root","ttbb",ROOT.kRed+4, 365.34*1.25)#(831.76)*2[(0.1086*3)*(0.6741)]
-#AddBkg("hist_TTLLpowhegttbb.root","ttbb",ROOT.kRed+4, 88.29*1.25)
-#AddBkg("hist_TTHadpowhegttbb.root","ttbb",ROOT.kRed+4, 377.96*1.25)
+SetData("hist_SingleElectronRun2017.root","data", 41529)
+AddBkg("hist_TTpowhegttbb.root","ttbb",ROOT.kRed+4, 365.34)#(831.76)*2[(0.1086*3)*(0.6741)]
 AddBkg("hist_TTpowhegttbj.root","ttbj",ROOT.kRed+3, 365.34)
-#AddBkg("hist_TTLLpowhegttbj.root","ttbj",ROOT.kRed+3, 88.29)
-#AddBkg("hist_TTHadpowhegttbj.root","ttbj",ROOT.kRed+3, 377.96)
 AddBkg("hist_TTpowhegttcc.root","ttcc",ROOT.kRed+2, 365.34)
-##AddBkg("hist_TTLLpowhegttcc.root","ttcc",ROOT.kRed+2, 88.29) #0 Event
-#AddBkg("hist_TTHadpowhegttcc.root","ttcc",ROOT.kRed+2, 377.96)
 AddBkg("hist_TTpowhegttlf.root","ttLF",ROOT.kRed, 365.34)
-#AddBkg("hist_TTLLpowhegttlf.root","ttLF",ROOT.kRed, 88.29)
-#AddBkg("hist_TTHadpowhegttlf.root","ttLF",ROOT.kRed, 377.96)
 AddBkg("hist_TTpowhegttother.root","ttBkg",ROOT.kRed-7, 365.34)
-#AddBkg("hist_TTLLpowhegttother.root","ttLF",ROOT.kRed, 88.29)
-#AddBkg("hist_TTHadpowhegttother.root","ttLF",ROOT.kRed, 377.96)
 AddBkg("hist_TTHadpowheg.root","ttBkg",ROOT.kRed-7, 377.96)
 AddBkg("hist_TTLLpowheg.root","ttBkg",ROOT.kRed-7, 88.29)
 AddBkg("hist_ttHTobb.root","ttV",ROOT.kMagenta-7, 0.2934)
 AddBkg("hist_ttHToNonbb.root","ttV",ROOT.kMagenta-7, 0.2151)
 AddBkg("hist_TTWJetsToLNuPSweight.root","ttV",ROOT.kMagenta-7, 0.2043)
-AddBkg("hist_TTWJetsToQQ.root","ttV",ROOT.kMagenta-7, 0.4026)
+AddBkg("hist_TTWJetsToQQ.root","ttV",ROOT.kMagenta-7, 0.4062)
 AddBkg("hist_TTZToLLNuNu.root","ttV",ROOT.kMagenta-7, 0.2529)
 AddBkg("hist_TTZToQQ.root","ttV",ROOT.kMagenta-7, 0.5297)
-AddBkg("hist_W1JetsToLNu50-150.root","WJets",ROOT.kYellow, 2581) #2661 #https://hypernews.cern.ch/HyperNews/CMS/get/generators/3883/1/1.html and GenXSecAnalyzer
-AddBkg("hist_W1JetsToLNu150-250.root","WJets",ROOT.kYellow, 77.1) #71.9
-AddBkg("hist_W1JetsToLNu250-400.root","WJets",ROOT.kYellow, 8.05)
-AddBkg("hist_W1JetsToLNu400-inf.root","WJets",ROOT.kYellow, 0.885)
-#AddBkg("hist_W2JetsToLNu50-150.root","WJets",ROOT.kYellow, )
-AddBkg("hist_W2JetsToLNu250-400.root","WJets",ROOT.kYellow, 41.21)
-AddBkg("hist_W2JetsToLNu400-inf.root","WJets",ROOT.kYellow, 3.037)
-AddBkg("hist_W3JetsToLNu.root","WJets",ROOT.kYellow, 944.4) #From AN-15-097
-AddBkg("hist_W4JetsToLNu.root","WJets",ROOT.kYellow, 494.4)
-AddBkg("hist_DYJetsv2.root","ZJets",ROOT.kBlue, 5765.4) #updated
+AddBkg("hist_W1JetsToLNu.root","WJets",ROOT.kYellow, 9625) 
+AddBkg("hist_W2JetsToLNu.root","WJets",ROOT.kYellow, 2793)
+AddBkg("hist_W3JetsToLNu.root","WJets",ROOT.kYellow, 992.5)
+AddBkg("hist_W4JetsToLNu.root","WJets",ROOT.kYellow, 544.3)
+AddBkg("hist_DYJetsv2.root","ZJets",ROOT.kBlue, 5765.4)
 #AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
 AddBkg("hist_DYJets4to50HT70to100.root","ZJets",ROOT.kBlue, 809.9) #GenXSecAnalyzer
 AddBkg("hist_DYJets4to50HT100to200v2.root","ZJets",ROOT.kBlue, 203.1)
 AddBkg("hist_DYJets4to50HT200to400.root","ZJets",ROOT.kBlue, 54.18)
 AddBkg("hist_DYJets4to50HT400to600.root","ZJets",ROOT.kBlue, 5.708)
 AddBkg("hist_DYJets4to50HT600toinf.root","ZJets",ROOT.kBlue, 1.849)
-AddBkg("hist_SingleTops.root ","Single t",6, 11.36)
-AddBkg("hist_SingleTopt.root","Single t",6, 136.02)#44.33 = 136.02*(0.1086*3)
-AddBkg("hist_SingleTbart.root","Single t",6, 80.95)#26.38 = 80.95*(0.1086*3)
-AddBkg("hist_SingleToptW.root","Single t",6, 35.85)#35.85?
+AddBkg("hist_SingleTops.root","Single t",6, 11.36)
+AddBkg("hist_SingleTopt.root","Single t",6, 136.02)
+AddBkg("hist_SingleTbart.root","Single t",6, 80.95)
+AddBkg("hist_SingleToptW.root","Single t",6, 35.85)
 AddBkg("hist_SingleTbartW.root","Single t",6, 35.85)
 AddBkg("hist_WW.root","VV",ROOT.kCyan, 118.7)
 AddBkg("hist_WZ.root","VV",ROOT.kCyan, 47.13)
@@ -185,12 +170,16 @@ fNevt = open("Nevt_ratio.txt",'w')
 for i in range(0, N_hist):
   if "Ch0" in datasamples[datasamples.keys()[0]]["hname"][i]:
     mode = 0
+  elif "Ch1" in datasamples[datasamples.keys()[0]]["hname"][i]:
+    mode = 1
   else:
-    mode = 1 
+    mode = 2
+
+  #if mode == 0 or mode == 1: continue
 
   string_fname = ''
   string_nevt =  ''
-  hnames = datasamples[datasamples.keys()[mode]]["hname"][i].split("_")
+  hnames = datasamples[datasamples.keys()[0]]["hname"][i].split("_")
   printHistName = "NJet"
   if hnames[1] == printHistName:
     print hnames[2] + "_" + hnames[3]
@@ -208,7 +197,10 @@ for i in range(0, N_hist):
   l.SetLineColor(0);
   l.SetFillColor(0);
 
-  h_data = datasamples[datasamples.keys()[mode]]["file"].Get(datasamples[datasamples.keys()[mode]]["hname"][i])
+  if   mode != 2: h_data = datasamples[datasamples.keys()[mode]]["file"].Get(datasamples[datasamples.keys()[mode]]["hname"][i])
+  elif mode == 2 :
+    h_data = datasamples[datasamples.keys()[0]]["file"].Get(datasamples[datasamples.keys()[0]]["hname"][i])
+    h_data.Add(datasamples[datasamples.keys()[1]]["file"].Get(datasamples[datasamples.keys()[1]]["hname"][i]))
   nbins = h_data.GetNbinsX()
   h_data.AddBinContent( nbins, h_data.GetBinContent( nbins+1 ) )  #overflow
 
@@ -228,7 +220,8 @@ for i in range(0, N_hist):
     #if bkgsamples[fname]["name"] == "QCD": 
       #scale = 1.0
     #else: 
-    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
+    if mode != 2: scale = datasamples[datasamples.keys()[mode]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
+    else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
 
     h_tmp.Scale(scale)
 
@@ -275,7 +268,8 @@ for i in range(0, N_hist):
     h_Hct.SetLineColor(hctsamples[fname]["col"])
 
     ## normalization
-    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
+    if mode != 2: scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
+    else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
     #scale = 0.1
     h_Hct.Scale(scale)
 
@@ -322,7 +316,8 @@ for i in range(0, N_hist):
     h_Hut.SetLineColor(hutsamples[fname]["col"])
 
     ## normalization
-    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
+    if mode != 2: scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
+    else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
     #scale = 0.1
     h_Hut.Scale(scale)
 
@@ -369,7 +364,8 @@ for i in range(0, N_hist):
     h_stHct.SetLineColor(sthctsamples[fname]["col"])
 
     ## normalization
-    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(sthctsamples[fname]["total"]/sthctsamples[fname]["xsection"])
+    if mode != 2: scale = datasamples[datasamples.keys()[mode]]["lumi"]/(sthctsamples[fname]["total"]/sthctsamples[fname]["xsection"])
+    else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(sthctsamples[fname]["total"]/sthctsamples[fname]["xsection"])
     #scale = 0.1
     h_stHct.Scale(scale)
 
@@ -417,7 +413,8 @@ for i in range(0, N_hist):
     h_stHut.SetLineColor(sthutsamples[fname]["col"])
 
     ## normalization
-    scale = datasamples[datasamples.keys()[mode]]["lumi"]/(sthutsamples[fname]["total"]/sthutsamples[fname]["xsection"])
+    if mode != 2: scale = datasamples[datasamples.keys()[mode]]["lumi"]/(sthutsamples[fname]["total"]/sthutsamples[fname]["xsection"])
+    else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(sthutsamples[fname]["total"]/sthutsamples[fname]["xsection"])
     #scale = 0.1
     h_stHut.Scale(scale)
 
@@ -601,7 +598,8 @@ for i in range(0, N_hist):
       h_data.SetTitle("e ch")
       h_data.SetTitleSize(0.7)
     """
-    c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+    if mode != 2: c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+    else: c.Print(datasamples[datasamples.keys()[0]]["hname"][i]+logname+".pdf")
     ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
     filename = "result_ratio"+logname+".pdf"    

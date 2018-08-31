@@ -7,9 +7,9 @@ import pandas as pd
 import deepdish.io as io
 gROOT.SetBatch(True)
 
-ch = "STFCNC"
+#ch = "STFCNC"
 #ch = "TTFCNC"
-#ch = "TTBKG"
+ch = "TTBKG"
 
 input_filename = sys.argv[1]
 output_filename = sys.argv[2]

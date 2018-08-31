@@ -6,7 +6,7 @@ gROOT.SetBatch(True)
 file_path = sys.argv[1]
 name = sys.argv[2]
 
-test = os.listdir("./doReco")
+test = os.listdir("./doReco/temp")
 dupl = False
 for item in test:
   if item.endswith(name + ".root"):
@@ -23,7 +23,7 @@ def runAna(file_path, name):
   f = TFile.Open(file_path, "READ")
 
   ## save Event Summary histogram ##
-  out = TFile("doReco/hist_"+name+".root","update")
+  out = TFile("doReco/temp/hist_"+name+".root","update")
   hevt = f.Get("fcncLepJets/EventInfo")
   hevt.Write()
   out.Write()

@@ -42,14 +42,14 @@ string_for_merge += 'rm hist_*.root\n'
 for lines in noreco_list:
   if "v2" in lines.split(' ')[1]: ext_dataset.append(lines.split(' ')[1])
   elif "Run2017" in lines.split(' ')[1]:
-    string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + ".root doReco/hist_" + (lines.split(' ')[1]) + "*.root\n"
-  else: string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + ".root doReco/hist_" + (lines.split(' ')[1]) + "_*.root\n"
+    string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + ".root temp/hist_" + (lines.split(' ')[1]) + "*.root\n"
+  else: string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + ".root temp/hist_" + (lines.split(' ')[1]) + "_*.root\n"
 
 for exts in ext_dataset:
-  string_for_merge += "hadd hist_" + (exts) + ".root doReco/hist_" + (exts)[:-2] + "_*.root doReco/hist_" + (exts)[:-2] + "part2_*.root\n"
+  string_for_merge += "hadd hist_" + (exts) + ".root temp/hist_" + (exts)[:-2] + "_*.root temp/hist_" + (exts)[:-2] + "part2_*.root\n"
 
-if os.path.exists(merge_file_name): os.remove(merge_file_name)
-with open(merge_file_name, 'w') as g:
+if os.path.exists('doReco/' + merge_file_name): os.remove('doReco/' + merge_file_name)
+with open('doReco/' + merge_file_name, 'w') as g:
   g.write(string_for_merge)
   
 

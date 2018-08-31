@@ -126,49 +126,49 @@ public :
 
    ClassDef(MyAnalysis,0);
 
-    TH1D *h_PV[2][18];
-    TH1D *h_EventWeight[2][18];
-    TH1D *h_NJet[2][18];
-    TH1D *h_NBJetCSVv2M[2][18];
-    TH1D *h_NBJetCSVv2T[2][18];
-    TH1D *h_NCJetM[2][18];
-    TH1D *h_LepPt[2][18];
-    TH1D *h_LepPhi[2][18];
-    TH1D *h_LepEta[2][18];
-    TH1D *h_MET[2][18];
+    TH1D *h_PV[3][18];
+    TH1D *h_EventWeight[3][18];
+    TH1D *h_NJet[3][18];
+    TH1D *h_NBJetCSVv2M[3][18];
+    TH1D *h_NBJetCSVv2T[3][18];
+    TH1D *h_NCJetM[3][18];
+    TH1D *h_LepPt[3][18];
+    TH1D *h_LepPhi[3][18];
+    TH1D *h_LepEta[3][18];
+    TH1D *h_MET[3][18];
 
-    TH1D *h_WMass[2][18];
-    TH1D *h_LepIso[2][18];
-    TH1D *h_LepIsoQCD[2][18];
-    TH1D *h_DPhi[2][18];
-    TH1D *h_JetCSV[2][18];
+    TH1D *h_WMass[3][18];
+    TH1D *h_LepIso[3][18];
+    TH1D *h_LepIsoQCD[3][18];
+    TH1D *h_DPhi[3][18];
+    TH1D *h_JetCSV[3][18];
 
     //tagging variables
-    TH1D *h_csv[2][18];
-    TH1D *h_cvsl[2][18];
-    TH1D *h_cvsb[2][18];
+    TH1D *h_csv[3][18];
+    TH1D *h_cvsl[3][18];
+    TH1D *h_cvsb[3][18];
 
     //DR
-    TH1D *h_FCNHkinLepWMass[2][18];
-    TH1D *h_FCNHkinHadWMass[2][18];
-    TH1D *h_FCNHkinHMass[2][18];
-    TH1D *h_FCNHkinDR[2][18];
-    TH1D *h_FCNHkinLepTopM[2][18];
-    TH1D *h_FCNHkinHadTopM[2][18];
-    TH1D *h_FCNHkinHPt[2][18];
-    TH1D *h_FCNHkinHdPhi[2][18];
-    TH1D *h_FCNHkinHdEta[2][18];
-    TH1D *h_FCNHkinHb1Pt[2][18];
-    TH1D *h_FCNHkinHb2Pt[2][18];
-    TH1D *h_FCNHkinHb1CSV[2][18];
-    TH1D *h_FCNHkinHb2CSV[2][18];
-    TH1D *h_FCNHkinLepTopPt[2][18];
-    TH1D *h_FCNHkinHadTopPt[2][18];
+    TH1D *h_FCNHkinLepWMass[3][18];
+    TH1D *h_FCNHkinHadWMass[3][18];
+    TH1D *h_FCNHkinHMass[3][18];
+    TH1D *h_FCNHkinDR[3][18];
+    TH1D *h_FCNHkinLepTopM[3][18];
+    TH1D *h_FCNHkinHadTopM[3][18];
+    TH1D *h_FCNHkinHPt[3][18];
+    TH1D *h_FCNHkinHdPhi[3][18];
+    TH1D *h_FCNHkinHdEta[3][18];
+    TH1D *h_FCNHkinHb1Pt[3][18];
+    TH1D *h_FCNHkinHb2Pt[3][18];
+    TH1D *h_FCNHkinHb1CSV[3][18];
+    TH1D *h_FCNHkinHb2CSV[3][18];
+    TH1D *h_FCNHkinLepTopPt[3][18];
+    TH1D *h_FCNHkinHadTopPt[3][18];
 
-    TH1D *h_genDR[2][18];
-    TH1D *h_matchDR[2][18];
-    TH1D *h_genHm[2][18];
-    TH1D *h_matchHm[2][18];
+    TH1D *h_genDR[3][18];
+    TH1D *h_matchDR[3][18];
+    TH1D *h_genHm[3][18];
+    TH1D *h_matchHm[3][18];
 
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");
