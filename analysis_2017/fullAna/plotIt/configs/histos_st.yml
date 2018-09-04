@@ -1,0 +1,364 @@
+#HMass
+'h_FCNHkinHMass_Ch0_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch0_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch0_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch0_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch0_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch1_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch1_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch1_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch1_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch1_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch2_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch2_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch2_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch2_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch2_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+#dR
+'h_FCNHkinDR_Ch0_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch0_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch0_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch0_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch0_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch1_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch1_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch1_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch1_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch1_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch2_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch2_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch2_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch2_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch2_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+#LepTonMass
+'h_FCNHkinLepTopM_Ch0_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch0_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch0_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch0_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch0_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch1_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch1_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch1_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch1_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch1_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch2_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch2_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch2_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch2_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch2_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+
+#b2 deep csv
+'h_FCNHkinHb2CSV_Ch0_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch0_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch0_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch0_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch0_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch1_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch1_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch1_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch1_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch1_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch2_S2':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch2_S3':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch2_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch2_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch2_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']

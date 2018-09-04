@@ -23,7 +23,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     if     (option.Contains("Run2017")) sample.erase(sample.find_first_of("_")-1,string::npos);
     else if(option.Contains("part")) sample.erase(sample.find_last_of("p"),string::npos);
     else   sample.erase(sample.find_first_of("_"),string::npos);
-    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignTTBKG01/assign_deepReco_%s.root", option.Data());
+    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignSTFCNC01/assign_deepReco_%s.root", option.Data());
 
     bool file_exist = true;
     string file_tmp_path = assign_file;
@@ -368,8 +368,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     //Jet Assignment
     vector<double>::iterator iter;
     int evtIdx = 0;
+    if( njets >= 3 && nbjets_m >= 2 && !lepPt.empty() ){
     //if( njets >= 4 && nbjets_m >= 2 && !lepPt.empty() ){
-    if( njets >= 4 && nbjets_m >= 2 && !lepPt.empty() ){
       for( iter = lepPt.begin(); iter != lepPt.end(); iter++){
         if( *iter == static_cast<float>(lepton.Pt()) ){
           int tmpIdx = distance(lepPt.begin(), iter);
@@ -505,7 +505,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           }
 
           if( reco ){
-            if( njets >=4 && nbjets_m >=2 ){
+            if( njets >=3 && nbjets_m >=2 ){
               for( int i = 0; i < 3; ++i ){
                 const size_t j = jetIdx[i];
                 h_csv[MODE][cut][syst]->Fill(jet_deepCSV[j],EventWeight);
@@ -576,7 +576,7 @@ void MyAnalysis::Terminate()
 
   const char* assign_file = "";
   if( reco ){
-    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/classifier/2017/assignTTBKG01/assign_deepReco_%s.root", option.Data());
+    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/classifier/2017/assignSTFCNC01/assign_deepReco_%s.root", option.Data());
     string file_tmp_path = assign_file;
     ifstream file_tmp(file_tmp_path);
 

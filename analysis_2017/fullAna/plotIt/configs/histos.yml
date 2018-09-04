@@ -1,65 +1,141 @@
-'h_NJet_Ch2_S6':
+#S4 Mu
+'h_PV_Ch0_S4':
   for-yields: true
-  x-axis: "Jet Multiplicities"
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
-  y-axis-show-zero: true
-  show-overflow: true
-  show-ratio: true
+  save-extensions: ['pdf']
+
+'h_NJet_Ch0_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
   log-y: true
+  sort-by-yields: true
   save-extensions: ['pdf']
 
-'h_LepPt_Ch2_S6':
+'h_NBJetCSVv2M_Ch0_S4':
   for-yields: true
-  x-axis: "Lepton pT"
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
-  y-axis-show-zero: true
-  show-overflow: true
-  show-ratio: true
-  #signal-normalize-data: true
-  save-extensions: ['pdf']
-
-'h_JetCSV_Ch2_S6':
-  for-yields: true
-  x-axis: "Jet deep CSV"
-  y-axis: "Events"
-  y-axis-format: "%1% / %2$.0f GeV"
-  y-axis-show-zero: true
-  show-overflow: true
-  show-ratio: true
-  #signal-normalize-data: true
-  save-extensions: ['pdf']
-
-'h_NJet_Ch2_S13':
-  for-yields: true
-  x-axis: "Jet Multiplicities"
-  y-axis: "Events"
-  y-axis-format: "%1% / %2$.0f GeV"
-  y-axis-show-zero: true
-  show-overflow: true
-  show-ratio: true
   log-y: true
+  sort-by-yields: true
   save-extensions: ['pdf']
 
-'h_LepPt_Ch2_S13':
+'h_LepPt_Ch0_S4':
   for-yields: true
-  x-axis: "Lepton pT"
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
-  y-axis-show-zero: true
-  show-overflow: true
-  show-ratio: true
-  #signal-normalize-data: true
   save-extensions: ['pdf']
 
-'h_JetCSV_Ch2_S13':
+'h_MET_Ch0_S4':
   for-yields: true
-  x-axis: "Jet deep CSV"
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
-  y-axis-show-zero: true
-  show-overflow: true
-  show-ratio: true
-  #signal-normalize-data: true
+  save-extensions: ['pdf']
+
+'h_JetCSV_Ch0_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+#S4 elec
+'h_PV_Ch1_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_NJet_Ch1_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2M_Ch1_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_LepPt_Ch1_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_MET_Ch1_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_JetCSV_Ch1_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_PV_Ch2_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_NJet_Ch2_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2M_Ch2_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_LepPt_Ch2_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_MET_Ch2_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_JetCSV_Ch2_S4':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_NJet_Ch2_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_LepPt_Ch2_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_JetCSV_Ch2_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']

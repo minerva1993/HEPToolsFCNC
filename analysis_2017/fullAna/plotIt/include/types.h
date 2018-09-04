@@ -288,7 +288,7 @@ namespace plotIt {
     std::string x_axis;
     std::string y_axis = "Events";
     std::string y_axis_format;
-    bool y_axis_show_zero = false;
+    bool y_axis_show_zero = true;
     std::string ratio_y_axis_title = "Data / MC";
 
     // Axis range
@@ -310,7 +310,7 @@ namespace plotIt {
 
     std::vector<std::string> save_extensions = {"pdf"};
 
-    bool show_ratio = false;
+    bool show_ratio = true;
 
     bool fit = false;
     std::string fit_function = "gaus";
@@ -325,7 +325,7 @@ namespace plotIt {
     Range ratio_fit_range;
 
     bool show_errors = true;
-    bool show_overflow = false;
+    bool show_overflow = true;
 
     std::string inherits_from = "TH1";
 

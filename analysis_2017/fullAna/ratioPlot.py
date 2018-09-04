@@ -9,6 +9,7 @@ from style import *
 
 QCDestimate = False
 log = False
+each_plot = False
 
 from collections import OrderedDict
 datasamples=OrderedDict()
@@ -156,6 +157,12 @@ AddBkg("hist_ZZ.root","VV",ROOT.kCyan, 16.523)
 AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 0.076)#1.9*0.04
 AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 0.55)#13.84*0.04
 
+syst_name = ["_puup", "_pudown", "_lepSFup", "_lepSFdown",
+              "_lfup", "_lfdown", "_hfup", "_hfdown",
+              "_hfstat1up", "_hfstat1down", "_hfstat2up", "_hfstat2down",
+              "_lfstat1up", "_lfstat1down", "_lfstat2up", "_lfstat2down",
+              "_cferr1up", "_cferr1down", "_cferr2up", "_cferr2down"]
+
 qcd = []
 
 N_hist = len(datasamples[datasamples.keys()[0]]["hname"])
@@ -168,12 +175,14 @@ N_stHutsamples = len(sthutsamples)
 fNevt = open("Nevt_ratio.txt",'w')
 
 for i in range(0, N_hist):
-  if "Ch0" in datasamples[datasamples.keys()[0]]["hname"][i]:
-    mode = 0
-  elif "Ch1" in datasamples[datasamples.keys()[0]]["hname"][i]:
-    mode = 1
-  else:
-    mode = 2
+  if "Ch0" in datasamples[datasamples.keys()[0]]["hname"][i]:   mode = 0
+  elif "Ch1" in datasamples[datasamples.keys()[0]]["hname"][i]: mode = 1
+  elif "Ch2" in datasamples[datasamples.keys()[0]]["hname"][i]: mode = 2
+
+  for syst in syst_name:
+    if syst in datasamples[datasamples.keys()[0]]["hname"][i]:    mode = 99
+
+  if mode == 99: continue
 
   #if mode == 0 or mode == 1: continue
 
@@ -197,7 +206,7 @@ for i in range(0, N_hist):
   l.SetLineColor(0);
   l.SetFillColor(0);
 
-  if   mode != 2: h_data = datasamples[datasamples.keys()[mode]]["file"].Get(datasamples[datasamples.keys()[mode]]["hname"][i])
+  if   mode == 0 or mode == 1: h_data = datasamples[datasamples.keys()[mode]]["file"].Get(datasamples[datasamples.keys()[mode]]["hname"][i])
   elif mode == 2 :
     h_data = datasamples[datasamples.keys()[0]]["file"].Get(datasamples[datasamples.keys()[0]]["hname"][i])
     h_data.Add(datasamples[datasamples.keys()[1]]["file"].Get(datasamples[datasamples.keys()[1]]["hname"][i]))
@@ -598,9 +607,11 @@ for i in range(0, N_hist):
       h_data.SetTitle("e ch")
       h_data.SetTitleSize(0.7)
     """
-    if mode != 2: c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
-    else: c.Print(datasamples[datasamples.keys()[0]]["hname"][i]+logname+".pdf")
-    ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
+
+    if each_plot:
+      if mode != 2: c.Print(datasamples[datasamples.keys()[mode]]["hname"][i]+logname+".pdf")
+      else: c.Print(datasamples[datasamples.keys()[0]]["hname"][i]+logname+".pdf")
+      ##h_data.SetTitle(hnames[2]+"_"+hnames[3])
 
     filename = "result_ratio"+logname+".pdf"    
     if i == 0 and N_hist > 1:

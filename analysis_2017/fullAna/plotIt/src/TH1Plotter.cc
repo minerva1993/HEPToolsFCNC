@@ -598,14 +598,18 @@ namespace plotIt {
         int max_data = h_data->GetMaximum();
 
         if (max_mc > max_sig) {
-          if (plot.log_y) maxfrac = 50000;
+          if (plot.log_y) {
+            maxfrac = 1000;
+            minimum = 0.5;
+          }
           if (max_mc > max_data) setMaximum(toDraw[0].first, max_mc + max_mc*maxfrac);
           else setMaximum(toDraw[0].first, max_data + max_data*maxfrac);
         }
         else {
           if (plot.log_y) {
-            maxfrac = 50000;
+            maxfrac = 1000;
             setMaximum(toDraw[0].first, max_sig + max_sig*maxfrac);
+            minimum = 0.5;
           }
           else setMaximum(toDraw[0].first, max_sig*1.5);
         }

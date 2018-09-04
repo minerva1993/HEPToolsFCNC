@@ -1,0 +1,36 @@
+#S4 Mu
+'h_FCNHkinHadWMass_Ch2_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadWMass_Ch2_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadWMass_Ch2_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch2_S9':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch2_S10':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch2_S11':
+  for-yields: true
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
