@@ -123,52 +123,61 @@ public :
    virtual void    SlaveTerminate();
    virtual void    Terminate();
    double transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
+   bool isPartOf(const std::string& word, const std::string& sentence);
 
    ClassDef(MyAnalysis,0);
 
-    TH1D *h_PV[3][18];
-    TH1D *h_EventWeight[3][18];
-    TH1D *h_NJet[3][18];
-    TH1D *h_NBJetCSVv2M[3][18];
-    TH1D *h_NBJetCSVv2T[3][18];
-    TH1D *h_NCJetM[3][18];
-    TH1D *h_LepPt[3][18];
-    TH1D *h_LepPhi[3][18];
-    TH1D *h_LepEta[3][18];
-    TH1D *h_MET[3][18];
+    //Declare systematics here FIXME
+    const std::vector<const char*> syst_name = {"", "_puup", "_pudown", "_lepSFup", "_lepSFdown",
+                                                "_lfup", "_lfdown", "_hfup", "_hfdown",
+                                                "_hfstat1up", "_hfstat1down", "_hfstat2up", "_hfstat2down",
+                                                "_lfstat1up", "_lfstat1down", "_lfstat2up", "_lfstat2down",
+                                                "_cferr1up", "_cferr1down", "_cferr2up", "_cferr2down"};
+    int syst_num = syst_name.size();
 
-    TH1D *h_WMass[3][18];
-    TH1D *h_LepIso[3][18];
-    TH1D *h_LepIsoQCD[3][18];
-    TH1D *h_DPhi[3][18];
-    TH1D *h_JetCSV[3][18];
+    TH1D *h_PV[3][12][21];
+    TH1D *h_EventWeight[3][12][21];
+    TH1D *h_NJet[3][12][21];
+    TH1D *h_NBJetCSVv2M[3][12][21];
+    TH1D *h_NBJetCSVv2T[3][12][21];
+    TH1D *h_NCJetM[3][12][21];
+    TH1D *h_LepPt[3][12][21];
+    TH1D *h_LepPhi[3][12][21];
+    TH1D *h_LepEta[3][12][21];
+    TH1D *h_MET[3][12][21];
+
+    TH1D *h_WMass[3][12][21];
+    TH1D *h_LepIso[3][12][21];
+    TH1D *h_LepIsoQCD[3][12][21];
+    TH1D *h_DPhi[3][12][21];
+    TH1D *h_JetCSV[3][12][21];
 
     //tagging variables
-    TH1D *h_csv[3][18];
-    TH1D *h_cvsl[3][18];
-    TH1D *h_cvsb[3][18];
+    TH1D *h_csv[3][12][21];
+    TH1D *h_cvsl[3][12][21];
+    TH1D *h_cvsb[3][12][21];
 
     //DR
-    TH1D *h_FCNHkinLepWMass[3][18];
-    TH1D *h_FCNHkinHadWMass[3][18];
-    TH1D *h_FCNHkinHMass[3][18];
-    TH1D *h_FCNHkinDR[3][18];
-    TH1D *h_FCNHkinLepTopM[3][18];
-    TH1D *h_FCNHkinHadTopM[3][18];
-    TH1D *h_FCNHkinHPt[3][18];
-    TH1D *h_FCNHkinHdPhi[3][18];
-    TH1D *h_FCNHkinHdEta[3][18];
-    TH1D *h_FCNHkinHb1Pt[3][18];
-    TH1D *h_FCNHkinHb2Pt[3][18];
-    TH1D *h_FCNHkinHb1CSV[3][18];
-    TH1D *h_FCNHkinHb2CSV[3][18];
-    TH1D *h_FCNHkinLepTopPt[3][18];
-    TH1D *h_FCNHkinHadTopPt[3][18];
+    TH1D *h_FCNHkinLepWMass[3][12][21];
+    TH1D *h_FCNHkinHadWMass[3][12][21];
+    TH1D *h_FCNHkinHMass[3][12][21];
+    TH1D *h_FCNHkinDR[3][12][21];
+    TH1D *h_FCNHkinLepTopM[3][12][21];
+    TH1D *h_FCNHkinHadTopM[3][12][21];
+    TH1D *h_FCNHkinHPt[3][12][21];
+    TH1D *h_FCNHkinHdPhi[3][12][21];
+    TH1D *h_FCNHkinHdEta[3][12][21];
+    TH1D *h_FCNHkinHb1Pt[3][12][21];
+    TH1D *h_FCNHkinHb2Pt[3][12][21];
+    TH1D *h_FCNHkinHb1CSV[3][12][21];
+    TH1D *h_FCNHkinHb2CSV[3][12][21];
+    TH1D *h_FCNHkinLepTopPt[3][12][21];
+    TH1D *h_FCNHkinHadTopPt[3][12][21];
 
-    TH1D *h_genDR[3][18];
-    TH1D *h_matchDR[3][18];
-    TH1D *h_genHm[3][18];
-    TH1D *h_matchHm[3][18];
+    TH1D *h_genDR[3][12][21];
+    TH1D *h_matchDR[3][12][21];
+    TH1D *h_genHm[3][12][21];
+    TH1D *h_matchHm[3][12][21];
 
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");
@@ -203,3 +212,11 @@ Bool_t MyAnalysis::Notify()
 }
 
 #endif // #ifdef MyAnalysis_cxx
+/*CSV Unc order
+    CENTRAL, JES_UP, JES_DN,
+    LF_UP, LF_DN, HF_UP, HF_DN,
+    HFSTAT1_UP, HFSTAT1_DN, HFSTAT2_UP, HFSTAT2_DN,
+    LFSTAT1_UP, LFSTAT1_DN, LFSTAT2_UP, LFSTAT2_DN,
+    CFERR1_UP, CFERR1_DN, CFERR2_UP, CFERR2_DN
+https://github.com/vallot/CATTools/blob/cat90x/CatAnalyzer/interface/BTagWeightEvaluator.h
+*/

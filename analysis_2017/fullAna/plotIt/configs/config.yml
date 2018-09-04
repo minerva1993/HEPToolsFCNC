@@ -6,7 +6,7 @@ configuration:
   extra-label: "Preliminary"
   root: ''
   luminosity: 41529
-  luminosity-error: 0.024
+  luminosity-error: 0.023
   error-fill-style: 3154
   error-fill-color: "#ee556270"
   ratio-fit-error-fill-style: 1001
@@ -21,12 +21,22 @@ files:
   include: ['files.yml']
 
 systematics:
-  #- alpha # Shape systematics
+  - nlo_xsec: 1.055  # Constant systematics
+  - ttbb_xsec: {type: const, value: 1.3, on: 'hist_TTpowhegttbb.root'}
+  - ttcc_xsec: {type: const, value: 1.5, on: 'hist_TTpowhegttcc.root'}
+  - pu
+  - lepSF
+  - lf
+  - hf
+  - hfstat1
+  - hfstat2
+  - lfstat1
+  - lfstat2
+  - cferr1
+  - cferr2
   #- beta: {type: shape}  # Shape systematics
   #- gamma: {type: ln, prior: 1.072, pretty-name: "Gamma"}  # Log-normal systematics, +7.2%, -2.97%, exp(+/- 1 * log(prior))
-  #- delta: 1.14  # Constant systematics, +- 14%
-  #- epsilon: {type: const, value: 1.08, on: 'sample1'}
-
+        
 plots:
   include: ['histos.yml']
 

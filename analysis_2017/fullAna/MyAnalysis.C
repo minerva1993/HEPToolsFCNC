@@ -46,179 +46,181 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
   }
 
   //cout << "SlaveBegin" << endl;
-  for(int ich=0; ich < 3; ich++){
-    for(int i=0; i < 18; i++){
+  for( int ich=0; ich < 3; ich++ ){
+    for( int i=0; i < 12; i++ ){
+      for( int syst = 0; syst != syst_num; ++syst ){
 
-    h_PV[ich][i] = new TH1D(Form("h_PV_Ch%i_S%i",ich,i), "Number of primary vertices", 60, 0, 60);
-    h_PV[ich][i]->SetXTitle("Good PV");
-    h_PV[ich][i]->Sumw2();
-    fOutput->Add(h_PV[ich][i]);
+        h_PV[ich][i][syst] = new TH1D(Form("h_PV_Ch%i_S%i%s",ich,i,syst_name[syst]), "Number of primary vertices", 60, 0, 60);
+        h_PV[ich][i][syst]->SetXTitle("Good PV");
+        h_PV[ich][i][syst]->Sumw2();
+        fOutput->Add(h_PV[ich][i][syst]);
 
-    h_EventWeight[ich][i] = new TH1D(Form("h_EventWeight_Ch%i_S%i",ich,i), "Event Weights", 100, 0, 2);
-    h_EventWeight[ich][i]->SetXTitle("Event Weight");
-    h_EventWeight[ich][i]->Sumw2();
-    fOutput->Add(h_EventWeight[ich][i]);
-  
-    h_NJet[ich][i] = new TH1D(Form("h_NJet_Ch%i_S%i",ich,i), "Number of jets", 12, 0, 12);
-    h_NJet[ich][i]->SetXTitle("Jet Multiplicity");
-    h_NJet[ich][i]->Sumw2();
-    fOutput->Add(h_NJet[ich][i]);
+        h_EventWeight[ich][i][syst] = new TH1D(Form("h_EventWeight_Ch%i_S%i%s",ich,i,syst_name[syst]), "Event Weights", 100, 0, 2);
+        h_EventWeight[ich][i][syst]->SetXTitle("Event Weight");
+        h_EventWeight[ich][i][syst]->Sumw2();
+        fOutput->Add(h_EventWeight[ich][i][syst]);
+      
+        h_NJet[ich][i][syst] = new TH1D(Form("h_NJet_Ch%i_S%i%s",ich,i,syst_name[syst]), "Number of jets", 12, 0, 12);
+        h_NJet[ich][i][syst]->SetXTitle("Jet Multiplicity");
+        h_NJet[ich][i][syst]->Sumw2();
+        fOutput->Add(h_NJet[ich][i][syst]);
 
-    h_NBJetCSVv2M[ich][i] = new TH1D(Form("h_NBJetCSVv2M_Ch%i_S%i",ich,i), "Number of b tagged jets (medium)", 6, 0, 6);
-    h_NBJetCSVv2M[ich][i]->SetXTitle("b-tagged Jet Multiplicity (DeepCSVM)");
-    h_NBJetCSVv2M[ich][i]->Sumw2();
-    fOutput->Add(h_NBJetCSVv2M[ich][i]);
+        h_NBJetCSVv2M[ich][i][syst] = new TH1D(Form("h_NBJetCSVv2M_Ch%i_S%i%s",ich,i,syst_name[syst]), "Number of b tagged jets (medium)", 6, 0, 6);
+        h_NBJetCSVv2M[ich][i][syst]->SetXTitle("b-tagged Jet Multiplicity (DeepCSVM)");
+        h_NBJetCSVv2M[ich][i][syst]->Sumw2();
+        fOutput->Add(h_NBJetCSVv2M[ich][i][syst]);
 
-    h_NBJetCSVv2T[ich][i] = new TH1D(Form("h_NBJetCSVv2T_Ch%i_S%i",ich,i), "Number of b tagged jets (tight)", 6, 0, 6);
-    h_NBJetCSVv2T[ich][i]->SetXTitle("b-tagged Jet Multiplicity (DeepCSVT)");
-    h_NBJetCSVv2T[ich][i]->Sumw2();
-    fOutput->Add(h_NBJetCSVv2T[ich][i]);
+        h_NBJetCSVv2T[ich][i][syst] = new TH1D(Form("h_NBJetCSVv2T_Ch%i_S%i%s",ich,i,syst_name[syst]), "Number of b tagged jets (tight)", 6, 0, 6);
+        h_NBJetCSVv2T[ich][i][syst]->SetXTitle("b-tagged Jet Multiplicity (DeepCSVT)");
+        h_NBJetCSVv2T[ich][i][syst]->Sumw2();
+        fOutput->Add(h_NBJetCSVv2T[ich][i][syst]);
 
-    h_NCJetM[ich][i] = new TH1D(Form("h_NCJetM_Ch%i_S%i",ich,i), "Number of c tagged jets", 6, 0, 6);
-    h_NCJetM[ich][i]->SetXTitle("c-tagged Jet Multiplicity (MediumWP)");
-    h_NCJetM[ich][i]->Sumw2();
-    fOutput->Add(h_NCJetM[ich][i]);  
+        h_NCJetM[ich][i][syst] = new TH1D(Form("h_NCJetM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Number of c tagged jets", 6, 0, 6);
+        h_NCJetM[ich][i][syst]->SetXTitle("c-tagged Jet Multiplicity (MediumWP)");
+        h_NCJetM[ich][i][syst]->Sumw2();
+        fOutput->Add(h_NCJetM[ich][i][syst]);  
 
-    h_MET[ich][i] = new TH1D(Form("h_MET_Ch%i_S%i",ich,i), "MET", 30,0,200);
-    h_MET[ich][i]->SetXTitle("MET (GeV)");
-    h_MET[ich][i]->Sumw2();
-    fOutput->Add(h_MET[ich][i]);
+        h_MET[ich][i][syst] = new TH1D(Form("h_MET_Ch%i_S%i%s",ich,i,syst_name[syst]), "MET", 30,0,200);
+        h_MET[ich][i][syst]->SetXTitle("MET (GeV)");
+        h_MET[ich][i][syst]->Sumw2();
+        fOutput->Add(h_MET[ich][i][syst]);
 
-    h_LepPt[ich][i] = new TH1D(Form("h_LepPt_Ch%i_S%i",ich,i), "Lepton p_{T}", 30,0,200);
-    h_LepPt[ich][i]->SetXTitle("Lepton p_{T} (GeV)");
-    h_LepPt[ich][i]->Sumw2();
-    fOutput->Add(h_LepPt[ich][i]);
+        h_LepPt[ich][i][syst] = new TH1D(Form("h_LepPt_Ch%i_S%i%s",ich,i,syst_name[syst]), "Lepton p_{T}", 30,0,200);
+        h_LepPt[ich][i][syst]->SetXTitle("Lepton p_{T} (GeV)");
+        h_LepPt[ich][i][syst]->Sumw2();
+        fOutput->Add(h_LepPt[ich][i][syst]);
 
-    h_LepPhi[ich][i] = new TH1D(Form("h_LepPhi_Ch%i_S%i",ich,i), "Lepton #phi", 30 ,0 ,3.2);
-    h_LepPhi[ich][i]->SetXTitle("Lepton |#phi|");
-    h_LepPhi[ich][i]->Sumw2();
-    fOutput->Add(h_LepPhi[ich][i]);
+        h_LepPhi[ich][i][syst] = new TH1D(Form("h_LepPhi_Ch%i_S%i%s",ich,i,syst_name[syst]), "Lepton #phi", 30 ,0 ,3.2);
+        h_LepPhi[ich][i][syst]->SetXTitle("Lepton |#phi|");
+        h_LepPhi[ich][i][syst]->Sumw2();
+        fOutput->Add(h_LepPhi[ich][i][syst]);
 
-    h_LepEta[ich][i] = new TH1D(Form("h_LepEta_Ch%i_S%i",ich,i), "Lepton #eta", 30 ,0 ,2.5);
-    h_LepEta[ich][i]->SetXTitle("Lepton |#eta|");
-    h_LepEta[ich][i]->Sumw2();
-    fOutput->Add(h_LepEta[ich][i]);
+        h_LepEta[ich][i][syst] = new TH1D(Form("h_LepEta_Ch%i_S%i%s",ich,i,syst_name[syst]), "Lepton #eta", 30 ,0 ,2.5);
+        h_LepEta[ich][i][syst]->SetXTitle("Lepton |#eta|");
+        h_LepEta[ich][i][syst]->Sumw2();
+        fOutput->Add(h_LepEta[ich][i][syst]);
 
-    h_WMass[ich][i] = new TH1D(Form("h_WMass_Ch%i_S%i",ich,i), "W Mass", 30 ,0 ,200);
-    h_WMass[ich][i]->SetXTitle("Transverse Mass (GeV)");
-    h_WMass[ich][i]->Sumw2();
-    fOutput->Add(h_WMass[ich][i]);
+        h_WMass[ich][i][syst] = new TH1D(Form("h_WMass_Ch%i_S%i%s",ich,i,syst_name[syst]), "W Mass", 30 ,0 ,200);
+        h_WMass[ich][i][syst]->SetXTitle("Transverse Mass (GeV)");
+        h_WMass[ich][i][syst]->Sumw2();
+        fOutput->Add(h_WMass[ich][i][syst]);
 
-    h_DPhi[ich][i] = new TH1D(Form("h_DPhi_Ch%i_S%i",ich,i), "Lepton MET #Delta#phi", 30 ,0 ,3.2);
-    h_DPhi[ich][i]->SetXTitle("|#Delta#phi_{l,MET}|");
-    h_DPhi[ich][i]->Sumw2();
-    fOutput->Add(h_DPhi[ich][i]);
+        h_DPhi[ich][i][syst] = new TH1D(Form("h_DPhi_Ch%i_S%i%s",ich,i,syst_name[syst]), "Lepton MET #Delta#phi", 30 ,0 ,3.2);
+        h_DPhi[ich][i][syst]->SetXTitle("|#Delta#phi_{l,MET}|");
+        h_DPhi[ich][i][syst]->Sumw2();
+        fOutput->Add(h_DPhi[ich][i][syst]);
 
-    h_LepIso[ich][i] = new TH1D(Form("h_LepIso_Ch%i_S%i",ich,i), "LepIso", 20 ,0 ,0.15);
-    h_LepIso[ich][i]->SetXTitle("Relative Isolation");
-    h_LepIso[ich][i]->Sumw2();
-    fOutput->Add(h_LepIso[ich][i]);
+        h_LepIso[ich][i][syst] = new TH1D(Form("h_LepIso_Ch%i_S%i%s",ich,i,syst_name[syst]), "LepIso", 20 ,0 ,0.15);
+        h_LepIso[ich][i][syst]->SetXTitle("Relative Isolation");
+        h_LepIso[ich][i][syst]->Sumw2();
+        fOutput->Add(h_LepIso[ich][i][syst]);
 
-    h_JetCSV[ich][i] = new TH1D(Form("h_JetCSV_Ch%i_S%i",ich,i), "DeepCSV", 20 ,0 ,1);
-    h_JetCSV[ich][i]->SetXTitle("DeepCSV (all jets)");
-    h_JetCSV[ich][i]->Sumw2();
-    fOutput->Add(h_JetCSV[ich][i]);
+        h_JetCSV[ich][i][syst] = new TH1D(Form("h_JetCSV_Ch%i_S%i%s",ich,i,syst_name[syst]), "DeepCSV", 20 ,0 ,1);
+        h_JetCSV[ich][i][syst]->SetXTitle("DeepCSV (all jets)");
+        h_JetCSV[ich][i][syst]->Sumw2();
+        fOutput->Add(h_JetCSV[ich][i][syst]);
 
-    h_csv[ich][i] = new TH1D(Form("h_csv_Ch%i_S%i",ich,i), "DeepCSV", 20 ,0 ,1);
-    h_csv[ich][i]->SetXTitle("DeepCSV");
-    h_csv[ich][i]->Sumw2();
-    fOutput->Add(h_csv[ich][i]);
+        h_csv[ich][i][syst] = new TH1D(Form("h_csv_Ch%i_S%i%s",ich,i,syst_name[syst]), "DeepCSV", 20 ,0 ,1);
+        h_csv[ich][i][syst]->SetXTitle("DeepCSV");
+        h_csv[ich][i][syst]->Sumw2();
+        fOutput->Add(h_csv[ich][i][syst]);
 
-    h_cvsl[ich][i] = new TH1D(Form("h_cvsl_Ch%i_S%i",ich,i), "CvsL", 20 , 0 ,1);
-    h_cvsl[ich][i]->SetXTitle("DeepCvsL");
-    h_cvsl[ich][i]->Sumw2();
-    fOutput->Add(h_cvsl[ich][i]);
+        h_cvsl[ich][i][syst] = new TH1D(Form("h_cvsl_Ch%i_S%i%s",ich,i,syst_name[syst]), "CvsL", 20 , 0 ,1);
+        h_cvsl[ich][i][syst]->SetXTitle("DeepCvsL");
+        h_cvsl[ich][i][syst]->Sumw2();
+        fOutput->Add(h_cvsl[ich][i][syst]);
 
-    h_cvsb[ich][i] = new TH1D(Form("h_cvsb_Ch%i_S%i",ich,i), "CvsB", 20 , 0 ,1);
-    h_cvsb[ich][i]->SetXTitle("DeepCvsB");
-    h_cvsb[ich][i]->Sumw2();
-    fOutput->Add(h_cvsb[ich][i]);
+        h_cvsb[ich][i][syst] = new TH1D(Form("h_cvsb_Ch%i_S%i%s",ich,i,syst_name[syst]), "CvsB", 20 , 0 ,1);
+        h_cvsb[ich][i][syst]->SetXTitle("DeepCvsB");
+        h_cvsb[ich][i][syst]->Sumw2();
+        fOutput->Add(h_cvsb[ich][i][syst]);
 
-    h_FCNHkinLepWMass[ich][i] = new TH1D(Form("h_FCNHkinLepWMass_Ch%i_S%i",ich,i), "W Mass (Lep)", 30 , 0, 300);
-    h_FCNHkinLepWMass[ich][i]->SetXTitle("W Mass (Lep) (GeV)");
-    h_FCNHkinLepWMass[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinLepWMass[ich][i]);
+        h_FCNHkinLepWMass[ich][i][syst] = new TH1D(Form("h_FCNHkinLepWMass_Ch%i_S%i%s",ich,i,syst_name[syst]), "W Mass (Lep)", 30 , 0, 300);
+        h_FCNHkinLepWMass[ich][i][syst]->SetXTitle("W Mass (Lep) (GeV)");
+        h_FCNHkinLepWMass[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinLepWMass[ich][i][syst]);
 
-    h_FCNHkinHadWMass[ich][i] = new TH1D(Form("h_FCNHkinHadWMass_Ch%i_S%i",ich,i), "W Mass (Had)", 30, 0, 300);
-    h_FCNHkinHadWMass[ich][i]->SetXTitle("W Mass (Had) (GeV)");
-    h_FCNHkinHadWMass[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinHadWMass[ich][i]);
+        h_FCNHkinHadWMass[ich][i][syst] = new TH1D(Form("h_FCNHkinHadWMass_Ch%i_S%i%s",ich,i,syst_name[syst]), "W Mass (Had)", 30, 0, 300);
+        h_FCNHkinHadWMass[ich][i][syst]->SetXTitle("W Mass (Had) (GeV)");
+        h_FCNHkinHadWMass[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinHadWMass[ich][i][syst]);
 
-    h_FCNHkinHMass[ich][i] = new TH1D(Form("h_FCNHkinHMass_Ch%i_S%i",ich,i), "Higgs Mass (bb)", 30, 0,250);
-    h_FCNHkinHMass[ich][i]->SetXTitle("Higgs Mass (GeV)");
-    h_FCNHkinHMass[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinHMass[ich][i]);
+        h_FCNHkinHMass[ich][i][syst] = new TH1D(Form("h_FCNHkinHMass_Ch%i_S%i%s",ich,i,syst_name[syst]), "Higgs Mass (bb)", 30, 0,250);
+        h_FCNHkinHMass[ich][i][syst]->SetXTitle("Higgs Mass (GeV)");
+        h_FCNHkinHMass[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinHMass[ich][i][syst]);
 
-    h_FCNHkinDR[ich][i] = new TH1D(Form("h_FCNHkinDR_Ch%i_S%i",ich,i), "#Delta R of bb", 30, 0,4);
-    h_FCNHkinDR[ich][i]->SetXTitle("#Delta R of b jets from Higgs");
-    h_FCNHkinDR[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinDR[ich][i]);
+        h_FCNHkinDR[ich][i][syst] = new TH1D(Form("h_FCNHkinDR_Ch%i_S%i%s",ich,i,syst_name[syst]), "#Delta R of bb", 30, 0,4);
+        h_FCNHkinDR[ich][i][syst]->SetXTitle("#Delta R of b jets from Higgs");
+        h_FCNHkinDR[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinDR[ich][i][syst]);
 
-    h_FCNHkinLepTopM[ich][i] = new TH1D(Form("h_FCNHkinLepTopM_Ch%i_S%i",ich,i), "Top Mass (Lep)", 30 , 0, 400);
-    h_FCNHkinLepTopM[ich][i]->SetXTitle("Top Mass (Lep) (GeV)");
-    h_FCNHkinLepTopM[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinLepTopM[ich][i]);
+        h_FCNHkinLepTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinLepTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Mass (Lep)", 30 , 0, 400);
+        h_FCNHkinLepTopM[ich][i][syst]->SetXTitle("Top Mass (Lep) (GeV)");
+        h_FCNHkinLepTopM[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinLepTopM[ich][i][syst]);
 
-    h_FCNHkinHadTopM[ich][i] = new TH1D(Form("h_FCNHkinHadTopM_Ch%i_S%i",ich,i), "Top Mass from Hc/u", 30, 0, 400);
-    h_FCNHkinHadTopM[ich][i]->SetXTitle("Top Mass (Had) (GeV)");
-    h_FCNHkinHadTopM[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinHadTopM[ich][i]);
+        h_FCNHkinHadTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinHadTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Mass from Hc/u", 30, 0, 400);
+        h_FCNHkinHadTopM[ich][i][syst]->SetXTitle("Top Mass (Had) (GeV)");
+        h_FCNHkinHadTopM[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinHadTopM[ich][i][syst]);
 
-    h_FCNHkinHPt[ich][i] = new TH1D(Form("h_FCNHkinHPt_Ch%i_S%i",ich,i), "Higgs p_{T}", 30, 0,300);
-    h_FCNHkinHPt[ich][i]->SetXTitle("Higgs p_{T} (GeV)");
-    h_FCNHkinHPt[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinHPt[ich][i]);
+        h_FCNHkinHPt[ich][i][syst] = new TH1D(Form("h_FCNHkinHPt_Ch%i_S%i%s",ich,i,syst_name[syst]), "Higgs p_{T}", 30, 0,300);
+        h_FCNHkinHPt[ich][i][syst]->SetXTitle("Higgs p_{T} (GeV)");
+        h_FCNHkinHPt[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinHPt[ich][i][syst]);
 
-    h_FCNHkinHdPhi[ich][i] = new TH1D(Form("h_FCNHkinHdPhi_Ch%i_S%i",ich,i), "#Delta#phi of bb from Higgs", 30, 0, 3.2);
-    h_FCNHkinHdPhi[ich][i]->SetXTitle("|#Delta#phi_{bb}|");
-    h_FCNHkinHdPhi[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinHdPhi[ich][i]);
+        h_FCNHkinHdPhi[ich][i][syst] = new TH1D(Form("h_FCNHkinHdPhi_Ch%i_S%i%s",ich,i,syst_name[syst]), "#Delta#phi of bb from Higgs", 30, 0, 3.2);
+        h_FCNHkinHdPhi[ich][i][syst]->SetXTitle("|#Delta#phi_{bb}|");
+        h_FCNHkinHdPhi[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinHdPhi[ich][i][syst]);
 
-    h_FCNHkinHdEta[ich][i] = new TH1D(Form("h_FCNHkinHdEta_Ch%i_S%i",ich,i), "#Delta#eta of bb from Higgs", 30, 0, 2.5);
-    h_FCNHkinHdEta[ich][i]->SetXTitle("|#Delta#eta_{bb}|");
-    h_FCNHkinHdEta[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinHdEta[ich][i]);
+        h_FCNHkinHdEta[ich][i][syst] = new TH1D(Form("h_FCNHkinHdEta_Ch%i_S%i%s",ich,i,syst_name[syst]), "#Delta#eta of bb from Higgs", 30, 0, 2.5);
+        h_FCNHkinHdEta[ich][i][syst]->SetXTitle("|#Delta#eta_{bb}|");
+        h_FCNHkinHdEta[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinHdEta[ich][i][syst]);
 
-    h_FCNHkinHb1CSV[ich][i] = new TH1D(Form("h_FCNHkinHb1CSV_Ch%i_S%i",ich,i), "Higgs b_{1} DeepCSV", 20, 0.5 ,1);
-    h_FCNHkinHb1CSV[ich][i]->SetXTitle("Higgs b_{1} DeepCSV (GeV)");
-    h_FCNHkinHb1CSV[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinHb1CSV[ich][i]);
+        h_FCNHkinHb1CSV[ich][i][syst] = new TH1D(Form("h_FCNHkinHb1CSV_Ch%i_S%i%s",ich,i,syst_name[syst]), "Higgs b_{1} DeepCSV", 20, 0.5 ,1);
+        h_FCNHkinHb1CSV[ich][i][syst]->SetXTitle("Higgs b_{1} DeepCSV (GeV)");
+        h_FCNHkinHb1CSV[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinHb1CSV[ich][i][syst]);
 
-    h_FCNHkinHb2CSV[ich][i] = new TH1D(Form("h_FCNHkinHb2CSV_Ch%i_S%i",ich,i), "Higgs b_{2} DeepCSV", 20, 0.5 ,1);
-    h_FCNHkinHb2CSV[ich][i]->SetXTitle("Higgs b_{2} DeepCSV (GeV)");
-    h_FCNHkinHb2CSV[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinHb2CSV[ich][i]);
+        h_FCNHkinHb2CSV[ich][i][syst] = new TH1D(Form("h_FCNHkinHb2CSV_Ch%i_S%i%s",ich,i,syst_name[syst]), "Higgs b_{2} DeepCSV", 20, 0.5 ,1);
+        h_FCNHkinHb2CSV[ich][i][syst]->SetXTitle("Higgs b_{2} DeepCSV (GeV)");
+        h_FCNHkinHb2CSV[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinHb2CSV[ich][i][syst]);
 
-    h_FCNHkinLepTopPt[ich][i] = new TH1D(Form("h_FCNHkinLepTopPt_Ch%i_S%i",ich,i), "Top p_{T} (Lep)", 30 , 0, 400);
-    h_FCNHkinLepTopPt[ich][i]->SetXTitle("Top p_{T} (Lep) (GeV)");
-    h_FCNHkinLepTopPt[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinLepTopPt[ich][i]);
+        h_FCNHkinLepTopPt[ich][i][syst] = new TH1D(Form("h_FCNHkinLepTopPt_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top p_{T} (Lep)", 30 , 0, 400);
+        h_FCNHkinLepTopPt[ich][i][syst]->SetXTitle("Top p_{T} (Lep) (GeV)");
+        h_FCNHkinLepTopPt[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinLepTopPt[ich][i][syst]);
 
-    h_FCNHkinHadTopPt[ich][i] = new TH1D(Form("h_FCNHkinHadTopPt_Ch%i_S%i",ich,i), "Top p_{T} (Had)", 30 , 0, 400);
-    h_FCNHkinHadTopPt[ich][i]->SetXTitle("Top p_{T} (Had) (GeV)");
-    h_FCNHkinHadTopPt[ich][i]->Sumw2();
-    fOutput->Add(h_FCNHkinHadTopPt[ich][i]);
+        h_FCNHkinHadTopPt[ich][i][syst] = new TH1D(Form("h_FCNHkinHadTopPt_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top p_{T} (Had)", 30 , 0, 400);
+        h_FCNHkinHadTopPt[ich][i][syst]->SetXTitle("Top p_{T} (Had) (GeV)");
+        h_FCNHkinHadTopPt[ich][i][syst]->Sumw2();
+        fOutput->Add(h_FCNHkinHadTopPt[ich][i][syst]);
 
-    //GenInfo
-    h_genDR[ich][i] = new TH1D(Form("h_genDR_Ch%i_S%i",ich,i), "Delta R between gen b jets from Higgs", 30, 0, 4);
-    h_genDR[ich][i]->SetXTitle("gen #Delta R");
-    h_genDR[ich][i]->Sumw2();
-    fOutput->Add(h_genDR[ich][i]);
+        //GenInfo
+        h_genDR[ich][i][syst] = new TH1D(Form("h_genDR_Ch%i_S%i%s",ich,i,syst_name[syst]), "Delta R between gen b jets from Higgs", 30, 0, 4);
+        h_genDR[ich][i][syst]->SetXTitle("gen #Delta R");
+        h_genDR[ich][i][syst]->Sumw2();
+        fOutput->Add(h_genDR[ich][i][syst]);
 
-    h_matchDR[ich][i] = new TH1D(Form("h_matchDR_Ch%i_S%i",ich,i), "Delta R between gen matched b jets from Higgs", 30, 0, 4);
-    h_matchDR[ich][i]->SetXTitle("gen matched #Delta R");
-    h_matchDR[ich][i]->Sumw2();
-    fOutput->Add(h_matchDR[ich][i]);
+        h_matchDR[ich][i][syst] = new TH1D(Form("h_matchDR_Ch%i_S%i%s",ich,i,syst_name[syst]), "Delta R between gen matched b jets from Higgs", 30, 0, 4);
+        h_matchDR[ich][i][syst]->SetXTitle("gen matched #Delta R");
+        h_matchDR[ich][i][syst]->Sumw2();
+        fOutput->Add(h_matchDR[ich][i][syst]);
 
-    h_genHm[ich][i] = new TH1D(Form("h_genHm_Ch%i_S%i",ich,i), "Gen Higgs mass", 30, 0, 250);
-    h_genHm[ich][i]->SetXTitle("gen Higgs Mass (GeV)");
-    h_genHm[ich][i]->Sumw2();
-    fOutput->Add(h_genHm[ich][i]);
+        h_genHm[ich][i][syst] = new TH1D(Form("h_genHm_Ch%i_S%i%s",ich,i,syst_name[syst]), "Gen Higgs mass", 30, 0, 250);
+        h_genHm[ich][i][syst]->SetXTitle("gen Higgs Mass (GeV)");
+        h_genHm[ich][i][syst]->Sumw2();
+        fOutput->Add(h_genHm[ich][i][syst]);
 
-    h_matchHm[ich][i] = new TH1D(Form("h_matchHm_Ch%i_S%i",ich,i), "Gen matched Higgs mass", 30, 0, 250);
-    h_matchHm[ich][i]->SetXTitle("gen matched Higgs Mass (GeV)");
-    h_matchHm[ich][i]->Sumw2();
-    fOutput->Add(h_matchHm[ich][i]);
+        h_matchHm[ich][i][syst] = new TH1D(Form("h_matchHm_Ch%i_S%i%s",ich,i,syst_name[syst]), "Gen matched Higgs mass", 30, 0, 250);
+        h_matchHm[ich][i][syst]->SetXTitle("gen matched Higgs Mass (GeV)");
+        h_matchHm[ich][i][syst]->Sumw2();
+        fOutput->Add(h_matchHm[ich][i][syst]);
+      }
     }
   }
 } 
@@ -234,16 +236,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   if( mode > 2) return kTRUE;
   if( !option.Contains("Run2017") && (*TruePV < 10 || *TruePV > 75) ) return kTRUE;
 
-  float lep_SF = 1.0;
-  float genweight = 1.0;
-  float puweight = 1.0;
-  float jetsf = 1.0;
   float wrongPVrate = 1;
   if( !option.Contains("Run2017") ){
-    lep_SF = lepton_SF[0];
-    genweight = *genWeight;
-    puweight = PUWeight[0];
-
     //180815, 10-75
     if      ( option.Contains("DYJets4to50HT100to200v2") ) wrongPVrate = 1.04044583396;
     else if ( option.Contains("DYJets4to50HT100to200_") or option.Contains("DYJets4to50HT100to200part2") ) wrongPVrate = 1.04044583396;
@@ -280,7 +274,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.03745367642;
     else    wrongPVrate = 1.0;
   }
-  float EventWeight = puweight*genweight*lep_SF*wrongPVrate;
 
   float relIso = *lepton_relIso; 
 
@@ -338,9 +331,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }
   //if( passmuon || passelectron ){
 
-  if( passelectron )  EventWeight *= jet_SF_deepCSV_38[0];
-  else if ( passmuon) EventWeight *= jet_SF_deepCSV_30[0];
-
   int jetIdx[4];
   TLorentzVector jetP4s[4];
 
@@ -355,15 +345,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       njets++;
       jetIdxs.push_back(iJet);
 
-      if( jet_deepCSV[iJet] > 0.4941){
-        nbjets_m++;
-      }
-      if( jet_deepCSV[iJet] > 0.8001 ){
-        nbjets_t++;
-      }
-      if( jet_deepCvsL[iJet] > 0.15 && jet_deepCvsB[iJet] > 0.28 ){
-        ncjets_m++;
-      }
+      if( jet_deepCSV[iJet] > 0.4941 ) nbjets_m++;
+      if( jet_deepCSV[iJet] > 0.8001 ) nbjets_t++;
+      if( jet_deepCvsL[iJet] > 0.15 && jet_deepCvsB[iJet] > 0.28 ) ncjets_m++;
     }
   }
 
@@ -429,79 +413,129 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   bool eventSelection[Ncuts];
   for(int bcut=0; bcut < Ncuts; bcut++) eventSelection[bcut] = false;
 
-  eventSelection[0] = true;
-  eventSelection[1] = ( njets == 3 );
-  eventSelection[2] = ( njets == 3 ) && ( nbjets_m == 2 );
-  eventSelection[3] = ( njets == 3 ) && ( nbjets_m == 3 );
-  eventSelection[4] = ( njets == 3 ) && ( nbjets_m >= 2 );
-  eventSelection[5] = ( njets == 3 ) && ( nbjets_m >= 3 );
-  eventSelection[6] = ( njets >= 3 ) && ( nbjets_m >= 2 );
-  eventSelection[7] = ( njets >= 3 ) && ( nbjets_m >= 3 );
-  eventSelection[8] = ( njets == 4 );
-  eventSelection[9] = ( njets == 4 ) && ( nbjets_m == 2 );
-  eventSelection[10] = ( njets == 4 ) && ( nbjets_m == 3 );
-  eventSelection[11] = ( njets == 4 ) && ( nbjets_m == 4 );
-  eventSelection[12] = ( njets >= 4 ) && ( nbjets_m == 2 ); 
-  eventSelection[13] = ( njets >= 4 ) && ( nbjets_m == 3 );
-  eventSelection[14] = ( njets >= 4 ) && ( nbjets_m == 4 );
-  eventSelection[15] = ( njets >= 4 ) && ( nbjets_m >= 2 );
-  eventSelection[16] = ( njets >= 4 ) && ( nbjets_m >= 3 );
-  eventSelection[17] = ( njets >= 4 ) && ( nbjets_m >= 4 );
+  eventSelection[0]  = true;
+  eventSelection[1]  = ( njets == 3 );
+  eventSelection[2]  = ( njets == 3 ) && ( nbjets_m == 2 );
+  eventSelection[3]  = ( njets == 3 ) && ( nbjets_m == 3 );
+  eventSelection[4]  = ( njets >= 3 ) && ( nbjets_m >= 2 );
+  eventSelection[5]  = ( njets == 4 );
+  eventSelection[6]  = ( njets >= 4 ) && ( nbjets_m == 2 ); 
+  eventSelection[7]  = ( njets >= 4 ) && ( nbjets_m == 3 );
+  eventSelection[8]  = ( njets >= 4 ) && ( nbjets_m == 4 );
+  eventSelection[9]  = ( njets >= 4 ) && ( nbjets_m >= 2 );
+  eventSelection[10] = ( njets >= 4 ) && ( nbjets_m >= 3 );
+  eventSelection[11] = ( njets >= 4 ) && ( nbjets_m >= 4 );
 
   int modeArray[2] = {mode, 2};
 
   for( int MODE : modeArray ){
-    for( int cut = 0; cut < 18; cut++){
-      if(eventSelection[cut]){
-        h_PV[MODE][cut]->Fill(*GoodPV,EventWeight);
-        h_EventWeight[MODE][cut]->Fill(EventWeight);
-        h_NJet[MODE][cut]->Fill(njets, EventWeight);
-        h_NBJetCSVv2M[MODE][cut]->Fill(nbjets_m, EventWeight);
-        h_NBJetCSVv2T[MODE][cut]->Fill(nbjets_t, EventWeight);
-        h_NCJetM[MODE][cut]->Fill(ncjets_m, EventWeight);
-        h_LepPt[MODE][cut]->Fill(lepton.Pt(), EventWeight);
-        h_LepPhi[MODE][cut]->Fill(lepton.Phi(), EventWeight);
-        h_LepEta[MODE][cut]->Fill(lepton.Eta(), EventWeight);
-        h_MET[MODE][cut]->Fill(*MET, EventWeight);
-        h_WMass[MODE][cut]->Fill(transverseM, EventWeight);
-        h_DPhi[MODE][cut]->Fill(lepDphi, EventWeight);
-        h_LepIso[MODE][cut]->Fill(relIso, EventWeight);
-        for( int ii = 0; ii < njets; ii++){
-          const size_t ii1 = jetIdxs[ii];
-          h_JetCSV[MODE][cut]->Fill(jet_deepCSV[ii1],EventWeight);
-        }
+    for( int cut = 0; cut < 12; cut++){
+      if( eventSelection[cut] ){
+        for( int syst = 0; syst != syst_num; ++syst ){
+          float EventWeight = 1;
+          //Multiply syst. to event weight
+          if( !option.Contains("Run2017") ){
+            EventWeight *= wrongPVrate;
+            EventWeight *= *genWeight;
+            //PUWight
+            if      ( isPartOf("puup", std::string(syst_name[syst])) )   EventWeight *= PUWeight[1];
+            else if ( isPartOf("pudown", std::string(syst_name[syst])) ) EventWeight *= PUWeight[2];
+            else    EventWeight *= PUWeight[0];
+            //leptonSF
+            if      ( isPartOf("lepSFup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[1];
+            else if ( isPartOf("lepSFdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[2];
+            else    EventWeight *= lepton_SF[0];
+            //Deep CSV shape 
+            if( passmuon ){
+              if      ( isPartOf("_lfup", std::string(syst_name[syst])) )        EventWeight *= jet_SF_deepCSV_30[3];
+              else if ( isPartOf("_lfdown", std::string(syst_name[syst])) )      EventWeight *= jet_SF_deepCSV_30[4];
+              else if ( isPartOf("_hfup", std::string(syst_name[syst])) )        EventWeight *= jet_SF_deepCSV_30[5];
+              else if ( isPartOf("_hfdown", std::string(syst_name[syst])) )      EventWeight *= jet_SF_deepCSV_30[6];
+              else if ( isPartOf("_hfstat1up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[7];
+              else if ( isPartOf("_hfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[8];
+              else if ( isPartOf("_hfstat2up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[9];
+              else if ( isPartOf("_hfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[10];
+              else if ( isPartOf("_lfstat1up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[11];
+              else if ( isPartOf("_lfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[12];
+              else if ( isPartOf("_lfstat2up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[13];
+              else if ( isPartOf("_lfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[14];
+              else if ( isPartOf("cferr1up", std::string(syst_name[syst])) )     EventWeight *= jet_SF_deepCSV_30[15];
+              else if ( isPartOf("cferr1down", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[16];
+              else if ( isPartOf("cferr2up", std::string(syst_name[syst])) )     EventWeight *= jet_SF_deepCSV_30[17];
+              else if ( isPartOf("cferr2down", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[18];
+              else                                                               EventWeight *= jet_SF_deepCSV_30[0];
+            }
+            else if ( passelectron ){
+              if      ( isPartOf("_lfup", std::string(syst_name[syst])) )        EventWeight *= jet_SF_deepCSV_38[3];
+              else if ( isPartOf("_lfdown", std::string(syst_name[syst])) )      EventWeight *= jet_SF_deepCSV_38[4];
+              else if ( isPartOf("_hfup", std::string(syst_name[syst])) )        EventWeight *= jet_SF_deepCSV_38[5];
+              else if ( isPartOf("_hfdown", std::string(syst_name[syst])) )      EventWeight *= jet_SF_deepCSV_38[6];
+              else if ( isPartOf("_hfstat1up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[7];
+              else if ( isPartOf("_hfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[8];
+              else if ( isPartOf("_hfstat2up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[9];
+              else if ( isPartOf("_hfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[10];
+              else if ( isPartOf("_lfstat1up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[11];
+              else if ( isPartOf("_lfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[12];
+              else if ( isPartOf("_lfstat2up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[13];
+              else if ( isPartOf("_lfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[14];
+              else if ( isPartOf("cferr1up", std::string(syst_name[syst])) )     EventWeight *= jet_SF_deepCSV_38[15];
+              else if ( isPartOf("cferr1down", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[16];
+              else if ( isPartOf("cferr2up", std::string(syst_name[syst])) )     EventWeight *= jet_SF_deepCSV_38[17];
+              else if ( isPartOf("cferr2down", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[18];
+              else                                                               EventWeight *= jet_SF_deepCSV_38[0];
+            }
+          }
 
-        if( reco ){
-          if( njets >=4 && nbjets_m >=2 ){
-            for( int i = 0; i < 3; ++i ){
-              const size_t j = jetIdx[i];
-              h_csv[MODE][cut]->Fill(jet_deepCSV[j],EventWeight);
-              h_cvsl[MODE][cut]->Fill(jet_deepCvsL[j],EventWeight);
-              h_cvsb[MODE][cut]->Fill(jet_deepCvsB[j],EventWeight);
-            }
-            h_FCNHkinLepWMass[MODE][cut]->Fill((lepton+p4met).M(),EventWeight);
-            h_FCNHkinHadWMass[MODE][cut]->Fill((jetP4s[2]+jetP4s[3]).M(),EventWeight);
-            h_FCNHkinLepTopM[MODE][cut]->Fill((lepton+p4met+jetP4s[0]).M(),EventWeight);
-            h_FCNHkinHMass[MODE][cut]->Fill((jetP4s[1]+jetP4s[2]).M(),EventWeight);
-            h_FCNHkinDR[MODE][cut]->Fill(jetP4s[1].DeltaR(jetP4s[2]),EventWeight);
-            h_FCNHkinHadTopM[MODE][cut]->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).M(),EventWeight);
-            h_FCNHkinHPt[MODE][cut]->Fill((jetP4s[1]+jetP4s[2]).Pt(),EventWeight);
-            h_FCNHkinHdPhi[MODE][cut]->Fill(abs(jetP4s[1].DeltaPhi(jetP4s[2])),EventWeight);
-            h_FCNHkinHdEta[MODE][cut]->Fill(abs((jetP4s[1]-jetP4s[2]).Eta()),EventWeight);
-            h_FCNHkinHb1CSV[MODE][cut]->Fill(jet_deepCSV[jetIdx[1]],EventWeight);
-            h_FCNHkinHb2CSV[MODE][cut]->Fill(jet_deepCSV[jetIdx[2]],EventWeight);
-            h_FCNHkinLepTopPt[MODE][cut]->Fill((lepton+p4met+jetP4s[0]).Pt(),EventWeight);
-            h_FCNHkinHadTopPt[MODE][cut]->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(),EventWeight);
+          h_PV[MODE][cut][syst]->Fill(*GoodPV,EventWeight);
+          h_EventWeight[MODE][cut][syst]->Fill(EventWeight);
+          h_NJet[MODE][cut][syst]->Fill(njets, EventWeight);
+          h_NBJetCSVv2M[MODE][cut][syst]->Fill(nbjets_m, EventWeight);
+          h_NBJetCSVv2T[MODE][cut][syst]->Fill(nbjets_t, EventWeight);
+          h_NCJetM[MODE][cut][syst]->Fill(ncjets_m, EventWeight);
+          h_LepPt[MODE][cut][syst]->Fill(lepton.Pt(), EventWeight);
+          h_LepPhi[MODE][cut][syst]->Fill(lepton.Phi(), EventWeight);
+          h_LepEta[MODE][cut][syst]->Fill(lepton.Eta(), EventWeight);
+          h_MET[MODE][cut][syst]->Fill(*MET, EventWeight);
+          h_WMass[MODE][cut][syst]->Fill(transverseM, EventWeight);
+          h_DPhi[MODE][cut][syst]->Fill(lepDphi, EventWeight);
+          h_LepIso[MODE][cut][syst]->Fill(relIso, EventWeight);
+          for( int ii = 0; ii < njets; ii++){
+            const size_t ii1 = jetIdxs[ii];
+            h_JetCSV[MODE][cut][syst]->Fill(jet_deepCSV[ii1],EventWeight);
           }
-          if(genH.Pt() > 0){
-            h_genDR[MODE][cut]->Fill(gendR, EventWeight);
-            h_genHm[MODE][cut]->Fill(genHm, EventWeight);
-            if(match1 && match2){
-              h_matchDR[MODE][cut]->Fill(jetP4s[1].DeltaR(jetP4s[2]), EventWeight);
-              h_matchHm[MODE][cut]->Fill((jetP4s[1]+jetP4s[2]).M(), EventWeight);
+
+          if( reco ){
+            if( njets >=4 && nbjets_m >=2 ){
+              for( int i = 0; i < 3; ++i ){
+                const size_t j = jetIdx[i];
+                h_csv[MODE][cut][syst]->Fill(jet_deepCSV[j],EventWeight);
+                h_cvsl[MODE][cut][syst]->Fill(jet_deepCvsL[j],EventWeight);
+                h_cvsb[MODE][cut][syst]->Fill(jet_deepCvsB[j],EventWeight);
+              }
+              h_FCNHkinLepWMass[MODE][cut][syst]->Fill((lepton+p4met).M(),EventWeight);
+              h_FCNHkinHadWMass[MODE][cut][syst]->Fill((jetP4s[2]+jetP4s[3]).M(),EventWeight);
+              h_FCNHkinLepTopM[MODE][cut][syst]->Fill((lepton+p4met+jetP4s[0]).M(),EventWeight);
+              h_FCNHkinHMass[MODE][cut][syst]->Fill((jetP4s[1]+jetP4s[2]).M(),EventWeight);
+              h_FCNHkinDR[MODE][cut][syst]->Fill(jetP4s[1].DeltaR(jetP4s[2]),EventWeight);
+              h_FCNHkinHadTopM[MODE][cut][syst]->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).M(),EventWeight);
+              h_FCNHkinHPt[MODE][cut][syst]->Fill((jetP4s[1]+jetP4s[2]).Pt(),EventWeight);
+              h_FCNHkinHdPhi[MODE][cut][syst]->Fill(abs(jetP4s[1].DeltaPhi(jetP4s[2])),EventWeight);
+              h_FCNHkinHdEta[MODE][cut][syst]->Fill(abs((jetP4s[1]-jetP4s[2]).Eta()),EventWeight);
+              h_FCNHkinHb1CSV[MODE][cut][syst]->Fill(jet_deepCSV[jetIdx[1]],EventWeight);
+              h_FCNHkinHb2CSV[MODE][cut][syst]->Fill(jet_deepCSV[jetIdx[2]],EventWeight);
+              h_FCNHkinLepTopPt[MODE][cut][syst]->Fill((lepton+p4met+jetP4s[0]).Pt(),EventWeight);
+              h_FCNHkinHadTopPt[MODE][cut][syst]->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(),EventWeight);
             }
-          }
-        }//reco
+            if(genH.Pt() > 0){
+              h_genDR[MODE][cut][syst]->Fill(gendR, EventWeight);
+              h_genHm[MODE][cut][syst]->Fill(genHm, EventWeight);
+              if(match1 && match2){
+                h_matchDR[MODE][cut][syst]->Fill(jetP4s[1].DeltaR(jetP4s[2]), EventWeight);
+                h_matchHm[MODE][cut][syst]->Fill((jetP4s[1]+jetP4s[2]).M(), EventWeight);
+              }
+            }
+          }//reco
+        }//syst loop
       }//selection loopa
     }//mode loop : e or mu + emu
   }
@@ -565,4 +599,10 @@ double MyAnalysis::transverseMass( const TLorentzVector & lepton, const TLorentz
 
   return out;
 
+}
+
+bool MyAnalysis::isPartOf(const std::string& word, const std::string& sentence) {
+    return sentence.find(word)    // this returns the index of the first instance
+                                  // word
+           != std::string::npos;  // which will take this value if it's not found
 }

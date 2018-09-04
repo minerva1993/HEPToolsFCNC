@@ -1,57 +1,62 @@
-'h_NJet_Ch0_S6':
-  for-yields: true
-  x-axis: "Jet Multiplicities"
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.0f GeV"
-  y-axis-show-zero: true
-  show-overflow: true
-  show-ratio: true
-  save-extensions: ['pdf']
-
-'h_NJet_Ch1_S6':
-  for-yields: true
-  x-axis: "Jet Multiplicities"
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.0f GeV"
-  y-axis-show-zero: true
-  show-overflow: true
-  show-ratio: true
-  save-extensions: ['pdf']
-
 'h_NJet_Ch2_S6':
   for-yields: true
   x-axis: "Jet Multiplicities"
-  y-axis: "Entries"
+  y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   y-axis-show-zero: true
   show-overflow: true
   show-ratio: true
+  log-y: true
   save-extensions: ['pdf']
 
-'h_NJet_Ch0_S12':
+'h_LepPt_Ch2_S6':
   for-yields: true
-  x-axis: "Jet Multiplicities"
-  y-axis: "Entries"
+  x-axis: "Lepton pT"
+  y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   y-axis-show-zero: true
   show-overflow: true
   show-ratio: true
+  #signal-normalize-data: true
   save-extensions: ['pdf']
 
-'h_NJet_Ch1_S12':
+'h_JetCSV_Ch2_S6':
   for-yields: true
-  x-axis: "Jet Multiplicities"
-  y-axis: "Entries"
+  x-axis: "Jet deep CSV"
+  y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   y-axis-show-zero: true
   show-overflow: true
   show-ratio: true
+  #signal-normalize-data: true
   save-extensions: ['pdf']
 
-'h_NJet_Ch2_S12':
+'h_NJet_Ch2_S13':
   for-yields: true
   x-axis: "Jet Multiplicities"
-  y-axis: "Entries"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  y-axis-show-zero: true
+  show-overflow: true
+  show-ratio: true
+  log-y: true
+  save-extensions: ['pdf']
+
+'h_LepPt_Ch2_S13':
+  for-yields: true
+  x-axis: "Lepton pT"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  y-axis-show-zero: true
+  show-overflow: true
+  show-ratio: true
+  #signal-normalize-data: true
+  save-extensions: ['pdf']
+
+'h_JetCSV_Ch2_S13':
+  for-yields: true
+  x-axis: "Jet deep CSV"
+  y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   y-axis-show-zero: true
   show-overflow: true

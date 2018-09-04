@@ -537,7 +537,7 @@ namespace plotIt {
       low_pad = std::make_shared<TPad>("pad_lo", "", 0., 0., 1, 0.33333);
       low_pad->Draw();
       low_pad->SetLeftMargin(config.margin_left);
-      low_pad->SetTopMargin(.1);
+      low_pad->SetTopMargin(.05);
       low_pad->SetBottomMargin(config.margin_bottom / .3333);
       low_pad->SetRightMargin(config.margin_right);
       low_pad->SetTickx(1);
@@ -598,16 +598,13 @@ namespace plotIt {
         int max_data = h_data->GetMaximum();
 
         if (max_mc > max_sig) {
-          if (plot.log_y) {
-            if (max_data > 100000) maxfrac = 1000;
-            else maxfrac = 100;
-          }
+          if (plot.log_y) maxfrac = 50000;
           if (max_mc > max_data) setMaximum(toDraw[0].first, max_mc + max_mc*maxfrac);
           else setMaximum(toDraw[0].first, max_data + max_data*maxfrac);
         }
         else {
           if (plot.log_y) {
-            maxfrac = 100;
+            maxfrac = 50000;
             setMaximum(toDraw[0].first, max_sig + max_sig*maxfrac);
           }
           else setMaximum(toDraw[0].first, max_sig*1.5);

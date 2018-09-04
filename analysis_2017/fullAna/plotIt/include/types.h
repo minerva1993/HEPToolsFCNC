@@ -403,7 +403,7 @@ namespace plotIt {
     float margin_left = 0.14;
     float margin_right = 0.03;
     float margin_top = 0.06;
-    float margin_bottom = 0.14;
+    float margin_bottom = 0.1;
     float luminosity = -1;
     float scale = 1;
     bool no_lumi_rescaling = false;
