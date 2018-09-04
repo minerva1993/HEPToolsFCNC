@@ -182,7 +182,7 @@ public :
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");
     TTree *assignT;// = (TTree*) assignF->Get("tree");
-    //int nevt = assignT->GetEntries();
+    int reco_id = -1;//STFCNC==0, TTFCNC==1, TTBKG==2
 
     vector<double> lepPt;
     vector<double> missET;

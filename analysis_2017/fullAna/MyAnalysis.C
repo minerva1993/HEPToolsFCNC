@@ -20,10 +20,16 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
   //Delete ntuple number and data era so that we can merge histos w.r.t. dataset, prepare assign ntuple
   const char* assign_file = "";
   if( reco ){
-    if     (option.Contains("Run2017")) sample.erase(sample.find_first_of("_")-1,string::npos);
-    else if(option.Contains("part")) sample.erase(sample.find_last_of("p"),string::npos);
-    else   sample.erase(sample.find_first_of("_"),string::npos);
-    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignSTFCNC01/assign_deepReco_%s.root", option.Data());
+    //if     ( option.Contains("Run2017") ) sample.erase(sample.find_first_of("_")-1, string::npos);
+    //else if( option.Contains("part") )    sample.erase(sample.find_last_of("p"),    string::npos);
+    //else                                  sample.erase(sample.find_first_of("_"),   string::npos);
+    string reco_scheme = sample.substr(sample.find_first_of("-")+1,string::npos);
+    if     ( reco_scheme.find("STFCNC") != string::npos ) reco_id = 0;
+    else if( reco_scheme.find("TTFCNC") != string::npos ) reco_id = 1;
+    else if( reco_scheme.find("TTBKG") != string::npos )  reco_id = 2;
+    else                                                  reco_id = -1;
+    sample.erase( sample.find_first_of("-"),string::npos );
+    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assign%s/assign_deepReco_%s.root", reco_scheme.c_str(), sample.c_str());
 
     bool file_exist = true;
     string file_tmp_path = assign_file;
@@ -368,8 +374,11 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     //Jet Assignment
     vector<double>::iterator iter;
     int evtIdx = 0;
-    if( njets >= 3 && nbjets_m >= 2 && !lepPt.empty() ){
-    //if( njets >= 4 && nbjets_m >= 2 && !lepPt.empty() ){
+    int njet_cut = 0;
+    if     ( reco_id == 0 )                 njet_cut = 3;
+    else if( reco_id == 1 or reco_id == 2 ) njet_cut = 4;
+    //find combination
+    if( njets >= njet_cut && nbjets_m >= 2 && !lepPt.empty() ){
       for( iter = lepPt.begin(); iter != lepPt.end(); iter++){
         if( *iter == static_cast<float>(lepton.Pt()) ){
           int tmpIdx = distance(lepPt.begin(), iter);
@@ -553,11 +562,28 @@ void MyAnalysis::SlaveTerminate()
 void MyAnalysis::Terminate()
 {
   TString option = GetOption();
+  string sample = option.Data();
 
   if( option.Contains("_") ) reco = true;
   else reco = false;
 
-  if(reco) out = TFile::Open(Form("doReco/temp/hist_%s.root",option.Data()),"RECREATE");
+  const char* assign_file = "";
+  if( reco ){
+    string reco_scheme = sample.substr(sample.find_first_of("-")+1,string::npos);
+    sample.erase( sample.find_first_of("-"),string::npos );
+    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assign%s/assign_deepReco_%s.root", reco_scheme.c_str(), sample.c_str());
+    string file_tmp_path = assign_file;
+    ifstream file_tmp(file_tmp_path);
+
+    if(file_tmp.is_open()){
+      //cout << lepcount << endl;
+      auto it = unique( dupCheck.begin(), dupCheck.end() );
+      if( it != dupCheck.end() ) cout << string(option.Data()) + string(": Duplicate(s)") << endl;
+      //cout << ((it == dupCheck.end()) ? "Unique" : "Duplicate(s)\n");
+    }
+    else cout << "file " + file_tmp_path + " not opened!";
+    out = TFile::Open(Form("doReco/temp/hist_%s.root",sample.c_str()),"RECREATE");
+  }
   else out = TFile::Open(Form("doNoReco/hist_%s.root",option.Data()),"RECREATE");
 
   TList * l = GetOutputList();
@@ -573,20 +599,6 @@ void MyAnalysis::Terminate()
 
   out->Write();
   out->Close();
-
-  const char* assign_file = "";
-  if( reco ){
-    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/classifier/2017/assignSTFCNC01/assign_deepReco_%s.root", option.Data());
-    string file_tmp_path = assign_file;
-    ifstream file_tmp(file_tmp_path);
-
-    if(file_tmp.is_open()){
-      //cout << lepcount << endl;
-      auto it = unique( dupCheck.begin(), dupCheck.end() );
-      if( it != dupCheck.end() ) cout << string(option.Data()) + string(": Duplicate(s)") << endl;
-      //cout << ((it == dupCheck.end()) ? "Unique" : "Duplicate(s)\n");
-    }
-  }
 }
 
 double MyAnalysis::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){
