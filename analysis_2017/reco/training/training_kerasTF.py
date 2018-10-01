@@ -7,13 +7,11 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize
-from sklearn.decomposition import PCA
 from sklearn.utils import shuffle, class_weight
 from sklearn.metrics import roc_auc_score, roc_curve
-from sklearn.metrics import confusion_matrix, f1_score, precision_score, recall_score
+from sklearn.metrics import f1_score, precision_score, recall_score
 import numpy as np
 from root_numpy import array2tree, tree2array
-from ROOT import TFile, TTree
 
 import tensorflow as tf
 import keras
@@ -22,7 +20,7 @@ from keras.models import Model, Sequential, load_model
 from keras.layers import Input, Dense, Activation, Dropout, add
 from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l2
-from keras.optimizers import Adam, SGD
+from keras.optimizers import Adam
 from keras.callbacks import Callback, ModelCheckpoint
 
 #Channel selection: 0=bkg 1=STFCNC 2=TTFCNC
@@ -57,8 +55,16 @@ if ch == "STFCNC":
 
 elif ch == "TTFCNC":
   signal_label = 1111
-  input_files.extend([])
-  input_features.extend([])
+  input_files.extend(['deepReco_TTTH1L3BaTLepHut_000.h5', 'deepReco_TTTH1L3BTLepHut_000.h5'])
+  input_features.extend(['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m', 'jet3pt', 'jet3eta', 'jet3m', 
+                         'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
+                         'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
+                         'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m', 
+                         'lepWpt', 'lepWdphi', 'lepTdphi', 'lepTm', 
+                         'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta', 
+                         'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
+                         'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm', 
+                         'genMatch',])
 
 elif ch == "TTBKG":
   signal_label = 1111
@@ -72,7 +78,7 @@ elif ch == "TTBKG":
                          'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m', 
                          'lepWpt', 'lepWdphi', 'lepTdphi', 'lepTm', 
                          'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta', 
-                         'hadTphi', 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
+                         'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                          'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm', 
                          'genMatch',])
 
@@ -249,7 +255,7 @@ class roc_callback(Callback):
       plt.xlabel('Signal Efficiency')
       plt.ylabel('Background Rejection')
       plt.title('ROC Curve')
-      plt.legend(['Train', 'Test'], loc='lower left')
+      plt.legend(['Test', 'Train'], loc='lower left')
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_roc_%d_%.4f.pdf' %(epoch+1,round(roc_val,4))))
       plt.gcf().clear()
 
@@ -297,10 +303,17 @@ class roc_callback(Callback):
       err = np.sqrt(hist * scale) / scale
       plt.errorbar(center, hist, yerr=err, fmt='o', c='r', label='B (training)')
 
+      plt.xlim(0,1)
       plt.xlabel("Deep Learning Score")
       plt.ylabel("Arbitrary units")
       plt.legend(loc='best')
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_overtraining_%d_%.4f.pdf' %(epoch+1,round(roc_val,4))))
+
+      min_, max_ = plt.gca().get_ylim()
+      plt.yscale("log")
+      if min_ < 0.01: plt.ylim(bottom=0.01)
+      else: plt.ylim(bottom=min_)
+      plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_overtraining_log_%d_%.4f.pdf' %(epoch+1,round(roc_val,4))))
       plt.gcf().clear()
       print('ROC curve and overtraining check plots are saved!')
 
@@ -326,7 +339,7 @@ class roc_callback(Callback):
 #read input and skim
 ####################
 for files in input_files:
-  data_temp = pd.read_hdf('../mkNtuple/' + ch + '_hdf/' + files)
+  data_temp = pd.read_hdf('../mkNtuple/hdf_' + ch + '/' + files)
   if files == input_files[0]: data = data_temp
   else: data = pd.concat([data,data_temp], ignore_index=True)
 #print(daaxis=data.index.is_unique)#check if indices are duplicated
@@ -386,9 +399,9 @@ labels_test = labels_test.values
 Y_test = np_utils.to_categorical(labels_test)
 
 
-########################
-#Standardization and PCA
-########################
+################
+#Standardization
+################
 scaler = StandardScaler()
 data_train_sc = scaler.fit_transform(data_train)
 data_test_sc = scaler.fit_transform(data_test)
@@ -470,7 +483,7 @@ with tf.device("/cpu:0"):
   predictions = Dense(2, activation='softmax')(x)
   model = Model(inputs=inputs, outputs=predictions)
 
-if multiGPU: train_model = multi_gpu_model(model, gpus=4)
+if multiGPU: train_model = multi_gpu_model(model, gpus=2)
 else: train_model = model
 
 train_model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0.9, beta_2=0.999, epsilon=1e-8, decay=1E-3), metrics=['binary_accuracy'])
@@ -480,7 +493,7 @@ train_model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0
 modelfile = 'model_{epoch:02d}_{val_binary_accuracy:.4f}.h5'
 checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile), monitor='val_binary_accuracy', verbose=1, save_best_only=False)#, mode='max')
 history = train_model.fit(X_train, Y_train,
-                          epochs=100, batch_size=1000,
+                          epochs=50, batch_size=1000,
                           validation_data=(X_test, Y_test),
                           #class_weight={ 0: 14, 1: 1 }, 
                           callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model)]

@@ -1,6 +1,6 @@
 import os
 
-version = 'V9_2/180815/'
+version = 'V9_2/180922/'
 path_to_prod = '/data/users/minerva1993/ntuple_Run2017/' + version + 'production/'
 path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 print("Looking for files in %s"%path_to_prod)
@@ -43,7 +43,7 @@ for dataset_folder in os.listdir(path_to_prod):
     tmp_string += os.path.join(dataset_path, file_name)
     output_file_name = dataset_folder.replace("_",'')
     tmp_string += ' ' + output_file_name + "_" + file_id
-    if ('ST_' in dataset_folder) or ('TT_powheg' in dataset_folder):
+    if ('ST_' in dataset_folder) or ('TT_powheg' in dataset_folder) or ('TTHad_powheg' in dataset_folder) or ('TTLL_powheg' in dataset_folder) or ('TT_TH' in dataset_folder):
       string_for_signal_processing += tmp_string + '\n'
     else:
       string_for_bkg_processing += tmp_string + '\n'

@@ -135,19 +135,15 @@ Bool_t makeTuple::Process(Long64_t entry)
   if( mode > 2) return kTRUE; 
   if( !option.Contains("Data") && *TruePV == 0 ) return kTRUE;
 
-  float lep_SF = 1.0;
-  float genweight = 1.0;
-  float puweight = 1.0;
-  float jetsf = 1.0;
+  float EventWeight = 1.0;
   float wrongPVrate = 1.0;
   if( !option.Contains("Data") ){
-    lep_SF = lepton_SF[0];
-    genweight = *genWeight;
-    puweight = PUWeight[0];
-    jetsf = jet_SF_deepCSV_30[0];
-    wrongPVrate = 1.0293;
+    EventWeight *= lepton_SF[0];
+    EventWeight *= *genweight;
+    EventWeight *= PUWeight[0];
+    //jetsf = jet_SF_deepCSV_30[0];
+    //wrongPVrate = 1.0293;
   }
-  float EventWeight = puweight*genweight*lep_SF*jetsf;
 
   float relIso = *lepton_relIso; 
 
@@ -165,7 +161,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   p4met.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
-  lepton.SetPtEtaPhiE(*lepton_pT, *lepton_eta, *lepton_phi, *lepton_E);
+  lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
 
   double transverseM = transverseMass(lepton, p4met);
   double lepDphi = lepton.DeltaPhi(p4met);
@@ -209,10 +205,12 @@ Bool_t makeTuple::Process(Long64_t entry)
   int jetIdx[4];
   TLorentzVector jetP4s[4];
 
-  for (unsigned int iJet = 0; iJet < jet_pT.GetSize() ; ++iJet) {
-
+  for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
+/////////////////
+///jet SF!
+////////////////
     TLorentzVector jet;
-    jet.SetPtEtaPhiE(jet_pT[iJet], jet_eta[iJet], jet_phi[iJet], jet_E[iJet]);
+    jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
     //if( !option.Contains("Data") ) jet = jet * jet_JER_Nom[iJet];
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
@@ -235,15 +233,19 @@ Bool_t makeTuple::Process(Long64_t entry)
   if( njets <  3 || nbjets_m < 2) return kTRUE; 
   
   //cout << nevt << endl;
-  if( option.Contains("Data") ) b_EventCategory = -1;
+  if( option.Contains("Run2017") ) b_EventCategory = -1;
   else if( option.Contains("Hct") || option.Contains("Hut") ) b_EventCategory = 0;
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
   else if( option.Contains("ttbj") ) b_EventCategory = 2;
   else if( option.Contains("ttcc") ) b_EventCategory = 3;
-  else if( option.Contains("ttLF") || option.Contains("ttother") ) b_EventCategory = 4;
-  else if( option.Contains("channel") ) b_EventCategory = 5; //singletop
-  else if( option.Contains("zjets") ) b_EventCategory = 6; //DY
-  else b_EventCategory = 7;
+  else if( option.Contains("ttLF") ) b_EventCategory = 4;
+  else if( option.Contains("ttother") ) b_EventCategory = 5;
+  else if( option.Contains("SingleT") ) b_EventCategory = 6; //singletop
+  else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 7; //VV
+  else if( option.Contains("DY") ) b_EventCategory = 8;
+  else if( option.Contains("W1Jets") or option.Contains("W2Jets") or option.Contains("W3Jets") or option.Contains("W4Jets") ) b_EventCategory = 9;
+  else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 10;
+  else b_EventCategory = 20;
 
   b_EventWeight = EventWeight;
   b_GoodPV = *GoodPV;
@@ -283,10 +285,10 @@ Bool_t makeTuple::Process(Long64_t entry)
     jetIdx[0] = i0; jetIdx[1] = i1; jetIdx[2] = i2; jetIdx[3] = i3;
     //cout << i0 << endl;
 
-    jetP4s[0].SetPtEtaPhiE(jet_pT[i0], jet_eta[i0], jet_phi[i0], jet_E[i0]);
-    jetP4s[1].SetPtEtaPhiE(jet_pT[i1], jet_eta[i1], jet_phi[i1], jet_E[i1]);
-    jetP4s[2].SetPtEtaPhiE(jet_pT[i2], jet_eta[i2], jet_phi[i2], jet_E[i2]);
-    jetP4s[3].SetPtEtaPhiE(jet_pT[i3], jet_eta[i3], jet_phi[i3], jet_E[i3]);
+    jetP4s[0].SetPtEtaPhiE(jet_pt[i0], jet_eta[i0], jet_phi[i0], jet_e[i0]);
+    jetP4s[1].SetPtEtaPhiE(jet_pt[i1], jet_eta[i1], jet_phi[i1], jet_e[i1]);
+    jetP4s[2].SetPtEtaPhiE(jet_pt[i2], jet_eta[i2], jet_phi[i2], jet_e[i2]);
+    jetP4s[3].SetPtEtaPhiE(jet_pt[i3], jet_eta[i3], jet_phi[i3], jet_e[i3]);
 
     /*
     if( !option.Contains("Data") ){

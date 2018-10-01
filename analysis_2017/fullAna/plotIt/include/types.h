@@ -297,7 +297,7 @@ namespace plotIt {
     Range log_x_axis_range;
     Range y_axis_range;
     Range log_y_axis_range;
-    Range ratio_y_axis_range = {0.6, 1.4};
+    Range ratio_y_axis_range = {0.4, 1.6};
 
     // Blind range
     Range blinded_range;
@@ -442,7 +442,7 @@ namespace plotIt {
 
     std::string root = "./";
 
-    bool show_overflow = false;
+    bool show_overflow = true;
     bool transparent_background = false;
 
     std::string mode = "hist"; // "tree" or "hist"

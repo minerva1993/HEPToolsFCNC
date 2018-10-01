@@ -19,6 +19,10 @@ namespace plotIt {
         DOWN = -1
     };
 
+    enum ScaleVariation {
+        SCALE0, SCALE1, SCALE2, SCALE3, SCALE4, SCALE5
+    };
+
     struct Plot;
     struct File;
     struct Systematic;
@@ -100,6 +104,11 @@ namespace plotIt {
 
     struct ShapeSystematic: public Systematic {
         ShapeSystematic(const YAML::Node& node);
+        virtual SystematicSet newSet(TObject* nominal, File& file, const Plot& plot) override;
+    };
+
+    struct ScaleWeightSystematic: public Systematic {
+        ScaleWeightSystematic(const YAML::Node& node);
         virtual SystematicSet newSet(TObject* nominal, File& file, const Plot& plot) override;
     };
 

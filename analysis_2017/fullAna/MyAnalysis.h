@@ -1,10 +1,3 @@
-//////////////////////////////////////////////////////////
-// This class has been automatically generated on
-// Tue Jan 31 23:15:22 2017 by ROOT version 6.06/01
-// from TTree tree/TopTree
-// found on file: /xrootd/store/user/brochero/v8-0-4/Tree_LepJets_NewCSVSF_v8-0-4_Spring16-80X_36814pb-1_ttbar_PowhegPythia.root
-//////////////////////////////////////////////////////////
-
 #ifndef MyAnalysis_h
 #define MyAnalysis_h
 
@@ -31,30 +24,32 @@ public :
    TTree          *fChain = 0;   //!pointer to the analyzed TTree or TChain
 
    // Readers to access the data (delete the ones you do not need).
-   //TTreeReaderValue<Int_t> event = {fReader, "event"};
-   //TTreeReaderValue<Int_t> run = {fReader, "run"};
-   //TTreeReaderValue<Int_t> luminumber = {fReader, "luminumber"};
-   TTreeReaderValue<Float_t> genWeight = {fReader, "genweight"};
-   TTreeReaderValue<Int_t> GoodPV = {fReader, "GoodPV"};
+   TTreeReaderValue<Int_t> event = {fReader, "event"};
+   TTreeReaderValue<Int_t> run = {fReader, "run"};
+   TTreeReaderValue<Int_t> luminumber = {fReader, "luminumber"};
+   TTreeReaderValue<Float_t> genweight = {fReader, "genweight"};
    TTreeReaderValue<Int_t> TruePV = {fReader, "TruePV"};
+   TTreeReaderValue<Int_t> GoodPV = {fReader, "GoodPV"};
    TTreeReaderValue<Int_t> channel = {fReader, "channel"};
    TTreeReaderArray<float> PUWeight = {fReader, "PUWeight"};
+   TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
+   TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    TTreeReaderValue<Float_t> MET = {fReader, "MET"};
    TTreeReaderValue<Float_t> MET_phi = {fReader, "MET_phi"};
-   TTreeReaderValue<Float_t> lepton_pT = {fReader, "lepton_pt"};
+   TTreeReaderValue<Float_t> lepton_pt = {fReader, "lepton_pt"};
    TTreeReaderValue<Float_t> lepton_eta = {fReader, "lepton_eta"};
    TTreeReaderValue<Float_t> lepton_phi = {fReader, "lepton_phi"};
-   TTreeReaderValue<Float_t> lepton_E = {fReader, "lepton_e"};
+   TTreeReaderValue<Float_t> lepton_e = {fReader, "lepton_e"};
    TTreeReaderValue<Float_t> lepton_LES = {fReader, "lepton_LES"};
-   TTreeReaderValue<Float_t> lepton_relIso = {fReader, "lepton_relIso"};
-   TTreeReaderValue<bool> lepton_isIso = {fReader, "lepton_isIso"};
    TTreeReaderArray<float> lepton_SF = {fReader, "lepton_SF"};
-   TTreeReaderArray<float> jet_pT = {fReader, "jet_pt"};
+   TTreeReaderValue<Float_t> lepton_relIso = {fReader, "lepton_relIso"};
+   TTreeReaderValue<Bool_t> lepton_isIso = {fReader, "lepton_isIso"};
+   TTreeReaderValue<Int_t> elec_trg = {fReader, "elec_trg"};
+   TTreeReaderArray<float> jet_pt = {fReader, "jet_pt"};
    TTreeReaderArray<float> jet_eta = {fReader, "jet_eta"};
    TTreeReaderArray<float> jet_phi = {fReader, "jet_phi"};
-   TTreeReaderArray<float> jet_E = {fReader, "jet_e"};
+   TTreeReaderArray<float> jet_e = {fReader, "jet_e"};
    TTreeReaderArray<int> jet_index = {fReader, "jet_index"};
-   //TTreeReaderArray<int> jet_gencone_mom = {fReader, "jet_gencone_mom"};//not in new 2017 ntuple
    TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
    TTreeReaderArray<float> jet_deepCSV = {fReader, "jet_deepCSV"};
    TTreeReaderArray<float> jet_SF_deepCSV_25 = {fReader, "jet_SF_deepCSV_25"};
@@ -67,7 +62,8 @@ public :
    TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
    TTreeReaderArray<float> jet_deepCvsB = {fReader, "jet_deepCvsB"};
-   //TTreeReaderValue<Int_t> jet_number = {fReader, "jet_number"};
+   TTreeReaderValue<Int_t> jet_njet = {fReader, "jet_njet"};
+   TTreeReaderValue<Int_t> jet_nbjetm = {fReader, "jet_nbjetm"};
    TTreeReaderArray<int> jet_partonFlavour = {fReader, "jet_partonFlavour"};
    TTreeReaderArray<int> jet_hadronFlavour = {fReader, "jet_hadronFlavour"};
    TTreeReaderArray<float> jet_JES_Up = {fReader, "jet_JES_Up"};
@@ -75,28 +71,6 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
-   //TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
-   //TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
-   //TTreeReaderArray<int> jet_MatchedGenJetIndex = {fReader, "jet_MatchedGenJetIndex"};
-   //TTreeReaderArray<int> genconecatid = {fReader, "genconecatid"};
-   //TTreeReaderArray<float> gencone_gjet_pT = {fReader, "gencone_gjet_pT"};
-   //TTreeReaderArray<float> gencone_gjet_eta = {fReader, "gencone_gjet_eta"};
-   //TTreeReaderArray<float> gencone_gjet_phi = {fReader, "gencone_gjet_phi"};
-   //TTreeReaderArray<float> gencone_gjet_E = {fReader, "gencone_gjet_E"};
-   //TTreeReaderArray<int> gencone_gjetIndex = {fReader, "gencone_gjetIndex"};
-   //TTreeReaderArray<int> gencone_gJetFlavW = {fReader, "gencone_gJetFlavW"};
-   //TTreeReaderValue<Int_t> b_GenCone_NgJetsW = {fReader, "gencone_NgjetsW"};
-   //TTreeReaderValue<Float_t> DRAddJets = {fReader, "draddjets"};
-   //TTreeReaderValue<Int_t> genhiggscatid = {fReader, "genhiggscatid"};
-   //TTreeReaderValue<Int_t> genchannel = {fReader, "genchannel"};
-   //TTreeReaderValue<Float_t> genlepton_pT = {fReader, "genlepton_pT"};
-   //TTreeReaderValue<Float_t> genlepton_eta = {fReader, "genlepton_eta"};
-   //TTreeReaderValue<Float_t> genlepton_phi = {fReader, "genlepton_phi"};
-   //TTreeReaderValue<Float_t> genlepton_E = {fReader, "genlepton_E"};
-   //TTreeReaderValue<Float_t> gennu_pT = {fReader, "gennu_pT"};
-   //TTreeReaderValue<Float_t> gennu_eta = {fReader, "gennu_eta"};
-   //TTreeReaderValue<Float_t> gennu_phi = {fReader, "gennu_phi"};
-   //TTreeReaderValue<Float_t> gennu_E = {fReader, "gennu_E"};
    TTreeReaderValue<Float_t> addHbjet1_pt = {fReader, "addHbjet1_pt"};
    TTreeReaderValue<Float_t> addHbjet1_eta = {fReader, "addHbjet1_eta"};
    TTreeReaderValue<Float_t> addHbjet1_phi = {fReader, "addHbjet1_phi"};
@@ -128,56 +102,57 @@ public :
    ClassDef(MyAnalysis,0);
 
     //Declare systematics here FIXME
-    const std::vector<const char*> syst_name = {"", "_puup", "_pudown", "_lepSFup", "_lepSFdown",
-                                                "_lfup", "_lfdown", "_hfup", "_hfdown",
-                                                "_hfstat1up", "_hfstat1down", "_hfstat2up", "_hfstat2down",
-                                                "_lfstat1up", "_lfstat1down", "_lfstat2up", "_lfstat2down",
-                                                "_cferr1up", "_cferr1down", "_cferr2up", "_cferr2down"};
+    const std::vector<const char*> syst_name = {"", "__puup", "__pudown", "__lepSFup", "__lepSFdown",
+                                                "__lfup", "__lfdown", "__hfup", "__hfdown",
+                                                "__hfstat1up", "__hfstat1down", "__hfstat2up", "__hfstat2down",
+                                                "__lfstat1up", "__lfstat1down", "__lfstat2up", "__lfstat2down",
+                                                "__cferr1up", "__cferr1down", "__cferr2up", "__cferr2down",
+                                                "__scale0", "__scale1", "__scale2", "__scale3", "__scale4", "__scale5"};
     int syst_num = syst_name.size();
 
-    TH1D *h_PV[3][12][21];
-    TH1D *h_EventWeight[3][12][21];
-    TH1D *h_NJet[3][12][21];
-    TH1D *h_NBJetCSVv2M[3][12][21];
-    TH1D *h_NBJetCSVv2T[3][12][21];
-    TH1D *h_NCJetM[3][12][21];
-    TH1D *h_LepPt[3][12][21];
-    TH1D *h_LepPhi[3][12][21];
-    TH1D *h_LepEta[3][12][21];
-    TH1D *h_MET[3][12][21];
+    TH1D *h_PV[3][12][27];
+    TH1D *h_EventWeight[3][12][27];
+    TH1D *h_NJet[3][12][27];
+    TH1D *h_NBJetCSVv2M[3][12][27];
+    TH1D *h_NBJetCSVv2T[3][12][27];
+    TH1D *h_NCJetM[3][12][27];
+    TH1D *h_LepPt[3][12][27];
+    TH1D *h_LepPhi[3][12][27];
+    TH1D *h_LepEta[3][12][27];
+    TH1D *h_MET[3][12][27];
 
-    TH1D *h_WMass[3][12][21];
-    TH1D *h_LepIso[3][12][21];
-    TH1D *h_LepIsoQCD[3][12][21];
-    TH1D *h_DPhi[3][12][21];
-    TH1D *h_JetCSV[3][12][21];
+    TH1D *h_WMass[3][12][27];
+    TH1D *h_LepIso[3][12][27];
+    TH1D *h_LepIsoQCD[3][12][27];
+    TH1D *h_DPhi[3][12][27];
+    TH1D *h_JetCSV[3][12][27];
 
     //tagging variables
-    TH1D *h_csv[3][12][21];
-    TH1D *h_cvsl[3][12][21];
-    TH1D *h_cvsb[3][12][21];
+    TH1D *h_csv[3][12][27];
+    TH1D *h_cvsl[3][12][27];
+    TH1D *h_cvsb[3][12][27];
 
     //DR
-    TH1D *h_FCNHkinLepWMass[3][12][21];
-    TH1D *h_FCNHkinHadWMass[3][12][21];
-    TH1D *h_FCNHkinHMass[3][12][21];
-    TH1D *h_FCNHkinDR[3][12][21];
-    TH1D *h_FCNHkinLepTopM[3][12][21];
-    TH1D *h_FCNHkinHadTopM[3][12][21];
-    TH1D *h_FCNHkinHPt[3][12][21];
-    TH1D *h_FCNHkinHdPhi[3][12][21];
-    TH1D *h_FCNHkinHdEta[3][12][21];
-    TH1D *h_FCNHkinHb1Pt[3][12][21];
-    TH1D *h_FCNHkinHb2Pt[3][12][21];
-    TH1D *h_FCNHkinHb1CSV[3][12][21];
-    TH1D *h_FCNHkinHb2CSV[3][12][21];
-    TH1D *h_FCNHkinLepTopPt[3][12][21];
-    TH1D *h_FCNHkinHadTopPt[3][12][21];
+    TH1D *h_FCNHkinLepWMass[3][12][27];
+    TH1D *h_FCNHkinHadWMass[3][12][27];
+    TH1D *h_FCNHkinHMass[3][12][27];
+    TH1D *h_FCNHkinDR[3][12][27];
+    TH1D *h_FCNHkinLepTopM[3][12][27];
+    TH1D *h_FCNHkinHadTopM[3][12][27];
+    TH1D *h_FCNHkinHPt[3][12][27];
+    TH1D *h_FCNHkinHdPhi[3][12][27];
+    TH1D *h_FCNHkinHdEta[3][12][27];
+    TH1D *h_FCNHkinHb1Pt[3][12][27];
+    TH1D *h_FCNHkinHb2Pt[3][12][27];
+    TH1D *h_FCNHkinHb1CSV[3][12][27];
+    TH1D *h_FCNHkinHb2CSV[3][12][27];
+    TH1D *h_FCNHkinLepTopPt[3][12][27];
+    TH1D *h_FCNHkinHadTopPt[3][12][27];
 
-    TH1D *h_genDR[3][12][21];
-    TH1D *h_matchDR[3][12][21];
-    TH1D *h_genHm[3][12][21];
-    TH1D *h_matchHm[3][12][21];
+    TH1D *h_genDR[3][12][27];
+    TH1D *h_matchDR[3][12][27];
+    TH1D *h_genHm[3][12][27];
+    TH1D *h_matchHm[3][12][27];
 
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");
@@ -189,10 +164,13 @@ public :
     vector<double> BDTScore;
 
     vector<int> dupCheck;
+ 
     int lepcount = 0;
     int evtNum = 0;
 
     bool reco;
+    bool syst;
+    string syst_ext;
 
     TFile *out;
 };

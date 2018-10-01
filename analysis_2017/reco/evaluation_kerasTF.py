@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -42,7 +42,14 @@ if ch == "STFCNC":
                          'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',])
 
 elif ch == "TTFCNC":
-  input_features.extend([])
+  input_features.extend(['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m', 'jet3pt', 'jet3eta', 'jet3m',
+                         'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
+                         'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
+                         'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m',
+                         'lepWpt', 'lepWdphi', 'lepTdphi', 'lepTm',
+                         'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta',
+                         'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
+                         'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',])
 
 elif ch == "TTBKG":
   input_features.extend(['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m', 'jet3pt', 'jet3eta', 'jet3m',
@@ -51,7 +58,7 @@ elif ch == "TTBKG":
                          'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m',
                          'lepWpt', 'lepWdphi', 'lepTdphi', 'lepTm',
                          'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta',
-                         'hadTphi', 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
+                         'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                          'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',])
 
 else: print("Check reco scenario!")
@@ -71,10 +78,12 @@ for filename in os.listdir(os.path.join(configDir, 'mkNtuple', ch + '_hdf')):
     if   ch == "STFCNC":
       if "STTH1L3BH" not in filename: continue
     elif ch == "TTFCNC":
-      if "TTTH1L3BH" not in filename: continue
+      if "TTTH1L3B" not in filename: continue
     elif ch == "TTBKG":
       if "TTpowheg" not in filename: continue
       if not filename.endswith(('010.h5','011.h5','012.h5','013.h5','014.h5')): continue
+
+  if "TTTH1L3B" not in filename: continue
 
   eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', ch + '_hdf' , filename))
   print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))

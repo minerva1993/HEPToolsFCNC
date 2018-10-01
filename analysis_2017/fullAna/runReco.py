@@ -5,9 +5,10 @@ gROOT.SetBatch(True)
 
 file_path = sys.argv[1]
 name = sys.argv[2]
-reco_scheme = "-STFCNC01"
+reco_scheme = "-STFCNC01__jecup"
 #reco_scheme = "-TTFCNC01"
 #reco_scheme = "-TTBKG01"
+#add __jecup / __jecdown / __jerup / __jerdown to reco scheme to produce syst.samples
 
 test = os.listdir("./doReco/temp")
 dupl = False
@@ -26,7 +27,7 @@ def runAna(file_path, name):
   f = TFile.Open(file_path, "READ")
 
   ## save Event Summary histogram ##
-  out = TFile("doReco/temp/hist_"+name+".root","update")
+  out = TFile("doReco/temp/hist_"+name.replace(reco_scheme,"")+".root","update")
   hevt = f.Get("fcncLepJets/EventInfo")
   hevt.Write()
   out.Write()

@@ -1,7 +1,7 @@
 import os
 import shutil
 
-version = 'V9_2/180815/'
+version = 'V9_2/180922/'
 path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 
 run_file_name = 'runNoReco.py'
@@ -47,6 +47,9 @@ for lines in noreco_list:
 
 for exts in ext_dataset:
   string_for_merge += "hadd hist_" + (exts) + ".root temp/hist_" + (exts)[:-2] + "_*.root temp/hist_" + (exts)[:-2] + "part2_*.root\n"
+
+string_for_merge += "hadd hist_TTTH1L3BHut.root hist_TTTH*Hut.root\n"
+string_for_merge += "hadd hist_TTTH1L3BHct.root hist_TTTH*Hct.root"
 
 if os.path.exists('doReco/' + merge_file_name): os.remove('doReco/' + merge_file_name)
 with open('doReco/' + merge_file_name, 'w') as g:

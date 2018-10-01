@@ -1,10 +1,3 @@
-//////////////////////////////////////////////////////////
-// This class has been automatically generated on
-// Tue Jan 31 23:15:22 2017 by ROOT version 6.06/01
-// from TTree tree/TopTree
-// found on file: /xrootd/store/user/brochero/v8-0-4/Tree_LepJets_NewCSVSF_v8-0-4_Spring16-80X_36814pb-1_ttbar_PowhegPythia.root
-//////////////////////////////////////////////////////////
-
 #ifndef makeTopTuple_h
 #define makeTopTuple_h
 
@@ -29,28 +22,31 @@ public :
    TTree          *fChain = 0;   //!pointer to the analyzed TTree or TChain
 
    // Readers to access the data (delete the ones you do not need).
-   //TTreeReaderValue<Int_t> event = {fReader, "event"};
-   //TTreeReaderValue<Int_t> run = {fReader, "run"};
-   //TTreeReaderValue<Int_t> luminumber = {fReader, "luminumber"};
-   TTreeReaderValue<Float_t> genWeight = {fReader, "genweight"};
-   TTreeReaderValue<Int_t> GoodPV = {fReader, "GoodPV"};
+   TTreeReaderValue<Int_t> event = {fReader, "event"};
+   TTreeReaderValue<Int_t> run = {fReader, "run"};
+   TTreeReaderValue<Int_t> luminumber = {fReader, "luminumber"};
+   TTreeReaderValue<Float_t> genweight = {fReader, "genweight"};
    TTreeReaderValue<Int_t> TruePV = {fReader, "TruePV"};
+   TTreeReaderValue<Int_t> GoodPV = {fReader, "GoodPV"};
    TTreeReaderValue<Int_t> channel = {fReader, "channel"};
    TTreeReaderArray<float> PUWeight = {fReader, "PUWeight"};
+   TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
+   TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    TTreeReaderValue<Float_t> MET = {fReader, "MET"};
    TTreeReaderValue<Float_t> MET_phi = {fReader, "MET_phi"};
-   TTreeReaderValue<Float_t> lepton_pT = {fReader, "lepton_pt"};
+   TTreeReaderValue<Float_t> lepton_pt = {fReader, "lepton_pt"};
    TTreeReaderValue<Float_t> lepton_eta = {fReader, "lepton_eta"};
    TTreeReaderValue<Float_t> lepton_phi = {fReader, "lepton_phi"};
-   TTreeReaderValue<Float_t> lepton_E = {fReader, "lepton_e"};
+   TTreeReaderValue<Float_t> lepton_e = {fReader, "lepton_e"};
    TTreeReaderValue<Float_t> lepton_LES = {fReader, "lepton_LES"};
-   TTreeReaderValue<Float_t> lepton_relIso = {fReader, "lepton_relIso"};
-   TTreeReaderValue<bool> lepton_isIso = {fReader, "lepton_isIso"};
    TTreeReaderArray<float> lepton_SF = {fReader, "lepton_SF"};
-   TTreeReaderArray<float> jet_pT = {fReader, "jet_pt"};
+   TTreeReaderValue<Float_t> lepton_relIso = {fReader, "lepton_relIso"};
+   TTreeReaderValue<Bool_t> lepton_isIso = {fReader, "lepton_isIso"};
+   TTreeReaderValue<Int_t> elec_trg = {fReader, "elec_trg"};
+   TTreeReaderArray<float> jet_pt = {fReader, "jet_pt"};
    TTreeReaderArray<float> jet_eta = {fReader, "jet_eta"};
    TTreeReaderArray<float> jet_phi = {fReader, "jet_phi"};
-   TTreeReaderArray<float> jet_E = {fReader, "jet_e"};
+   TTreeReaderArray<float> jet_e = {fReader, "jet_e"};
    TTreeReaderArray<int> jet_index = {fReader, "jet_index"};
    TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
    TTreeReaderArray<float> jet_deepCSV = {fReader, "jet_deepCSV"};
@@ -64,8 +60,8 @@ public :
    TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
    TTreeReaderArray<float> jet_deepCvsB = {fReader, "jet_deepCvsB"};
-   //TTreeReaderValue<Int_t> jet_number = {fReader, "jet_number"};
-
+   TTreeReaderValue<Int_t> jet_njet = {fReader, "jet_njet"};
+   TTreeReaderValue<Int_t> jet_nbjetm = {fReader, "jet_nbjetm"};
    TTreeReaderArray<int> jet_partonFlavour = {fReader, "jet_partonFlavour"};
    TTreeReaderArray<int> jet_hadronFlavour = {fReader, "jet_hadronFlavour"};
    TTreeReaderArray<float> jet_JES_Up = {fReader, "jet_JES_Up"};
@@ -73,26 +69,24 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
-   //TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
-   //TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    TTreeReaderArray<int> genconecatid = {fReader, "genconecatid"};
-   TTreeReaderArray<float> gencone_gjet_pT = {fReader, "gencone_gjet_pt"};
+   TTreeReaderArray<float> gencone_gjet_pt = {fReader, "gencone_gjet_pt"};
    TTreeReaderArray<float> gencone_gjet_eta = {fReader, "gencone_gjet_eta"};
    TTreeReaderArray<float> gencone_gjet_phi = {fReader, "gencone_gjet_phi"};
-   TTreeReaderArray<float> gencone_gjet_E = {fReader, "gencone_gjet_e"};
+   TTreeReaderArray<float> gencone_gjet_e = {fReader, "gencone_gjet_e"};
    TTreeReaderArray<int> gencone_gJetFlavW = {fReader, "gencone_gJetFlavW"};
    TTreeReaderValue<Int_t> b_GenCone_NgJetsW = {fReader, "gencone_NgjetsW"};
-   TTreeReaderValue<Float_t> DRAddJets = {fReader, "draddjets"};
+   TTreeReaderValue<Float_t> draddJets = {fReader, "draddjets"};
    TTreeReaderValue<Int_t> genhiggscatid = {fReader, "genhiggscatid"};
    TTreeReaderValue<Int_t> genchannel = {fReader, "genchannel"};
-   TTreeReaderValue<Float_t> genlepton_pT = {fReader, "genlepton_pt"};
+   TTreeReaderValue<Float_t> genlepton_pt = {fReader, "genlepton_pt"};
    TTreeReaderValue<Float_t> genlepton_eta = {fReader, "genlepton_eta"};
    TTreeReaderValue<Float_t> genlepton_phi = {fReader, "genlepton_phi"};
-   TTreeReaderValue<Float_t> genlepton_E = {fReader, "genlepton_e"};
-   TTreeReaderValue<Float_t> gennu_pT = {fReader, "gennu_pt"};
+   TTreeReaderValue<Float_t> genlepton_e = {fReader, "genlepton_e"};
+   TTreeReaderValue<Float_t> gennu_pt = {fReader, "gennu_pt"};
    TTreeReaderValue<Float_t> gennu_eta = {fReader, "gennu_eta"};
    TTreeReaderValue<Float_t> gennu_phi = {fReader, "gennu_phi"};
-   TTreeReaderValue<Float_t> gennu_E = {fReader, "gennu_e"};
+   TTreeReaderValue<Float_t> gennu_e = {fReader, "gennu_e"};
    TTreeReaderValue<Float_t> addHbjet1_pt = {fReader, "addHbjet1_pt"};
    TTreeReaderValue<Float_t> addHbjet1_eta = {fReader, "addHbjet1_eta"};
    TTreeReaderValue<Float_t> addHbjet1_phi = {fReader, "addHbjet1_phi"};
@@ -126,12 +120,15 @@ public :
     TTree *testTree = 0;
 
     int nevt = 1;
+    int chBit = 0;
+    string syst_ext;
 
     //objects for ntuple
     int b_nevt = 0;
     int b_file = -1;
     int b_GoodPV = 0;
     int b_EventCategory = -1;
+    int b_trigger = -1;
     float b_EventWeight = 1.0;
     int b_genMatch = -1;
 

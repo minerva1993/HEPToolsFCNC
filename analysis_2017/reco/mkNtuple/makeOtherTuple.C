@@ -13,6 +13,22 @@ void makeOtherTuple::Begin(TTree * /*tree*/)
 void makeOtherTuple::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
+  string ch = option.Data();
+  ch.erase(ch.find_first_of("_"),string::npos);
+  string sample = option.Data();
+  sample.erase(0,sample.find_first_of("_")+1);
+
+  if( ch.find("jec") != string::npos or ch.find("jer") != string::npos ){
+    if     ( ch.find("jecup") != string::npos )   syst_ext = "jecup";
+    else if( ch.find("jecdown") != string::npos ) syst_ext = "jecdown";
+    else if( ch.find("jerup") != string::npos )   syst_ext = "jerup";
+    else if( ch.find("jerdown") != string::npos ) syst_ext = "jerdown";
+  }
+
+  if     ( ch.find("STFCNC") != string::npos ) chBit = 1;
+  else if( ch.find("TTFCNC") != string::npos ) chBit = 2;
+  else if( ch.find("TTBKG") != string::npos )  chBit = 3;
+  else   cout << "Wrong channel name!" << endl;
 
   //////////////////////////////////////////////////////////////////
   testTree = new TTree("test_tree","background tree");
@@ -23,6 +39,7 @@ void makeOtherTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("EventCategory", &b_EventCategory, "EventCategory/I");
   testTree->Branch("genMatch"     , &b_genMatch     , "genMatch/I");
   testTree->Branch("EventWeight"  , &b_EventWeight  , "EventWeight/F");
+  testTree->Branch("trigger"      , &b_trigger     , "trigger/I");
   
   testTree->Branch("njets"     , &b_njets     , "njets/I");
   testTree->Branch("nbjets_m"  , &b_nbjets_m  , "nbjets_m/I");
@@ -138,59 +155,53 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   mode = *channel;
 
   if( mode > 2 ) return kTRUE;
-  if( !option.Contains("Run2017") && (*TruePV < 10 || *TruePV > 75) ) return kTRUE;
 
-  float lep_SF = 1.0;
-  float genweight = 1.0;
-  float puweight = 1.0;
-  float jetsf = 1.0;
+  float EventWeight = 1.0;
   float wrongPVrate = 1;
   if( !option.Contains("Run2017") ){
-    lep_SF = lepton_SF[0];
-    genweight = *genWeight;
-    puweight = PUWeight[0];
+    EventWeight *= lepton_SF[0];
+    EventWeight *= *genweight;
+    EventWeight *= PUWeight[0];
 
-    if      ( option.Contains("DYJets4to50HT100to200v2") ) wrongPVrate = 1.04044583396;
-    else if ( option.Contains("DYJets4to50HT100to200_") or option.Contains("DYJets4to50HT100to200part2") ) wrongPVrate = 1.04044583396;
-    else if ( option.Contains("DYJets4to50HT200to400") ) wrongPVrate = 1.03548601524;
-    else if ( option.Contains("DYJets4to50HT400to600") ) wrongPVrate = 1.04007039394;
-    else if ( option.Contains("DYJets4to50HT600toinf") ) wrongPVrate = 1.00150187987;
-    else if ( option.Contains("DYJets4to50HT70to100") ) wrongPVrate = 1.04510609321;
-    else if ( option.Contains("DYJetsv2") ) wrongPVrate = 1.04239354791;
-    else if ( option.Contains("DYJets_") or option.Contains("DYJetspart2") ) wrongPVrate = 1.04239354791;
-    else if ( option.Contains("STTH1L3BHct") ) wrongPVrate = 1.04386426774;
-    else if ( option.Contains("STTH1L3BHut") ) wrongPVrate = 1.03094683784;
-    else if ( option.Contains("SingleTbart") ) wrongPVrate = 1.04162486525;
-    else if ( option.Contains("SingleTbartW") ) wrongPVrate = 1.04264471988;
-    else if ( option.Contains("SingleTops") ) wrongPVrate = 1.03967280483;
-    else if ( option.Contains("SingleTopt") ) wrongPVrate = 1.04020417817;
-    else if ( option.Contains("SingleToptW") ) wrongPVrate = 1.04474130408;
-    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04021612264;
-    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02450278629;
-    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04205962372;
-    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04739932325;
-    else if ( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.0484454797;
-    else if ( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.04795518207;
-    else if ( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04737048218;
-    else if ( option.Contains("TTpowhegttlf") ) wrongPVrate = 1.047466385;
-    else if ( option.Contains("TTpowhegttother") ) wrongPVrate = 1.04766363512;
-    else if ( option.Contains("W1JetsToLNu150-250") ) wrongPVrate = 1.03420702039;
-    else if ( option.Contains("W1JetsToLNu250-400") ) wrongPVrate = 1.03580555626;
-    else if ( option.Contains("W1JetsToLNu400-inf") ) wrongPVrate = 1.03252405725;
-    else if ( option.Contains("W1JetsToLNu50-150") ) wrongPVrate = 1.03266766201;
-    else if ( option.Contains("W2JetsToLNu250-400") ) wrongPVrate = 1.03481315504;
-    else if ( option.Contains("W2JetsToLNu400-inf") ) wrongPVrate = 1.0317626647;
-    else if ( option.Contains("W2JetsToLNu50-150") ) wrongPVrate = 1.00150425214;
-    else if ( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04141687195;
-    else if ( option.Contains("W4JetsToLNu") ) wrongPVrate = 1.04339321182;
-    else if ( option.Contains("WW") ) wrongPVrate = 1.04679128652;
-    else if ( option.Contains("WZ") ) wrongPVrate = 1.04266907923;
-    else if ( option.Contains("ZZ") ) wrongPVrate = 1.02940993982;
-    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.02082052772;
-    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.03782992744;
+    if      ( option.Contains("DYJets4to50HT100to200v2") ) wrongPVrate = 1.04010725093;
+    else if ( option.Contains("DYJets4to50HT100to200_") or option.Contains("DYJets4to50HT100to200part2") ) wrongPVrate = 1.04010725093;
+    else if ( option.Contains("DYJets4to50HT200to400") ) wrongPVrate = 1.0354286358;
+    else if ( option.Contains("DYJets4to50HT400to600") ) wrongPVrate = 1.0395588053;
+    else if ( option.Contains("DYJets4to50HT70to100") ) wrongPVrate = 1.04495754249;
+    else if ( option.Contains("DYJetsv2") ) wrongPVrate = 1.04239771686;
+    else if ( option.Contains("DYJets_") or option.Contains("DYJetspart2") ) wrongPVrate = 1.04239771686;
+    else if ( option.Contains("STTH1L3BHct") ) wrongPVrate = 1.04397325747;
+    else if ( option.Contains("STTH1L3BHut") ) wrongPVrate = 1.03100541427;
+    else if ( option.Contains("SingleTbart") ) wrongPVrate = 1.04171033265;
+    else if ( option.Contains("SingleTbartW") ) wrongPVrate = 1.04261195626;
+    else if ( option.Contains("SingleTops") ) wrongPVrate = 1.03972787611;
+    else if ( option.Contains("SingleTopt") ) wrongPVrate = 1.04028244802;
+    else if ( option.Contains("SingleToptW") ) wrongPVrate = 1.04478300674;
+    else if ( option.Contains("TTHadpowheg") ) wrongPVrate = 1.02911490683;
+    else if ( option.Contains("TTLLpowheg") ) wrongPVrate = 1.04707001305;
+    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04084725366;
+    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02412815424;
+    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04242525748;
+    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04903621775;
+    else if ( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.04855161159;
+    else if ( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.0481276857;
+    else if ( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04745462065;
+    else if ( option.Contains("TTpowhegttlf") ) wrongPVrate = 1.04754742837;
+    else if ( option.Contains("TTpowhegttother") ) wrongPVrate = 1.04775924349;
+    else if ( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04151096637;
+    else if ( option.Contains("W4JetsToLNu") ) wrongPVrate = 1.04351715127;
+    else if ( option.Contains("WW") ) wrongPVrate = 1.04691597274;
+    else if ( option.Contains("WZ") ) wrongPVrate = 1.04251110292;
+    else if ( option.Contains("ZZ") ) wrongPVrate = 1.02960069789;
+    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.03169876149;
+    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.03747398495;
     else    wrongPVrate = 1.0;
+
+    EventWeight *= wrongPVrate;
   }
-  float EventWeight = puweight*genweight*lep_SF*jetsf*wrongPVrate;
+  if( wrongPVrate > 1.01 ){
+    if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
+  }
 
   float relIso = *lepton_relIso; 
 
@@ -208,7 +219,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   metP4.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
-  lepton.SetPtEtaPhiE(*lepton_pT, *lepton_eta, *lepton_phi, *lepton_E);
+  lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
 
   double transverseM = transverseMass(lepton, metP4);
   double lepDphi = lepton.DeltaPhi(metP4);
@@ -222,7 +233,9 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
 
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.1);
-  bool passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
+  bool passelectron;
+  if ( *elec_trg == 10 ) passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
+  else                   passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
 
   if( option.Contains("SingleMuon") ){
     if( !passmuon ) return kTRUE;//RDMu
@@ -236,20 +249,28 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
     if( !passmuon && !passelectron ) return kTRUE;
   }
 
-  //if( passelectron )  EventWeight *= jet_SF_deepCSV_38[0];
-  //else if ( passmuon) EventWeight *= jet_SF_deepCSV_30[0];
+  if( passelectron && *elec_trg == 10 ) EventWeight *= jet_SF_deepCSV_38[0];
+  else                                  EventWeight *= jet_SF_deepCSV_30[0];
 
   b_lepton_pt = lepton.Pt(); b_lepton_eta = lepton.Eta(); b_lepton_phi = lepton.Phi();
+  b_trigger = *elec_trg;
 
   vector<size_t> jetIdxs;
-  for (unsigned int iJet = 0; iJet < jet_pT.GetSize() ; ++iJet) {
+  for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
 
     TLorentzVector jet;
-    jet.SetPtEtaPhiE(jet_pT[iJet], jet_eta[iJet], jet_phi[iJet], jet_E[iJet]);
-    //if( !option.Contains("Run2017") ) jet = jet * jet_JER_Nom[iJet];
+    jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
 
-    if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
-      if( passelectron and  njets == 0 and jet_pT[iJet] < 38 ) continue;
+    if( !option.Contains("Run2017") ){
+      if     ( syst_ext == "jecup" )   jet = jet * jet_JER_Nom[iJet] * jet_JES_Up[iJet];
+      else if( syst_ext == "jecdown" ) jet = jet * jet_JER_Nom[iJet] * jet_JES_Down[iJet];
+      else if( syst_ext == "jerup" )   jet = jet * jet_JER_Up[iJet];
+      else if( syst_ext == "jerdown" ) jet = jet * jet_JER_Down[iJet];
+      else                             jet = jet * jet_JER_Nom[iJet];
+    }
+
+    if( jet.Pt() > 30 && abs(jet.Eta()) <= 2.4 ){
+      if( passelectron and *elec_trg == 10 and njets == 0 and jet_pt[iJet] < 38 ) continue;
       njets++;
       jetIdxs.push_back(iJet);
 
@@ -259,8 +280,8 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
     }
   }
 
-  if ( (ch == "TTFCNC" or ch == "TTBKG") and (njets <  4 or nbjets_m < 2) ) return kTRUE;
-  else if ( ch == "STFCNC" and (njets <  3 or nbjets_m < 2) ) return kTRUE;
+  if( (chBit == 2 or chBit == 3 ) and (njets <  4 or nbjets_m < 2) ) return kTRUE;
+  else if( chBit == 1 and (njets <  3 or nbjets_m < 2) ) return kTRUE;
 
   //cout << nevt << endl;
   if( option.Contains("Run2017") ) b_EventCategory = -1;
@@ -306,67 +327,66 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
 
   //int count = 0;
   TLorentzVector jetP4[4];
-  for ( auto ii0 = jetIdxs.begin(); ii0 != jetIdxs.end(); ++ii0 ){
-    if ( ch == "TTBKG" and jet_deepCSV[*ii0] < 0.4941 ) continue; //for ttbar reco signal
-    jetP4[0].SetPtEtaPhiE(jet_pT[*ii0], jet_eta[*ii0], jet_phi[*ii0], jet_E[*ii0]);
+  for( auto ii0 = jetIdxs.begin(); ii0 != jetIdxs.end(); ++ii0 ){
+    if( chBit == 3 and jet_deepCSV[*ii0] < 0.4941 ) continue; //for ttbar reco signal
+    jetP4[0].SetPtEtaPhiE(jet_pt[*ii0], jet_eta[*ii0], jet_phi[*ii0], jet_e[*ii0]);
 
-    for ( auto ii1 = jetIdxs.begin(); ii1 != jetIdxs.end(); ++ii1 ) {
-      if ( (ch == "TTFCNC" or ch == "TTBKG") and *ii1 == *ii0 ) continue;
-      if ( ch == "TTBKG" and jet_deepCSV[*ii1] < 0.4941 ) continue; //for ttbar reco signal
-      if ( ch == "TTFCNC" or ch == "TTBKG" ) jetP4[3].SetPtEtaPhiE(jet_pT[*ii1], jet_eta[*ii1], jet_phi[*ii1], jet_E[*ii1]);
+    for( auto ii1 = jetIdxs.begin(); ii1 != jetIdxs.end(); ++ii1 ){
+      if( (chBit == 2 or chBit == 3) and *ii1 == *ii0 ) continue;
+      if( chBit == 3 and jet_deepCSV[*ii1] < 0.4941 ) continue; //for ttbar reco signal
+      if( chBit == 2 or chBit == 3 ) jetP4[3].SetPtEtaPhiE(jet_pt[*ii1], jet_eta[*ii1], jet_phi[*ii1], jet_e[*ii1]);
 
-      for ( auto ii2 = jetIdxs.begin(); ii2 != jetIdxs.end(); ++ii2 ) {
-        if ( *ii2 == *ii0 ) continue;
-        if ( (ch == "TTFCNC" or ch == "TTBKG") and *ii2 == *ii1 ) continue;
-        if ( (ch == "STFCNC" or ch == "TTFCNC") and jet_deepCSV[*ii2] < 0.4941 ) continue;
+      for( auto ii2 = jetIdxs.begin(); ii2 != jetIdxs.end(); ++ii2 ){
+        if( *ii2 == *ii0 ) continue;
+        if( (chBit == 2 or chBit == 3) and *ii2 == *ii1 ) continue;
+        if( (chBit == 1 or chBit == 2) and jet_deepCSV[*ii2] < 0.4941 ) continue;
 
-        for ( auto ii3 = ii2+1; ii3 != jetIdxs.end(); ++ii3 ) {
-          if ( *ii3 == *ii0 or *ii3 == *ii2 ) continue;
-          if ( (ch == "TTFCNC" or ch == "TTBKG") and *ii3 == *ii1 ) continue;
-          if ( (ch == "STFCNC" or ch == "TTFCNC") and jet_deepCSV[*ii3] < 0.4941 ) continue;
-          if ( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
-            jetP4[1].SetPtEtaPhiE(jet_pT[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_E[*ii2]);
-            jetP4[2].SetPtEtaPhiE(jet_pT[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_E[*ii3]);
+        for( auto ii3 = ii2+1; ii3 != jetIdxs.end(); ++ii3 ){
+          if( *ii3 == *ii0 or *ii3 == *ii2 ) continue;
+          if( (chBit == 2 or chBit == 3) and *ii3 == *ii1 ) continue;
+          if( (chBit == 1 or chBit == 2) and jet_deepCSV[*ii3] < 0.4941 ) continue;
+          if( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
+            jetP4[1].SetPtEtaPhiE(jet_pt[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_e[*ii2]);
+            jetP4[2].SetPtEtaPhiE(jet_pt[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_e[*ii3]);
           }
           else{
-            jetP4[1].SetPtEtaPhiE(jet_pT[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_E[*ii3]);
-            jetP4[2].SetPtEtaPhiE(jet_pT[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_E[*ii2]);
+            jetP4[1].SetPtEtaPhiE(jet_pt[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_e[*ii3]);
+            jetP4[2].SetPtEtaPhiE(jet_pt[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_e[*ii2]);
           }
           //count++;
 
-          if ( ch == "STFCNC" and *ii1 != 0 ) continue;
-          //construct particles: lepB = j0, hadB = j3, hadW = j1+j2
-          /*
-          if( !option.Contains("Run2017") ){
-            jetP4[0] = jetP4[0] * jet_JER_Nom[*ii0];
-            if ( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
-              jetP4[1] = jetP4[1] * jet_JER_Nom[*ii2];
-              jetP4[2] = jetP4[2] * jet_JER_Nom[*ii3];
-            }
-            else{
-              jetP4[1] = jetP4[1] * jet_JER_Nom[*ii3];
-              jetP4[2] = jetP4[2] * jet_JER_Nom[*ii2];
-            }
-            jetP4[3] = jetP4[3] * jet_JER_Nom[*ii1];
+          if( chBit == 1 and *ii1 != 0 ) continue;
+
+          int tmp_idx[4];
+          tmp_idx[0] = *ii0; tmp_idx[3] = *ii1;
+          if( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
+            tmp_idx[1] = *ii2;
+            tmp_idx[2] = *ii3;
           }
-          */
+          else{
+            tmp_idx[1] = *ii3;
+            tmp_idx[2] = *ii2;
+          }
+
+          //construct particles: lepB = j0, hadB = j3, hadW = j1+j2
+          if( !option.Contains("Run2017") ){
+            if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4[i] = jetP4[i] * jet_JER_Nom[tmp_idx[i]] * jet_JES_Up[tmp_idx[i]];
+            else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4[i] = jetP4[i] * jet_JER_Nom[tmp_idx[i]] * jet_JES_Down[tmp_idx[i]];
+            else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4[i] = jetP4[i] * jet_JER_Up[tmp_idx[i]];
+            else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4[i] = jetP4[i] * jet_JER_Down[tmp_idx[i]];
+            else                             for( int i=0; i < 4; i++) jetP4[i] = jetP4[i] * jet_JER_Nom[tmp_idx[i]];
+          }
+
           b_jet0pt = jetP4[0].Pt(); b_jet0eta = jetP4[0].Eta(); b_jet0phi = jetP4[0].Phi(); b_jet0m = jetP4[0].M();
           b_jet1pt = jetP4[1].Pt(); b_jet1eta = jetP4[1].Eta(); b_jet1phi = jetP4[1].Phi(); b_jet1m = jetP4[1].M();
           b_jet2pt = jetP4[2].Pt(); b_jet2eta = jetP4[2].Eta(); b_jet2phi = jetP4[2].Phi(); b_jet2m = jetP4[2].M();
           b_jet3pt = jetP4[3].Pt(); b_jet3eta = jetP4[3].Eta(); b_jet3phi = jetP4[3].Phi(); b_jet3m = jetP4[3].M();
-          b_jet0csv = jet_deepCSV[*ii0]; b_jet0cvsl = jet_deepCvsL[*ii0]; b_jet0cvsb = jet_deepCvsB[*ii0];
-          if ( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
-            b_jet1csv = jet_deepCSV[*ii2]; b_jet1cvsl = jet_deepCvsL[*ii2]; b_jet1cvsb = jet_deepCvsB[*ii2];
-            b_jet2csv = jet_deepCSV[*ii3]; b_jet2cvsl = jet_deepCvsL[*ii3]; b_jet2cvsb = jet_deepCvsB[*ii3];
-            b_jet1Idx = *ii2; b_jet2Idx = *ii3;
-          }
-          else{
-            b_jet1csv = jet_deepCSV[*ii3]; b_jet1cvsl = jet_deepCvsL[*ii3]; b_jet1cvsb = jet_deepCvsB[*ii3];
-            b_jet2csv = jet_deepCSV[*ii2]; b_jet2cvsl = jet_deepCvsL[*ii2]; b_jet2cvsb = jet_deepCvsB[*ii2];
-            b_jet1Idx = *ii3; b_jet2Idx = *ii2;
-          }
-          b_jet3csv = jet_deepCSV[*ii1]; b_jet3cvsl = jet_deepCvsL[*ii1]; b_jet3cvsb = jet_deepCvsB[*ii1];//ii3 = jet1
-          b_jet0Idx = *ii0; b_jet3Idx = *ii1;
+
+          b_jet0csv = jet_deepCSV[tmp_idx[0]]; b_jet0cvsl = jet_deepCvsL[tmp_idx[0]]; b_jet0cvsb = jet_deepCvsB[tmp_idx[0]];
+          b_jet1csv = jet_deepCSV[tmp_idx[1]]; b_jet1cvsl = jet_deepCvsL[tmp_idx[1]]; b_jet1cvsb = jet_deepCvsB[tmp_idx[1]];
+          b_jet2csv = jet_deepCSV[tmp_idx[2]]; b_jet2cvsl = jet_deepCvsL[tmp_idx[2]]; b_jet2cvsb = jet_deepCvsB[tmp_idx[2]];
+          b_jet3csv = jet_deepCSV[tmp_idx[3]]; b_jet3cvsl = jet_deepCvsL[tmp_idx[3]]; b_jet3cvsb = jet_deepCvsB[tmp_idx[3]];
+          b_jet0Idx = tmp_idx[0]; b_jet1Idx = tmp_idx[1]; b_jet2Idx = tmp_idx[2]; b_jet3Idx = tmp_idx[3];
 
           const auto lepT = lepW + jetP4[0];
           const auto had12 = jetP4[1] + jetP4[2];//This is W or H
@@ -414,7 +434,7 @@ void makeOtherTuple::Terminate()
   string sample = option.Data();
   sample.erase(0,sample.find_first_of("_")+1);
 
-  TFile *hfile = TFile::Open(Form("%s_root/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
+  TFile *hfile = TFile::Open(Form("root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
 
   fOutput->FindObject("test_tree")->Write();
 

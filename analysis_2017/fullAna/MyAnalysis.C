@@ -14,8 +14,14 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
   TString option = GetOption();
   string sample = option.Data();
 
-  if( option.Contains("_") ) reco = true;
-  else reco = false;
+  if( option.Contains("_") ){
+    reco = true;
+    syst = true;
+  }
+  else{//for no reco
+    reco = false;
+    syst = false;
+  }
 
   //Delete ntuple number and data era so that we can merge histos w.r.t. dataset, prepare assign ntuple
   const char* assign_file = "";
@@ -28,10 +34,19 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     else if( reco_scheme.find("TTFCNC") != string::npos ) reco_id = 1;
     else if( reco_scheme.find("TTBKG") != string::npos )  reco_id = 2;
     else                                                  reco_id = -1;
-    sample.erase( sample.find_first_of("-"),string::npos );
-    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assign%s/assign_deepReco_%s.root", reco_scheme.c_str(), sample.c_str());
 
-    bool file_exist = true;
+    if( reco_scheme.find("jec") != string::npos or reco_scheme.find("jer") != string::npos ){
+      syst = false;//make another hist file
+      if     ( reco_scheme.find("jecup") != string::npos )   syst_ext = "jecup";
+      else if( reco_scheme.find("jecdown") != string::npos ) syst_ext = "jecdown";
+      else if( reco_scheme.find("jerup") != string::npos )   syst_ext = "jerup";
+      else if( reco_scheme.find("jerdown") != string::npos ) syst_ext = "jerdown";
+    }
+
+    sample.erase( sample.find_first_of("-"),string::npos );
+    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assign%s/assign_deepReco_%s.root",
+                       reco_scheme.c_str(), sample.c_str());
+
     string file_tmp_path = assign_file;
     ifstream file_tmp(file_tmp_path);
     if( file_tmp.is_open() ){
@@ -49,7 +64,10 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       }
     }
     else cout << option.Data() << endl;
+
+    if( !syst and syst_ext.length() < 5 ) cout << sample.c_str() << " " << "No jec/jer systematic option!" << endl;
   }
+
 
   //cout << "SlaveBegin" << endl;
   for( int ich=0; ich < 3; ich++ ){
@@ -101,8 +119,8 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
         h_LepPhi[ich][i][syst]->Sumw2();
         fOutput->Add(h_LepPhi[ich][i][syst]);
 
-        h_LepEta[ich][i][syst] = new TH1D(Form("h_LepEta_Ch%i_S%i%s",ich,i,syst_name[syst]), "Lepton #eta", 30 ,0 ,2.5);
-        h_LepEta[ich][i][syst]->SetXTitle("Lepton |#eta|");
+        h_LepEta[ich][i][syst] = new TH1D(Form("h_LepEta_Ch%i_S%i%s",ich,i,syst_name[syst]), "Lepton #eta", 30 ,-2.5 ,2.5);
+        h_LepEta[ich][i][syst]->SetXTitle("Lepton #eta");
         h_LepEta[ich][i][syst]->Sumw2();
         fOutput->Add(h_LepEta[ich][i][syst]);
 
@@ -234,53 +252,53 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
 Bool_t MyAnalysis::Process(Long64_t entry)
 {
   fReader.SetEntry(entry);
-  TString option = GetOption();   
+  TString option = GetOption();
 
   int mode = 999; 
   mode = *channel;
 
-  if( mode > 2) return kTRUE;
-  if( !option.Contains("Run2017") && (*TruePV < 10 || *TruePV > 75) ) return kTRUE;
+  if( mode > 2 ) return kTRUE;
 
   float wrongPVrate = 1;
   if( !option.Contains("Run2017") ){
-    //180815, 10-75
-    if      ( option.Contains("DYJets4to50HT100to200v2") ) wrongPVrate = 1.04044583396;
-    else if ( option.Contains("DYJets4to50HT100to200_") or option.Contains("DYJets4to50HT100to200part2") ) wrongPVrate = 1.04044583396;
-    else if ( option.Contains("DYJets4to50HT200to400") ) wrongPVrate = 1.03548601524;
-    else if ( option.Contains("DYJets4to50HT400to600") ) wrongPVrate = 1.04007039394;
-    else if ( option.Contains("DYJets4to50HT600toinf") ) wrongPVrate = 1.00150187987;
-    else if ( option.Contains("DYJets4to50HT70to100") ) wrongPVrate = 1.04510609321;
-    else if ( option.Contains("DYJetsv2") ) wrongPVrate = 1.04239354791;
-    else if ( option.Contains("DYJets_") or option.Contains("DYJetspart2") ) wrongPVrate = 1.04239354791;
-    else if ( option.Contains("STTH1L3BHct") ) wrongPVrate = 1.04386426774;
-    else if ( option.Contains("STTH1L3BHut") ) wrongPVrate = 1.03094683784;
-    else if ( option.Contains("SingleTbart") ) wrongPVrate = 1.04162486525;
-    else if ( option.Contains("SingleTbartW") ) wrongPVrate = 1.04264471988;
-    else if ( option.Contains("SingleTops") ) wrongPVrate = 1.03967280483;
-    else if ( option.Contains("SingleTopt") ) wrongPVrate = 1.04020417817;
-    else if ( option.Contains("SingleToptW") ) wrongPVrate = 1.04474130408;
-    else if ( option.Contains("TTHadpowheg") ) wrongPVrate = 1.0291005291;
-    else if ( option.Contains("TTLLpowheg") ) wrongPVrate = 1.04702469553;
-    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04082113542;
-    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02437268044;
-    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.0422449044;
-    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04927473075;
-    else if ( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.0484454797;
-    else if ( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.04795518207;
-    else if ( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04737048218;
-    else if ( option.Contains("TTpowhegttlf") ) wrongPVrate = 1.047466385;
-    else if ( option.Contains("TTpowhegttother") ) wrongPVrate = 1.04766363512;
-    else if ( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04141687195;
-    else if ( option.Contains("W4JetsToLNu") ) wrongPVrate = 1.04339321182;
-    else if ( option.Contains("WW") ) wrongPVrate = 1.04679128652;
-    else if ( option.Contains("WZ") ) wrongPVrate = 1.04266907923;
-    else if ( option.Contains("ZZ") ) wrongPVrate = 1.02940993982;
-    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.03165135091;
-    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.03745367642;
+    //180922, 10-75
+    if      ( option.Contains("DYJets4to50HT100to200v2") ) wrongPVrate = 1.04010725093;
+    else if ( option.Contains("DYJets4to50HT100to200_") or option.Contains("DYJets4to50HT100to200part2") ) wrongPVrate = 1.04010725093;
+    else if ( option.Contains("DYJets4to50HT200to400") ) wrongPVrate = 1.0354286358;
+    else if ( option.Contains("DYJets4to50HT400to600") ) wrongPVrate = 1.0395588053;
+    else if ( option.Contains("DYJets4to50HT70to100") ) wrongPVrate = 1.04495754249;
+    else if ( option.Contains("DYJetsv2") ) wrongPVrate = 1.04239771686;
+    else if ( option.Contains("DYJets_") or option.Contains("DYJetspart2") ) wrongPVrate = 1.04239771686;
+    else if ( option.Contains("STTH1L3BHct") ) wrongPVrate = 1.04397325747;
+    else if ( option.Contains("STTH1L3BHut") ) wrongPVrate = 1.03100541427;
+    else if ( option.Contains("SingleTbart") ) wrongPVrate = 1.04171033265;
+    else if ( option.Contains("SingleTbartW") ) wrongPVrate = 1.04261195626;
+    else if ( option.Contains("SingleTops") ) wrongPVrate = 1.03972787611;
+    else if ( option.Contains("SingleTopt") ) wrongPVrate = 1.04028244802;
+    else if ( option.Contains("SingleToptW") ) wrongPVrate = 1.04478300674;
+    else if ( option.Contains("TTHadpowheg") ) wrongPVrate = 1.02911490683;
+    else if ( option.Contains("TTLLpowheg") ) wrongPVrate = 1.04707001305;
+    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04084725366;
+    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02412815424;
+    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04242525748;
+    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04903621775;
+    else if ( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.04855161159;
+    else if ( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.0481276857;
+    else if ( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04745462065;
+    else if ( option.Contains("TTpowhegttlf") ) wrongPVrate = 1.04754742837;
+    else if ( option.Contains("TTpowhegttother") ) wrongPVrate = 1.04775924349;
+    else if ( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04151096637;
+    else if ( option.Contains("W4JetsToLNu") ) wrongPVrate = 1.04351715127;
+    else if ( option.Contains("WW") ) wrongPVrate = 1.04691597274;
+    else if ( option.Contains("WZ") ) wrongPVrate = 1.04251110292;
+    else if ( option.Contains("ZZ") ) wrongPVrate = 1.02960069789;
+    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.03169876149;
+    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.03747398495;
     else    wrongPVrate = 1.0;
   }
-
+  if( wrongPVrate > 1.01 ){
+    if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
+  }
   float relIso = *lepton_relIso; 
 
   //Object selection
@@ -298,7 +316,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   p4met.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
-  lepton.SetPtEtaPhiE(*lepton_pT, *lepton_eta, *lepton_phi, *lepton_E);
+  lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
 
   double transverseM = transverseMass(lepton, p4met);
   double lepDphi = lepton.DeltaPhi(p4met);
@@ -321,7 +339,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.1);
-  bool passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
+  bool passelectron;
+  if ( *elec_trg == 10 ) passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
+  else                   passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
 
   //Single Lepton only
   if( option.Contains("SingleMuon") ){
@@ -340,14 +360,21 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   int jetIdx[4];
   TLorentzVector jetP4s[4];
 
-  for (unsigned int iJet = 0; iJet < jet_pT.GetSize() ; ++iJet) {
+  for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
 
     TLorentzVector jet;
-    jet.SetPtEtaPhiE(jet_pT[iJet], jet_eta[iJet], jet_phi[iJet], jet_E[iJet]);
-    //if( !option.Contains("Run2017") ) jet = jet * jet_JER_Nom[iJet];
-
+    jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
+/*
+    if( !option.Contains("Run2017") ){
+      if     ( syst_ext == "jecup" )   jet = jet * jet_JER_Nom[iJet] * jet_JES_Up[iJet];
+      else if( syst_ext == "jecdown" ) jet = jet * jet_JER_Nom[iJet] * jet_JES_Down[iJet];
+      else if( syst_ext == "jerup" )   jet = jet * jet_JER_Up[iJet];
+      else if( syst_ext == "jerdown" ) jet = jet * jet_JER_Down[iJet];
+      else                             jet = jet * jet_JER_Nom[iJet];
+    }
+*/
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
-      if( passelectron and  njets == 0 and jet_pT[iJet] < 38 ) continue;
+      if( passelectron and  *elec_trg == 10 and njets == 0 and jet_pt[iJet] < 38 ) continue;
       njets++;
       jetIdxs.push_back(iJet);
 
@@ -369,16 +396,15 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
   }
 
-
+  int njet_cut = 0;
   if( reco ){
     //Jet Assignment
     vector<double>::iterator iter;
     int evtIdx = 0;
-    int njet_cut = 0;
     if     ( reco_id == 0 )                 njet_cut = 3;
     else if( reco_id == 1 or reco_id == 2 ) njet_cut = 4;
     //find combination
-    if( njets >= njet_cut && nbjets_m >= 2 && !lepPt.empty() ){
+    if( njet_cut != 0 && njets >= njet_cut && nbjets_m >= 2 && !lepPt.empty() ){
       for( iter = lepPt.begin(); iter != lepPt.end(); iter++){
         if( *iter == static_cast<float>(lepton.Pt()) ){
           int tmpIdx = distance(lepPt.begin(), iter);
@@ -387,6 +413,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         }
       }
       dupCheck.push_back(evtIdx);
+      cout << evtIdx << endl;
 
       assignT->GetEntry(evtIdx);
       int i0 = assignT->GetLeaf("idx0")->GetValue(0);
@@ -396,19 +423,18 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       jetIdx[0] = i0; jetIdx[1] = i1; jetIdx[2] = i2; jetIdx[3] = i3;
       //cout << i0 << endl;
 
-      jetP4s[0].SetPtEtaPhiE(jet_pT[i0], jet_eta[i0], jet_phi[i0], jet_E[i0]);
-      jetP4s[1].SetPtEtaPhiE(jet_pT[i1], jet_eta[i1], jet_phi[i1], jet_E[i1]);
-      jetP4s[2].SetPtEtaPhiE(jet_pT[i2], jet_eta[i2], jet_phi[i2], jet_E[i2]);
-      jetP4s[3].SetPtEtaPhiE(jet_pT[i3], jet_eta[i3], jet_phi[i3], jet_E[i3]);
+      jetP4s[0].SetPtEtaPhiE(jet_pt[i0], jet_eta[i0], jet_phi[i0], jet_e[i0]);
+      jetP4s[1].SetPtEtaPhiE(jet_pt[i1], jet_eta[i1], jet_phi[i1], jet_e[i1]);
+      jetP4s[2].SetPtEtaPhiE(jet_pt[i2], jet_eta[i2], jet_phi[i2], jet_e[i2]);
+      jetP4s[3].SetPtEtaPhiE(jet_pt[i3], jet_eta[i3], jet_phi[i3], jet_e[i3]);
 
-      /*
       if( !option.Contains("Run2017") ){
-        jetP4s[0] = jetP4s[0] * jet_JER_Nom[i0];
-        jetP4s[1] = jetP4s[1] * jet_JER_Nom[i1];
-        jetP4s[2] = jetP4s[2] * jet_JER_Nom[i2];
-        jetP4s[3] = jetP4s[3] * jet_JER_Nom[i3];
+        if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
+        else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
+        else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Up[jetIdx[i]];
+        else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Down[jetIdx[i]];
+        else                             for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]];
       }
-      */
 
       if( option.Contains("Hct") || option.Contains("Hut") ){
         if(hbjet1.DeltaR(jetP4s[1]) < 0.4 or hbjet1.DeltaR(jetP4s[2]) < 0.4) match1 = true;
@@ -441,11 +467,12 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     for( int cut = 0; cut < 12; cut++){
       if( eventSelection[cut] ){
         for( int syst = 0; syst != syst_num; ++syst ){
+          if( syst > 0 and !syst ) continue;
           float EventWeight = 1;
           //Multiply syst. to event weight
           if( !option.Contains("Run2017") ){
             EventWeight *= wrongPVrate;
-            EventWeight *= *genWeight;
+            EventWeight *= *genweight;
             //PUWight
             if      ( isPartOf("puup", std::string(syst_name[syst])) )   EventWeight *= PUWeight[1];
             else if ( isPartOf("pudown", std::string(syst_name[syst])) ) EventWeight *= PUWeight[2];
@@ -454,84 +481,96 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             if      ( isPartOf("lepSFup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[1];
             else if ( isPartOf("lepSFdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[2];
             else    EventWeight *= lepton_SF[0];
-            //Deep CSV shape 
-            if( passmuon ){
-              if      ( isPartOf("_lfup", std::string(syst_name[syst])) )        EventWeight *= jet_SF_deepCSV_30[3];
-              else if ( isPartOf("_lfdown", std::string(syst_name[syst])) )      EventWeight *= jet_SF_deepCSV_30[4];
-              else if ( isPartOf("_hfup", std::string(syst_name[syst])) )        EventWeight *= jet_SF_deepCSV_30[5];
-              else if ( isPartOf("_hfdown", std::string(syst_name[syst])) )      EventWeight *= jet_SF_deepCSV_30[6];
-              else if ( isPartOf("_hfstat1up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[7];
-              else if ( isPartOf("_hfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[8];
-              else if ( isPartOf("_hfstat2up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[9];
-              else if ( isPartOf("_hfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[10];
-              else if ( isPartOf("_lfstat1up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[11];
-              else if ( isPartOf("_lfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[12];
-              else if ( isPartOf("_lfstat2up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[13];
-              else if ( isPartOf("_lfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[14];
-              else if ( isPartOf("cferr1up", std::string(syst_name[syst])) )     EventWeight *= jet_SF_deepCSV_30[15];
-              else if ( isPartOf("cferr1down", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[16];
-              else if ( isPartOf("cferr2up", std::string(syst_name[syst])) )     EventWeight *= jet_SF_deepCSV_30[17];
-              else if ( isPartOf("cferr2down", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_30[18];
-              else                                                               EventWeight *= jet_SF_deepCSV_30[0];
+            //scaleWeight
+            //[0] = muF up , [1] = muF down, [2] = muR up, [3] = muR up && muF up, [4] = muR down, [5] = muF down && muF down
+            if( option.Contains("TTpowheg") or option.Contains("TTLL") or option.Contains("TTHad") ){
+              if      ( isPartOf("scale0", std::string(syst_name[syst])) ) EventWeight *= scaleweight[0];
+              else if ( isPartOf("scale1", std::string(syst_name[syst])) ) EventWeight *= scaleweight[1];
+              else if ( isPartOf("scale2", std::string(syst_name[syst])) ) EventWeight *= scaleweight[2];
+              else if ( isPartOf("scale3", std::string(syst_name[syst])) ) EventWeight *= scaleweight[3];
+              else if ( isPartOf("scale4", std::string(syst_name[syst])) ) EventWeight *= scaleweight[4];
+              else if ( isPartOf("scale5", std::string(syst_name[syst])) ) EventWeight *= scaleweight[5];
+              else    EventWeight *= 1;
             }
-            else if ( passelectron ){
-              if      ( isPartOf("_lfup", std::string(syst_name[syst])) )        EventWeight *= jet_SF_deepCSV_38[3];
-              else if ( isPartOf("_lfdown", std::string(syst_name[syst])) )      EventWeight *= jet_SF_deepCSV_38[4];
-              else if ( isPartOf("_hfup", std::string(syst_name[syst])) )        EventWeight *= jet_SF_deepCSV_38[5];
-              else if ( isPartOf("_hfdown", std::string(syst_name[syst])) )      EventWeight *= jet_SF_deepCSV_38[6];
-              else if ( isPartOf("_hfstat1up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[7];
-              else if ( isPartOf("_hfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[8];
-              else if ( isPartOf("_hfstat2up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[9];
-              else if ( isPartOf("_hfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[10];
-              else if ( isPartOf("_lfstat1up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[11];
-              else if ( isPartOf("_lfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[12];
-              else if ( isPartOf("_lfstat2up", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[13];
-              else if ( isPartOf("_lfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[14];
-              else if ( isPartOf("cferr1up", std::string(syst_name[syst])) )     EventWeight *= jet_SF_deepCSV_38[15];
-              else if ( isPartOf("cferr1down", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[16];
-              else if ( isPartOf("cferr2up", std::string(syst_name[syst])) )     EventWeight *= jet_SF_deepCSV_38[17];
-              else if ( isPartOf("cferr2down", std::string(syst_name[syst])) )   EventWeight *= jet_SF_deepCSV_38[18];
-              else                                                               EventWeight *= jet_SF_deepCSV_38[0];
+            else EventWeight *= 1;
+            //Deep CSV shape 
+            if( passelectron && *elec_trg == 10 ){
+              if      ( isPartOf("lfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]+jet_SF_deepCSV_38[3];
+              else if ( isPartOf("lfdown",      std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]-jet_SF_deepCSV_38[4];
+              else if ( isPartOf("hfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]+jet_SF_deepCSV_38[5];
+              else if ( isPartOf("hfdown",      std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]-jet_SF_deepCSV_38[6];
+              else if ( isPartOf("hfstat1up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]+jet_SF_deepCSV_38[7];
+              else if ( isPartOf("hfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]-jet_SF_deepCSV_38[8];
+              else if ( isPartOf("hfstat2up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]+jet_SF_deepCSV_38[9];
+              else if ( isPartOf("hfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]-jet_SF_deepCSV_38[10];
+              else if ( isPartOf("lfstat1up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]+jet_SF_deepCSV_38[11];
+              else if ( isPartOf("lfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]-jet_SF_deepCSV_38[12];
+              else if ( isPartOf("lfstat2up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]+jet_SF_deepCSV_38[13];
+              else if ( isPartOf("lfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]-jet_SF_deepCSV_38[14];
+              else if ( isPartOf("cferr1up",    std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]+jet_SF_deepCSV_38[15];
+              else if ( isPartOf("cferr1down",  std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]-jet_SF_deepCSV_38[16];
+              else if ( isPartOf("cferr2up",    std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]+jet_SF_deepCSV_38[17];
+              else if ( isPartOf("cferr2down",  std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_38[0]-jet_SF_deepCSV_38[18];
+              else                                                              EventWeight *= jet_SF_deepCSV_38[0];
+            }
+            else{
+              if      ( isPartOf("lfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[3];
+              else if ( isPartOf("lfdown",      std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[4];
+              else if ( isPartOf("hfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[5];
+              else if ( isPartOf("hfdown",      std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[6];
+              else if ( isPartOf("hfstat1up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[7];
+              else if ( isPartOf("hfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[8];
+              else if ( isPartOf("hfstat2up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[9];
+              else if ( isPartOf("hfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[10];
+              else if ( isPartOf("lfstat1up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[11];
+              else if ( isPartOf("lfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[12];
+              else if ( isPartOf("lfstat2up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[13];
+              else if ( isPartOf("lfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[14];
+              else if ( isPartOf("cferr1up",    std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[15];
+              else if ( isPartOf("cferr1down",  std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[16];
+              else if ( isPartOf("cferr2up",    std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[17];
+              else if ( isPartOf("cferr2down",  std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[18];
+              else                                                              EventWeight *= jet_SF_deepCSV_30[0];
             }
           }
 
-          h_PV[MODE][cut][syst]->Fill(*GoodPV,EventWeight);
+          h_PV[MODE][cut][syst]         ->Fill(*GoodPV,EventWeight);
           h_EventWeight[MODE][cut][syst]->Fill(EventWeight);
-          h_NJet[MODE][cut][syst]->Fill(njets, EventWeight);
+          h_NJet[MODE][cut][syst]       ->Fill(njets, EventWeight);
           h_NBJetCSVv2M[MODE][cut][syst]->Fill(nbjets_m, EventWeight);
           h_NBJetCSVv2T[MODE][cut][syst]->Fill(nbjets_t, EventWeight);
-          h_NCJetM[MODE][cut][syst]->Fill(ncjets_m, EventWeight);
-          h_LepPt[MODE][cut][syst]->Fill(lepton.Pt(), EventWeight);
-          h_LepPhi[MODE][cut][syst]->Fill(lepton.Phi(), EventWeight);
-          h_LepEta[MODE][cut][syst]->Fill(lepton.Eta(), EventWeight);
-          h_MET[MODE][cut][syst]->Fill(*MET, EventWeight);
-          h_WMass[MODE][cut][syst]->Fill(transverseM, EventWeight);
-          h_DPhi[MODE][cut][syst]->Fill(lepDphi, EventWeight);
-          h_LepIso[MODE][cut][syst]->Fill(relIso, EventWeight);
+          h_NCJetM[MODE][cut][syst]     ->Fill(ncjets_m, EventWeight);
+          h_LepPt[MODE][cut][syst]      ->Fill(lepton.Pt(), EventWeight);
+          h_LepPhi[MODE][cut][syst]     ->Fill(lepton.Phi(), EventWeight);
+          h_LepEta[MODE][cut][syst]     ->Fill(lepton.Eta(), EventWeight);
+          h_MET[MODE][cut][syst]        ->Fill(*MET, EventWeight);
+          h_WMass[MODE][cut][syst]      ->Fill(transverseM, EventWeight);
+          h_DPhi[MODE][cut][syst]       ->Fill(lepDphi, EventWeight);
+          h_LepIso[MODE][cut][syst]     ->Fill(relIso, EventWeight);
           for( int ii = 0; ii < njets; ii++){
             const size_t ii1 = jetIdxs[ii];
             h_JetCSV[MODE][cut][syst]->Fill(jet_deepCSV[ii1],EventWeight);
           }
 
           if( reco ){
-            if( njets >=3 && nbjets_m >=2 ){
+            if( njets >= njet_cut && nbjets_m >= 2 ){
               for( int i = 0; i < 3; ++i ){
                 const size_t j = jetIdx[i];
-                h_csv[MODE][cut][syst]->Fill(jet_deepCSV[j],EventWeight);
+                h_csv[MODE][cut][syst] ->Fill(jet_deepCSV[j],EventWeight);
                 h_cvsl[MODE][cut][syst]->Fill(jet_deepCvsL[j],EventWeight);
                 h_cvsb[MODE][cut][syst]->Fill(jet_deepCvsB[j],EventWeight);
               }
               h_FCNHkinLepWMass[MODE][cut][syst]->Fill((lepton+p4met).M(),EventWeight);
               h_FCNHkinHadWMass[MODE][cut][syst]->Fill((jetP4s[2]+jetP4s[3]).M(),EventWeight);
-              h_FCNHkinLepTopM[MODE][cut][syst]->Fill((lepton+p4met+jetP4s[0]).M(),EventWeight);
-              h_FCNHkinHMass[MODE][cut][syst]->Fill((jetP4s[1]+jetP4s[2]).M(),EventWeight);
-              h_FCNHkinDR[MODE][cut][syst]->Fill(jetP4s[1].DeltaR(jetP4s[2]),EventWeight);
-              h_FCNHkinHadTopM[MODE][cut][syst]->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).M(),EventWeight);
-              h_FCNHkinHPt[MODE][cut][syst]->Fill((jetP4s[1]+jetP4s[2]).Pt(),EventWeight);
-              h_FCNHkinHdPhi[MODE][cut][syst]->Fill(abs(jetP4s[1].DeltaPhi(jetP4s[2])),EventWeight);
-              h_FCNHkinHdEta[MODE][cut][syst]->Fill(abs((jetP4s[1]-jetP4s[2]).Eta()),EventWeight);
-              h_FCNHkinHb1CSV[MODE][cut][syst]->Fill(jet_deepCSV[jetIdx[1]],EventWeight);
-              h_FCNHkinHb2CSV[MODE][cut][syst]->Fill(jet_deepCSV[jetIdx[2]],EventWeight);
+              h_FCNHkinLepTopM[MODE][cut][syst] ->Fill((lepton+p4met+jetP4s[0]).M(),EventWeight);
+              h_FCNHkinHMass[MODE][cut][syst]   ->Fill((jetP4s[1]+jetP4s[2]).M(),EventWeight);
+              h_FCNHkinDR[MODE][cut][syst]      ->Fill(jetP4s[1].DeltaR(jetP4s[2]),EventWeight);
+              h_FCNHkinHadTopM[MODE][cut][syst] ->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).M(),EventWeight);
+              h_FCNHkinHPt[MODE][cut][syst]     ->Fill((jetP4s[1]+jetP4s[2]).Pt(),EventWeight);
+              h_FCNHkinHdPhi[MODE][cut][syst]   ->Fill(abs(jetP4s[1].DeltaPhi(jetP4s[2])),EventWeight);
+              h_FCNHkinHdEta[MODE][cut][syst]   ->Fill(abs((jetP4s[1]-jetP4s[2]).Eta()),EventWeight);
+              h_FCNHkinHb1CSV[MODE][cut][syst]  ->Fill(jet_deepCSV[jetIdx[1]],EventWeight);
+              h_FCNHkinHb2CSV[MODE][cut][syst]  ->Fill(jet_deepCSV[jetIdx[2]],EventWeight);
               h_FCNHkinLepTopPt[MODE][cut][syst]->Fill((lepton+p4met+jetP4s[0]).Pt(),EventWeight);
               h_FCNHkinHadTopPt[MODE][cut][syst]->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(),EventWeight);
             }
@@ -550,6 +589,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }
   evtNum++;
   //cout << evtNum << '\r';
+
   return kTRUE;
 }
 
@@ -564,14 +604,28 @@ void MyAnalysis::Terminate()
   TString option = GetOption();
   string sample = option.Data();
 
-  if( option.Contains("_") ) reco = true;
-  else reco = false;
+  if( option.Contains("_") ){
+    reco = true;
+    syst = true;
+  }
+  else{//for no reco
+    reco = false;
+    syst = false;
+  }
 
   const char* assign_file = "";
   if( reco ){
     string reco_scheme = sample.substr(sample.find_first_of("-")+1,string::npos);
+    if( reco_scheme.find("jec") != string::npos or reco_scheme.find("jer") != string::npos ){
+      syst_ext = "";
+      if     ( reco_scheme.find("jecup") != string::npos )   syst_ext = "jecup";
+      else if( reco_scheme.find("jecdown") != string::npos ) syst_ext = "jecdown";
+      else if( reco_scheme.find("jerup") != string::npos )   syst_ext = "jerup";
+      else if( reco_scheme.find("jerdown") != string::npos ) syst_ext = "jerdown";
+    }
     sample.erase( sample.find_first_of("-"),string::npos );
-    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assign%s/assign_deepReco_%s.root", reco_scheme.c_str(), sample.c_str());
+    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assign%s/assign_deepReco_%s.root",
+                       reco_scheme.c_str(), sample.c_str());
     string file_tmp_path = assign_file;
     ifstream file_tmp(file_tmp_path);
 
@@ -579,12 +633,11 @@ void MyAnalysis::Terminate()
       //cout << lepcount << endl;
       auto it = unique( dupCheck.begin(), dupCheck.end() );
       if( it != dupCheck.end() ) cout << string(option.Data()) + string(": Duplicate(s)") << endl;
-      //cout << ((it == dupCheck.end()) ? "Unique" : "Duplicate(s)\n");
     }
-    else cout << "file " + file_tmp_path + " not opened!";
-    out = TFile::Open(Form("doReco/temp/hist_%s.root",sample.c_str()),"RECREATE");
+    else cout << "file " + file_tmp_path + " not opened!" << endl;
+    out = TFile::Open(Form("doReco/temp/hist_%s%s.root", sample.c_str(), syst_ext.c_str()),"RECREATE");
   }
-  else out = TFile::Open(Form("doNoReco/hist_%s.root",option.Data()),"RECREATE");
+  else out = TFile::Open(Form("doNoReco/hist_%s.root", option.Data()),"RECREATE");
 
   TList * l = GetOutputList();
   TIter next(l);

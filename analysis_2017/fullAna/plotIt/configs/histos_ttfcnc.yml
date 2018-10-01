@@ -1,14 +1,14 @@
-'h_FCNHkinHadWMass_Ch2_S6':
+'h_FCNHkinHMass_Ch2_S6':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
 
-'h_FCNHkinHadWMass_Ch2_S7':
+'h_FCNHkinHMass_Ch2_S7':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
 
-'h_FCNHkinHadWMass_Ch2_S8':
+'h_FCNHkinHMass_Ch2_S8':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']

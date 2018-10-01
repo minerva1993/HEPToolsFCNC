@@ -8,7 +8,7 @@ import numpy as np
 if os.path.isfile('TruePVWeight.txt'):
   os.remove('TruePVWeight.txt')
 
-basedir = '/data/users/minerva1993/ntuple_Run2017/V9_2/180815/'
+basedir = '/data/users/minerva1993/ntuple_Run2017/V9_2/180922/'
 
 path = os.listdir(basedir)
 filelist = []
@@ -43,6 +43,8 @@ for item in filelist:
 
     info = data.Get("fcncLepJets/EventInfo")
     string_nevt += "hist_" + item.replace("_","") + " : " + str(info.GetBinContent(2)).replace(".0","") +'\n'
+
+    if abs(ratio - 1) < 0.002: continue
 
     if item == filelist[0]: 
       text_file.write('    if      ( option.Contains("' + item.replace("_","")[:-5] + '") ) wrongPVrate = ' + str(ratio) + ";\n")

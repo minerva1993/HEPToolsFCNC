@@ -11,7 +11,7 @@ cout << "ttbj" << " " << ttbj->TColor::AsHexString() << endl;
 TColor *ttcc = gROOT->GetColor(kRed+2);
 cout << "ttcc" << " " << ttcc->TColor::AsHexString() << endl;
 
-TColor *ttlf = gROOT->GetColor(kRed);
+TColor *ttlf = gROOT->GetColor(kRed+1);
 cout << "ttlf" << " " << ttlf->TColor::AsHexString() << endl;
 
 TColor *ttbkg = gROOT->GetColor(kRed-7);
@@ -20,16 +20,16 @@ cout << "ttbkg" << " " << ttbkg->TColor::AsHexString() << endl;
 TColor *ttv = gROOT->GetColor(kMagenta-7);
 cout << "ttv" << " " << ttv->TColor::AsHexString() << endl;
 
-TColor *wj = gROOT->GetColor(kYellow);
+TColor *wj = gROOT->GetColor(kOrange+1);
 cout << "wjet" << " " << wj->TColor::AsHexString() << endl;
 
-TColor *zj = gROOT->GetColor(kBlue);
+TColor *zj = gROOT->GetColor(kBlue+2);
 cout << "zjet" << " " << zj->TColor::AsHexString() << endl;
 
-TColor *st = gROOT->GetColor(6);
+TColor *st = gROOT->GetColor(kMagenta+2);
 cout << "st" << " " << st->TColor::AsHexString() << endl;
 
-TColor *vv = gROOT->GetColor(kCyan);
+TColor *vv = gROOT->GetColor(kCyan+1);
 cout << "vv" << " " << vv->TColor::AsHexString() << endl;
 
 TColor *tthct = gROOT->GetColor(433);

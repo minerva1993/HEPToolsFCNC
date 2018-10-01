@@ -21,20 +21,19 @@ python runNoReco.py
 cp doReco/*.root ./
 python ratioEMuCombine.py
 ```
-  *Recnstruction
+  *Reconstruction
 This is for ST FCNC reconstruction using Keras+TF. For TT FCNC, some options in flat ntuplizer must be changes (eg. event selection, b tagging requirements). The flat ntuples for jer assignment is stored in both root and hdf format. root output is kept for BDT test. Default training code uses 0th ST Hct ntuple with classifier version '01'. score and assign folders will be made automatically.
 ```{.Bash}
 #First you make flat ntuples.
 ../reco/mkNtuple/
 source compile.sh
-cat ../../commonTools/file_top.txt | xargs -i -P$(nproc) -n2 python run_top.py
-cat ../../commonTools/file_other.txt | xargs -i -P$(nproc) -n2 python run_other.py
+source job_ntuple.sh
+python dir_manage.py
 #Launch training
 cd ../training
-py27 #activate your venv
 python training_kerasTF.py
 #With classifier, run prediction.
-python training_kerasTF.py model.h5
+python evaluation_kerasTF.py model.h5
 cat ../commonTools/file_top.txt | xargs -i -P1 -n2 python combi_assign.py True STFCNC 01 #for signal efficiency
 cat ../commonTools/file_top.txt | xargs -i -P$(nproc) -n2 python combi_assign.py False STFCNC 01
 cat ../commonTools/file_other.txt | xargs -i -P$(nproc) -n2 python combi_assign.py False STFCNC 01
@@ -44,6 +43,8 @@ cat ../commonTools/file_top.txt | xargs -i -P$(nproc) -n2 python runReco.py
 cat ../commonTools/file_other.txt | xargs -i -P$(nproc) -n2 python runReco.py
 source job_merge.sh
 python ratioEMuCombine.py
+cd doReco/STFCNC01
+../../plotIt/plotIt -o systematics/ ../../plotIt/configs/config.yml -y
 ```
 
   *Todo list
