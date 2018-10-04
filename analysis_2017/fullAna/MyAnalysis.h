@@ -168,8 +168,8 @@ public :
     int lepcount = 0;
     int evtNum = 0;
 
-    bool reco;
-    bool syst;
+    bool doreco;
+    bool dosyst;
     string syst_ext;
 
     TFile *out;

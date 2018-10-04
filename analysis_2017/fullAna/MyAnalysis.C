@@ -15,17 +15,19 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
   string sample = option.Data();
 
   if( option.Contains("_") ){
-    reco = true;
-    syst = true;
+    doreco = true;
+    dosyst = true;
   }
   else{//for no reco
-    reco = false;
-    syst = false;
+    doreco = false;
+    dosyst = false;
   }
+
+  if( option.Contains("Run2017") ) dosyst = false;
 
   //Delete ntuple number and data era so that we can merge histos w.r.t. dataset, prepare assign ntuple
   const char* assign_file = "";
-  if( reco ){
+  if( doreco ){
     //if     ( option.Contains("Run2017") ) sample.erase(sample.find_first_of("_")-1, string::npos);
     //else if( option.Contains("part") )    sample.erase(sample.find_last_of("p"),    string::npos);
     //else                                  sample.erase(sample.find_first_of("_"),   string::npos);
@@ -36,7 +38,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     else                                                  reco_id = -1;
 
     if( reco_scheme.find("jec") != string::npos or reco_scheme.find("jer") != string::npos ){
-      syst = false;//make another hist file
+      dosyst = false;//make another hist file
       if     ( reco_scheme.find("jecup") != string::npos )   syst_ext = "jecup";
       else if( reco_scheme.find("jecdown") != string::npos ) syst_ext = "jecdown";
       else if( reco_scheme.find("jerup") != string::npos )   syst_ext = "jerup";
@@ -65,7 +67,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     }
     else cout << option.Data() << endl;
 
-    if( !syst and syst_ext.length() < 5 ) cout << sample.c_str() << " " << "No jec/jer systematic option!" << endl;
+    if( !dosyst and syst_ext.length() < 5 and !option.Contains("Run2017") ) cout << sample.c_str() << " " << "No jec/jer systematic option!" << endl;
   }
 
 
@@ -73,6 +75,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
   for( int ich=0; ich < 3; ich++ ){
     for( int i=0; i < 12; i++ ){
       for( int syst = 0; syst != syst_num; ++syst ){
+        if( syst > 0 and !dosyst ) continue;
 
         h_PV[ich][i][syst] = new TH1D(Form("h_PV_Ch%i_S%i%s",ich,i,syst_name[syst]), "Number of primary vertices", 60, 0, 60);
         h_PV[ich][i][syst]->SetXTitle("Good PV");
@@ -364,7 +367,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     TLorentzVector jet;
     jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
-/*
+
     if( !option.Contains("Run2017") ){
       if     ( syst_ext == "jecup" )   jet = jet * jet_JER_Nom[iJet] * jet_JES_Up[iJet];
       else if( syst_ext == "jecdown" ) jet = jet * jet_JER_Nom[iJet] * jet_JES_Down[iJet];
@@ -372,7 +375,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       else if( syst_ext == "jerdown" ) jet = jet * jet_JER_Down[iJet];
       else                             jet = jet * jet_JER_Nom[iJet];
     }
-*/
+
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
       if( passelectron and  *elec_trg == 10 and njets == 0 and jet_pt[iJet] < 38 ) continue;
       njets++;
@@ -397,7 +400,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }
 
   int njet_cut = 0;
-  if( reco ){
+  if( doreco ){
     //Jet Assignment
     vector<double>::iterator iter;
     int evtIdx = 0;
@@ -413,7 +416,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         }
       }
       dupCheck.push_back(evtIdx);
-      cout << evtIdx << endl;
+      //cout << evtIdx << endl;
 
       assignT->GetEntry(evtIdx);
       int i0 = assignT->GetLeaf("idx0")->GetValue(0);
@@ -467,7 +470,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     for( int cut = 0; cut < 12; cut++){
       if( eventSelection[cut] ){
         for( int syst = 0; syst != syst_num; ++syst ){
-          if( syst > 0 and !syst ) continue;
+          if( syst > 0 and !dosyst ) continue;
+
           float EventWeight = 1;
           //Multiply syst. to event weight
           if( !option.Contains("Run2017") ){
@@ -552,7 +556,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             h_JetCSV[MODE][cut][syst]->Fill(jet_deepCSV[ii1],EventWeight);
           }
 
-          if( reco ){
+          if( doreco ){
             if( njets >= njet_cut && nbjets_m >= 2 ){
               for( int i = 0; i < 3; ++i ){
                 const size_t j = jetIdx[i];
@@ -605,23 +609,23 @@ void MyAnalysis::Terminate()
   string sample = option.Data();
 
   if( option.Contains("_") ){
-    reco = true;
-    syst = true;
+    doreco = true;
+    dosyst = true;
   }
   else{//for no reco
-    reco = false;
-    syst = false;
+    doreco = false;
+    dosyst = false;
   }
 
   const char* assign_file = "";
-  if( reco ){
+  if( doreco ){
     string reco_scheme = sample.substr(sample.find_first_of("-")+1,string::npos);
+    syst_ext = "";
     if( reco_scheme.find("jec") != string::npos or reco_scheme.find("jer") != string::npos ){
-      syst_ext = "";
-      if     ( reco_scheme.find("jecup") != string::npos )   syst_ext = "jecup";
-      else if( reco_scheme.find("jecdown") != string::npos ) syst_ext = "jecdown";
-      else if( reco_scheme.find("jerup") != string::npos )   syst_ext = "jerup";
-      else if( reco_scheme.find("jerdown") != string::npos ) syst_ext = "jerdown";
+      if     ( reco_scheme.find("jecup") != string::npos )   syst_ext = "__jecup";
+      else if( reco_scheme.find("jecdown") != string::npos ) syst_ext = "__jecdown";
+      else if( reco_scheme.find("jerup") != string::npos )   syst_ext = "__jerup";
+      else if( reco_scheme.find("jerdown") != string::npos ) syst_ext = "__jerdown";
     }
     sample.erase( sample.find_first_of("-"),string::npos );
     assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assign%s/assign_deepReco_%s.root",

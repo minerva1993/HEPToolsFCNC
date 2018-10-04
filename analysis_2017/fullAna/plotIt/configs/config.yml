@@ -6,7 +6,7 @@ configuration:
   extra-label: "Preliminary"
   root: ''
   luminosity: 41529
-  luminosity-error: 2.3
+  luminosity-error: 0
   error-fill-style: 3154
   error-fill-color: "#ee556270"
   ratio-fit-error-fill-style: 1001
@@ -21,39 +21,38 @@ files:
   include: ['files.yml']
 
 systematics:
-  - ttbb_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbb.root'}
-  - ttbj_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbj.root'}
-  - ttcc_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttcc.root'}
-  - ttlf_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttlf.root'}
-  - ttother_xsec:  {type: const, value: 1.055, on: 'hist_TTpowhegttother.root'}
-  - ttll_xsec:     {type: const, value: 1.055, on: 'hist_TTLLpowheg.root'}
-  - tthad_xsec:    {type: const, value: 1.055, on: 'hist_TTHadpowheg.root'}
-  - ttbb_xsec2:    {type: const, value: 1.3, on: 'hist_TTpowhegttbb.root'}
-  - ttcc_xsec2:    {type: const, value: 1.5, on: 'hist_TTpowhegttcc.root'}
-  - ttbb_scale:    {type: scaleweight, on: 'hist_TTpowhegttbb.root'}
-  - ttbj_scale:    {type: scaleweight, on: 'hist_TTpowhegttbj.root'}
-  - ttcc_scale:    {type: scaleweight, on: 'hist_TTpowhegttcc.root'}
-  - ttlf_scale:    {type: scaleweight, on: 'hist_TTpowhegttlf.root'}
-  - ttother_scale: {type: scaleweight, on: 'hist_TTpowhegttother.root'}
-  - ttLL_scale:    {type: scaleweight, on: 'hist_TTLLpowheg.root'}
-  - ttHad_scale:   {type: scaleweight, on: 'hist_TTHadpowheg.root'}
-  - pu
-  - lepSF
-  - lf
-  - hf
-  - hfstat1
-  - hfstat2
-  - lfstat1
-  - lfstat2
-  - cferr1
-  - cferr2
-  - jec
+#  - ttbb_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbb.root'}
+#  - ttbj_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbj.root'}
+#  - ttcc_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttcc.root'}
+#  - ttlf_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttlf.root'}
+#  - ttother_xsec:  {type: const, value: 1.055, on: 'hist_TTpowhegttother.root'}
+#  - ttll_xsec:     {type: const, value: 1.055, on: 'hist_TTLLpowheg.root'}
+#  - tthad_xsec:    {type: const, value: 1.055, on: 'hist_TTHadpowheg.root'}
+#  - ttbb_xsec2:    {type: const, value: 1.3, on: 'hist_TTpowhegttbb.root'}
+#  - ttcc_xsec2:    {type: const, value: 1.5, on: 'hist_TTpowhegttcc.root'}
+#  - ttbb_scale:    {type: scaleweight, on: 'hist_TTpowhegttbb.root'}
+#  - ttbj_scale:    {type: scaleweight, on: 'hist_TTpowhegttbj.root'}
+#  - ttcc_scale:    {type: scaleweight, on: 'hist_TTpowhegttcc.root'}
+#  - ttlf_scale:    {type: scaleweight, on: 'hist_TTpowhegttlf.root'}
+#  - ttother_scale: {type: scaleweight, on: 'hist_TTpowhegttother.root'}
+#  - ttLL_scale:    {type: scaleweight, on: 'hist_TTLLpowheg.root'}
+#  - ttHad_scale:   {type: scaleweight, on: 'hist_TTHadpowheg.root'}
+#  - pu
+#  - lepSF
+#  - lf
+#  - hf
+#  - hfstat1
+#  - hfstat2
+#  - lfstat1
+#  - lfstat2
+#  - cferr1
+#  - cferr2
+#  - jec
   - jer
   #- gamma: {type: ln, prior: 1.072, pretty-name: "Gamma"}  # Log-normal systematics, +7.2%, -2.97%, exp(+/- 1 * log(prior))
         
 plots:
-  include: ['histos.yml','histos_ttfcnc.yml']
-#'histos_ttbkg.yml']
+  include: ['histos.yml','histos_ttbkg.yml']  #'histos_st.yml'] 'histos_ttfcnc.yml'] 'histos_ttbkg.yml']
 
 legend:
   position: [0.18, 0.65, 0.92, 0.89]

@@ -6,10 +6,8 @@ ch = sys.argv[2]
 ver = sys.argv[3]
 file_path = sys.argv[4]
 file_name = sys.argv[5]
-
-if ch not in ["STFCNC", "TTFCNC", "TTBKG"]: 
-  print "Checak channel again!"
-  sys.exit(0)
+syst = [""]
+if sig_only == "False": syst += ["jecup", "jecdown", "jerup", "jerdown"]
 
 if sig_only == "True":
   if ch == "STFCNC":
@@ -18,6 +16,7 @@ if sig_only == "True":
     if "TTTH1L3B" not in file_name: sys.exit(0)
   elif ch == "TTBKG":
     if "TTpowheg"  not in file_name: sys.exit(0)
-    if not file_name.endswith(('010','011','012','013','014')): sys.exit(0)
+    if not file_name.endswith(('012','013','014')): sys.exit(0)
 
-call(["root", "-l", 'run.C("'+ ch + '","' + ver + '","' + file_path + ' ' + file_name + '")'], shell=False)
+for syst_ext in syst:
+  call(["root", "-l", 'run.C("'+ ch + '","' + ver + '","' + syst_ext + '","' + file_path + ' ' + file_name + '")'], shell=False)

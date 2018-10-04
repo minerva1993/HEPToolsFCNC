@@ -1,5 +1,4 @@
-import os
-import shutil
+import os, shutil, re
 
 version = 'V9_2/180922/'
 path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
@@ -33,23 +32,35 @@ for lines in noreco_list:
 with open(run_file_name, 'a') as target:
   target.write(string_for_run)
 
+syst = ["__jecup", "__jecdown", "__jerup", "__jerdown", ""]
 
 print("Write script for mergeing histograms")
 ext_dataset = []
+fcnc_dataset = []
 string_for_merge += '#!/bin/sh\n'
 string_for_merge += 'rm hist_*.root\n'
 
 for lines in noreco_list:
   if "v2" in lines.split(' ')[1]: ext_dataset.append(lines.split(' ')[1])
+  elif "TTTH" in lines.split(' ')[1]: fcnc_dataset.append(lines.split(' ')[1])
   elif "Run2017" in lines.split(' ')[1]:
-    string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + ".root temp/hist_" + (lines.split(' ')[1]) + "*.root\n"
-  else: string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + ".root temp/hist_" + (lines.split(' ')[1]) + "_*.root\n"
+    string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + ".root temp/hist_" + (lines.split(' ')[1]) + "[A-F]_*[0-9].root\n"
+  else:
+    for syst_ext in syst:
+      string_for_merge += "hadd hist_" + (lines.split(' ')[1]) + syst_ext + ".root temp/hist_" + (lines.split(' ')[1]) + "_" + "*[0-9]" + syst_ext + ".root\n"
 
 for exts in ext_dataset:
-  string_for_merge += "hadd hist_" + (exts) + ".root temp/hist_" + (exts)[:-2] + "_*.root temp/hist_" + (exts)[:-2] + "part2_*.root\n"
+  for syst_ext in syst:
+    string_for_merge += "hadd hist_" + (exts) + syst_ext + ".root temp/hist_" + (exts)[:-2] + "_*[0-9]" + syst_ext + ".root temp/hist_" + (exts)[:-2] + "part2_*[0-9]" + syst_ext + ".root\n"
 
-string_for_merge += "hadd hist_TTTH1L3BHut.root hist_TTTH*Hut.root\n"
-string_for_merge += "hadd hist_TTTH1L3BHct.root hist_TTTH*Hct.root"
+sig_reg = re.compile('H[u,c]t')
+
+for ttsig in fcnc_dataset:
+  if "aTLep" in ttsig: continue
+  chs = ['Hct', 'Hut']
+  for ch in chs:
+    for syst_ext in syst:
+      string_for_merge += "hadd hist_TTTH1L3B" + ch + syst_ext + ".root temp/hist_TTTH*" + ch + "_*[0-9]" + syst_ext + ".root\n"
 
 if os.path.exists('doReco/' + merge_file_name): os.remove('doReco/' + merge_file_name)
 with open('doReco/' + merge_file_name, 'w') as g:

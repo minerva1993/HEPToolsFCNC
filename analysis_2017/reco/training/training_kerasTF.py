@@ -22,10 +22,11 @@ from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l2
 from keras.optimizers import Adam
 from keras.callbacks import Callback, ModelCheckpoint
+from variables import input_variables, gen_label, train_files
 
 #Channel selection: 0=bkg 1=STFCNC 2=TTFCNC
-ch = "STFCNC"
-#ch = "TTFCNC"
+#ch = "STFCNC"
+ch = "TTFCNC"
 #ch = "TTBKG"
 
 #Version of classifier
@@ -45,45 +46,10 @@ assignDir = 'assign'+ch
 #Options for data preparation
 input_files = []
 input_features = []
-if ch == "STFCNC":
-  signal_label = 1011
-  input_files.extend(['deepReco_STTH1L3BHct_000.h5', 'deepReco_STTH1L3BHut_000.h5'])
-  input_features.extend(['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m',
-                         'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
-                         'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
-                         'genMatch',]) #Must include label as well
-
-elif ch == "TTFCNC":
-  signal_label = 1111
-  input_files.extend(['deepReco_TTTH1L3BaTLepHut_000.h5', 'deepReco_TTTH1L3BTLepHut_000.h5'])
-  input_features.extend(['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m', 'jet3pt', 'jet3eta', 'jet3m', 
-                         'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
-                         'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
-                         'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m', 
-                         'lepWpt', 'lepWdphi', 'lepTdphi', 'lepTm', 
-                         'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta', 
-                         'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
-                         'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm', 
-                         'genMatch',])
-
-elif ch == "TTBKG":
-  signal_label = 1111
-  input_files.extend(['deepReco_TTpowhegttbb_000.h5', 'deepReco_TTpowhegttbj_000.h5', 'deepReco_TTpowhegttcc_000.h5',
-                      'deepReco_TTpowhegttlf_000.h5', 'deepReco_TTpowhegttother_000.h5',
-                      'deepReco_TTpowhegttbb_001.h5', 'deepReco_TTpowhegttbj_001.h5', 'deepReco_TTpowhegttcc_001.h5',
-                      'deepReco_TTpowhegttlf_001.h5', 'deepReco_TTpowhegttother_001.h5',])
-  input_features.extend(['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m', 'jet3pt', 'jet3eta', 'jet3m', 
-                         'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
-                         'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
-                         'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m', 
-                         'lepWpt', 'lepWdphi', 'lepTdphi', 'lepTm', 
-                         'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta', 
-                         'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
-                         'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm', 
-                         'genMatch',])
-
-else: print("Check reco scenario!")
-
+signal_label = gen_label(ch)
+input_files.extend(train_files(ch))
+input_features.extend(input_variables(ch))
+input_features.append('genMatch')
 
 label_name = 'genMatch'
 bkg_drop_rate = 0.0
