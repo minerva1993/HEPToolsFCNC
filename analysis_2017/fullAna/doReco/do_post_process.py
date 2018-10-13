@@ -80,7 +80,6 @@ if not os.path.exists( pre_path ):
 
 for files in file_list:
 
-  if ("TuneCP5" not in files) : continue
   print files
 
   #Prepare root file
