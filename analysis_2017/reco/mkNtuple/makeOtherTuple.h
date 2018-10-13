@@ -69,15 +69,23 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
-   TTreeReaderValue<Float_t> addHbjet1_pt = {fReader, "addHbjet1_pt"};
-   TTreeReaderValue<Float_t> addHbjet1_eta = {fReader, "addHbjet1_eta"};
-   TTreeReaderValue<Float_t> addHbjet1_phi = {fReader, "addHbjet1_phi"};
-   TTreeReaderValue<Float_t> addHbjet1_e = {fReader, "addHbjet1_e"};
-   TTreeReaderValue<Float_t> addHbjet2_pt = {fReader, "addHbjet2_pt"};
-   TTreeReaderValue<Float_t> addHbjet2_eta = {fReader, "addHbjet2_eta"};
-   TTreeReaderValue<Float_t> addHbjet2_phi = {fReader, "addHbjet2_phi"};
-   TTreeReaderValue<Float_t> addHbjet2_e = {fReader, "addHbjet2_e"};
+   TTreeReaderValue<Float_t> Hbjet1_pt = {fReader, "Hbjet1_pt"};
+   TTreeReaderValue<Float_t> Hbjet1_eta = {fReader, "Hbjet1_eta"};
+   TTreeReaderValue<Float_t> Hbjet1_phi = {fReader, "Hbjet1_phi"};
+   TTreeReaderValue<Float_t> Hbjet1_e = {fReader, "Hbjet1_e"};
+   TTreeReaderValue<Float_t> Hbjet2_pt = {fReader, "Hbjet2_pt"};
+   TTreeReaderValue<Float_t> Hbjet2_eta = {fReader, "Hbjet2_eta"};
+   TTreeReaderValue<Float_t> Hbjet2_phi = {fReader, "Hbjet2_phi"};
+   TTreeReaderValue<Float_t> Hbjet2_e = {fReader, "Hbjet2_e"};
    TTreeReaderValue<Float_t> dRHbb = {fReader, "dRHbb"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_pt = {fReader, "Hbquarkjet1_pt"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_eta = {fReader, "Hbquarkjet1_eta"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_phi = {fReader, "Hbquarkjet1_phi"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_e = {fReader, "Hbquarkjet1_e"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_pt = {fReader, "Hbquarkjet2_pt"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_eta = {fReader, "Hbquarkjet2_eta"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_phi = {fReader, "Hbquarkjet2_phi"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_e = {fReader, "Hbquarkjet2_e"};
 
    makeOtherTuple(TTree * /*tree*/ =0) { }
    virtual ~makeOtherTuple() { }

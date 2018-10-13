@@ -12,116 +12,385 @@ void makeTuple::Begin(TTree * /*tree*/)
 void makeTuple::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
+  string syst_str = option.Data();
+  syst_str.erase(syst_str.find_first_of("_"),string::npos);
+  string sample = option.Data();
+  sample.erase(0,sample.find_first_of("_")+1);
+  string ver = syst_str.substr(0,2); //FIXME: Only 2 digit of ver!? FIXME and classifier ver should be same!?!?
+  syst_str = erase(0,2);
 
-  treeTMVA = new TTree("tmva_tree","tree for tmva");
-
-  treeTMVA->Branch("nevt"         , &b_nevt         , "nevt/I");
-  treeTMVA->Branch("GoodPV"       , &b_GoodPV       , "GoodPV/I");
-  treeTMVA->Branch("EventCategory", &b_EventCategory, "EventCategory/I");
-  treeTMVA->Branch("GenMatch"     , &b_GenMatch     , "GenMatch/I");
-  treeTMVA->Branch("EventWeight"  , &b_EventWeight  , "EventWeight/F");
-
-  treeTMVA->Branch("njets"         , &b_njets      , "njets/I");
-  treeTMVA->Branch("nbjets_m"      , &b_nbjets_m   , "nbjets_m/I");
-  treeTMVA->Branch("ncjets_m"      , &b_ncjets_m   , "ncjets_m/I");
-  treeTMVA->Branch("transverseMass", &b_transversem, "transversem/F");
-  treeTMVA->Branch("lepDPhi"       , &b_lepdphi    , "lepdphi/F");
-  treeTMVA->Branch("missingET"     , &b_met        , "met/F");
-  treeTMVA->Branch("cjetPt"        , &b_cjmpt      , "cjmpt/F");
-
-  //jets
-  treeTMVA->Branch("lepWpt"  , &b_lepWpt  , "lepWpt/F");
-  treeTMVA->Branch("lepWeta" , &b_lepWeta , "lepWeta/F");
-  treeTMVA->Branch("lepWdeta", &b_lepWdeta, "lepWdeta/F");
-  treeTMVA->Branch("lepWphi" , &b_lepWphi , "lepWphi/F");
-  treeTMVA->Branch("lepWdphi", &b_lepWdphi, "lepWdphi/F");
-  treeTMVA->Branch("lepWm"   , &b_lepWm   , "lepWm/F");
-
-  treeTMVA->Branch("jet0pt"  , &b_jet0pt  , "jet0pt/F");
-  treeTMVA->Branch("jet0eta" , &b_jet0eta , "jet0eta/F");
-  treeTMVA->Branch("jet0phi" , &b_jet0phi , "jet0phi/F");
-  treeTMVA->Branch("jet0m"   , &b_jet0m   , "jet0m/F");
-  treeTMVA->Branch("jet0csv" , &b_jet0csv , "jet0csv/F");
-  treeTMVA->Branch("jet0cvsl", &b_jet0cvsl, "jet0cvsl/F");
-  treeTMVA->Branch("jet0cvsb", &b_jet0cvsb, "jet0cvsb/F");
-
-  treeTMVA->Branch("jet1pt"  , &b_jet1pt  , "jet1pt/F");
-  treeTMVA->Branch("jet1eta" , &b_jet1eta , "jet1eta/F");
-  treeTMVA->Branch("jet1phi" , &b_jet1phi , "jet1phi/F");
-  treeTMVA->Branch("jet1m"   , &b_jet1m   , "jet1m/F");
-  treeTMVA->Branch("jet1csv" , &b_jet1csv , "jet1csv/F");
-  treeTMVA->Branch("jet1cvsl", &b_jet1cvsl, "jet1cvsl/F");
-  treeTMVA->Branch("jet1cvsb", &b_jet1cvsb, "jet1cvsb/F");
-
-  treeTMVA->Branch("jet2pt"  , &b_jet2pt  , "jet2pt/F");
-  treeTMVA->Branch("jet2eta" , &b_jet2eta , "jet2eta/F");
-  treeTMVA->Branch("jet2phi" , &b_jet2phi , "jet2phi/F");
-  treeTMVA->Branch("jet2m"   , &b_jet2m   , "jet2m/F");
-  treeTMVA->Branch("jet2csv" , &b_jet2csv , "jet2csv/F");
-  treeTMVA->Branch("jet2cvsl", &b_jet2cvsl, "jet2cvsl/F");
-  treeTMVA->Branch("jet2cvsb", &b_jet2cvsb, "jet2cvsb/F");
-
-  treeTMVA->Branch("jet3pt"  , &b_jet3pt  , "jet3pt/F");
-  treeTMVA->Branch("jet3eta" , &b_jet3eta , "jet3eta/F");
-  treeTMVA->Branch("jet3phi" , &b_jet3phi , "jet3phi/F");
-  treeTMVA->Branch("jet3m"   , &b_jet3m   , "jet3m/F");
-  treeTMVA->Branch("jet3csv" , &b_jet3csv , "jet3csv/F");
-  treeTMVA->Branch("jet3cvsl", &b_jet3cvsl, "jet3cvsl/F");
-  treeTMVA->Branch("jet3cvsb", &b_jet3cvsb, "jet3cvsb/F");
-
-  treeTMVA->Branch("jet12pt"  , &b_jet12pt  , "jet12pt/F");
-  treeTMVA->Branch("jet12eta" , &b_jet12eta , "jet12eta/F");
-  treeTMVA->Branch("jet12deta", &b_jet12deta, "jet12deta/F");
-  treeTMVA->Branch("jet12phi" , &b_jet12phi , "jet12phi/F");//mass->higgs
-  treeTMVA->Branch("jet12dphi", &b_jet12dphi, "jet12dphi/F");
-  treeTMVA->Branch("jet12m"   , &b_jet12m   , "jet12m/F");//higgs candidate
-  treeTMVA->Branch("jet12DR"  , &b_jet12DR  , "jet12DR/F");
-
-  treeTMVA->Branch("jet23pt"  , &b_jet23pt  , "jet23pt/F");
-  treeTMVA->Branch("jet23eta" , &b_jet23eta , "jet23eta/F");
-  treeTMVA->Branch("jet23deta", &b_jet23deta, "jet23deta/F");
-  treeTMVA->Branch("jet23phi" , &b_jet23phi , "jet23phi/F");
-  treeTMVA->Branch("jet23dphi", &b_jet23dphi, "jet23dphi/F");
-  treeTMVA->Branch("jet23m"   , &b_jet23m   , "jet23m/F");
-
-  treeTMVA->Branch("jet31pt"  , &b_jet31pt  , "jet31pt/F");
-  treeTMVA->Branch("jet31eta" , &b_jet31eta , "jet31eta/F");
-  treeTMVA->Branch("jet31deta", &b_jet31deta, "jet31deta/F");
-  treeTMVA->Branch("jet31phi" , &b_jet31phi , "jet31phi/F");
-  treeTMVA->Branch("jet31dphi", &b_jet31dphi, "jet31dphi/F");
-  treeTMVA->Branch("jet31m"   , &b_jet31m   , "jet31m/F");
-
-  treeTMVA->Branch("lepTpt"  , &b_lepTpt  , "lepTpt/F");
-  treeTMVA->Branch("lepTeta" , &b_lepTeta , "lepTeta/F");
-  treeTMVA->Branch("lepTdeta", &b_lepTdeta, "lepTdeta/F");
-  treeTMVA->Branch("lepTphi" , &b_lepTphi , "lepTphi/F");
-  treeTMVA->Branch("lepTdphi", &b_lepTdphi, "lepTdphi/F");//W and b
-  treeTMVA->Branch("lepTm"   , &b_lepTm   , "lepTm/F");
-
-  treeTMVA->Branch("hadTpt"    , &b_hadTpt    , "hadTpt/F");
-  treeTMVA->Branch("hadTeta"   , &b_hadTeta   , "hadTeta/F");
-  treeTMVA->Branch("hadTHbdeta", &b_hadTHbdeta, "hadTHbdeta/F");
-  treeTMVA->Branch("hadTWbdeta", &b_hadTWbdeta, "hadTWbdeta/F");
-  treeTMVA->Branch("hadTphi"   , &b_hadTphi   , "hadTphi/F");
-  treeTMVA->Branch("hadTHbdphi", &b_hadTHbdphi, "hadTHbdphi/F");//H and b
-  treeTMVA->Branch("hadTWbdphi", &b_hadTWbdphi, "hadTWbdphi/F");//W and b
-  treeTMVA->Branch("hadTm"     , &b_hadTm     , "hadTm/F");
-
-  fOutput->Add(treeTMVA);
-
-  assignF = TFile::Open(Form("/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/assignST01/assign_deepReco_%s.root", option.Data()), "READ");
-  assignT = (TTree*) assignF->Get("tree");
-  int nevt = assignT->GetEntries();
-  if( nevt > 0){
-    for(int i = 0; i < nevt; i++){
-      assignT->GetEntry(i);
-      double pt = assignT->GetLeaf("leptonPt")->GetValue(0);
-      double met = assignT->GetLeaf("missingET")->GetValue(0);
-      lepPt.push_back(pt);
-      missET.push_back(met);
-    }
+  if( syst_str.find("jec") != string::npos or syst_str.find("jer") != string::npos ){
+    if     ( syst_str.find("jecup") != string::npos )       syst_ext = "jecup";
+    else if( syst_str.find("jecdown") != string::npos )     syst_ext = "jecdown";
+    else if( syst_str.find("jerup") != string::npos )       syst_ext = "jerup";
+    else if( syst_str.find("jerdown") != string::npos )     syst_ext = "jerdown";
+    else if( syst_str.find("TuneCP5up") != string::npos )   syst_ext = "Tuneup";
+    else if( syst_str.find("TuneCP5down") != string::npos ) syst_ext = "TuneCP5down";
+    else if( syst_str.find("hdampup") != string::npos )     syst_ext = "hdampup";
+    else if( syst_str.find("hdampdown") != string::npos )   syst_ext = "hdampdown";
   }
 
+  //Load ST fcnc assign files
+  stfcnc_file = Form("/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/assignSTFCNC%s/assign_deepReco_%s.root",
+                    ver.c_str(),sample.c_str());
+  string stfcnc_file_tmp_path = stfcnc_file;
+  ifstream stfcnc_file_tmp(stfcnc_file_tmp_path);
+
+  if( stfcnc_file_tmp.is_open() ){
+    stfcnc_File = TFile::Open(stfcnc_file, "READ");
+    stfcnc_Tree = (TTree*) stfcnc_File->Get("tree");
+    int nevt = stfcnc_Tree->GetEntries();
+    if( nevt > 0){
+      for(int i = 0; i < nevt; i++){
+        stfcnc_Tree->GetEntry(i);
+        float pt = stfcnc_Tree->GetLeaf("leptonPt")->GetValue(0);
+        float met = stfcnc_Tree->GetLeaf("missingET")->GetValue(0);
+        stfcnc_lepPt.push_back(pt);
+        stfcnc_missET.push_back(met);
+      }
+    }
+  }
+  else cout << "STFCNC: " << option.Data() << endl;
+
+  //Load TT fcnc assign files
+  ttfcnc_file = Form("/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/assignTTFCNC%s/assign_deepReco_%s.root",
+                    ver.c_str(),sample.c_str());
+  string ttfcnc_file_tmp_path = ttfcnc_file;
+  ifstream ttfcnc_file_tmp(ttfcnc_file_tmp_path);
+
+  if( ttfcnc_file_tmp.is_open() ){
+    ttfcnc_File = TFile::Open(ttfcnc_file, "READ");
+    ttfcnc_Tree = (TTree*) ttfcnc_File->Get("tree");
+    int nevt = ttfcnc_Tree->GetEntries();
+    if( nevt > 0){
+      for(int i = 0; i < nevt; i++){
+        ttfcnc_Tree->GetEntry(i);
+        float pt = ttfcnc_Tree->GetLeaf("leptonPt")->GetValue(0);
+        float met = ttfcnc_Tree->GetLeaf("missingET")->GetValue(0);
+        ttfcnc_lepPt.push_back(pt);
+        ttfcnc_missET.push_back(met);
+      }
+    }
+  }
+  else cout << "TTFCNC: " << option.Data() << endl;
+
+  //Load ttbkg assign files
+  ttbkg_file = Form("/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/assignSTFCNC%s/assign_deepReco_%s.root",
+                    ver.c_str(),sample.c_str());
+  string ttbkg_file_tmp_path = ttbkg_file;
+  ifstream ttbkg_file_tmp(ttbkg_file_tmp_path);
+
+  if( ttbkg_file_tmp.is_open() ){
+    ttbkg_File = TFile::Open(ttbkg_file, "READ");
+    ttbkg_Tree = (TTree*) ttbkg_File->Get("tree");
+    int nevt = ttbkg_Tree->GetEntries();
+    if( nevt > 0){
+      for(int i = 0; i < nevt; i++){
+        ttbkg_Tree->GetEntry(i);
+        float pt = ttbkg_Tree->GetLeaf("leptonPt")->GetValue(0);
+        float met = ttbkg_Tree->GetLeaf("missingET")->GetValue(0);
+        ttbkg_lepPt.push_back(pt);
+        ttbkg_missET.push_back(met);
+      }
+    }
+  }
+  else cout << "TTBKG: " << option.Data() << endl;
+
+  //tree
+  tree = new TTree("tree","tree for tmva");
+
+  tree->Branch("nevt"         , &b_nevt         , "nevt/I");
+  tree->Branch("GoodPV"       , &b_GoodPV       , "GoodPV/I");
+  tree->Branch("TruePV"       , &b_TruePV       , "TruePV/I");
+  tree->Branch("EventCategory", &b_EventCategory, "EventCategory/I");
+  tree->Branch("trigger"      , &b_trigger      , "trigger/I");
+  tree->Branch("wrongPVrate"  , &wrongPVrate  , "wrongPVrate/F");
+
+  tree->Branch("PUWeight"   , "std::vector<float>", &b_PUWeight);
+  tree->Branch("pdfweight"  , "std::vector<float>", &b_PDFWeight );
+  tree->Branch("scaleweight", "std::vector<float>", &b_ScaleWeight );
+  tree->Branch("lepton_SF"  , "std::vector<float>", &b_Lepton_SF );
+  tree->Branch("lepton_LES" , &b_Lepton_LES       , "lepton_LES/F" );
+  tree->Branch("jet_SF_deepCSV", "std::vector<float>", &b_Jet_SF_deepCSV );
+  tree->Branch("jet_JES_Up"    , "std::vector<float>", &b_Jet_JES_Up );
+  tree->Branch("jet_JES_Down"  , "std::vector<float>", &b_Jet_JES_Down );
+  tree->Branch("jet_JER_Up"    , "std::vector<float>", &b_Jet_JER_Up );
+  tree->Branch("jet_JER_Nom"   , "std::vector<float>", &b_Jet_JER_Nom );
+  tree->Branch("jet_JER_Down"  , "std::vector<float>", &b_Jet_JER_Down );
+
+  tree->Branch("njets"     , &b_njets     , "njets/I");
+  tree->Branch("nbjets_m"  , &b_nbjets_m  , "nbjets_m/I");
+  tree->Branch("channel"   , &b_channel,  , "channel/I");
+  tree->Branch("lepton_pt" , &b_lepton_pt , "lepton_pt/F");
+  tree->Branch("lepton_eta", &b_lepton_eta, "lepton_eta/F");
+  tree->Branch("lepton_phi", &b_lepton_phi, "lepton_phi/F");
+  tree->Branch("lepton_m"  , &b_lepton_m  , "lepton_m/F");
+  tree->Branch("MET"       , &b_met       , "MET/F");
+  tree->Branch("MET_phi"   , &b_met_phi   , "MET_phi/F");
+  tree->Branch("lepDPhi"   , &b_lepdphi   , "lepDPhi/F");
+
+  tree->Branch("lepWpt"  , &b_lepWpt  , "lepWpt/F");
+  tree->Branch("lepWeta" , &b_lepWeta , "lepWeta/F");
+  tree->Branch("lepWphi" , &b_lepWphi , "lepWphi/F");
+  tree->Branch("lepWdphi", &b_lepWdphi, "lepWdphi/F");
+  tree->Branch("lepWm"   , &b_lepWm   , "lepWm/F");
+
+  //STFCNC part
+  tree->Branch("stfcnc_genMatch", &b_stfcnc_genMatch, "stfcnc_genMatch/I");
+  tree->Branch("stfcnc_score"   , &b_stfcnc_score   , "stfcnc_score/F");
+  tree->Branch("stfcnc_jet0pt"  , &b_stfcnc_jet0pt  , "stfcnc_jet0pt/F");
+  tree->Branch("stfcnc_jet0eta" , &b_stfcnc_jet0eta , "stfcnc_jet0eta/F");
+  tree->Branch("stfcnc_jet0phi" , &b_stfcnc_jet0phi , "stfcnc_jet0phi/F");
+  tree->Branch("stfcnc_jet0m"   , &b_stfcnc_jet0m   , "stfcnc_jet0m/F");
+  tree->Branch("stfcnc_jet0csv" , &b_stfcnc_jet0csv , "stfcnc_jet0csv/F");
+  tree->Branch("stfcnc_jet0cvsl", &b_stfcnc_jet0cvsl, "stfcnc_jet0cvsl/F");
+  tree->Branch("stfcnc_jet0cvsb", &b_stfcnc_jet0cvsb, "stfcnc_jet0cvsb/F");
+  tree->Branch("stfcnc_jet0Idx" , &b_stfcnc_jet0Idx , "stfcnc_jet0Idx/I");
+
+  tree->Branch("stfcnc_jet1pt"  , &b_stfcnc_jet1pt  , "stfcnc_jet1pt/F");
+  tree->Branch("stfcnc_jet1eta" , &b_stfcnc_jet1eta , "stfcnc_jet1eta/F");
+  tree->Branch("stfcnc_jet1phi" , &b_stfcnc_jet1phi , "stfcnc_jet1phi/F");
+  tree->Branch("stfcnc_jet1m"   , &b_stfcnc_jet1m   , "stfcnc_jet1m/F");
+  tree->Branch("stfcnc_jet1csv" , &b_stfcnc_jet1csv , "stfcnc_jet1csv/F");
+  tree->Branch("stfcnc_jet1cvsl", &b_stfcnc_jet1cvsl, "stfcnc_jet1cvsl/F");
+  tree->Branch("stfcnc_jet1cvsb", &b_stfcnc_jet1cvsb, "stfcnc_jet1cvsb/F");
+  tree->Branch("stfcnc_jet1Idx" , &b_stfcnc_jet1Idx , "stfcnc_jet1Idx/I");
+
+  tree->Branch("stfcnc_jet2pt"  , &b_stfcnc_jet2pt  , "stfcnc_jet2pt/F");
+  tree->Branch("stfcnc_jet2eta" , &b_stfcnc_jet2eta , "stfcnc_jet2eta/F");
+  tree->Branch("stfcnc_jet2phi" , &b_stfcnc_jet2phi , "stfcnc_jet2phi/F");
+  tree->Branch("stfcnc_jet2m"   , &b_stfcnc_jet2m   , "stfcnc_jet2m/F");
+  tree->Branch("stfcnc_jet2csv" , &b_stfcnc_jet2csv , "stfcnc_jet2csv/F");
+  tree->Branch("stfcnc_jet2cvsl", &b_stfcnc_jet2cvsl, "stfcnc_jet2cvsl/F");
+  tree->Branch("stfcnc_jet2cvsb", &b_stfcnc_jet2cvsb, "stfcnc_jet2cvsb/F");
+  tree->Branch("stfcnc_jet2Idx" , &b_stfcnc_jet2Idx , "stfcnc_jet2Idx/I");
+
+  tree->Branch("stfcnc_jet3pt"  , &b_stfcnc_jet3pt  , "stfcnc_jet3pt/F");
+  tree->Branch("stfcnc_jet3eta" , &b_stfcnc_jet3eta , "stfcnc_jet3eta/F");
+  tree->Branch("stfcnc_jet3phi" , &b_stfcnc_jet3phi , "stfcnc_jet3phi/F");
+  tree->Branch("stfcnc_jet3m"   , &b_stfcnc_jet3m   , "stfcnc_jet3m/F");
+  tree->Branch("stfcnc_jet3csv" , &b_stfcnc_jet3csv , "stfcnc_jet3csv/F");
+  tree->Branch("stfcnc_jet3cvsl", &b_stfcnc_jet3cvsl, "stfcnc_jet3cvsl/F");
+  tree->Branch("stfcnc_jet3cvsb", &b_stfcnc_jet3cvsb, "stfcnc_jet3cvsb/F");
+  tree->Branch("stfcnc_jet3Idx" , &b_stfcnc_jet3Idx , "stfcnc_jet3Idx/I");
+
+  tree->Branch("stfcnc_jet12pt"  , &b_stfcnc_jet12pt  , "stfcnc_jet12pt/F");
+  tree->Branch("stfcnc_jet12eta" , &b_stfcnc_jet12eta , "stfcnc_jet12eta/F");
+  tree->Branch("stfcnc_jet12deta", &b_stfcnc_jet12deta, "stfcnc_jet12deta/F");
+  tree->Branch("stfcnc_jet12phi" , &b_stfcnc_jet12phi , "stfcnc_jet12phi/F");
+  tree->Branch("stfcnc_jet12dphi", &b_stfcnc_jet12dphi, "stfcnc_jet12dphi/F");
+  tree->Branch("stfcnc_jet12dR"  , &b_stfcnc_jet12dR  , "stfcnc_jet12dR/F");
+  tree->Branch("stfcnc_jet12m"   , &b_stfcnc_jet12m   , "stfcnc_jet12m/F");
+
+  tree->Branch("stfcnc_jet23pt"  , &b_stfcnc_jet23pt  , "stfcnc_jet23pt/F");
+  tree->Branch("stfcnc_jet23eta" , &b_stfcnc_jet23eta , "stfcnc_jet23eta/F");
+  tree->Branch("stfcnc_jet23deta", &b_stfcnc_jet23deta, "stfcnc_jet23deta/F");
+  tree->Branch("stfcnc_jet23phi" , &b_stfcnc_jet23phi , "stfcnc_jet23phi/F");
+  tree->Branch("stfcnc_jet23dphi", &b_stfcnc_jet23dphi, "stfcnc_jet23dphi/F");
+  tree->Branch("stfcnc_jet23dR"  , &b_stfcnc_jet23dR  , "stfcnc_jet23dR/F");
+  tree->Branch("stfcnc_jet23m"   , &b_stfcnc_jet23m   , "stfcnc_jet23m/F");
+
+  tree->Branch("stfcnc_jet31pt"  , &b_stfcnc_jet31pt  , "stfcnc_jet31pt/F");
+  tree->Branch("stfcnc_jet31eta" , &b_stfcnc_jet31eta , "stfcnc_jet31eta/F");
+  tree->Branch("stfcnc_jet31deta", &b_stfcnc_jet31deta, "stfcnc_jet31deta/F");
+  tree->Branch("stfcnc_jet31phi" , &b_stfcnc_jet31phi , "stfcnc_jet31phi/F");
+  tree->Branch("stfcnc_jet31dphi", &b_stfcnc_jet31dphi, "stfcnc_jet31dphi/F");
+  tree->Branch("stfcnc_jet31dR"  , &b_stfcnc_jet31dR  , "stfcnc_jet31dR/F");
+  tree->Branch("stfcnc_jet31m"   , &b_stfcnc_jet31m   , "stfcnc_jet31m/F");
+
+  tree->Branch("stfcnc_lepTpt"  , &b_stfcnc_lepTpt  , "stfcnc_lepTpt/F");
+  tree->Branch("stfcnc_lepTeta" , &b_stfcnc_lepTeta , "stfcnc_lepTeta/F");
+  tree->Branch("stfcnc_lepTdeta", &b_stfcnc_lepTdeta, "stfcnc_lepTdeta/F");
+  tree->Branch("stfcnc_lepTphi" , &b_stfcnc_lepTphi , "stfcnc_lepTphi/F");
+  tree->Branch("stfcnc_lepTdphi", &b_stfcnc_lepTdphi, "stfcnc_lepTdphi/F");//W and b
+  tree->Branch("stfcnc_lepTdR"  , &b_stfcnc_lepTdR  , "stfcnc_lepTdR/F");
+  tree->Branch("stfcnc_lepTm"   , &b_stfcnc_lepTm   , "stfcnc_lepTm/F");
+
+  tree->Branch("stfcnc_hadTpt"      , &b_stfcnc_hadTpt      , "stfcnc_hadTpt/F");
+  tree->Branch("stfcnc_hadTeta"     , &b_stfcnc_hadTeta     , "stfcnc_hadTeta/F");
+  tree->Branch("stfcnc_hadT12_3deta", &b_stfcnc_hadT12_3deta, "stfcnc_hadT12_3deta/F");
+  tree->Branch("stfcnc_hadT23_1deta", &b_stfcnc_hadT23_1deta, "stfcnc_hadT23_1deta/F");
+  tree->Branch("stfcnc_hadT31_2deta", &b_stfcnc_hadT31_2deta, "stfcnc_hadT31_2deta/F");
+  tree->Branch("stfcnc_hadTphi"     , &b_stfcnc_hadTphi     , "stfcnc_hadTphi/F");
+  tree->Branch("stfcnc_hadT12_3dphi", &b_stfcnc_hadT12_3dphi, "stfcnc_hadT12_3dphi/F");
+  tree->Branch("stfcnc_hadT23_1dphi", &b_stfcnc_hadT23_1dphi, "stfcnc_hadT23_1dphi/F");
+  tree->Branch("stfcnc_hadT31_2dphi", &b_stfcnc_hadT31_2dphi, "stfcnc_hadT31_2dphi/F");
+  tree->Branch("stfcnc_hadT12_3dR"  , &b_stfcnc_hadT12_3dR  , "stfcnc_hadT12_3dR/F");
+  tree->Branch("stfcnc_hadT23_1dR"  , &b_stfcnc_hadT23_1dR  , "stfcnc_hadT23_1dR/F");
+  tree->Branch("stfcnc_hadT31_2dR"  , &b_stfcnc_hadT31_2dR  , "stfcnc_hadT31_2dR/F");
+  tree->Branch("stfcnc_hadTm"       , &b_stfcnc_hadTm       , "stfcnc_hadTm/F");
+
+  //TTFCNC part
+  tree->Branch("ttfcnc_genMatch", &b_ttfcnc_genMatch, "ttfcnc_genMatch/I");
+  tree->Branch("ttfcnc_score"   , &b_ttfcnc_score   , "ttfcnc_score/F");
+  tree->Branch("ttfcnc_jet0pt"  , &b_ttfcnc_jet0pt  , "ttfcnc_jet0pt/F");
+  tree->Branch("ttfcnc_jet0eta" , &b_ttfcnc_jet0eta , "ttfcnc_jet0eta/F");
+  tree->Branch("ttfcnc_jet0phi" , &b_ttfcnc_jet0phi , "ttfcnc_jet0phi/F");
+  tree->Branch("ttfcnc_jet0m"   , &b_ttfcnc_jet0m   , "ttfcnc_jet0m/F");
+  tree->Branch("ttfcnc_jet0csv" , &b_ttfcnc_jet0csv , "ttfcnc_jet0csv/F");
+  tree->Branch("ttfcnc_jet0cvsl", &b_ttfcnc_jet0cvsl, "ttfcnc_jet0cvsl/F");
+  tree->Branch("ttfcnc_jet0cvsb", &b_ttfcnc_jet0cvsb, "ttfcnc_jet0cvsb/F");
+  tree->Branch("ttfcnc_jet0Idx" , &b_ttfcnc_jet0Idx , "ttfcnc_jet0Idx/I");
+
+  tree->Branch("ttfcnc_jet1pt"  , &b_ttfcnc_jet1pt  , "ttfcnc_jet1pt/F");
+  tree->Branch("ttfcnc_jet1eta" , &b_ttfcnc_jet1eta , "ttfcnc_jet1eta/F");
+  tree->Branch("ttfcnc_jet1phi" , &b_ttfcnc_jet1phi , "ttfcnc_jet1phi/F");
+  tree->Branch("ttfcnc_jet1m"   , &b_ttfcnc_jet1m   , "ttfcnc_jet1m/F");
+  tree->Branch("ttfcnc_jet1csv" , &b_ttfcnc_jet1csv , "ttfcnc_jet1csv/F");
+  tree->Branch("ttfcnc_jet1cvsl", &b_ttfcnc_jet1cvsl, "ttfcnc_jet1cvsl/F");
+  tree->Branch("ttfcnc_jet1cvsb", &b_ttfcnc_jet1cvsb, "ttfcnc_jet1cvsb/F");
+  tree->Branch("ttfcnc_jet1Idx" , &b_ttfcnc_jet1Idx , "ttfcnc_jet1Idx/I");
+
+  tree->Branch("ttfcnc_jet2pt"  , &b_ttfcnc_jet2pt  , "ttfcnc_jet2pt/F");
+  tree->Branch("ttfcnc_jet2eta" , &b_ttfcnc_jet2eta , "ttfcnc_jet2eta/F");
+  tree->Branch("ttfcnc_jet2phi" , &b_ttfcnc_jet2phi , "ttfcnc_jet2phi/F");
+  tree->Branch("ttfcnc_jet2m"   , &b_ttfcnc_jet2m   , "ttfcnc_jet2m/F");
+  tree->Branch("ttfcnc_jet2csv" , &b_ttfcnc_jet2csv , "ttfcnc_jet2csv/F");
+  tree->Branch("ttfcnc_jet2cvsl", &b_ttfcnc_jet2cvsl, "ttfcnc_jet2cvsl/F");
+  tree->Branch("ttfcnc_jet2cvsb", &b_ttfcnc_jet2cvsb, "ttfcnc_jet2cvsb/F");
+  tree->Branch("ttfcnc_jet2Idx" , &b_ttfcnc_jet2Idx , "ttfcnc_jet2Idx/I");
+
+  tree->Branch("ttfcnc_jet3pt"  , &b_ttfcnc_jet3pt  , "ttfcnc_jet3pt/F");
+  tree->Branch("ttfcnc_jet3eta" , &b_ttfcnc_jet3eta , "ttfcnc_jet3eta/F");
+  tree->Branch("ttfcnc_jet3phi" , &b_ttfcnc_jet3phi , "ttfcnc_jet3phi/F");
+  tree->Branch("ttfcnc_jet3m"   , &b_ttfcnc_jet3m   , "ttfcnc_jet3m/F");
+  tree->Branch("ttfcnc_jet3csv" , &b_ttfcnc_jet3csv , "ttfcnc_jet3csv/F");
+  tree->Branch("ttfcnc_jet3cvsl", &b_ttfcnc_jet3cvsl, "ttfcnc_jet3cvsl/F");
+  tree->Branch("ttfcnc_jet3cvsb", &b_ttfcnc_jet3cvsb, "ttfcnc_jet3cvsb/F");
+  tree->Branch("ttfcnc_jet3Idx" , &b_ttfcnc_jet3Idx , "ttfcnc_jet3Idx/I");
+
+  tree->Branch("ttfcnc_jet12pt"  , &b_ttfcnc_jet12pt  , "ttfcnc_jet12pt/F");
+  tree->Branch("ttfcnc_jet12eta" , &b_ttfcnc_jet12eta , "ttfcnc_jet12eta/F");
+  tree->Branch("ttfcnc_jet12deta", &b_ttfcnc_jet12deta, "ttfcnc_jet12deta/F");
+  tree->Branch("ttfcnc_jet12phi" , &b_ttfcnc_jet12phi , "ttfcnc_jet12phi/F");
+  tree->Branch("ttfcnc_jet12dphi", &b_ttfcnc_jet12dphi, "ttfcnc_jet12dphi/F");
+  tree->Branch("ttfcnc_jet12dR"  , &b_ttfcnc_jet12dR  , "ttfcnc_jet12dR/F");
+  tree->Branch("ttfcnc_jet12m"   , &b_ttfcnc_jet12m   , "ttfcnc_jet12m/F");
+
+  tree->Branch("ttfcnc_jet23pt"  , &b_ttfcnc_jet23pt  , "ttfcnc_jet23pt/F");
+  tree->Branch("ttfcnc_jet23eta" , &b_ttfcnc_jet23eta , "ttfcnc_jet23eta/F");
+  tree->Branch("ttfcnc_jet23deta", &b_ttfcnc_jet23deta, "ttfcnc_jet23deta/F");
+  tree->Branch("ttfcnc_jet23phi" , &b_ttfcnc_jet23phi , "ttfcnc_jet23phi/F");
+  tree->Branch("ttfcnc_jet23dphi", &b_ttfcnc_jet23dphi, "ttfcnc_jet23dphi/F");
+  tree->Branch("ttfcnc_jet23dR"  , &b_ttfcnc_jet23dR  , "ttfcnc_jet23dR/F");
+  tree->Branch("ttfcnc_jet23m"   , &b_ttfcnc_jet23m   , "ttfcnc_jet23m/F");
+
+  tree->Branch("ttfcnc_jet31pt"  , &b_ttfcnc_jet31pt  , "ttfcnc_jet31pt/F");
+  tree->Branch("ttfcnc_jet31eta" , &b_ttfcnc_jet31eta , "ttfcnc_jet31eta/F");
+  tree->Branch("ttfcnc_jet31deta", &b_ttfcnc_jet31deta, "ttfcnc_jet31deta/F");
+  tree->Branch("ttfcnc_jet31phi" , &b_ttfcnc_jet31phi , "ttfcnc_jet31phi/F");
+  tree->Branch("ttfcnc_jet31dphi", &b_ttfcnc_jet31dphi, "ttfcnc_jet31dphi/F");
+  tree->Branch("ttfcnc_jet31dR"  , &b_ttfcnc_jet31dR  , "ttfcnc_jet31dR/F");
+  tree->Branch("ttfcnc_jet31m"   , &b_ttfcnc_jet31m   , "ttfcnc_jet31m/F");
+
+  tree->Branch("ttfcnc_lepTpt"  , &b_ttfcnc_lepTpt  , "ttfcnc_lepTpt/F");
+  tree->Branch("ttfcnc_lepTeta" , &b_ttfcnc_lepTeta , "ttfcnc_lepTeta/F");
+  tree->Branch("ttfcnc_lepTdeta", &b_ttfcnc_lepTdeta, "ttfcnc_lepTdeta/F");
+  tree->Branch("ttfcnc_lepTphi" , &b_ttfcnc_lepTphi , "ttfcnc_lepTphi/F");
+  tree->Branch("ttfcnc_lepTdphi", &b_ttfcnc_lepTdphi, "ttfcnc_lepTdphi/F");//W and b
+  tree->Branch("ttfcnc_lepTdR"  , &b_ttfcnc_lepTdR  , "ttfcnc_lepTdR/F");
+  tree->Branch("ttfcnc_lepTm"   , &b_ttfcnc_lepTm   , "ttfcnc_lepTm/F");
+
+  tree->Branch("ttfcnc_hadTpt"      , &b_ttfcnc_hadTpt      , "ttfcnc_hadTpt/F");
+  tree->Branch("ttfcnc_hadTeta"     , &b_ttfcnc_hadTeta     , "ttfcnc_hadTeta/F");
+  tree->Branch("ttfcnc_hadT12_3deta", &b_ttfcnc_hadT12_3deta, "ttfcnc_hadT12_3deta/F");
+  tree->Branch("ttfcnc_hadT23_1deta", &b_ttfcnc_hadT23_1deta, "ttfcnc_hadT23_1deta/F");
+  tree->Branch("ttfcnc_hadT31_2deta", &b_ttfcnc_hadT31_2deta, "ttfcnc_hadT31_2deta/F");
+  tree->Branch("ttfcnc_hadTphi"     , &b_ttfcnc_hadTphi     , "ttfcnc_hadTphi/F");
+  tree->Branch("ttfcnc_hadT12_3dphi", &b_ttfcnc_hadT12_3dphi, "ttfcnc_hadT12_3dphi/F");
+  tree->Branch("ttfcnc_hadT23_1dphi", &b_ttfcnc_hadT23_1dphi, "ttfcnc_hadT23_1dphi/F");
+  tree->Branch("ttfcnc_hadT31_2dphi", &b_ttfcnc_hadT31_2dphi, "ttfcnc_hadT31_2dphi/F");
+  tree->Branch("ttfcnc_hadT12_3dR"  , &b_ttfcnc_hadT12_3dR  , "ttfcnc_hadT12_3dR/F");
+  tree->Branch("ttfcnc_hadT23_1dR"  , &b_ttfcnc_hadT23_1dR  , "ttfcnc_hadT23_1dR/F");
+  tree->Branch("ttfcnc_hadT31_2dR"  , &b_ttfcnc_hadT31_2dR  , "ttfcnc_hadT31_2dR/F");
+  tree->Branch("ttfcnc_hadTm"       , &b_ttfcnc_hadTm       , "ttfcnc_hadTm/F");
+
+  //TTBKG part
+  tree->Branch("ttbkg_genMatch", &b_ttbkg_genMatch, "ttbkg_genMatch/I");
+  tree->Branch("ttbkg_score"   , &b_ttbkg_score   , "ttbkg_score/F");
+  tree->Branch("ttbkg_jet0pt"  , &b_ttbkg_jet0pt  , "ttbkg_jet0pt/F");
+  tree->Branch("ttbkg_jet0eta" , &b_ttbkg_jet0eta , "ttbkg_jet0eta/F");
+  tree->Branch("ttbkg_jet0phi" , &b_ttbkg_jet0phi , "ttbkg_jet0phi/F");
+  tree->Branch("ttbkg_jet0m"   , &b_ttbkg_jet0m   , "ttbkg_jet0m/F");
+  tree->Branch("ttbkg_jet0csv" , &b_ttbkg_jet0csv , "ttbkg_jet0csv/F");
+  tree->Branch("ttbkg_jet0cvsl", &b_ttbkg_jet0cvsl, "ttbkg_jet0cvsl/F");
+  tree->Branch("ttbkg_jet0cvsb", &b_ttbkg_jet0cvsb, "ttbkg_jet0cvsb/F");
+  tree->Branch("ttbkg_jet0Idx" , &b_ttbkg_jet0Idx , "ttbkg_jet0Idx/I");
+
+  tree->Branch("ttbkg_jet1pt"  , &b_ttbkg_jet1pt  , "ttbkg_jet1pt/F");
+  tree->Branch("ttbkg_jet1eta" , &b_ttbkg_jet1eta , "ttbkg_jet1eta/F");
+  tree->Branch("ttbkg_jet1phi" , &b_ttbkg_jet1phi , "ttbkg_jet1phi/F");
+  tree->Branch("ttbkg_jet1m"   , &b_ttbkg_jet1m   , "ttbkg_jet1m/F");
+  tree->Branch("ttbkg_jet1csv" , &b_ttbkg_jet1csv , "ttbkg_jet1csv/F");
+  tree->Branch("ttbkg_jet1cvsl", &b_ttbkg_jet1cvsl, "ttbkg_jet1cvsl/F");
+  tree->Branch("ttbkg_jet1cvsb", &b_ttbkg_jet1cvsb, "ttbkg_jet1cvsb/F");
+  tree->Branch("ttbkg_jet1Idx" , &b_ttbkg_jet1Idx , "ttbkg_jet1Idx/I");
+
+  tree->Branch("ttbkg_jet2pt"  , &b_ttbkg_jet2pt  , "ttbkg_jet2pt/F");
+  tree->Branch("ttbkg_jet2eta" , &b_ttbkg_jet2eta , "ttbkg_jet2eta/F");
+  tree->Branch("ttbkg_jet2phi" , &b_ttbkg_jet2phi , "ttbkg_jet2phi/F");
+  tree->Branch("ttbkg_jet2m"   , &b_ttbkg_jet2m   , "ttbkg_jet2m/F");
+  tree->Branch("ttbkg_jet2csv" , &b_ttbkg_jet2csv , "ttbkg_jet2csv/F");
+  tree->Branch("ttbkg_jet2cvsl", &b_ttbkg_jet2cvsl, "ttbkg_jet2cvsl/F");
+  tree->Branch("ttbkg_jet2cvsb", &b_ttbkg_jet2cvsb, "ttbkg_jet2cvsb/F");
+  tree->Branch("ttbkg_jet2Idx" , &b_ttbkg_jet2Idx , "ttbkg_jet2Idx/I");
+
+  tree->Branch("ttbkg_jet3pt"  , &b_ttbkg_jet3pt  , "ttbkg_jet3pt/F");
+  tree->Branch("ttbkg_jet3eta" , &b_ttbkg_jet3eta , "ttbkg_jet3eta/F");
+  tree->Branch("ttbkg_jet3phi" , &b_ttbkg_jet3phi , "ttbkg_jet3phi/F");
+  tree->Branch("ttbkg_jet3m"   , &b_ttbkg_jet3m   , "ttbkg_jet3m/F");
+  tree->Branch("ttbkg_jet3csv" , &b_ttbkg_jet3csv , "ttbkg_jet3csv/F");
+  tree->Branch("ttbkg_jet3cvsl", &b_ttbkg_jet3cvsl, "ttbkg_jet3cvsl/F");
+  tree->Branch("ttbkg_jet3cvsb", &b_ttbkg_jet3cvsb, "ttbkg_jet3cvsb/F");
+  tree->Branch("ttbkg_jet3Idx" , &b_ttbkg_jet3Idx , "ttbkg_jet3Idx/I");
+
+  tree->Branch("ttbkg_jet12pt"  , &b_ttbkg_jet12pt  , "ttbkg_jet12pt/F");
+  tree->Branch("ttbkg_jet12eta" , &b_ttbkg_jet12eta , "ttbkg_jet12eta/F");
+  tree->Branch("ttbkg_jet12deta", &b_ttbkg_jet12deta, "ttbkg_jet12deta/F");
+  tree->Branch("ttbkg_jet12phi" , &b_ttbkg_jet12phi , "ttbkg_jet12phi/F");
+  tree->Branch("ttbkg_jet12dphi", &b_ttbkg_jet12dphi, "ttbkg_jet12dphi/F");
+  tree->Branch("ttbkg_jet12dR"  , &b_ttbkg_jet12dR  , "ttbkg_jet12dR/F");
+  tree->Branch("ttbkg_jet12m"   , &b_ttbkg_jet12m   , "ttbkg_jet12m/F");
+
+  tree->Branch("ttbkg_jet23pt"  , &b_ttbkg_jet23pt  , "ttbkg_jet23pt/F");
+  tree->Branch("ttbkg_jet23eta" , &b_ttbkg_jet23eta , "ttbkg_jet23eta/F");
+  tree->Branch("ttbkg_jet23deta", &b_ttbkg_jet23deta, "ttbkg_jet23deta/F");
+  tree->Branch("ttbkg_jet23phi" , &b_ttbkg_jet23phi , "ttbkg_jet23phi/F");
+  tree->Branch("ttbkg_jet23dphi", &b_ttbkg_jet23dphi, "ttbkg_jet23dphi/F");
+  tree->Branch("ttbkg_jet23dR"  , &b_ttbkg_jet23dR  , "ttbkg_jet23dR/F");
+  tree->Branch("ttbkg_jet23m"   , &b_ttbkg_jet23m   , "ttbkg_jet23m/F");
+
+  tree->Branch("ttbkg_jet31pt"  , &b_ttbkg_jet31pt  , "ttbkg_jet31pt/F");
+  tree->Branch("ttbkg_jet31eta" , &b_ttbkg_jet31eta , "ttbkg_jet31eta/F");
+  tree->Branch("ttbkg_jet31deta", &b_ttbkg_jet31deta, "ttbkg_jet31deta/F");
+  tree->Branch("ttbkg_jet31phi" , &b_ttbkg_jet31phi , "ttbkg_jet31phi/F");
+  tree->Branch("ttbkg_jet31dphi", &b_ttbkg_jet31dphi, "ttbkg_jet31dphi/F");
+  tree->Branch("ttbkg_jet31dR"  , &b_ttbkg_jet31dR  , "ttbkg_jet31dR/F");
+  tree->Branch("ttbkg_jet31m"   , &b_ttbkg_jet31m   , "ttbkg_jet31m/F");
+
+  tree->Branch("ttbkg_lepTpt"  , &b_ttbkg_lepTpt  , "ttbkg_lepTpt/F");
+  tree->Branch("ttbkg_lepTeta" , &b_ttbkg_lepTeta , "ttbkg_lepTeta/F");
+  tree->Branch("ttbkg_lepTdeta", &b_ttbkg_lepTdeta, "ttbkg_lepTdeta/F");
+  tree->Branch("ttbkg_lepTphi" , &b_ttbkg_lepTphi , "ttbkg_lepTphi/F");
+  tree->Branch("ttbkg_lepTdphi", &b_ttbkg_lepTdphi, "ttbkg_lepTdphi/F");//W and b
+  tree->Branch("ttbkg_lepTdR"  , &b_ttbkg_lepTdR  , "ttbkg_lepTdR/F");
+  tree->Branch("ttbkg_lepTm"   , &b_ttbkg_lepTm   , "ttbkg_lepTm/F");
+
+  tree->Branch("ttbkg_hadTpt"      , &b_ttbkg_hadTpt      , "ttbkg_hadTpt/F");
+  tree->Branch("ttbkg_hadTeta"     , &b_ttbkg_hadTeta     , "ttbkg_hadTeta/F");
+  tree->Branch("ttbkg_hadT12_3deta", &b_ttbkg_hadT12_3deta, "ttbkg_hadT12_3deta/F");
+  tree->Branch("ttbkg_hadT23_1deta", &b_ttbkg_hadT23_1deta, "ttbkg_hadT23_1deta/F");
+  tree->Branch("ttbkg_hadT31_2deta", &b_ttbkg_hadT31_2deta, "ttbkg_hadT31_2deta/F");
+  tree->Branch("ttbkg_hadTphi"     , &b_ttbkg_hadTphi     , "ttbkg_hadTphi/F");
+  tree->Branch("ttbkg_hadT12_3dphi", &b_ttbkg_hadT12_3dphi, "ttbkg_hadT12_3dphi/F");
+  tree->Branch("ttbkg_hadT23_1dphi", &b_ttbkg_hadT23_1dphi, "ttbkg_hadT23_1dphi/F");
+  tree->Branch("ttbkg_hadT31_2dphi", &b_ttbkg_hadT31_2dphi, "ttbkg_hadT31_2dphi/F");
+  tree->Branch("ttbkg_hadT12_3dR"  , &b_ttbkg_hadT12_3dR  , "ttbkg_hadT12_3dR/F");
+  tree->Branch("ttbkg_hadT23_1dR"  , &b_ttbkg_hadT23_1dR  , "ttbkg_hadT23_1dR/F");
+  tree->Branch("ttbkg_hadT31_2dR"  , &b_ttbkg_hadT31_2dR  , "ttbkg_hadT31_2dR/F");
+  tree->Branch("ttbkg_hadTm"       , &b_ttbkg_hadTm       , "ttbkg_hadTm/F");
+
+  fOutput->Add(tree);
 } 
 
 Bool_t makeTuple::Process(Long64_t entry)
@@ -129,23 +398,73 @@ Bool_t makeTuple::Process(Long64_t entry)
   fReader.SetEntry(entry);
   TString option = GetOption();
 
-  int mode = 999; 
+  int mode = 999;
   mode = *channel;
 
-  if( mode > 2) return kTRUE; 
-  if( !option.Contains("Data") && *TruePV == 0 ) return kTRUE;
+  if( mode > 2 ) return kTRUE;
 
-  float EventWeight = 1.0;
-  float wrongPVrate = 1.0;
-  if( !option.Contains("Data") ){
-    EventWeight *= lepton_SF[0];
-    EventWeight *= *genweight;
-    EventWeight *= PUWeight[0];
-    //jetsf = jet_SF_deepCSV_30[0];
-    //wrongPVrate = 1.0293;
+  if( !option.Contains("Run2017") ){
+    if      ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04889796694;
+    else if ( option.Contains("DYJetsv2") ) wrongPVrate = 1.04318131205;
+    else if ( option.Contains("DYJets_") or option.Contains("DYJetspart2") ) wrongPVrate = 1.04318131205;
+    else if ( option.Contains("STTH1L3BHct") ) wrongPVrate = 1.0439351116;
+    else if ( option.Contains("STTH1L3BHut") ) wrongPVrate = 1.031126842;
+    else if ( option.Contains("SingleTbart") ) wrongPVrate = 1.04173196653;
+    else if ( option.Contains("SingleTbartW") ) wrongPVrate = 1.04271024146;
+    else if ( option.Contains("SingleTops") ) wrongPVrate = 1.0398164366;
+    else if ( option.Contains("SingleTopt") ) wrongPVrate = 1.04031037958;
+    else if ( option.Contains("SingleToptW") ) wrongPVrate = 1.04481172329;
+    else if ( option.Contains("TTHadpowheg") ) wrongPVrate = 1.02965424238;
+    else if ( option.Contains("TTHadpowhegTuneCP5down") ) wrongPVrate = 1.0275273224;
+    else if ( option.Contains("TTHadpowhegTuneCP5up") ) wrongPVrate = 1.02502995606;
+    else if ( option.Contains("TTHadpowheghdampup") ) wrongPVrate = 1.02721136268;
+    else if ( option.Contains("TTLLpowheg") ) wrongPVrate = 1.04709066472;
+    else if ( option.Contains("TTLLpowhegTuneCP5down") ) wrongPVrate = 1.04086536702;
+    else if ( option.Contains("TTLLpowheghdampdown") ) wrongPVrate = 1.05641892536;
+    else if ( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.03488195714;
+    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04086585084;
+    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02415894619;
+    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04265040673;
+    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04904547571;
+    else if ( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.04873048752;
+    else if ( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.04736656062;
+    else if ( option.Contains("TTpowhegttbbTuneCP5up") ) wrongPVrate = 1.03890650824;
+    else if ( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04669242142;
+    else if ( option.Contains("TTpowhegttbbhdampup") ) wrongPVrate = 1.04034606106;
+    else if ( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.04812064995;
+    else if ( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04624599157;
+    else if ( option.Contains("TTpowhegttbjTuneCP5up") ) wrongPVrate = 1.03893414892;
+    else if ( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.04656066564;
+    else if ( option.Contains("TTpowhegttbjhdampup") ) wrongPVrate = 1.03978076379;
+    else if ( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04750917824;
+    else if ( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04757733806;
+    else if ( option.Contains("TTpowhegttccTuneCP5up") ) wrongPVrate = 1.0376682522;
+    else if ( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04726780069;
+    else if ( option.Contains("TTpowhegttcchdampup") ) wrongPVrate = 1.03994243206;
+    else if ( option.Contains("TTpowhegttlf") ) wrongPVrate = 1.04758772897;
+    else if ( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.04766563792;
+    else if ( option.Contains("TTpowhegttlfTuneCP5up") ) wrongPVrate = 1.03816337881;
+    else if ( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04786973408;
+    else if ( option.Contains("TTpowhegttlfhdampup") ) wrongPVrate = 1.03929113627;
+    else if ( option.Contains("TTpowhegttother") ) wrongPVrate = 1.04782120598;
+    else if ( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04795517585;
+    else if ( option.Contains("TTpowhegttotherTuneCP5up") ) wrongPVrate = 1.03815621343;
+    else if ( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04794309365;
+    else if ( option.Contains("TTpowhegttotherhdampup") ) wrongPVrate = 1.03941057778;
+    else if ( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04160247064;
+    else if ( option.Contains("W4JetsToLNu") ) wrongPVrate = 1.0436845454;
+    else if ( option.Contains("WW") ) wrongPVrate = 1.04715906081;
+    else if ( option.Contains("WZ") ) wrongPVrate = 1.04264784934;
+    else if ( option.Contains("ZZ") ) wrongPVrate = 1.02918247311;
+    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.03173198154;
+    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.03750547624;
+    else    wrongPVrate = 1.0;
+  }
+  if( wrongPVrate > 1.01 ){
+    if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
   }
 
-  float relIso = *lepton_relIso; 
+  float relIso = *lepton_relIso;
 
   //Object selection
   int njets = 0;
@@ -166,18 +485,6 @@ Bool_t makeTuple::Process(Long64_t entry)
   double transverseM = transverseMass(lepton, p4met);
   double lepDphi = lepton.DeltaPhi(p4met);
 
-  TLorentzVector hbjet1, hbjet2, genH;
-  if(*addHbjet1_pt > 20 && *addHbjet2_pt > 20 && abs(*addHbjet1_eta) < 2.4 && abs(*addHbjet2_eta) < 2.4){
-    hbjet1.SetPtEtaPhiE(*addHbjet1_pt, *addHbjet1_eta, *addHbjet1_phi, *addHbjet1_e);
-    hbjet2.SetPtEtaPhiE(*addHbjet2_pt, *addHbjet2_eta, *addHbjet2_phi, *addHbjet2_e);
-
-    genH = hbjet1 + hbjet2;
-  }
-
-  //for Goh's Kin fit
-  bool match1 = false;
-  bool match2 = false;
-
   //Selection Option
   bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
   bool makeIso = true;
@@ -186,8 +493,11 @@ Bool_t makeTuple::Process(Long64_t entry)
   if( !makeIso && isIso ) return kTRUE;
 
   //Event selection 
-  bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.1);
-  bool passelectron = (mode == 1) && (lepton.Pt() > 38) && (abs(lepton.Eta()) <= 2.1);
+  bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
+  bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.4);
+//  bool passelectron;
+//  if ( *elec_trg == 10 ) passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
+//  else                   passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
 
   if( option.Contains("DataSingleMu") ){
     if( !passmuon ) return kTRUE;//RDMu
@@ -201,38 +511,30 @@ Bool_t makeTuple::Process(Long64_t entry)
     if( !passmuon && !passelectron ) return kTRUE;
   }
 
-  vector<float> v_cjet_m;
-  int jetIdx[4];
-  TLorentzVector jetP4s[4];
-
   for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
-/////////////////
-///jet SF!
-////////////////
+
     TLorentzVector jet;
     jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
-    //if( !option.Contains("Data") ) jet = jet * jet_JER_Nom[iJet];
+
+    if( !option.Contains("Run2017") ){
+      if     ( syst_ext == "jecup" )   jet = jet * jet_JER_Nom[iJet] * jet_JES_Up[iJet];
+      else if( syst_ext == "jecdown" ) jet = jet * jet_JER_Nom[iJet] * jet_JES_Down[iJet];
+      else if( syst_ext == "jerup" )   jet = jet * jet_JER_Up[iJet];
+      else if( syst_ext == "jerdown" ) jet = jet * jet_JER_Down[iJet];
+      else                             jet = jet * jet_JER_Nom[iJet];
+    }
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
-      njets++;
-
-      if( jet_deepCSV[iJet] > 0.4941 ){
-        nbjets_m++;
-      }
-  
-      if( jet_deepCvsL[iJet] > 0.15 && jet_CvsB[iJet] > 0.28 ){
-        ncjets_m++;
-        v_cjet_m.push_back(jet.Pt());
-      }
+//      if( passelectron and  *elec_trg == 10 and njets == 0 and jet_pt[iJet] < 38 ) continue;
+      njets++;/
+      if( jet_deepCSV[iJet] > 0.4941 ) nbjets_m++;
     }
   } 
 
-  //////////////////////
-  //EVENT SELECTION!!!!!
-  //////////////////////
-  if( njets <  3 || nbjets_m < 2) return kTRUE; 
-  
-  //cout << nevt << endl;
+  bool st_njet = (njets >= 3 and nbjets_m >= 2);
+  bool tt_njet = (njets >= 4 and nbjets_m >= 2);
+  if( !st_njet ) return kTRUE; // At least 3 jets including 2 b jets
+ 
   if( option.Contains("Run2017") ) b_EventCategory = -1;
   else if( option.Contains("Hct") || option.Contains("Hut") ) b_EventCategory = 0;
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
@@ -247,147 +549,260 @@ Bool_t makeTuple::Process(Long64_t entry)
   else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 10;
   else b_EventCategory = 20;
 
-  b_EventWeight = EventWeight;
+  b_channel = mode;
+  b_TruePV = *TruePV;
   b_GoodPV = *GoodPV;
   b_nevt = nevt;
+  b_trigger = *elec_trg;
 
   b_njets = njets;
   b_nbjets_m = nbjets_m;
-  b_ncjets_m = ncjets_m;
 
   b_met = met;
+  b_met_phi = met_phi;
   b_lepdphi = lepDphi;
-  b_transversem = transverseMass(lepton, p4met);
 
-  if( ncjets_m != 0 ) b_cjmpt  = *max_element(v_cjet_m.begin(), v_cjet_m.end());
+  b_lepton_pt = lepton.Pt(); b_lepton_phi = lepton.Phi(); b_lepton_eta = lepton.Eta(); b_lepton_m = lepton.M();
+  b_lepWpt = (lepton+p4met).Pt(); b_lepWeta = (lepton+p4met).Eta(); b_lepWdeta = (lepton-p4met).Eta();
+  b_lepWphi = (lepton+p4met).Phi(); b_lepWdphi = lepton.DeltaPhi(p4met); b_lepWm = (lepton+p4met).M();
 
   //Jet Assignment
-  /////////////////
-  //NJET!!!!
-  ////////////////
-  vector<double>::iterator iter;
-  int evtIdx = 0;
-  if( njets >= 3 && nbjets_m >= 2 && !lepPt.empty() ){
-    for( iter = lepPt.begin(); iter != lepPt.end(); iter++){
-      if( *iter == static_cast<float>(lepton.Pt()) ){
-        int tmpIdx = distance(lepPt.begin(), iter);
-        if( missET[tmpIdx] == met ) evtIdx = tmpIdx;
-        else continue;
+  if( st_njet ){
+    int jetIdx[4];
+    TLorentzVector jetP4s[4];
+
+    vector<double>::iterator iter;
+    int evtIdx = 0;
+    //find combination
+    if( !stfcnc_lepPt.empty() ){
+      for( iter = stfcnc_lepPt.begin(); iter != stfcnc_lepPt.end(); iter++ ){
+        if( *iter == static_cast<float>(lepton.Pt()) ){
+          int tmpIdx = distance(stfcnc_lepPt.begin(), iter);
+          if( stfcnc_missET[tmpIdx] == met ) evtIdx = tmpIdx;
+          else continue;
+        }
+      }
+      stfcnc_dupCheck.push_back(evtIdx);
+      //cout << evtIdx << endl;
+
+      assignT->GetEntry(evtIdx);
+      b_stfcnc_genMatch = stfcnc_Tree->GetLeaf("match")->GetValue(0);
+      b_stfcnc_score = stfcnc_Tree->GetLeaf("score")->GetValue(0);
+      int i0 = stfcnc_Tree->GetLeaf("idx0")->GetValue(0);
+      int i1 = stfcnc_Tree->GetLeaf("idx1")->GetValue(0);
+      int i2 = stfcnc_Tree->GetLeaf("idx2")->GetValue(0);
+      int i3 = stfcnc_Tree->GetLeaf("idx3")->GetValue(0);
+      jetIdx[0] = i0; jetIdx[1] = i1; jetIdx[2] = i2; jetIdx[3] = i3;
+      b_stfcnc_jet0Idx = jetIdx[0]; b_stfcnc_jet1Idx = jetIdx[1];
+      b_stfcnc_jet2Idx = jetIdx[2]; b_stfcnc_jet3Idx = jetIdx[3];
+      //cout << i0 << endl;
+
+      for( int i=0; i < 4; i++) jetP4s[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
+
+      if( !option.Contains("Run2017") ){
+        if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
+        else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
+        else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Up[jetIdx[i]];
+        else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Down[jetIdx[i]];
+        else                             for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]];
       }
     }
-    dupCheck.push_back(evtIdx);
 
-    assignT->GetEntry(evtIdx);
-    int i0 = assignT->GetLeaf("idx0")->GetValue(0);
-    int i1 = assignT->GetLeaf("idx1")->GetValue(0);
-    int i2 = assignT->GetLeaf("idx2")->GetValue(0);
-    int i3 = assignT->GetLeaf("idx3")->GetValue(0);
-    jetIdx[0] = i0; jetIdx[1] = i1; jetIdx[2] = i2; jetIdx[3] = i3;
-    //cout << i0 << endl;
+    b_stfcnc_jet0pt = jetP4s[0].Pt(); b_stfcnc_jet0eta = jetP4s[0].Eta(); b_stfcnc_jet0phi = jetP4s[0].Phi(); b_stfcnc_jet0m = jetP4s[0].M();
+    b_stfcnc_jet0csv = jet_deepCSV[jetIdx[0]]; b_stfcnc_jet0cvsl = jet_CvsL[jetIdx[0]]; b_stfcnc_jet0cvsb = jet_CvsB[jetIdx[0]];
+    b_stfcnc_jet1pt = jetP4s[1].Pt(); b_stfcnc_jet1eta = jetP4s[1].Eta(); b_stfcnc_jet1phi = jetP4s[1].Phi(); b_stfcnc_jet1m = jetP4s[1].M();
+    b_stfcnc_jet1csv = jet_deepCSV[jetIdx[1]]; b_stfcnc_jet1cvsl = jet_CvsL[jetIdx[1]]; b_stfcnc_jet1cvsb = jet_CvsB[jetIdx[1]];
+    b_stfcnc_jet2pt = jetP4s[2].Pt(); b_stfcnc_jet2eta = jetP4s[2].Eta(); b_stfcnc_jet2phi = jetP4s[2].Phi(); b_stfcnc_jet2m = jetP4s[2].M();
+    b_stfcnc_jet2csv = jet_deepCSV[jetIdx[2]]; b_stfcnc_jet2cvsl = jet_CvsL[jetIdx[2]]; b_stfcnc_jet2cvsb = jet_CvsB[jetIdx[2]];
+    b_stfcnc_jet3pt = jetP4s[3].Pt(); b_stfcnc_jet3eta = jetP4s[3].Eta(); b_stfcnc_jet3phi = jetP4s[3].Phi(); b_stfcnc_jet3m = jetP4s[3].M();
+    b_stfcnc_jet3csv = jet_deepCSV[jetIdx[3]]; b_stfcnc_jet3cvsl = jet_CvsL[jetIdx[3]]; b_stfcnc_jet3cvsb = jet_CvsB[jetIdx[3]];
 
-    jetP4s[0].SetPtEtaPhiE(jet_pt[i0], jet_eta[i0], jet_phi[i0], jet_e[i0]);
-    jetP4s[1].SetPtEtaPhiE(jet_pt[i1], jet_eta[i1], jet_phi[i1], jet_e[i1]);
-    jetP4s[2].SetPtEtaPhiE(jet_pt[i2], jet_eta[i2], jet_phi[i2], jet_e[i2]);
-    jetP4s[3].SetPtEtaPhiE(jet_pt[i3], jet_eta[i3], jet_phi[i3], jet_e[i3]);
+    b_stfcnc_jet12pt = (jetP4s[1]+jetP4s[2]).Pt(); b_stfcnc_jet12m = (jetP4s[1]+jetP4s[2]).M();
+    b_stfcnc_jet12eta = (jetP4s[1]+jetP4s[2]).Eta(); b_stfcnc_jet12deta = (jetP4s[1]-jetP4s[2]).Eta();
+    b_stfcnc_jet12phi = (jetP4s[1]+jetP4s[2]).Phi(); b_stfcnc_jet12dphi = jetP4s[1].DeltaPhi(jetP4s[2]);
+    b_stfcnc_jet12dR = jetP4s[1].DeltaR(jetP4s[2]);
 
-    /*
-    if( !option.Contains("Data") ){
-      jetP4s[0] = jetP4s[0] * jet_JER_Nom[i0];
-      jetP4s[1] = jetP4s[1] * jet_JER_Nom[i1];
-      jetP4s[2] = jetP4s[2] * jet_JER_Nom[i2];
-      jetP4s[3] = jetP4s[3] * jet_JER_Nom[i3];
-    }
-    */
+    b_stfcnc_jet23pt = (jetP4s[2]+jetP4s[3]).Pt(); b_stfcnc_jet23m = (jetP4s[2]+jetP4s[3]).M();
+    b_stfcnc_jet23eta = (jetP4s[2]+jetP4s[3]).Eta(); b_stfcnc_jet23deta = (jetP4s[2]-jetP4s[3]).Eta();
+    b_stfcnc_jet23phi = (jetP4s[2]+jetP4s[3]).Phi(); b_stfcnc_jet23dphi = jetP4s[2].DeltaPhi(jetP4s[3]);
+    b_stfcnc_jet23dR = jetP4s[2].DeltaR(jetP4s[3]);
 
-    if( option.Contains("Hct") || option.Contains("Hut") ){
-      if(hbjet1.DeltaR(jetP4s[1]) < 0.4 or hbjet1.DeltaR(jetP4s[2]) < 0.4) match1 = true;
-      if(hbjet2.DeltaR(jetP4s[1]) < 0.4 or hbjet2.DeltaR(jetP4s[2]) < 0.4) match2 = true;
-    }
+    b_stfcnc_jet31pt = (jetP4s[1]+jetP4s[3]).Pt(); b_stfcnc_jet31m = (jetP4s[1]+jetP4s[3]).M();
+    b_stfcnc_jet31eta = (jetP4s[1]+jetP4s[3]).Eta(); b_stfcnc_jet31deta = (jetP4s[1]-jetP4s[3]).Eta();
+    b_stfcnc_jet31phi = (jetP4s[1]+jetP4s[3]).Phi(); b_stfcnc_jet31dphi = jetP4s[1].DeltaPhi(jetP4s[3]);
+    b_stfcnc_jet31dR = jetP4s[3].DeltaR(jetP4s[1]);
+
+    b_stfcnc_lepTpt = (lepton+p4met+jetP4s[0]).Pt(); b_stfcnc_lepTm = (lepton+p4met+jetP4s[0]).M();
+    b_stfcnc_lepTeta = (lepton+p4met+jetP4s[0]).Eta(); b_stfcnc_lepTdeta = (lepton+p4met-jetP4s[0]).Eta();
+    b_stfcnc_lepTphi = (lepton+p4met+jetP4s[0]).Phi(); b_stfcnc_lepTdphi = (lepton+p4met).DeltaPhi(jetP4s[0]);
+    b_stfcnc_lepTdR = (lepton+p4met).DeltaR(jetP4s[0]);
+
+    b_stfcnc_hadTpt = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(); b_stfcnc_hadTm = (jetP4s[1]+jetP4s[2]+jetP4s[3]).M();
+    b_stfcnc_hadTeta = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_stfcnc_hadT12_3deta = (jetP4s[1]+jetP4s[2]-jetP4s[3]).Eta();
+    b_stfcnc_hadT23_1deta = (-jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_stfcnc_hadT31_2deta = (jetP4s[1]-jetP4s[2]+jetP4s[3]).Eta();
+    b_stfcnc_hadTphi = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Phi(); b_stfcnc_hadT12_3dphi = (jetP4s[1]+jetP4s[2]).DeltaPhi(jetP4s[3]);
+    b_stfcnc_hadT23_1dphi = (jetP4s[2]+jetP4s[3]).DeltaPhi(jetP4s[1]); b_stfcnc_hadT31_2dphi = (jetP4s[3]+jetP4s[1]).DeltaPhi(jetP4s[2]);
+    b_stfcnc_hadT12_3dR = (jetP4s[1]+jetP4s[2]).DeltaR(jetP4s[3]); b_stfcnc_hadT23_1dR = (jetP4s[2]+jetP4s[3]).DeltaR(jetP4s[1]);
+    b_stfcnc_hadT31_2dR = (jetP4s[3]+jetP4s[1]).DeltaR(jetP4s[2]);
   }
 
-  if(match1 && match2){
-    if(b_EventCategory == 0) b_GenMatch = 2;
-    else if(b_EventCategory != 0 && b_EventCategory > -1 ) b_GenMatch = 1;   
+  if( tt_njet ){
+    int jetIdx[4];
+    TLorentzVector jetP4s[4];
+
+    vector<double>::iterator iter;
+    int evtIdx = 0;
+    //find combination
+    if( !ttfcnc_lepPt.empty() ){
+      for( iter = ttfcnc_lepPt.begin(); iter != ttfcnc_lepPt.end(); iter++ ){
+        if( *iter == static_cast<float>(lepton.Pt()) ){
+          int tmpIdx = distance(ttfcnc_lepPt.begin(), iter);
+          if( ttfcnc_missET[tmpIdx] == met ) evtIdx = tmpIdx;
+          else continue;
+        }
+      }
+      ttfcnc_dupCheck.push_back(evtIdx);
+      //cout << evtIdx << endl;
+
+      assignT->GetEntry(evtIdx);
+      b_ttfcnc_genMatch = ttfcnc_Tree->GetLeaf("match")->GetValue(0);
+      b_ttfcnc_score = ttfcnc_Tree->GetLeaf("score")->GetValue(0);
+      int i0 = ttfcnc_Tree->GetLeaf("idx0")->GetValue(0);
+      int i1 = ttfcnc_Tree->GetLeaf("idx1")->GetValue(0);
+      int i2 = ttfcnc_Tree->GetLeaf("idx2")->GetValue(0);
+      int i3 = ttfcnc_Tree->GetLeaf("idx3")->GetValue(0);
+      jetIdx[0] = i0; jetIdx[1] = i1; jetIdx[2] = i2; jetIdx[3] = i3;
+      b_ttfcnc_jet0Idx = jetIdx[0]; b_ttfcnc_jet1Idx = jetIdx[1];
+      b_ttfcnc_jet2Idx = jetIdx[2]; b_ttfcnc_jet3Idx = jetIdx[3];
+      //cout << i0 << endl;
+
+      for( int i=0; i < 4; i++) jetP4s[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
+
+      if( !option.Contains("Run2017") ){
+        if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
+        else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
+        else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Up[jetIdx[i]];
+        else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Down[jetIdx[i]];
+        else                             for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]];
+      }
+    }
+
+    b_ttfcnc_jet0pt = jetP4s[0].Pt(); b_ttfcnc_jet0eta = jetP4s[0].Eta(); b_ttfcnc_jet0phi = jetP4s[0].Phi(); b_ttfcnc_jet0m = jetP4s[0].M();
+    b_ttfcnc_jet0csv = jet_deepCSV[jetIdx[0]]; b_ttfcnc_jet0cvsl = jet_CvsL[jetIdx[0]]; b_ttfcnc_jet0cvsb = jet_CvsB[jetIdx[0]];
+    b_ttfcnc_jet1pt = jetP4s[1].Pt(); b_ttfcnc_jet1eta = jetP4s[1].Eta(); b_ttfcnc_jet1phi = jetP4s[1].Phi(); b_ttfcnc_jet1m = jetP4s[1].M();
+    b_ttfcnc_jet1csv = jet_deepCSV[jetIdx[1]]; b_ttfcnc_jet1cvsl = jet_CvsL[jetIdx[1]]; b_ttfcnc_jet1cvsb = jet_CvsB[jetIdx[1]];
+    b_ttfcnc_jet2pt = jetP4s[2].Pt(); b_ttfcnc_jet2eta = jetP4s[2].Eta(); b_ttfcnc_jet2phi = jetP4s[2].Phi(); b_ttfcnc_jet2m = jetP4s[2].M();
+    b_ttfcnc_jet2csv = jet_deepCSV[jetIdx[2]]; b_ttfcnc_jet2cvsl = jet_CvsL[jetIdx[2]]; b_ttfcnc_jet2cvsb = jet_CvsB[jetIdx[2]];
+    b_ttfcnc_jet3pt = jetP4s[3].Pt(); b_ttfcnc_jet3eta = jetP4s[3].Eta(); b_ttfcnc_jet3phi = jetP4s[3].Phi(); b_ttfcnc_jet3m = jetP4s[3].M();
+    b_ttfcnc_jet3csv = jet_deepCSV[jetIdx[3]]; b_ttfcnc_jet3cvsl = jet_CvsL[jetIdx[3]]; b_ttfcnc_jet3cvsb = jet_CvsB[jetIdx[3]];
+
+    b_ttfcnc_jet12pt = (jetP4s[1]+jetP4s[2]).Pt(); b_ttfcnc_jet12m = (jetP4s[1]+jetP4s[2]).M();
+    b_ttfcnc_jet12eta = (jetP4s[1]+jetP4s[2]).Eta(); b_ttfcnc_jet12deta = (jetP4s[1]-jetP4s[2]).Eta();
+    b_ttfcnc_jet12phi = (jetP4s[1]+jetP4s[2]).Phi(); b_ttfcnc_jet12dphi = jetP4s[1].DeltaPhi(jetP4s[2]);
+    b_ttfcnc_jet12dR = jetP4s[1].DeltaR(jetP4s[2]);
+
+    b_ttfcnc_jet23pt = (jetP4s[2]+jetP4s[3]).Pt(); b_ttfcnc_jet23m = (jetP4s[2]+jetP4s[3]).M();
+    b_ttfcnc_jet23eta = (jetP4s[2]+jetP4s[3]).Eta(); b_ttfcnc_jet23deta = (jetP4s[2]-jetP4s[3]).Eta();
+    b_ttfcnc_jet23phi = (jetP4s[2]+jetP4s[3]).Phi(); b_ttfcnc_jet23dphi = jetP4s[2].DeltaPhi(jetP4s[3]);
+    b_ttfcnc_jet23dR = jetP4s[2].DeltaR(jetP4s[3]);
+
+    b_ttfcnc_jet31pt = (jetP4s[1]+jetP4s[3]).Pt(); b_ttfcnc_jet31m = (jetP4s[1]+jetP4s[3]).M();
+    b_ttfcnc_jet31eta = (jetP4s[1]+jetP4s[3]).Eta(); b_ttfcnc_jet31deta = (jetP4s[1]-jetP4s[3]).Eta();
+    b_ttfcnc_jet31phi = (jetP4s[1]+jetP4s[3]).Phi(); b_ttfcnc_jet31dphi = jetP4s[1].DeltaPhi(jetP4s[3]);
+    b_ttfcnc_jet31dR = jetP4s[3].DeltaR(jetP4s[1]);
+
+    b_ttfcnc_lepTpt = (lepton+p4met+jetP4s[0]).Pt(); b_ttfcnc_lepTm = (lepton+p4met+jetP4s[0]).M();
+    b_ttfcnc_lepTeta = (lepton+p4met+jetP4s[0]).Eta(); b_ttfcnc_lepTdeta = (lepton+p4met-jetP4s[0]).Eta();
+    b_ttfcnc_lepTphi = (lepton+p4met+jetP4s[0]).Phi(); b_ttfcnc_lepTdphi = (lepton+p4met).DeltaPhi(jetP4s[0]);
+    b_ttfcnc_lepTdR = (lepton+p4met).DeltaR(jetP4s[0]);
+
+    b_ttfcnc_hadTpt = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(); b_ttfcnc_hadTm = (jetP4s[1]+jetP4s[2]+jetP4s[3]).M();
+    b_ttfcnc_hadTeta = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_ttfcnc_hadT12_3deta = (jetP4s[1]+jetP4s[2]-jetP4s[3]).Eta();
+    b_ttfcnc_hadT23_1deta = (-jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_ttfcnc_hadT31_2deta = (jetP4s[1]-jetP4s[2]+jetP4s[3]).Eta();
+    b_ttfcnc_hadTphi = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Phi(); b_ttfcnc_hadT12_3dphi = (jetP4s[1]+jetP4s[2]).DeltaPhi(jetP4s[3]);
+    b_ttfcnc_hadT23_1dphi = (jetP4s[2]+jetP4s[3]).DeltaPhi(jetP4s[1]); b_ttfcnc_hadT31_2dphi = (jetP4s[3]+jetP4s[1]).DeltaPhi(jetP4s[2]);
+    b_ttfcnc_hadT12_3dR = (jetP4s[1]+jetP4s[2]).DeltaR(jetP4s[3]); b_ttfcnc_hadT23_1dR = (jetP4s[2]+jetP4s[3]).DeltaR(jetP4s[1]);
+    b_ttfcnc_hadT31_2dR = (jetP4s[3]+jetP4s[1]).DeltaR(jetP4s[2]);
   }
-  else b_GenMatch = -1;
 
-  //fill trees
-  b_lepWpt = (lepton+p4met).Pt();
-  b_lepWeta = (lepton+p4met).Eta();
-  b_lepWdeta = (lepton-p4met).Eta();
-  b_lepWphi = (lepton+p4met).Phi();
-  b_lepWdphi = lepton.DeltaPhi(p4met);
-  b_lepWm = (lepton+p4met).M();
+  if( tt_njet ){
+    int jetIdx[4];
+    TLorentzVector jetP4s[4];
 
-  b_jet0pt = jetP4s[0].Pt();
-  b_jet0eta = jetP4s[0].Eta();
-  b_jet0phi = jetP4s[0].Phi();
-  b_jet0m = jetP4s[0].M();
-  b_jet0csv = jet_deepCSV[jetIdx[0]];
-  b_jet0cvsl = jet_CvsL[jetIdx[0]];
-  b_jet0cvsb = jet_CvsB[jetIdx[0]];
+    vector<double>::iterator iter;
+    int evtIdx = 0;
+    //find combination
+    if( !ttbkg_lepPt.empty() ){
+      for( iter = ttbkg_lepPt.begin(); iter != ttbkg_lepPt.end(); iter++ ){
+        if( *iter == static_cast<float>(lepton.Pt()) ){
+          int tmpIdx = distance(ttbkg_lepPt.begin(), iter);
+          if( ttbkg_missET[tmpIdx] == met ) evtIdx = tmpIdx;
+          else continue;
+        }
+      }
+      ttbkg_dupCheck.push_back(evtIdx);
+      //cout << evtIdx << endl;
 
-  b_jet1pt = jetP4s[1].Pt();
-  b_jet1eta = jetP4s[1].Eta();
-  b_jet1phi = jetP4s[1].Phi();
-  b_jet1m = jetP4s[1].M();
-  b_jet1csv = jet_deepCSV[jetIdx[1]];
-  b_jet1cvsl = jet_CvsL[jetIdx[1]];
-  b_jet1cvsb = jet_CvsB[jetIdx[1]];
+      assignT->GetEntry(evtIdx);
+      b_ttbkg_genMatch = ttbkg_Tree->GetLeaf("match")->GetValue(0);
+      b_ttbkg_score = ttbkg_Tree->GetLeaf("score")->GetValue(0);
+      int i0 = ttbkg_Tree->GetLeaf("idx0")->GetValue(0);
+      int i1 = ttbkg_Tree->GetLeaf("idx1")->GetValue(0);
+      int i2 = ttbkg_Tree->GetLeaf("idx2")->GetValue(0);
+      int i3 = ttbkg_Tree->GetLeaf("idx3")->GetValue(0);
+      jetIdx[0] = i0; jetIdx[1] = i1; jetIdx[2] = i2; jetIdx[3] = i3;
+      b_ttbkg_jet0Idx = jetIdx[0]; b_ttbkg_jet1Idx = jetIdx[1];
+      b_ttbkg_jet2Idx = jetIdx[2]; b_ttbkg_jet3Idx = jetIdx[3];
+      //cout << i0 << endl;
 
-  b_jet2pt = jetP4s[2].Pt();
-  b_jet2eta = jetP4s[2].Eta();
-  b_jet2phi = jetP4s[2].Phi();
-  b_jet2m = jetP4s[2].M();
-  b_jet2csv = jet_deepCSV[jetIdx[2]];
-  b_jet2cvsl = jet_CvsL[jetIdx[2]];
-  b_jet2cvsb = jet_CvsB[jetIdx[2]];
+      for( int i=0; i < 4; i++) jetP4s[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
 
-  b_jet3pt = jetP4s[3].Pt();
-  b_jet3eta = jetP4s[3].Eta();
-  b_jet3phi = jetP4s[3].Phi();
-  b_jet3m = jetP4s[3].M();
-  b_jet3csv = jet_deepCSV[jetIdx[3]];
-  b_jet3cvsl = jet_CvsL[jetIdx[3]];
-  b_jet3cvsb = jet_CvsB[jetIdx[3]];
+      if( !option.Contains("Run2017") ){
+        if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
+        else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
+        else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Up[jetIdx[i]];
+        else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Down[jetIdx[i]];
+        else                             for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]];
+      }
+    }
 
-  b_jet12pt = (jetP4s[1]+jetP4s[2]).Pt();
-  b_jet12eta = (jetP4s[1]+jetP4s[2]).Eta();
-  b_jet12deta = (jetP4s[1]-jetP4s[2]).Eta();
-  b_jet12phi = (jetP4s[1]+jetP4s[2]).Phi();
-  b_jet12dphi = jetP4s[1].DeltaPhi(jetP4s[2]);
-  b_jet12m = (jetP4s[1]+jetP4s[2]).M();
-  b_jet12DR = jetP4s[1].DeltaR(jetP4s[2]);
+    b_ttbkg_jet0pt = jetP4s[0].Pt(); b_ttbkg_jet0eta = jetP4s[0].Eta(); b_ttbkg_jet0phi = jetP4s[0].Phi(); b_ttbkg_jet0m = jetP4s[0].M();
+    b_ttbkg_jet0csv = jet_deepCSV[jetIdx[0]]; b_ttbkg_jet0cvsl = jet_CvsL[jetIdx[0]]; b_ttbkg_jet0cvsb = jet_CvsB[jetIdx[0]];
+    b_ttbkg_jet1pt = jetP4s[1].Pt(); b_ttbkg_jet1eta = jetP4s[1].Eta(); b_ttbkg_jet1phi = jetP4s[1].Phi(); b_ttbkg_jet1m = jetP4s[1].M();
+    b_ttbkg_jet1csv = jet_deepCSV[jetIdx[1]]; b_ttbkg_jet1cvsl = jet_CvsL[jetIdx[1]]; b_ttbkg_jet1cvsb = jet_CvsB[jetIdx[1]];
+    b_ttbkg_jet2pt = jetP4s[2].Pt(); b_ttbkg_jet2eta = jetP4s[2].Eta(); b_ttbkg_jet2phi = jetP4s[2].Phi(); b_ttbkg_jet2m = jetP4s[2].M();
+    b_ttbkg_jet2csv = jet_deepCSV[jetIdx[2]]; b_ttbkg_jet2cvsl = jet_CvsL[jetIdx[2]]; b_ttbkg_jet2cvsb = jet_CvsB[jetIdx[2]];
+    b_ttbkg_jet3pt = jetP4s[3].Pt(); b_ttbkg_jet3eta = jetP4s[3].Eta(); b_ttbkg_jet3phi = jetP4s[3].Phi(); b_ttbkg_jet3m = jetP4s[3].M();
+    b_ttbkg_jet3csv = jet_deepCSV[jetIdx[3]]; b_ttbkg_jet3cvsl = jet_CvsL[jetIdx[3]]; b_ttbkg_jet3cvsb = jet_CvsB[jetIdx[3]];
 
-  b_jet23pt = (jetP4s[2]+jetP4s[3]).Pt();
-  b_jet23eta = (jetP4s[2]+jetP4s[3]).Eta();
-  b_jet23deta = (jetP4s[2]-jetP4s[3]).Eta();
-  b_jet23phi = (jetP4s[2]+jetP4s[3]).Phi();
-  b_jet23dphi = jetP4s[2].DeltaPhi(jetP4s[3]);
-  b_jet23m = (jetP4s[2]+jetP4s[3]).M();
+    b_ttbkg_jet12pt = (jetP4s[1]+jetP4s[2]).Pt(); b_ttbkg_jet12m = (jetP4s[1]+jetP4s[2]).M();
+    b_ttbkg_jet12eta = (jetP4s[1]+jetP4s[2]).Eta(); b_ttbkg_jet12deta = (jetP4s[1]-jetP4s[2]).Eta();
+    b_ttbkg_jet12phi = (jetP4s[1]+jetP4s[2]).Phi(); b_ttbkg_jet12dphi = jetP4s[1].DeltaPhi(jetP4s[2]);
+    b_ttbkg_jet12dR = jetP4s[1].DeltaR(jetP4s[2]);
 
-  b_jet31pt = (jetP4s[1]+jetP4s[3]).Pt();
-  b_jet31eta = (jetP4s[1]+jetP4s[3]).Eta();
-  b_jet31deta = (jetP4s[1]-jetP4s[3]).Eta();
-  b_jet31phi = (jetP4s[1]+jetP4s[3]).Phi();
-  b_jet31dphi = jetP4s[1].DeltaPhi(jetP4s[3]);
-  b_jet31m = (jetP4s[1]+jetP4s[3]).M();
+    b_ttbkg_jet23pt = (jetP4s[2]+jetP4s[3]).Pt(); b_ttbkg_jet23m = (jetP4s[2]+jetP4s[3]).M();
+    b_ttbkg_jet23eta = (jetP4s[2]+jetP4s[3]).Eta(); b_ttbkg_jet23deta = (jetP4s[2]-jetP4s[3]).Eta();
+    b_ttbkg_jet23phi = (jetP4s[2]+jetP4s[3]).Phi(); b_ttbkg_jet23dphi = jetP4s[2].DeltaPhi(jetP4s[3]);
+    b_ttbkg_jet23dR = jetP4s[2].DeltaR(jetP4s[3]);
 
-  b_lepTpt = (lepton+p4met+jetP4s[0]).Pt();
-  b_lepTeta = (lepton+p4met+jetP4s[0]).Eta();
-  b_lepTdeta = (lepton+p4met-jetP4s[0]).Eta();
-  b_lepTphi = (lepton+p4met+jetP4s[0]).Phi();
-  b_lepTdphi = (lepton+p4met).DeltaPhi(jetP4s[0]);
-  b_lepTm = (lepton+p4met+jetP4s[0]).M();
+    b_ttbkg_jet31pt = (jetP4s[1]+jetP4s[3]).Pt(); b_ttbkg_jet31m = (jetP4s[1]+jetP4s[3]).M();
+    b_ttbkg_jet31eta = (jetP4s[1]+jetP4s[3]).Eta(); b_ttbkg_jet31deta = (jetP4s[1]-jetP4s[3]).Eta();
+    b_ttbkg_jet31phi = (jetP4s[1]+jetP4s[3]).Phi(); b_ttbkg_jet31dphi = jetP4s[1].DeltaPhi(jetP4s[3]);
+    b_ttbkg_jet31dR = jetP4s[3].DeltaR(jetP4s[1]);
 
-  b_hadTpt = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt();
-  b_hadTeta = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta();
-  b_hadTHbdeta = (jetP4s[1]+jetP4s[2]-jetP4s[3]).Eta();
-  b_hadTWbdeta = (-jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta();
-  b_hadTphi = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Phi();
-  b_hadTHbdphi = (jetP4s[1]+jetP4s[2]).DeltaPhi(jetP4s[3]);
-  b_hadTWbdphi = (jetP4s[2]+jetP4s[3]).DeltaPhi(jetP4s[1]);
-  b_hadTm = (jetP4s[1]+jetP4s[2]+jetP4s[3]).M();
+    b_ttbkg_lepTpt = (lepton+p4met+jetP4s[0]).Pt(); b_ttbkg_lepTm = (lepton+p4met+jetP4s[0]).M();
+    b_ttbkg_lepTeta = (lepton+p4met+jetP4s[0]).Eta(); b_ttbkg_lepTdeta = (lepton+p4met-jetP4s[0]).Eta();
+    b_ttbkg_lepTphi = (lepton+p4met+jetP4s[0]).Phi(); b_ttbkg_lepTdphi = (lepton+p4met).DeltaPhi(jetP4s[0]);
+    b_ttbkg_lepTdR = (lepton+p4met).DeltaR(jetP4s[0]);
+
+    b_ttbkg_hadTpt = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(); b_ttbkg_hadTm = (jetP4s[1]+jetP4s[2]+jetP4s[3]).M();
+    b_ttbkg_hadTeta = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_ttbkg_hadT12_3deta = (jetP4s[1]+jetP4s[2]-jetP4s[3]).Eta();
+    b_ttbkg_hadT23_1deta = (-jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_ttbkg_hadT31_2deta = (jetP4s[1]-jetP4s[2]+jetP4s[3]).Eta();
+    b_ttbkg_hadTphi = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Phi(); b_ttbkg_hadT12_3dphi = (jetP4s[1]+jetP4s[2]).DeltaPhi(jetP4s[3]);
+    b_ttbkg_hadT23_1dphi = (jetP4s[2]+jetP4s[3]).DeltaPhi(jetP4s[1]); b_ttbkg_hadT31_2dphi = (jetP4s[3]+jetP4s[1]).DeltaPhi(jetP4s[2]);
+    b_ttbkg_hadT12_3dR = (jetP4s[1]+jetP4s[2]).DeltaR(jetP4s[3]); b_ttbkg_hadT23_1dR = (jetP4s[2]+jetP4s[3]).DeltaR(jetP4s[1]);
+    b_ttbkg_hadT31_2dR = (jetP4s[3]+jetP4s[1]).DeltaR(jetP4s[2]);
+  }
 
   treeTMVA->Fill();
 

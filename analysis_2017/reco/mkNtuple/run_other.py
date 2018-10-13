@@ -11,8 +11,9 @@ reco_scheme = sys.argv[1]
 input_filename = sys.argv[2]
 output_filename = sys.argv[3]
 syst = ["","jecup","jecdown","jerup","jerdown"]
+syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
-for syst_ext in syst:
+for syst_ext in syst + syst2:
   if not os.path.exists( "root_" + reco_scheme + syst_ext ):
     print "No folder"
     sys.exit()
@@ -21,9 +22,15 @@ for syst_ext in syst:
     sys.exit()
 
 def runAna(input_filename, output_filename):
-  for syst_ext in syst:
-    if ("Run2017" in output_filename) and syst_ext != "": continue
+  print 'processing ' + input_filename
+
+  for syst_ext in syst + syst2:
+    if   ("Run2017" in output_filename) and syst_ext != "": continue
+    elif (syst_ext in syst2) and not (syst_ext in output_filename): continue
+    elif (syst_ext in syst) and any(tmp in output_filename for tmp in syst2): continue
     else:
+      if (syst_ext in syst2): output_filename = output_filename.replace(syst_ext,"")
+
       chain = TChain("fcncLepJets/tree","events")
       chain.Add(input_filename)
       if chain.GetEntries() == 0:
@@ -32,7 +39,7 @@ def runAna(input_filename, output_filename):
 
       if os.path.isfile("root_" + reco_scheme + syst_ext + "/deepReco_" + output_filename + ".root"):
         f = TFile.Open("root_" + reco_scheme + syst_ext + "/deepReco_" + output_filename + ".root")
-        t = f.Get("test_tree")  
+        t = f.Get("test_tree")
         if t.GetEntries() != 0:
           a = tree2array(t)
           df = pd.DataFrame(a)

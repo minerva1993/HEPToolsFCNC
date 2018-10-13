@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize
@@ -28,7 +28,7 @@ signal_only = False
 input_files = []
 input_features = []
 syst = [""]
-if not signal_only: syst = syst + ["jecup", "jecdown", "jerup", "jerdown"]
+if not signal_only: syst = syst + ["jecup", "jecdown", "jerup", "jerdown", "hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
 
 input_features.extend(input_variables(ch))
 

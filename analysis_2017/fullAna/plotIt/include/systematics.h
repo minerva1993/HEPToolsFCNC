@@ -105,6 +105,8 @@ namespace plotIt {
     struct ShapeSystematic: public Systematic {
         ShapeSystematic(const YAML::Node& node);
         virtual SystematicSet newSet(TObject* nominal, File& file, const Plot& plot) override;
+        float ext_sum_weight_up = 1.0;
+        float ext_sum_weight_down = 1.0;
     };
 
     struct ScaleWeightSystematic: public Systematic {

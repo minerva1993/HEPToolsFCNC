@@ -2,8 +2,11 @@
 import os, sys
 
 ch = ['STFCNC', 'STFCNCjecup', 'STFCNCjecdown', 'STFCNCjerup', 'STFCNCjerdown',
+      'STFCNChdampup', 'STFCNChdampdown', 'STFCNCTuneCP5up', 'STFCNCTuneCP5down',
       'TTFCNC', 'TTFCNCjecup', 'TTFCNCjecdown', 'TTFCNCjerup', 'TTFCNCjerdown',
-      'TTBKG',  'TTBKGjecup',  'TTBKGjecdown',  'TTBKGjerup',  'TTBKGjerdown']
+      'TTFCNChdampup', 'TTFCNChdampdown', 'TTFCNCTuneCP5up', 'TTFCNCTuneCP5down',
+      'TTBKG',  'TTBKGjecup',  'TTBKGjecdown',  'TTBKGjerup',  'TTBKGjerdown',
+      'TTBKGhdampup', 'TTBKGhdampdown', 'TTBKGTuneCP5up', 'TTBKGTuneCP5down',]
 
 for chs in ch:
   if not os.path.exists( "root_" + chs ):

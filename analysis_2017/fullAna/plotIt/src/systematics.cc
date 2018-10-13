@@ -139,6 +139,11 @@ namespace plotIt {
 
     ShapeSystematic::ShapeSystematic(const YAML::Node& node) {
 
+        if(node["ext-sum-weight-up"])
+            ext_sum_weight_up = node["ext-sum-weight-up"].as<float>();
+        if(node["ext-sum-weight-down"])
+            ext_sum_weight_down = node["ext-sum-weight-down"].as<float>();
+
     }
 
     SystematicSet ShapeSystematic::newSet(TObject* nominal, File& file, const Plot& plot) {
@@ -180,7 +185,20 @@ namespace plotIt {
                 if (! f)
                     f.reset(TFile::Open(syst_path.native().c_str()));
 
-                object = f->Get(plot.name.c_str());
+                if (ext_sum_weight_up > 1.1 and ext_sum_weight_down > 1.1){
+                    if(variation == UP) {
+                        TH1F* tmp = (TH1F*) f->Get(plot.name.c_str());
+                        tmp->Scale(file.generated_events / ext_sum_weight_up);
+                        object = tmp;
+                    }
+                    else if (variation == DOWN) {
+                        TH1F* tmp = (TH1F*) f->Get(plot.name.c_str());
+                        tmp->Scale(file.generated_events / ext_sum_weight_down);
+                        object = tmp;
+                    }
+                }
+
+                else object = f->Get(plot.name.c_str());
 
                 if (object) {
                     links[variation]->reset(object->Clone());
@@ -241,14 +259,14 @@ namespace plotIt {
             for (int j=0; j < 6; j++) {
                 float c = h_scales[j]->GetBinContent(i);
                 float nom_temp = nominal_scale->GetBinContent(i);
-                if ( c < nom_temp*1.2  and c > nom_temp*0.01 ) {
+//                if ( c < nom_temp*1.2  and c > nom_temp*0.01 ) {
                     minimum = std::min(minimum, c);
                     maximum = std::max(maximum, c);
-                }
-                else {
-                    maximum = nom_temp;
-                    minimum = nom_temp;
-                }
+//                }
+//                else {
+//                    maximum = nom_temp;
+//                    minimum = nom_temp;
+//                }
             }
             up_scale->SetBinContent(i, maximum);
             down_scale->SetBinContent(i, minimum);

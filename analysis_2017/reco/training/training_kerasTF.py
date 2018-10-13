@@ -14,6 +14,11 @@ import numpy as np
 from root_numpy import array2tree, tree2array
 
 import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.1
+set_session(tf.Session(config=config))
+
 import keras
 from keras.utils import np_utils, multi_gpu_model
 from keras.models import Model, Sequential, load_model
@@ -25,8 +30,8 @@ from keras.callbacks import Callback, ModelCheckpoint
 from variables import input_variables, gen_label, train_files
 
 #Channel selection: 0=bkg 1=STFCNC 2=TTFCNC
-#ch = "STFCNC"
-ch = "TTFCNC"
+ch = "STFCNC"
+#ch = "TTFCNC"
 #ch = "TTBKG"
 
 #Version of classifier

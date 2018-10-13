@@ -1,6 +1,6 @@
 import os
 
-version = 'V9_2/180922/'
+version = 'V9_3/181009/'
 path_to_prod = '/data/users/minerva1993/ntuple_Run2017/' + version + 'production/'
 path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 print("Looking for files in %s"%path_to_prod)
@@ -14,6 +14,8 @@ string_for_signal_processing = ''
 input_list_bkg_file_name = 'file_other.txt'
 string_for_bkg_processing = ''
 
+input_list_syst_file_name = 'file_syst.txt'
+string_for_syst_processing = ''
 
 #This part is for making script file for ntuple merging
 string_for_merge += '#!/bin/sh\n'
@@ -43,7 +45,9 @@ for dataset_folder in os.listdir(path_to_prod):
     tmp_string += os.path.join(dataset_path, file_name)
     output_file_name = dataset_folder.replace("_",'')
     tmp_string += ' ' + output_file_name + "_" + file_id
-    if ('ST_' in dataset_folder) or ('TT_powheg' in dataset_folder) or ('TTHad_powheg' in dataset_folder) or ('TTLL_powheg' in dataset_folder) or ('TT_TH' in dataset_folder):
+    if ('hdampup' in dataset_folder) or ('hdampdown' in dataset_folder) or ('TuneCP5up' in dataset_folder) or ('TuneCP5down' in dataset_folder):
+      string_for_syst_processing += tmp_string + '\n'
+    elif ('ST_' in dataset_folder) or ('TT_powheg' in dataset_folder) or ('TTHad_powheg' in dataset_folder) or ('TTLL_powheg' in dataset_folder) or ('TT_TH' in dataset_folder):
       string_for_signal_processing += tmp_string + '\n'
     else:
       string_for_bkg_processing += tmp_string + '\n'
@@ -54,6 +58,8 @@ with open(input_list_signal_file_name, 'w') as f:
 with open(input_list_bkg_file_name, 'w') as f: 
   f.write(string_for_bkg_processing) 
 
+with open(input_list_syst_file_name, 'w') as f:
+  f.write(string_for_syst_processing)
 
 
-print("{0} and {1}  written.".format(input_list_signal_file_name, input_list_bkg_file_name))
+print("{0}, {1} and {2}  written.".format(input_list_signal_file_name, input_list_bkg_file_name, input_list_syst_file_name))

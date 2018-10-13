@@ -71,15 +71,23 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
-   TTreeReaderValue<Float_t> addHbjet1_pt = {fReader, "addHbjet1_pt"};
-   TTreeReaderValue<Float_t> addHbjet1_eta = {fReader, "addHbjet1_eta"};
-   TTreeReaderValue<Float_t> addHbjet1_phi = {fReader, "addHbjet1_phi"};
-   TTreeReaderValue<Float_t> addHbjet1_e = {fReader, "addHbjet1_e"};
-   TTreeReaderValue<Float_t> addHbjet2_pt = {fReader, "addHbjet2_pt"};
-   TTreeReaderValue<Float_t> addHbjet2_eta = {fReader, "addHbjet2_eta"};
-   TTreeReaderValue<Float_t> addHbjet2_phi = {fReader, "addHbjet2_phi"};
-   TTreeReaderValue<Float_t> addHbjet2_e = {fReader, "addHbjet2_e"};
+   TTreeReaderValue<Float_t> Hbjet1_pt = {fReader, "Hbjet1_pt"};
+   TTreeReaderValue<Float_t> Hbjet1_eta = {fReader, "Hbjet1_eta"};
+   TTreeReaderValue<Float_t> Hbjet1_phi = {fReader, "Hbjet1_phi"};
+   TTreeReaderValue<Float_t> Hbjet1_e = {fReader, "Hbjet1_e"};
+   TTreeReaderValue<Float_t> Hbjet2_pt = {fReader, "Hbjet2_pt"};
+   TTreeReaderValue<Float_t> Hbjet2_eta = {fReader, "Hbjet2_eta"};
+   TTreeReaderValue<Float_t> Hbjet2_phi = {fReader, "Hbjet2_phi"};
+   TTreeReaderValue<Float_t> Hbjet2_e = {fReader, "Hbjet2_e"};
    TTreeReaderValue<Float_t> dRHbb = {fReader, "dRHbb"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_pt = {fReader, "Hbquarkjet1_pt"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_eta = {fReader, "Hbquarkjet1_eta"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_phi = {fReader, "Hbquarkjet1_phi"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_e = {fReader, "Hbquarkjet1_e"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_pt = {fReader, "Hbquarkjet2_pt"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_eta = {fReader, "Hbquarkjet2_eta"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_phi = {fReader, "Hbquarkjet2_phi"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_e = {fReader, "Hbquarkjet2_e"};
 
    MyAnalysis(TTree * /*tree*/ =0) { }
    virtual ~MyAnalysis() { }
@@ -102,7 +110,9 @@ public :
    ClassDef(MyAnalysis,0);
 
     //Declare systematics here FIXME
-    const std::vector<const char*> syst_name = {"", "__puup", "__pudown", "__lepSFup", "__lepSFdown",
+    const std::vector<const char*> syst_name = {"", "__puup", "__pudown",
+                                                "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
+                                                "__elidup", "__eliddown", "__elrecoup", "__elrecodown", "__elzvtxup", "__elzvtxdown",
                                                 "__lfup", "__lfdown", "__hfup", "__hfdown",
                                                 "__hfstat1up", "__hfstat1down", "__hfstat2up", "__hfstat2down",
                                                 "__lfstat1up", "__lfstat1down", "__lfstat2up", "__lfstat2down",
@@ -110,49 +120,49 @@ public :
                                                 "__scale0", "__scale1", "__scale2", "__scale3", "__scale4", "__scale5"};
     int syst_num = syst_name.size();
 
-    TH1D *h_PV[3][12][27];
-    TH1D *h_EventWeight[3][12][27];
-    TH1D *h_NJet[3][12][27];
-    TH1D *h_NBJetCSVv2M[3][12][27];
-    TH1D *h_NBJetCSVv2T[3][12][27];
-    TH1D *h_NCJetM[3][12][27];
-    TH1D *h_LepPt[3][12][27];
-    TH1D *h_LepPhi[3][12][27];
-    TH1D *h_LepEta[3][12][27];
-    TH1D *h_MET[3][12][27];
+    TH1D *h_PV[3][12][37];
+    TH1D *h_EventWeight[3][12][37];
+    TH1D *h_NJet[3][12][37];
+    TH1D *h_NBJetCSVv2M[3][12][37];
+    TH1D *h_NBJetCSVv2T[3][12][37];
+    TH1D *h_NCJetM[3][12][37];
+    TH1D *h_LepPt[3][12][37];
+    TH1D *h_LepPhi[3][12][37];
+    TH1D *h_LepEta[3][12][37];
+    TH1D *h_MET[3][12][37];
 
-    TH1D *h_WMass[3][12][27];
-    TH1D *h_LepIso[3][12][27];
-    TH1D *h_LepIsoQCD[3][12][27];
-    TH1D *h_DPhi[3][12][27];
-    TH1D *h_JetCSV[3][12][27];
+    TH1D *h_WMass[3][12][37];
+    TH1D *h_LepIso[3][12][37];
+    TH1D *h_LepIsoQCD[3][12][37];
+    TH1D *h_DPhi[3][12][37];
+    TH1D *h_JetCSV[3][12][37];
 
     //tagging variables
-    TH1D *h_csv[3][12][27];
-    TH1D *h_cvsl[3][12][27];
-    TH1D *h_cvsb[3][12][27];
+    TH1D *h_csv[3][12][37];
+    TH1D *h_cvsl[3][12][37];
+    TH1D *h_cvsb[3][12][37];
 
     //DR
-    TH1D *h_FCNHkinLepWMass[3][12][27];
-    TH1D *h_FCNHkinHadWMass[3][12][27];
-    TH1D *h_FCNHkinHMass[3][12][27];
-    TH1D *h_FCNHkinDR[3][12][27];
-    TH1D *h_FCNHkinLepTopM[3][12][27];
-    TH1D *h_FCNHkinHadTopM[3][12][27];
-    TH1D *h_FCNHkinHPt[3][12][27];
-    TH1D *h_FCNHkinHdPhi[3][12][27];
-    TH1D *h_FCNHkinHdEta[3][12][27];
-    TH1D *h_FCNHkinHb1Pt[3][12][27];
-    TH1D *h_FCNHkinHb2Pt[3][12][27];
-    TH1D *h_FCNHkinHb1CSV[3][12][27];
-    TH1D *h_FCNHkinHb2CSV[3][12][27];
-    TH1D *h_FCNHkinLepTopPt[3][12][27];
-    TH1D *h_FCNHkinHadTopPt[3][12][27];
+    TH1D *h_FCNHkinLepWMass[3][12][37];
+    TH1D *h_FCNHkinHadWMass[3][12][37];
+    TH1D *h_FCNHkinHMass[3][12][37];
+    TH1D *h_FCNHkinDR[3][12][37];
+    TH1D *h_FCNHkinLepTopM[3][12][37];
+    TH1D *h_FCNHkinHadTopM[3][12][37];
+    TH1D *h_FCNHkinHPt[3][12][37];
+    TH1D *h_FCNHkinHdPhi[3][12][37];
+    TH1D *h_FCNHkinHdEta[3][12][37];
+    TH1D *h_FCNHkinHb1Pt[3][12][37];
+    TH1D *h_FCNHkinHb2Pt[3][12][37];
+    TH1D *h_FCNHkinHb1CSV[3][12][37];
+    TH1D *h_FCNHkinHb2CSV[3][12][37];
+    TH1D *h_FCNHkinLepTopPt[3][12][37];
+    TH1D *h_FCNHkinHadTopPt[3][12][37];
 
-    TH1D *h_genDR[3][12][27];
-    TH1D *h_matchDR[3][12][27];
-    TH1D *h_genHm[3][12][27];
-    TH1D *h_matchHm[3][12][27];
+    TH1D *h_genDR[3][12][37];
+    TH1D *h_matchDR[3][12][37];
+    TH1D *h_genHm[3][12][37];
+    TH1D *h_matchHm[3][12][37];
 
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");
@@ -171,6 +181,7 @@ public :
     bool doreco;
     bool dosyst;
     string syst_ext;
+    float sumScaleWeight[6];
 
     TFile *out;
 };
