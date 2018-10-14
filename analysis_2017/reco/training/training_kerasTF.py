@@ -4,6 +4,8 @@ import google.protobuf
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize

@@ -46,7 +46,7 @@ def AddBkg(fname, name, color, xsection):
   tmp["xsection"] = xsection
   tmp["name"] = name
   bkgsamples[fname] = tmp
-"""
+
 def AddHct(fname, name, color, xsection):
   tmp = {}
   f = TFile(fname)
@@ -80,7 +80,7 @@ def AddHut(fname, name, color, xsection):
   tmp["xsection"] = xsection
   tmp["name"] = name
   hutsamples[fname] = tmp
-"""
+
 def AddSTHct(fname, name, color, xsection):
   tmp = {}
   f = TFile(fname)
@@ -136,12 +136,7 @@ AddBkg("hist_W2JetsToLNu.root","WJets",ROOT.kYellow, 2793)
 AddBkg("hist_W3JetsToLNu.root","WJets",ROOT.kYellow, 992.5)
 AddBkg("hist_W4JetsToLNu.root","WJets",ROOT.kYellow, 544.3)
 AddBkg("hist_DYJetsv2.root","ZJets",ROOT.kBlue, 5765.4)
-#AddBkg("hist_zjets10to50.root","ZJets",ROOT.kBlue, 18610.0)
-AddBkg("hist_DYJets4to50HT70to100.root","ZJets",ROOT.kBlue, 809.9) #GenXSecAnalyzer
-AddBkg("hist_DYJets4to50HT100to200v2.root","ZJets",ROOT.kBlue, 203.1)
-AddBkg("hist_DYJets4to50HT200to400.root","ZJets",ROOT.kBlue, 54.18)
-AddBkg("hist_DYJets4to50HT400to600.root","ZJets",ROOT.kBlue, 5.708)
-AddBkg("hist_DYJets4to50HT600toinf.root","ZJets",ROOT.kBlue, 1.849)
+AddBkg("hist_DYJets10to50.root","ZJets",ROOT.kBlue, 18610.0)
 AddBkg("hist_SingleTops.root","Single t",6, 11.36)
 AddBkg("hist_SingleTopt.root","Single t",6, 136.02)
 AddBkg("hist_SingleTbart.root","Single t",6, 80.95)
@@ -150,25 +145,28 @@ AddBkg("hist_SingleTbartW.root","Single t",6, 35.85)
 AddBkg("hist_WW.root","VV",ROOT.kCyan, 118.7)
 AddBkg("hist_WZ.root","VV",ROOT.kCyan, 47.13)
 AddBkg("hist_ZZ.root","VV",ROOT.kCyan, 16.523)
-#AddHct("hist_Top_Hct.root", "Hct", 433, 1.85)
-#AddHct("hist_AntiTop_Hct.root", "Hct", 433, 1.85) 
-#AddHut("hist_Top_Hut.root", "Hut", 401, 1.85)
-#AddHut("hist_AntiTop_Hut.root", "Hut", 401, 1.85)
+AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 2.216)
+AddHct("hist_TTTH1L3BTLepHct.root", "Hct", 433, 2.216) 
+AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 2.216)
+AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 2.216)
 AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 0.076)#1.9*0.04
 AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 0.55)#13.84*0.04
 
-syst_name = ["_puup", "_pudown", "_lepSFup", "_lepSFdown",
-              "_lfup", "_lfdown", "_hfup", "_hfdown",
-              "_hfstat1up", "_hfstat1down", "_hfstat2up", "_hfstat2down",
-              "_lfstat1up", "_lfstat1down", "_lfstat2up", "_lfstat2down",
-              "_cferr1up", "_cferr1down", "_cferr2up", "_cferr2down"]
+syst_name = ["__puup", "__pudown",
+            "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
+            "__elidup", "__eliddown", "__elrecoup", "__elrecodown", "__elzvtxup", "__elzvtxdown",
+            "__lfup", "__lfdown", "__hfup", "__hfdown",
+            "__hfstat1up", "__hfstat1down", "__hfstat2up", "__hfstat2down",
+            "__lfstat1up", "__lfstat1down", "__lfstat2up", "__lfstat2down",
+            "__cferr1up", "__cferr1down", "__cferr2up", "__cferr2down",
+            "__scale0", "__scale1", "__scale2", "__scale3", "__scale4", "__scale5"]
 
 qcd = []
 
 N_hist = len(datasamples[datasamples.keys()[0]]["hname"])
 N_bkgsamples = len(bkgsamples)
-#N_Hctsamples = len(hctsamples)
-#N_Hutsamples = len(hutsamples)
+N_Hctsamples = len(hctsamples)
+N_Hutsamples = len(hutsamples)
 N_stHctsamples = len(sthctsamples)
 N_stHutsamples = len(sthutsamples)
 
@@ -184,7 +182,7 @@ for i in range(0, N_hist):
 
   if mode == 99: continue
 
-  #if mode == 0 or mode == 1: continue
+  if mode == 0 or mode == 1: continue
 
   string_fname = ''
   string_nevt =  ''
@@ -263,7 +261,6 @@ for i in range(0, N_hist):
 
   h_bkg = hs.GetStack().Last()
 
-  """
   #Sig Stack 
   hsHct = THStack()
 
@@ -358,7 +355,6 @@ for i in range(0, N_hist):
 
   hs_Hut = hsHut.GetStack().Last()
   if h_data.Integral > 0 and hs_Hut.Integral() > 0 and h_bkg.Integral() != 0: hs_Hut.Scale(h_data.Integral()/hs_Hut.Integral())
-  """
 
   #Add singletop Hct
   #hsSTHct = THStack()
@@ -537,8 +533,8 @@ for i in range(0, N_hist):
     h_data.SetMarkerSize(0.5)
     max_data = h_data.GetMaximum()
     max_hs = hs.GetMaximum()
-    #sigmaximums = [hs_Hct.GetMaximum(), hs_Hut.GetMaximum(), hs_stHct.GetMaximum(), hs_stHut.GetMaximum()]
-    sigmaximums = [hs_stHct.GetMaximum(), hs_stHut.GetMaximum()]
+    sigmaximums = [hs_Hct.GetMaximum(), hs_Hut.GetMaximum(), hs_stHct.GetMaximum(), hs_stHut.GetMaximum()]
+    #sigmaximums = [hs_stHct.GetMaximum(), hs_stHut.GetMaximum()]
     max_sig = max(sigmaximums)
     maxfrac = 0.5
     if(max_hs > max_sig):
@@ -567,12 +563,12 @@ for i in range(0, N_hist):
     #h_data.GetXaxis().SetTitle("")
     h_data.GetXaxis().SetTitleOffset(5.0)
     hs.Draw("histsame")
-    #hs_Hct.SetLineWidth(2)
-    #hs_Hut.SetLineWidth(2)
+    hs_Hct.SetLineWidth(2)
+    hs_Hut.SetLineWidth(2)
     hs_stHct.SetLineWidth(2)
     hs_stHut.SetLineWidth(2)
-    #hs_Hct.Draw("hist same")
-    #hs_Hut.Draw("hist same")
+    hs_Hct.Draw("hist same")
+    hs_Hut.Draw("hist same")
     hs_stHct.Draw("hist same")
     hs_stHut.Draw("hist same")
     h_data.Draw("psame")

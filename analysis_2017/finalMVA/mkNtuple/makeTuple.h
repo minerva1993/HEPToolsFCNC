@@ -16,6 +16,7 @@
 #include <TLeaf.h>
 #include <string>
 #include <iostream>
+using namespace std;
 
 class makeTuple : public TSelector {
 public :
@@ -70,15 +71,23 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
-   TTreeReaderValue<Float_t> addHbjet1_pt = {fReader, "addHbjet1_pt"};
-   TTreeReaderValue<Float_t> addHbjet1_eta = {fReader, "addHbjet1_eta"};
-   TTreeReaderValue<Float_t> addHbjet1_phi = {fReader, "addHbjet1_phi"};
-   TTreeReaderValue<Float_t> addHbjet1_e = {fReader, "addHbjet1_e"};
-   TTreeReaderValue<Float_t> addHbjet2_pt = {fReader, "addHbjet2_pt"};
-   TTreeReaderValue<Float_t> addHbjet2_eta = {fReader, "addHbjet2_eta"};
-   TTreeReaderValue<Float_t> addHbjet2_phi = {fReader, "addHbjet2_phi"};
-   TTreeReaderValue<Float_t> addHbjet2_e = {fReader, "addHbjet2_e"};
+   TTreeReaderValue<Float_t> Hbjet1_pt = {fReader, "Hbjet1_pt"};
+   TTreeReaderValue<Float_t> Hbjet1_eta = {fReader, "Hbjet1_eta"};
+   TTreeReaderValue<Float_t> Hbjet1_phi = {fReader, "Hbjet1_phi"};
+   TTreeReaderValue<Float_t> Hbjet1_e = {fReader, "Hbjet1_e"};
+   TTreeReaderValue<Float_t> Hbjet2_pt = {fReader, "Hbjet2_pt"};
+   TTreeReaderValue<Float_t> Hbjet2_eta = {fReader, "Hbjet2_eta"};
+   TTreeReaderValue<Float_t> Hbjet2_phi = {fReader, "Hbjet2_phi"};
+   TTreeReaderValue<Float_t> Hbjet2_e = {fReader, "Hbjet2_e"};
    TTreeReaderValue<Float_t> dRHbb = {fReader, "dRHbb"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_pt = {fReader, "Hbquarkjet1_pt"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_eta = {fReader, "Hbquarkjet1_eta"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_phi = {fReader, "Hbquarkjet1_phi"};
+   TTreeReaderValue<Float_t> Hbquarkjet1_e = {fReader, "Hbquarkjet1_e"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_pt = {fReader, "Hbquarkjet2_pt"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_eta = {fReader, "Hbquarkjet2_eta"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_phi = {fReader, "Hbquarkjet2_phi"};
+   TTreeReaderValue<Float_t> Hbquarkjet2_e = {fReader, "Hbquarkjet2_e"};
 
    makeTuple(TTree * /*tree*/ =0) { }
    virtual ~makeTuple() { }
@@ -98,16 +107,17 @@ public :
    double transverseMass(const TLorentzVector & l, const TLorentzVector & nu);
    //int totalevt = fChain->GetTree()->GetEntries();
 
-    TTree *treeTMVA = 0;
+    TTree *tree = 0;
 
     int nevt = 0;
 
     //objects for ntuple
-    int b_nevt = 0; int b_GoodPV = 0; int b_EventCategory = -1; int TruePV = 0;
-    int b_trigger = 0; int b_njets = 0; int b_nbjets_m = 0; int channel = -1;
+    int b_nevt = 0; int b_GoodPV = 0; int b_EventCategory = -1; int b_TruePV = 0;
+    int b_trigger = 0; int b_njets = 0; int b_nbjets_m = 0; int b_channel = -1; float wrongPVrate = 1.0;
 
-    float b_lepton_pt = 0; float b_lepton_phi = 10; float b_lepton_eta = 10; loat b_lepton_m = 0;
-    float b_met = 0; float b_met_phi = 10; float b_lepdphi = 0; float wrongPVrate = 1.0;
+    float b_lepton_pt = 0; float b_lepton_phi = 10; float b_lepton_eta = 10; float b_lepton_m = 0;
+    float b_met = 0; float b_met_phi = 10; float b_lepdphi = 0;
+    float b_lepWpt = 0; float b_lepWeta = 10; float b_lepWphi = 10; float b_lepWdphi = 10; float b_lepWm = 0;
 
     //ST FCNC
     int b_stfcnc_genMatch = -1; float b_stfcnc_score = -1;
@@ -125,16 +135,15 @@ public :
     float b_stfcnc_jet23dphi = 10; float b_stfcnc_jet23dR = 0; float b_stfcnc_jet23m = 0;
     float b_stfcnc_jet31pt = 0; float b_stfcnc_jet31eta = 10; float b_stfcnc_jet31deta = 10; float b_stfcnc_jet31phi = 10;
     float b_stfcnc_jet31dphi = 10; float b_stfcnc_jet31dR = 0; float b_stfcnc_jet31m = 0;
-    float b_stfcnc_lepWpt = 0; float b_stfcnc_lepWeta = 10; float b_stfcnc_lepWphi = 10; float b_stfcnc_lepWdphi = 10; float b_stfcnc_lepWm = 0;
     float b_stfcnc_lepTpt = 0; float b_stfcnc_lepTeta = 10; float b_stfcnc_lepTdeta = 10;
-    float b_stfcnc_lepTphi = 10; float b_stfcnc_lepTdphi = 10; float b_stfcnc_lepTdR = 0; float b_lepTm = 0;
+    float b_stfcnc_lepTphi = 10; float b_stfcnc_lepTdphi = 10; float b_stfcnc_lepTdR = 0; float b_stfcnc_lepTm = 0;
     float b_stfcnc_hadTpt = 0; float b_stfcnc_hadTeta = 10; float b_stfcnc_hadTphi = 10;
     float b_stfcnc_hadT12_3deta = 10; float b_stfcnc_hadT23_1deta = 10; float b_stfcnc_hadT31_2deta = 10;
     float b_stfcnc_hadT12_3dphi = 10; float b_stfcnc_hadT23_1dphi = 10; float b_stfcnc_hadT31_2dphi = 10;
     float b_stfcnc_hadT12_3dR = 0; float b_stfcnc_hadT23_1dR = 0; float b_stfcnc_hadT31_2dR = 0; float b_stfcnc_hadTm = 0;
 
     //TT FCNC
-    int b_stfcnc_genMatch = -1; float b_stfcnc_score = -1;
+    int b_ttfcnc_genMatch = -1; float b_ttfcnc_score = -1;
     float b_ttfcnc_jet0pt = 0; float b_ttfcnc_jet0eta = 10; float b_ttfcnc_jet0phi = 10; float b_ttfcnc_jet0m = 0;
     float b_ttfcnc_jet0csv = 5; float b_ttfcnc_jet0cvsl = 5; float b_ttfcnc_jet0cvsb = 5; float b_ttfcnc_jet0Idx = -1;
     float b_ttfcnc_jet1pt = 0; float b_ttfcnc_jet1eta = 10; float b_ttfcnc_jet1phi = 10; float b_ttfcnc_jet1m = 0;
@@ -149,16 +158,15 @@ public :
     float b_ttfcnc_jet23dphi = 10; float b_ttfcnc_jet23dR = 0; float b_ttfcnc_jet23m = 0;
     float b_ttfcnc_jet31pt = 0; float b_ttfcnc_jet31eta = 10; float b_ttfcnc_jet31deta = 10; float b_ttfcnc_jet31phi = 10;
     float b_ttfcnc_jet31dphi = 10; float b_ttfcnc_jet31dR = 0; float b_ttfcnc_jet31m = 0;
-    float b_ttfcnc_lepWpt = 0; float b_ttfcnc_lepWeta = 10; float b_ttfcnc_lepWphi = 10; float b_ttfcnc_lepWdphi = 10; float b_ttfcnc_lepWm = 0;
     float b_ttfcnc_lepTpt = 0; float b_ttfcnc_lepTeta = 10; float b_ttfcnc_lepTdeta = 10;
-    float b_ttfcnc_lepTphi = 10; float b_ttfcnc_lepTdphi = 10; float b_ttfcnc_lepTdR = 0; float b_lepTm = 0;
+    float b_ttfcnc_lepTphi = 10; float b_ttfcnc_lepTdphi = 10; float b_ttfcnc_lepTdR = 0; float b_ttfcnc_lepTm = 0;
     float b_ttfcnc_hadTpt = 0; float b_ttfcnc_hadTeta = 10; float b_ttfcnc_hadTphi = 10;
     float b_ttfcnc_hadT12_3deta = 10; float b_ttfcnc_hadT23_1deta = 10; float b_ttfcnc_hadT31_2deta = 10;
     float b_ttfcnc_hadT12_3dphi = 10; float b_ttfcnc_hadT23_1dphi = 10; float b_ttfcnc_hadT31_2dphi = 10;
     float b_ttfcnc_hadT12_3dR = 0; float b_ttfcnc_hadT23_1dR = 0; float b_ttfcnc_hadT31_2dR = 0; float b_ttfcnc_hadTm = 0;
 
     //TT BKG
-    int b_stfcnc_genMatch = -1; float b_stfcnc_score = -1;
+    int b_ttbkg_genMatch = -1; float b_ttbkg_score = -1;
     float b_ttbkg_jet0pt = 0; float b_ttbkg_jet0eta = 10; float b_ttbkg_jet0phi = 10; float b_ttbkg_jet0m = 0;
     float b_ttbkg_jet0csv = 5; float b_ttbkg_jet0cvsl = 5; float b_ttbkg_jet0cvsb = 5; float b_ttbkg_jet0Idx = -1;
     float b_ttbkg_jet1pt = 0; float b_ttbkg_jet1eta = 10; float b_ttbkg_jet1phi = 10; float b_ttbkg_jet1m = 0;
@@ -173,9 +181,8 @@ public :
     float b_ttbkg_jet23dphi = 10; float b_ttbkg_jet23dR = 0; float b_ttbkg_jet23m = 0;
     float b_ttbkg_jet31pt = 0; float b_ttbkg_jet31eta = 10; float b_ttbkg_jet31deta = 10; float b_ttbkg_jet31phi = 10;
     float b_ttbkg_jet31dphi = 10; float b_ttbkg_jet31dR = 0; float b_ttbkg_jet31m = 0;
-    float b_ttbkg_lepWpt = 0; float b_ttbkg_lepWeta = 10; float b_ttbkg_lepWphi = 10; float b_ttbkg_lepWdphi = 10; float b_ttbkg_lepWm = 0;
     float b_ttbkg_lepTpt = 0; float b_ttbkg_lepTeta = 10; float b_ttbkg_lepTdeta = 10;
-    float b_ttbkg_lepTphi = 10; float b_ttbkg_lepTdphi = 10; float b_ttbkg_lepTdR = 0; float b_lepTm = 0;
+    float b_ttbkg_lepTphi = 10; float b_ttbkg_lepTdphi = 10; float b_ttbkg_lepTdR = 0; float b_ttbkg_lepTm = 0;
     float b_ttbkg_hadTpt = 0; float b_ttbkg_hadTeta = 10; float b_ttbkg_hadTphi = 10;
     float b_ttbkg_hadT12_3deta = 10; float b_ttbkg_hadT23_1deta = 10; float b_ttbkg_hadT31_2deta = 10;
     float b_ttbkg_hadT12_3dphi = 10; float b_ttbkg_hadT23_1dphi = 10; float b_ttbkg_hadT31_2dphi = 10;
@@ -184,7 +191,7 @@ public :
     ////RECO
     TFile *stfcnc_File, *ttfcnc_File, *ttbkg_File;
     TTree *stfcnc_Tree, *ttfcnc_Tree, *ttbkg_Tree;
-    //int nevt = assignT->GetEntries();
+    string syst_ext;
 
     vector<double> stfcnc_lepPt, ttfcnc_lepPt, ttbkg_lepPt;
     vector<double> stfcnc_missET, ttfcnc_missET, ttbkg_missET;

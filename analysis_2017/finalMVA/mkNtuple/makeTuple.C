@@ -14,10 +14,10 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   TString option = GetOption();
   string syst_str = option.Data();
   syst_str.erase(syst_str.find_first_of("_"),string::npos);
+  string ver = syst_str.substr(0,2); //FIXME: Only 2 digit of ver!? FIXME and classifier ver should be same!?!?
+  syst_str = syst_str.erase(0,2);
   string sample = option.Data();
   sample.erase(0,sample.find_first_of("_")+1);
-  string ver = syst_str.substr(0,2); //FIXME: Only 2 digit of ver!? FIXME and classifier ver should be same!?!?
-  syst_str = erase(0,2);
 
   if( syst_str.find("jec") != string::npos or syst_str.find("jer") != string::npos ){
     if     ( syst_str.find("jecup") != string::npos )       syst_ext = "jecup";
@@ -30,9 +30,12 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     else if( syst_str.find("hdampdown") != string::npos )   syst_ext = "hdampdown";
   }
 
+  const char* stfcnc_file = "";
+  const char* ttfcnc_file = "";
+  const char* ttbkg_file = "";
   //Load ST fcnc assign files
-  stfcnc_file = Form("/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/assignSTFCNC%s/assign_deepReco_%s.root",
-                    ver.c_str(),sample.c_str());
+  stfcnc_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignSTFCNC%s%s/assign_deepReco_%s.root",
+                    ver.c_str(),syst_str.c_str(),sample.c_str());
   string stfcnc_file_tmp_path = stfcnc_file;
   ifstream stfcnc_file_tmp(stfcnc_file_tmp_path);
 
@@ -50,10 +53,10 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
       }
     }
   }
-  else cout << "STFCNC: " << option.Data() << endl;
+  //else cout << "STFCNC: " << stfcnc_file << endl;
 
   //Load TT fcnc assign files
-  ttfcnc_file = Form("/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/assignTTFCNC%s/assign_deepReco_%s.root",
+  ttfcnc_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignTTFCNC%s/assign_deepReco_%s.root",
                     ver.c_str(),sample.c_str());
   string ttfcnc_file_tmp_path = ttfcnc_file;
   ifstream ttfcnc_file_tmp(ttfcnc_file_tmp_path);
@@ -72,10 +75,10 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
       }
     }
   }
-  else cout << "TTFCNC: " << option.Data() << endl;
+  //else cout << "TTFCNC: " << ttfcnc_file << endl;
 
   //Load ttbkg assign files
-  ttbkg_file = Form("/home/minerva1993/fcnc/analysis_2017/reco/classifier/2017/assignSTFCNC%s/assign_deepReco_%s.root",
+  ttbkg_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignTTBKG%s/assign_deepReco_%s.root",
                     ver.c_str(),sample.c_str());
   string ttbkg_file_tmp_path = ttbkg_file;
   ifstream ttbkg_file_tmp(ttbkg_file_tmp_path);
@@ -94,7 +97,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
       }
     }
   }
-  else cout << "TTBKG: " << option.Data() << endl;
+  //else cout << "TTBKG: " << ttbkg_file << endl;
 
   //tree
   tree = new TTree("tree","tree for tmva");
@@ -106,21 +109,9 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("trigger"      , &b_trigger      , "trigger/I");
   tree->Branch("wrongPVrate"  , &wrongPVrate  , "wrongPVrate/F");
 
-  tree->Branch("PUWeight"   , "std::vector<float>", &b_PUWeight);
-  tree->Branch("pdfweight"  , "std::vector<float>", &b_PDFWeight );
-  tree->Branch("scaleweight", "std::vector<float>", &b_ScaleWeight );
-  tree->Branch("lepton_SF"  , "std::vector<float>", &b_Lepton_SF );
-  tree->Branch("lepton_LES" , &b_Lepton_LES       , "lepton_LES/F" );
-  tree->Branch("jet_SF_deepCSV", "std::vector<float>", &b_Jet_SF_deepCSV );
-  tree->Branch("jet_JES_Up"    , "std::vector<float>", &b_Jet_JES_Up );
-  tree->Branch("jet_JES_Down"  , "std::vector<float>", &b_Jet_JES_Down );
-  tree->Branch("jet_JER_Up"    , "std::vector<float>", &b_Jet_JER_Up );
-  tree->Branch("jet_JER_Nom"   , "std::vector<float>", &b_Jet_JER_Nom );
-  tree->Branch("jet_JER_Down"  , "std::vector<float>", &b_Jet_JER_Down );
-
   tree->Branch("njets"     , &b_njets     , "njets/I");
   tree->Branch("nbjets_m"  , &b_nbjets_m  , "nbjets_m/I");
-  tree->Branch("channel"   , &b_channel,  , "channel/I");
+  tree->Branch("channel"   , &b_channel   , "channel/I");
   tree->Branch("lepton_pt" , &b_lepton_pt , "lepton_pt/F");
   tree->Branch("lepton_eta", &b_lepton_eta, "lepton_eta/F");
   tree->Branch("lepton_phi", &b_lepton_phi, "lepton_phi/F");
@@ -391,6 +382,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("ttbkg_hadTm"       , &b_ttbkg_hadTm       , "ttbkg_hadTm/F");
 
   fOutput->Add(tree);
+
 } 
 
 Bool_t makeTuple::Process(Long64_t entry)
@@ -469,7 +461,6 @@ Bool_t makeTuple::Process(Long64_t entry)
   //Object selection
   int njets = 0;
   int nbjets_m = 0; 
-  int ncjets_m = 0; 
 
   TLorentzVector p4met;
   double met = *MET;
@@ -526,7 +517,7 @@ Bool_t makeTuple::Process(Long64_t entry)
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
 //      if( passelectron and  *elec_trg == 10 and njets == 0 and jet_pt[iJet] < 38 ) continue;
-      njets++;/
+      njets++;
       if( jet_deepCSV[iJet] > 0.4941 ) nbjets_m++;
     }
   } 
@@ -534,7 +525,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   bool st_njet = (njets >= 3 and nbjets_m >= 2);
   bool tt_njet = (njets >= 4 and nbjets_m >= 2);
   if( !st_njet ) return kTRUE; // At least 3 jets including 2 b jets
- 
+
   if( option.Contains("Run2017") ) b_EventCategory = -1;
   else if( option.Contains("Hct") || option.Contains("Hut") ) b_EventCategory = 0;
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
@@ -563,14 +554,13 @@ Bool_t makeTuple::Process(Long64_t entry)
   b_lepdphi = lepDphi;
 
   b_lepton_pt = lepton.Pt(); b_lepton_phi = lepton.Phi(); b_lepton_eta = lepton.Eta(); b_lepton_m = lepton.M();
-  b_lepWpt = (lepton+p4met).Pt(); b_lepWeta = (lepton+p4met).Eta(); b_lepWdeta = (lepton-p4met).Eta();
+  b_lepWpt = (lepton+p4met).Pt(); b_lepWeta = (lepton+p4met).Eta();
   b_lepWphi = (lepton+p4met).Phi(); b_lepWdphi = lepton.DeltaPhi(p4met); b_lepWm = (lepton+p4met).M();
 
   //Jet Assignment
   if( st_njet ){
     int jetIdx[4];
     TLorentzVector jetP4s[4];
-
     vector<double>::iterator iter;
     int evtIdx = 0;
     //find combination
@@ -585,7 +575,7 @@ Bool_t makeTuple::Process(Long64_t entry)
       stfcnc_dupCheck.push_back(evtIdx);
       //cout << evtIdx << endl;
 
-      assignT->GetEntry(evtIdx);
+      stfcnc_Tree->GetEntry(evtIdx);
       b_stfcnc_genMatch = stfcnc_Tree->GetLeaf("match")->GetValue(0);
       b_stfcnc_score = stfcnc_Tree->GetLeaf("score")->GetValue(0);
       int i0 = stfcnc_Tree->GetLeaf("idx0")->GetValue(0);
@@ -649,7 +639,6 @@ Bool_t makeTuple::Process(Long64_t entry)
   if( tt_njet ){
     int jetIdx[4];
     TLorentzVector jetP4s[4];
-
     vector<double>::iterator iter;
     int evtIdx = 0;
     //find combination
@@ -664,7 +653,7 @@ Bool_t makeTuple::Process(Long64_t entry)
       ttfcnc_dupCheck.push_back(evtIdx);
       //cout << evtIdx << endl;
 
-      assignT->GetEntry(evtIdx);
+      ttfcnc_Tree->GetEntry(evtIdx);
       b_ttfcnc_genMatch = ttfcnc_Tree->GetLeaf("match")->GetValue(0);
       b_ttfcnc_score = ttfcnc_Tree->GetLeaf("score")->GetValue(0);
       int i0 = ttfcnc_Tree->GetLeaf("idx0")->GetValue(0);
@@ -728,7 +717,6 @@ Bool_t makeTuple::Process(Long64_t entry)
   if( tt_njet ){
     int jetIdx[4];
     TLorentzVector jetP4s[4];
-
     vector<double>::iterator iter;
     int evtIdx = 0;
     //find combination
@@ -743,7 +731,7 @@ Bool_t makeTuple::Process(Long64_t entry)
       ttbkg_dupCheck.push_back(evtIdx);
       //cout << evtIdx << endl;
 
-      assignT->GetEntry(evtIdx);
+      ttbkg_Tree->GetEntry(evtIdx);
       b_ttbkg_genMatch = ttbkg_Tree->GetLeaf("match")->GetValue(0);
       b_ttbkg_score = ttbkg_Tree->GetLeaf("score")->GetValue(0);
       int i0 = ttbkg_Tree->GetLeaf("idx0")->GetValue(0);
@@ -804,7 +792,7 @@ Bool_t makeTuple::Process(Long64_t entry)
     b_ttbkg_hadT31_2dR = (jetP4s[3]+jetP4s[1]).DeltaR(jetP4s[2]);
   }
 
-  treeTMVA->Fill();
+  tree->Fill();
 
   nevt++;
 
@@ -820,10 +808,16 @@ void makeTuple::SlaveTerminate()
 void makeTuple::Terminate()
 {
   TString option = GetOption();
+  string syst_str = option.Data();
+  syst_str.erase(syst_str.find_first_of("_"),string::npos);
+  string ver = syst_str.substr(0,2); //FIXME: Only 2 digit of ver!? FIXME and classifier ver should be same!?!?
+  syst_str = syst_str.erase(0,2);
+  string sample = option.Data();
+  sample.erase(0,sample.find_first_of("_")+1);
 
-  TFile *hfile = TFile::Open(Form("/home/minerva1993/fcnc/analysis_2017/tmva/v1/mkNtuple/temp/tmva_%s.root",option.Data()),"RECREATE");
+  TFile *hfile = TFile::Open(Form("root_%s/finalMVA_%s.root",syst_str.c_str(),sample.c_str()), "RECREATE");
 
-  fOutput->FindObject("tmva_tree")->Write();
+  fOutput->FindObject("tree")->Write();
 
   hfile->Write();
   hfile->Close();

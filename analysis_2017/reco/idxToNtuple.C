@@ -38,17 +38,17 @@ void idxToNtuple::Loop(const std::string channel)
     return;
   }
 
-  float tmpScore[totevt+1];
-  float tmpScoreDummy[totevt+1];
-  int tmpMatch[totevt+1];
-  int tmpMatchDummy[totevt+1];
-  float tmpLepPt[totevt+1];
-  float tmpMET[totevt+1];
-  float tmpWHm[totevt+1];
-  float tmpLepTm[totevt+1];
-  float tmpHadTm[totevt+1];
+  float tmpScore[totevt];
+  float tmpScoreDummy[totevt];
+  int tmpMatch[totevt];
+  int tmpMatchDummy[totevt];
+  float tmpLepPt[totevt];
+  float tmpMET[totevt];
+  float tmpWHm[totevt];
+  float tmpLepTm[totevt];
+  float tmpHadTm[totevt];
 
-  for (int i = 0; i < totevt+1; i++){
+  for (int i = 0; i < totevt; i++){
     tmpScore[i]      = -10;
     tmpMatch[i]      = -1;
     tmpScoreDummy[i] = -10;
@@ -59,7 +59,7 @@ void idxToNtuple::Loop(const std::string channel)
     tmpLepTm[i]      = -1;
     tmpHadTm[i]      = -1;
   }
-  int tmpJetIdx[totevt+1][4];
+  int tmpJetIdx[totevt][4];
 
   Long64_t nentries = fChain->GetEntries();
 
@@ -99,7 +99,7 @@ void idxToNtuple::Loop(const std::string channel)
 
   int matchCount = 0;
   int dummyCount = 0;
-  for (int i = 0; i <= totevt; ++ i){
+  for (int i = 0; i < totevt; ++ i){
     //cout << "nevt = " << i << " and score = " << tmpScore[i] << " and jet indicies are " << tmpJetIdx[i][0] << ", " << tmpJetIdx[i][1] << ", " << mtmpJjetIdx[i][2] << ", " << tmpJetIdx[i][3] << " and gen match is " << tmpMatch[i] << endl;
     if(tmpMatch[i] == signal_label) matchCount++;
     if(tmpMatchDummy[i] == signal_label) dummyCount++;
@@ -124,7 +124,7 @@ void idxToNtuple::Loop(const std::string channel)
   assignT->Branch("lepTopM"  , &lepTopM  , "lepTopM/F");
   assignT->Branch("hadTopM"  , &hadTopM  , "hadTopM/F");
 
-  for (int i = 0; i <= totevt; i++){
+  for (int i = 0; i < totevt; i++){
     //if (tmpScore[i] < -1 ) continue;
     score = tmpScore[i];
     match = tmpMatch[i];
