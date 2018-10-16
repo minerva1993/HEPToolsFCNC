@@ -31,10 +31,10 @@ source job_ntuple.sh
 python dir_manage.py
 #Launch training
 cd ../training
-python training_kerasTF.py
+python training_kerasTF.py STFCNC 01
 #With classifier, run prediction.
 python select_model.py STFCNC 01
-python evaluation_kerasTF.py STFCNC 01 model.h5
+python evaluation_kerasTF.py STFCNC 01 True model.h5
 cat ../commonTools/file_top.txt | xargs -i -P1 -n2 python combi_assign.py True STFCNC 01 #for signal efficiency
 cat ../commonTools/file_top.txt | xargs -i -P$(nproc) -n2 python combi_assign.py False STFCNC 01
 cat ../commonTools/file_other.txt | xargs -i -P$(nproc) -n2 python combi_assign.py False STFCNC 01

@@ -11,19 +11,23 @@ from root_numpy import array2tree, tree2array
 from ROOT import TFile, TTree
 
 import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.1
+set_session(tf.Session(config=config))
 import keras
 from keras.models import load_model
 from training.variables import input_variables
 
 ch = sys.argv[1] #STFCNC, TTFCNC. TTBKG
 ver = sys.argv[2] #01
-bestModel = sys.argv[3]
+signal_only = sys.argv[3] == "True"
+bestModel = sys.argv[4]
 
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/'
 weightDir = 'training/reco'+ch
 scoreDir = 'score'+ch
 assignDir = 'assign'+ch
-signal_only = False
 
 input_files = []
 input_features = []

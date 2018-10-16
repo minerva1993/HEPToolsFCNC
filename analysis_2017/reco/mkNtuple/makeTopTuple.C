@@ -147,6 +147,24 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
     sigTree->Branch("hadTm"       , &b_hadTm       , "hadTm/F");
     sigTree->Branch("genHadW"     , &b_genHadW     , "genHadW/F");
 
+    sigTree->Branch("jet0lepdR"    , &b_jet0lepdR    , "jet0lepdR/F");
+    sigTree->Branch("jet1lepdR"    , &b_jet1lepdR    , "jet1lepdR/F");
+    sigTree->Branch("jet2lepdR"    , &b_jet2lepdR    , "jet2lepdR/F");
+    sigTree->Branch("jet3lepdR"    , &b_jet3lepdR    , "jet3lepdR/F");
+    sigTree->Branch("jet01dR"      , &b_jet01dR      , "jet01dR/F");
+    sigTree->Branch("jet02dR"      , &b_jet02dR      , "jet02dR/F");
+    sigTree->Branch("jet03dR"      , &b_jet03dR      , "jet03dR/F");
+    sigTree->Branch("jet12_lepdR"  , &b_jet12_lepdR  , "jet12_lepdR/F");
+    sigTree->Branch("jet23_lepdR"  , &b_jet23_lepdR  , "jet23_lepdR/F");
+    sigTree->Branch("jet31_lepdR"  , &b_jet31_lepdR  , "jet31_lepdR/F");
+    sigTree->Branch("jet12_0dR"    , &b_jet12_0dR    , "jet12_0dR/F");
+    sigTree->Branch("jet23_0dR"    , &b_jet23_0dR    , "jet23_0dR/F");
+    sigTree->Branch("jet31_0dR"    , &b_jet31_0dR    , "jet31_0dR/F");
+    sigTree->Branch("lepTjet12dphi", &b_lepTjet12dphi, "lepTjet12dphi/F");
+    sigTree->Branch("lepTjet23dphi", &b_lepTjet23dphi, "lepTjet23dphi/F");
+    sigTree->Branch("lepTjet31dphi", &b_lepTjet31dphi, "lepTjet31dphi/F");
+    sigTree->Branch("hadT_jet0dR"  , &b_hadT_jet0dR  , "hadT_jet0dR/F");
+
     fOutput->Add(sigTree);
 
     ///////////////////////////////////////////////////////////////////
@@ -257,6 +275,24 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
     bkgTree->Branch("hadT23_1dR"  , &b_hadT23_1dR  , "hadT23_1dR/F");
     bkgTree->Branch("hadT31_2dR"  , &b_hadT31_2dR  , "hadT31_2dR/F");
     bkgTree->Branch("hadTm"       , &b_hadTm       , "hadTm/F");
+
+    bkgTree->Branch("jet0lepdR"    , &b_jet0lepdR    , "jet0lepdR/F");
+    bkgTree->Branch("jet1lepdR"    , &b_jet1lepdR    , "jet1lepdR/F");
+    bkgTree->Branch("jet2lepdR"    , &b_jet2lepdR    , "jet2lepdR/F");
+    bkgTree->Branch("jet3lepdR"    , &b_jet3lepdR    , "jet3lepdR/F");
+    bkgTree->Branch("jet01dR"      , &b_jet01dR      , "jet01dR/F");
+    bkgTree->Branch("jet02dR"      , &b_jet02dR      , "jet02dR/F");
+    bkgTree->Branch("jet03dR"      , &b_jet03dR      , "jet03dR/F");
+    bkgTree->Branch("jet12_lepdR"  , &b_jet12_lepdR  , "jet12_lepdR/F");
+    bkgTree->Branch("jet23_lepdR"  , &b_jet23_lepdR  , "jet23_lepdR/F");
+    bkgTree->Branch("jet31_lepdR"  , &b_jet31_lepdR  , "jet31_lepdR/F");
+    bkgTree->Branch("jet12_0dR"    , &b_jet12_0dR    , "jet12_0dR/F");
+    bkgTree->Branch("jet23_0dR"    , &b_jet23_0dR    , "jet23_0dR/F");
+    bkgTree->Branch("jet31_0dR"    , &b_jet31_0dR    , "jet31_0dR/F");
+    bkgTree->Branch("lepTjet12dphi", &b_lepTjet12dphi, "lepTjet12dphi/F");
+    bkgTree->Branch("lepTjet23dphi", &b_lepTjet23dphi, "lepTjet23dphi/F");
+    bkgTree->Branch("lepTjet31dphi", &b_lepTjet31dphi, "lepTjet31dphi/F");
+    bkgTree->Branch("hadT_jet0dR"  , &b_hadT_jet0dR  , "hadT_jet0dR/F");
 
     fOutput->Add(bkgTree);
   }
@@ -370,6 +406,24 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("hadT31_2dR"  , &b_hadT31_2dR  , "hadT31_2dR/F");
   testTree->Branch("hadTm"       , &b_hadTm       , "hadTm/F");
 
+  testTree->Branch("jet0lepdR"    , &b_jet0lepdR    , "jet0lepdR/F");
+  testTree->Branch("jet1lepdR"    , &b_jet1lepdR    , "jet1lepdR/F");
+  testTree->Branch("jet2lepdR"    , &b_jet2lepdR    , "jet2lepdR/F");
+  testTree->Branch("jet3lepdR"    , &b_jet3lepdR    , "jet3lepdR/F");
+  testTree->Branch("jet01dR"      , &b_jet01dR      , "jet01dR/F");
+  testTree->Branch("jet02dR"      , &b_jet02dR      , "jet02dR/F");
+  testTree->Branch("jet03dR"      , &b_jet03dR      , "jet03dR/F");
+  testTree->Branch("jet12_lepdR"  , &b_jet12_lepdR  , "jet12_lepdR/F");
+  testTree->Branch("jet23_lepdR"  , &b_jet23_lepdR  , "jet23_lepdR/F");
+  testTree->Branch("jet31_lepdR"  , &b_jet31_lepdR  , "jet31_lepdR/F");
+  testTree->Branch("jet12_0dR"    , &b_jet12_0dR    , "jet12_0dR/F");
+  testTree->Branch("jet23_0dR"    , &b_jet23_0dR    , "jet23_0dR/F");
+  testTree->Branch("jet31_0dR"    , &b_jet31_0dR    , "jet31_0dR/F");
+  testTree->Branch("lepTjet12dphi", &b_lepTjet12dphi, "lepTjet12dphi/F");
+  testTree->Branch("lepTjet23dphi", &b_lepTjet23dphi, "lepTjet23dphi/F");
+  testTree->Branch("lepTjet31dphi", &b_lepTjet31dphi, "lepTjet31dphi/F");
+  testTree->Branch("hadT_jet0dR"  , &b_hadT_jet0dR  , "hadT_jet0dR/F");
+
   fOutput->Add(testTree);
 } 
 
@@ -394,60 +448,60 @@ Bool_t makeTopTuple::Process(Long64_t entry)
     EventWeight *= *genweight;
     EventWeight *= PUWeight[0];
 
-    if      ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04889796694;
-    else if ( option.Contains("DYJetsv2") ) wrongPVrate = 1.04318131205;
-    else if ( option.Contains("DYJets_") or option.Contains("DYJetspart2") ) wrongPVrate = 1.04318131205;
-    else if ( option.Contains("STTH1L3BHct") ) wrongPVrate = 1.0439351116;
-    else if ( option.Contains("STTH1L3BHut") ) wrongPVrate = 1.031126842;
-    else if ( option.Contains("SingleTbart") ) wrongPVrate = 1.04173196653;
-    else if ( option.Contains("SingleTbartW") ) wrongPVrate = 1.04271024146;
-    else if ( option.Contains("SingleTops") ) wrongPVrate = 1.0398164366;
-    else if ( option.Contains("SingleTopt") ) wrongPVrate = 1.04031037958;
-    else if ( option.Contains("SingleToptW") ) wrongPVrate = 1.04481172329;
-    else if ( option.Contains("TTHadpowheg") ) wrongPVrate = 1.02965424238;
-    else if ( option.Contains("TTHadpowhegTuneCP5down") ) wrongPVrate = 1.0275273224;
-    else if ( option.Contains("TTHadpowhegTuneCP5up") ) wrongPVrate = 1.02502995606;
-    else if ( option.Contains("TTHadpowheghdampup") ) wrongPVrate = 1.02721136268;
-    else if ( option.Contains("TTLLpowheg") ) wrongPVrate = 1.04709066472;
-    else if ( option.Contains("TTLLpowhegTuneCP5down") ) wrongPVrate = 1.04086536702;
-    else if ( option.Contains("TTLLpowheghdampdown") ) wrongPVrate = 1.05641892536;
-    else if ( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.03488195714;
-    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04086585084;
-    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02415894619;
-    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04265040673;
-    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04904547571;
-    else if ( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.04873048752;
-    else if ( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.04736656062;
-    else if ( option.Contains("TTpowhegttbbTuneCP5up") ) wrongPVrate = 1.03890650824;
-    else if ( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04669242142;
-    else if ( option.Contains("TTpowhegttbbhdampup") ) wrongPVrate = 1.04034606106;
-    else if ( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.04812064995;
-    else if ( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04624599157;
-    else if ( option.Contains("TTpowhegttbjTuneCP5up") ) wrongPVrate = 1.03893414892;
-    else if ( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.04656066564;
-    else if ( option.Contains("TTpowhegttbjhdampup") ) wrongPVrate = 1.03978076379;
-    else if ( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04750917824;
-    else if ( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04757733806;
-    else if ( option.Contains("TTpowhegttccTuneCP5up") ) wrongPVrate = 1.0376682522;
-    else if ( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04726780069;
-    else if ( option.Contains("TTpowhegttcchdampup") ) wrongPVrate = 1.03994243206;
-    else if ( option.Contains("TTpowhegttlf") ) wrongPVrate = 1.04758772897;
-    else if ( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.04766563792;
-    else if ( option.Contains("TTpowhegttlfTuneCP5up") ) wrongPVrate = 1.03816337881;
-    else if ( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04786973408;
-    else if ( option.Contains("TTpowhegttlfhdampup") ) wrongPVrate = 1.03929113627;
-    else if ( option.Contains("TTpowhegttother") ) wrongPVrate = 1.04782120598;
-    else if ( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04795517585;
-    else if ( option.Contains("TTpowhegttotherTuneCP5up") ) wrongPVrate = 1.03815621343;
-    else if ( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04794309365;
-    else if ( option.Contains("TTpowhegttotherhdampup") ) wrongPVrate = 1.03941057778;
-    else if ( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04160247064;
-    else if ( option.Contains("W4JetsToLNu") ) wrongPVrate = 1.0436845454;
-    else if ( option.Contains("WW") ) wrongPVrate = 1.04715906081;
-    else if ( option.Contains("WZ") ) wrongPVrate = 1.04264784934;
-    else if ( option.Contains("ZZ") ) wrongPVrate = 1.02918247311;
-    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.03173198154;
-    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.03750547624;
+    if      ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04879;
+    else if ( option.Contains("DYJetsv2") ) wrongPVrate = 1.04287;
+    else if ( option.Contains("DYJets_") or option.Contains("DYJetspart2") ) wrongPVrate = 1.04287;
+    else if ( option.Contains("STTH1L3BHct") ) wrongPVrate = 1.04399;
+    else if ( option.Contains("STTH1L3BHut") ) wrongPVrate = 1.0311;
+    else if ( option.Contains("SingleTbart") ) wrongPVrate = 1.04165;
+    else if ( option.Contains("SingleTbartW") ) wrongPVrate = 1.04271;
+    else if ( option.Contains("SingleTops") ) wrongPVrate = 1.03979;
+    else if ( option.Contains("SingleTopt") ) wrongPVrate = 1.04027;
+    else if ( option.Contains("SingleToptW") ) wrongPVrate = 1.04483;
+    else if ( option.Contains("TTHadpowheg") ) wrongPVrate = 1.02945;
+    else if ( option.Contains("TTHadpowhegTuneCP5down") ) wrongPVrate = 1.02704;
+    else if ( option.Contains("TTHadpowhegTuneCP5up") ) wrongPVrate = 1.0248;
+    else if ( option.Contains("TTHadpowheghdampup") ) wrongPVrate = 1.02732;
+    else if ( option.Contains("TTLLpowheg") ) wrongPVrate = 1.04709;
+    else if ( option.Contains("TTLLpowhegTuneCP5down") ) wrongPVrate = 1.04085;
+    else if ( option.Contains("TTLLpowheghdampdown") ) wrongPVrate = 1.05645;
+    else if ( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.0349;
+    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04085;
+    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02418;
+    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04257;
+    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04888;
+    else if ( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.0486;
+    else if ( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.04757;
+    else if ( option.Contains("TTpowhegttbbTuneCP5up") ) wrongPVrate = 1.03875;
+    else if ( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04653;
+    else if ( option.Contains("TTpowhegttbbhdampup") ) wrongPVrate = 1.04047;
+    else if ( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.04818;
+    else if ( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04639;
+    else if ( option.Contains("TTpowhegttbjTuneCP5up") ) wrongPVrate = 1.03904;
+    else if ( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.0466;
+    else if ( option.Contains("TTpowhegttbjhdampup") ) wrongPVrate = 1.03973;
+    else if ( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04758;
+    else if ( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04788;
+    else if ( option.Contains("TTpowhegttccTuneCP5up") ) wrongPVrate = 1.03774;
+    else if ( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04723;
+    else if ( option.Contains("TTpowhegttcchdampup") ) wrongPVrate = 1.03993;
+    else if ( option.Contains("TTpowhegttlf") ) wrongPVrate = 1.04759;
+    else if ( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.04765;
+    else if ( option.Contains("TTpowhegttlfTuneCP5up") ) wrongPVrate = 1.03818;
+    else if ( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04787;
+    else if ( option.Contains("TTpowhegttlfhdampup") ) wrongPVrate = 1.03931;
+    else if ( option.Contains("TTpowhegttother") ) wrongPVrate = 1.04785;
+    else if ( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04796;
+    else if ( option.Contains("TTpowhegttotherTuneCP5up") ) wrongPVrate = 1.03817;
+    else if ( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04797;
+    else if ( option.Contains("TTpowhegttotherhdampup") ) wrongPVrate = 1.03942;
+    else if ( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.0416;
+    else if ( option.Contains("W4JetsToLNu") ) wrongPVrate = 1.04368;
+    else if ( option.Contains("WW") ) wrongPVrate = 1.04711;
+    else if ( option.Contains("WZ") ) wrongPVrate = 1.04261;
+    else if ( option.Contains("ZZ") ) wrongPVrate = 1.02918;
+    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.03169;
+    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.0374;
     else    wrongPVrate = 1.0;
 
     EventWeight *= wrongPVrate;
@@ -486,7 +540,7 @@ Bool_t makeTopTuple::Process(Long64_t entry)
 
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
-  bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.4);
+  bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.4) && (*elec_trg >= 10);
 //  bool passelectron;
 //  if ( *elec_trg == 10 ) passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
 //  else                   passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
@@ -700,6 +754,15 @@ Bool_t makeTopTuple::Process(Long64_t entry)
           b_hadT12_3deta = (had12-jetP4cor[3]).Eta(); b_hadT23_1deta = (had23-jetP4cor[1]).Eta(); b_hadT31_2deta = (had31-jetP4cor[2]).Eta();
           b_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]); b_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]); b_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
           b_hadT12_3dR = had12.DeltaR(jetP4cor[3]); b_hadT23_1dR = had23.DeltaR(jetP4cor[1]); b_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
+
+          //cross variables
+          b_jet0lepdR = jetP4cor[0].DeltaR(lepton); b_jet1lepdR = jetP4cor[1].DeltaR(lepton);
+          b_jet2lepdR = jetP4cor[2].DeltaR(lepton); b_jet3lepdR = jetP4cor[3].DeltaR(lepton);
+          b_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]); b_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]); b_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]);
+          b_jet12_lepdR = lepton.DeltaR(had12); b_jet23_lepdR = lepton.DeltaR(had23); b_jet31_lepdR = lepton.DeltaR(had31);
+          b_jet12_0dR = jetP4cor[0].DeltaR(had12); b_jet23_0dR = jetP4cor[0].DeltaR(had23); b_jet31_0dR = jetP4cor[0].DeltaR(had31);
+          b_lepTjet12dphi = lepT.DeltaPhi(had12); b_lepTjet23dphi = lepT.DeltaPhi(had23); b_lepTjet31dphi = lepT.DeltaPhi(had31);
+          b_hadT_jet0dR = hadT.DeltaR(jetP4cor[0]);
 
           //some genmatch here
           b_genMatch = 0; // [lep][nu][lepB][hadJ3][hadJ2][hadJ1]

@@ -32,6 +32,7 @@ public :
    TTreeReaderArray<float> PUWeight = {fReader, "PUWeight"};
    TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
    TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
+   TTreeReaderArray<float> psweight = {fReader, "psweight"};
    TTreeReaderValue<Float_t> MET = {fReader, "MET"};
    TTreeReaderValue<Float_t> MET_phi = {fReader, "MET_phi"};
    TTreeReaderValue<Float_t> lepton_pt = {fReader, "lepton_pt"};
@@ -50,12 +51,8 @@ public :
    TTreeReaderArray<int> jet_index = {fReader, "jet_index"};
    TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
    TTreeReaderArray<float> jet_deepCSV = {fReader, "jet_deepCSV"};
-   TTreeReaderArray<float> jet_SF_deepCSV_25 = {fReader, "jet_SF_deepCSV_25"};
    TTreeReaderArray<float> jet_SF_deepCSV_30 = {fReader, "jet_SF_deepCSV_30"};
-   TTreeReaderArray<float> jet_SF_deepCSV_35 = {fReader, "jet_SF_deepCSV_35"};
-   TTreeReaderArray<float> jet_SF_deepCSV_40 = {fReader, "jet_SF_deepCSV_40"};
    TTreeReaderArray<float> jet_SF_deepCSV_38 = {fReader, "jet_SF_deepCSV_38"};
-   TTreeReaderArray<float> jet_SF_dppeCSV = {fReader, "jet_SF_deepCSV"};
    TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
    TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
@@ -132,113 +129,48 @@ public :
     string syst_ext;
 
     //objects for ntuple
-    int b_nevt = 0;
-    int b_file = -1;
-    int b_GoodPV = 0;
-    int b_EventCategory = -1;
-    int b_trigger = -1;
-    float b_EventWeight = 1.0;
-    int b_genMatch = -1;
+    int b_nevt = 0; int b_file = -1; int b_GoodPV = 0; int b_EventCategory = -1;
+    int b_trigger = -1; float b_EventWeight = 1.0; int b_genMatch = -1;
 
-    int b_njets = 0;
-    int b_nbjets_m = 0;
-    float b_lepton_pt = 0;
-    float b_lepton_phi = 10;
-    float b_lepton_eta = 10;
-    float b_met = 0;
-    float b_met_phi = +10;
-    float b_lepdphi = 0;
+    int b_njets = 0; int b_nbjets_m = 0;
+    float b_lepton_pt = 0; float b_lepton_phi = 10; float b_lepton_eta = 10;
+    float b_met = 0; float b_met_phi = +10; float b_lepdphi = 0;
     float b_transversem = 0;
 
-    float b_lepWpt = 0;
-    float b_lepWeta = 10;
-    float b_lepWphi = 10;
-    float b_lepWdphi = 10;
-    float b_lepWm = 0;
+    float b_lepWpt = 0; float b_lepWeta = 10; float b_lepWphi = 10; 
+    float b_lepWdphi = 10; float b_lepWm = 0;
 
-    float b_jet0pt = 0;
-    float b_jet0eta = 10;
-    float b_jet0phi = 10;
-    float b_jet0m = 0;
-    float b_jet0csv = 5;
-    float b_jet0cvsl = 5;
-    float b_jet0cvsb = 5;
-    int b_jet0Idx = -1;
+    float b_jet0pt = 0; float b_jet0eta = 10; float b_jet0phi = 10; float b_jet0m = 0;
+    float b_jet0csv = 5; float b_jet0cvsl = 5; float b_jet0cvsb = 5; int b_jet0Idx = -1;
+    float b_jet1pt = 0; float b_jet1eta = 10; float b_jet1phi = 10; float b_jet1m = 0;
+    float b_jet1csv = 5; float b_jet1cvsl = 5;  float b_jet1cvsb = 5; int b_jet1Idx = -1;
+    float b_jet2pt = 0; float b_jet2eta = 10; float b_jet2phi = 10; float b_jet2m = 0;
+    float b_jet2csv = 5; float b_jet2cvsl = 5; float b_jet2cvsb = 5; int b_jet2Idx = -1;
+    float b_jet3pt = 0; float b_jet3eta = 10; float b_jet3phi = 10; float b_jet3m = 0;
+    float b_jet3csv = 5; float b_jet3cvsl = 5; float b_jet3cvsb = 5; int b_jet3Idx = -1;
 
-    float b_jet1pt = 0;
-    float b_jet1eta = 10;
-    float b_jet1phi = 10;
-    float b_jet1m = 0;
-    float b_jet1csv = 5;
-    float b_jet1cvsl = 5;
-    float b_jet1cvsb = 5;
-    int b_jet1Idx = -1;
+    float b_jet12pt = 0; float b_jet12eta = 10; float b_jet12deta = 10; float b_jet12phi = 10;
+    float b_jet12dphi = 10; float b_jet12m = 0; float b_jet12dR = 0;
+    float b_jet23pt = 0; float b_jet23eta = 10; float b_jet23deta = 10; float b_jet23phi = 10;
+    float b_jet23dphi = 10; float b_jet23dR = 0; float b_jet23m = 0;
+    float b_jet31pt = 0; float b_jet31eta = 10; float b_jet31deta = 10; float b_jet31phi = 10;
+    float b_jet31dphi = 10; float b_jet31dR = 0; float b_jet31m = 0;
 
-    float b_jet2pt = 0;
-    float b_jet2eta = 10;
-    float b_jet2phi = 10;
-    float b_jet2m = 0;
-    float b_jet2csv = 5;
-    float b_jet2cvsl = 5;
-    float b_jet2cvsb = 5;
-    int b_jet2Idx = -1;
+    float b_lepTpt = 0; float b_lepTeta = 10; float b_lepTdeta = 10; float b_lepTphi = 10;
+    float b_lepTdphi = 10; float b_lepTdR = 0; float b_lepTm = 0;
 
-    float b_jet3pt = 0;
-    float b_jet3eta = 10;
-    float b_jet3phi = 10;
-    float b_jet3m = 0;
-    float b_jet3csv = 5;
-    float b_jet3cvsl = 5;
-    float b_jet3cvsb = 5;
-    int b_jet3Idx = -1;
-
-    float b_jet12pt = 0;
-    float b_jet12eta = 10;
-    float b_jet12deta = 10;
-    float b_jet12phi = 10;
-    float b_jet12dphi = 10;
-    float b_jet12m = 0;
-    float b_jet12dR = 0;
-    float b_jet12DR = 0;
-
-    float b_jet23pt = 0;
-    float b_jet23eta = 10;
-    float b_jet23deta = 10;
-    float b_jet23phi = 10;
-    float b_jet23dphi = 10;
-    float b_jet23dR = 0;
-    float b_jet23m = 0;
-
-    float b_jet31pt = 0;
-    float b_jet31eta = 10;
-    float b_jet31deta = 10;
-    float b_jet31phi = 10;
-    float b_jet31dphi = 10;
-    float b_jet31dR = 0;
-    float b_jet31m = 0;
-
-    float b_lepTpt = 0;
-    float b_lepTeta = 10;
-    float b_lepTdeta = 10;
-    float b_lepTphi = 10;
-    float b_lepTdphi = 10;
-    float b_lepTdR = 0;
-    float b_lepTm = 0;
-
-    float b_hadTpt = 0;
-    float b_hadTeta = 10;
-    float b_hadT12_3deta = 10;
-    float b_hadT23_1deta = 10;
-    float b_hadT31_2deta = 10;
-    float b_hadTphi = 10;
-    float b_hadT12_3dphi = 10;
-    float b_hadT23_1dphi = 10;
-    float b_hadT31_2dphi = 10;
-    float b_hadT12_3dR = 0;
-    float b_hadT23_1dR = 0;
-    float b_hadT31_2dR = 0;
-    float b_hadTm = 0;
+    float b_hadTpt = 0; float b_hadTphi = 10;
+    float b_hadTeta = 10; float b_hadT12_3deta = 10; float b_hadT23_1deta = 10; float b_hadT31_2deta = 10;
+    float b_hadT12_3dphi = 10; float b_hadT23_1dphi = 10; float b_hadT31_2dphi = 10;
+    float b_hadT12_3dR = 0; float b_hadT23_1dR = 0; float b_hadT31_2dR = 0; float b_hadTm = 0;
     float b_genHadW = 0;
+
+    float b_jet0lepdR = 0; float b_jet1lepdR = 0; float b_jet2lepdR = 0; float b_jet3lepdR = 0;
+    float b_jet01dR = 0; float b_jet02dR = 0; float b_jet03dR = 0;
+    float b_jet12_lepdR = 0; float b_jet23_lepdR = 0; float b_jet31_lepdR = 0;
+    float b_jet12_0dR = 0; float b_jet23_0dR = 0; float b_jet31_0dR = 0;
+    float b_lepTjet12dphi = 10; float b_lepTjet23dphi = 10; float b_lepTjet31dphi = 10;
+    float b_hadT_jet0dR = 0;
 
 
    ClassDef(makeTopTuple,0);

@@ -8,7 +8,8 @@ import numpy as np
 if os.path.isfile('TruePVWeight.txt'):
   os.remove('TruePVWeight.txt')
 
-basedir = '/data/users/minerva1993/ntuple_Run2017/V9_3/181009/'
+#Change Ele trg bit AS WELL AS bassdir!!!!!!!!11
+basedir = '/data/users/minerva1993/ntuple_Run2017/V9_3/181013/'
 
 path = os.listdir(basedir)
 filelist = []
@@ -33,8 +34,11 @@ for item in filelist:
 
     h1 = TH1F("h1","h1", 150, 0, 150)
     h2 = TH1F("h2","h2", 150, 0, 150)
-    hfull = tree.Draw("TruePV>>h1","","")
-    hgood = tree.Draw("TruePV>>h2","TruePV >= 10 && TruePV <= 75","")
+    ####################
+    #Change here!!!!!!!!
+    ####################
+    hfull = tree.Draw("TruePV>>h1","(channel == 1 && elec_trg >= 1) || channel == 0","")
+    hgood = tree.Draw("TruePV>>h2","TruePV >= 10 && TruePV <= 75 && ((channel == 1 && elec_trg >= 1) || channel == 0)","")
     #hgood = tree.Draw("TruePV>>h2","TruePV !=0","")
 
     text_file = open("TruePVWeight.txt", "a")
@@ -45,6 +49,8 @@ for item in filelist:
     string_nevt += "hist_" + item.replace("_","") + " : " + str(info.GetBinContent(2)).replace(".0","") +'\n'
 
     if abs(ratio - 1) < 0.002: continue
+
+    ratio = round(ratio, 5)
 
     if item == filelist[0]: 
       text_file.write('    if      ( option.Contains("' + item.replace("_","")[:-5] + '") ) wrongPVrate = ' + str(ratio) + ";\n")

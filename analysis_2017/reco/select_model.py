@@ -11,6 +11,10 @@ from root_numpy import array2tree, tree2array
 from ROOT import TFile, TTree
 from itertools import groupby
 import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.1
+set_session(tf.Session(config=config))
 import keras
 from keras.models import load_model
 from training.variables import input_variables, gen_label
