@@ -3,7 +3,8 @@ import ROOT
 import os
 
 base_path = "/home/minerva1993/HEPToolsFCNC/analysis_2017/fullAna/doReco/"
-ch = "STFCNC01"
+if not os.path.exists( base_path + "post_process" ):
+  os.makedirs( base_path + "post_process" )
 
 def write_envelope(syst, nhists, new_sumW):
 
@@ -11,8 +12,7 @@ def write_envelope(syst, nhists, new_sumW):
     var_list = []
     for x in range(0,nhists):
       h = f.Get(histos + "__" + syst + str(x))
-#      h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(x+1))
-#      h.Scale(0.5)
+      h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(x+1))
       var_list.append(h)
 
     nominal = f.Get(histos)
@@ -20,9 +20,11 @@ def write_envelope(syst, nhists, new_sumW):
     up = nominal.Clone()
     up.SetDirectory(ROOT.nullptr)
     up.Reset()
+    up.Sumw2()
     down = nominal.Clone()
     down.SetDirectory(ROOT.nullptr)
     down.Reset()
+    down.Sumw2()
 
     for i in range(0, n_bins+1):
       minimum = float("inf")
@@ -70,10 +72,10 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
       h.Write()
 
 #Starts loop over histogram root files
-file_list = os.listdir( os.path.join(base_path, ch, "pre_process") )
-file_list.remove("systematics")
+file_list = os.listdir( os.path.join(base_path, "pre_process") )
+if "systamatics" in file_list: file_list.remove("systematics")
 
-pre_path = os.path.join(base_path, ch, "pre_process")
+pre_path = os.path.join(base_path, "pre_process")
 
 if not os.path.exists( pre_path ):
   os.makedirs( pre_path )
@@ -89,19 +91,23 @@ for files in file_list:
   histo_list = [x.GetName() for x in f.GetListOfKeys()]
 
   EventInfo = f.Get("EventInfo")
-#  ScaleWeights = f.Get("ScaleWeights")
-#  PSWeights = f.Get("PSWeights")
+  ScaleWeights = f.Get("ScaleWeights")
+  PSWeights = f.Get("PSWeights")
 #  PDFWeights = f.Get("PDFWeights")
+  nScaleWeight = ScaleWeights.Integral()
+  nPSWeight = PSWeights.Integral()
 
   #Prepare nominal file for rescaling
   syst_name = ""
   if "__" in files:
+    run_on_syst = True
     syst_name = files.split("__")[1].replace(".root","")
     nom_f = TFile.Open( os.path.join(pre_path, files.replace("__" + syst_name,"")), "READ")
     nom_EventInfo = nom_f.Get("EventInfo")
+  else: run_on_syst = False
 
   #Creat output file, in post_process folder
-  post_path = os.path.join(base_path, ch, "post_process")
+  post_path = os.path.join(base_path, "post_process")
   f_new = TFile.Open( os.path.join(post_path, files), "RECREATE")
 
   #Store nominal names, drop scale vars.
@@ -109,15 +115,17 @@ for files in file_list:
   for histos in histo_list:
     if "__" not in histos: nominal_list.append(histos)
     if "scale" in histos: continue
+    if "ps" in histos: continue
     h = f.Get(histos)
     h.Write()
 
   #Store envelope, rescale histos
   for histos in nominal_list:
 
-    write_envelope("scale", 6, EventInfo)#ScaleWeights)
-#    write_envelope("pdf", histos, 103, ScaleWeights)
-    rescale([], nom_EventInfo)
+    if nScaleWeight > 0: write_envelope("scale", 6, ScaleWeights)
+    if nPSWeight > 0: write_envelope("ps", 4, PSWeights)
+    #write_envelope("pdf", histos, 103, ScaleWeights)
+    if run_on_syst: rescale([], nom_EventInfo)
 
   f_new.Write()
   f_new.Close()
