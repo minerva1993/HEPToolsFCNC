@@ -18,7 +18,7 @@ from root_numpy import array2tree, tree2array
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.1
+config.gpu_options.per_process_gpu_memory_fraction = 0.3
 set_session(tf.Session(config=config))
 
 import keras
@@ -29,13 +29,12 @@ from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l2
 from keras.optimizers import Adam
 from keras.callbacks import Callback, ModelCheckpoint
-from variables import input_variables, gen_label, train_files
+from variables import input_variables
 
-#Channel and version
+#Version of classifier
 ch = sys.argv[1]
 ver = sys.argv[2]
-if ch not in ["STFCNC", "TTFCNC", "TTBKG"]:
-  print("Check channal again!: STFCNC, TTFCNC, of TTBKG are available")
+jetcat = sys.argv[3]
 
 #MultiGPU option
 multiGPU = True
@@ -43,26 +42,52 @@ if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
   multiGPU = False
 
 #directory name
-configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/'
-weightDir = 'training/reco'+ch
-scoreDir = 'score'+ch
-assignDir = 'assign'+ch
+configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
+weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
+scoreDir = 'score' + '_' + ch + '_' +jetcat + '_'
+assignDir = 'assign' + '_' + ch + '_' +jetcat + '_'
+label_name = 'label'
+weight_name = 'EventWeight'
+njets_cut = int(jetcat[1:2]) #Must be jXbX
+if len(jetcat) > 3: nbjets_cut = int(jetcat[3:4])
+else: nbjets_cut = 0
 
-#Options for data preparation
-input_files = []
-input_features = []
-signal_label = gen_label(ch)
-input_files.extend(train_files(ch))
-input_features.extend(input_variables(ch))
-input_features.append('genMatch')
-
-label_name = 'genMatch'
 bkg_drop_rate = 0.0
 train_test_rate = 0.8
 plot_figures = True
-mass_name = "jet12m"
-mass_decorr = False
 sklearn_based_overtraining_check = False #If it set to false, directly plot DNN scores
+
+"""
+'TTLJ_xsec' = 365.34, 'TTLL_xsec' = 88.29,
+'STHct_xsec' = 1.9 * 0.04, 'STHut_xsec' = 13.84 * 0.04, 'TTHct_xsec' = 53.13 * 0.04, 'TTHut_xsec' = 53.13 * 0.04,
+'TTLJ_sumW' = 111325048, 'TTLL_sumW' = 66979742,
+'STHct_sumW' = 3937632, 'STHut_sumW' = 3938126, 'TTHct_sumW = 884588 + 839388', 'TTHut_sumW' = 1006464 + 926072,
+'TTLJ_trainW' = 1223584 + 1293400, 'TTLL_trainW' = 590516 + 681584,
+'STHct_trainW' = 599710, 'STHut_trainW' = 555516, 'TTHct_trainW' = 190674 + 102707, 'TTHut_trainW' = 169925 + 159376
+"""
+frac_TTLJ = 1.0
+frac_TTLL = 0.478
+#frac_STHct = 1.27e-7
+frac_STHct = 0.0001
+frac_STHut = 0.00687
+frac_TTHct = 0.0499
+frac_TTHut = 0.0445
+
+#Options for data preparation
+input_features = []
+input_features.extend(input_variables(jetcat))
+input_features.append(label_name)
+
+if ch == "Hct":
+  sig_files = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',]
+elif ch == "Hut":
+  sig_files = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',]
+else: print("Check channel: Hct or Hut")
+bkg_files = ['finalMVA_TTpowhegttbb_000.h5', 'finalMVA_TTpowhegttbj_000.h5', 'finalMVA_TTpowhegttcc_000.h5',
+            'finalMVA_TTpowhegttlf_000.h5', 'finalMVA_TTpowhegttother_000.h5',
+            'finalMVA_TTpowhegttbb_001.h5', 'finalMVA_TTpowhegttbj_001.h5', 'finalMVA_TTpowhegttcc_001.h5',
+            'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
+            'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5']
 
 #Check if the model and files already exist
 if not os.path.exists( os.path.join(configDir, weightDir+ver) ):
@@ -254,7 +279,7 @@ class roc_callback(Callback):
       high = max(np.max(d) for d in scores)
       low_high = (low,high)
 
-      #training is filled
+      #test is filled
       plt.hist(tpr[2],
                color='b', alpha=0.5, range=low_high, bins=bins,
                histtype='stepfilled', density=True, label='S (train)')
@@ -262,7 +287,7 @@ class roc_callback(Callback):
                color='r', alpha=0.5, range=low_high, bins=bins,
                histtype='stepfilled', density=True, label='B (train)')
 
-      #test is dotted
+      #training is dotted
       hist, bins = np.histogram(tpr[1], bins=bins, range=low_high, density=True)
       scale = len(tpr[1]) / sum(hist)
       err = np.sqrt(hist * scale) / scale
@@ -310,14 +335,39 @@ class roc_callback(Callback):
 ####################
 #read input and skim
 ####################
-for files in input_files:
-  data_temp = pd.read_hdf('../mkNtuple/hdf_' + ch + '/' + files)
-  if files == input_files[0]: data = data_temp
-  else: data = pd.concat([data,data_temp], ignore_index=True)
+for files in sig_files:
+  data_temp = pd.read_hdf('../mkNtuple/hdf_/' + files)
+  data_temp = data_temp[data_temp['njets'] ==  njets_cut]
+  if nbjets_cut != 0:
+    data_temp = data_temp[data_temp['nbjets_m'] == nbjets_cut]
+  data_temp['label'] = 1
+  if "STTH" in files:
+    data_temp['STTT'] = 0
+    if   "Hct" in files: data_temp[weight_name] = data_temp[weight_name] * frac_STHct
+    elif "Hut" in files: data_temp[weight_name] = data_temp[weight_name] * frac_STHut
+  elif "TTTH" in files:
+    data_temp['STTT'] = 1
+    if   "Hct" in files: data_temp[weight_name] = data_temp[weight_name] * frac_TTHct
+    elif "Hut" in files: data_temp[weight_name] = data_temp[weight_name] * frac_TTHut
+  else: print("Wrong signal sample!")
+  if files == sig_files[0]: data_sig = data_temp
+  else: data_sig = pd.concat([data_sig,data_temp], ignore_index=True)
+
+for files in bkg_files:
+  data_temp = pd.read_hdf('../mkNtuple/hdf_/' + files)
+  data_temp = data_temp[data_temp['njets'] ==  njets_cut]
+  if nbjets_cut != 0:
+    data_temp = data_temp[data_temp['nbjets_m'] == nbjets_cut]
+  data_temp['label'] = 0
+  data_temp['STTT'] = np.random.randint(2, size=data_temp.shape[0])
+  if "TTpowheg" in files: data_temp[weight_name] = data_temp[weight_name] * frac_TTLJ
+  elif "TTLL" in files: data_temp[weight_name] = data_temp[weight_name] * frac_TTLL
+  if files == bkg_files[0]: data_bkg = data_temp
+  else: data_bkg = pd.concat([data_bkg,data_temp], ignore_index=True)
+
+data = pd.concat([data_sig,data_bkg], ignore_index=True)
 #print(daaxis=data.index.is_unique)#check if indices are duplicated
-data[label_name] = (data[label_name] == signal_label).astype(int)
-if mass_decorr:
-  data.loc[:, mass_name] = 50
+#data[label_name] = (data[label_name] == signal_label).astype(int) #don't need here
 data = shuffle(data)
 NumEvt = data[label_name].value_counts(sort=True, ascending=True)
 #print(NumEvt)
@@ -332,6 +382,7 @@ print('bkg/sig events after bkg skim : '+ str(NumEvt2.tolist()))
 #drop phi and label features, correlations
 ##########################################
 #col_names = list(data_train)
+weights = data.filter([weight_name], axis=1)
 labels = data.filter([label_name], axis=1)
 data = data.filter(input_features, axis=1)
 data.astype('float32')
@@ -360,6 +411,8 @@ data_train = data.loc[train_idx,:].copy()
 data_test = data.loc[test_idx,:].copy()
 labels_train = labels.loc[train_idx,:].copy()
 labels_test = labels.loc[test_idx,:].copy()
+weights_train = weights.loc[train_idx,:].copy()
+weights_test = weights.loc[test_idx,:].copy()
 
 print('Training signal: '+str(len(train_sig))+' / testing signal: '+str(len(test_sig))+' / training background: '+str(len(train_bkg))+' / testing background: '+str(len(test_bkg)))
 #print(str(len(X_train)) +' '+ str(len(Y_train)) +' ' + str(len(X_test)) +' '+ str(len(Y_test)))
@@ -369,6 +422,8 @@ labels_train = labels_train.values
 Y_train = np_utils.to_categorical(labels_train)
 labels_test = labels_test.values
 Y_test = np_utils.to_categorical(labels_test)
+weights_train = weights_train.values.flatten()
+weights_test = weights_test.values.flatten()
 
 
 ################
@@ -467,7 +522,7 @@ checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile), 
 history = train_model.fit(X_train, Y_train,
                           epochs=50, batch_size=1000,
                           validation_data=(X_test, Y_test),
-                          #class_weight={ 0: 14, 1: 1 }, 
+                          #sample_weight=weights_train, #class_weight={ 0: 14, 1: 1 },
                           callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model)]
                           )
 model.save(os.path.join(configDir, weightDir+ver, 'model.h5'))#save template model, rather than the model returned by multi_gpu_model.

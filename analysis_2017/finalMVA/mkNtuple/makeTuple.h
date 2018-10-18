@@ -34,6 +34,7 @@ public :
    TTreeReaderArray<float> PUWeight = {fReader, "PUWeight"};
    TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
    TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
+   TTreeReaderArray<float> psweight = {fReader, "psweight"};
    TTreeReaderValue<Float_t> MET = {fReader, "MET"};
    TTreeReaderValue<Float_t> MET_phi = {fReader, "MET_phi"};
    TTreeReaderValue<Float_t> lepton_pt = {fReader, "lepton_pt"};
@@ -52,12 +53,8 @@ public :
    TTreeReaderArray<int> jet_index = {fReader, "jet_index"};
    TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
    TTreeReaderArray<float> jet_deepCSV = {fReader, "jet_deepCSV"};
-   TTreeReaderArray<float> jet_SF_deepCSV_25 = {fReader, "jet_SF_deepCSV_25"};
    TTreeReaderArray<float> jet_SF_deepCSV_30 = {fReader, "jet_SF_deepCSV_30"};
-   TTreeReaderArray<float> jet_SF_deepCSV_35 = {fReader, "jet_SF_deepCSV_35"};
-   TTreeReaderArray<float> jet_SF_deepCSV_40 = {fReader, "jet_SF_deepCSV_40"};
    TTreeReaderArray<float> jet_SF_deepCSV_38 = {fReader, "jet_SF_deepCSV_38"};
-   TTreeReaderArray<float> jet_SF_deepCSV = {fReader, "jet_SF_deepCSV"};
    TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
    TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
@@ -113,7 +110,7 @@ public :
 
     //objects for ntuple
     int b_nevt = 0; int b_GoodPV = 0; int b_EventCategory = -1; int b_TruePV = 0;
-    int b_trigger = 0; int b_njets = 0; int b_nbjets_m = 0; int b_channel = -1; float wrongPVrate = 1.0;
+    int b_trigger = 0; int b_njets = 0; int b_nbjets_m = 0; int b_channel = -1; float b_EventWeight = 1.0;
 
     float b_lepton_pt = 0; float b_lepton_phi = 10; float b_lepton_eta = 10; float b_lepton_m = 0;
     float b_met = 0; float b_met_phi = 10; float b_lepdphi = 0;
@@ -141,6 +138,13 @@ public :
     float b_stfcnc_hadT12_3deta = 10; float b_stfcnc_hadT23_1deta = 10; float b_stfcnc_hadT31_2deta = 10;
     float b_stfcnc_hadT12_3dphi = 10; float b_stfcnc_hadT23_1dphi = 10; float b_stfcnc_hadT31_2dphi = 10;
     float b_stfcnc_hadT12_3dR = 0; float b_stfcnc_hadT23_1dR = 0; float b_stfcnc_hadT31_2dR = 0; float b_stfcnc_hadTm = 0;
+    float b_stfcnc_jet0lepdR = 0; float b_stfcnc_jet1lepdR = 0; float b_stfcnc_jet2lepdR = 0; float b_stfcnc_jet3lepdR = 0;
+    float b_stfcnc_jet01dR = 0; float b_stfcnc_jet02dR = 0; float b_stfcnc_jet03dR = 0;
+    float b_stfcnc_jet12_lepdR = 0; float b_stfcnc_jet23_lepdR = 0; float b_stfcnc_jet31_lepdR = 0;
+    float b_stfcnc_jet12_0dR = 0; float b_stfcnc_jet23_0dR = 0; float b_stfcnc_jet31_0dR = 0;
+    float b_stfcnc_lepTjet12dphi = 10; float b_stfcnc_lepTjet23dphi = 10; float b_stfcnc_lepTjet31dphi = 10;
+    float b_stfcnc_hadT_jet0dR = 0;
+
 
     //TT FCNC
     int b_ttfcnc_genMatch = -1; float b_ttfcnc_score = -1;
@@ -164,6 +168,12 @@ public :
     float b_ttfcnc_hadT12_3deta = 10; float b_ttfcnc_hadT23_1deta = 10; float b_ttfcnc_hadT31_2deta = 10;
     float b_ttfcnc_hadT12_3dphi = 10; float b_ttfcnc_hadT23_1dphi = 10; float b_ttfcnc_hadT31_2dphi = 10;
     float b_ttfcnc_hadT12_3dR = 0; float b_ttfcnc_hadT23_1dR = 0; float b_ttfcnc_hadT31_2dR = 0; float b_ttfcnc_hadTm = 0;
+    float b_ttfcnc_jet0lepdR = 0; float b_ttfcnc_jet1lepdR = 0; float b_ttfcnc_jet2lepdR = 0; float b_ttfcnc_jet3lepdR = 0;
+    float b_ttfcnc_jet01dR = 0; float b_ttfcnc_jet02dR = 0; float b_ttfcnc_jet03dR = 0;
+    float b_ttfcnc_jet12_lepdR = 0; float b_ttfcnc_jet23_lepdR = 0; float b_ttfcnc_jet31_lepdR = 0;
+    float b_ttfcnc_jet12_0dR = 0; float b_ttfcnc_jet23_0dR = 0; float b_ttfcnc_jet31_0dR = 0;
+    float b_ttfcnc_lepTjet12dphi = 10; float b_ttfcnc_lepTjet23dphi = 10; float b_ttfcnc_lepTjet31dphi = 10;
+    float b_ttfcnc_hadT_jet0dR = 0;
 
     //TT BKG
     int b_ttbkg_genMatch = -1; float b_ttbkg_score = -1;
@@ -187,6 +197,12 @@ public :
     float b_ttbkg_hadT12_3deta = 10; float b_ttbkg_hadT23_1deta = 10; float b_ttbkg_hadT31_2deta = 10;
     float b_ttbkg_hadT12_3dphi = 10; float b_ttbkg_hadT23_1dphi = 10; float b_ttbkg_hadT31_2dphi = 10;
     float b_ttbkg_hadT12_3dR = 0; float b_ttbkg_hadT23_1dR = 0; float b_ttbkg_hadT31_2dR = 0; float b_ttbkg_hadTm = 0;
+    float b_ttbkg_jet0lepdR = 0; float b_ttbkg_jet1lepdR = 0; float b_ttbkg_jet2lepdR = 0; float b_ttbkg_jet3lepdR = 0;
+    float b_ttbkg_jet01dR = 0; float b_ttbkg_jet02dR = 0; float b_ttbkg_jet03dR = 0;
+    float b_ttbkg_jet12_lepdR = 0; float b_ttbkg_jet23_lepdR = 0; float b_ttbkg_jet31_lepdR = 0;
+    float b_ttbkg_jet12_0dR = 0; float b_ttbkg_jet23_0dR = 0; float b_ttbkg_jet31_0dR = 0;
+    float b_ttbkg_lepTjet12dphi = 10; float b_ttbkg_lepTjet23dphi = 10; float b_ttbkg_lepTjet31dphi = 10;
+    float b_ttbkg_hadT_jet0dR = 0;
 
     ////RECO
     TFile *stfcnc_File, *ttfcnc_File, *ttbkg_File;

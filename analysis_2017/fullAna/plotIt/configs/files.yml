@@ -14,7 +14,7 @@
   type: mc
   pretty-name: 'TTpowhegttbb'
   cross-section: 365.34
-  generated-events: 111325048
+  generated-events: 108808064 #111325048
   fill-color: "#330000"
   legend: "ttbb"
   order: 0
@@ -23,7 +23,7 @@
   type: mc
   pretty-name: 'TTpowhegttbj'
   cross-section: 365.34
-  generated-events: 111325048
+  generated-events: 108808064 #111325048
   fill-color: '#660000'
   legend: 'ttbj'
   order: 1
@@ -32,7 +32,7 @@
   type: mc
   pretty-name: 'TTpowhegttcc'
   cross-section: 365.34
-  generated-events: 111325048
+  generated-events: 108808064 #111325048
   fill-color: '#990000'
   legend: 'ttcc'
   order: 2
@@ -41,7 +41,7 @@
   type: mc
   pretty-name: 'TTpowhegttlf'
   cross-section: 365.34
-  generated-events: 111325048
+  generated-events: 108808064 #111325048
   fill-color: '#cc0000'
   legend: 'ttLF'
   order: 3
@@ -50,7 +50,7 @@
   type: mc
   pretty-name: 'TTpowhegttother'
   cross-section: 365.34
-  generated-events: 111325048
+  generated-events: 108808064 #111325048
   fill-color: '#ff6666'
   legend: 'ttBkg'
   group: GttBkg
@@ -70,7 +70,7 @@
   type: mc
   pretty-name: 'TTLLpowheg'
   cross-section: 88.29
-  generated-events: 66979742
+  generated-events: 65707642 #66979742
   fill-color: '#ff6666'
   legend: 'ttBkg'
   group: GttBkg
@@ -190,7 +190,7 @@
   type: mc
   pretty-name: 'DYJets4to50HT70to100'
   cross-section: 18610
-  generated-events: 8947467
+  generated-events: 39489654
   fill-color: '#000099'
   legend: 'ZJets'
   group: GZJets
@@ -280,7 +280,7 @@
   type: signal
   pretty-name: 'STTH1L3BHct'
   cross-section: 0.076
-  generated-events: 3337672 #3937632
+  generated-events: 3339344 #3939304
   line-color: '#006666'
   legend: 'STHct'
 
@@ -288,22 +288,22 @@
   type: signal
   pretty-name: 'STTH1L3BHut'
   cross-section: 0.55
-  generated-events: 3380660 #3938126
+  generated-events: 3394376 #3951842
   line-color: '#666600'
   legend: 'STHut'
 
 'hist_TTTH1L3BHut.root':
   type: signal
   pretty-name: 'TTTH1L3BaTLepHut'
-  cross-section: 2.126
-  generated-events: 1932536
+  cross-section: 1.86
+  generated-events: 1605475 #1935178
   line-color: '#cccc00'
   legend: 'TTHut'
 
 'hist_TTTH1L3BHct.root':
   type: signal
   pretty-name: 'TTTH1L3BaTLepHct'
-  cross-section: 2.126
-  generated-events: 1932536
+  cross-section: 1.86
+  generated-events: 1432673 #1726470
   line-color: '#0000cc'
   legend: 'TTHct'

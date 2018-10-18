@@ -49,6 +49,18 @@ python ratioEMuCombine.py
 cd doReco/STFCNC01
 ../../plotIt/plotIt -o systematics/ ../../plotIt/configs/config.yml -y
 ```
+  *Final MVA
+```{.Bash}
+cd /HEPToolsFCNC/finalMVA/mkNtuple
+python dir_manage.py
+source job_ntuple.sh
+cd ../training
+python training_kerasTF.py Hct 01 j4b2
+cd ..
+python evaluation_kerasTF.py Hct 01 j4b2 model_35_0.7971.h5
+```
+
+
 
   *Todo list
 1. Rearrange BDT codes for reco

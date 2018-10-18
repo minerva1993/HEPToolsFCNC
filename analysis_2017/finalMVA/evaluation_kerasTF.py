@@ -19,22 +19,23 @@ import keras
 from keras.models import load_model
 from training.variables import input_variables
 
-ch = sys.argv[1] #STFCNC, TTFCNC. TTBKG
-ver = sys.argv[2] #01
-signal_only = sys.argv[3] == "True"
+#Version of classifier
+ch = sys.argv[1]
+ver = sys.argv[2]
+jetcat = sys.argv[3]
 bestModel = sys.argv[4]
 
-configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/'
-weightDir = 'training/reco'+ch
-scoreDir = 'score'+ch
-assignDir = 'assign'+ch
+configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
+weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
+scoreDir = 'score' + '_' + ch + '_' +jetcat + '_'
+assignDir = 'assign' + '_' + ch + '_' +jetcat + '_'
 
 input_files = []
 input_features = []
-syst = [""]
-if not signal_only: syst = syst + ["jecup", "jecdown", "jerup", "jerdown", "hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
+input_features.extend(input_variables(jetcat))
+syst = ["", "jecup", "jecdown", "jerup", "jerdown", "hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
 
-input_features.extend(input_variables(ch))
+
 
 for syst_ext in syst:
   if not os.path.exists(os.path.join(configDir, scoreDir + ver + syst_ext)):
@@ -45,27 +46,19 @@ for syst_ext in syst:
   model_best = load_model(os.path.join(configDir, weightDir+ver, bestModel))
   print('Start evaluation on version '+ ch + ver + syst_ext + ' classifier with the model '+ bestModel)
 
-  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext)):
+  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + syst_ext)):
     if filename == '.gitkeep': continue
     if os.path.exists(os.path.join(configDir, scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root'))):
       print('score_' + filename.replace('h5','root') + (' is already exist!').rjust(50-len(filename)))
       continue
-    if signal_only:
-      if   ch == "STFCNC":
-        if "STTH1L3BH" not in filename: continue
-      elif ch == "TTFCNC":
-        if "TTTH1L3B" not in filename: continue
-      elif ch == "TTBKG":
-        if "TTpowheg" not in filename: continue
-        if not filename.endswith(('012.h5','013.h5','014.h5')): continue
 
-    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext, filename))
+    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + syst_ext, filename))
     print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
 
     outfile = TFile.Open(os.path.join(scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root')),'RECREATE')
     outtree = TTree("tree","tree")
 
-    spectator = eval_df.filter(['nevt', 'njets', 'nbjets_m', 'file', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx', 'lepton_pt', 'MET', 'jet12m', 'lepTm', 'hadTm'], axis=1)
+    spectator = eval_df.filter(['nevt', 'njets', 'nbjets_m', 'file', 'EventCategory', 'lepton_pt', 'MET',], axis=1)
     eval_df = eval_df.filter(input_features, axis=1)
     eval_df.astype('float32')
 
@@ -82,12 +75,9 @@ for syst_ext in syst:
       spect = spectator[colname].values
       if colname == 'lepton_pt': branchname = 'lepPt'
       elif colname == 'MET'    : branchname = 'missinget'
-      elif colname == 'jet12m' : branchname = 'whMass'
-      elif colname == 'lepTm'  : branchname = 'leptMass'
-      elif colname == 'hadTm'  : branchname = 'hadtMass'
       else: branchname = colname
 
-      if branchname in ['nevt', 'njets', 'nbjets_m', 'EventCategory', 'genMatch', 'jet0Idx', 'jet1Idx', 'jet2Idx', 'jet3Idx' ]: spect.dtype = [(branchname, np.int32)]
+      if branchname in ['nevt', 'njets', 'nbjets_m', 'EventCategory']: spect.dtype = [(branchname, np.int32)]
       else:
         spect.dtype = [(branchname, np.float32)]
       #print(branchname)

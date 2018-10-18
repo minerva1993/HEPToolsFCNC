@@ -107,7 +107,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("TruePV"       , &b_TruePV       , "TruePV/I");
   tree->Branch("EventCategory", &b_EventCategory, "EventCategory/I");
   tree->Branch("trigger"      , &b_trigger      , "trigger/I");
-  tree->Branch("wrongPVrate"  , &wrongPVrate  , "wrongPVrate/F");
+  tree->Branch("EventWeight"  , &b_EventWeight  , "EventWeight/F");
 
   tree->Branch("njets"     , &b_njets     , "njets/I");
   tree->Branch("nbjets_m"  , &b_nbjets_m  , "nbjets_m/I");
@@ -211,6 +211,24 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("stfcnc_hadT31_2dR"  , &b_stfcnc_hadT31_2dR  , "stfcnc_hadT31_2dR/F");
   tree->Branch("stfcnc_hadTm"       , &b_stfcnc_hadTm       , "stfcnc_hadTm/F");
 
+  tree->Branch("stfcnc_jet0lepdR"    , &b_stfcnc_jet0lepdR    , "stfcnc_jet0lepdR/F");
+  tree->Branch("stfcnc_jet1lepdR"    , &b_stfcnc_jet1lepdR    , "stfcnc_jet1lepdR/F");
+  tree->Branch("stfcnc_jet2lepdR"    , &b_stfcnc_jet2lepdR    , "stfcnc_jet2lepdR/F");
+  tree->Branch("stfcnc_jet3lepdR"    , &b_stfcnc_jet3lepdR    , "stfcnc_jet3lepdR/F");
+  tree->Branch("stfcnc_jet01dR"      , &b_stfcnc_jet01dR      , "stfcnc_jet01dR/F");
+  tree->Branch("stfcnc_jet02dR"      , &b_stfcnc_jet02dR      , "stfcnc_jet02dR/F");
+  tree->Branch("stfcnc_jet03dR"      , &b_stfcnc_jet03dR      , "stfcnc_jet03dR/F");
+  tree->Branch("stfcnc_jet12_lepdR"  , &b_stfcnc_jet12_lepdR  , "stfcnc_jet12_lepdR/F");
+  tree->Branch("stfcnc_jet23_lepdR"  , &b_stfcnc_jet23_lepdR  , "stfcnc_jet23_lepdR/F");
+  tree->Branch("stfcnc_jet31_lepdR"  , &b_stfcnc_jet31_lepdR  , "stfcnc_jet31_lepdR/F");
+  tree->Branch("stfcnc_jet12_0dR"    , &b_stfcnc_jet12_0dR    , "stfcnc_jet12_0dR/F");
+  tree->Branch("stfcnc_jet23_0dR"    , &b_stfcnc_jet23_0dR    , "stfcnc_jet23_0dR/F");
+  tree->Branch("stfcnc_jet31_0dR"    , &b_stfcnc_jet31_0dR    , "stfcnc_jet31_0dR/F");
+  tree->Branch("stfcnc_lepTjet12dphi", &b_stfcnc_lepTjet12dphi, "stfcnc_lepTjet12dphi/F");
+  tree->Branch("stfcnc_lepTjet23dphi", &b_stfcnc_lepTjet23dphi, "stfcnc_lepTjet23dphi/F");
+  tree->Branch("stfcnc_lepTjet31dphi", &b_stfcnc_lepTjet31dphi, "stfcnc_lepTjet31dphi/F");
+  tree->Branch("stfcnc_hadT_jet0dR"  , &b_stfcnc_hadT_jet0dR  , "stfcnc_hadT_jet0dR/F");
+
   //TTFCNC part
   tree->Branch("ttfcnc_genMatch", &b_ttfcnc_genMatch, "ttfcnc_genMatch/I");
   tree->Branch("ttfcnc_score"   , &b_ttfcnc_score   , "ttfcnc_score/F");
@@ -295,6 +313,25 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("ttfcnc_hadT23_1dR"  , &b_ttfcnc_hadT23_1dR  , "ttfcnc_hadT23_1dR/F");
   tree->Branch("ttfcnc_hadT31_2dR"  , &b_ttfcnc_hadT31_2dR  , "ttfcnc_hadT31_2dR/F");
   tree->Branch("ttfcnc_hadTm"       , &b_ttfcnc_hadTm       , "ttfcnc_hadTm/F");
+
+  tree->Branch("ttfcnc_jet0lepdR"    , &b_ttfcnc_jet0lepdR    , "ttfcnc_jet0lepdR/F");
+  tree->Branch("ttfcnc_jet1lepdR"    , &b_ttfcnc_jet1lepdR    , "ttfcnc_jet1lepdR/F");
+  tree->Branch("ttfcnc_jet2lepdR"    , &b_ttfcnc_jet2lepdR    , "ttfcnc_jet2lepdR/F");
+  tree->Branch("ttfcnc_jet3lepdR"    , &b_ttfcnc_jet3lepdR    , "ttfcnc_jet3lepdR/F");
+  tree->Branch("ttfcnc_jet01dR"      , &b_ttfcnc_jet01dR      , "ttfcnc_jet01dR/F");
+  tree->Branch("ttfcnc_jet02dR"      , &b_ttfcnc_jet02dR      , "ttfcnc_jet02dR/F");
+  tree->Branch("ttfcnc_jet03dR"      , &b_ttfcnc_jet03dR      , "ttfcnc_jet03dR/F");
+  tree->Branch("ttfcnc_jet12_lepdR"  , &b_ttfcnc_jet12_lepdR  , "ttfcnc_jet12_lepdR/F");
+  tree->Branch("ttfcnc_jet23_lepdR"  , &b_ttfcnc_jet23_lepdR  , "ttfcnc_jet23_lepdR/F");
+  tree->Branch("ttfcnc_jet31_lepdR"  , &b_ttfcnc_jet31_lepdR  , "ttfcnc_jet31_lepdR/F");
+  tree->Branch("ttfcnc_jet12_0dR"    , &b_ttfcnc_jet12_0dR    , "ttfcnc_jet12_0dR/F");
+  tree->Branch("ttfcnc_jet23_0dR"    , &b_ttfcnc_jet23_0dR    , "ttfcnc_jet23_0dR/F");
+  tree->Branch("ttfcnc_jet31_0dR"    , &b_ttfcnc_jet31_0dR    , "ttfcnc_jet31_0dR/F");
+  tree->Branch("ttfcnc_lepTjet12dphi", &b_ttfcnc_lepTjet12dphi, "ttfcnc_lepTjet12dphi/F");
+  tree->Branch("ttfcnc_lepTjet23dphi", &b_ttfcnc_lepTjet23dphi, "ttfcnc_lepTjet23dphi/F");
+  tree->Branch("ttfcnc_lepTjet31dphi", &b_ttfcnc_lepTjet31dphi, "ttfcnc_lepTjet31dphi/F");
+  tree->Branch("ttfcnc_hadT_jet0dR"  , &b_ttfcnc_hadT_jet0dR  , "ttfcnc_hadT_jet0dR/F");
+
 
   //TTBKG part
   tree->Branch("ttbkg_genMatch", &b_ttbkg_genMatch, "ttbkg_genMatch/I");
@@ -381,6 +418,25 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("ttbkg_hadT31_2dR"  , &b_ttbkg_hadT31_2dR  , "ttbkg_hadT31_2dR/F");
   tree->Branch("ttbkg_hadTm"       , &b_ttbkg_hadTm       , "ttbkg_hadTm/F");
 
+  tree->Branch("ttbkg_jet0lepdR"    , &b_ttbkg_jet0lepdR    , "ttbkg_jet0lepdR/F");
+  tree->Branch("ttbkg_jet1lepdR"    , &b_ttbkg_jet1lepdR    , "ttbkg_jet1lepdR/F");
+  tree->Branch("ttbkg_jet2lepdR"    , &b_ttbkg_jet2lepdR    , "ttbkg_jet2lepdR/F");
+  tree->Branch("ttbkg_jet3lepdR"    , &b_ttbkg_jet3lepdR    , "ttbkg_jet3lepdR/F");
+  tree->Branch("ttbkg_jet01dR"      , &b_ttbkg_jet01dR      , "ttbkg_jet01dR/F");
+  tree->Branch("ttbkg_jet02dR"      , &b_ttbkg_jet02dR      , "ttbkg_jet02dR/F");
+  tree->Branch("ttbkg_jet03dR"      , &b_ttbkg_jet03dR      , "ttbkg_jet03dR/F");
+  tree->Branch("ttbkg_jet12_lepdR"  , &b_ttbkg_jet12_lepdR  , "ttbkg_jet12_lepdR/F");
+  tree->Branch("ttbkg_jet23_lepdR"  , &b_ttbkg_jet23_lepdR  , "ttbkg_jet23_lepdR/F");
+  tree->Branch("ttbkg_jet31_lepdR"  , &b_ttbkg_jet31_lepdR  , "ttbkg_jet31_lepdR/F");
+  tree->Branch("ttbkg_jet12_0dR"    , &b_ttbkg_jet12_0dR    , "ttbkg_jet12_0dR/F");
+  tree->Branch("ttbkg_jet23_0dR"    , &b_ttbkg_jet23_0dR    , "ttbkg_jet23_0dR/F");
+  tree->Branch("ttbkg_jet31_0dR"    , &b_ttbkg_jet31_0dR    , "ttbkg_jet31_0dR/F");
+  tree->Branch("ttbkg_lepTjet12dphi", &b_ttbkg_lepTjet12dphi, "ttbkg_lepTjet12dphi/F");
+  tree->Branch("ttbkg_lepTjet23dphi", &b_ttbkg_lepTjet23dphi, "ttbkg_lepTjet23dphi/F");
+  tree->Branch("ttbkg_lepTjet31dphi", &b_ttbkg_lepTjet31dphi, "ttbkg_lepTjet31dphi/F");
+  tree->Branch("ttbkg_hadT_jet0dR"  , &b_ttbkg_hadT_jet0dR  , "ttbkg_hadT_jet0dR/F");
+
+
   fOutput->Add(tree);
 
 } 
@@ -395,6 +451,7 @@ Bool_t makeTuple::Process(Long64_t entry)
 
   if( mode > 2 ) return kTRUE;
 
+  float wrongPVrate = 1.0;
   if( !option.Contains("Run2017") ){
     if      ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04889796694;
     else if ( option.Contains("DYJetsv2") ) wrongPVrate = 1.04318131205;
@@ -485,14 +542,14 @@ Bool_t makeTuple::Process(Long64_t entry)
 
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
-  bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.4);
+  bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.4) && (*elec_trg >= 10);
 //  bool passelectron;
 //  if ( *elec_trg == 10 ) passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
 //  else                   passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
 
   if( option.Contains("DataSingleMu") ){
     if( !passmuon ) return kTRUE;//RDMu
-    if( passelectron) return kTRUE;//RDMu
+    if( passelectron ) return kTRUE;//RDMu
   }
   else if( option.Contains("DataSingleEG") ){
     if( !passelectron ) return kTRUE;//RDelec
@@ -540,6 +597,12 @@ Bool_t makeTuple::Process(Long64_t entry)
   else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 10;
   else b_EventCategory = 20;
 
+  if( !option.Contains("Run2017") ){
+    if( passmuon ) b_EventWeight *= lepton_SF[0] * lepton_SF[3];// * lepton_SF[6]
+    else if( passelectron) b_EventWeight *= lepton_SF[0] * lepton_SF[3] *  lepton_SF[6];
+    b_EventWeight *= PUWeight[0] * wrongPVrate * jet_SF_deepCSV_30[0] * (*genweight);
+  }
+
   b_channel = mode;
   b_TruePV = *TruePV;
   b_GoodPV = *GoodPV;
@@ -553,14 +616,16 @@ Bool_t makeTuple::Process(Long64_t entry)
   b_met_phi = met_phi;
   b_lepdphi = lepDphi;
 
+  TLorentzVector lepW = lepton + p4met;
+
   b_lepton_pt = lepton.Pt(); b_lepton_phi = lepton.Phi(); b_lepton_eta = lepton.Eta(); b_lepton_m = lepton.M();
-  b_lepWpt = (lepton+p4met).Pt(); b_lepWeta = (lepton+p4met).Eta();
-  b_lepWphi = (lepton+p4met).Phi(); b_lepWdphi = lepton.DeltaPhi(p4met); b_lepWm = (lepton+p4met).M();
+  b_lepWpt = (lepW).Pt(); b_lepWeta = (lepW).Eta(); b_lepWphi = (lepW).Phi(); b_lepWm = (lepW).M();
+  b_lepWdphi = lepton.DeltaPhi(p4met);
 
   //Jet Assignment
   if( st_njet ){
     int jetIdx[4];
-    TLorentzVector jetP4s[4];
+    TLorentzVector jetP4[4];
     vector<double>::iterator iter;
     int evtIdx = 0;
     //find combination
@@ -587,58 +652,71 @@ Bool_t makeTuple::Process(Long64_t entry)
       b_stfcnc_jet2Idx = jetIdx[2]; b_stfcnc_jet3Idx = jetIdx[3];
       //cout << i0 << endl;
 
-      for( int i=0; i < 4; i++) jetP4s[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
-
-      if( !option.Contains("Run2017") ){
-        if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
-        else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
-        else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Up[jetIdx[i]];
-        else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Down[jetIdx[i]];
-        else                             for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]];
-      }
+      for( int i=0; i < 4; i++) jetP4[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
     }
 
-    b_stfcnc_jet0pt = jetP4s[0].Pt(); b_stfcnc_jet0eta = jetP4s[0].Eta(); b_stfcnc_jet0phi = jetP4s[0].Phi(); b_stfcnc_jet0m = jetP4s[0].M();
+    TLorentzVector jetP4cor[4];
+    if( !option.Contains("Run2017") ){
+      if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
+      else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
+      else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Up[jetIdx[i]];
+      else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Down[jetIdx[i]];
+      else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]];
+    }
+    else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
+
+    b_stfcnc_jet0pt = jetP4[0].Pt(); b_stfcnc_jet0eta = jetP4[0].Eta(); b_stfcnc_jet0phi = jetP4[0].Phi(); b_stfcnc_jet0m = jetP4[0].M();
     b_stfcnc_jet0csv = jet_deepCSV[jetIdx[0]]; b_stfcnc_jet0cvsl = jet_CvsL[jetIdx[0]]; b_stfcnc_jet0cvsb = jet_CvsB[jetIdx[0]];
-    b_stfcnc_jet1pt = jetP4s[1].Pt(); b_stfcnc_jet1eta = jetP4s[1].Eta(); b_stfcnc_jet1phi = jetP4s[1].Phi(); b_stfcnc_jet1m = jetP4s[1].M();
+    b_stfcnc_jet1pt = jetP4[1].Pt(); b_stfcnc_jet1eta = jetP4[1].Eta(); b_stfcnc_jet1phi = jetP4[1].Phi(); b_stfcnc_jet1m = jetP4[1].M();
     b_stfcnc_jet1csv = jet_deepCSV[jetIdx[1]]; b_stfcnc_jet1cvsl = jet_CvsL[jetIdx[1]]; b_stfcnc_jet1cvsb = jet_CvsB[jetIdx[1]];
-    b_stfcnc_jet2pt = jetP4s[2].Pt(); b_stfcnc_jet2eta = jetP4s[2].Eta(); b_stfcnc_jet2phi = jetP4s[2].Phi(); b_stfcnc_jet2m = jetP4s[2].M();
+    b_stfcnc_jet2pt = jetP4[2].Pt(); b_stfcnc_jet2eta = jetP4[2].Eta(); b_stfcnc_jet2phi = jetP4[2].Phi(); b_stfcnc_jet2m = jetP4[2].M();
     b_stfcnc_jet2csv = jet_deepCSV[jetIdx[2]]; b_stfcnc_jet2cvsl = jet_CvsL[jetIdx[2]]; b_stfcnc_jet2cvsb = jet_CvsB[jetIdx[2]];
-    b_stfcnc_jet3pt = jetP4s[3].Pt(); b_stfcnc_jet3eta = jetP4s[3].Eta(); b_stfcnc_jet3phi = jetP4s[3].Phi(); b_stfcnc_jet3m = jetP4s[3].M();
+    b_stfcnc_jet3pt = jetP4[3].Pt(); b_stfcnc_jet3eta = jetP4[3].Eta(); b_stfcnc_jet3phi = jetP4[3].Phi(); b_stfcnc_jet3m = jetP4[3].M();
     b_stfcnc_jet3csv = jet_deepCSV[jetIdx[3]]; b_stfcnc_jet3cvsl = jet_CvsL[jetIdx[3]]; b_stfcnc_jet3cvsb = jet_CvsB[jetIdx[3]];
 
-    b_stfcnc_jet12pt = (jetP4s[1]+jetP4s[2]).Pt(); b_stfcnc_jet12m = (jetP4s[1]+jetP4s[2]).M();
-    b_stfcnc_jet12eta = (jetP4s[1]+jetP4s[2]).Eta(); b_stfcnc_jet12deta = (jetP4s[1]-jetP4s[2]).Eta();
-    b_stfcnc_jet12phi = (jetP4s[1]+jetP4s[2]).Phi(); b_stfcnc_jet12dphi = jetP4s[1].DeltaPhi(jetP4s[2]);
-    b_stfcnc_jet12dR = jetP4s[1].DeltaR(jetP4s[2]);
+    const auto lepT = lepW + jetP4cor[0];
+    const auto had12 = jetP4cor[1] + jetP4cor[2];//This is W or H
+    const auto had23 = jetP4cor[2] + jetP4cor[3];
+    const auto had31 = jetP4cor[3] + jetP4cor[1];
+    const auto hadT = jetP4cor[1] + jetP4cor[2] + jetP4cor[3];
 
-    b_stfcnc_jet23pt = (jetP4s[2]+jetP4s[3]).Pt(); b_stfcnc_jet23m = (jetP4s[2]+jetP4s[3]).M();
-    b_stfcnc_jet23eta = (jetP4s[2]+jetP4s[3]).Eta(); b_stfcnc_jet23deta = (jetP4s[2]-jetP4s[3]).Eta();
-    b_stfcnc_jet23phi = (jetP4s[2]+jetP4s[3]).Phi(); b_stfcnc_jet23dphi = jetP4s[2].DeltaPhi(jetP4s[3]);
-    b_stfcnc_jet23dR = jetP4s[2].DeltaR(jetP4s[3]);
+    b_stfcnc_jet12pt = had12.Pt(); b_stfcnc_jet12eta = had12.Eta(); b_stfcnc_jet12phi = had12.Phi(); b_stfcnc_jet12m = had12.M();
+    b_stfcnc_jet12deta = (jetP4cor[1]-jetP4cor[2]).Eta(); b_stfcnc_jet12dphi = jetP4cor[1].DeltaPhi(jetP4cor[2]);
+    b_stfcnc_jet12dR = jetP4cor[1].DeltaR(jetP4cor[2]);
 
-    b_stfcnc_jet31pt = (jetP4s[1]+jetP4s[3]).Pt(); b_stfcnc_jet31m = (jetP4s[1]+jetP4s[3]).M();
-    b_stfcnc_jet31eta = (jetP4s[1]+jetP4s[3]).Eta(); b_stfcnc_jet31deta = (jetP4s[1]-jetP4s[3]).Eta();
-    b_stfcnc_jet31phi = (jetP4s[1]+jetP4s[3]).Phi(); b_stfcnc_jet31dphi = jetP4s[1].DeltaPhi(jetP4s[3]);
-    b_stfcnc_jet31dR = jetP4s[3].DeltaR(jetP4s[1]);
+    b_stfcnc_jet23pt = had23.Pt(); b_stfcnc_jet23eta = had23.Eta(); b_stfcnc_jet23phi = had23.Phi(); b_stfcnc_jet23m = had23.M();
+    b_stfcnc_jet23deta = (jetP4cor[2]-jetP4cor[3]).Eta(); b_stfcnc_jet23dphi = jetP4cor[2].DeltaPhi(jetP4cor[3]);
+    b_stfcnc_jet23dR = jetP4cor[2].DeltaR(jetP4cor[3]);
 
-    b_stfcnc_lepTpt = (lepton+p4met+jetP4s[0]).Pt(); b_stfcnc_lepTm = (lepton+p4met+jetP4s[0]).M();
-    b_stfcnc_lepTeta = (lepton+p4met+jetP4s[0]).Eta(); b_stfcnc_lepTdeta = (lepton+p4met-jetP4s[0]).Eta();
-    b_stfcnc_lepTphi = (lepton+p4met+jetP4s[0]).Phi(); b_stfcnc_lepTdphi = (lepton+p4met).DeltaPhi(jetP4s[0]);
-    b_stfcnc_lepTdR = (lepton+p4met).DeltaR(jetP4s[0]);
+    b_stfcnc_jet31pt = had31.Pt(); b_stfcnc_jet31eta = had31.Eta(); b_stfcnc_jet31phi = had31.Phi(); b_stfcnc_jet31m = had31.M();
+    b_stfcnc_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta(); b_stfcnc_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
+    b_stfcnc_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
-    b_stfcnc_hadTpt = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(); b_stfcnc_hadTm = (jetP4s[1]+jetP4s[2]+jetP4s[3]).M();
-    b_stfcnc_hadTeta = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_stfcnc_hadT12_3deta = (jetP4s[1]+jetP4s[2]-jetP4s[3]).Eta();
-    b_stfcnc_hadT23_1deta = (-jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_stfcnc_hadT31_2deta = (jetP4s[1]-jetP4s[2]+jetP4s[3]).Eta();
-    b_stfcnc_hadTphi = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Phi(); b_stfcnc_hadT12_3dphi = (jetP4s[1]+jetP4s[2]).DeltaPhi(jetP4s[3]);
-    b_stfcnc_hadT23_1dphi = (jetP4s[2]+jetP4s[3]).DeltaPhi(jetP4s[1]); b_stfcnc_hadT31_2dphi = (jetP4s[3]+jetP4s[1]).DeltaPhi(jetP4s[2]);
-    b_stfcnc_hadT12_3dR = (jetP4s[1]+jetP4s[2]).DeltaR(jetP4s[3]); b_stfcnc_hadT23_1dR = (jetP4s[2]+jetP4s[3]).DeltaR(jetP4s[1]);
-    b_stfcnc_hadT31_2dR = (jetP4s[3]+jetP4s[1]).DeltaR(jetP4s[2]);
+    b_stfcnc_lepTpt = lepT.Pt(); b_stfcnc_lepTeta = lepT.Eta(); b_stfcnc_lepTphi = lepT.Phi(); b_stfcnc_lepTm = lepT.M();
+    b_stfcnc_lepTdeta = (lepW-jetP4cor[0]).Eta(); b_stfcnc_lepTdphi = lepW.DeltaPhi(jetP4cor[0]); b_stfcnc_lepTdR = lepW.DeltaR(jetP4cor[0]);
+
+    b_stfcnc_hadTpt = hadT.Pt(); b_stfcnc_hadTeta = hadT.Eta(); b_stfcnc_hadTphi = hadT.Phi(); b_stfcnc_hadTm = hadT.M();
+    b_stfcnc_hadT12_3deta = (had12-jetP4cor[3]).Eta(); b_stfcnc_hadT23_1deta = (had23-jetP4cor[1]).Eta();
+    b_stfcnc_hadT31_2deta = (had31-jetP4cor[2]).Eta(); b_stfcnc_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]);
+    b_stfcnc_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]); b_stfcnc_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
+    b_stfcnc_hadT12_3dR = had12.DeltaR(jetP4cor[3]); b_stfcnc_hadT23_1dR = had23.DeltaR(jetP4cor[1]); b_stfcnc_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
+
+    b_stfcnc_jet0lepdR = jetP4cor[0].DeltaR(lepton); b_stfcnc_jet1lepdR = jetP4cor[1].DeltaR(lepton);
+    b_stfcnc_jet2lepdR = jetP4cor[2].DeltaR(lepton); b_stfcnc_jet3lepdR = jetP4cor[3].DeltaR(lepton);
+    b_stfcnc_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]); b_stfcnc_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]);
+    b_stfcnc_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]); b_stfcnc_jet12_lepdR = lepton.DeltaR(had12);
+    b_stfcnc_jet23_lepdR = lepton.DeltaR(had23); b_stfcnc_jet31_lepdR = lepton.DeltaR(had31);
+    b_stfcnc_jet12_0dR = jetP4cor[0].DeltaR(had12); b_stfcnc_jet23_0dR = jetP4cor[0].DeltaR(had23);
+    b_stfcnc_jet31_0dR = jetP4cor[0].DeltaR(had31); b_stfcnc_lepTjet12dphi = lepT.DeltaPhi(had12);
+    b_stfcnc_lepTjet23dphi = lepT.DeltaPhi(had23); b_stfcnc_lepTjet31dphi = lepT.DeltaPhi(had31);
+    b_stfcnc_hadT_jet0dR = hadT.DeltaR(jetP4cor[0]);
+
   }
 
+  //Jet Assignment
   if( tt_njet ){
     int jetIdx[4];
-    TLorentzVector jetP4s[4];
+    TLorentzVector jetP4[4];
     vector<double>::iterator iter;
     int evtIdx = 0;
     //find combination
@@ -665,58 +743,71 @@ Bool_t makeTuple::Process(Long64_t entry)
       b_ttfcnc_jet2Idx = jetIdx[2]; b_ttfcnc_jet3Idx = jetIdx[3];
       //cout << i0 << endl;
 
-      for( int i=0; i < 4; i++) jetP4s[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
-
-      if( !option.Contains("Run2017") ){
-        if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
-        else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
-        else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Up[jetIdx[i]];
-        else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Down[jetIdx[i]];
-        else                             for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]];
-      }
+      for( int i=0; i < 4; i++) jetP4[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
     }
 
-    b_ttfcnc_jet0pt = jetP4s[0].Pt(); b_ttfcnc_jet0eta = jetP4s[0].Eta(); b_ttfcnc_jet0phi = jetP4s[0].Phi(); b_ttfcnc_jet0m = jetP4s[0].M();
+    TLorentzVector jetP4cor[4];
+    if( !option.Contains("Run2017") ){
+      if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
+      else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
+      else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Up[jetIdx[i]];
+      else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Down[jetIdx[i]];
+      else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]];
+    }
+    else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
+
+    b_ttfcnc_jet0pt = jetP4[0].Pt(); b_ttfcnc_jet0eta = jetP4[0].Eta(); b_ttfcnc_jet0phi = jetP4[0].Phi(); b_ttfcnc_jet0m = jetP4[0].M();
     b_ttfcnc_jet0csv = jet_deepCSV[jetIdx[0]]; b_ttfcnc_jet0cvsl = jet_CvsL[jetIdx[0]]; b_ttfcnc_jet0cvsb = jet_CvsB[jetIdx[0]];
-    b_ttfcnc_jet1pt = jetP4s[1].Pt(); b_ttfcnc_jet1eta = jetP4s[1].Eta(); b_ttfcnc_jet1phi = jetP4s[1].Phi(); b_ttfcnc_jet1m = jetP4s[1].M();
+    b_ttfcnc_jet1pt = jetP4[1].Pt(); b_ttfcnc_jet1eta = jetP4[1].Eta(); b_ttfcnc_jet1phi = jetP4[1].Phi(); b_ttfcnc_jet1m = jetP4[1].M();
     b_ttfcnc_jet1csv = jet_deepCSV[jetIdx[1]]; b_ttfcnc_jet1cvsl = jet_CvsL[jetIdx[1]]; b_ttfcnc_jet1cvsb = jet_CvsB[jetIdx[1]];
-    b_ttfcnc_jet2pt = jetP4s[2].Pt(); b_ttfcnc_jet2eta = jetP4s[2].Eta(); b_ttfcnc_jet2phi = jetP4s[2].Phi(); b_ttfcnc_jet2m = jetP4s[2].M();
+    b_ttfcnc_jet2pt = jetP4[2].Pt(); b_ttfcnc_jet2eta = jetP4[2].Eta(); b_ttfcnc_jet2phi = jetP4[2].Phi(); b_ttfcnc_jet2m = jetP4[2].M();
     b_ttfcnc_jet2csv = jet_deepCSV[jetIdx[2]]; b_ttfcnc_jet2cvsl = jet_CvsL[jetIdx[2]]; b_ttfcnc_jet2cvsb = jet_CvsB[jetIdx[2]];
-    b_ttfcnc_jet3pt = jetP4s[3].Pt(); b_ttfcnc_jet3eta = jetP4s[3].Eta(); b_ttfcnc_jet3phi = jetP4s[3].Phi(); b_ttfcnc_jet3m = jetP4s[3].M();
+    b_ttfcnc_jet3pt = jetP4[3].Pt(); b_ttfcnc_jet3eta = jetP4[3].Eta(); b_ttfcnc_jet3phi = jetP4[3].Phi(); b_ttfcnc_jet3m = jetP4[3].M();
     b_ttfcnc_jet3csv = jet_deepCSV[jetIdx[3]]; b_ttfcnc_jet3cvsl = jet_CvsL[jetIdx[3]]; b_ttfcnc_jet3cvsb = jet_CvsB[jetIdx[3]];
 
-    b_ttfcnc_jet12pt = (jetP4s[1]+jetP4s[2]).Pt(); b_ttfcnc_jet12m = (jetP4s[1]+jetP4s[2]).M();
-    b_ttfcnc_jet12eta = (jetP4s[1]+jetP4s[2]).Eta(); b_ttfcnc_jet12deta = (jetP4s[1]-jetP4s[2]).Eta();
-    b_ttfcnc_jet12phi = (jetP4s[1]+jetP4s[2]).Phi(); b_ttfcnc_jet12dphi = jetP4s[1].DeltaPhi(jetP4s[2]);
-    b_ttfcnc_jet12dR = jetP4s[1].DeltaR(jetP4s[2]);
+    const auto lepT = lepW + jetP4cor[0];
+    const auto had12 = jetP4cor[1] + jetP4cor[2];//This is W or H
+    const auto had23 = jetP4cor[2] + jetP4cor[3];
+    const auto had31 = jetP4cor[3] + jetP4cor[1];
+    const auto hadT = jetP4cor[1] + jetP4cor[2] + jetP4cor[3];
 
-    b_ttfcnc_jet23pt = (jetP4s[2]+jetP4s[3]).Pt(); b_ttfcnc_jet23m = (jetP4s[2]+jetP4s[3]).M();
-    b_ttfcnc_jet23eta = (jetP4s[2]+jetP4s[3]).Eta(); b_ttfcnc_jet23deta = (jetP4s[2]-jetP4s[3]).Eta();
-    b_ttfcnc_jet23phi = (jetP4s[2]+jetP4s[3]).Phi(); b_ttfcnc_jet23dphi = jetP4s[2].DeltaPhi(jetP4s[3]);
-    b_ttfcnc_jet23dR = jetP4s[2].DeltaR(jetP4s[3]);
+    b_ttfcnc_jet12pt = had12.Pt(); b_ttfcnc_jet12eta = had12.Eta(); b_ttfcnc_jet12phi = had12.Phi(); b_ttfcnc_jet12m = had12.M();
+    b_ttfcnc_jet12deta = (jetP4cor[1]-jetP4cor[2]).Eta(); b_ttfcnc_jet12dphi = jetP4cor[1].DeltaPhi(jetP4cor[2]);
+    b_ttfcnc_jet12dR = jetP4cor[1].DeltaR(jetP4cor[2]);
 
-    b_ttfcnc_jet31pt = (jetP4s[1]+jetP4s[3]).Pt(); b_ttfcnc_jet31m = (jetP4s[1]+jetP4s[3]).M();
-    b_ttfcnc_jet31eta = (jetP4s[1]+jetP4s[3]).Eta(); b_ttfcnc_jet31deta = (jetP4s[1]-jetP4s[3]).Eta();
-    b_ttfcnc_jet31phi = (jetP4s[1]+jetP4s[3]).Phi(); b_ttfcnc_jet31dphi = jetP4s[1].DeltaPhi(jetP4s[3]);
-    b_ttfcnc_jet31dR = jetP4s[3].DeltaR(jetP4s[1]);
+    b_ttfcnc_jet23pt = had23.Pt(); b_ttfcnc_jet23eta = had23.Eta(); b_ttfcnc_jet23phi = had23.Phi(); b_ttfcnc_jet23m = had23.M();
+    b_ttfcnc_jet23deta = (jetP4cor[2]-jetP4cor[3]).Eta(); b_ttfcnc_jet23dphi = jetP4cor[2].DeltaPhi(jetP4cor[3]);
+    b_ttfcnc_jet23dR = jetP4cor[2].DeltaR(jetP4cor[3]);
 
-    b_ttfcnc_lepTpt = (lepton+p4met+jetP4s[0]).Pt(); b_ttfcnc_lepTm = (lepton+p4met+jetP4s[0]).M();
-    b_ttfcnc_lepTeta = (lepton+p4met+jetP4s[0]).Eta(); b_ttfcnc_lepTdeta = (lepton+p4met-jetP4s[0]).Eta();
-    b_ttfcnc_lepTphi = (lepton+p4met+jetP4s[0]).Phi(); b_ttfcnc_lepTdphi = (lepton+p4met).DeltaPhi(jetP4s[0]);
-    b_ttfcnc_lepTdR = (lepton+p4met).DeltaR(jetP4s[0]);
+    b_ttfcnc_jet31pt = had31.Pt(); b_ttfcnc_jet31eta = had31.Eta(); b_ttfcnc_jet31phi = had31.Phi(); b_ttfcnc_jet31m = had31.M();
+    b_ttfcnc_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta(); b_ttfcnc_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
+    b_ttfcnc_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
-    b_ttfcnc_hadTpt = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(); b_ttfcnc_hadTm = (jetP4s[1]+jetP4s[2]+jetP4s[3]).M();
-    b_ttfcnc_hadTeta = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_ttfcnc_hadT12_3deta = (jetP4s[1]+jetP4s[2]-jetP4s[3]).Eta();
-    b_ttfcnc_hadT23_1deta = (-jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_ttfcnc_hadT31_2deta = (jetP4s[1]-jetP4s[2]+jetP4s[3]).Eta();
-    b_ttfcnc_hadTphi = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Phi(); b_ttfcnc_hadT12_3dphi = (jetP4s[1]+jetP4s[2]).DeltaPhi(jetP4s[3]);
-    b_ttfcnc_hadT23_1dphi = (jetP4s[2]+jetP4s[3]).DeltaPhi(jetP4s[1]); b_ttfcnc_hadT31_2dphi = (jetP4s[3]+jetP4s[1]).DeltaPhi(jetP4s[2]);
-    b_ttfcnc_hadT12_3dR = (jetP4s[1]+jetP4s[2]).DeltaR(jetP4s[3]); b_ttfcnc_hadT23_1dR = (jetP4s[2]+jetP4s[3]).DeltaR(jetP4s[1]);
-    b_ttfcnc_hadT31_2dR = (jetP4s[3]+jetP4s[1]).DeltaR(jetP4s[2]);
+    b_ttfcnc_lepTpt = lepT.Pt(); b_ttfcnc_lepTeta = lepT.Eta(); b_ttfcnc_lepTphi = lepT.Phi(); b_ttfcnc_lepTm = lepT.M();
+    b_ttfcnc_lepTdeta = (lepW-jetP4cor[0]).Eta(); b_ttfcnc_lepTdphi = lepW.DeltaPhi(jetP4cor[0]); b_ttfcnc_lepTdR = lepW.DeltaR(jetP4cor[0]);
+
+    b_ttfcnc_hadTpt = hadT.Pt(); b_ttfcnc_hadTeta = hadT.Eta(); b_ttfcnc_hadTphi = hadT.Phi(); b_ttfcnc_hadTm = hadT.M();
+    b_ttfcnc_hadT12_3deta = (had12-jetP4cor[3]).Eta(); b_ttfcnc_hadT23_1deta = (had23-jetP4cor[1]).Eta();
+    b_ttfcnc_hadT31_2deta = (had31-jetP4cor[2]).Eta(); b_ttfcnc_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]);
+    b_ttfcnc_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]); b_ttfcnc_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
+    b_ttfcnc_hadT12_3dR = had12.DeltaR(jetP4cor[3]); b_ttfcnc_hadT23_1dR = had23.DeltaR(jetP4cor[1]); b_ttfcnc_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
+
+    b_ttfcnc_jet0lepdR = jetP4cor[0].DeltaR(lepton); b_ttfcnc_jet1lepdR = jetP4cor[1].DeltaR(lepton);
+    b_ttfcnc_jet2lepdR = jetP4cor[2].DeltaR(lepton); b_ttfcnc_jet3lepdR = jetP4cor[3].DeltaR(lepton);
+    b_ttfcnc_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]); b_ttfcnc_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]);
+    b_ttfcnc_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]); b_ttfcnc_jet12_lepdR = lepton.DeltaR(had12);
+    b_ttfcnc_jet23_lepdR = lepton.DeltaR(had23); b_ttfcnc_jet31_lepdR = lepton.DeltaR(had31);
+    b_ttfcnc_jet12_0dR = jetP4cor[0].DeltaR(had12); b_ttfcnc_jet23_0dR = jetP4cor[0].DeltaR(had23);
+    b_ttfcnc_jet31_0dR = jetP4cor[0].DeltaR(had31); b_ttfcnc_lepTjet12dphi = lepT.DeltaPhi(had12);
+    b_ttfcnc_lepTjet23dphi = lepT.DeltaPhi(had23); b_ttfcnc_lepTjet31dphi = lepT.DeltaPhi(had31);
+    b_ttfcnc_hadT_jet0dR = hadT.DeltaR(jetP4cor[0]);
+
   }
 
+  //Jet Assignment
   if( tt_njet ){
     int jetIdx[4];
-    TLorentzVector jetP4s[4];
+    TLorentzVector jetP4[4];
     vector<double>::iterator iter;
     int evtIdx = 0;
     //find combination
@@ -743,53 +834,65 @@ Bool_t makeTuple::Process(Long64_t entry)
       b_ttbkg_jet2Idx = jetIdx[2]; b_ttbkg_jet3Idx = jetIdx[3];
       //cout << i0 << endl;
 
-      for( int i=0; i < 4; i++) jetP4s[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
-
-      if( !option.Contains("Run2017") ){
-        if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
-        else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
-        else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Up[jetIdx[i]];
-        else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Down[jetIdx[i]];
-        else                             for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]];
-      }
+      for( int i=0; i < 4; i++) jetP4[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
     }
 
-    b_ttbkg_jet0pt = jetP4s[0].Pt(); b_ttbkg_jet0eta = jetP4s[0].Eta(); b_ttbkg_jet0phi = jetP4s[0].Phi(); b_ttbkg_jet0m = jetP4s[0].M();
+    TLorentzVector jetP4cor[4];
+    if( !option.Contains("Run2017") ){
+      if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
+      else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
+      else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Up[jetIdx[i]];
+      else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Down[jetIdx[i]];
+      else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]];
+    }
+    else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
+
+    b_ttbkg_jet0pt = jetP4[0].Pt(); b_ttbkg_jet0eta = jetP4[0].Eta(); b_ttbkg_jet0phi = jetP4[0].Phi(); b_ttbkg_jet0m = jetP4[0].M();
     b_ttbkg_jet0csv = jet_deepCSV[jetIdx[0]]; b_ttbkg_jet0cvsl = jet_CvsL[jetIdx[0]]; b_ttbkg_jet0cvsb = jet_CvsB[jetIdx[0]];
-    b_ttbkg_jet1pt = jetP4s[1].Pt(); b_ttbkg_jet1eta = jetP4s[1].Eta(); b_ttbkg_jet1phi = jetP4s[1].Phi(); b_ttbkg_jet1m = jetP4s[1].M();
+    b_ttbkg_jet1pt = jetP4[1].Pt(); b_ttbkg_jet1eta = jetP4[1].Eta(); b_ttbkg_jet1phi = jetP4[1].Phi(); b_ttbkg_jet1m = jetP4[1].M();
     b_ttbkg_jet1csv = jet_deepCSV[jetIdx[1]]; b_ttbkg_jet1cvsl = jet_CvsL[jetIdx[1]]; b_ttbkg_jet1cvsb = jet_CvsB[jetIdx[1]];
-    b_ttbkg_jet2pt = jetP4s[2].Pt(); b_ttbkg_jet2eta = jetP4s[2].Eta(); b_ttbkg_jet2phi = jetP4s[2].Phi(); b_ttbkg_jet2m = jetP4s[2].M();
+    b_ttbkg_jet2pt = jetP4[2].Pt(); b_ttbkg_jet2eta = jetP4[2].Eta(); b_ttbkg_jet2phi = jetP4[2].Phi(); b_ttbkg_jet2m = jetP4[2].M();
     b_ttbkg_jet2csv = jet_deepCSV[jetIdx[2]]; b_ttbkg_jet2cvsl = jet_CvsL[jetIdx[2]]; b_ttbkg_jet2cvsb = jet_CvsB[jetIdx[2]];
-    b_ttbkg_jet3pt = jetP4s[3].Pt(); b_ttbkg_jet3eta = jetP4s[3].Eta(); b_ttbkg_jet3phi = jetP4s[3].Phi(); b_ttbkg_jet3m = jetP4s[3].M();
+    b_ttbkg_jet3pt = jetP4[3].Pt(); b_ttbkg_jet3eta = jetP4[3].Eta(); b_ttbkg_jet3phi = jetP4[3].Phi(); b_ttbkg_jet3m = jetP4[3].M();
     b_ttbkg_jet3csv = jet_deepCSV[jetIdx[3]]; b_ttbkg_jet3cvsl = jet_CvsL[jetIdx[3]]; b_ttbkg_jet3cvsb = jet_CvsB[jetIdx[3]];
 
-    b_ttbkg_jet12pt = (jetP4s[1]+jetP4s[2]).Pt(); b_ttbkg_jet12m = (jetP4s[1]+jetP4s[2]).M();
-    b_ttbkg_jet12eta = (jetP4s[1]+jetP4s[2]).Eta(); b_ttbkg_jet12deta = (jetP4s[1]-jetP4s[2]).Eta();
-    b_ttbkg_jet12phi = (jetP4s[1]+jetP4s[2]).Phi(); b_ttbkg_jet12dphi = jetP4s[1].DeltaPhi(jetP4s[2]);
-    b_ttbkg_jet12dR = jetP4s[1].DeltaR(jetP4s[2]);
+    const auto lepT = lepW + jetP4cor[0];
+    const auto had12 = jetP4cor[1] + jetP4cor[2];//This is W or H
+    const auto had23 = jetP4cor[2] + jetP4cor[3];
+    const auto had31 = jetP4cor[3] + jetP4cor[1];
+    const auto hadT = jetP4cor[1] + jetP4cor[2] + jetP4cor[3];
 
-    b_ttbkg_jet23pt = (jetP4s[2]+jetP4s[3]).Pt(); b_ttbkg_jet23m = (jetP4s[2]+jetP4s[3]).M();
-    b_ttbkg_jet23eta = (jetP4s[2]+jetP4s[3]).Eta(); b_ttbkg_jet23deta = (jetP4s[2]-jetP4s[3]).Eta();
-    b_ttbkg_jet23phi = (jetP4s[2]+jetP4s[3]).Phi(); b_ttbkg_jet23dphi = jetP4s[2].DeltaPhi(jetP4s[3]);
-    b_ttbkg_jet23dR = jetP4s[2].DeltaR(jetP4s[3]);
+    b_ttbkg_jet12pt = had12.Pt(); b_ttbkg_jet12eta = had12.Eta(); b_ttbkg_jet12phi = had12.Phi(); b_ttbkg_jet12m = had12.M();
+    b_ttbkg_jet12deta = (jetP4cor[1]-jetP4cor[2]).Eta(); b_ttbkg_jet12dphi = jetP4cor[1].DeltaPhi(jetP4cor[2]);
+    b_ttbkg_jet12dR = jetP4cor[1].DeltaR(jetP4cor[2]);
 
-    b_ttbkg_jet31pt = (jetP4s[1]+jetP4s[3]).Pt(); b_ttbkg_jet31m = (jetP4s[1]+jetP4s[3]).M();
-    b_ttbkg_jet31eta = (jetP4s[1]+jetP4s[3]).Eta(); b_ttbkg_jet31deta = (jetP4s[1]-jetP4s[3]).Eta();
-    b_ttbkg_jet31phi = (jetP4s[1]+jetP4s[3]).Phi(); b_ttbkg_jet31dphi = jetP4s[1].DeltaPhi(jetP4s[3]);
-    b_ttbkg_jet31dR = jetP4s[3].DeltaR(jetP4s[1]);
+    b_ttbkg_jet23pt = had23.Pt(); b_ttbkg_jet23eta = had23.Eta(); b_ttbkg_jet23phi = had23.Phi(); b_ttbkg_jet23m = had23.M();
+    b_ttbkg_jet23deta = (jetP4cor[2]-jetP4cor[3]).Eta(); b_ttbkg_jet23dphi = jetP4cor[2].DeltaPhi(jetP4cor[3]);
+    b_ttbkg_jet23dR = jetP4cor[2].DeltaR(jetP4cor[3]);
 
-    b_ttbkg_lepTpt = (lepton+p4met+jetP4s[0]).Pt(); b_ttbkg_lepTm = (lepton+p4met+jetP4s[0]).M();
-    b_ttbkg_lepTeta = (lepton+p4met+jetP4s[0]).Eta(); b_ttbkg_lepTdeta = (lepton+p4met-jetP4s[0]).Eta();
-    b_ttbkg_lepTphi = (lepton+p4met+jetP4s[0]).Phi(); b_ttbkg_lepTdphi = (lepton+p4met).DeltaPhi(jetP4s[0]);
-    b_ttbkg_lepTdR = (lepton+p4met).DeltaR(jetP4s[0]);
+    b_ttbkg_jet31pt = had31.Pt(); b_ttbkg_jet31eta = had31.Eta(); b_ttbkg_jet31phi = had31.Phi(); b_ttbkg_jet31m = had31.M();
+    b_ttbkg_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta(); b_ttbkg_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
+    b_ttbkg_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
-    b_ttbkg_hadTpt = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Pt(); b_ttbkg_hadTm = (jetP4s[1]+jetP4s[2]+jetP4s[3]).M();
-    b_ttbkg_hadTeta = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_ttbkg_hadT12_3deta = (jetP4s[1]+jetP4s[2]-jetP4s[3]).Eta();
-    b_ttbkg_hadT23_1deta = (-jetP4s[1]+jetP4s[2]+jetP4s[3]).Eta(); b_ttbkg_hadT31_2deta = (jetP4s[1]-jetP4s[2]+jetP4s[3]).Eta();
-    b_ttbkg_hadTphi = (jetP4s[1]+jetP4s[2]+jetP4s[3]).Phi(); b_ttbkg_hadT12_3dphi = (jetP4s[1]+jetP4s[2]).DeltaPhi(jetP4s[3]);
-    b_ttbkg_hadT23_1dphi = (jetP4s[2]+jetP4s[3]).DeltaPhi(jetP4s[1]); b_ttbkg_hadT31_2dphi = (jetP4s[3]+jetP4s[1]).DeltaPhi(jetP4s[2]);
-    b_ttbkg_hadT12_3dR = (jetP4s[1]+jetP4s[2]).DeltaR(jetP4s[3]); b_ttbkg_hadT23_1dR = (jetP4s[2]+jetP4s[3]).DeltaR(jetP4s[1]);
-    b_ttbkg_hadT31_2dR = (jetP4s[3]+jetP4s[1]).DeltaR(jetP4s[2]);
+    b_ttbkg_lepTpt = lepT.Pt(); b_ttbkg_lepTeta = lepT.Eta(); b_ttbkg_lepTphi = lepT.Phi(); b_ttbkg_lepTm = lepT.M();
+    b_ttbkg_lepTdeta = (lepW-jetP4cor[0]).Eta(); b_ttbkg_lepTdphi = lepW.DeltaPhi(jetP4cor[0]); b_ttbkg_lepTdR = lepW.DeltaR(jetP4cor[0]);
+
+    b_ttbkg_hadTpt = hadT.Pt(); b_ttbkg_hadTeta = hadT.Eta(); b_ttbkg_hadTphi = hadT.Phi(); b_ttbkg_hadTm = hadT.M();
+    b_ttbkg_hadT12_3deta = (had12-jetP4cor[3]).Eta(); b_ttbkg_hadT23_1deta = (had23-jetP4cor[1]).Eta();
+    b_ttbkg_hadT31_2deta = (had31-jetP4cor[2]).Eta(); b_ttbkg_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]);
+    b_ttbkg_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]); b_ttbkg_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
+    b_ttbkg_hadT12_3dR = had12.DeltaR(jetP4cor[3]); b_ttbkg_hadT23_1dR = had23.DeltaR(jetP4cor[1]); b_ttbkg_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
+
+    b_ttbkg_jet0lepdR = jetP4cor[0].DeltaR(lepton); b_ttbkg_jet1lepdR = jetP4cor[1].DeltaR(lepton);
+    b_ttbkg_jet2lepdR = jetP4cor[2].DeltaR(lepton); b_ttbkg_jet3lepdR = jetP4cor[3].DeltaR(lepton);
+    b_ttbkg_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]); b_ttbkg_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]);
+    b_ttbkg_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]); b_ttbkg_jet12_lepdR = lepton.DeltaR(had12);
+    b_ttbkg_jet23_lepdR = lepton.DeltaR(had23); b_ttbkg_jet31_lepdR = lepton.DeltaR(had31);
+    b_ttbkg_jet12_0dR = jetP4cor[0].DeltaR(had12); b_ttbkg_jet23_0dR = jetP4cor[0].DeltaR(had23);
+    b_ttbkg_jet31_0dR = jetP4cor[0].DeltaR(had31); b_ttbkg_lepTjet12dphi = lepT.DeltaPhi(had12);
+    b_ttbkg_lepTjet23dphi = lepT.DeltaPhi(had23); b_ttbkg_lepTjet31dphi = lepT.DeltaPhi(had31);
+    b_ttbkg_hadT_jet0dR = hadT.DeltaR(jetP4cor[0]);
+
   }
 
   tree->Fill();

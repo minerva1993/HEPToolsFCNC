@@ -16,7 +16,7 @@ def input_variables(ch):
                 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                 'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',
                 'jet0lepdR', 'jet1lepdR', 'jet2lepdR', 'jet3lepdR', 'jet01dR', 'jet02dR', 'jet03dR', 
-                'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR', 'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR'
+                'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR', 'jet12_0dR', 'jet23_0dR', 'jet31_0dR'
                 'lepTjet12dphi', 'lepTjet23dphi', 'lepTjet31dphi', 'hadT_jet0dR',]
 
   elif ch == "TTBKG":
@@ -29,7 +29,7 @@ def input_variables(ch):
                 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                 'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',
                 'jet0lepdR', 'jet1lepdR', 'jet2lepdR', 'jet3lepdR', 'jet01dR', 'jet02dR', 'jet03dR',               
-                'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR', 'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR'
+                'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR', 'jet12_0dR', 'jet23_0dR', 'jet31_0dR'
                 'lepTjet12dphi', 'lepTjet23dphi', 'lepTjet31dphi', 'hadT_jet0dR',]
 
   else: var_list = []

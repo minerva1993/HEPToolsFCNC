@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize

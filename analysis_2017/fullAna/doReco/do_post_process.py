@@ -20,11 +20,9 @@ def write_envelope(syst, nhists, new_sumW):
     up = nominal.Clone()
     up.SetDirectory(ROOT.nullptr)
     up.Reset()
-    up.Sumw2()
     down = nominal.Clone()
     down.SetDirectory(ROOT.nullptr)
     down.Reset()
-    down.Sumw2()
 
     for i in range(0, n_bins+1):
       minimum = float("inf")
@@ -124,7 +122,7 @@ for files in file_list:
 
     if nScaleWeight > 0: write_envelope("scale", 6, ScaleWeights)
     if nPSWeight > 0: write_envelope("ps", 4, PSWeights)
-    #write_envelope("pdf", histos, 103, ScaleWeights)
+    #write_envelope("pdf", histos, 103, PDFWeights)
     if run_on_syst: rescale([], nom_EventInfo)
 
   f_new.Write()

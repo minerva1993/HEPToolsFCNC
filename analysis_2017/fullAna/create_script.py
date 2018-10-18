@@ -1,6 +1,6 @@
 import os, shutil, re
 
-version = 'V9_3/181009/'
+version = 'V9_3/181013/'
 path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 
 run_file_name = 'runNoReco.py'
@@ -42,6 +42,12 @@ fcnc_dataset = []
 string_for_merge += '#!/bin/sh\n'
 string_for_merge += 'mkdir pre_process\n'
 string_for_merge += 'rm pre_process/hist_*.root\n'
+
+for train_sets in ['STTH1L3B', 'TTTH1L3B', 'TTpowheg', 'TTLLpowheg']:
+  for syst_tmp in syst + syst2:
+    string_for_merge += 'rm temp/hist_' + train_sets + "*_000" + syst_tmp + ".root\n"
+    if 'powheg' in train_sets:
+      string_for_merge += 'rm temp/hist_' + train_sets + "*_001" + syst_tmp + ".root\n"
 
 for lines in noreco_list:
   if "v2" in lines.split(' ')[1]: ext_dataset.append(lines.split(' ')[1])

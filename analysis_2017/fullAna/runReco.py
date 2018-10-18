@@ -43,8 +43,8 @@ def runAna(file_path, name):
     hscale.Write()
     hps = f.Get("fcncLepJets/PSWeights")
     hps.Write()
-    hpdf = f.Get("fcncLepJets/PDFWeights")
-    hpdf.Write()
+    #hpdf = f.Get("fcncLepJets/PDFWeights")
+    #hpdf.Write()
     out.Write()
     out.Close()
 
