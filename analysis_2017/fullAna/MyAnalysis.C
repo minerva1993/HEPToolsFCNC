@@ -669,6 +669,8 @@ void MyAnalysis::Terminate()
     dosyst = false;
   }
 
+  if( option.Contains("Run2017") ) dosyst = false;
+
   const char* assign_file = "";
   if( doreco ){
     string reco_scheme = sample.substr(sample.find_first_of("-")+1,string::npos);

@@ -32,9 +32,9 @@ python dir_manage.py
 #Launch training
 cd ../training
 python training_kerasTF.py STFCNC 01
-#With classifier, run prediction.
+#With classifier, run prediction. In evlauation, you can assign sytematic from 0 to 6
 python select_model.py STFCNC 01
-python evaluation_kerasTF.py STFCNC 01 True model.h5
+python evaluation_kerasTF.py STFCNC 01 True 0 model.h5
 cat ../commonTools/file_top.txt | xargs -i -P1 -n2 python combi_assign.py True STFCNC 01 #for signal efficiency
 cat ../commonTools/file_top.txt | xargs -i -P$(nproc) -n2 python combi_assign.py False STFCNC 01
 cat ../commonTools/file_other.txt | xargs -i -P$(nproc) -n2 python combi_assign.py False STFCNC 01
@@ -55,9 +55,12 @@ cd /HEPToolsFCNC/finalMVA/mkNtuple
 python dir_manage.py
 source job_ntuple.sh
 cd ../training
-python training_kerasTF.py Hct 01 j4b2
+python training_kerasTF.py Hct 01 j4
 cd ..
-python evaluation_kerasTF.py Hct 01 j4b2 model_35_0.7971.h5
+python evaluation_kerasTF.py Hct 01 j4 model.h5
+cat ../commonTools/file_top.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j4_01
+cat ../commonTools/file_other.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j4_01
+cat ../commonTools/file_syst.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j4_01
 ```
 
 

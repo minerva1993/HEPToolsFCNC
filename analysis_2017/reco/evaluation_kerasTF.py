@@ -22,7 +22,8 @@ from training.variables import input_variables
 ch = sys.argv[1] #STFCNC, TTFCNC. TTBKG
 ver = sys.argv[2] #01
 signal_only = sys.argv[3] == "True"
-bestModel = sys.argv[4]
+syst_cat = sys.argv[4]
+bestModel = sys.argv[5]
 
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/'
 weightDir = 'training/reco'+ch
@@ -31,10 +32,17 @@ assignDir = 'assign'+ch
 
 input_files = []
 input_features = []
-syst = [""]
-if not signal_only: syst = syst + ["jecup", "jecdown", "jerup", "jerdown", "hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
-
 input_features.extend(input_variables(ch))
+
+if   int(syst_cat) < 2: syst = [""]
+elif int(syst_cat) == 2: syst = ["jecup"]
+elif int(syst_cat) == 3: syst = ["jecdown"]
+elif int(syst_cat) == 4: syst = ["jerup"]
+elif int(syst_cat) == 5: syst = ["jerdown"]
+elif int(syst_cat) == 6: syst = ["hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
+else: print("Wrong systematic category number: 0(TT), 1(other), 2,3(jec up/down), 4,5(jer up/down), 6(hdamp and tune)")
+
+if signal_only: syst = [""]
 
 for syst_ext in syst:
   if not os.path.exists(os.path.join(configDir, scoreDir + ver + syst_ext)):
@@ -47,6 +55,9 @@ for syst_ext in syst:
 
   for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext)):
     if filename == '.gitkeep': continue
+    if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg", "TTLL"]): continue
+    if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg", "TTLL"]): continue
+
     if os.path.exists(os.path.join(configDir, scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root'))):
       print('score_' + filename.replace('h5','root') + (' is already exist!').rjust(50-len(filename)))
       continue

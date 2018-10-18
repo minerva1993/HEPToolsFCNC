@@ -118,61 +118,16 @@ public :
                                                 "__ps0", "__ps1", "__ps2", "__ps3"};
     int syst_num = syst_name.size();
 
-    TH1D *h_PV[3][12][41];
-    TH1D *h_EventWeight[3][12][41];
-    TH1D *h_NJet[3][12][41];
-    TH1D *h_NBJetCSVv2M[3][12][41];
-    TH1D *h_NBJetCSVv2T[3][12][41];
-    TH1D *h_NCJetM[3][12][41];
-    TH1D *h_LepPt[3][12][41];
-    TH1D *h_LepPhi[3][12][41];
-    TH1D *h_LepEta[3][12][41];
-    TH1D *h_MET[3][12][41];
+    TH1D *h_MVA[3][41];
 
-    TH1D *h_WMass[3][12][41];
-    TH1D *h_LepIso[3][12][41];
-    TH1D *h_LepIsoQCD[3][12][41];
-    TH1D *h_DPhi[3][12][41];
-    TH1D *h_JetCSV[3][12][41];
-
-    //tagging variables
-    TH1D *h_csv[3][12][41];
-    TH1D *h_cvsl[3][12][41];
-    TH1D *h_cvsb[3][12][41];
-
-    //DR
-    TH1D *h_FCNHkinLepWMass[3][12][41];
-    TH1D *h_FCNHkinHadWMass[3][12][41];
-    TH1D *h_FCNHkinHMass[3][12][41];
-    TH1D *h_FCNHkinDR[3][12][41];
-    TH1D *h_FCNHkinLepTopM[3][12][41];
-    TH1D *h_FCNHkinHadTopM[3][12][41];
-    TH1D *h_FCNHkinHPt[3][12][41];
-    TH1D *h_FCNHkinHdPhi[3][12][41];
-    TH1D *h_FCNHkinHdEta[3][12][41];
-    TH1D *h_FCNHkinHb1Pt[3][12][41];
-    TH1D *h_FCNHkinHb2Pt[3][12][41];
-    TH1D *h_FCNHkinHb1CSV[3][12][41];
-    TH1D *h_FCNHkinHb2CSV[3][12][41];
-    TH1D *h_FCNHkinLepTopPt[3][12][41];
-    TH1D *h_FCNHkinHadTopPt[3][12][41];
-
-    TH1D *h_genDR[3][12][41];
-    TH1D *h_matchDR[3][12][41];
-    TH1D *h_genHm[3][12][41];
-    TH1D *h_matchHm[3][12][41];
-
-    ////RECO
-    TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");
-    TTree *assignT;// = (TTree*) assignF->Get("tree");
-    int reco_id = -1;//STFCNC==0, TTFCNC==1, TTBKG==2
+    TFile *scoreF;
+    TTree *scoreT;
 
     vector<double> lepPt;
     vector<double> missET;
 
     vector<int> dupCheck;
  
-    int lepcount = 0;
     int evtNum = 0;
 
     bool doreco;

@@ -29,11 +29,6 @@
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
 
-'h_FCNHkinHMass_Ch1_S6':
-  y-axis: "Events"
-  y-axis-format: "%1% / %2$.0f GeV"
-  save-extensions: ['pdf']
-
 'h_FCNHkinDR_Ch0_S6':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
@@ -66,6 +61,11 @@
 
 
 #Ch1
+'h_FCNHkinHMass_Ch1_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
 'h_FCNHkinHMass_Ch1_S7':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"

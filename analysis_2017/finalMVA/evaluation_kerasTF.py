@@ -19,37 +19,45 @@ import keras
 from keras.models import load_model
 from training.variables import input_variables
 
-#Version of classifier
 ch = sys.argv[1]
 ver = sys.argv[2]
 jetcat = sys.argv[3]
-bestModel = sys.argv[4]
+syst_cat = sys.argv[4]
+bestModel = sys.argv[5]
 
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
 weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
-scoreDir = 'score' + '_' + ch + '_' +jetcat + '_'
-assignDir = 'assign' + '_' + ch + '_' +jetcat + '_'
+scoreDir = 'scores/' + ch + '_' +jetcat + '_'
 
 input_files = []
 input_features = []
 input_features.extend(input_variables(jetcat))
-syst = ["", "jecup", "jecdown", "jerup", "jerdown", "hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
 
+if   int(syst_cat) < 2: syst = [""]
+elif int(syst_cat) == 2: syst = ["jecup"]
+elif int(syst_cat) == 3: syst = ["jecdown"]
+elif int(syst_cat) == 4: syst = ["jerup"]
+elif int(syst_cat) == 5: syst = ["jerdown"]
+elif int(syst_cat) == 6: syst = ["hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
+else: print("Wrong systematic category number: 0(TT), 1(other), 2,3(jec up/down), 4,5(jer up/down), 6(hdamp and tune)")
 
 
 for syst_ext in syst:
-  if not os.path.exists(os.path.join(configDir, scoreDir + ver + syst_ext)):
-    os.makedirs(os.path.join(configDir, scoreDir + ver + syst_ext))
-  if not os.path.exists(os.path.join(configDir, assignDir + ver + syst_ext)):
-    os.makedirs(os.path.join(configDir, assignDir + ver + syst_ext))
+  if  int(syst_cat) >=2 and not os.path.exists(os.path.join(configDir, scoreDir + ver + "-" + syst_ext)):
+    os.makedirs(os.path.join(configDir, scoreDir + ver + "-" + syst_ext))
+  elif int(syst_cat) < 2  and not os.path.exists(os.path.join(configDir, scoreDir + ver)):
+    os.makedirs(os.path.join(configDir, scoreDir + ver))
 
   model_best = load_model(os.path.join(configDir, weightDir+ver, bestModel))
   print('Start evaluation on version '+ ch + ver + syst_ext + ' classifier with the model '+ bestModel)
 
   for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + syst_ext)):
     if filename == '.gitkeep': continue
+    if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg", "TTLL"]): continue
+    if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg", "TTLL"]): continue
+
     if os.path.exists(os.path.join(configDir, scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root'))):
-      print('score_' + filename.replace('h5','root') + (' is already exist!').rjust(50-len(filename)))
+      print(scoreDir + ver + "/"  + filename.replace('h5','root') + (' is already exist!').rjust(50-len(filename)))
       continue
 
     eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + syst_ext, filename))
