@@ -17,6 +17,9 @@ string_for_bkg_processing = ''
 input_list_syst_file_name = 'file_syst.txt'
 string_for_syst_processing = ''
 
+input_list_all_file_name = 'file_all.txt'
+string_for_all_processing = ''
+
 #This part is for making script file for ntuple merging
 string_for_merge += '#!/bin/sh\n'
 string_for_merge += 'for i in ' + path_to_prod + '*; do hadd $i.root $i/*.root; done\n'
@@ -60,6 +63,12 @@ with open(input_list_bkg_file_name, 'w') as f:
 
 with open(input_list_syst_file_name, 'w') as f:
   f.write(string_for_syst_processing)
+
+with open(input_list_all_file_name, 'w') as f:
+  string_for_all_processing += string_for_signal_processing
+  string_for_all_processing += string_for_bkg_processing
+  string_for_all_processing += string_for_syst_processing
+  f.write(string_for_all_processing)
 
 
 print("{0}, {1} and {2}  written.".format(input_list_signal_file_name, input_list_bkg_file_name, input_list_syst_file_name))

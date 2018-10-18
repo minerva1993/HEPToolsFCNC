@@ -1,0 +1,17 @@
+'h_DNN_Ch0':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+  for-yields: true
+
+'h_DNN_Ch1':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+  for-yields: true
+
+'h_DNN_Ch2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+  for-yields: true

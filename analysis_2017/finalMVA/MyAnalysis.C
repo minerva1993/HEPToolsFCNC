@@ -412,7 +412,8 @@ void MyAnalysis::Terminate()
     if( it != dupCheck.end() ) cout << string(option.Data()) + string(": Duplicate(s)") << endl;
   }
   else cout << "file " + file_tmp_path + " not opened!" << endl;
-  out = TFile::Open(Form("./histos/%s/hist_%s%s.root", train_scheme.c_str(), sample.c_str(), syst_ext.c_str()),"RECREATE");
+  //out = TFile::Open(Form("./histos/%s/hist_%s%s.root", train_scheme.c_str(), sample.c_str(), syst_ext.c_str()),"RECREATE");
+  out = TFile::Open(Form("./histos/temp/hist_%s%s.root", sample.c_str(), syst_ext.c_str()),"RECREATE");
 
   TList * l = GetOutputList();
   TIter next(l);

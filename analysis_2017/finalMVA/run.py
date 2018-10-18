@@ -9,10 +9,13 @@ name = sys.argv[3]
 syst = ["","jecup","jecdown","jerup","jerdown",]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
-if not os.path.exists("./histos/" + train_scheme):
-  os.makedirs("./histos/" + train_scheme)
-test = os.listdir("./histos/" + train_scheme)
+#if not os.path.exists("./histos/" + train_scheme):
+#  os.makedirs("./histos/" + train_scheme)
+#test = os.listdir("./histos/" + train_scheme)
 
+if not os.path.exists("./histos/temp"):
+  os.makedirs("./histos/temp")
+test = os.listdir("./histos/temp")
 dupl = False
 for item in test:
   if item.endswith(name + ".root"):
@@ -39,7 +42,8 @@ def runAna(file_path, name):
     else:              postfix = "__"
 
     f = TFile.Open(file_path, "READ")
-    out = TFile("histos/" + train_scheme + "/hist_" + name.replace("-" + train_scheme,"") + postfix + syst_ext + ".root","update")
+    #out = TFile("histos/" + train_scheme + "/hist_" + name.replace("-" + train_scheme,"") + postfix + syst_ext + ".root","update")
+    out = TFile("histos/temp/hist_" + name.replace("-" + train_scheme,"") + postfix + syst_ext + ".root","update")
     hevt = f.Get("fcncLepJets/EventInfo")
     hevt.Write()
     hscale = f.Get("fcncLepJets/ScaleWeights")
