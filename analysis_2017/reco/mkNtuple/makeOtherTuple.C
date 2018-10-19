@@ -332,7 +332,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
   else if( option.Contains("ttbj") ) b_EventCategory = 2;
   else if( option.Contains("ttcc") ) b_EventCategory = 3;
-  else if( option.Contains("ttLF") ) b_EventCategory = 4;
+  else if( option.Contains("ttlf") ) b_EventCategory = 4;
   else if( option.Contains("ttother") ) b_EventCategory = 5;
   else if( option.Contains("SingleT") ) b_EventCategory = 6; //singletop
   else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 7; //VV

@@ -187,12 +187,12 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
         h_FCNHkinDR[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinDR[ich][i][syst]);
 
-        h_FCNHkinLepTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinLepTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Mass (Lep)", 30 , 0, 400);
+        h_FCNHkinLepTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinLepTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Mass (Lep)", 30 , 50, 450);
         h_FCNHkinLepTopM[ich][i][syst]->SetXTitle("Top Mass (Lep) (GeV)");
         h_FCNHkinLepTopM[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinLepTopM[ich][i][syst]);
 
-        h_FCNHkinHadTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinHadTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Mass from Hc/u", 30, 0, 400);
+        h_FCNHkinHadTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinHadTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Mass from Hc/u", 30, 50, 450);
         h_FCNHkinHadTopM[ich][i][syst]->SetXTitle("Top Mass (Had) (GeV)");
         h_FCNHkinHadTopM[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinHadTopM[ich][i][syst]);

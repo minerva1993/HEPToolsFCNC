@@ -56,8 +56,8 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   //else cout << "STFCNC: " << stfcnc_file << endl;
 
   //Load TT fcnc assign files
-  ttfcnc_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignTTFCNC%s/assign_deepReco_%s.root",
-                    ver.c_str(),sample.c_str());
+  ttfcnc_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignTTFCNC%s%s/assign_deepReco_%s.root",
+                    ver.c_str(),syst_str.c_str(),sample.c_str());
   string ttfcnc_file_tmp_path = ttfcnc_file;
   ifstream ttfcnc_file_tmp(ttfcnc_file_tmp_path);
 
@@ -78,8 +78,8 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   //else cout << "TTFCNC: " << ttfcnc_file << endl;
 
   //Load ttbkg assign files
-  ttbkg_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignTTBKG%s/assign_deepReco_%s.root",
-                    ver.c_str(),sample.c_str());
+  ttbkg_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignTTBKG%s%s/assign_deepReco_%s.root",
+                    ver.c_str(),syst_str.c_str(),sample.c_str());
   string ttbkg_file_tmp_path = ttbkg_file;
   ifstream ttbkg_file_tmp(ttbkg_file_tmp_path);
 
@@ -588,7 +588,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
   else if( option.Contains("ttbj") ) b_EventCategory = 2;
   else if( option.Contains("ttcc") ) b_EventCategory = 3;
-  else if( option.Contains("ttLF") ) b_EventCategory = 4;
+  else if( option.Contains("ttlf") ) b_EventCategory = 4;
   else if( option.Contains("ttother") ) b_EventCategory = 5;
   else if( option.Contains("SingleT") ) b_EventCategory = 6; //singletop
   else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 7; //VV
@@ -597,8 +597,9 @@ Bool_t makeTuple::Process(Long64_t entry)
   else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 10;
   else b_EventCategory = 20;
 
+  b_EventWeight = 1.0;
   if( !option.Contains("Run2017") ){
-    if( passmuon ) b_EventWeight *= lepton_SF[0] * lepton_SF[3];// * lepton_SF[6]
+    if( passmuon ) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6];
     else if( passelectron) b_EventWeight *= lepton_SF[0] * lepton_SF[3] *  lepton_SF[6];
     b_EventWeight *= PUWeight[0] * wrongPVrate * jet_SF_deepCSV_30[0] * (*genweight);
   }

@@ -1,0 +1,229 @@
+#Ch0
+'h_FCNHkinHMass_Ch0_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch0_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch0_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch0_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch0_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch0_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch0_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch0_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch0_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch0_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch0_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch0_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch0_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch0_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch0_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+
+#Ch1
+'h_FCNHkinHMass_Ch1_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch1_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch1_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch1_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch1_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch1_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch1_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch1_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch1_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch1_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch1_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch1_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch1_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch1_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch1_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+#Ch2
+'h_FCNHkinHMass_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHMass_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinLepTopM_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHadTopM_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinDR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+
+'h_FCNHkinHb2CSV_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  save-extensions: ['pdf']
+

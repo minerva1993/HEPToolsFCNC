@@ -53,15 +53,9 @@ source job_ntuple.sh
 cd ../training
 python training_kerasTF.py Hct 01 j4
 cd ..
-python evaluation_kerasTF.py Hct 01 j4 model.h5
+python evaluation_kerasTF.py Hct 01 j4 0 model.h5
 cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j4_01
 ```
 
-
-
-  *Todo list
-1. Rearrange BDT codes for reco
-2. Final MVA
-3. Systematic-ready
 
   *All rights for plotIt: https://github.com/cp3-llbb/plotIt/
