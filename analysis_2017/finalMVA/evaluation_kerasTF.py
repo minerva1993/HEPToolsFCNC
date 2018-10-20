@@ -22,8 +22,8 @@ from training.variables import input_variables
 ch = sys.argv[1]
 ver = sys.argv[2]
 jetcat = sys.argv[3]
-syst_cat = sys.argv[4]
-bestModel = sys.argv[5]
+bestModel = sys.argv[4]
+syst_cat = sys.argv[5]
 
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
 weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
@@ -63,7 +63,9 @@ for syst_ext in syst:
     eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + syst_ext, filename))
     print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
 
-    outfile = TFile.Open(os.path.join(scoreDir + ver + '-' + syst_ext, 'score_' + filename.replace('h5','root')),'RECREATE')
+    tmp_path = scoreDir + ver + '-' + syst_ext
+    if syst_ext == "": tmp_path = tmp_path.replace("-","")
+    outfile = TFile.Open(os.path.join(tmp_path, 'score_' + filename.replace('h5','root')),'RECREATE')
     outtree = TTree("tree","tree")
 
     spectator = eval_df.filter(['nevt', 'njets', 'nbjets_m', 'file', 'EventCategory', 'lepton_pt', 'MET',], axis=1)

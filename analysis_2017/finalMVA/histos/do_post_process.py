@@ -91,9 +91,10 @@ for files in file_list:
   EventInfo = f.Get("EventInfo")
   ScaleWeights = f.Get("ScaleWeights")
   PSWeights = f.Get("PSWeights")
-#  PDFWeights = f.Get("PDFWeights")
+  PDFWeights = f.Get("PDFWeights")
   nScaleWeight = ScaleWeights.Integral()
   nPSWeight = PSWeights.Integral()
+  nPDFWeight = PDFWeights.Integral()
 
   #Prepare nominal file for rescaling
   syst_name = ""
@@ -114,6 +115,7 @@ for files in file_list:
     if "__" not in histos: nominal_list.append(histos)
     if "scale" in histos: continue
     if "ps" in histos: continue
+    if "pdf" in histos: continue
     h = f.Get(histos)
     h.Write()
 
@@ -122,7 +124,7 @@ for files in file_list:
 
     if nScaleWeight > 0: write_envelope("scale", 6, ScaleWeights)
     if nPSWeight > 0: write_envelope("ps", 4, PSWeights)
-    #write_envelope("pdf", histos, 103, PDFWeights)
+    if nPDFWeight > 0: write_envelope("pdf", 103, PDFWeights)
     if run_on_syst: rescale([], nom_EventInfo)
 
   f_new.Write()

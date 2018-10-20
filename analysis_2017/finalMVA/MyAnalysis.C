@@ -101,61 +101,61 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   float wrongPVrate = 1;
   if( !option.Contains("Run2017") ){
     //181013, 10-75
-    if      ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04879;
-    else if ( option.Contains("DYJetsv2") ) wrongPVrate = 1.04287;
-    else if ( option.Contains("DYJets_") or option.Contains("DYJetspart2") ) wrongPVrate = 1.04287;
-    else if ( option.Contains("STTH1L3BHct") ) wrongPVrate = 1.04399;
-    else if ( option.Contains("STTH1L3BHut") ) wrongPVrate = 1.0311;
-    else if ( option.Contains("SingleTbart") ) wrongPVrate = 1.04165;
-    else if ( option.Contains("SingleTbartW") ) wrongPVrate = 1.04271;
-    else if ( option.Contains("SingleTops") ) wrongPVrate = 1.03979;
-    else if ( option.Contains("SingleTopt") ) wrongPVrate = 1.04027;
-    else if ( option.Contains("SingleToptW") ) wrongPVrate = 1.04483;
-    else if ( option.Contains("TTHadpowheg") ) wrongPVrate = 1.02945;
-    else if ( option.Contains("TTHadpowhegTuneCP5down") ) wrongPVrate = 1.02704;
-    else if ( option.Contains("TTHadpowhegTuneCP5up") ) wrongPVrate = 1.0248;
-    else if ( option.Contains("TTHadpowheghdampup") ) wrongPVrate = 1.02732;
-    else if ( option.Contains("TTLLpowheg") ) wrongPVrate = 1.04709;
-    else if ( option.Contains("TTLLpowhegTuneCP5down") ) wrongPVrate = 1.04085;
-    else if ( option.Contains("TTLLpowheghdampdown") ) wrongPVrate = 1.05645;
-    else if ( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.0349;
-    else if ( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04085;
-    else if ( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02418;
-    else if ( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04257;
-    else if ( option.Contains("TTZToQQ") ) wrongPVrate = 1.04888;
-    else if ( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.0486;
-    else if ( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.04757;
-    else if ( option.Contains("TTpowhegttbbTuneCP5up") ) wrongPVrate = 1.03875;
-    else if ( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04653;
-    else if ( option.Contains("TTpowhegttbbhdampup") ) wrongPVrate = 1.04047;
-    else if ( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.04818;
-    else if ( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04639;
-    else if ( option.Contains("TTpowhegttbjTuneCP5up") ) wrongPVrate = 1.03904;
-    else if ( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.0466;
-    else if ( option.Contains("TTpowhegttbjhdampup") ) wrongPVrate = 1.03973;
-    else if ( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04758;
-    else if ( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04788;
-    else if ( option.Contains("TTpowhegttccTuneCP5up") ) wrongPVrate = 1.03774;
-    else if ( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04723;
-    else if ( option.Contains("TTpowhegttcchdampup") ) wrongPVrate = 1.03993;
-    else if ( option.Contains("TTpowhegttlf") ) wrongPVrate = 1.04759;
-    else if ( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.04765;
-    else if ( option.Contains("TTpowhegttlfTuneCP5up") ) wrongPVrate = 1.03818;
-    else if ( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04787;
-    else if ( option.Contains("TTpowhegttlfhdampup") ) wrongPVrate = 1.03931;
-    else if ( option.Contains("TTpowhegttother") ) wrongPVrate = 1.04785;
-    else if ( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04796;
-    else if ( option.Contains("TTpowhegttotherTuneCP5up") ) wrongPVrate = 1.03817;
-    else if ( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04797;
-    else if ( option.Contains("TTpowhegttotherhdampup") ) wrongPVrate = 1.03942;
-    else if ( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.0416;
-    else if ( option.Contains("W4JetsToLNu") ) wrongPVrate = 1.04368;
-    else if ( option.Contains("WW") ) wrongPVrate = 1.04711;
-    else if ( option.Contains("WZ") ) wrongPVrate = 1.04261;
-    else if ( option.Contains("ZZ") ) wrongPVrate = 1.02918;
-    else if ( option.Contains("ttHToNonbb") ) wrongPVrate = 1.03169;
-    else if ( option.Contains("ttHTobb") ) wrongPVrate = 1.0374;
-    else    wrongPVrate = 1.0;
+    if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04879;
+    else if( option.Contains("DYJetsv2") ) wrongPVrate = 1.04287;
+    else if( option.Contains("DYJets_") or option.Contains("DYJetspart2") ) wrongPVrate = 1.04287;
+    else if( option.Contains("STTH1L3BHct") ) wrongPVrate = 1.04399;
+    else if( option.Contains("STTH1L3BHut") ) wrongPVrate = 1.0311;
+    else if( option.Contains("SingleTbart") ) wrongPVrate = 1.04165;
+    else if( option.Contains("SingleTbartW") ) wrongPVrate = 1.04271;
+    else if( option.Contains("SingleTops") ) wrongPVrate = 1.03979;
+    else if( option.Contains("SingleTopt") ) wrongPVrate = 1.04027;
+    else if( option.Contains("SingleToptW") ) wrongPVrate = 1.04483;
+    else if( option.Contains("TTHadpowheg") ) wrongPVrate = 1.02945;
+    else if( option.Contains("TTHadpowhegTuneCP5down") ) wrongPVrate = 1.02704;
+    else if( option.Contains("TTHadpowhegTuneCP5up") ) wrongPVrate = 1.0248;
+    else if( option.Contains("TTHadpowheghdampup") ) wrongPVrate = 1.02732;
+    else if( option.Contains("TTLLpowheg") ) wrongPVrate = 1.04709;
+    else if( option.Contains("TTLLpowhegTuneCP5down") ) wrongPVrate = 1.04085;
+    else if( option.Contains("TTLLpowheghdampdown") ) wrongPVrate = 1.05645;
+    else if( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.0349;
+    else if( option.Contains("TTWJetsToLNuPSweight") ) wrongPVrate = 1.04085;
+    else if( option.Contains("TTWJetsToQQ") ) wrongPVrate = 1.02418;
+    else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04257;
+    else if( option.Contains("TTZToQQ") ) wrongPVrate = 1.04888;
+    else if( option.Contains("TTpowhegttbb") ) wrongPVrate = 1.0486;
+    else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.04757;
+    else if( option.Contains("TTpowhegttbbTuneCP5up") ) wrongPVrate = 1.03875;
+    else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04653;
+    else if( option.Contains("TTpowhegttbbhdampup") ) wrongPVrate = 1.04047;
+    else if( option.Contains("TTpowhegttbj") ) wrongPVrate = 1.04818;
+    else if( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04639;
+    else if( option.Contains("TTpowhegttbjTuneCP5up") ) wrongPVrate = 1.03904;
+    else if( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.0466;
+    else if( option.Contains("TTpowhegttbjhdampup") ) wrongPVrate = 1.03973;
+    else if( option.Contains("TTpowhegttcc") ) wrongPVrate = 1.04758;
+    else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04788;
+    else if( option.Contains("TTpowhegttccTuneCP5up") ) wrongPVrate = 1.03774;
+    else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04723;
+    else if( option.Contains("TTpowhegttcchdampup") ) wrongPVrate = 1.03993;
+    else if( option.Contains("TTpowhegttlf") ) wrongPVrate = 1.04759;
+    else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.04765;
+    else if( option.Contains("TTpowhegttlfTuneCP5up") ) wrongPVrate = 1.03818;
+    else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04787;
+    else if( option.Contains("TTpowhegttlfhdampup") ) wrongPVrate = 1.03931;
+    else if( option.Contains("TTpowhegttother") ) wrongPVrate = 1.04785;
+    else if( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04796;
+    else if( option.Contains("TTpowhegttotherTuneCP5up") ) wrongPVrate = 1.03817;
+    else if( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04797;
+    else if( option.Contains("TTpowhegttotherhdampup") ) wrongPVrate = 1.03942;
+    else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.0416;
+    else if( option.Contains("W4JetsToLNu") ) wrongPVrate = 1.04368;
+    else if( option.Contains("WW") ) wrongPVrate = 1.04711;
+    else if( option.Contains("WZ") ) wrongPVrate = 1.04261;
+    else if( option.Contains("ZZ") ) wrongPVrate = 1.02918;
+    else if( option.Contains("ttHToNonbb") ) wrongPVrate = 1.03169;
+    else if( option.Contains("ttHTobb") ) wrongPVrate = 1.0374;
+    else   wrongPVrate = 1.0;
   }
   if( wrongPVrate > 1.01 ){
     if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
@@ -273,89 +273,99 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         EventWeight *= wrongPVrate;
         EventWeight *= *genweight;
         //PUWight
-        if      ( isPartOf("puup", std::string(syst_name[syst])) )   EventWeight *= PUWeight[1];
-        else if ( isPartOf("pudown", std::string(syst_name[syst])) ) EventWeight *= PUWeight[2];
-        else    EventWeight *= PUWeight[0];
+        if     ( isPartOf("puup", std::string(syst_name[syst])) )   EventWeight *= PUWeight[1];
+        else if( isPartOf("pudown", std::string(syst_name[syst])) ) EventWeight *= PUWeight[2];
+        else   EventWeight *= PUWeight[0];
         //leptonSF
         if( passmuon ){
           //mu ID: 0, mu Iso: 1, mu Trg: 2
-          if      ( isPartOf("__muidup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[1];
-          else if ( isPartOf("__muiddown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[2];
-          else    EventWeight *= lepton_SF[0];
-          if      ( isPartOf("__muisoup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[4];
-          else if ( isPartOf("__muisodown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[5];
-          else    EventWeight *= lepton_SF[3];
-          if      ( isPartOf("__mutrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
-          else if ( isPartOf("__mutrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
-          else    EventWeight *= lepton_SF[6];
-          if      ( isPartOf("__elidup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
-          else if ( isPartOf("__eliddown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
-          else    EventWeight *= 1.0;
-          if      ( isPartOf("__elrecoup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
-          else if ( isPartOf("__elrecodown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
-          else    EventWeight *= 1.0;
-          if      ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
-          else if ( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
-          else    EventWeight *= 1.0;
+          if     ( isPartOf("__muidup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[1];
+          else if( isPartOf("__muiddown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[2];
+          else   EventWeight *= lepton_SF[0];
+          if     ( isPartOf("__muisoup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[4];
+          else if( isPartOf("__muisodown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[5];
+          else   EventWeight *= lepton_SF[3];
+          if     ( isPartOf("__mutrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
+          else if( isPartOf("__mutrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
+          else   EventWeight *= lepton_SF[6];
+          if     ( isPartOf("__elidup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
+          else if( isPartOf("__eliddown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
+          else   EventWeight *= 1.0;
+          if     ( isPartOf("__elrecoup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
+          else if( isPartOf("__elrecodown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
+          else   EventWeight *= 1.0;
+          if     ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
+          else if( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
+          else   EventWeight *= 1.0;
         }
         else if( passelectron ){
           //elec ID: 0, elec Reco: 1, elec Zvtx: 2
-          if      ( isPartOf("__muidup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
-          else if ( isPartOf("__muiddown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
-          else    EventWeight *= 1.0;
-          if      ( isPartOf("__muisoup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
-          else if ( isPartOf("__muisodown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
-          else    EventWeight *= 1.0;
-          if      ( isPartOf("__mutrgup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
-          else if ( isPartOf("__mutrgdown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
-          else    EventWeight *= 1.0;
-          if      ( isPartOf("__elidup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[1];
-          else if ( isPartOf("__eliddown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[2];
-          else    EventWeight *= lepton_SF[0];
-          if      ( isPartOf("__elrecoup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[4];
-          else if ( isPartOf("__elrecodown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[5];
-          else    EventWeight *= lepton_SF[3];
-          if      ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
-          else if ( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
-          else    EventWeight *= lepton_SF[6];
+          if     ( isPartOf("__muidup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
+          else if( isPartOf("__muiddown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
+          else   EventWeight *= 1.0;
+          if     ( isPartOf("__muisoup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
+          else if( isPartOf("__muisodown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
+          else   EventWeight *= 1.0;
+          if     ( isPartOf("__mutrgup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
+          else if( isPartOf("__mutrgdown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
+          else   EventWeight *= 1.0;
+          if     ( isPartOf("__elidup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[1];
+          else if( isPartOf("__eliddown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[2];
+          else   EventWeight *= lepton_SF[0];
+          if     ( isPartOf("__elrecoup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[4];
+          else if( isPartOf("__elrecodown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[5];
+          else   EventWeight *= lepton_SF[3];
+          if     ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
+          else if( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
+          else   EventWeight *= lepton_SF[6];
         }
         //ME&PS
         //[0] = muF up , [1] = muF down, [2] = muR up, [3] = muR up && muF up, [4] = muR down, [5] = muF down && muF down
         if( option.Contains("TTpowheg") or option.Contains("TTLL") or option.Contains("TTHad") ){
           //Scale weight
-          if      ( isPartOf("scale0", std::string(syst_name[syst])) ) EventWeight *= scaleweight[0];
-          else if ( isPartOf("scale1", std::string(syst_name[syst])) ) EventWeight *= scaleweight[1];
-          else if ( isPartOf("scale2", std::string(syst_name[syst])) ) EventWeight *= scaleweight[2];
-          else if ( isPartOf("scale3", std::string(syst_name[syst])) ) EventWeight *= scaleweight[3];
-          else if ( isPartOf("scale4", std::string(syst_name[syst])) ) EventWeight *= scaleweight[4];
-          else if ( isPartOf("scale5", std::string(syst_name[syst])) ) EventWeight *= scaleweight[5];
-          else    EventWeight *= 1;
+          if     ( isPartOf("scale0", std::string(syst_name[syst])) ) EventWeight *= scaleweight[0];
+          else if( isPartOf("scale1", std::string(syst_name[syst])) ) EventWeight *= scaleweight[1];
+          else if( isPartOf("scale2", std::string(syst_name[syst])) ) EventWeight *= scaleweight[2];
+          else if( isPartOf("scale3", std::string(syst_name[syst])) ) EventWeight *= scaleweight[3];
+          else if( isPartOf("scale4", std::string(syst_name[syst])) ) EventWeight *= scaleweight[4];
+          else if( isPartOf("scale5", std::string(syst_name[syst])) ) EventWeight *= scaleweight[5];
+          else   EventWeight *= 1;
           //PS weight
-          if      ( isPartOf("ps0", std::string(syst_name[syst])) ) EventWeight *= psweight[0];//isr down
-          else if ( isPartOf("ps1", std::string(syst_name[syst])) ) EventWeight *= psweight[1];//fsr down
-          else if ( isPartOf("ps2", std::string(syst_name[syst])) ) EventWeight *= psweight[2];//isr up
-          else if ( isPartOf("ps3", std::string(syst_name[syst])) ) EventWeight *= psweight[3];//fsr up
-          else    EventWeight *= 1;
+          if     ( isPartOf("ps0", std::string(syst_name[syst])) ) EventWeight *= psweight[0];//isr down
+          else if( isPartOf("ps1", std::string(syst_name[syst])) ) EventWeight *= psweight[1];//fsr down
+          else if( isPartOf("ps2", std::string(syst_name[syst])) ) EventWeight *= psweight[2];//isr up
+          else if( isPartOf("ps3", std::string(syst_name[syst])) ) EventWeight *= psweight[3];//fsr up
+          else   EventWeight *= 1;
+          //PDF uncdertainty
+          if( isPartOf("pdf", std::string(syst_name[syst])) ){
+            string tmp_name = string(syst_name[syst]);
+            int pdf_unc_idx = std::stoi(tmp_name.erase(0,5));
+            if( pdf_unc_idx > 103 or pdf_unc_idx < 0 ){
+              cout << "Wrong pdf unc index!" << endl;
+              continue;
+            }
+            EventWeight *= pdfweight[pdf_unc_idx];
+          }
         }
         else EventWeight *= 1;
         //Deep CSV shape 
-        if      ( isPartOf("lfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[3];
-        else if ( isPartOf("lfdown",      std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[4];
-        else if ( isPartOf("hfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[5];
-        else if ( isPartOf("hfdown",      std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[6];
-        else if ( isPartOf("hfstat1up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[7];
-        else if ( isPartOf("hfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[8];
-        else if ( isPartOf("hfstat2up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[9];
-        else if ( isPartOf("hfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[10];
-        else if ( isPartOf("lfstat1up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[11];
-        else if ( isPartOf("lfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[12];
-        else if ( isPartOf("lfstat2up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[13];
-        else if ( isPartOf("lfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[14];
-        else if ( isPartOf("cferr1up",    std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[15];
-        else if ( isPartOf("cferr1down",  std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[16];
-        else if ( isPartOf("cferr2up",    std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[17];
-        else if ( isPartOf("cferr2down",  std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[18];
-        else                                                              EventWeight *= jet_SF_deepCSV_30[0];
+        if     ( isPartOf("lfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[3];
+        else if( isPartOf("lfdown",      std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[4];
+        else if( isPartOf("hfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[5];
+        else if( isPartOf("hfdown",      std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[6];
+        else if( isPartOf("hfstat1up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[7];
+        else if( isPartOf("hfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[8];
+        else if( isPartOf("hfstat2up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[9];
+        else if( isPartOf("hfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[10];
+        else if( isPartOf("lfstat1up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[11];
+        else if( isPartOf("lfstat1down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[12];
+        else if( isPartOf("lfstat2up",   std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[13];
+        else if( isPartOf("lfstat2down", std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[14];
+        else if( isPartOf("cferr1up",    std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[15];
+        else if( isPartOf("cferr1down",  std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[16];
+        else if( isPartOf("cferr2up",    std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[17];
+        else if( isPartOf("cferr2down",  std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[18];
+        else                                                             EventWeight *= jet_SF_deepCSV_30[0];
       }
 
       h_MVA[MODE][syst]->Fill(tmp_score,EventWeight);

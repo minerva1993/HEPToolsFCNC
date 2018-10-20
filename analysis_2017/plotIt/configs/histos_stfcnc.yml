@@ -22,7 +22,6 @@
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
-  for-yields: true
 
 'h_LepEta_Ch0_S4':
   y-axis: "Events"
@@ -51,7 +50,6 @@
   save-extensions: ['pdf']
 
 'h_NJet_Ch1_S4':
-  #for-yields: true
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   log-y: true
@@ -69,7 +67,6 @@
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
-  for-yields: true
 
 'h_LepEta_Ch1_S4':
   y-axis: "Events"
@@ -115,7 +112,6 @@
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
-  for-yields: true
 
 'h_LepEta_Ch2_S4':
   y-axis: "Events"
@@ -140,7 +136,6 @@
 
 #S9
 'h_NJet_Ch2_S9':
-  #for-yields: true
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   log-y: true
@@ -162,31 +157,26 @@
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
-  for-yields: true
 
 'h_LepPt_Ch2_S3':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
-  for-yields: true
 
 'h_LepPt_Ch2_S6':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
-  for-yields: true
 
 'h_LepPt_Ch2_S7':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
-  for-yields: true
 
 'h_LepPt_Ch2_S8':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
-  for-yields: true
 
 #RECO
 #Ch0
@@ -491,3 +481,60 @@
   y-axis: "Events"
   y-axis-format: "%1% / %2$.0f GeV"
   save-extensions: ['pdf']
+
+#For Yield
+'h_NBJetCSVv2T_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  #sort-by-yields: true
+  yields-title: "j3b2"
+  for-yields: true
+  yields-table-order: 1
+  signal-normalize-data: false
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2T_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  #sort-by-yields: true
+  yields-title: "j3b3"
+  for-yields: true
+  yields-table-order: 2
+  signal-normalize-data: false
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2T_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  #sort-by-yields: true
+  yields-title: "j4b2"
+  for-yields: true
+  yields-table-order: 3
+  signal-normalize-data: false
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2T_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  #sort-by-yields: true
+  yields-title: "j4b3"
+  for-yields: true
+  yields-table-order: 4
+  signal-normalize-data: false
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2T_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.0f GeV"
+  log-y: true
+  #sort-by-yields: true
+  yields-title: "j4b4"
+  for-yields: true
+  yields-table-order: 5
+  signal-normalize-data: false
+  save-extensions: ['pdf']
+

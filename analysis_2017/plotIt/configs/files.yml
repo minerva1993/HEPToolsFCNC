@@ -1,3 +1,35 @@
+#'hist_STTH1L3BHct.root':
+#  type: signal
+#  pretty-name: 'STTH1L3BHct'
+#  cross-section: 0.076
+#  generated-events: 3339344 #3939304
+#  line-color: '#006666'
+#  legend: 'STHct'
+#
+#'hist_TTTH1L3BHct.root':
+#  type: signal
+#  pretty-name: 'TTTH1L3BaTLepHct'
+#  cross-section: 1.86
+#  generated-events: 1432673 #1726470
+#  line-color: '#0000cc'
+#  legend: 'TTHct'
+
+'hist_STTH1L3BHut.root':
+  type: signal
+  pretty-name: 'STTH1L3BHut'
+  cross-section: 0.55
+  generated-events: 3394376 #3951842
+  line-color: '#666600'
+  legend: 'STHut'
+
+'hist_TTTH1L3BHut.root':
+  type: signal
+  pretty-name: 'TTTH1L3BaTLepHut'
+  cross-section: 1.86
+  generated-events: 1605475 #1935178
+  line-color: '#cccc00'
+  legend: 'TTHut'
+
 'hist_SingleMuonRun2017.root':
   type: data
   legend: 'Data'
@@ -64,6 +96,7 @@
   fill-color: '#ff6666'
   legend: 'ttBkg'
   group: GttBkg
+  #legend: 'ttHad'
   order: 5
 
 'hist_TTLLpowheg.root':
@@ -74,6 +107,7 @@
   fill-color: '#ff6666'
   legend: 'ttBkg'
   group: GttBkg
+  #legend: 'ttLL'
   order: 6
 
 'hist_ttHTobb.root':
@@ -275,35 +309,3 @@
   legend: 'VV'
   group: GVV
   order: 20
-
-'hist_STTH1L3BHct.root':
-  type: signal
-  pretty-name: 'STTH1L3BHct'
-  cross-section: 0.076
-  generated-events: 3339344 #3939304
-  line-color: '#006666'
-  legend: 'STHct'
-
-'hist_STTH1L3BHut.root':
-  type: signal
-  pretty-name: 'STTH1L3BHut'
-  cross-section: 0.55
-  generated-events: 3394376 #3951842
-  line-color: '#666600'
-  legend: 'STHut'
-
-'hist_TTTH1L3BHut.root':
-  type: signal
-  pretty-name: 'TTTH1L3BaTLepHut'
-  cross-section: 1.86
-  generated-events: 1605475 #1935178
-  line-color: '#cccc00'
-  legend: 'TTHut'
-
-'hist_TTTH1L3BHct.root':
-  type: signal
-  pretty-name: 'TTTH1L3BaTLepHct'
-  cross-section: 1.86
-  generated-events: 1432673 #1726470
-  line-color: '#0000cc'
-  legend: 'TTHct'

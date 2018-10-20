@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os, shutil
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 import matplotlib
 matplotlib.use('Agg')
@@ -18,7 +18,7 @@ from root_numpy import array2tree, tree2array
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.3
+config.gpu_options.per_process_gpu_memory_fraction = 0.2
 set_session(tf.Session(config=config))
 
 import keras
@@ -44,17 +44,24 @@ if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
 #directory name
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
 weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
-scoreDir = 'score' + '_' + ch + '_' +jetcat + '_'
-assignDir = 'assign' + '_' + ch + '_' +jetcat + '_'
+scoreDir = 'scores/' + ch + '_' +jetcat + '_'
 label_name = 'label'
 weight_name = 'EventWeight'
 njets_cut = int(jetcat[1:2]) #Must be jXbX
-if len(jetcat) > 3: nbjets_cut = int(jetcat[3:4])
+if njets_cut not in [3,4]:
+  print("Check jet category")
+  sys.exit()
+if len(jetcat) > 3:
+  nbjets_cut = int(jetcat[3:4])
+  if nbjets_cut not in [2,3,4]:
+    print("Check b jet category")
+    sys.exit()
 else: nbjets_cut = 0
 
 bkg_drop_rate = 0.0
 train_test_rate = 0.8
 plot_figures = True
+include_eventWeight = False
 sklearn_based_overtraining_check = False #If it set to false, directly plot DNN scores
 
 """
@@ -65,14 +72,6 @@ sklearn_based_overtraining_check = False #If it set to false, directly plot DNN 
 'TTLJ_trainW' = 1223584 + 1293400, 'TTLL_trainW' = 590516 + 681584,
 'STHct_trainW' = 599710, 'STHut_trainW' = 555516, 'TTHct_trainW' = 190674 + 102707, 'TTHut_trainW' = 169925 + 159376
 """
-frac_TTLJ = 1.0
-frac_TTLL = 0.478
-#frac_STHct = 1.27e-7
-frac_STHct = 0.0001
-frac_STHut = 0.00687
-frac_TTHct = 0.0499
-frac_TTHut = 0.0445
-
 #Options for data preparation
 input_features = []
 input_features.extend(input_variables(jetcat))
@@ -80,25 +79,42 @@ input_features.append(label_name)
 
 if ch == "Hct":
   sig_files = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',]
+  frac_STTT = 0.000002545
 elif ch == "Hut":
   sig_files = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',]
-else: print("Check channel: Hct or Hut")
+  frac_STTT = 0.1544
+else:
+  print("Check channel: Hct or Hut")
+  sys.exit()
 bkg_files = ['finalMVA_TTpowhegttbb_000.h5', 'finalMVA_TTpowhegttbj_000.h5', 'finalMVA_TTpowhegttcc_000.h5',
             'finalMVA_TTpowhegttlf_000.h5', 'finalMVA_TTpowhegttother_000.h5',
             'finalMVA_TTpowhegttbb_001.h5', 'finalMVA_TTpowhegttbj_001.h5', 'finalMVA_TTpowhegttcc_001.h5',
             'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
             'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5']
 
+#Bkg ratios(w.r.t. yield)
+nTTLJ = [429.9+1523.8+453.8+24338.2+264166.8,
+         82.6+160.8+27.0+687.4+10103.0,
+         4207.5+13498.1+7223.8+233769.1+344671.5,
+         2965.6+5170.9+1387.4+17029.3+25286.3,
+         854.8+336.4+111.1+403.3+421.7]
+nTTLL = [24338.2, 2823.3, 63802.3, 5331.1, 334.8]
+#Signal ratios(w.r.t. yield
+if ch == "Hct":
+  nST = [185.2, 73.8, 121.3, 67.2, 4.0]
+  nTT = [3451.6, 928.0, 5481.0, 2823.1, 281.3]
+elif ch == "Hut":
+  nST = [1073.2, 360.9, 729.1, 346.2, 13.7]
+  nTT = [3457.4, 711.5, 5835.9, 2715.7, 100.7]
+
 #Check if the model and files already exist
 if not os.path.exists( os.path.join(configDir, weightDir+ver) ):
   os.makedirs( os.path.join(configDir, weightDir+ver) )
 if not os.path.exists( os.path.join(configDir, scoreDir+ver) ):
   os.makedirs( os.path.join(configDir, scoreDir+ver) )
-if not os.path.exists( os.path.join(configDir, assignDir+ver) ):
-  os.makedirs( os.path.join(configDir, assignDir+ver) )
 if not os.path.exists( os.path.join(configDir, weightDir+ver, 'training_kerasTF.py') ):
   shutil.copy2('training_kerasTF.py', os.path.join(configDir, weightDir+ver, 'training_kerasTF.py'))
-for item in os.listdir( os.path.join(configDir, weightDir+ver) ) or os.listdir( os.path.join(configDir, scoreDir+ver) ) or os.listdir( os.path.join(configDir, assignDir+ver) ):
+for item in os.listdir( os.path.join(configDir, weightDir+ver) ) or os.listdir( os.path.join(configDir, scoreDir+ver) ):
   if item.endswith(".pdf") or item.endswith(".h5") or item.endswith("log"):
     #os.remove(os.path.join(os.path.join(configDir, weightDir+ver), item))
     print("Remove previous files or move on to next version!")
@@ -332,6 +348,28 @@ class roc_callback(Callback):
       return
 
 
+####################################
+#rescale within sig/bkg respectively
+####################################
+if nbjets_cut == 0:
+  if njets_cut == 3:
+    frac_sig = (nST[0]+nST[1])/(nTT[0]+nTT[1])
+    frac_bkg = (nTTLL[0]+nTTLL[1])/(nTTLJ[0]+nTTLJ[1])
+  elif njets_cut == 4:
+    frac_sig = (nST[2]+nST[3]+nST[4])/(nTT[2]+nTT[3]+nTT[4])
+    frac_bkg = (nTTLL[2]+nTTLL[3]+nTTLL[4])/(nTTLJ[2]+nTTLJ[3]+nTTLJ[4])
+elif nbjets_cut > 1:
+  if njets_cut == 3:
+    if   nbjets_cut == 2: cat_idx = 0
+    elif nbjets_cut == 3: cat_idx = 1
+  elif njets_cut == 4:
+    if   nbjets_cut == 2: cat_idx = 2
+    elif nbjets_cut == 3: cat_idx = 3
+    elif nbjets_cut == 4: cat_idx = 4
+  frac_sig = nST[cat_idx]/nTT[cat_idx]
+  frac_bkg = nTTLL[cat_idx]/nTTLJ[cat_idx]
+
+
 ####################
 #read input and skim
 ####################
@@ -341,14 +379,14 @@ for files in sig_files:
   if nbjets_cut != 0:
     data_temp = data_temp[data_temp['nbjets_m'] == nbjets_cut]
   data_temp['label'] = 1
+  #sample reweight
+  if not include_eventWeight:
+    data_temp[weight_name] = 1.0
   if "STTH" in files:
     data_temp['STTT'] = 0
-    if   "Hct" in files: data_temp[weight_name] = data_temp[weight_name] * frac_STHct
-    elif "Hut" in files: data_temp[weight_name] = data_temp[weight_name] * frac_STHut
+    data_temp[weight_name] = data_temp[weight_name] * frac_sig #define TTTH->frac == 1
   elif "TTTH" in files:
     data_temp['STTT'] = 1
-    if   "Hct" in files: data_temp[weight_name] = data_temp[weight_name] * frac_TTHct
-    elif "Hut" in files: data_temp[weight_name] = data_temp[weight_name] * frac_TTHut
   else: print("Wrong signal sample!")
   if files == sig_files[0]: data_sig = data_temp
   else: data_sig = pd.concat([data_sig,data_temp], ignore_index=True)
@@ -359,9 +397,15 @@ for files in bkg_files:
   if nbjets_cut != 0:
     data_temp = data_temp[data_temp['nbjets_m'] == nbjets_cut]
   data_temp['label'] = 0
-  data_temp['STTT'] = np.random.randint(2, size=data_temp.shape[0])
-  if "TTpowheg" in files: data_temp[weight_name] = data_temp[weight_name] * frac_TTLJ
-  elif "TTLL" in files: data_temp[weight_name] = data_temp[weight_name] * frac_TTLL
+  #STTT ratio: This should be re-computed FIXME
+  if   ch == "Hct": frac_list = [0.0417, 0.9583]
+  elif ch == "Hut": frac_list = [0.3061, 0.6939]
+  else: frac_list = [0.5, 0.5]
+  data_temp['STTT'] = np.random.choice(2, size=data_temp.shape[0], p=frac_list)
+  #sample rewieght
+  if not include_eventWeight:
+    data_temp[weight_name] = 1.0
+  if "TTLL" in files: data_temp[weight_name] = data_temp[weight_name] * frac_bkg #define TTLJ->frac == 1
   if files == bkg_files[0]: data_bkg = data_temp
   else: data_bkg = pd.concat([data_bkg,data_temp], ignore_index=True)
 
@@ -434,6 +478,12 @@ data_train_sc = scaler.fit_transform(data_train)
 data_test_sc = scaler.fit_transform(data_test)
 X_train = data_train_sc
 X_test = data_test_sc
+
+
+#######################################
+#Class weight for automatic computation
+#######################################
+class_weights = class_weight.compute_class_weight('balanced', np.unique(Y_train), Y_train.flatten())
 
 
 #################################
@@ -522,7 +572,7 @@ checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile), 
 history = train_model.fit(X_train, Y_train,
                           epochs=50, batch_size=1000,
                           validation_data=(X_test, Y_test),
-                          #sample_weight=weights_train, #class_weight={ 0: 14, 1: 1 },
+                          sample_weight=weights_train, class_weight = class_weights, #class_weight={ 0: 14, 1: 1 },
                           callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model)]
                           )
 model.save(os.path.join(configDir, weightDir+ver, 'model.h5'))#save template model, rather than the model returned by multi_gpu_model.

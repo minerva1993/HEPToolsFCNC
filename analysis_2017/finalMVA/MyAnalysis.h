@@ -107,18 +107,40 @@ public :
    ClassDef(MyAnalysis,0);
 
     //Declare systematics here FIXME
-    const std::vector<const char*> syst_name = {"", "__puup", "__pudown",
-                                                "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
-                                                "__elidup", "__eliddown", "__elrecoup", "__elrecodown", "__elzvtxup", "__elzvtxdown",
-                                                "__lfup", "__lfdown", "__hfup", "__hfdown",
-                                                "__hfstat1up", "__hfstat1down", "__hfstat2up", "__hfstat2down",
-                                                "__lfstat1up", "__lfstat1down", "__lfstat2up", "__lfstat2down",
-                                                "__cferr1up", "__cferr1down", "__cferr2up", "__cferr2down",
-                                                "__scale0", "__scale1", "__scale2", "__scale3", "__scale4", "__scale5",
-                                                "__ps0", "__ps1", "__ps2", "__ps3"};
+    const std::vector<const char*> syst_name = {"",
+          "__puup", "__pudown",
+          "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
+          "__elidup", "__eliddown", "__elrecoup", "__elrecodown", "__elzvtxup", "__elzvtxdown",
+          "__lfup", "__lfdown", "__hfup", "__hfdown",
+          "__hfstat1up", "__hfstat1down", "__hfstat2up", "__hfstat2down",
+          "__lfstat1up", "__lfstat1down", "__lfstat2up", "__lfstat2down",
+          "__cferr1up", "__cferr1down", "__cferr2up", "__cferr2down",
+          "__scale0", "__scale1", "__scale2", "__scale3", "__scale4", "__scale5",
+          "__ps0", "__ps1", "__ps2", "__ps3",
+          "__pdf0", "__pdf1", "__pdf2", "__pdf3", "__pdf4",
+          "__pdf5", "__pdf6", "__pdf7", "__pdf8", "__pdf9",
+          "__pdf10", "__pdf11", "__pdf12", "__pdf13", "__pdf14",
+          "__pdf15", "__pdf16", "__pdf17", "__pdf18", "__pdf19",
+          "__pdf20", "__pdf21", "__pdf22", "__pdf23", "__pdf24",
+          "__pdf25", "__pdf26", "__pdf27", "__pdf28", "__pdf29",
+          "__pdf30", "__pdf31", "__pdf32", "__pdf33", "__pdf34",
+          "__pdf35", "__pdf36", "__pdf37", "__pdf38", "__pdf39",
+          "__pdf40", "__pdf41", "__pdf42", "__pdf43", "__pdf44",
+          "__pdf45", "__pdf46", "__pdf47", "__pdf48", "__pdf49",
+          "__pdf50", "__pdf51", "__pdf52", "__pdf53", "__pdf54",
+          "__pdf55", "__pdf56", "__pdf57", "__pdf58", "__pdf59",
+          "__pdf60", "__pdf61", "__pdf62", "__pdf63", "__pdf64",
+          "__pdf65", "__pdf66", "__pdf67", "__pdf68", "__pdf69",
+          "__pdf70", "__pdf71", "__pdf72", "__pdf73", "__pdf74",
+          "__pdf75", "__pdf76", "__pdf77", "__pdf78", "__pdf79",
+          "__pdf80", "__pdf81", "__pdf82", "__pdf83", "__pdf84",
+          "__pdf85", "__pdf86", "__pdf87", "__pdf88", "__pdf89",
+          "__pdf90", "__pdf91", "__pdf92", "__pdf93", "__pdf94",
+          "__pdf95", "__pdf96", "__pdf97", "__pdf98", "__pdf99",
+          "__pdf100", "__pdf101", "__pdf102",};
     int syst_num = syst_name.size();
 
-    TH1D *h_MVA[3][41];
+    TH1D *h_MVA[3][144];
 
     TFile *scoreF;
     TTree *scoreT;

@@ -107,15 +107,16 @@ public :
    ClassDef(MyAnalysis,0);
 
     //Declare systematics here FIXME
-    const std::vector<const char*> syst_name = {"", "__puup", "__pudown",
-                                                "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
-                                                "__elidup", "__eliddown", "__elrecoup", "__elrecodown", "__elzvtxup", "__elzvtxdown",
-                                                "__lfup", "__lfdown", "__hfup", "__hfdown",
-                                                "__hfstat1up", "__hfstat1down", "__hfstat2up", "__hfstat2down",
-                                                "__lfstat1up", "__lfstat1down", "__lfstat2up", "__lfstat2down",
-                                                "__cferr1up", "__cferr1down", "__cferr2up", "__cferr2down",
-                                                "__scale0", "__scale1", "__scale2", "__scale3", "__scale4", "__scale5",
-                                                "__ps0", "__ps1", "__ps2", "__ps3"};
+    const std::vector<const char*> syst_name = {"",
+          "__puup", "__pudown",
+          "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
+          "__elidup", "__eliddown", "__elrecoup", "__elrecodown", "__elzvtxup", "__elzvtxdown",
+          "__lfup", "__lfdown", "__hfup", "__hfdown",
+          "__hfstat1up", "__hfstat1down", "__hfstat2up", "__hfstat2down",
+          "__lfstat1up", "__lfstat1down", "__lfstat2up", "__lfstat2down",
+          "__cferr1up", "__cferr1down", "__cferr2up", "__cferr2down",
+          "__scale0", "__scale1", "__scale2", "__scale3", "__scale4", "__scale5",
+          "__ps0", "__ps1", "__ps2", "__ps3"};
     int syst_num = syst_name.size();
 
     TH1D *h_PV[3][12][41];

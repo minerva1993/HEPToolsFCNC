@@ -40,10 +40,15 @@ cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python combi_assign.py
 #Plot histograms with reconstruction
 cd ../fullAna/
 cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python runReco.py STFCNC01
+cd doReco
 source job_merge.sh
-python ratioEMuCombine.py
-cd doReco/STFCNC01
-../../plotIt/plotIt -o systematics/ ../../plotIt/configs/config.yml -y
+python do_post_process.py
+mkdir STFCNC01
+mkdir figures
+mv post_process pre_process temp STFCNC01
+#python ratioEMuCombine.py
+cd STFCNC01/post_process
+../../../../plotIt/plotIt -o figures/ ../../../../plotIt/configs/config.yml -y
 ```
   *Final MVA
 ```{.Bash}
@@ -53,8 +58,14 @@ source job_ntuple.sh
 cd ../training
 python training_kerasTF.py Hct 01 j4
 cd ..
-python evaluation_kerasTF.py Hct 01 j4 0 model.h5
+python evaluation_kerasTF.py Hct 01 j4 model.h5 0
 cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j4_01
+cd histos
+source job_merge.sh
+python do_post_process.py
+mkdir Hct_j4_01
+mv post_process pre_process temp Hct_j4_01
+../../../../plotIt/plotIt -o ../ ../../../../plotIt/configs/config.yml -y
 ```
 
 
