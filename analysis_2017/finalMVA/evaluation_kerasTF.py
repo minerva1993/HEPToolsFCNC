@@ -20,8 +20,8 @@ from keras.models import load_model
 from training.variables import input_variables
 
 ch = sys.argv[1]
-ver = sys.argv[2]
-jetcat = sys.argv[3]
+jetcat = sys.argv[2]
+ver = sys.argv[3]
 bestModel = sys.argv[4]
 syst_cat = sys.argv[5]
 

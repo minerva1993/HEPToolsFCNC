@@ -210,81 +210,6 @@ namespace plotIt {
     }
 
 
-    ScaleWeightSystematic::ScaleWeightSystematic(const YAML::Node& node) {
-
-    }
-
-    SystematicSet ScaleWeightSystematic::newSet(TObject* nominal, File& file, const Plot& plot) {
-
-        auto result = Systematic::newSet(nominal, file, plot);
-
-        // We need to extract the up and down shape from several different variations
-        // - we look for two objects named <nominal>__<systematic> in the same file
-
-        std::array<ScaleVariation, 6> variations_temp = {SCALE0, SCALE1, SCALE2, SCALE3, SCALE4, SCALE5};
-        std::array<Variation, 2> variations = {UP, DOWN};
-        std::map<Variation, std::shared_ptr<TObject>*> links = {{UP, &result.true_up_shape}, {DOWN, &result.true_down_shape}};
-
-        auto formatSystematicsName = [this](ScaleVariation variation_temp) {
-            static std::map<ScaleVariation, std::string> names_temp = {{SCALE0, "0"}, {SCALE1, "1"}, {SCALE2, "2"},
-                                                                       {SCALE3, "3"}, {SCALE4, "4"}, {SCALE5, "5"}};
-            return "__" + this->name + names_temp[variation_temp];
-        };
-
-        std::string nominal_name = applyRenaming(file.renaming_ops, plot.name);
-        TH1F *h_scales[6];
-        TH1F *nominal_scale = (TH1F*) file.handle->Get(nominal_name.c_str());
-        nominal_scale->SetDirectory(0);
-        TH1F *up_scale      = (TH1F*) nominal_scale->Clone("up_scale");
-        TH1F *down_scale    = (TH1F*) nominal_scale->Clone("down_scale");
-        up_scale->SetDirectory(0);
-        down_scale->SetDirectory(0);
-        up_scale->Reset();
-        down_scale->Reset();
-
-        int idx_temp = 0;
-        for (const auto& variation_temp: variations_temp) {
-            std::string object_postfix = formatSystematicsName(variation_temp);
-            std::string object_name = applyRenaming(file.renaming_ops, plot.name) + object_postfix;
-            TH1F* object = (TH1F*) file.handle->Get(object_name.c_str());
-            h_scales[idx_temp] = object;
-            idx_temp++;
-        }
-
-        int n_bins = nominal_scale->GetNcells();
-        for (int i=1; i < n_bins+2; i++) {
-            float minimum = std::numeric_limits<float>::max();
-            float maximum = std::numeric_limits<float>::min();
-
-            for (int j=0; j < 6; j++) {
-                float c = h_scales[j]->GetBinContent(i);
-                float nom_temp = nominal_scale->GetBinContent(i);
-//                if ( c < nom_temp*1.2  and c > nom_temp*0.01 ) {
-                    minimum = std::min(minimum, c);
-                    maximum = std::max(maximum, c);
-//                }
-//                else {
-//                    maximum = nom_temp;
-//                    minimum = nom_temp;
-//                }
-            }
-            up_scale->SetBinContent(i, maximum);
-            down_scale->SetBinContent(i, minimum);
-        }
-
-        for (const auto& variation: variations) {
-            TObject* object;
-            if      (variation == UP)   object = up_scale;
-            else if (variation == DOWN) object = down_scale;
-
-            if (object) {
-                links[variation]->reset(object->Clone());
-                continue;
-            }
-        }
-        return result;
-    }
-
     std::shared_ptr<Systematic> SystematicFactory::create(const std::string& name, const std::string& type, const YAML::Node& node) {
 
         std::string lower_type = type;
@@ -295,8 +220,6 @@ namespace plotIt {
             result = std::make_shared<ConstantSystematic>(node);
         } else if (type == "lognormal" || type == "ln") {
             result = std::make_shared<LogNormalSystematic>(node);
-        } else if (type == "scaleweight") {
-            result = std::make_shared<ScaleWeightSystematic>(node);
         } else if (type == "shape") {
             result = std::make_shared<ShapeSystematic>(node);
         }

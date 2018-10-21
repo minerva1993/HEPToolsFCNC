@@ -56,15 +56,15 @@ cd /HEPToolsFCNC/finalMVA/mkNtuple
 python dir_manage.py
 source job_ntuple.sh
 cd ../training
-python training_kerasTF.py Hct 01 j4
+python training_kerasTF.py Hct j3 01
 cd ..
-python evaluation_kerasTF.py Hct 01 j4 model.h5 0
-cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j4_01
+python evaluation_kerasTF.py Hct j4 01 model.h5 0
+cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j3_01
 cd histos
 source job_merge.sh
 python do_post_process.py
 mkdir Hct_j4_01
-mv post_process pre_process temp Hct_j4_01
+mv post_process pre_process temp Hct_j3_01
 ../../../../plotIt/plotIt -o ../ ../../../../plotIt/configs/config.yml -y
 ```
 

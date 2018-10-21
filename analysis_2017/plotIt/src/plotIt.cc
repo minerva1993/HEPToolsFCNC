@@ -867,7 +867,7 @@ namespace plotIt {
 
           return entries;
       };
-
+/*
       // First, add data, always on first column
       if (!plot.no_data) {
           std::vector<LegendEntry> entries = getEntries(DATA);
@@ -893,6 +893,39 @@ namespace plotIt {
       // Finally, if requested, the uncertainties entry
       if (with_uncertainties)
           legend_entries[0].push_back({m_config.uncertainty_label, "f", m_config.error_fill_style, m_config.error_fill_color, 0});
+*/
+      // First MC, spanning on the columns
+      size_t index = 0;
+      std::vector<LegendEntry> entries = getEntries(MC);
+      for (const LegendEntry& entry: entries) {
+          size_t column_index = index % (plot.legend_columns);
+          legend_entries[column_index].push_back(entry);
+          index++;
+      }
+
+      // Next, signals
+      entries = getEntries(SIGNAL);
+      for (const LegendEntry& entry: entries) {
+          size_t column_index = index % (plot.legend_columns);
+          legend_entries[column_index].push_back(entry);
+          index++;
+      }
+
+      // Next, data
+      if (!plot.no_data) {
+          std::vector<LegendEntry> entries = getEntries(DATA);
+          for (const auto& entry: entries){
+              size_t column_index = index % (plot.legend_columns);
+              legend_entries[column_index].push_back(entry);
+              index++;
+          }
+      }
+
+      // Finally, if requested, the uncertainties entry
+      if (with_uncertainties){
+          size_t column_index = index % (plot.legend_columns);
+          legend_entries[column_index].push_back({m_config.uncertainty_label, "f", m_config.error_fill_style, m_config.error_fill_color, 0});
+      }
 
       // Ensure all columns have the same size
       size_t max_size = 0;

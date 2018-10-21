@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os, shutil
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 import matplotlib
 matplotlib.use('Agg')
@@ -33,8 +33,8 @@ from variables import input_variables
 
 #Version of classifier
 ch = sys.argv[1]
-ver = sys.argv[2]
-jetcat = sys.argv[3]
+jetcat = sys.argv[2]
+ver = sys.argv[3]
 
 #MultiGPU option
 multiGPU = True
@@ -572,7 +572,7 @@ checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile), 
 history = train_model.fit(X_train, Y_train,
                           epochs=50, batch_size=1000,
                           validation_data=(X_test, Y_test),
-                          sample_weight=weights_train, class_weight = class_weights, #class_weight={ 0: 14, 1: 1 },
+                          class_weight = class_weights, #sample_weight=weights_train, #class_weight = class_weights,
                           callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model)]
                           )
 model.save(os.path.join(configDir, weightDir+ver, 'model.h5'))#save template model, rather than the model returned by multi_gpu_model.
