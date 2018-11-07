@@ -1,10 +1,14 @@
+from ROOT import *
+import pandas as pd
+import os
+
 def input_variables(jetcat):
  
-  var_list = ['channel', 'nbjets_m', 'lepton_pt', 'lepton_eta', 'MET', 'lepDPhi', 'lepWpt', 'lepWm']
+  var_list = ['STTT', 'channel', 'lepton_pt', 'lepton_eta', 'MET', 'lepDPhi', 'lepWpt', 'lepWm'] #"nbjets_m"
 
-  var_list.extend(['stfcnc_jet0pt', 'stfcnc_jet0eta', 'stfcnc_jet0m', 'b_stfcnc_jet0csv',
-                  'stfcnc_jet1pt', 'stfcnc_jet1eta', 'stfcnc_jet1m', 'b_stfcnc_jet1csv',
-                  'stfcnc_jet2pt', 'stfcnc_jet2eta', 'stfcnc_jet2m', 'b_stfcnc_jet2csv',
+  var_list.extend(['stfcnc_jet0pt', 'stfcnc_jet0eta', 'stfcnc_jet0m', 'stfcnc_jet0csv',
+                  'stfcnc_jet1pt', 'stfcnc_jet1eta', 'stfcnc_jet1m', 'stfcnc_jet1csv',
+                  'stfcnc_jet2pt', 'stfcnc_jet2eta', 'stfcnc_jet2m', 'stfcnc_jet2csv',
                   'stfcnc_jet12pt', 'stfcnc_jet12eta', 'stfcnc_jet12m',
                   'stfcnc_jet12deta', 'stfcnc_jet12dphi', 'stfcnc_jet12dR',
                   'stfcnc_lepTdphi', 'stfcnc_lepTm',
@@ -54,7 +58,190 @@ def input_variables(jetcat):
                     'ttbkg_jet12_0R', 'ttbkg_jet23_0dR', 'ttbkg_jet31_0dR'
                     'ttbkg_lepTjet12dphi', 'ttbkg_lepTjet23dphi', 'ttbkg_lepTjet31dphi', 'ttbkg_hadT_jet0dR',])
 
-    print("Adding variables for4 jet category")
+    print("Adding variables for 4 jet category")
 
   return var_list
 
+
+def train_files(ch):
+
+  if ch == "Hct":
+    sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',]
+  elif ch == "Hut":
+    sig = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',]
+  else:
+    print("Check channel: Hct or Hut")
+    sig_files = []
+
+  bkg = ['finalMVA_TTpowhegttbb_000.h5', 'finalMVA_TTpowhegttbj_000.h5', 'finalMVA_TTpowhegttcc_000.h5',
+        'finalMVA_TTpowhegttlf_000.h5', 'finalMVA_TTpowhegttother_000.h5',
+        'finalMVA_TTpowhegttbb_001.h5', 'finalMVA_TTpowhegttbj_001.h5', 'finalMVA_TTpowhegttcc_001.h5',
+        'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
+        'finalMVA_TTpowhegttbb_002.h5', 'finalMVA_TTpowhegttbj_002.h5', 'finalMVA_TTpowhegttcc_002.h5',
+        'finalMVA_TTpowhegttlf_002.h5', 'finalMVA_TTpowhegttother_002.h5',
+        'finalMVA_TTpowhegttbb_003.h5', 'finalMVA_TTpowhegttbj_003.h5', 'finalMVA_TTpowhegttcc_003.h5',
+        'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
+        'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
+        'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
+        'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5', 'finalMVA_TTLLpowheg_002.h5',
+        'finalMVA_TTLLpowheg_003.h5', 'finalMVA_TTLLpowheg_004.h5',
+        ]
+
+  return sig, bkg
+
+  
+def evalScale(ch, sig, bkg):
+
+  base_path = "/data/users/minerva1993/ntuple_Run2017/V9_3/181013/production"
+  ST, TT, TTLJ, TTLL = (0,0,0,0)
+  for tmp_file in sig:
+    if "STTH" in tmp_file:
+      ftmp = TFile.Open(os.path.join(base_path, "ST_TH_1L3B_" + ch,
+                        "Tree_fcncLepJets_" + tmp_file.replace("h5","root").split("_")[-1]), "READ")
+      info_tmp = ftmp.Get("fcncLepJets/EventInfo")
+      ST += info_tmp.GetBinContent(2)
+      ftmp.Close()
+
+    elif "TTTH" in tmp_file:
+      if "aTLep" in tmp_file: which_top = "aTLep"
+      elif "TLep"  in tmp_file: which_top = "TLep"
+      else: print("Wrong TT FCNC file name!")
+
+      ftmp = TFile.Open(os.path.join(base_path, "TT_TH_1L3B_" + which_top + '_'  + ch,
+                        "Tree_fcncLepJets_" + tmp_file.replace("h5","root").split("_")[-1]), "READ")
+      info_tmp = ftmp.Get("fcncLepJets/EventInfo")
+      TT += info_tmp.GetBinContent(2)
+      ftmp.Close()
+
+  for tmp_file in bkg:
+    if "TTpowheg" in tmp_file:
+      if "ttbb" not in tmp_file: continue
+      ftmp = TFile.Open(os.path.join(base_path, "TT_powheg_ttbb",
+                        "Tree_fcncLepJets_" + tmp_file.replace("h5","root").split("_")[-1]), "READ")
+      info_tmp = ftmp.Get("fcncLepJets/EventInfo")
+      TTLJ += info_tmp.GetBinContent(2)
+      ftmp.Close()
+
+    elif "TTLL" in tmp_file:
+      ftmp = TFile.Open(os.path.join(base_path, "TTLL_powheg",
+                        "Tree_fcncLepJets_" + tmp_file.replace("h5","root").split("_")[-1]), "READ")
+      info_tmp = ftmp.Get("fcncLepJets/EventInfo")
+      TTLL += info_tmp.GetBinContent(2)
+      ftmp.Close()
+
+  #normalize by cross section
+  ST = 1.9 / ST
+  TT = 46.5 / TT
+  TTLJ = 365.4 / TTLJ
+  TTLL = 88.29 / TTLL
+  frac_sig = ST / TT
+  frac_bkg = TTLL / TTLJ
+  frac_sig = round(frac_sig,4)
+  frac_bkg = round(frac_bkg,4)
+
+  return float(ST), float(TT), float(TTLJ), float(TTLL), frac_sig, frac_bkg
+
+
+def evalFrac(ch, sig, nj, nbj):
+
+  base_path = "/data/users/minerva1993/ntuple_Run2017/V9_3/181013/production"
+  ST, TT = (0,0)
+  for tmp_file in sig:
+    if "STTH" in tmp_file:
+      ftmp = TFile.Open(os.path.join(base_path, "ST_TH_1L3B_" + ch,
+                        "Tree_fcncLepJets_" + tmp_file.replace("h5","root").split("_")[-1]), "READ")
+      info_tmp = ftmp.Get("fcncLepJets/EventInfo")
+      ST += info_tmp.GetBinContent(2)
+      ftmp.Close()
+
+    elif "TTTH" in tmp_file:
+      if "aTLep" in tmp_file: which_top = "aTLep"
+      elif "TLep"  in tmp_file: which_top = "TLep"
+      else: print("Wrong TT FCNC file name!")
+
+      ftmp = TFile.Open(os.path.join(base_path, "TT_TH_1L3B_" + which_top + '_'  + ch,
+                        "Tree_fcncLepJets_" + tmp_file.replace("h5","root").split("_")[-1]), "READ")
+      info_tmp = ftmp.Get("fcncLepJets/EventInfo")
+      TT += info_tmp.GetBinContent(2)
+      ftmp.Close()
+
+  nST, nTT = (0,0)
+  #Signal first
+  for files in sig:
+    data_temp = pd.read_hdf('./mkNtuple/hdf_/' + files)
+    data_temp = data_temp[data_temp['njets'] ==  nj]
+    if nbj != 0:
+      data_temp = data_temp[data_temp['nbjets_m'] == nbj]
+
+    if "STTH" in files:
+      nST += len(data_temp.index)
+    elif "TTTH" in files:
+      nTT += len(data_temp.index)
+    else: print("Wrong signal sample!")
+
+  ST = 1.9 / ST
+  TT = 46.5 / TT
+
+  frac_list = [(nST * ST)/(nST * ST + nTT * TT), (nTT * TT)/(nST * ST + nTT * TT)]
+
+  return frac_list
+
+def input_variables_bdt(jetcat): #Order Does Matter!!
+ 
+  var_list = ['STTT', 'channel', 'lepton_pt', 'lepton_eta', 'MET', 'lepDPhi', 'lepWpt', 'lepWm'] #"nbjets_m"
+
+  var_list.extend(['stfcnc_jet0pt', 'stfcnc_jet0eta', 'stfcnc_jet0m', 'stfcnc_jet0csv',
+                  'stfcnc_jet1pt', 'stfcnc_jet1eta', 'stfcnc_jet1m', 'stfcnc_jet1csv',
+                  'stfcnc_jet2pt', 'stfcnc_jet2eta', 'stfcnc_jet2m', 'stfcnc_jet2csv',
+                  'stfcnc_jet12pt', 'stfcnc_jet12eta', 'stfcnc_jet12deta',
+                  'stfcnc_jet12dphi', 'stfcnc_jet12dR', 'stfcnc_jet12m',
+                  'stfcnc_lepTdphi', 'stfcnc_lepTm',
+                  'stfcnc_jet0lepdR', 'stfcnc_jet1lepdR', 'stfcnc_jet2lepdR',
+                  'stfcnc_jet01dR', 'stfcnc_jet02dR',
+                  'stfcnc_jet12_lepdR', 'stfcnc_jet12_0dR',
+                  'stfcnc_lepTjet12dphi'])
+  if "j4" in jetcat:
+    var_list.extend(['ttfcnc_jet0pt', 'ttfcnc_jet0eta', 'ttfcnc_jet0m',
+                    'ttfcnc_jet1pt', 'ttfcnc_jet1eta', 'ttfcnc_jet1m',
+                    'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m',
+                    'ttfcnc_jet3pt', 'ttfcnc_jet3eta', 'ttfcnc_jet3m',
+                    'ttfcnc_jet12pt', 'ttfcnc_jet12eta', 'ttfcnc_jet12deta',
+                    'ttfcnc_jet12dphi', 'ttfcnc_jet12dR', 'ttfcnc_jet12m',
+                    'ttfcnc_jet23pt', 'ttfcnc_jet23eta','ttfcnc_jet23deta',
+                    'ttfcnc_jet23dphi', 'ttfcnc_jet23dR', 'ttfcnc_jet23m',
+                    'ttfcnc_jet31pt', 'ttfcnc_jet31eta', 'ttfcnc_jet31deta',
+                    'ttfcnc_jet31dphi', 'ttfcnc_jet31dR', 'ttfcnc_jet31m',
+                    'ttfcnc_lepTpt', 'ttfcnc_lepTdphi', 'ttfcnc_lepTm',
+                    'ttfcnc_hadTpt', 'ttfcnc_hadTeta',
+                    'ttfcnc_hadT12_3deta', 'ttfcnc_hadT23_1deta', 'ttfcnc_hadT31_2deta',
+                    'ttfcnc_hadT12_3dphi', 'ttfcnc_hadT23_1dphi', 'ttfcnc_hadT31_2dphi',
+                    'ttfcnc_hadT12_3dR', 'ttfcnc_hadT23_1dR', 'ttfcnc_hadT31_2dR','ttfcnc_hadTm',
+                    'ttfcnc_jet0lepdR', 'ttfcnc_jet1lepdR', 'ttfcnc_jet2lepdR', 'ttfcnc_jet3lepdR',
+                    'ttfcnc_jet01dR', 'ttfcnc_jet02dR', 'ttfcnc_jet03dR',
+                    'ttfcnc_jet12_lepdR', 'ttfcnc_jet23_lepdR', 'ttfcnc_jet31_lepdR',
+                    'ttfcnc_jet12_0R', 'ttfcnc_jet23_0dR', 'ttfcnc_jet31_0dR'
+                    'ttfcnc_lepTjet12dphi', 'ttfcnc_lepTjet23dphi', 'ttfcnc_lepTjet31dphi', 'ttfcnc_hadT_jet0dR',])
+    var_list.extend(['ttbkg_jet0pt', 'ttbkg_jet0eta', 'ttbkg_jet0m',
+                    'ttbkg_jet1pt', 'ttbkg_jet1eta', 'ttbkg_jet1m',
+                    'ttbkg_jet2pt', 'ttbkg_jet2eta', 'ttbkg_jet2m',
+                    'ttbkg_jet3pt', 'ttbkg_jet3eta', 'ttbkg_jet3m',
+                    'ttbkg_jet12pt', 'ttbkg_jet12eta', 'ttbkg_jet12deta',
+                    'ttbkg_jet12dphi', 'ttbkg_jet12dR', 'ttbkg_jet12m',
+                    'ttbkg_jet23pt', 'ttbkg_jet23eta','ttbkg_jet23deta', 
+                    'ttbkg_jet23dphi', 'ttbkg_jet23dR', 'ttbkg_jet23m',
+                    'ttbkg_jet31pt', 'ttbkg_jet31eta', 'ttbkg_jet31deta',                     
+                    'ttbkg_jet31dphi', 'ttbkg_jet31dR', 'ttbkg_jet31m',
+                    'ttbkg_lepTpt', 'ttbkg_lepTdphi', 'ttbkg_lepTm',
+                    'ttbkg_hadTpt', 'ttbkg_hadTeta', 
+                    'ttbkg_hadT12_3deta', 'ttbkg_hadT23_1deta', 'ttbkg_hadT31_2deta',
+                    'ttbkg_hadT12_3dphi', 'ttbkg_hadT23_1dphi', 'ttbkg_hadT31_2dphi',
+                    'ttbkg_hadT12_3dR', 'ttbkg_hadT23_1dR', 'ttbkg_hadT31_2dR','ttbkg_hadTm',
+                    'ttbkg_jet0lepdR', 'ttbkg_jet1lepdR', 'ttbkg_jet2lepdR', 'ttbkg_jet3lepdR',
+                    'ttbkg_jet01dR', 'ttbkg_jet02dR', 'ttbkg_jet03dR',
+                    'ttbkg_jet12_lepdR', 'ttbkg_jet23_lepdR', 'ttbkg_jet31_lepdR',
+                    'ttbkg_jet12_0R', 'ttbkg_jet23_0dR', 'ttbkg_jet31_0dR'
+                    'ttbkg_lepTjet12dphi', 'ttbkg_lepTjet23dphi', 'ttbkg_lepTjet31dphi', 'ttbkg_hadT_jet0dR',])
+
+    print("Adding variables for 4 jet category")
+
+  return var_list
