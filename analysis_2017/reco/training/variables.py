@@ -1,13 +1,15 @@
 def input_variables(ch):
   var_list = []
   if ch == "STFCNC":
-    var_list = ['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m',
+    var_list = ['jet0pt', 'jet0eta', 'jet0m', 'jet0csv', 'jet1pt', 'jet1eta', 'jet1m', 'jet1csv',
+                'jet2pt', 'jet2eta', 'jet2m', 'jet2csv'
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                 'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
                 'jet0lepdR', 'jet1lepdR', 'jet2lepdR', 'jet01dR', 'jet02dR', 'jet12_lepdR', 'jet12_0dR', 'lepTjet12dphi']
 
   elif ch == "TTFCNC":
-    var_list = ['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m', 'jet3pt', 'jet3eta', 'jet3m',
+    var_list = ['jet0pt', 'jet0eta', 'jet0m', 'jet0csv', 'jet1pt', 'jet1eta', 'jet1m', 'jet1csv',
+                'jet2pt', 'jet2eta', 'jet2m', 'jet2csv', 'jet3pt', 'jet3eta', 'jet3m', 'jet3csv', 
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                 'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
                 'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m',
@@ -16,11 +18,12 @@ def input_variables(ch):
                 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                 'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',
                 'jet0lepdR', 'jet1lepdR', 'jet2lepdR', 'jet3lepdR', 'jet01dR', 'jet02dR', 'jet03dR', 
-                'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR', 'jet12_0dR', 'jet23_0dR', 'jet31_0dR'
+                'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR', 'jet12_0dR', 'jet23_0dR', 'jet31_0dR',
                 'lepTjet12dphi', 'lepTjet23dphi', 'lepTjet31dphi', 'hadT_jet0dR',]
 
   elif ch == "TTBKG":
-    var_list = ['jet0pt', 'jet0eta', 'jet0m', 'jet1pt', 'jet1eta', 'jet1m', 'jet2pt', 'jet2eta', 'jet2m', 'jet3pt', 'jet3eta', 'jet3m',
+    var_list = ['jet0pt', 'jet0eta', 'jet0m', 'jet0csv', 'jet1pt', 'jet1eta', 'jet1m', 'jet1csv',
+                'jet2pt', 'jet2eta', 'jet2m', 'jet2csv', 'jet3pt', 'jet3eta', 'jet3m', 'jet3csv',
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                 'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
                 'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m',
@@ -29,7 +32,7 @@ def input_variables(ch):
                 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                 'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',
                 'jet0lepdR', 'jet1lepdR', 'jet2lepdR', 'jet3lepdR', 'jet01dR', 'jet02dR', 'jet03dR',               
-                'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR', 'jet12_0dR', 'jet23_0dR', 'jet31_0dR'
+                'jet12_lepdR', 'jet23_lepdR', 'jet31_lepdR', 'jet12_0dR', 'jet23_0dR', 'jet31_0dR',
                 'lepTjet12dphi', 'lepTjet23dphi', 'lepTjet31dphi', 'hadT_jet0dR',]
 
   else: var_list = []
