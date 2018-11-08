@@ -23,7 +23,7 @@ for item in test:
 if dupl == True: print 'Previous verion of histogram root file exists!! Please remove them first.'
 
 def runAna(file_path, name):
-  print 'processing ' + file_path
+  print 'processing ' + file_path.split('/')[-2] + '/' + file_path.split('/')[-1]
 
   for syst_ext in syst + syst2:
     if ("Run2017" in name) and syst_ext != "": continue

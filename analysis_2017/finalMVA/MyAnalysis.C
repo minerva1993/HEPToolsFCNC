@@ -66,11 +66,20 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     for( int syst = 0; syst != syst_num; ++syst ){
       if( syst > 0 and !dosyst ) continue;
 
-      h_MVA[ich][syst] = new TH1D(Form("h_DNN_Ch%i%s",ich,syst_name[syst]), "Final MVA", 40, 0, 1);
-      h_MVA[ich][syst]->SetXTitle("DNN Score");
-      h_MVA[ich][syst]->Sumw2();
-      fOutput->Add(h_MVA[ich][syst]);
+      h_MVA_b2[ich][syst] = new TH1D(Form("h_DNN_b2_Ch%i%s",ich,syst_name[syst]), "Final MVA b2", 40, 0, 1);
+      h_MVA_b2[ich][syst]->SetXTitle("DNN Score");
+      h_MVA_b2[ich][syst]->Sumw2();
+      fOutput->Add(h_MVA_b2[ich][syst]);
 
+      h_MVA_b3[ich][syst] = new TH1D(Form("h_DNN_b3_Ch%i%s",ich,syst_name[syst]), "Final MVA b3", 40, 0, 1);
+      h_MVA_b3[ich][syst]->SetXTitle("DNN Score");
+      h_MVA_b3[ich][syst]->Sumw2();
+      fOutput->Add(h_MVA_b3[ich][syst]);
+
+      h_MVA_b4[ich][syst] = new TH1D(Form("h_DNN_b4_Ch%i%s",ich,syst_name[syst]), "Final MVA b4", 40, 0, 1);
+      h_MVA_b4[ich][syst]->SetXTitle("DNN Score");
+      h_MVA_b4[ich][syst]->Sumw2();
+      fOutput->Add(h_MVA_b4[ich][syst]);
     }
   }
 } 
@@ -368,7 +377,10 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         else                                                             EventWeight *= jet_SF_deepCSV_30[0];
       }
 
-      h_MVA[MODE][syst]->Fill(tmp_score,EventWeight);
+      if     ( nbjets_m == 2 ) h_MVA_b2[MODE][syst]->Fill(tmp_score,EventWeight);
+      else if( nbjets_m == 3 ) h_MVA_b3[MODE][syst]->Fill(tmp_score,EventWeight);
+      else if( nbjets_m == 4 ) h_MVA_b4[MODE][syst]->Fill(tmp_score,EventWeight);
+      else cout << "wrong b jet multiplicity" << endl;
 
     }//syst loop
   }//mode loop : e or mu + emu

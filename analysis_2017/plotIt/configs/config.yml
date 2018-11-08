@@ -39,13 +39,13 @@ systematics:
   - cferr2
   - jec
   - jer
-#  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttbj.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttother.root'}
-#  - pdf: {type: shape, on: 'hist_TTLLpowheg.root'}
-#  - pdf: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - pdf: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - pdf: {type: shape, on: 'hist_TTHadpowheg.root'}
   - scale: {type: shape, on: 'hist_TTpowhegttbb.root'}
   - scale: {type: shape, on: 'hist_TTpowhegttbj.root'}
   - scale: {type: shape, on: 'hist_TTpowhegttcc.root'}
@@ -105,10 +105,10 @@ systematics:
   - other_xsec20:  {type: const, value: 1.1, on: 'hist_TTZToQQ.root'}
 
 plots:
-  include: ['histos_stfcnc.yml']
+#  include: ['histos_stfcnc.yml']
 #  include: ['histos_ttfcnc.yml']
 #  include: ['histos_ttbkg.yml']
-#  include: ['histos_dnn.yml']
+  include: ['histos_dnn.yml']
 
 legend:
   position: [0.18, 0.68, 0.92, 0.89]
@@ -119,17 +119,3 @@ groups:
   include: ['groups.yml']
 
 #  - gamma: {type: ln, prior: 1.072, pretty-name: "Gamma"}  # Log-normal systematics, +7.2%, -2.97%, exp(+/- 1 * log(prior))
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttbb.root', ext-sum-weight-up: 27191508, ext-sum-weight-down: 26367765}
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttbj.root', ext-sum-weight-up: 27191508, ext-sum-weight-down: 26367765}
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttcc.root', ext-sum-weight-up: 27191508, ext-sum-weight-down: 26367765}
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttlf.root', ext-sum-weight-up: 27191508, ext-sum-weight-down: 26367765}
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttother.root', ext-sum-weight-up: 27191508, ext-sum-weight-down: 26367765}
-#  - hdamp: {type: shape, on: 'hist_TTLLpowheg.root', ext-sum-weight-up: 5413576, ext-sum-weight-down: 5336672}
-#  - hdamp: {type: shape, on: 'hist_TTHadpowheg.root', ext-sum-weight-up: 25821240, ext-sum-weight-down: 27117982}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbb.root', ext-sum-weight-up: 26166070, ext-sum-weight-down: 27104055}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbj.root', ext-sum-weight-up: 26166070, ext-sum-weight-down: 27104055}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttcc.root', ext-sum-weight-up: 26166070, ext-sum-weight-down: 27104055}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttlf.root', ext-sum-weight-up: 26166070, ext-sum-weight-down: 27104055}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttother.root', ext-sum-weight-up: 26166070, ext-sum-weight-down: 27104055}
-#  - TuneCP5: {type: shape, on: 'hist_TTLLpowheg.root', ext-sum-weight-up: 5500000, ext-sum-weight-down: 5475200}
-#  - TuneCP5: {type: shape, on: 'hist_TTHadpowheg.root', ext-sum-weight-up: 27206470, ext-sum-weight-down: 26155064}

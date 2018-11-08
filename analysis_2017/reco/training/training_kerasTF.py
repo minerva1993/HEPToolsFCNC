@@ -18,7 +18,7 @@ from root_numpy import array2tree, tree2array
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.1
+config.gpu_options.per_process_gpu_memory_fraction = 0.3
 set_session(tf.Session(config=config))
 
 import keras
@@ -320,12 +320,12 @@ if mass_decorr:
   data.loc[:, mass_name] = 50
 data = shuffle(data)
 NumEvt = data[label_name].value_counts(sort=True, ascending=True)
-#print(NumEvt)
-print('bkg/sig events : '+ str(NumEvt.tolist()))
+print(NumEvt)
+#print('bkg/sig events : '+ str(NumEvt.tolist()))
 data = data.drop(data.query(label_name + ' < 1').sample(frac=bkg_drop_rate, axis=0).index)
 NumEvt2 = data[label_name].value_counts(sort=True, ascending=True)
-#print(NumEvt2)
-print('bkg/sig events after bkg skim : '+ str(NumEvt2.tolist()))
+print(NumEvt2)
+#print('bkg/sig events after bkg skim : '+ str(NumEvt2.tolist()))
 
 
 ##########################################

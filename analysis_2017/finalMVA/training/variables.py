@@ -77,14 +77,14 @@ def train_files(ch):
         'finalMVA_TTpowhegttlf_000.h5', 'finalMVA_TTpowhegttother_000.h5',
         'finalMVA_TTpowhegttbb_001.h5', 'finalMVA_TTpowhegttbj_001.h5', 'finalMVA_TTpowhegttcc_001.h5',
         'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
-        'finalMVA_TTpowhegttbb_002.h5', 'finalMVA_TTpowhegttbj_002.h5', 'finalMVA_TTpowhegttcc_002.h5',
-        'finalMVA_TTpowhegttlf_002.h5', 'finalMVA_TTpowhegttother_002.h5',
-        'finalMVA_TTpowhegttbb_003.h5', 'finalMVA_TTpowhegttbj_003.h5', 'finalMVA_TTpowhegttcc_003.h5',
-        'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
-        'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
-        'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
-        'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5', 'finalMVA_TTLLpowheg_002.h5',
-        'finalMVA_TTLLpowheg_003.h5', 'finalMVA_TTLLpowheg_004.h5',
+#        'finalMVA_TTpowhegttbb_002.h5', 'finalMVA_TTpowhegttbj_002.h5', 'finalMVA_TTpowhegttcc_002.h5',
+#        'finalMVA_TTpowhegttlf_002.h5', 'finalMVA_TTpowhegttother_002.h5',
+#        'finalMVA_TTpowhegttbb_003.h5', 'finalMVA_TTpowhegttbj_003.h5', 'finalMVA_TTpowhegttcc_003.h5',
+#        'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
+#        'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
+#        'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
+        'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5',
+#        'finalMVA_TTLLpowheg_002.h5', 'finalMVA_TTLLpowheg_003.h5', 'finalMVA_TTLLpowheg_004.h5',
         ]
 
   return sig, bkg

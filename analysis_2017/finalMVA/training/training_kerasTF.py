@@ -14,22 +14,7 @@ from sklearn.metrics import roc_auc_score, roc_curve
 from sklearn.metrics import f1_score, precision_score, recall_score
 import numpy as np
 from root_numpy import array2tree, tree2array
-
-import tensorflow as tf
-from keras.backend.tensorflow_backend import set_session
-config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.2
-set_session(tf.Session(config=config))
-
-import keras
-from keras.utils import np_utils, multi_gpu_model
-from keras.models import Model, Sequential, load_model
-from keras.layers import Input, Dense, Activation, Dropout, add
-from keras.layers.normalization import BatchNormalization
-from keras.regularizers import l2
-from keras.optimizers import Adam
-from keras.callbacks import Callback, ModelCheckpoint
-from variables import input_variables
+from variables import input_variables, train_files, evalScale
 
 #Version of classifier
 ch = sys.argv[1]
@@ -47,6 +32,7 @@ weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
 scoreDir = 'scores/' + ch + '_' +jetcat + '_'
 label_name = 'label'
 weight_name = 'EventWeight'
+weight_name_modi = 'SampleWeight'
 njets_cut = int(jetcat[1:2]) #Must be jXbX
 if njets_cut not in [3,4]:
   print("Check jet category")
@@ -61,51 +47,30 @@ else: nbjets_cut = 0
 bkg_drop_rate = 0.0
 train_test_rate = 0.8
 plot_figures = True
-include_eventWeight = False
+include_eventWeight = True
 sklearn_based_overtraining_check = False #If it set to false, directly plot DNN scores
 
-"""
-'TTLJ_xsec' = 365.34, 'TTLL_xsec' = 88.29,
-'STHct_xsec' = 1.9 * 0.04, 'STHut_xsec' = 13.84 * 0.04, 'TTHct_xsec' = 53.13 * 0.04, 'TTHut_xsec' = 53.13 * 0.04,
-'TTLJ_sumW' = 111325048, 'TTLL_sumW' = 66979742,
-'STHct_sumW' = 3937632, 'STHut_sumW' = 3938126, 'TTHct_sumW = 884588 + 839388', 'TTHut_sumW' = 1006464 + 926072,
-'TTLJ_trainW' = 1223584 + 1293400, 'TTLL_trainW' = 590516 + 681584,
-'STHct_trainW' = 599710, 'STHut_trainW' = 555516, 'TTHct_trainW' = 190674 + 102707, 'TTHut_trainW' = 169925 + 159376
-"""
 #Options for data preparation
 input_features = []
 input_features.extend(input_variables(jetcat))
 input_features.append(label_name)
+sig_files, bkg_files = train_files(ch)
+scaleST, scaleTT, scaleTTLJ, scaleTTLL, frac_sig, frac_bkg = evalScale(ch, sig_files, bkg_files)
 
-if ch == "Hct":
-  sig_files = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',]
-  frac_STTT = 0.000002545
-elif ch == "Hut":
-  sig_files = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',]
-  frac_STTT = 0.1544
-else:
-  print("Check channel: Hct or Hut")
-  sys.exit()
-bkg_files = ['finalMVA_TTpowhegttbb_000.h5', 'finalMVA_TTpowhegttbj_000.h5', 'finalMVA_TTpowhegttcc_000.h5',
-            'finalMVA_TTpowhegttlf_000.h5', 'finalMVA_TTpowhegttother_000.h5',
-            'finalMVA_TTpowhegttbb_001.h5', 'finalMVA_TTpowhegttbj_001.h5', 'finalMVA_TTpowhegttcc_001.h5',
-            'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
-            'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5']
+import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.2
+set_session(tf.Session(config=config))
 
-#Bkg ratios(w.r.t. yield)
-nTTLJ = [429.9+1523.8+453.8+24338.2+264166.8,
-         82.6+160.8+27.0+687.4+10103.0,
-         4207.5+13498.1+7223.8+233769.1+344671.5,
-         2965.6+5170.9+1387.4+17029.3+25286.3,
-         854.8+336.4+111.1+403.3+421.7]
-nTTLL = [24338.2, 2823.3, 63802.3, 5331.1, 334.8]
-#Signal ratios(w.r.t. yield
-if ch == "Hct":
-  nST = [185.2, 73.8, 121.3, 67.2, 4.0]
-  nTT = [3451.6, 928.0, 5481.0, 2823.1, 281.3]
-elif ch == "Hut":
-  nST = [1073.2, 360.9, 729.1, 346.2, 13.7]
-  nTT = [3457.4, 711.5, 5835.9, 2715.7, 100.7]
+import keras
+from keras.utils import np_utils, multi_gpu_model
+from keras.models import Model, Sequential, load_model
+from keras.layers import Input, Dense, Activation, Dropout, add
+from keras.layers.normalization import BatchNormalization
+from keras.regularizers import l2
+from keras.optimizers import Adam
+from keras.callbacks import Callback, ModelCheckpoint
 
 #Check if the model and files already exist
 if not os.path.exists( os.path.join(configDir, weightDir+ver) ):
@@ -202,7 +167,7 @@ def inputvars(sigdata, bkgdata, signame, bkgname, **kwds):
 #Compute AUC after training and plot ROC
 ########################################
 class roc_callback(Callback):
-  def __init__(self, training_data, validation_data, model):
+  def __init__(self, training_data, validation_data, model, event_weight_train, event_weight_test):
       self.x = training_data[0]
       self.y = training_data[1]
       self.x_val = validation_data[0]
@@ -224,9 +189,9 @@ class roc_callback(Callback):
       ############
       print('Calculating AUC of epoch '+str(epoch+1))
       y_pred = self.model.predict(self.x, batch_size=2000)
-      roc = roc_auc_score(self.y, y_pred)
+      roc = roc_auc_score(self.y, y_pred, sample_weight=weights_train)
       y_pred_val = self.model.predict(self.x_val, batch_size=2000)
-      roc_val = roc_auc_score(self.y_val, y_pred_val)
+      roc_val = roc_auc_score(self.y_val, y_pred_val, sample_weight=weights_test)
       print('\rroc-auc: %s - roc-auc_val: %s' % (str(round(roc,4)), str(round(roc_val,4))),end=100*' '+'\n')
       auc_list.append(roc)
       val_auc_list.append(roc_val)
@@ -259,8 +224,8 @@ class roc_callback(Callback):
       tpr = dict()
       roc_auc = dict()
       #fpr[0], tpr[0], thresholds0 = roc_curve(self.y_val[:,0], y_pred_val[:,0], pos_label=1)#w.r.t bkg is truth in val set
-      fpr[1], tpr[1], thresholds1 = roc_curve(self.y_val[:,1], y_pred_val[:,1], pos_label=1)#w.r.t sig is truth in val set
-      fpr[2], tpr[2], thresholds2 = roc_curve(self.y[:,1], y_pred[:,1], pos_label=1)#w.r.t sig is truth in training set, for overtraining check
+      fpr[1], tpr[1], thresholds1 = roc_curve(self.y_val[:,1], y_pred_val[:,1], pos_label=1, sample_weight=weights_test)#w.r.t sig is truth in val set
+      fpr[2], tpr[2], thresholds2 = roc_curve(self.y[:,1], y_pred[:,1], pos_label=1, sample_weight=weights_train)#w.r.t sig is truth in training set, for overtraining check
       #plt.plot(1-fpr[0], 1-(1-tpr[0]), 'b')#same as [1]
       plt.plot(tpr[1], 1-fpr[1])#HEP style ROC
       plt.plot(tpr[2], 1-fpr[2])#training ROC
@@ -348,85 +313,77 @@ class roc_callback(Callback):
       return
 
 
-####################################
-#rescale within sig/bkg respectively
-####################################
-if nbjets_cut == 0:
-  if njets_cut == 3:
-    frac_sig = (nST[0]+nST[1])/(nTT[0]+nTT[1])
-    frac_bkg = (nTTLL[0]+nTTLL[1])/(nTTLJ[0]+nTTLJ[1])
-  elif njets_cut == 4:
-    frac_sig = (nST[2]+nST[3]+nST[4])/(nTT[2]+nTT[3]+nTT[4])
-    frac_bkg = (nTTLL[2]+nTTLL[3]+nTTLL[4])/(nTTLJ[2]+nTTLJ[3]+nTTLJ[4])
-elif nbjets_cut > 1:
-  if njets_cut == 3:
-    if   nbjets_cut == 2: cat_idx = 0
-    elif nbjets_cut == 3: cat_idx = 1
-  elif njets_cut == 4:
-    if   nbjets_cut == 2: cat_idx = 2
-    elif nbjets_cut == 3: cat_idx = 3
-    elif nbjets_cut == 4: cat_idx = 4
-  frac_sig = nST[cat_idx]/nTT[cat_idx]
-  frac_bkg = nTTLL[cat_idx]/nTTLJ[cat_idx]
-
-
 ####################
 #read input and skim
 ####################
+nST, nTT = (0,0)
+#Signal first
 for files in sig_files:
   data_temp = pd.read_hdf('../mkNtuple/hdf_/' + files)
   data_temp = data_temp[data_temp['njets'] ==  njets_cut]
   if nbjets_cut != 0:
     data_temp = data_temp[data_temp['nbjets_m'] == nbjets_cut]
   data_temp['label'] = 1
-  #sample reweight
+
+  data_temp[weight_name_modi] = data_temp[weight_name] #for sample_weight
   if not include_eventWeight:
-    data_temp[weight_name] = 1.0
+    data_temp[weight_name_modi] = 1.0
+
   if "STTH" in files:
     data_temp['STTT'] = 0
-    data_temp[weight_name] = data_temp[weight_name] * frac_sig #define TTTH->frac == 1
+    nST += len(data_temp.index)
+    data_temp[weight_name_modi] = data_temp[weight_name_modi] * frac_sig #define TTTH->frac == 1
   elif "TTTH" in files:
     data_temp['STTT'] = 1
+    nTT += len(data_temp.index)
   else: print("Wrong signal sample!")
+
   if files == sig_files[0]: data_sig = data_temp
   else: data_sig = pd.concat([data_sig,data_temp], ignore_index=True)
 
+frac_list = [(nST * scaleST)/(nST * scaleST + nTT * scaleTT), (nTT * scaleTT)/(nST * scaleST + nTT * scaleTT)]
+
+#Next, background
 for files in bkg_files:
   data_temp = pd.read_hdf('../mkNtuple/hdf_/' + files)
   data_temp = data_temp[data_temp['njets'] ==  njets_cut]
   if nbjets_cut != 0:
     data_temp = data_temp[data_temp['nbjets_m'] == nbjets_cut]
   data_temp['label'] = 0
-  #STTT ratio: This should be re-computed FIXME
-  if   ch == "Hct": frac_list = [0.0417, 0.9583]
-  elif ch == "Hut": frac_list = [0.3061, 0.6939]
-  else: frac_list = [0.5, 0.5]
-  data_temp['STTT'] = np.random.choice(2, size=data_temp.shape[0], p=frac_list)
-  #sample rewieght
+
+  data_temp[weight_name_modi] = data_temp[weight_name] #for sample_weight
   if not include_eventWeight:
-    data_temp[weight_name] = 1.0
-  if "TTLL" in files: data_temp[weight_name] = data_temp[weight_name] * frac_bkg #define TTLJ->frac == 1
+    data_temp[weight_name_modi] = 1.0
+
+  #STTT ratio
+  data_temp['STTT'] = np.random.choice(2, size=data_temp.shape[0], p=frac_list)
+
+  if "TTLL" in files:
+    data_temp[weight_name_modi] = data_temp[weight_name_modi] * frac_bkg #define TTLJ->frac == 1
+
   if files == bkg_files[0]: data_bkg = data_temp
   else: data_bkg = pd.concat([data_bkg,data_temp], ignore_index=True)
+
 
 data = pd.concat([data_sig,data_bkg], ignore_index=True)
 #print(daaxis=data.index.is_unique)#check if indices are duplicated
 #data[label_name] = (data[label_name] == signal_label).astype(int) #don't need here
 data = shuffle(data)
 NumEvt = data[label_name].value_counts(sort=True, ascending=True)
-#print(NumEvt)
-print('bkg/sig events : '+ str(NumEvt.tolist()))
+print(NumEvt)
+#print('bkg/sig events : '+ str(NumEvt.tolist()))
 data = data.drop(data.query(label_name + ' < 1').sample(frac=bkg_drop_rate, axis=0).index)
 NumEvt2 = data[label_name].value_counts(sort=True, ascending=True)
-#print(NumEvt2)
-print('bkg/sig events after bkg skim : '+ str(NumEvt2.tolist()))
+print(NumEvt2)
+#print('bkg/sig events after bkg skim : '+ str(NumEvt2.tolist()))
 
 
 ##########################################
 #drop phi and label features, correlations
 ##########################################
 #col_names = list(data_train)
-weights = data.filter([weight_name], axis=1)
+weights = data.filter([weight_name], axis=1) #native event weights, for roc/auc
+weights_modi = data.filter([weight_name_modi], axis=1) #for sample weight
 labels = data.filter([label_name], axis=1)
 data = data.filter(input_features, axis=1)
 data.astype('float32')
@@ -457,6 +414,8 @@ labels_train = labels.loc[train_idx,:].copy()
 labels_test = labels.loc[test_idx,:].copy()
 weights_train = weights.loc[train_idx,:].copy()
 weights_test = weights.loc[test_idx,:].copy()
+weights_modi_train = weights_modi.loc[train_idx,:].copy()
+weights_modi_test = weights_modi.loc[test_idx,:].copy()
 
 print('Training signal: '+str(len(train_sig))+' / testing signal: '+str(len(test_sig))+' / training background: '+str(len(train_bkg))+' / testing background: '+str(len(test_bkg)))
 #print(str(len(X_train)) +' '+ str(len(Y_train)) +' ' + str(len(X_test)) +' '+ str(len(Y_test)))
@@ -468,6 +427,8 @@ labels_test = labels_test.values
 Y_test = np_utils.to_categorical(labels_test)
 weights_train = weights_train.values.flatten()
 weights_test = weights_test.values.flatten()
+weights_modi_train = weights_modi_train.values.flatten()
+weights_modi_test = weights_modi_test.values.flatten()
 
 
 ################
@@ -568,12 +529,14 @@ train_model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0
 #parallel_model.summary()
 
 modelfile = 'model_{epoch:02d}_{val_binary_accuracy:.4f}.h5'
-checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile), monitor='val_binary_accuracy', verbose=1, save_best_only=False)#, mode='max')
+checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile),
+                            monitor='val_binary_accuracy', verbose=1, save_best_only=False)#, mode='max')
 history = train_model.fit(X_train, Y_train,
-                          epochs=50, batch_size=1000,
+                          epochs=50, batch_size=100,
                           validation_data=(X_test, Y_test),
-                          class_weight = class_weights, #sample_weight=weights_train, #class_weight = class_weights,
-                          callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model)]
+                          sample_weight=weights_modi_train, #class_weight = class_weights, sample_weight=weights_modi_train,
+                          callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test),
+                                                  model=model, event_weight_train=weights_train, event_weight_test=weights_test)]
                           )
 model.save(os.path.join(configDir, weightDir+ver, 'model.h5'))#save template model, rather than the model returned by multi_gpu_model.
 

@@ -140,7 +140,9 @@ public :
           "__pdf100", "__pdf101", "__pdf102",};
     int syst_num = syst_name.size();
 
-    TH1D *h_MVA[3][144];
+    TH1D *h_MVA_b2[3][144];
+    TH1D *h_MVA_b3[3][144];
+    TH1D *h_MVA_b4[3][144];
 
     TFile *scoreF;
     TTree *scoreT;

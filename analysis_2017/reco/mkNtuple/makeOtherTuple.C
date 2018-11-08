@@ -43,7 +43,7 @@ void makeOtherTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("EventCategory", &b_EventCategory, "EventCategory/I");
   testTree->Branch("genMatch"     , &b_genMatch     , "genMatch/I");
   testTree->Branch("EventWeight"  , &b_EventWeight  , "EventWeight/F");
-  testTree->Branch("trigger"      , &b_trigger     , "trigger/I");
+  testTree->Branch("trigger"      , &b_trigger      , "trigger/I");
   
   testTree->Branch("njets"     , &b_njets     , "njets/I");
   testTree->Branch("nbjets_m"  , &b_nbjets_m  , "nbjets_m/I");
@@ -387,7 +387,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
         for( auto ii3 = ii2+1; ii3 != jetIdxs.end(); ++ii3 ){
           if( *ii3 == *ii0 or *ii3 == *ii2 ) continue;
           if( (chBit == 2 or chBit == 3) and *ii3 == *ii1 ) continue;
-          if( (chBit == 1 or chBit == 2) and jet_deepCSV[*ii3] < 0.4941 ) continue;
+          if( (chBit == 1 or chBit == 2) and nbjets_m > 2 and jet_deepCSV[*ii3] < 0.4941 ) continue;
           if( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
             jetP4[1].SetPtEtaPhiE(jet_pt[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_e[*ii2]);
             jetP4[2].SetPtEtaPhiE(jet_pt[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_e[*ii3]);
@@ -432,6 +432,9 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
           b_jet2csv = jet_deepCSV[tmp_idx[2]]; b_jet2cvsl = jet_deepCvsL[tmp_idx[2]]; b_jet2cvsb = jet_deepCvsB[tmp_idx[2]];
           b_jet3csv = jet_deepCSV[tmp_idx[3]]; b_jet3cvsl = jet_deepCvsL[tmp_idx[3]]; b_jet3cvsb = jet_deepCvsB[tmp_idx[3]];
           b_jet0Idx = tmp_idx[0]; b_jet1Idx = tmp_idx[1]; b_jet2Idx = tmp_idx[2]; b_jet3Idx = tmp_idx[3];
+
+          if( b_jet0csv < 0 ) b_jet0csv = 0; if( b_jet1csv < 0 ) b_jet1csv = 0;
+          if( b_jet2csv < 0 ) b_jet2csv = 0; if( b_jet3csv < 0 ) b_jet3csv = 0;
 
           const auto lepT = lepW + jetP4cor[0];
           const auto had12 = jetP4cor[1] + jetP4cor[2];//This is W or H

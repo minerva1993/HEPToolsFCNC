@@ -50,7 +50,7 @@
   type: mc
   pretty-name: 'TTpowhegttbb'
   cross-section: 365.34
-  generated-events: 108808064 #111325048
+  generated-events: 108808064 #105117536 #108808064 #111325048
   fill-color: "#330000"
   legend: "ttbb"
   order: 0
@@ -59,7 +59,7 @@
   type: mc
   pretty-name: 'TTpowhegttbj'
   cross-section: 365.34
-  generated-events: 108808064 #111325048
+  generated-events: 108808064 #105117536 #108808064 #111325048
   fill-color: '#660000'
   legend: 'ttbj'
   order: 1
@@ -68,7 +68,7 @@
   type: mc
   pretty-name: 'TTpowhegttcc'
   cross-section: 365.34
-  generated-events: 108808064 #111325048
+  generated-events: 108808064 #105117536 #108808064 #111325048
   fill-color: '#990000'
   legend: 'ttcc'
   order: 2
@@ -77,7 +77,7 @@
   type: mc
   pretty-name: 'TTpowhegttlf'
   cross-section: 365.34
-  generated-events: 108808064 #111325048
+  generated-events: 108808064 #105117536 #108808064 #111325048
   fill-color: '#cc0000'
   legend: 'ttLF'
   order: 3
@@ -86,7 +86,7 @@
   type: mc
   pretty-name: 'TTpowhegttother'
   cross-section: 365.34
-  generated-events: 108808064 #111325048
+  generated-events: 108808064 #105117536 #108808064 #111325048
   fill-color: '#ff6666'
   legend: 'ttBkg'
   group: GttBkg
@@ -107,7 +107,7 @@
   type: mc
   pretty-name: 'TTLLpowheg'
   cross-section: 88.29
-  generated-events: 65707642 #66979742
+  generated-events: 65707642 #63855286 #65707642 #66979742
   fill-color: '#ff6666'
   legend: 'ttBkg'
   group: GttBkg

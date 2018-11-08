@@ -43,4 +43,11 @@ cout << "sthct" << " " << sthct->TColor::AsHexString() << endl;
 
 TColor *sthut = gROOT->GetColor(403);
 cout << "sthut" << " " << sthut->TColor::AsHexString() << endl;
+
+cout << "ww" << " " << TColor::GetColor("#cc00cc") << endl;
+cout << "wz" << " " << TColor::GetColor("#9933ff") << endl;
+cout << "zz" << " " << TColor::GetColor("#660066") << endl;
+cout << "cmuta" << " " << TColor::GetColor("#00ffff") << endl;
+cout << "ctata" << " " << TColor::GetColor("#ff0000") << endl;
+cout << "cnunu" << " " << TColor::GetColor("#ffff00") << endl;
 }

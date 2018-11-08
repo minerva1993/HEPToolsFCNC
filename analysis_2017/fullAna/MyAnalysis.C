@@ -612,10 +612,13 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             if( njets >= njet_cut && nbjets_m >= 2 ){
               for( int i = 0; i < 3; ++i ){
                 const size_t j = jetIdx[i];
+                if( jet_deepCSV[j] < 0 ) jet_deepCSV[j] = 0;
                 h_csv[MODE][cut][syst] ->Fill(jet_deepCSV[j],EventWeight);
                 h_cvsl[MODE][cut][syst]->Fill(jet_deepCvsL[j],EventWeight);
                 h_cvsb[MODE][cut][syst]->Fill(jet_deepCvsB[j],EventWeight);
               }
+              if( jet_deepCSV[jetIdx[1]] < 0 ) jet_deepCSV[jetIdx[1]] = 0;
+              if( jet_deepCSV[jetIdx[2]] < 0 ) jet_deepCSV[jetIdx[2]] = 0;
               h_FCNHkinLepWMass[MODE][cut][syst]->Fill((lepton+p4met).M(),EventWeight);
               h_FCNHkinHadWMass[MODE][cut][syst]->Fill((jetP4s[2]+jetP4s[3]).M(),EventWeight);
               h_FCNHkinLepTopM[MODE][cut][syst] ->Fill((lepton+p4met+jetP4s[0]).M(),EventWeight);

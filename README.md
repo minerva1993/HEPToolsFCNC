@@ -48,13 +48,13 @@ mkdir figures
 mv post_process pre_process temp STFCNC01
 #python ratioEMuCombine.py
 cd STFCNC01/post_process
-../../../../plotIt/plotIt -o figures/ ../../../../plotIt/configs/config.yml -y
+../../../../plotIt/plotIt -o ../figures/ ../../../../plotIt/configs/config.yml -y
 ```
   *Final MVA
 ```{.Bash}
 cd /HEPToolsFCNC/finalMVA/mkNtuple
 python dir_manage.py
-source job_ntuple.sh
+cat ../../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python run.py
 cd ../training
 python training_kerasTF.py Hct j3 01
 cd ..
@@ -66,6 +66,11 @@ python do_post_process.py
 mkdir Hct_j4_01
 mv post_process pre_process temp Hct_j3_01
 ../../../../plotIt/plotIt -o ../ ../../../../plotIt/configs/config.yml -y
+```
+If you use BDT,
+```{.Bash}
+python training_bdt.py Hct j3 01
+cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python evaluation_bdt.py Hct j3b2 01
 ```
 
 

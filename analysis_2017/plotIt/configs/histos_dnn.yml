@@ -1,17 +1,58 @@
-'h_DNN_Ch0':
+'h_DNN_b2_Ch0':
   y-axis: "Entries"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
-  for-yields: true
 
-'h_DNN_Ch1':
+'h_DNN_b2_Ch1':
   y-axis: "Entries"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
-  for-yields: true
 
-'h_DNN_Ch2':
+'h_DNN_b2_Ch2':
   y-axis: "Entries"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
   for-yields: true
+  yields-table-order: 0
+
+#'h_DNN_b3_Ch0':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_b3_Ch1':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_b3_Ch2':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#  for-yields: true
+#  yields-table-order: 1
+
+#'h_DNN_b4_Ch0':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_b4_Ch1':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_b4_Ch2':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#  for-yields: true
+#  yields-table-order: 2
+
+#'h_DNN_Ch2':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#  for-yields: true
+#  yields-table-order: 0
+#  blinded-range: [0.7,1]
