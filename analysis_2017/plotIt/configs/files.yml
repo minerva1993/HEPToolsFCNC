@@ -1,20 +1,20 @@
-'hist_STTH1L3BHct.root':
-  type: signal
-  pretty-name: 'STTH1L3BHct'
-  cross-section: 0.076
-  generated-events: 3339344 #3939304
-  line-color: '#006666'
-  legend: 'STHct'
-  order: 1
-
-'hist_TTTH1L3BHct.root':
-  type: signal
-  pretty-name: 'TTTH1L3BaTLepHct'
-  cross-section: 1.86
-  generated-events: 1432673 #1726470
-  line-color: '#0000cc'
-  legend: 'TTHct'
-  order: 2
+#'hist_STTH1L3BHct.root':
+#  type: signal
+#  pretty-name: 'STTH1L3BHct'
+#  cross-section: 0.076
+#  generated-events: 3339344 #3939304
+#  line-color: '#006666'
+#  legend: 'STHct'
+#  order: 1
+#
+#'hist_TTTH1L3BHct.root':
+#  type: signal
+#  pretty-name: 'TTTH1L3BaTLepHct'
+#  cross-section: 1.86
+#  generated-events: 1432673 #1726470
+#  line-color: '#0000cc'
+#  legend: 'TTHct'
+#  order: 2
 
 'hist_STTH1L3BHut.root':
   type: signal
@@ -50,46 +50,51 @@
   type: mc
   pretty-name: 'TTpowhegttbb'
   cross-section: 365.34
-  generated-events: 108808064 #105117536 #108808064 #111325048
+  generated-events: 105117536 #108808064 #111325048
   fill-color: "#330000"
   legend: "ttbb"
+  yields-group: '0\ttbar\bbbar'
   order: 0
 
 'hist_TTpowhegttbj.root':
   type: mc
   pretty-name: 'TTpowhegttbj'
   cross-section: 365.34
-  generated-events: 108808064 #105117536 #108808064 #111325048
+  generated-events: 105117536 #108808064 #111325048
   fill-color: '#660000'
   legend: 'ttbj'
+  yields-group: '1\ttbar bj'
   order: 1
 
 'hist_TTpowhegttcc.root':
   type: mc
   pretty-name: 'TTpowhegttcc'
   cross-section: 365.34
-  generated-events: 108808064 #105117536 #108808064 #111325048
+  generated-events: 105117536 #108808064 #111325048
   fill-color: '#990000'
   legend: 'ttcc'
+  yields-group: '2\ttbar\ccbar'
   order: 2
 
 'hist_TTpowhegttlf.root':
   type: mc
   pretty-name: 'TTpowhegttlf'
   cross-section: 365.34
-  generated-events: 108808064 #105117536 #108808064 #111325048
+  generated-events: 105117536 #108808064 #111325048
   fill-color: '#cc0000'
   legend: 'ttLF'
+  yields-group: '3\ttbar LF'
   order: 3
 
 'hist_TTpowhegttother.root':
   type: mc
   pretty-name: 'TTpowhegttother'
   cross-section: 365.34
-  generated-events: 108808064 #105117536 #108808064 #111325048
+  generated-events: 105117536 #108808064 #111325048
   fill-color: '#ff6666'
   legend: 'ttBkg'
   group: GttBkg
+  yields-group: '4\ttbar Bkg'
   order: 4
 
 'hist_TTHadpowheg.root':
@@ -101,17 +106,19 @@
   legend: 'ttBkg'
   group: GttBkg
   #legend: 'ttHad'
+  yields-group: '4\ttbar Bkg'
   order: 5
 
 'hist_TTLLpowheg.root':
   type: mc
   pretty-name: 'TTLLpowheg'
   cross-section: 88.29
-  generated-events: 65707642 #63855286 #65707642 #66979742
+  generated-events: 63855286 #65707642 #66979742
   fill-color: '#ff6666'
   legend: 'ttBkg'
   group: GttBkg
   #legend: 'ttLL'
+  yields-group: '4\ttbar Bkg'
   order: 6
 
 'hist_ttHTobb.root':
@@ -122,6 +129,7 @@
   fill-color: '#ff66ff'
   legend: 'ttV'
   group: GttV
+  yields-group: '5Other'
   order: 7
 
 'hist_ttHToNonbb.root':
@@ -132,6 +140,7 @@
   fill-color: '#ff66ff'
   legend: 'ttV'
   group: GttV
+  yields-group: '5Other'
   order: 8
 
 'hist_TTWJetsToLNuPSweight.root':
@@ -142,6 +151,7 @@
   fill-color: '#ff66ff'
   legend: 'ttV'
   group: GttV
+  yields-group: '5Other'
   order: 9
 
 'hist_TTWJetsToQQ.root':
@@ -152,6 +162,7 @@
   fill-color: '#ff66ff'
   legend: 'ttV'
   group: GttV
+  yields-group: '5Other'
   order: 10
 
 'hist_TTZToLLNuNu.root':
@@ -162,6 +173,7 @@
   fill-color: '#ff66ff'
   legend: 'ttV'
   group: GttV
+  yields-group: '5Other'
   order: 11
 
 'hist_TTZToQQ.root':
@@ -172,6 +184,7 @@
   fill-color: '#ff66ff'
   legend: 'ttV'
   group: GttV
+  yields-group: '5Other'
   order: 12
 
 'hist_W1JetsToLNu.root':
@@ -182,6 +195,7 @@
   fill-color: '#ff9933'
   legend: 'WJets'
   group: GWJets
+  yields-group: '5Other'
   order: 23
 
 'hist_W2JetsToLNu.root':
@@ -192,6 +206,7 @@
   fill-color: '#ff9933'
   legend: 'WJets'
   group: GWJets
+  yields-group: '5Other'
   order: 24
 
 'hist_W3JetsToLNu.root':
@@ -202,6 +217,7 @@
   fill-color: '#ff9933'
   legend: 'WJets'
   group: GWJets
+  yields-group: '5Other'
   order: 25
 
 'hist_W4JetsToLNu.root':
@@ -212,16 +228,18 @@
   fill-color: '#ff9933'
   legend: 'WJets'
   group: GWJets
+  yields-group: '5Other'
   order: 26
 
 'hist_DYJetsv2.root':
   type: mc
   pretty-name: 'DYJets'
-  cross-section: 5765.4
+  cross-section: 6225.42
   generated-events: 142161151
   fill-color: '#000099'
   legend: 'ZJets'
   group: GZJets
+  yields-group: '5Other'
   order: 21
 
 'hist_DYJets10to50.root':
@@ -232,16 +250,18 @@
   fill-color: '#000099'
   legend: 'ZJets'
   group: GZJets
+  yields-group: '5Other'
   order: 22
 
 'hist_SingleTops.root':
   type: mc
   pretty-name: 'SingleTops'
-  cross-section: 11.36
+  cross-section: 3.36
   generated-events: 6179792
   fill-color: '#990099'
   legend: 'SingleT'
   group: GSingleT
+  yields-group: '5Other'
   order: 13
 
 'hist_SingleTopt.root':
@@ -252,6 +272,7 @@
   fill-color: '#990099'
   legend: 'SingleT'
   group: GSingleT
+  yields-group: '5Other'
   order: 14
 
 'hist_SingleTbart.root':
@@ -262,6 +283,7 @@
   fill-color: '#990099'
   legend: 'SingleT'
   group: GSingleT
+  yields-group: '5Other'
   order: 15
 
 'hist_SingleToptW.root':
@@ -272,6 +294,7 @@
   fill-color: '#990099'
   legend: 'SingleT'
   group: GSingleT
+  yields-group: '5Other'
   order: 16
 
 'hist_SingleTbartW.root':
@@ -282,6 +305,7 @@
   fill-color: '#990099'
   legend: 'SingleT'
   group: GSingleT
+  yields-group: '5Other'
   order: 17
 
 'hist_WW.root':
@@ -292,6 +316,7 @@
   fill-color: '#00cccc'
   legend: 'VV'
   group: GVV
+  yields-group: '5Other'
   order: 18
 
 'hist_WZ.root':
@@ -302,6 +327,7 @@
   fill-color: '#00cccc'
   legend: 'VV'
   group: GVV
+  yields-group: '5Other'
   order: 19
 
 'hist_ZZ.root':
@@ -312,4 +338,5 @@
   fill-color: '#00cccc'
   legend: 'VV'
   group: GVV
+  yields-group: '5Other'
   order: 20

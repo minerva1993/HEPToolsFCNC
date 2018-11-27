@@ -14,6 +14,7 @@ print("Write options for bypassing reconstruction")
 noreco_list = []
 for file_name in os.listdir(path_to_prod_noreco):
   if file_name.endswith(".root"):
+    #if 'WJet' in file_name: continue
     dataset_path = os.path.join(path_to_prod_noreco, file_name)
     tmp_string = ''
     file_id = file_name.split('_')[-1].split('.')[0]
@@ -27,6 +28,7 @@ if os.path.exists(run_file_name): os.remove(run_file_name)
 shutil.copy2('template_runNoReco', run_file_name)
 
 for lines in noreco_list:
+  if any(sys in lines for sys in ['hdamp', 'TuneCP5down', 'TuneCP5up']): continue
   string_for_run += '  runAna("' + lines.split(' ')[0] + '", "' + (lines.split(' ')[1]) + '")\n'
 
 with open(run_file_name, 'a') as target:
@@ -48,9 +50,9 @@ for train_sets in ['STTH1L3B', 'TTTH1L3B', 'TTpowheg', 'TTLLpowheg']:
     string_for_merge += 'rm temp/hist_' + train_sets + "*_000" + syst_tmp + ".root\n"
     if 'powheg' in train_sets:
       string_for_merge += 'rm temp/hist_' + train_sets + "*_001" + syst_tmp + ".root\n"
-#      string_for_merge += 'rm temp/hist_' + train_sets + "*_002" + syst_tmp + ".root\n"
-#      string_for_merge += 'rm temp/hist_' + train_sets + "*_003" + syst_tmp + ".root\n"
-#      string_for_merge += 'rm temp/hist_' + train_sets + "*_004" + syst_tmp + ".root\n"
+      string_for_merge += 'rm temp/hist_' + train_sets + "*_002" + syst_tmp + ".root\n"
+      string_for_merge += 'rm temp/hist_' + train_sets + "*_003" + syst_tmp + ".root\n"
+      string_for_merge += 'rm temp/hist_' + train_sets + "*_004" + syst_tmp + ".root\n"
 
 for lines in noreco_list:
   if "v2" in lines.split(' ')[1]: ext_dataset.append(lines.split(' ')[1])

@@ -17,63 +17,12 @@ configuration:
   blinded-range-fill-style: 1001
   yields-table-align: v
   book-keeping-file: 'plots.root'
+  yields-table-numerical-precision-yields: 2
 
 files: 
   include: ['files.yml']
 
 systematics:
-  - pu
-  - muid
-  - muiso
-  - mutrg
-  - elid
-  - elreco
-  - elzvtx
-  - lf
-  - hf
-  - hfstat1
-  - hfstat2
-  - lfstat1
-  - lfstat2
-  - cferr1
-  - cferr2
-  - jec
-  - jer
-  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - pdf: {type: shape, on: 'hist_TTpowhegttbj.root'}
-  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
-  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - pdf: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - pdf: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - pdf: {type: shape, on: 'hist_TTHadpowheg.root'}
-  - scale: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - scale: {type: shape, on: 'hist_TTpowhegttbj.root'}
-  - scale: {type: shape, on: 'hist_TTpowhegttcc.root'}
-  - scale: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - scale: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - scale: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - scale: {type: shape, on: 'hist_TTHadpowheg.root'}
-  - ps: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - ps: {type: shape, on: 'hist_TTpowhegttbj.root'}
-  - ps: {type: shape, on: 'hist_TTpowhegttcc.root'}
-  - ps: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - ps: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - ps: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - ps: {type: shape, on: 'hist_TTHadpowheg.root'}
-  - hdamp: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - hdamp: {type: shape, on: 'hist_TTpowhegttbj.root'}
-  - hdamp: {type: shape, on: 'hist_TTpowhegttcc.root'}
-  - hdamp: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - hdamp: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - hdamp: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - hdamp: {type: shape, on: 'hist_TTHadpowheg.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbj.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTpowhegttcc.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTHadpowheg.root'}
   - ttbb_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbb.root'}
   - ttbj_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbj.root'}
   - ttcc_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttcc.root'}
@@ -103,6 +52,58 @@ systematics:
   - other_xsec18:  {type: const, value: 1.1, on: 'hist_TTWJetsToQQ.root'}
   - other_xsec19:  {type: const, value: 1.1, on: 'hist_TTZToLLNuNu.root'}
   - other_xsec20:  {type: const, value: 1.1, on: 'hist_TTZToQQ.root'}
+  - pu
+  - muid
+  - muiso
+  - mutrg
+  - elid
+  - elreco
+  - elzvtx
+  - jec
+  - jer
+  - scale: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - scale: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - scale: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - scale: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - scale: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - scale: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - scale: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - ps: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - ps: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - hdamp: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - hdamp: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - pdf: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - pdf: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - lf
+  - hf
+  - lfstat1
+  - lfstat2
+  - hfstat1
+  - hfstat2
+  - cferr1
+  - cferr2
 
 plots:
 #  include: ['histos_stfcnc.yml']

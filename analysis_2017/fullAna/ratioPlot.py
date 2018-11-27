@@ -9,7 +9,7 @@ from style import *
 
 log = False
 each_plot = False
-onlyelmu = True
+onlyelmu = False
 
 from collections import OrderedDict
 datasamples=OrderedDict()
@@ -147,9 +147,10 @@ AddBkg("hist_W1JetsToLNu.root","WJets",ROOT.kYellow, 9625)
 AddBkg("hist_W2JetsToLNu.root","WJets",ROOT.kYellow, 2793)
 AddBkg("hist_W3JetsToLNu.root","WJets",ROOT.kYellow, 992.5)
 AddBkg("hist_W4JetsToLNu.root","WJets",ROOT.kYellow, 544.3)
-AddBkg("hist_DYJetsv2.root","ZJets",ROOT.kBlue, 5765.4)
+#AddBkg("hist_WJetsToLNu.root","WJets",ROOT.kYellow, 61526)
+AddBkg("hist_DYJetsv2.root","ZJets",ROOT.kBlue, 6225.42)
 AddBkg("hist_DYJets10to50.root","ZJets",ROOT.kBlue, 18610.0)
-AddBkg("hist_SingleTops.root","Single t",6, 11.36)
+AddBkg("hist_SingleTops.root","Single t",6, 3.36)
 AddBkg("hist_SingleTopt.root","Single t",6, 136.02)
 AddBkg("hist_SingleTbart.root","Single t",6, 80.95)
 AddBkg("hist_SingleToptW.root","Single t",6, 35.85)
@@ -185,6 +186,7 @@ for i in range(0, N_hist):
   string_fname = ''
   string_nevt =  ''
   hnames = datasamples[datasamples.keys()[0]]["hname"][i].split("_")
+
   printHistName = "NJet"
   if hnames[1] == printHistName:
     print hnames[2] + "_" + hnames[3]

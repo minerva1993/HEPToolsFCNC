@@ -100,7 +100,10 @@ for syst_ext in syst + syst2:
     data_tree.GetEntry(i)
     Nevt = data_tree.nevt
 
-    if data_tree.njets != njets_cut: continue
+    if njets_cut == 3:
+      if data_tree.njets != njets_cut: continue
+    elif njets_cut == 4:
+      if data_tree.njets < njets_cut: continue
     if nbjets_cut != 0:
       if data_tree.nbjets_m != nbjets_cut: continue
 

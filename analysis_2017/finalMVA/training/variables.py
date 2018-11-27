@@ -11,16 +11,16 @@ def input_variables(jetcat):
                   'stfcnc_jet2pt', 'stfcnc_jet2eta', 'stfcnc_jet2m', 'stfcnc_jet2csv',
                   'stfcnc_jet12pt', 'stfcnc_jet12eta', 'stfcnc_jet12m',
                   'stfcnc_jet12deta', 'stfcnc_jet12dphi', 'stfcnc_jet12dR',
-                  'stfcnc_lepTdphi', 'stfcnc_lepTm',
+                  'stfcnc_lepTpt', 'stfcnc_lepTdphi', 'stfcnc_lepTm',
                   'stfcnc_jet0lepdR', 'stfcnc_jet1lepdR', 'stfcnc_jet2lepdR',
                   'stfcnc_jet01dR', 'stfcnc_jet02dR',
                   'stfcnc_jet12_lepdR', 'stfcnc_jet12_0dR',
                   'stfcnc_lepTjet12dphi'])
   if "j4" in jetcat:
-    var_list.extend(['ttfcnc_jet0pt', 'ttfcnc_jet0eta', 'ttfcnc_jet0m',
-                    'ttfcnc_jet1pt', 'ttfcnc_jet1eta', 'ttfcnc_jet1m',
-                    'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m',
-                    'ttfcnc_jet3pt', 'ttfcnc_jet3eta', 'ttfcnc_jet3m',
+    var_list.extend(['ttfcnc_jet0pt', 'ttfcnc_jet0eta', 'ttfcnc_jet0m', 'ttfcnc_jet0csv',
+                    'ttfcnc_jet1pt', 'ttfcnc_jet1eta', 'ttfcnc_jet1m', 'ttfcnc_jet1csv',
+                    'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m', 'ttfcnc_jet2csv',
+                    'ttfcnc_jet3pt', 'ttfcnc_jet3eta', 'ttfcnc_jet3m', 'ttfcnc_jet3csv',
                     'ttfcnc_jet12pt', 'ttfcnc_jet12eta', 'ttfcnc_jet12m',
                     'ttfcnc_jet12deta', 'ttfcnc_jet12dphi', 'ttfcnc_jet12dR',
                     'ttfcnc_jet23pt', 'ttfcnc_jet23eta','ttfcnc_jet23m',
@@ -35,12 +35,12 @@ def input_variables(jetcat):
                     'ttfcnc_jet0lepdR', 'ttfcnc_jet1lepdR', 'ttfcnc_jet2lepdR', 'ttfcnc_jet3lepdR',
                     'ttfcnc_jet01dR', 'ttfcnc_jet02dR', 'ttfcnc_jet03dR',
                     'ttfcnc_jet12_lepdR', 'ttfcnc_jet23_lepdR', 'ttfcnc_jet31_lepdR',
-                    'ttfcnc_jet12_0R', 'ttfcnc_jet23_0dR', 'ttfcnc_jet31_0dR'
+                    'ttfcnc_jet12_0dR', 'ttfcnc_jet23_0dR', 'ttfcnc_jet31_0dR',
                     'ttfcnc_lepTjet12dphi', 'ttfcnc_lepTjet23dphi', 'ttfcnc_lepTjet31dphi', 'ttfcnc_hadT_jet0dR',])
-    var_list.extend(['ttbkg_jet0pt', 'ttbkg_jet0eta', 'ttbkg_jet0m',
-                    'ttbkg_jet1pt', 'ttbkg_jet1eta', 'ttbkg_jet1m',
-                    'ttbkg_jet2pt', 'ttbkg_jet2eta', 'ttbkg_jet2m',
-                    'ttbkg_jet3pt', 'ttbkg_jet3eta', 'ttbkg_jet3m',
+    var_list.extend(['ttbkg_jet0pt', 'ttbkg_jet0eta', 'ttbkg_jet0m', 'ttbkg_jet0csv',
+                    'ttbkg_jet1pt', 'ttbkg_jet1eta', 'ttbkg_jet1m', 'ttbkg_jet1csv',
+                    'ttbkg_jet2pt', 'ttbkg_jet2eta', 'ttbkg_jet2m', 'ttbkg_jet2csv',
+                    'ttbkg_jet3pt', 'ttbkg_jet3eta', 'ttbkg_jet3m', 'ttbkg_jet3csv',
                     'ttbkg_jet12pt', 'ttbkg_jet12eta', 'ttbkg_jet12m',
                     'ttbkg_jet12deta', 'ttbkg_jet12dphi', 'ttbkg_jet12dR',
                     'ttbkg_jet23pt', 'ttbkg_jet23eta','ttbkg_jet23m',
@@ -55,7 +55,7 @@ def input_variables(jetcat):
                     'ttbkg_jet0lepdR', 'ttbkg_jet1lepdR', 'ttbkg_jet2lepdR', 'ttbkg_jet3lepdR',
                     'ttbkg_jet01dR', 'ttbkg_jet02dR', 'ttbkg_jet03dR',
                     'ttbkg_jet12_lepdR', 'ttbkg_jet23_lepdR', 'ttbkg_jet31_lepdR',
-                    'ttbkg_jet12_0R', 'ttbkg_jet23_0dR', 'ttbkg_jet31_0dR'
+                    'ttbkg_jet12_0dR', 'ttbkg_jet23_0dR', 'ttbkg_jet31_0dR',
                     'ttbkg_lepTjet12dphi', 'ttbkg_lepTjet23dphi', 'ttbkg_lepTjet31dphi', 'ttbkg_hadT_jet0dR',])
 
     print("Adding variables for 4 jet category")
@@ -77,14 +77,14 @@ def train_files(ch):
         'finalMVA_TTpowhegttlf_000.h5', 'finalMVA_TTpowhegttother_000.h5',
         'finalMVA_TTpowhegttbb_001.h5', 'finalMVA_TTpowhegttbj_001.h5', 'finalMVA_TTpowhegttcc_001.h5',
         'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
-#        'finalMVA_TTpowhegttbb_002.h5', 'finalMVA_TTpowhegttbj_002.h5', 'finalMVA_TTpowhegttcc_002.h5',
-#        'finalMVA_TTpowhegttlf_002.h5', 'finalMVA_TTpowhegttother_002.h5',
-#        'finalMVA_TTpowhegttbb_003.h5', 'finalMVA_TTpowhegttbj_003.h5', 'finalMVA_TTpowhegttcc_003.h5',
-#        'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
-#        'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
-#        'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
+        'finalMVA_TTpowhegttbb_002.h5', 'finalMVA_TTpowhegttbj_002.h5', 'finalMVA_TTpowhegttcc_002.h5',
+        'finalMVA_TTpowhegttlf_002.h5', 'finalMVA_TTpowhegttother_002.h5',
+        'finalMVA_TTpowhegttbb_003.h5', 'finalMVA_TTpowhegttbj_003.h5', 'finalMVA_TTpowhegttcc_003.h5',
+        'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
+        'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
+        'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
         'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5',
-#        'finalMVA_TTLLpowheg_002.h5', 'finalMVA_TTLLpowheg_003.h5', 'finalMVA_TTLLpowheg_004.h5',
+        'finalMVA_TTLLpowheg_002.h5', 'finalMVA_TTLLpowheg_003.h5', 'finalMVA_TTLLpowheg_004.h5',
         ]
 
   return sig, bkg
@@ -219,7 +219,7 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
                     'ttfcnc_jet0lepdR', 'ttfcnc_jet1lepdR', 'ttfcnc_jet2lepdR', 'ttfcnc_jet3lepdR',
                     'ttfcnc_jet01dR', 'ttfcnc_jet02dR', 'ttfcnc_jet03dR',
                     'ttfcnc_jet12_lepdR', 'ttfcnc_jet23_lepdR', 'ttfcnc_jet31_lepdR',
-                    'ttfcnc_jet12_0R', 'ttfcnc_jet23_0dR', 'ttfcnc_jet31_0dR'
+                    'ttfcnc_jet12_0dR', 'ttfcnc_jet23_0dR', 'ttfcnc_jet31_0dR',
                     'ttfcnc_lepTjet12dphi', 'ttfcnc_lepTjet23dphi', 'ttfcnc_lepTjet31dphi', 'ttfcnc_hadT_jet0dR',])
     var_list.extend(['ttbkg_jet0pt', 'ttbkg_jet0eta', 'ttbkg_jet0m',
                     'ttbkg_jet1pt', 'ttbkg_jet1eta', 'ttbkg_jet1m',
@@ -239,7 +239,7 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
                     'ttbkg_jet0lepdR', 'ttbkg_jet1lepdR', 'ttbkg_jet2lepdR', 'ttbkg_jet3lepdR',
                     'ttbkg_jet01dR', 'ttbkg_jet02dR', 'ttbkg_jet03dR',
                     'ttbkg_jet12_lepdR', 'ttbkg_jet23_lepdR', 'ttbkg_jet31_lepdR',
-                    'ttbkg_jet12_0R', 'ttbkg_jet23_0dR', 'ttbkg_jet31_0dR'
+                    'ttbkg_jet12_0dR', 'ttbkg_jet23_0dR', 'ttbkg_jet31_0dR',
                     'ttbkg_lepTjet12dphi', 'ttbkg_lepTjet23dphi', 'ttbkg_lepTjet31dphi', 'ttbkg_hadT_jet0dR',])
 
     print("Adding variables for 4 jet category")

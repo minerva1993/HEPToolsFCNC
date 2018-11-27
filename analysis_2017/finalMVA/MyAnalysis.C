@@ -66,17 +66,17 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     for( int syst = 0; syst != syst_num; ++syst ){
       if( syst > 0 and !dosyst ) continue;
 
-      h_MVA_b2[ich][syst] = new TH1D(Form("h_DNN_b2_Ch%i%s",ich,syst_name[syst]), "Final MVA b2", 40, 0, 1);
+      h_MVA_b2[ich][syst] = new TH1D(Form("h_DNN_b2_Ch%i%s",ich,syst_name[syst]), "Final MVA b2", 40, -1, 1);
       h_MVA_b2[ich][syst]->SetXTitle("DNN Score");
       h_MVA_b2[ich][syst]->Sumw2();
       fOutput->Add(h_MVA_b2[ich][syst]);
 
-      h_MVA_b3[ich][syst] = new TH1D(Form("h_DNN_b3_Ch%i%s",ich,syst_name[syst]), "Final MVA b3", 40, 0, 1);
+      h_MVA_b3[ich][syst] = new TH1D(Form("h_DNN_b3_Ch%i%s",ich,syst_name[syst]), "Final MVA b3", 40, -1, 1);
       h_MVA_b3[ich][syst]->SetXTitle("DNN Score");
       h_MVA_b3[ich][syst]->Sumw2();
       fOutput->Add(h_MVA_b3[ich][syst]);
 
-      h_MVA_b4[ich][syst] = new TH1D(Form("h_DNN_b4_Ch%i%s",ich,syst_name[syst]), "Final MVA b4", 40, 0, 1);
+      h_MVA_b4[ich][syst] = new TH1D(Form("h_DNN_b4_Ch%i%s",ich,syst_name[syst]), "Final MVA b4", 40, -1, 1);
       h_MVA_b4[ich][syst]->SetXTitle("DNN Score");
       h_MVA_b4[ich][syst]->Sumw2();
       fOutput->Add(h_MVA_b4[ich][syst]);

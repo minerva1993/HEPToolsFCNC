@@ -21,10 +21,15 @@ ch = sys.argv[1]
 jetcat = sys.argv[2]
 ver = sys.argv[3]
 
-#MultiGPU option
+#Options
 multiGPU = True
 if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
   multiGPU = False
+bkg_drop_rate = 0.0
+train_test_rate = 0.8
+plot_figures = True
+include_eventWeight = True
+sklearn_based_overtraining_check = False #If it set to false, directly plot DNN scores
 
 #directory name
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
@@ -44,13 +49,6 @@ if len(jetcat) > 3:
     sys.exit()
 else: nbjets_cut = 0
 
-bkg_drop_rate = 0.0
-train_test_rate = 0.8
-plot_figures = True
-include_eventWeight = True
-sklearn_based_overtraining_check = False #If it set to false, directly plot DNN scores
-
-#Options for data preparation
 input_features = []
 input_features.extend(input_variables(jetcat))
 input_features.append(label_name)
@@ -84,6 +82,11 @@ for item in os.listdir( os.path.join(configDir, weightDir+ver) ) or os.listdir( 
     #os.remove(os.path.join(os.path.join(configDir, weightDir+ver), item))
     print("Remove previous files or move on to next version!")
     sys.exit()
+
+sumWST = 0
+sumWTT = 0
+sumWTTLJ = 0
+sumWTTLL = 0
 
 #list for scores for plotting
 f1_list = []
@@ -333,9 +336,11 @@ for files in sig_files:
     data_temp['STTT'] = 0
     nST += len(data_temp.index)
     data_temp[weight_name_modi] = data_temp[weight_name_modi] * frac_sig #define TTTH->frac == 1
+    sumWST += np.sum(data_temp[weight_name_modi])
   elif "TTTH" in files:
     data_temp['STTT'] = 1
     nTT += len(data_temp.index)
+    sumWTT += np.sum(data_temp[weight_name_modi])
   else: print("Wrong signal sample!")
 
   if files == sig_files[0]: data_sig = data_temp
@@ -360,10 +365,14 @@ for files in bkg_files:
 
   if "TTLL" in files:
     data_temp[weight_name_modi] = data_temp[weight_name_modi] * frac_bkg #define TTLJ->frac == 1
+    sumWTTLL += np.sum(data_temp[weight_name_modi])
+  else: sumWTTLJ += np.sum(data_temp[weight_name_modi])
 
   if files == bkg_files[0]: data_bkg = data_temp
   else: data_bkg = pd.concat([data_bkg,data_temp], ignore_index=True)
 
+
+print("ST: ", sumWST, ", TT: ", sumWTT, ", TTLJ: ", sumWTTLJ, ", TTLL: ", sumWTTLL)
 
 data = pd.concat([data_sig,data_bkg], ignore_index=True)
 #print(daaxis=data.index.is_unique)#check if indices are duplicated
@@ -444,7 +453,9 @@ X_test = data_test_sc
 #######################################
 #Class weight for automatic computation
 #######################################
-class_weights = class_weight.compute_class_weight('balanced', np.unique(Y_train), Y_train.flatten())
+#class_weights = class_weight.compute_class_weight('balanced', np.unique(Y_train), Y_train.flatten())
+class_weights = [(sumWST+sumWTT)/(sumWST+sumWTT+sumWTTLJ+sumWTTLL), (sumWTTLJ+sumWTTLL)/(sumWST+sumWTT+sumWTTLJ+sumWTTLL)]
+print(class_weights)
 
 
 #################################
@@ -532,9 +543,9 @@ modelfile = 'model_{epoch:02d}_{val_binary_accuracy:.4f}.h5'
 checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile),
                             monitor='val_binary_accuracy', verbose=1, save_best_only=False)#, mode='max')
 history = train_model.fit(X_train, Y_train,
-                          epochs=50, batch_size=100,
+                          epochs=50, batch_size=1000,
                           validation_data=(X_test, Y_test),
-                          sample_weight=weights_modi_train, #class_weight = class_weights, sample_weight=weights_modi_train,
+                          class_weight = class_weights, #sample_weight=weights_modi_train,
                           callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test),
                                                   model=model, event_weight_train=weights_train, event_weight_test=weights_test)]
                           )

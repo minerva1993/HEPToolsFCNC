@@ -65,6 +65,8 @@ source job_merge.sh
 python do_post_process.py
 mkdir Hct_j4_01
 mv post_process pre_process temp Hct_j3_01
+...
+python merge_histos.py Hut 10 10 10 10 10 10
 ../../../../plotIt/plotIt -o ../ ../../../../plotIt/configs/config.yml -y
 ```
 If you use BDT,
