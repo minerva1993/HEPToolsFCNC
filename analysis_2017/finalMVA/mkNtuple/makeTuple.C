@@ -589,7 +589,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   else if( option.Contains("ttbj") ) b_EventCategory = 2;
   else if( option.Contains("ttcc") ) b_EventCategory = 3;
   else if( option.Contains("ttlf") ) b_EventCategory = 4;
-  else if( option.Contains("ttother") ) b_EventCategory = 5;
+  else if( option.Contains("ttother") or option.Contains("TTLL") or option.Contains("TTHad")) b_EventCategory = 5;
   else if( option.Contains("SingleT") ) b_EventCategory = 6; //singletop
   else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 7; //VV
   else if( option.Contains("DY") ) b_EventCategory = 8;
@@ -600,7 +600,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   b_EventWeight = 1.0;
   if( !option.Contains("Run2017") ){
     if( passmuon ) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6];
-    else if( passelectron) b_EventWeight *= lepton_SF[0] * lepton_SF[3] *  lepton_SF[6];
+    else if( passelectron) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6];
     b_EventWeight *= PUWeight[0] * wrongPVrate * jet_SF_deepCSV_30[0] * (*genweight);
   }
 
@@ -662,18 +662,26 @@ Bool_t makeTuple::Process(Long64_t entry)
       else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
       else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Up[jetIdx[i]];
       else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Down[jetIdx[i]];
-      else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]];
+      //else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]];
     }
-    else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
+    //else if( option.Contains("Run2017") )
+    for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
 
-    b_stfcnc_jet0pt = jetP4[0].Pt(); b_stfcnc_jet0eta = jetP4[0].Eta(); b_stfcnc_jet0phi = jetP4[0].Phi(); b_stfcnc_jet0m = jetP4[0].M();
+    b_stfcnc_jet0pt = jetP4cor[0].Pt(); b_stfcnc_jet0eta = jetP4cor[0].Eta();
+    b_stfcnc_jet0phi = jetP4cor[0].Phi(); b_stfcnc_jet0m = jetP4cor[0].M();
     b_stfcnc_jet0csv = jet_deepCSV[jetIdx[0]]; b_stfcnc_jet0cvsl = jet_CvsL[jetIdx[0]]; b_stfcnc_jet0cvsb = jet_CvsB[jetIdx[0]];
-    b_stfcnc_jet1pt = jetP4[1].Pt(); b_stfcnc_jet1eta = jetP4[1].Eta(); b_stfcnc_jet1phi = jetP4[1].Phi(); b_stfcnc_jet1m = jetP4[1].M();
+    b_stfcnc_jet1pt = jetP4cor[1].Pt(); b_stfcnc_jet1eta = jetP4cor[1].Eta();
+    b_stfcnc_jet1phi = jetP4cor[1].Phi(); b_stfcnc_jet1m = jetP4cor[1].M();
     b_stfcnc_jet1csv = jet_deepCSV[jetIdx[1]]; b_stfcnc_jet1cvsl = jet_CvsL[jetIdx[1]]; b_stfcnc_jet1cvsb = jet_CvsB[jetIdx[1]];
-    b_stfcnc_jet2pt = jetP4[2].Pt(); b_stfcnc_jet2eta = jetP4[2].Eta(); b_stfcnc_jet2phi = jetP4[2].Phi(); b_stfcnc_jet2m = jetP4[2].M();
+    b_stfcnc_jet2pt = jetP4cor[2].Pt(); b_stfcnc_jet2eta = jetP4cor[2].Eta();
+    b_stfcnc_jet2phi = jetP4cor[2].Phi(); b_stfcnc_jet2m = jetP4cor[2].M();
     b_stfcnc_jet2csv = jet_deepCSV[jetIdx[2]]; b_stfcnc_jet2cvsl = jet_CvsL[jetIdx[2]]; b_stfcnc_jet2cvsb = jet_CvsB[jetIdx[2]];
-    b_stfcnc_jet3pt = jetP4[3].Pt(); b_stfcnc_jet3eta = jetP4[3].Eta(); b_stfcnc_jet3phi = jetP4[3].Phi(); b_stfcnc_jet3m = jetP4[3].M();
+    b_stfcnc_jet3pt = jetP4cor[3].Pt(); b_stfcnc_jet3eta = jetP4cor[3].Eta();
+    b_stfcnc_jet3phi = jetP4cor[3].Phi(); b_stfcnc_jet3m = jetP4cor[3].M();
     b_stfcnc_jet3csv = jet_deepCSV[jetIdx[3]]; b_stfcnc_jet3cvsl = jet_CvsL[jetIdx[3]]; b_stfcnc_jet3cvsb = jet_CvsB[jetIdx[3]];
+
+    if( b_stfcnc_jet0csv < 0 ) b_stfcnc_jet0csv = 0; if( b_stfcnc_jet1csv < 0 ) b_stfcnc_jet1csv = 0;
+    if( b_stfcnc_jet2csv < 0 ) b_stfcnc_jet2csv = 0; if( b_stfcnc_jet3csv < 0 ) b_stfcnc_jet3csv = 0;
 
     const auto lepT = lepW + jetP4cor[0];
     const auto had12 = jetP4cor[1] + jetP4cor[2];//This is W or H
@@ -757,14 +765,21 @@ Bool_t makeTuple::Process(Long64_t entry)
     }
     else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
 
-    b_ttfcnc_jet0pt = jetP4[0].Pt(); b_ttfcnc_jet0eta = jetP4[0].Eta(); b_ttfcnc_jet0phi = jetP4[0].Phi(); b_ttfcnc_jet0m = jetP4[0].M();
+    b_ttfcnc_jet0pt = jetP4cor[0].Pt(); b_ttfcnc_jet0eta = jetP4cor[0].Eta();
+    b_ttfcnc_jet0phi = jetP4cor[0].Phi(); b_ttfcnc_jet0m = jetP4cor[0].M();
     b_ttfcnc_jet0csv = jet_deepCSV[jetIdx[0]]; b_ttfcnc_jet0cvsl = jet_CvsL[jetIdx[0]]; b_ttfcnc_jet0cvsb = jet_CvsB[jetIdx[0]];
-    b_ttfcnc_jet1pt = jetP4[1].Pt(); b_ttfcnc_jet1eta = jetP4[1].Eta(); b_ttfcnc_jet1phi = jetP4[1].Phi(); b_ttfcnc_jet1m = jetP4[1].M();
+    b_ttfcnc_jet1pt = jetP4cor[1].Pt(); b_ttfcnc_jet1eta = jetP4cor[1].Eta();
+    b_ttfcnc_jet1phi = jetP4cor[1].Phi(); b_ttfcnc_jet1m = jetP4cor[1].M();
     b_ttfcnc_jet1csv = jet_deepCSV[jetIdx[1]]; b_ttfcnc_jet1cvsl = jet_CvsL[jetIdx[1]]; b_ttfcnc_jet1cvsb = jet_CvsB[jetIdx[1]];
-    b_ttfcnc_jet2pt = jetP4[2].Pt(); b_ttfcnc_jet2eta = jetP4[2].Eta(); b_ttfcnc_jet2phi = jetP4[2].Phi(); b_ttfcnc_jet2m = jetP4[2].M();
+    b_ttfcnc_jet2pt = jetP4cor[2].Pt(); b_ttfcnc_jet2eta = jetP4cor[2].Eta();
+    b_ttfcnc_jet2phi = jetP4cor[2].Phi(); b_ttfcnc_jet2m = jetP4cor[2].M();
     b_ttfcnc_jet2csv = jet_deepCSV[jetIdx[2]]; b_ttfcnc_jet2cvsl = jet_CvsL[jetIdx[2]]; b_ttfcnc_jet2cvsb = jet_CvsB[jetIdx[2]];
-    b_ttfcnc_jet3pt = jetP4[3].Pt(); b_ttfcnc_jet3eta = jetP4[3].Eta(); b_ttfcnc_jet3phi = jetP4[3].Phi(); b_ttfcnc_jet3m = jetP4[3].M();
+    b_ttfcnc_jet3pt = jetP4cor[3].Pt(); b_ttfcnc_jet3eta = jetP4cor[3].Eta();
+    b_ttfcnc_jet3phi = jetP4cor[3].Phi(); b_ttfcnc_jet3m = jetP4cor[3].M();
     b_ttfcnc_jet3csv = jet_deepCSV[jetIdx[3]]; b_ttfcnc_jet3cvsl = jet_CvsL[jetIdx[3]]; b_ttfcnc_jet3cvsb = jet_CvsB[jetIdx[3]];
+
+    if( b_ttfcnc_jet0csv < 0 ) b_ttfcnc_jet0csv = 0; if( b_ttfcnc_jet1csv < 0 ) b_ttfcnc_jet1csv = 0;
+    if( b_ttfcnc_jet2csv < 0 ) b_ttfcnc_jet2csv = 0; if( b_ttfcnc_jet3csv < 0 ) b_ttfcnc_jet3csv = 0;
 
     const auto lepT = lepW + jetP4cor[0];
     const auto had12 = jetP4cor[1] + jetP4cor[2];//This is W or H
@@ -848,14 +863,21 @@ Bool_t makeTuple::Process(Long64_t entry)
     }
     else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
 
-    b_ttbkg_jet0pt = jetP4[0].Pt(); b_ttbkg_jet0eta = jetP4[0].Eta(); b_ttbkg_jet0phi = jetP4[0].Phi(); b_ttbkg_jet0m = jetP4[0].M();
+    b_ttbkg_jet0pt = jetP4cor[0].Pt(); b_ttbkg_jet0eta = jetP4cor[0].Eta();
+    b_ttbkg_jet0phi = jetP4cor[0].Phi(); b_ttbkg_jet0m = jetP4cor[0].M();
     b_ttbkg_jet0csv = jet_deepCSV[jetIdx[0]]; b_ttbkg_jet0cvsl = jet_CvsL[jetIdx[0]]; b_ttbkg_jet0cvsb = jet_CvsB[jetIdx[0]];
-    b_ttbkg_jet1pt = jetP4[1].Pt(); b_ttbkg_jet1eta = jetP4[1].Eta(); b_ttbkg_jet1phi = jetP4[1].Phi(); b_ttbkg_jet1m = jetP4[1].M();
+    b_ttbkg_jet1pt = jetP4cor[1].Pt(); b_ttbkg_jet1eta = jetP4cor[1].Eta();
+    b_ttbkg_jet1phi = jetP4cor[1].Phi(); b_ttbkg_jet1m = jetP4cor[1].M();
     b_ttbkg_jet1csv = jet_deepCSV[jetIdx[1]]; b_ttbkg_jet1cvsl = jet_CvsL[jetIdx[1]]; b_ttbkg_jet1cvsb = jet_CvsB[jetIdx[1]];
-    b_ttbkg_jet2pt = jetP4[2].Pt(); b_ttbkg_jet2eta = jetP4[2].Eta(); b_ttbkg_jet2phi = jetP4[2].Phi(); b_ttbkg_jet2m = jetP4[2].M();
+    b_ttbkg_jet2pt = jetP4cor[2].Pt(); b_ttbkg_jet2eta = jetP4cor[2].Eta();
+    b_ttbkg_jet2phi = jetP4cor[2].Phi(); b_ttbkg_jet2m = jetP4cor[2].M();
     b_ttbkg_jet2csv = jet_deepCSV[jetIdx[2]]; b_ttbkg_jet2cvsl = jet_CvsL[jetIdx[2]]; b_ttbkg_jet2cvsb = jet_CvsB[jetIdx[2]];
-    b_ttbkg_jet3pt = jetP4[3].Pt(); b_ttbkg_jet3eta = jetP4[3].Eta(); b_ttbkg_jet3phi = jetP4[3].Phi(); b_ttbkg_jet3m = jetP4[3].M();
+    b_ttbkg_jet3pt = jetP4cor[3].Pt(); b_ttbkg_jet3eta = jetP4cor[3].Eta();
+    b_ttbkg_jet3phi = jetP4cor[3].Phi(); b_ttbkg_jet3m = jetP4cor[3].M();
     b_ttbkg_jet3csv = jet_deepCSV[jetIdx[3]]; b_ttbkg_jet3cvsl = jet_CvsL[jetIdx[3]]; b_ttbkg_jet3cvsb = jet_CvsB[jetIdx[3]];
+
+    if( b_ttbkg_jet0csv < 0 ) b_ttbkg_jet0csv = 0; if( b_ttbkg_jet1csv < 0 ) b_ttbkg_jet1csv = 0;
+    if( b_ttbkg_jet2csv < 0 ) b_ttbkg_jet2csv = 0; if( b_ttbkg_jet3csv < 0 ) b_ttbkg_jet3csv = 0;
 
     const auto lepT = lepW + jetP4cor[0];
     const auto had12 = jetP4cor[1] + jetP4cor[2];//This is W or H

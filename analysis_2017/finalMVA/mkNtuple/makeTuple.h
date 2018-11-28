@@ -119,13 +119,13 @@ public :
     //ST FCNC
     int b_stfcnc_genMatch = -1; float b_stfcnc_score = -1;
     float b_stfcnc_jet0pt = 0; float b_stfcnc_jet0eta = 10; float b_stfcnc_jet0phi = 10; float b_stfcnc_jet0m = 0;
-    float b_stfcnc_jet0csv = 5; float b_stfcnc_jet0cvsl = 5; float b_stfcnc_jet0cvsb = 5; float b_stfcnc_jet0Idx = -1;
+    float b_stfcnc_jet0csv = 5; float b_stfcnc_jet0cvsl = 5; float b_stfcnc_jet0cvsb = 5; int b_stfcnc_jet0Idx = -1;
     float b_stfcnc_jet1pt = 0; float b_stfcnc_jet1eta = 10; float b_stfcnc_jet1phi = 10; float b_stfcnc_jet1m = 0;
-    float b_stfcnc_jet1csv = 5; float b_stfcnc_jet1cvsl = 5; float b_stfcnc_jet1cvsb = 5; float b_stfcnc_jet1Idx = -1;
+    float b_stfcnc_jet1csv = 5; float b_stfcnc_jet1cvsl = 5; float b_stfcnc_jet1cvsb = 5; int b_stfcnc_jet1Idx = -1;
     float b_stfcnc_jet2pt = 0; float b_stfcnc_jet2eta = 10; float b_stfcnc_jet2phi = 10; float b_stfcnc_jet2m = 0;
-    float b_stfcnc_jet2csv = 5; float b_stfcnc_jet2cvsl = 5; float b_stfcnc_jet2cvsb = 5; float b_stfcnc_jet2Idx = -1;
+    float b_stfcnc_jet2csv = 5; float b_stfcnc_jet2cvsl = 5; float b_stfcnc_jet2cvsb = 5; int b_stfcnc_jet2Idx = -1;
     float b_stfcnc_jet3pt = 0; float b_stfcnc_jet3eta = 10; float b_stfcnc_jet3phi = 10; float b_stfcnc_jet3m = 0;
-    float b_stfcnc_jet3csv = 5; float b_stfcnc_jet3cvsl = 5; float b_stfcnc_jet3cvsb = 5; float b_stfcnc_jet3Idx = -1;
+    float b_stfcnc_jet3csv = 5; float b_stfcnc_jet3cvsl = 5; float b_stfcnc_jet3cvsb = 5; int b_stfcnc_jet3Idx = -1;
     float b_stfcnc_jet12pt = 0; float b_stfcnc_jet12eta = 10; float b_stfcnc_jet12deta = 10; float b_stfcnc_jet12phi = 10;
     float b_stfcnc_jet12dphi = 10; float b_stfcnc_jet12dR = 0; float b_stfcnc_jet12m = 0;
     float b_stfcnc_jet23pt = 0; float b_stfcnc_jet23eta = 10; float b_stfcnc_jet23deta = 10; float b_stfcnc_jet23phi = 10;
@@ -149,13 +149,13 @@ public :
     //TT FCNC
     int b_ttfcnc_genMatch = -1; float b_ttfcnc_score = -1;
     float b_ttfcnc_jet0pt = 0; float b_ttfcnc_jet0eta = 10; float b_ttfcnc_jet0phi = 10; float b_ttfcnc_jet0m = 0;
-    float b_ttfcnc_jet0csv = 5; float b_ttfcnc_jet0cvsl = 5; float b_ttfcnc_jet0cvsb = 5; float b_ttfcnc_jet0Idx = -1;
+    float b_ttfcnc_jet0csv = 5; float b_ttfcnc_jet0cvsl = 5; float b_ttfcnc_jet0cvsb = 5; int b_ttfcnc_jet0Idx = -1;
     float b_ttfcnc_jet1pt = 0; float b_ttfcnc_jet1eta = 10; float b_ttfcnc_jet1phi = 10; float b_ttfcnc_jet1m = 0;
-    float b_ttfcnc_jet1csv = 5; float b_ttfcnc_jet1cvsl = 5; float b_ttfcnc_jet1cvsb = 5; float b_ttfcnc_jet1Idx = -1;
+    float b_ttfcnc_jet1csv = 5; float b_ttfcnc_jet1cvsl = 5; float b_ttfcnc_jet1cvsb = 5; int b_ttfcnc_jet1Idx = -1;
     float b_ttfcnc_jet2pt = 0; float b_ttfcnc_jet2eta = 10; float b_ttfcnc_jet2phi = 10; float b_ttfcnc_jet2m = 0;
-    float b_ttfcnc_jet2csv = 5; float b_ttfcnc_jet2cvsl = 5; float b_ttfcnc_jet2cvsb = 5; float b_ttfcnc_jet2Idx = -1;
+    float b_ttfcnc_jet2csv = 5; float b_ttfcnc_jet2cvsl = 5; float b_ttfcnc_jet2cvsb = 5; int b_ttfcnc_jet2Idx = -1;
     float b_ttfcnc_jet3pt = 0; float b_ttfcnc_jet3eta = 10; float b_ttfcnc_jet3phi = 10; float b_ttfcnc_jet3m = 0;
-    float b_ttfcnc_jet3csv = 5; float b_ttfcnc_jet3cvsl = 5; float b_ttfcnc_jet3cvsb = 5; float b_ttfcnc_jet3Idx = -1;
+    float b_ttfcnc_jet3csv = 5; float b_ttfcnc_jet3cvsl = 5; float b_ttfcnc_jet3cvsb = 5; int b_ttfcnc_jet3Idx = -1;
     float b_ttfcnc_jet12pt = 0; float b_ttfcnc_jet12eta = 10; float b_ttfcnc_jet12deta = 10; float b_ttfcnc_jet12phi = 10;
     float b_ttfcnc_jet12dphi = 10; float b_ttfcnc_jet12dR = 0; float b_ttfcnc_jet12m = 0;
     float b_ttfcnc_jet23pt = 0; float b_ttfcnc_jet23eta = 10; float b_ttfcnc_jet23deta = 10; float b_ttfcnc_jet23phi = 10;
@@ -178,13 +178,13 @@ public :
     //TT BKG
     int b_ttbkg_genMatch = -1; float b_ttbkg_score = -1;
     float b_ttbkg_jet0pt = 0; float b_ttbkg_jet0eta = 10; float b_ttbkg_jet0phi = 10; float b_ttbkg_jet0m = 0;
-    float b_ttbkg_jet0csv = 5; float b_ttbkg_jet0cvsl = 5; float b_ttbkg_jet0cvsb = 5; float b_ttbkg_jet0Idx = -1;
+    float b_ttbkg_jet0csv = 5; float b_ttbkg_jet0cvsl = 5; float b_ttbkg_jet0cvsb = 5; int b_ttbkg_jet0Idx = -1;
     float b_ttbkg_jet1pt = 0; float b_ttbkg_jet1eta = 10; float b_ttbkg_jet1phi = 10; float b_ttbkg_jet1m = 0;
-    float b_ttbkg_jet1csv = 5; float b_ttbkg_jet1cvsl = 5; float b_ttbkg_jet1cvsb = 5; float b_ttbkg_jet1Idx = -1;
+    float b_ttbkg_jet1csv = 5; float b_ttbkg_jet1cvsl = 5; float b_ttbkg_jet1cvsb = 5; int b_ttbkg_jet1Idx = -1;
     float b_ttbkg_jet2pt = 0; float b_ttbkg_jet2eta = 10; float b_ttbkg_jet2phi = 10; float b_ttbkg_jet2m = 0;
-    float b_ttbkg_jet2csv = 5; float b_ttbkg_jet2cvsl = 5; float b_ttbkg_jet2cvsb = 5; float b_ttbkg_jet2Idx = -1;
+    float b_ttbkg_jet2csv = 5; float b_ttbkg_jet2cvsl = 5; float b_ttbkg_jet2cvsb = 5; int b_ttbkg_jet2Idx = -1;
     float b_ttbkg_jet3pt = 0; float b_ttbkg_jet3eta = 10; float b_ttbkg_jet3phi = 10; float b_ttbkg_jet3m = 0;
-    float b_ttbkg_jet3csv = 5; float b_ttbkg_jet3cvsl = 5; float b_ttbkg_jet3cvsb = 5; float b_ttbkg_jet3Idx = -1;
+    float b_ttbkg_jet3csv = 5; float b_ttbkg_jet3cvsl = 5; float b_ttbkg_jet3cvsb = 5; int b_ttbkg_jet3Idx = -1;
     float b_ttbkg_jet12pt = 0; float b_ttbkg_jet12eta = 10; float b_ttbkg_jet12deta = 10; float b_ttbkg_jet12phi = 10;
     float b_ttbkg_jet12dphi = 10; float b_ttbkg_jet12dR = 0; float b_ttbkg_jet12m = 0;
     float b_ttbkg_jet23pt = 0; float b_ttbkg_jet23eta = 10; float b_ttbkg_jet23deta = 10; float b_ttbkg_jet23phi = 10;
