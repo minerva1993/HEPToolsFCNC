@@ -15,7 +15,7 @@ ver = sys.argv[3]
 sigCut = TCut("njets >= 4 && nbjets_m == 4")
 bkgCut = TCut("njets >= 4 && nbjets_m == 4")
 #Hct
-#options = "nTrain_Signal=40000:nTrain_Background=180000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+options = "nTrain_Signal=40000:nTrain_Background=180000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 #options = "nTrain_Signal=15000:nTrain_Background=6000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 #options = "nTrain_Signal=35000:nTrain_Background=260000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 #options = "nTrain_Signal=22000:nTrain_Background=24000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
@@ -26,7 +26,7 @@ bkgCut = TCut("njets >= 4 && nbjets_m == 4")
 #options = "nTrain_Signal=11000:nTrain_Background=6000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 #options = "nTrain_Signal=35000:nTrain_Background=260000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 #options = "nTrain_Signal=20000:nTrain_Background=24000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
-options = "nTrain_Signal=800:nTrain_Background=1100:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=800:nTrain_Background=1100:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 
 #directory name
 rootDir = '/data/users/minerva1993/work/2018_fcnc_RunII2017/finalMVA/mkNtuple/1101/root_/'
@@ -96,9 +96,13 @@ for fName in bkg_files:
 
 loader.PrepareTrainingAndTestTree(sigCut, bkgCut, options)
 
-#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=600:MinNodeSize=5%:MaxDepth=5:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=30") #j3b2 j4b2
+factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=600:MinNodeSize=5%:MaxDepth=5:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=30") #j3b2 j4b2
 #factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=300:MinNodeSize=5%:MaxDepth=4:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=20") #j3b3 j4b3
-factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=50:MinNodeSize=5%:MaxDepth=3:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=20") #j4b4
+#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=50:MinNodeSize=5%:MaxDepth=3:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=20") #j4b4
+##AdaBoost
+#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=600:MinNodeSize=5%:MaxDepth=5:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=30") #j3b2 j4b2
+#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=300:MinNodeSize=5%:MaxDepth=4:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20") #j3b3 j4b3
+#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=50:MinNodeSize=5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20") #j4b4
 
 factory.TrainAllMethods()
 factory.TestAllMethods()

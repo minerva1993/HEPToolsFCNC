@@ -2,7 +2,7 @@ def input_variables(ch):
   var_list = []
   if ch == "STFCNC":
     var_list = ['jet0pt', 'jet0eta', 'jet0m', 'jet0csv', 'jet1pt', 'jet1eta', 'jet1m', 'jet1csv',
-                'jet2pt', 'jet2eta', 'jet2m', 'jet2csv'
+                'jet2pt', 'jet2eta', 'jet2m', 'jet2csv',
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                 'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
                 'jet0lepdR', 'jet1lepdR', 'jet2lepdR', 'jet01dR', 'jet02dR', 'jet12_lepdR', 'jet12_0dR', 'lepTjet12dphi']

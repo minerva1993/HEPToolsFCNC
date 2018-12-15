@@ -268,6 +268,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   if( mode > 2 ) return kTRUE;
 
   float wrongPVrate = 1;
+
   if( !option.Contains("Run2017") ){
     //181013, 10-75
     if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04879;
@@ -329,6 +330,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   if( wrongPVrate > 1.01 ){
     if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
   }
+
   float relIso = *lepton_relIso; 
 
   //Object selection
@@ -377,7 +379,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   //Single Lepton only
   if( option.Contains("SingleMuon") ){
     if( !passmuon ) return kTRUE;//RDMu
-    if( passelectron) return kTRUE;//RDMu
+    if( passelectron ) return kTRUE;//RDMu
   }
   else if( option.Contains("SingleElectron") ){
     if( !passelectron ) return kTRUE;//RDelec
@@ -570,7 +572,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
               else   EventWeight *= 1;
             }
             else EventWeight *= 1;
-            //Deep CSV shape 
+            //Deep CSV shape
             if     ( isPartOf("lfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[3];
             else if( isPartOf("lfdown",      std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[4];
             else if( isPartOf("hfup",        std::string(syst_name[syst])) ) EventWeight *= jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[5];

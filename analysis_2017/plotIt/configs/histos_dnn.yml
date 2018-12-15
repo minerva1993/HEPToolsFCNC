@@ -1,80 +1,14 @@
 ###############
 #For systematic
 ###############
-#'h_DNN_j3b2_Ch2':
-#  y-axis: "Entries"
-#  y-axis-format: "%1% / %2$.2f"
-#  save-extensions: ['pdf']
-#  for-yields: true
-#  yields-table-order: 0
-#  yields-title: '$j3b2$'
-#  signal-normalize-data: false
-#
-#'h_DNN_j3b3_Ch2':
-#  y-axis: "Entries"
-#  y-axis-format: "%1% / %2$.2f"
-#  save-extensions: ['pdf']
-#  for-yields: true
-#  yields-table-order: 1
-#  yields-title: '$j3b3$'
-#  signal-normalize-data: false
-#
-#'h_DNN_j4b2_Ch2':
-#  y-axis: "Entries"
-#  y-axis-format: "%1% / %2$.2f"
-#  save-extensions: ['pdf']
-#  for-yields: true
-#  yields-table-order: 2
-#  yields-title: '$j4b2$'
-#  signal-normalize-data: false
-#
-#'h_DNN_j4b3_Ch2':
-#  y-axis: "Entries"
-#  y-axis-format: "%1% / %2$.2f"
-#  save-extensions: ['pdf']
-#  for-yields: true
-#  yields-table-order: 3
-#  yields-title: '$j4b3$'
-#  signal-normalize-data: false
-#
-#'h_DNN_j4b4_Ch2':
-#  y-axis: "Entries"
-#  y-axis-format: "%1% / %2$.2f"
-#  save-extensions: ['pdf']
-#  for-yields: true
-#  yields-table-order: 4
-#  yields-title: '$j4b4$'
-#  signal-normalize-data: false
-
-####################
-#Final distributions
-####################
-'h_DNN_j3b2_Ch0':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
-
-'h_DNN_j3b2_Ch1':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
-
 'h_DNN_j3b2_Ch2':
   y-axis: "Entries"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
   for-yields: true
   yields-table-order: 0
-
-'h_DNN_j3b3_Ch0':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
-
-'h_DNN_j3b3_Ch1':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
+  yields-title: '$j3b2$'
+#  signal-normalize-data: false
 
 'h_DNN_j3b3_Ch2':
   y-axis: "Entries"
@@ -82,16 +16,8 @@
   save-extensions: ['pdf']
   for-yields: true
   yields-table-order: 1
-
-'h_DNN_j4b2_Ch0':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
-
-'h_DNN_j4b2_Ch1':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
+  yields-title: '$j3b3$'
+#  signal-normalize-data: false
 
 'h_DNN_j4b2_Ch2':
   y-axis: "Entries"
@@ -99,16 +25,8 @@
   save-extensions: ['pdf']
   for-yields: true
   yields-table-order: 2
-
-'h_DNN_j4b3_Ch0':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
-
-'h_DNN_j4b3_Ch1':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
+  yields-title: '$j4b2$'
+#  signal-normalize-data: false
 
 'h_DNN_j4b3_Ch2':
   y-axis: "Entries"
@@ -116,16 +34,8 @@
   save-extensions: ['pdf']
   for-yields: true
   yields-table-order: 3
-
-'h_DNN_j4b4_Ch0':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
-
-'h_DNN_j4b4_Ch1':
-  y-axis: "Entries"
-  y-axis-format: "%1% / %2$.2f"
-  save-extensions: ['pdf']
+  yields-title: '$j4b3$'
+#  signal-normalize-data: false
 
 'h_DNN_j4b4_Ch2':
   y-axis: "Entries"
@@ -133,7 +43,97 @@
   save-extensions: ['pdf']
   for-yields: true
   yields-table-order: 4
-  #rebin: 2
+  yields-title: '$j4b4$'
+#  signal-normalize-data: false
+
+####################
+#Final distributions
+####################
+#'h_DNN_j3b2_Ch0':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j3b2_Ch1':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j3b2_Ch2':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#  for-yields: true
+#  yields-table-order: 0
+#
+#'h_DNN_j3b3_Ch0':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j3b3_Ch1':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j3b3_Ch2':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#  for-yields: true
+#  yields-table-order: 1
+#
+#'h_DNN_j4b2_Ch0':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j4b2_Ch1':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j4b2_Ch2':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#  for-yields: true
+#  yields-table-order: 2
+#
+#'h_DNN_j4b3_Ch0':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j4b3_Ch1':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j4b3_Ch2':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#  for-yields: true
+#  yields-table-order: 3
+#
+#'h_DNN_j4b4_Ch0':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j4b4_Ch1':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#
+#'h_DNN_j4b4_Ch2':
+#  y-axis: "Entries"
+#  y-axis-format: "%1% / %2$.2f"
+#  save-extensions: ['pdf']
+#  for-yields: true
+#  yields-table-order: 4
+#  #rebin: 2
 
 ###########
 #Old histos
@@ -154,7 +154,7 @@
 #  save-extensions: ['pdf']
 #  for-yields: true
 #  yields-table-order: 0
-#
+
 #'h_DNN_b3_Ch0':
 #  y-axis: "Entries"
 #  y-axis-format: "%1% / %2$.2f"

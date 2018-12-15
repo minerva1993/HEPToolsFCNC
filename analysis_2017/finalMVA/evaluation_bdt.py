@@ -41,7 +41,11 @@ input_features.remove('STTT')
 
 for syst_ext in syst + syst2:
   if syst_ext != "" and not os.path.exists(os.path.join(configDir, scoreDir + ver + "-" + syst_ext)):
-    os.makedirs(os.path.join(configDir, scoreDir + ver + "-" + syst_ext))
+    try: os.makedirs(os.path.join(configDir, scoreDir + ver + "-" + syst_ext))
+    except: pass
+  elif syst_ext == "" and not os.path.exists(os.path.join(configDir, scoreDir + ver) ):
+    try: os.makedirs(os.path.join(configDir, scoreDir + ver))
+    except: pass
 
   if ("Run2017" in name) and syst_ext != "": continue
   elif (syst_ext in syst2) and not (syst_ext in name): continue

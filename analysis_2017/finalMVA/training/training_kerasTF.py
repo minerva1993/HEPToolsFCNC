@@ -323,9 +323,14 @@ nST, nTT = (0,0)
 #Signal first
 for files in sig_files:
   data_temp = pd.read_hdf('../mkNtuple/hdf_/' + files)
-  data_temp = data_temp[data_temp['njets'] ==  njets_cut]
+  if njets_cut == 3:
+    data_temp = data_temp[data_temp['njets'] ==  njets_cut]
+  elif njets_cut == 4:
+    data_temp = data_temp[data_temp['njets'] >=  njets_cut]
   if nbjets_cut != 0:
     data_temp = data_temp[data_temp['nbjets_m'] == nbjets_cut]
+  elif nbjets_cut == 0:
+    data_temp = data_temp[data_temp['nbjets_m'] <= 4]
   data_temp['label'] = 1
 
   data_temp[weight_name_modi] = data_temp[weight_name] #for sample_weight
@@ -351,9 +356,14 @@ frac_list = [(nST * scaleST)/(nST * scaleST + nTT * scaleTT), (nTT * scaleTT)/(n
 #Next, background
 for files in bkg_files:
   data_temp = pd.read_hdf('../mkNtuple/hdf_/' + files)
-  data_temp = data_temp[data_temp['njets'] ==  njets_cut]
+  if njets_cut == 3:
+    data_temp = data_temp[data_temp['njets'] ==  njets_cut]
+  elif njets_cut == 4:
+    data_temp = data_temp[data_temp['njets'] >=  njets_cut]
   if nbjets_cut != 0:
     data_temp = data_temp[data_temp['nbjets_m'] == nbjets_cut]
+  elif nbjets_cut == 0:
+    data_temp = data_temp[data_temp['nbjets_m'] <= 4]
   data_temp['label'] = 0
 
   data_temp[weight_name_modi] = data_temp[weight_name] #for sample_weight
@@ -404,7 +414,6 @@ if plot_figures:
   inputvars(data.loc[data[label_name] == 1].drop(label_name, axis=1), data.loc[data[label_name] == 0].drop(label_name, axis=1), 'sig', 'bkg')
 
 data = data.drop(label_name, axis=1) #then drop label
-
 
 ###############
 #split datasets
