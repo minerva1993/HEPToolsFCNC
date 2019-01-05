@@ -1,6 +1,6 @@
 import os, shutil, re
 
-version = 'V9_3/181013/'
+version = 'V9_4/190101/'
 path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 
 run_file_name = 'runNoReco.py'
@@ -43,16 +43,19 @@ ext_dataset = []
 fcnc_dataset = []
 string_for_merge += '#!/bin/sh\n'
 string_for_merge += 'mkdir pre_process\n'
+string_for_merge += 'mkdir temp/not_using\n'
 string_for_merge += 'rm pre_process/hist_*.root\n'
 
 for train_sets in ['STTH1L3B', 'TTTH1L3B', 'TTpowheg', 'TTLLpowheg']:
   for syst_tmp in syst + syst2:
-    string_for_merge += 'rm temp/hist_' + train_sets + "*_000" + syst_tmp + ".root\n"
+    string_for_merge += 'mv temp/hist_' + train_sets + "*_000" + syst_tmp + ".root temp/not_using\n"
+    if 'STTH' in train_sets:
+      string_for_merge += 'mv temp/hist_' + train_sets + "*_001" + syst_tmp + ".root temp/not_using\n"
     if 'powheg' in train_sets:
-      string_for_merge += 'rm temp/hist_' + train_sets + "*_001" + syst_tmp + ".root\n"
-      string_for_merge += 'rm temp/hist_' + train_sets + "*_002" + syst_tmp + ".root\n"
-      string_for_merge += 'rm temp/hist_' + train_sets + "*_003" + syst_tmp + ".root\n"
-      string_for_merge += 'rm temp/hist_' + train_sets + "*_004" + syst_tmp + ".root\n"
+      string_for_merge += 'mv temp/hist_' + train_sets + "*_001" + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += 'mv temp/hist_' + train_sets + "*_002" + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += 'mv temp/hist_' + train_sets + "*_003" + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += 'mv temp/hist_' + train_sets + "*_004" + syst_tmp + ".root temp/not_using\n"
 
 for lines in noreco_list:
   if "v2" in lines.split(' ')[1]: ext_dataset.append(lines.split(' ')[1])
@@ -92,3 +95,5 @@ for ttsig in fcnc_dataset:
 if os.path.exists('doReco/' + merge_file_name): os.remove('doReco/' + merge_file_name)
 with open('doReco/' + merge_file_name, 'w') as g:
   g.write(string_for_merge)
+
+shutil.copy2("doReco/job_merge.sh", "./../finalMVA/histos")

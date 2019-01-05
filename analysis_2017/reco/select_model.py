@@ -38,12 +38,13 @@ for files in file_list:
     model_best = load_model(os.path.join(configDir, weightDir+ver, files))
     print('Start evaluation on version '+ ch + ver + ' classifier with the model '+ files)
 
-    for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch)):
+#    for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch)):
+    for filename in os.listdir(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'mkNtuple', 'hdf_' + ch)):
       if filename == '.gitkeep': continue
 
       if   ch == "STFCNC":
         if "STTH1L3BH" not in filename: continue
-        if not filename.endswith(('001.h5')): continue
+        if not filename.endswith(('002.h5')): continue
       elif ch == "TTFCNC":
         if "TTTH1L3B" not in filename: continue
         if not filename.endswith(('001.h5')): continue
@@ -51,7 +52,8 @@ for files in file_list:
         if "TTpowheg" not in filename: continue
         if not filename.endswith(('013.h5')): continue
 
-      eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch, filename))
+#      eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch, filename))
+      eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'mkNtuple', 'hdf_' + ch, filename))
       ncombi = eval_df.shape[0]
 
       matchable = len(eval_df.query('genMatch == '+ str(signal_label)).index)

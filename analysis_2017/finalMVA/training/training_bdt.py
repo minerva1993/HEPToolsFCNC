@@ -12,24 +12,25 @@ jetcat = sys.argv[2]
 ver = sys.argv[3]
 
 #Configurations
-sigCut = TCut("njets >= 4 && nbjets_m == 4")
-bkgCut = TCut("njets >= 4 && nbjets_m == 4")
+sigCut = TCut("njets >= 4 && nbjets_m == 4 && EventWeight > 0")
+bkgCut = TCut("njets >= 4 && nbjets_m == 4 && EventWeight > 0")
 #Hct
-options = "nTrain_Signal=40000:nTrain_Background=180000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
-#options = "nTrain_Signal=15000:nTrain_Background=6000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
-#options = "nTrain_Signal=35000:nTrain_Background=260000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
-#options = "nTrain_Signal=22000:nTrain_Background=24000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
-#options = "nTrain_Signal=1800:nTrain_Background=1100:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=50000:nTrain_Background=150000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=21000:nTrain_Background=5700:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=46000:nTrain_Background=230000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=28000:nTrain_Background=21000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=2300:nTrain_Background=1100:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 
 #Hut
-#options = "nTrain_Signal=35000:nTrain_Background=180000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
-#options = "nTrain_Signal=11000:nTrain_Background=6000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
-#options = "nTrain_Signal=35000:nTrain_Background=260000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
-#options = "nTrain_Signal=20000:nTrain_Background=24000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
-#options = "nTrain_Signal=800:nTrain_Background=1100:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=43000:nTrain_Background=150000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=14000:nTrain_Background=5700:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=42000:nTrain_Background=230000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+#options = "nTrain_Signal=23000:nTrain_Background=21000:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
+options = "nTrain_Signal=950:nTrain_Background=1100:nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 
 #directory name
-rootDir = '/data/users/minerva1993/work/2018_fcnc_RunII2017/finalMVA/mkNtuple/1101/root_/'
+#rootDir = '/data/users/minerva1993/work/2018_fcnc_RunII2017/finalMVA/mkNtuple/1101/root_/'
+rootDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/mkNtuple/root_/'
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
 weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
 scoreDir = 'scores/' + ch + '_' +jetcat + '_'
@@ -54,6 +55,8 @@ for item in os.listdir( os.path.join(configDir, weightDir+ver, 'weights') ) or o
     #os.remove(os.path.join(os.path.join(configDir, weightDir+ver), item))
     print("Remove previous files or move on to next version!")
     #sys.exit()
+if not os.path.exists( os.path.join(configDir, weightDir+ver, 'training_bdt.py') ):
+  shutil.copy2('training_bdt.py', os.path.join(configDir, weightDir+ver, 'training_bdt.py'))
 
 #Options for data preparation
 sig_files, bkg_files = train_files(ch)
@@ -63,7 +66,7 @@ input_features = []
 input_features.extend(input_variables_bdt(jetcat))
 input_features.remove('STTT')
 
-fout = TFile("output.root","recreate")
+fout = TFile("output_"+ch+"_"+jetcat+".root","recreate")
 factory = TMVA.Factory("TMVAClassification", fout, "!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification" )
 
 loader = TMVA.DataLoader((weightDir+ver).split("/")[-1])
@@ -81,7 +84,7 @@ trees = []
 for fName in sig_files:
     fileWeight = 1
     if "TTTH" in fName: fileWeight = 1
-    elif "STTH" in fName and "Hct" in fName: fileWeight = 0.1
+    elif "STTH" in fName and "Hct" in fName: fileWeight = 0.04
     elif "STTH" in fName and "Hut" in fName: fileWeight = 0.3
     f = TFile(rootDir+fName.replace("h5","root"))
     t = f.Get("tree")
@@ -96,12 +99,13 @@ for fName in bkg_files:
 
 loader.PrepareTrainingAndTestTree(sigCut, bkgCut, options)
 
-factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=600:MinNodeSize=5%:MaxDepth=5:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=30") #j3b2 j4b2
-#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=300:MinNodeSize=5%:MaxDepth=4:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=20") #j3b3 j4b3
-#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=50:MinNodeSize=5%:MaxDepth=3:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=20") #j4b4
+#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=600:MinNodeSize=5%:MaxDepth=5:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=30") #j3b2 j4b2
+#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=200:MinNodeSize=5%:MaxDepth=4:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=20") #j3b3 j4b3
+factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=50:MinNodeSize=5%:MaxDepth=3:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=20") #j4b4
+
 ##AdaBoost
 #factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=600:MinNodeSize=5%:MaxDepth=5:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=30") #j3b2 j4b2
-#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=300:MinNodeSize=5%:MaxDepth=4:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20") #j3b3 j4b3
+#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=200:MinNodeSize=5%:MaxDepth=4:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20") #j3b3 j4b3
 #factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=50:MinNodeSize=5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:SeparationType=GiniIndex:nCuts=20") #j4b4
 
 factory.TrainAllMethods()
@@ -109,7 +113,5 @@ factory.TestAllMethods()
 factory.EvaluateAllMethods()
 fout.Close()
 
-if not os.path.exists( os.path.join(configDir, weightDir+ver, 'training_bdt.py') ):
-  shutil.copy2('training_bdt.py', os.path.join(configDir, weightDir+ver, 'training_bdt.py'))
-if not os.path.exists( os.path.join(configDir, weightDir+ver, 'output.root') ):
-  shutil.move('output.root', os.path.join(configDir, weightDir+ver))
+if not os.path.exists( os.path.join(configDir, weightDir+ver, "output_"+ch+"_"+jetcat+".root") ):
+  shutil.move("output_"+ch+"_"+jetcat+".root", os.path.join(configDir, weightDir+ver))

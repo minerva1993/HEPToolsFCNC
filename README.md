@@ -26,20 +26,26 @@ This is for ST FCNC reconstruction using Keras+TF. For TT FCNC, some options in 
 ```{.Bash}
 #First you make flat ntuples.
 ../reco/mkNtuple/
+python dir_manage.py #make directories
 source compile.sh
 source job_ntuple.sh
-python dir_manage.py
+python dir_manage.py #check number of generated files
 #Launch training
 cd ../training
 python training_kerasTF.py STFCNC 01
 #With classifier, run prediction. In evlauation, you can assign sytematic from 0 to 6
+cd ..
 python select_model.py STFCNC 01
-python evaluation_kerasTF.py STFCNC 01 True 0 model.h5
+python evaluation_kerasTF.py STFCNC 01 True 1 model.h5
+#python evaluation_kerasTF.py TTFCNC 01 True 1 model.h5
+#python evaluation_kerasTF.py TTBKG 01 True 0 model.h5
 cat ../commonTools/file_top.txt | xargs -i -P1 -n2 python combi_assign.py True STFCNC 01 #for signal efficiency
 cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python combi_assign.py False STFCNC 01
+#cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python nohup combi_assign.py False STFCNC 01 > log &
 #Plot histograms with reconstruction
 cd ../fullAna/
 cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python runReco.py STFCNC01
+#cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 nohup python runReco.py STFCNC01 > log &
 cd doReco
 source job_merge.sh
 python do_post_process.py
@@ -55,24 +61,28 @@ cd STFCNC01/post_process
 cd /HEPToolsFCNC/finalMVA/mkNtuple
 python dir_manage.py
 cat ../../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python run.py
+#cat ../../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 nohup python run.py > log &
 cd ../training
-python training_kerasTF.py Hct j3 01
+python training_kerasTF.py Hct j3b2 01
 cd ..
 python evaluation_kerasTF.py Hct j4 01 model.h5 0
-cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j3_01
+cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j3b2_01
+#cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 nohup python run.py Hct_j3b2_01 > log &
 cd histos
 source job_merge.sh
 python do_post_process.py
 mkdir Hct_j4_01
-mv post_process pre_process temp Hct_j3_01
+mv post_process pre_process temp Hct_j3b2_01
 ...
-python merge_histos.py Hut 10 10 10 10 10 10
+python merge_histos.py Hct 01 01 01 01 01 01
 ../../../../plotIt/plotIt -o ../ ../../../../plotIt/configs/config.yml -y
 ```
 If you use BDT,
 ```{.Bash}
-python training_bdt.py Hct j3 01
+python training_bdt.py Hct j3b2 01
+#nohup python training_bdt.py Hct j3b2 01 > log_Hct_j3b2 &
 cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 python evaluation_bdt.py Hct j3b2 01
+#cat ../commonTools/file_all.txt | xargs -i -P$(nproc) -n2 nohup python evaluation_bdt.py Hct j3b2 01 > log &
 ```
 
 

@@ -26,7 +26,8 @@ if len(jetcat) > 3:
 else: nbjets_cut = 0
 
 #directory name
-rootDir = '/data/users/minerva1993/work/2018_fcnc_RunII2017/finalMVA/mkNtuple/1101/root_'
+#rootDir = '/data/users/minerva1993/work/2018_fcnc_RunII2017/finalMVA/mkNtuple/1101/root_'
+rootDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/mkNtuple/root_'
 configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
 weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
 scoreDir = 'scores/' + ch + '_' +jetcat + '_'

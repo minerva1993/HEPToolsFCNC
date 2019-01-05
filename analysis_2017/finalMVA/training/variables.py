@@ -66,9 +66,9 @@ def input_variables(jetcat):
 def train_files(ch):
 
   if ch == "Hct":
-    sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',]
+    sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_STTH1L3BHct_001.h5', 'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',]
   elif ch == "Hut":
-    sig = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',]
+    sig = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_STTH1L3BHut_001.h5','finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',]
   else:
     print("Check channel: Hct or Hut")
     sig_files = []

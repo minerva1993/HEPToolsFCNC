@@ -9,7 +9,7 @@ if os.path.isfile('TruePVWeight.txt'):
   os.remove('TruePVWeight.txt')
 
 #Change Ele trg bit AS WELL AS bassdir!!!!!!!!11
-basedir = '/data/users/minerva1993/ntuple_Run2017/V9_3/181013/'
+basedir = '/data/users/minerva1993/ntuple_Run2017/V9_4/190101/'
 
 path = os.listdir(basedir)
 filelist = []
@@ -19,8 +19,8 @@ for item in path:
   if "v2" in item: ext_dataset.append(item)
 
 filelist.sort()
-
 string_nevt = ''
+firstcount = 0
 
 for item in filelist:
   if item.startswith("SingleElectron") or item.startswith("SingleMuon"): continue
@@ -37,9 +37,11 @@ for item in filelist:
     ####################
     #Change here!!!!!!!!
     ####################
-    hfull = tree.Draw("TruePV>>h1","(channel == 1 && elec_trg >= 1) || channel == 0","")
-    hgood = tree.Draw("TruePV>>h2","TruePV >= 10 && TruePV <= 75 && ((channel == 1 && elec_trg >= 1) || channel == 0)","")
+    #hfull = tree.Draw("TruePV>>h1","(channel == 1 && elec_trg >= 1) || channel == 0","")
+    #hgood = tree.Draw("TruePV>>h2","TruePV >= 10 && TruePV <= 75 && ((channel == 1 && elec_trg >= 1) || channel == 0)","")
     #hgood = tree.Draw("TruePV>>h2","TruePV !=0","")
+    hfull = tree.Draw("TruePV>>h1","","")
+    hgood = tree.Draw("TruePV>>h2","TruePV >= 10 && TruePV <= 75","")
 
     text_file = open("TruePVWeight.txt", "a")
     if h2.Integral() == 0 : ratio = 1.0
@@ -52,10 +54,11 @@ for item in filelist:
 
     ratio = round(ratio, 5)
 
-    if item == filelist[0]: 
+    if firstcount == 0:
       text_file.write('    if     ( option.Contains("' + item.replace("_","")[:-5] + '") ) wrongPVrate = ' + str(ratio) + ";\n")
       if item in ext_dataset:
         text_file.write('    else if( option.Contains("' + item.replace("_","")[:-7] + '_") or option.Contains("' + item.replace("_","")[:-7] + 'part2") ) wrongPVrate = ' + str(ratio) + ";\n")
+      firstcount += 1
     else:
       text_file.write('    else if( option.Contains("' + item.replace("_","")[:-5] + '") ) wrongPVrate = ' + str(ratio) + ";\n")
       if item in ext_dataset:

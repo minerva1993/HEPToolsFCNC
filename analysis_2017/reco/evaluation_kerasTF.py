@@ -53,7 +53,8 @@ for syst_ext in syst:
   model_best = load_model(os.path.join(configDir, weightDir+ver, bestModel))
   print('Start evaluation on version '+ ch + ver + syst_ext + ' classifier with the model '+ bestModel)
 
-  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext)):
+#  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext)):
+  for filename in os.listdir(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'mkNtuple', 'hdf_' + ch + syst_ext)):
     if filename == '.gitkeep': continue
     if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg", "TTLL"]): continue
     if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg", "TTLL"]): continue
@@ -64,13 +65,16 @@ for syst_ext in syst:
     if signal_only:
       if   ch == "STFCNC":
         if "STTH1L3BH" not in filename: continue
+        if not filename.endswith(('003.h5','004.h5')): continue
       elif ch == "TTFCNC":
         if "TTTH1L3B" not in filename: continue
+        if not filename.endswith(('003.h5','004.h5')): continue
       elif ch == "TTBKG":
         if "TTpowheg" not in filename: continue
-        if not filename.endswith(('012.h5','013.h5','014.h5')): continue
+        if not filename.endswith(('020.h5','021.h5')): continue
 
-    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext, filename))
+#    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext, filename))
+    eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'mkNtuple', 'hdf_' + ch + syst_ext, filename))
     print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
 
     outfile = TFile.Open(os.path.join(scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root')),'RECREATE')

@@ -1,7 +1,10 @@
-python evaluation_kerasTF.py TTBKG 01 False 0 model_36_0.9509.h5 &
-python evaluation_kerasTF.py TTBKG 01 False 1 model_36_0.9509.h5 &
-python evaluation_kerasTF.py TTBKG 01 False 2 model_36_0.9509.h5 &
-python evaluation_kerasTF.py TTBKG 01 False 3 model_36_0.9509.h5 &
-python evaluation_kerasTF.py TTBKG 01 False 4 model_36_0.9509.h5 &
-python evaluation_kerasTF.py TTBKG 01 False 5 model_36_0.9509.h5 &
-python evaluation_kerasTF.py TTBKG 01 False 6 model_36_0.9509.h5 &
+SCENARIO=TTBKG
+VER=01
+MODEL=model_47_0.9493.h5
+nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} False 0 ${MODEL} > log1 &
+nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} False 1 ${MODEL} > log2 &
+nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} False 2 ${MODEL} > log3 &
+nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} False 3 ${MODEL} > log4 &
+nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} False 4 ${MODEL} > log5 &
+nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} False 5 ${MODEL} > log6 &
+nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} False 6 ${MODEL} > log7 &

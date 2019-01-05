@@ -311,7 +311,8 @@ class roc_callback(Callback):
 #read input and skim
 ####################
 for files in input_files:
-  data_temp = pd.read_hdf('../mkNtuple/hdf_' + ch + '/' + files)
+#  data_temp = pd.read_hdf('../mkNtuple/hdf_' + ch + '/' + files)
+  data_temp = pd.read_hdf('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver/mkNtuple/hdf_' + ch + '/' + files)
   if files == input_files[0]: data = data_temp
   else: data = pd.concat([data,data_temp], ignore_index=True)
 #print(daaxis=data.index.is_unique)#check if indices are duplicated

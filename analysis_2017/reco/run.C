@@ -1,11 +1,13 @@
 #include "idxToNtuple.h"
 #include <TSystem.h>
 #include <string>
+#include <TROOT.h>
 
 R__LOAD_LIBRARY(idxToNtuple.C+)
 
 void run( const char* ch, const char* ver, const char* syst_ext, const char* name )
 {
+  gROOT->SetBatch(1);
   string name_str = name;
   string::size_type pos;
   pos=name_str.find(' ',0);

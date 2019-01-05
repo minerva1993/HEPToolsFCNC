@@ -17,11 +17,13 @@ if sig_only == "True":
   syst2 = []
   if ch == "STFCNC":
     if "STTH1L3B" not in file_name: sys.exit(0)
+    if not file_name.endswith(('003','004')): sys.exit(0)
   elif ch == "TTFCNC":
     if "TTTH1L3B" not in file_name: sys.exit(0)
+    if not file_name.endswith(('003','004')): sys.exit(0)
   elif ch == "TTBKG":
     if "TTpowheg"  not in file_name: sys.exit(0)
-    if not file_name.endswith(('012','013','014')): sys.exit(0)
+    if not file_name.endswith(('020','021')): sys.exit(0)
 
 for syst_ext in syst + syst1 + syst2:
   if   ("Run2017" in file_name) and syst_ext != "": continue
@@ -30,4 +32,4 @@ for syst_ext in syst + syst1 + syst2:
   else:
     if (syst_ext in syst2): file_name = file_name.replace(syst_ext,"")
 
-  call(["root", "-l", 'run.C("'+ ch + '","' + ver + '","' + syst_ext + '","' + file_path + ' ' + file_name + '")'], shell=False)
+  call(["root", "-b", "-l", 'run.C("'+ ch + '","' + ver + '","' + syst_ext + '","' + file_path + ' ' + file_name + '")'], shell=False)
