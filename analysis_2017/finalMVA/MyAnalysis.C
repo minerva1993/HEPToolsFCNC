@@ -198,10 +198,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
-  bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.4) && (*elec_trg >= 10);
-//  bool passelectron;
-//  if ( *elec_trg == 10 ) passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
-//  else                   passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
+  bool passelectron = (mode == 1) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
 
   //Single Lepton only
   if( option.Contains("SingleMuon") ){
@@ -234,7 +231,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
-//      if( passelectron and  *elec_trg == 10 and njets == 0 and jet_pt[iJet] < 38 ) continue;
       njets++;
 
       if( jet_deepCSV[iJet] > 0.4941 ) nbjets_m++;
@@ -306,6 +302,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           if     ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
           else if( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
           else   EventWeight *= 1.0;
+          if     ( isPartOf("__eltrgup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
+          else if( isPartOf("__eltrgdown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
+          else   EventWeight *= 1.0;
         }
         else if( passelectron ){
           //elec ID: 0, elec Reco: 1, elec Zvtx: 2
@@ -327,6 +326,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           if     ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
           else if( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
           else   EventWeight *= lepton_SF[6];
+          if     ( isPartOf("__eltrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[10];
+          else if( isPartOf("__eltrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[11];
+          else   EventWeight *= lepton_SF[9];
         }
         //ME&PS
         //[0] = muF up , [1] = muF down, [2] = muR up, [3] = muR up && muF up, [4] = muR down, [5] = muF down && muF down

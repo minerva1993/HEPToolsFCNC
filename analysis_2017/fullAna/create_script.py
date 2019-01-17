@@ -1,6 +1,6 @@
 import os, shutil, re
 
-version = 'V9_4/190101/'
+version = 'V9_5/190117/'
 path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 
 run_file_name = 'runNoReco.py'

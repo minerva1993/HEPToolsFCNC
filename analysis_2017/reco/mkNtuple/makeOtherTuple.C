@@ -43,7 +43,6 @@ void makeOtherTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("EventCategory", &b_EventCategory, "EventCategory/I");
   testTree->Branch("genMatch"     , &b_genMatch     , "genMatch/I");
   testTree->Branch("EventWeight"  , &b_EventWeight  , "EventWeight/F");
-  testTree->Branch("trigger"      , &b_trigger      , "trigger/I");
   
   testTree->Branch("njets"     , &b_njets     , "njets/I");
   testTree->Branch("nbjets_m"  , &b_nbjets_m  , "nbjets_m/I");
@@ -252,10 +251,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
 
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
-  bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.4) && (*elec_trg >= 10);
-//  bool passelectron;
-//  if ( *elec_trg == 10 ) passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
-//  else                   passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
+  bool passelectron = (mode == 1) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
 
   if( option.Contains("SingleMuon") ){
     if( !passmuon ) return kTRUE;//RDMu
@@ -269,11 +265,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
     if( !passmuon && !passelectron ) return kTRUE;
   }
 
-//  if( passelectron && *elec_trg == 10 ) EventWeight *= jet_SF_deepCSV_38[0];
-//  else                                  EventWeight *= jet_SF_deepCSV_30[0];
-
   b_lepton_pt = lepton.Pt(); b_lepton_eta = lepton.Eta(); b_lepton_phi = lepton.Phi();
-  b_trigger = *elec_trg;
 
   vector<size_t> jetIdxs;
   for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
@@ -290,7 +282,6 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
     }
 
     if( jet.Pt() > 30 && abs(jet.Eta()) <= 2.4 ){
-//      if( passelectron and *elec_trg == 10 and njets == 0 and jet_pt[iJet] < 38 ) continue;
       njets++;
       jetIdxs.push_back(iJet);
 

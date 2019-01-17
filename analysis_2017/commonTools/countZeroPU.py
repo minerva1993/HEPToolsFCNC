@@ -8,8 +8,7 @@ import numpy as np
 if os.path.isfile('TruePVWeight.txt'):
   os.remove('TruePVWeight.txt')
 
-#Change Ele trg bit AS WELL AS bassdir!!!!!!!!11
-basedir = '/data/users/minerva1993/ntuple_Run2017/V9_4/190101/'
+basedir = '/data/users/minerva1993/ntuple_Run2017/V9_5/190117/'
 
 path = os.listdir(basedir)
 filelist = []
@@ -37,9 +36,6 @@ for item in filelist:
     ####################
     #Change here!!!!!!!!
     ####################
-    #hfull = tree.Draw("TruePV>>h1","(channel == 1 && elec_trg >= 1) || channel == 0","")
-    #hgood = tree.Draw("TruePV>>h2","TruePV >= 10 && TruePV <= 75 && ((channel == 1 && elec_trg >= 1) || channel == 0)","")
-    #hgood = tree.Draw("TruePV>>h2","TruePV !=0","")
     hfull = tree.Draw("TruePV>>h1","","")
     hgood = tree.Draw("TruePV>>h2","TruePV >= 10 && TruePV <= 75","")
 

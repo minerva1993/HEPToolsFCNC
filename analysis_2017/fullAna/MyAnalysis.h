@@ -45,7 +45,6 @@ public :
    TTreeReaderArray<float> lepton_SF = {fReader, "lepton_SF"};
    TTreeReaderValue<Float_t> lepton_relIso = {fReader, "lepton_relIso"};
    TTreeReaderValue<Bool_t> lepton_isIso = {fReader, "lepton_isIso"};
-   TTreeReaderValue<Int_t> elec_trg = {fReader, "elec_trg"};
    TTreeReaderArray<float> jet_pt = {fReader, "jet_pt"};
    TTreeReaderArray<float> jet_eta = {fReader, "jet_eta"};
    TTreeReaderArray<float> jet_phi = {fReader, "jet_phi"};
@@ -110,7 +109,8 @@ public :
     const std::vector<const char*> syst_name = {"",
           "__puup", "__pudown",
           "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
-          "__elidup", "__eliddown", "__elrecoup", "__elrecodown", "__elzvtxup", "__elzvtxdown",
+          "__elidup", "__eliddown", "__elrecoup", "__elrecodown",
+          "__elzvtxup", "__elzvtxdown", "__eltrgup", "__eltrgdown",
           "__lfup", "__lfdown", "__hfup", "__hfdown",
           "__hfstat1up", "__hfstat1down", "__hfstat2up", "__hfstat2down",
           "__lfstat1up", "__lfstat1down", "__lfstat2up", "__lfstat2down",
@@ -119,49 +119,49 @@ public :
           "__ps0", "__ps1", "__ps2", "__ps3"};
     int syst_num = syst_name.size();
 
-    TH1D *h_PV[3][12][41];
-    TH1D *h_EventWeight[3][12][41];
-    TH1D *h_NJet[3][12][41];
-    TH1D *h_NBJetCSVv2M[3][12][41];
-    TH1D *h_NBJetCSVv2T[3][12][41];
-    TH1D *h_NCJetM[3][12][41];
-    TH1D *h_LepPt[3][12][41];
-    TH1D *h_LepPhi[3][12][41];
-    TH1D *h_LepEta[3][12][41];
-    TH1D *h_MET[3][12][41];
+    TH1D *h_PV[3][12][43];
+    TH1D *h_EventWeight[3][12][43];
+    TH1D *h_NJet[3][12][43];
+    TH1D *h_NBJetCSVv2M[3][12][43];
+    TH1D *h_NBJetCSVv2T[3][12][43];
+    TH1D *h_NCJetM[3][12][43];
+    TH1D *h_LepPt[3][12][43];
+    TH1D *h_LepPhi[3][12][43];
+    TH1D *h_LepEta[3][12][43];
+    TH1D *h_MET[3][12][43];
 
-    TH1D *h_WMass[3][12][41];
-    TH1D *h_LepIso[3][12][41];
-    TH1D *h_LepIsoQCD[3][12][41];
-    TH1D *h_DPhi[3][12][41];
-    TH1D *h_JetCSV[3][12][41];
+    TH1D *h_WMass[3][12][43];
+    TH1D *h_LepIso[3][12][43];
+    TH1D *h_LepIsoQCD[3][12][43];
+    TH1D *h_DPhi[3][12][43];
+    TH1D *h_JetCSV[3][12][43];
 
     //tagging variables
-    TH1D *h_csv[3][12][41];
-    TH1D *h_cvsl[3][12][41];
-    TH1D *h_cvsb[3][12][41];
+    TH1D *h_csv[3][12][43];
+    TH1D *h_cvsl[3][12][43];
+    TH1D *h_cvsb[3][12][43];
 
     //DR
-    TH1D *h_FCNHkinLepWMass[3][12][41];
-    TH1D *h_FCNHkinHadWMass[3][12][41];
-    TH1D *h_FCNHkinHMass[3][12][41];
-    TH1D *h_FCNHkinDR[3][12][41];
-    TH1D *h_FCNHkinLepTopM[3][12][41];
-    TH1D *h_FCNHkinHadTopM[3][12][41];
-    TH1D *h_FCNHkinHPt[3][12][41];
-    TH1D *h_FCNHkinHdPhi[3][12][41];
-    TH1D *h_FCNHkinHdEta[3][12][41];
-    TH1D *h_FCNHkinHb1Pt[3][12][41];
-    TH1D *h_FCNHkinHb2Pt[3][12][41];
-    TH1D *h_FCNHkinHb1CSV[3][12][41];
-    TH1D *h_FCNHkinHb2CSV[3][12][41];
-    TH1D *h_FCNHkinLepTopPt[3][12][41];
-    TH1D *h_FCNHkinHadTopPt[3][12][41];
+    TH1D *h_FCNHkinLepWMass[3][12][43];
+    TH1D *h_FCNHkinHadWMass[3][12][43];
+    TH1D *h_FCNHkinHMass[3][12][43];
+    TH1D *h_FCNHkinDR[3][12][43];
+    TH1D *h_FCNHkinLepTopM[3][12][43];
+    TH1D *h_FCNHkinHadTopM[3][12][43];
+    TH1D *h_FCNHkinHPt[3][12][43];
+    TH1D *h_FCNHkinHdPhi[3][12][43];
+    TH1D *h_FCNHkinHdEta[3][12][43];
+    TH1D *h_FCNHkinHb1Pt[3][12][43];
+    TH1D *h_FCNHkinHb2Pt[3][12][43];
+    TH1D *h_FCNHkinHb1CSV[3][12][43];
+    TH1D *h_FCNHkinHb2CSV[3][12][43];
+    TH1D *h_FCNHkinLepTopPt[3][12][43];
+    TH1D *h_FCNHkinHadTopPt[3][12][43];
 
-    TH1D *h_genDR[3][12][41];
-    TH1D *h_matchDR[3][12][41];
-    TH1D *h_genHm[3][12][41];
-    TH1D *h_matchHm[3][12][41];
+    TH1D *h_genDR[3][12][43];
+    TH1D *h_matchDR[3][12][43];
+    TH1D *h_genHm[3][12][43];
+    TH1D *h_matchHm[3][12][43];
 
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");

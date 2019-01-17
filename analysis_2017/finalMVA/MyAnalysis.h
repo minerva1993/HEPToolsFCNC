@@ -45,7 +45,6 @@ public :
    TTreeReaderArray<float> lepton_SF = {fReader, "lepton_SF"};
    TTreeReaderValue<Float_t> lepton_relIso = {fReader, "lepton_relIso"};
    TTreeReaderValue<Bool_t> lepton_isIso = {fReader, "lepton_isIso"};
-   TTreeReaderValue<Int_t> elec_trg = {fReader, "elec_trg"};
    TTreeReaderArray<float> jet_pt = {fReader, "jet_pt"};
    TTreeReaderArray<float> jet_eta = {fReader, "jet_eta"};
    TTreeReaderArray<float> jet_phi = {fReader, "jet_phi"};
@@ -85,6 +84,7 @@ public :
    TTreeReaderValue<Float_t> Hbquarkjet2_eta = {fReader, "Hbquarkjet2_eta"};
    TTreeReaderValue<Float_t> Hbquarkjet2_phi = {fReader, "Hbquarkjet2_phi"};
    TTreeReaderValue<Float_t> Hbquarkjet2_e = {fReader, "Hbquarkjet2_e"};
+   TTreeReaderValue<Int_t> eeprefire = {fReader, "eeprefire"};
 
    MyAnalysis(TTree * /*tree*/ =0) { }
    virtual ~MyAnalysis() { }
@@ -110,7 +110,8 @@ public :
     const std::vector<const char*> syst_name = {"",
           "__puup", "__pudown",
           "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
-          "__elidup", "__eliddown", "__elrecoup", "__elrecodown", "__elzvtxup", "__elzvtxdown",
+          "__elidup", "__eliddown", "__elrecoup", "__elrecodown",
+          "__elzvtxup", "__elzvtxdown", "__eltrgup", "__eltrgdown",
           "__lfup", "__lfdown", "__hfup", "__hfdown",
           "__hfstat1up", "__hfstat1down", "__hfstat2up", "__hfstat2down",
           "__lfstat1up", "__lfstat1down", "__lfstat2up", "__lfstat2down",
@@ -140,9 +141,9 @@ public :
           "__pdf100", "__pdf101", "__pdf102",};
     int syst_num = syst_name.size();
 
-    TH1D *h_MVA_b2[3][144];
-    TH1D *h_MVA_b3[3][144];
-    TH1D *h_MVA_b4[3][144];
+    TH1D *h_MVA_b2[3][146];
+    TH1D *h_MVA_b3[3][146];
+    TH1D *h_MVA_b4[3][146];
 
     TFile *scoreF;
     TTree *scoreT;

@@ -135,6 +135,20 @@
 
 
 #S9
+'h_NJet_Ch0_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_NJet_Ch1_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
 'h_NJet_Ch2_S9':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f"
@@ -142,7 +156,60 @@
   sort-by-yields: true
   save-extensions: ['pdf']
 
+'h_NBJetCSVv2M_Ch2_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2M_Ch0_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2M_Ch1_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2M_Ch2_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_LepPt_Ch0_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+
+'h_LepPt_Ch1_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+
 'h_LepPt_Ch2_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+
+'h_LepEta_Ch0_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+
+'h_LepEta_Ch1_S9':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+
+'h_LepEta_Ch2_S9':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']

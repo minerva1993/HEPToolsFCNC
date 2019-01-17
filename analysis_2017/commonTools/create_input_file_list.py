@@ -1,6 +1,6 @@
 import os
 
-version = 'V9_4/190101/'
+version = 'V9_5/190117/'
 path_to_prod = '/data/users/minerva1993/ntuple_Run2017/' + version + 'production/'
 path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 print("Looking for files in %s"%path_to_prod)

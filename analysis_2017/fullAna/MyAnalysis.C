@@ -269,35 +269,35 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   float wrongPVrate = 1;
   if( !option.Contains("Run2017") ){
-    if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.0489;
-    else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.0125;
-    else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.03497;
-    else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.02952;
-    else if( option.Contains("QCDEM30to50") ) wrongPVrate = 1.02509;
-    else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.0301;
-    else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.02957;
-    else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02527;
-    else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.04332;
-    else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.03705;
-    else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02825;
-    else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.02772;
-    else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03163;
-    else if( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.0349;
-    else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.0424;
-    else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.04801;
-    else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04709;
-    else if( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04691;
-    else if( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.04669;
-    else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04806;
-    else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04712;
+    if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04879;
+    else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.01333;
+    else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.02857;
+    else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03006;
+    else if( option.Contains("QCDEM30to50") ) wrongPVrate = 1.02657;
+    else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.0323;
+    else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.02935;
+    else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02543;
+    else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.04312;
+    else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.03727;
+    else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02866;
+    else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.02755;
+    else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03166;
+    else if( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.03487;
+    else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.0423;
+    else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.0489;
+    else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04666;
+    else if( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04702;
+    else if( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.04687;
+    else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04753;
+    else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04729;
     else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.04795;
-    else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04778;
-    else if( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04826;
-    else if( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04783;
-    else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04197;
-    else if( option.Contains("WW") ) wrongPVrate = 1.04703;
-    else if( option.Contains("WZ") ) wrongPVrate = 1.04366;
-    else if( option.Contains("ZZ") ) wrongPVrate = 1.03048;
+    else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04763;
+    else if( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04818;
+    else if( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.0477;
+    else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04195;
+    else if( option.Contains("WW") ) wrongPVrate = 1.04701;
+    else if( option.Contains("WZ") ) wrongPVrate = 1.0436;
+    else if( option.Contains("ZZ") ) wrongPVrate = 1.03021;
     else   wrongPVrate = 1.0;
   }
   if( wrongPVrate > 1.01 ){
@@ -344,10 +344,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
-  bool passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.4) && (*elec_trg >= 10);
-//  bool passelectron;
-//  if ( *elec_trg == 10 ) passelectron = (mode == 1) && (lepton.Pt() > 33) && (abs(lepton.Eta()) <= 2.1);
-//  else                   passelectron = (mode == 1) && (lepton.Pt() > 35) && (abs(lepton.Eta()) <= 2.1);
+  bool passelectron = (mode == 1) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
 
   //Single Lepton only
   if( option.Contains("SingleMuon") ){
@@ -380,7 +377,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
-//      if( passelectron and  *elec_trg == 10 and njets == 0 and jet_pt[iJet] < 38 ) continue;
       njets++;
       jetIdxs.push_back(iJet);
 
@@ -504,9 +500,12 @@ Bool_t MyAnalysis::Process(Long64_t entry)
               if     ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
               else if( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
               else   EventWeight *= 1.0;
+              if     ( isPartOf("__eltrgup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
+              else if( isPartOf("__eltrgdown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
+              else   EventWeight *= 1.0;
             }
             else if( passelectron ){
-              //elec ID: 0, elec Reco: 1, elec Zvtx: 2
+              //elec ID: 0, elec Reco: 1, elec Zvtx: 2, elec trg: 3
               if     ( isPartOf("__muidup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
               else if( isPartOf("__muiddown", std::string(syst_name[syst])) ) EventWeight *= 1.0;
               else   EventWeight *= 1.0;
@@ -525,6 +524,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
               if     ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
               else if( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
               else   EventWeight *= lepton_SF[6];
+              if     ( isPartOf("__eltrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[10];
+              else if( isPartOf("__eltrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[11];
+              else   EventWeight *= lepton_SF[9];
             }
             //ME&PS
             //[0] = muF up , [1] = muF down, [2] = muR up, [3] = muR up && muF up, [4] = muR down, [5] = muF down && muF down

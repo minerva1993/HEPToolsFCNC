@@ -43,7 +43,6 @@ public :
    TTreeReaderArray<float> lepton_SF = {fReader, "lepton_SF"};
    TTreeReaderValue<Float_t> lepton_relIso = {fReader, "lepton_relIso"};
    TTreeReaderValue<Bool_t> lepton_isIso = {fReader, "lepton_isIso"};
-   TTreeReaderValue<Int_t> elec_trg = {fReader, "elec_trg"};
    TTreeReaderArray<float> jet_pt = {fReader, "jet_pt"};
    TTreeReaderArray<float> jet_eta = {fReader, "jet_eta"};
    TTreeReaderArray<float> jet_phi = {fReader, "jet_phi"};
@@ -112,7 +111,7 @@ public :
 
     //objects for ntuple
     int b_nevt = 0; int b_file = -1; int b_GoodPV = 0; int b_EventCategory = -1;
-    int b_trigger = -1; float b_EventWeight = 1.0; int b_genMatch = -1;
+    float b_EventWeight = 1.0; int b_genMatch = -1;
 
     int b_njets = 0; int b_nbjets_m = 0;
     float b_lepton_pt = 0; float b_lepton_phi = 10; float b_lepton_eta = 10;
