@@ -46,7 +46,7 @@ for item in filelist:
     info = data.Get("fcncLepJets/EventInfo")
     string_nevt += "hist_" + item.replace("_","") + " : " + str(info.GetBinContent(2)).replace(".0","") +'\n'
 
-    if abs(ratio - 1) < 0.002: continue
+    if abs(ratio - 1) < 0.01: continue
 
     ratio = round(ratio, 5)
 

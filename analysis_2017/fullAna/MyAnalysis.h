@@ -53,7 +53,6 @@ public :
    TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
    TTreeReaderArray<float> jet_deepCSV = {fReader, "jet_deepCSV"};
    TTreeReaderArray<float> jet_SF_deepCSV_30 = {fReader, "jet_SF_deepCSV_30"};
-   TTreeReaderArray<float> jet_SF_deepCSV_38 = {fReader, "jet_SF_deepCSV_38"};
    TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
    TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
