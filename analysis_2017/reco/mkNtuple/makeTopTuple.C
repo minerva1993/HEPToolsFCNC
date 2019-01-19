@@ -781,7 +781,8 @@ void makeTopTuple::Terminate()
   string sample = option.Data();
   sample.erase(0,sample.find_first_of("_")+1);
 
-  TFile *hfile = TFile::Open(Form("root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
+  //TFile *hfile = TFile::Open(Form("root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
+  TFile *hfile = TFile::Open(Form("/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver/root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
 
   if ( (chBit == 1 and option.Contains("STTH1L3B"))
     or (chBit == 2 and option.Contains("TTTH1L3B"))
