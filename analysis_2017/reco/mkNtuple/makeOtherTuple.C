@@ -457,8 +457,8 @@ void makeOtherTuple::Terminate()
   string sample = option.Data();
   sample.erase(0,sample.find_first_of("_")+1);
 
-  //TFile *hfile = TFile::Open(Form("root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
-  TFile *hfile = TFile::Open(Form("/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver/root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
+  TFile *hfile = TFile::Open(Form("root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
+  //TFile *hfile = TFile::Open(Form("/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver/root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
 
   fOutput->FindObject("test_tree")->Write();
 

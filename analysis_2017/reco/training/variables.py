@@ -51,10 +51,17 @@ def train_files(ch):
   file_list = []
   if ch == "STFCNC":
     file_list = ['deepReco_STTH1L3BHct_000.h5', 'deepReco_STTH1L3BHut_000.h5',
-                 'deepReco_STTH1L3BHct_001.h5', 'deepReco_STTH1L3BHut_001.h5',] #Ntuples are made with small maxFiles
+                 'deepReco_STTH1L3BHct_001.h5', 'deepReco_STTH1L3BHut_001.h5',
+                 'deepReco_STTH1L3BHct_002.h5', 'deepReco_STTH1L3BHut_002.h5',
+                 'deepReco_STTH1L3BHct_003.h5', 'deepReco_STTH1L3BHut_003.h5',
+                ]
 
   elif ch == "TTFCNC":
-    file_list = ['deepReco_TTTH1L3BaTLepHut_000.h5', 'deepReco_TTTH1L3BTLepHut_000.h5', 'deepReco_TTTH1L3BaTLepHct_000.h5', 'deepReco_TTTH1L3BTLepHct_000.h5']
+    file_list = ['deepReco_TTTH1L3BaTLepHut_000.h5', 'deepReco_TTTH1L3BTLepHut_000.h5',
+                 'deepReco_TTTH1L3BaTLepHct_000.h5', 'deepReco_TTTH1L3BTLepHct_000.h5',
+                 'deepReco_TTTH1L3BaTLepHut_001.h5', 'deepReco_TTTH1L3BTLepHut_001.h5',
+                 'deepReco_TTTH1L3BaTLepHct_001.h5', 'deepReco_TTTH1L3BTLepHct_001.h5',
+                ]
 
   elif ch == "TTBKG":
     file_list = ['deepReco_TTpowhegttbb_000.h5', 'deepReco_TTpowhegttbj_000.h5', 'deepReco_TTpowhegttcc_000.h5',
@@ -63,6 +70,15 @@ def train_files(ch):
                  'deepReco_TTpowhegttlf_001.h5', 'deepReco_TTpowhegttother_001.h5',
                  'deepReco_TTpowhegttbb_002.h5', 'deepReco_TTpowhegttbj_002.h5', 'deepReco_TTpowhegttcc_002.h5',
                  'deepReco_TTpowhegttlf_002.h5', 'deepReco_TTpowhegttother_002.h5',
+                 'deepReco_TTpowhegttlf_003.h5', 'deepReco_TTpowhegttother_003.h5',
+                 'deepReco_TTpowhegttlf_004.h5', 'deepReco_TTpowhegttother_004.h5',
+                 'deepReco_TTpowhegttlf_005.h5', 'deepReco_TTpowhegttother_005.h5',
+                 'deepReco_TTpowhegttlf_006.h5', 'deepReco_TTpowhegttother_006.h5',
+                 'deepReco_TTpowhegttlf_007.h5', 'deepReco_TTpowhegttother_007.h5',
+                 'deepReco_TTpowhegttlf_008.h5', 'deepReco_TTpowhegttother_008.h5',
+                 'deepReco_TTpowhegttlf_009.h5', 'deepReco_TTpowhegttother_009.h5',
+                 'deepReco_TTpowhegttlf_010.h5', 'deepReco_TTpowhegttother_010.h5',
+                 'deepReco_TTpowhegttlf_011.h5', 'deepReco_TTpowhegttother_011.h5',
                   ]
 
   else: file_list = []

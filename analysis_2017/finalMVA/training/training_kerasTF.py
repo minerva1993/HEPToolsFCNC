@@ -415,7 +415,7 @@ if plot_figures:
 
 data = data.drop(label_name, axis=1) #then drop label
 
-#sys.exit() #for input draw
+sys.exit() #for input draw
 
 ###############
 #split datasets

@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize
@@ -40,7 +40,7 @@ elif int(syst_cat) == 3: syst = ["jecdown"]
 elif int(syst_cat) == 4: syst = ["jerup"]
 elif int(syst_cat) == 5: syst = ["jerdown"]
 elif int(syst_cat) == 6: syst = ["hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
-else: print("Wrong systematic category number: 0(TT), 1(other), 2,3(jec up/down), 4,5(jer up/down), 6(hdamp and tune)")
+else: print("Wrong systematic category number: 0(TTLJ), 1(other), 2,3(jec up/down), 4,5(jer up/down), 6(hdamp and tune)")
 
 if signal_only: syst = [""]
 
@@ -54,10 +54,10 @@ for syst_ext in syst:
   print('Start evaluation on version '+ ch + ver + syst_ext + ' classifier with the model '+ bestModel)
 
 #  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext)):
-  for filename in os.listdir(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'mkNtuple', 'hdf_' + ch + syst_ext)):
+  for filename in os.listdir(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'hdf_' + ch + syst_ext)):
     if filename == '.gitkeep': continue
-    if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg", "TTLL"]): continue
-    if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg", "TTLL"]): continue
+    if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg"]): continue
+    if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg"]): continue
 
     if os.path.exists(os.path.join(configDir, scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root'))):
       print('score_' + filename.replace('h5','root') + (' is already exist!').rjust(50-len(filename)))
@@ -65,16 +65,16 @@ for syst_ext in syst:
     if signal_only:
       if   ch == "STFCNC":
         if "STTH1L3BH" not in filename: continue
-        if not filename.endswith(('003.h5','004.h5')): continue
+        if not filename.endswith(('004.h5','005.h5')): continue
       elif ch == "TTFCNC":
         if "TTTH1L3B" not in filename: continue
-        if not filename.endswith(('003.h5','004.h5')): continue
+        if not filename.endswith(('004.h5','005.h5')): continue
       elif ch == "TTBKG":
         if "TTpowheg" not in filename: continue
-        if not filename.endswith(('020.h5','021.h5')): continue
+        if not (any(x in filename for x in ["bb","bj","cc"]) and filename.endswith(('020.h5','021.h5'))) and not (any(x in filename for x in ["lf","other"]) and filename.endswith(('080.h5','081.h5','082.h5','083.h5','084.h5','085.h5','086.h5','087.h5'))) : continue
 
 #    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext, filename))
-    eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'mkNtuple', 'hdf_' + ch + syst_ext, filename))
+    eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'hdf_' + ch + syst_ext, filename))
     print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
 
     outfile = TFile.Open(os.path.join(scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root')),'RECREATE')

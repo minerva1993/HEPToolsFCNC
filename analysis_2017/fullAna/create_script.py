@@ -46,16 +46,20 @@ string_for_merge += 'mkdir pre_process\n'
 string_for_merge += 'mkdir temp/not_using\n'
 string_for_merge += 'rm pre_process/hist_*.root\n'
 
-for train_sets in ['STTH1L3B', 'TTTH1L3B', 'TTpowheg', 'TTLLpowheg']:
-  for syst_tmp in syst + syst2:
-    string_for_merge += 'mv temp/hist_' + train_sets + "*_000" + syst_tmp + ".root temp/not_using\n"
-    if 'STTH' in train_sets:
-      string_for_merge += 'mv temp/hist_' + train_sets + "*_001" + syst_tmp + ".root temp/not_using\n"
-    if 'powheg' in train_sets:
-      string_for_merge += 'mv temp/hist_' + train_sets + "*_001" + syst_tmp + ".root temp/not_using\n"
-      string_for_merge += 'mv temp/hist_' + train_sets + "*_002" + syst_tmp + ".root temp/not_using\n"
-      string_for_merge += 'mv temp/hist_' + train_sets + "*_003" + syst_tmp + ".root temp/not_using\n"
-      string_for_merge += 'mv temp/hist_' + train_sets + "*_004" + syst_tmp + ".root temp/not_using\n"
+for syst_tmp in syst + syst2:
+  for num in range(0,4): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+  for num in range(0,2): string_for_merge += "mv temp/hist_TTTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+  for num in range(0,10): string_for_merge += "mv temp/hist_TTLL*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+  for num in range(0,5):
+    string_for_merge += "mv temp/hist_TTpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    string_for_merge += "mv temp/hist_TTpowhegttbj_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    string_for_merge += "mv temp/hist_TTpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+  for num in range(0,10):
+    string_for_merge += "mv temp/hist_TTpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    string_for_merge += "mv temp/hist_TTpowhegttother_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+  for num in range(11,20):
+    string_for_merge += "mv temp/hist_TTpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
+    string_for_merge += "mv temp/hist_TTpowhegttother_0" + str(num) + syst_tmp + ".root temp/not_using\n"
 
 for lines in noreco_list:
   if "v2" in lines.split(' ')[1]: ext_dataset.append(lines.split(' ')[1])

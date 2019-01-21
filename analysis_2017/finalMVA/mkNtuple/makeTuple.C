@@ -571,7 +571,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   b_EventWeight = 1.0;
   if( !option.Contains("Run2017") ){
     if( passmuon ) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6];
-    else if( passelectron) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6];
+    else if( passelectron) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6] * lepton_SF[9];
     b_EventWeight *= PUWeight[0] * wrongPVrate * jet_SF_deepCSV_30[0] * (*genweight);
   }
 

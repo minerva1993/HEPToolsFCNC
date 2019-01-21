@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os, shutil
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 import matplotlib
 matplotlib.use('Agg')
@@ -18,7 +18,7 @@ from root_numpy import array2tree, tree2array
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.3
+config.gpu_options.per_process_gpu_memory_fraction = 0.5
 set_session(tf.Session(config=config))
 
 import keras
@@ -312,7 +312,7 @@ class roc_callback(Callback):
 ####################
 for files in input_files:
 #  data_temp = pd.read_hdf('../mkNtuple/hdf_' + ch + '/' + files)
-  data_temp = pd.read_hdf('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver/mkNtuple/hdf_' + ch + '/' + files)
+  data_temp = pd.read_hdf('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver/hdf_' + ch + '/' + files)
   if files == input_files[0]: data = data_temp
   else: data = pd.concat([data,data_temp], ignore_index=True)
 #print(daaxis=data.index.is_unique)#check if indices are duplicated

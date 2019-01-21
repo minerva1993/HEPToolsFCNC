@@ -8,7 +8,7 @@
   for-yields: true
   yields-table-order: 0
   yields-title: '$j3b2$'
-#  signal-normalize-data: false
+  signal-normalize-data: false
 
 'h_DNN_j3b3_Ch2':
   y-axis: "Entries"
@@ -17,7 +17,7 @@
   for-yields: true
   yields-table-order: 1
   yields-title: '$j3b3$'
-#  signal-normalize-data: false
+  signal-normalize-data: false
 
 'h_DNN_j4b2_Ch2':
   y-axis: "Entries"
@@ -26,7 +26,7 @@
   for-yields: true
   yields-table-order: 2
   yields-title: '$j4b2$'
-#  signal-normalize-data: false
+  signal-normalize-data: false
 
 'h_DNN_j4b3_Ch2':
   y-axis: "Entries"
@@ -35,7 +35,7 @@
   for-yields: true
   yields-table-order: 3
   yields-title: '$j4b3$'
-#  signal-normalize-data: false
+  signal-normalize-data: false
 
 'h_DNN_j4b4_Ch2':
   y-axis: "Entries"
@@ -44,7 +44,7 @@
   for-yields: true
   yields-table-order: 4
   yields-title: '$j4b4$'
-#  signal-normalize-data: false
+  signal-normalize-data: false
 
 ####################
 #Final distributions

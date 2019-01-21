@@ -59,6 +59,7 @@ systematics:
   - elid
   - elreco
   - elzvtx
+  - eltrg
   - jec
   - jer
   - scale: {type: shape, on: 'hist_TTpowhegttbb.root'}
@@ -82,13 +83,13 @@ systematics:
   - hdamp: {type: shape, on: 'hist_TTpowhegttother.root'}
   - hdamp: {type: shape, on: 'hist_TTLLpowheg.root'}
   - hdamp: {type: shape, on: 'hist_TTHadpowheg.root'}
-  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - pdf: {type: shape, on: 'hist_TTpowhegttbj.root'}
-  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
-  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - pdf: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - pdf: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - pdf: {type: shape, on: 'hist_TTHadpowheg.root'}
+#  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
+#  - pdf: {type: shape, on: 'hist_TTpowhegttbj.root'}
+#  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
+#  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
+#  - pdf: {type: shape, on: 'hist_TTpowhegttother.root'}
+#  - pdf: {type: shape, on: 'hist_TTLLpowheg.root'}
+#  - pdf: {type: shape, on: 'hist_TTHadpowheg.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttbb.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttbj.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttcc.root'}
@@ -108,8 +109,8 @@ systematics:
 plots:
 #  include: ['histos_stfcnc.yml']
 #  include: ['histos_ttfcnc.yml']
-#  include: ['histos_ttbkg.yml']
-  include: ['histos_dnn.yml']
+  include: ['histos_ttbkg.yml']
+#  include: ['histos_dnn.yml']
 
 legend:
   position: [0.18, 0.68, 0.92, 0.89]

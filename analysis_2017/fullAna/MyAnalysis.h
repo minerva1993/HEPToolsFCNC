@@ -154,6 +154,8 @@ public :
     TH1D *h_FCNHkinHb2Pt[3][12][43];
     TH1D *h_FCNHkinHb1CSV[3][12][43];
     TH1D *h_FCNHkinHb2CSV[3][12][43];
+    TH1D *h_FCNHkinHb1CSVfull[3][12][43];
+    TH1D *h_FCNHkinHb2CSVfull[3][12][43];
     TH1D *h_FCNHkinLepTopPt[3][12][43];
     TH1D *h_FCNHkinHadTopPt[3][12][43];
 

@@ -22,7 +22,8 @@ for syst_ext in syst + syst2:
     sys.exit()
 
 def runAna(input_filename, output_filename):
-  print 'processing ' + input_filename
+  print 'processing ' + input_filename.split('/')[-2] + '/' + input_filename.split('/')[-1]
+#  print 'processing ' + input_filename
 
   for syst_ext in syst + syst2:
     if   ("Run2017" in output_filename) and syst_ext != "": continue

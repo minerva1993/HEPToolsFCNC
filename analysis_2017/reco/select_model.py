@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize
@@ -35,25 +35,30 @@ file_list = sorted(os.listdir( os.path.join(configDir, weightDir+ver)) )
 for files in file_list:
   if files.startswith("model"):
 
+    selected_list_1 = []
+    selected_list_2 = []
+    matchable_list_1 = []
+    matchable_list_2 = []
+
     model_best = load_model(os.path.join(configDir, weightDir+ver, files))
     print('Start evaluation on version '+ ch + ver + ' classifier with the model '+ files)
 
 #    for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch)):
-    for filename in os.listdir(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'mkNtuple', 'hdf_' + ch)):
+    for filename in os.listdir(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'hdf_' + ch)):
       if filename == '.gitkeep': continue
 
       if   ch == "STFCNC":
         if "STTH1L3BH" not in filename: continue
-        if not filename.endswith(('002.h5')): continue
+        if not filename.endswith(('005.h5')): continue
       elif ch == "TTFCNC":
         if "TTTH1L3B" not in filename: continue
-        if not filename.endswith(('001.h5')): continue
+        if not filename.endswith(('005.h5')): continue
       elif ch == "TTBKG":
         if "TTpowheg" not in filename: continue
-        if not filename.endswith(('013.h5')): continue
+        if not (any(x in filename for x in ["bb","bj","cc"]) and filename.endswith(('020.h5'))) and not (any(x in filename for x in ["lf","other"]) and filename.endswith(('080.h5','081.h5','082.h5','083.h5'))) : continue
 
 #      eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch, filename))
-      eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'mkNtuple', 'hdf_' + ch, filename))
+      eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'hdf_' + ch, filename))
       ncombi = eval_df.shape[0]
 
       matchable = len(eval_df.query('genMatch == '+ str(signal_label)).index)
@@ -75,4 +80,27 @@ for files in file_list:
       best_idx = df3.groupby('nevt')['score'].transform('max') == df3['score']
       selected = len(df3[best_idx].query('genMatch ==' + str(signal_label)))
 
-      print(filename + ": " + str(eval_df.shape[0]) + " " + " eff: = " + str(selected) + " / " + str(matchable) + " = " + str(selected*1.0/matchable))
+      #print(filename + ": " + str(eval_df.shape[0]) + " " + " eff: = " + str(selected) + " / " + str(matchable) + " = " + str(selected*1.0/matchable))
+      if "Hct" in filename:
+        selected_list_1.append(selected)
+        matchable_list_1.append(matchable)
+      elif "Hut" in filename:
+        selected_list_2.append(selected)
+        matchable_list_2.append(matchable)
+      else:
+        selected_list_1.append(selected)
+        matchable_list_1.append(matchable)
+
+    tot_selected_1 = 0
+    tot_selected_2 = 0
+    tot_matchable_1 = 0
+    tot_matchable_2 = 0
+    for i in selected_list_1: tot_selected_1 += i
+    for i in selected_list_2: tot_selected_2 += i
+    for i in matchable_list_1: tot_matchable_1 += i
+    for i in matchable_list_2: tot_matchable_2 += i
+    if ch == "TTFCNC":
+      print("Total eff Hct = " + str(tot_selected_1*1.0/tot_matchable_1))
+      print("Total eff Hut = " + str(tot_selected_2*1.0/tot_matchable_2))
+    elif ch == "TTBKG":
+      print("Total eff = " + str(tot_selected_1*1.0/tot_matchable_1))

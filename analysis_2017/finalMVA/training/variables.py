@@ -66,9 +66,17 @@ def input_variables(jetcat):
 def train_files(ch):
 
   if ch == "Hct":
-    sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_STTH1L3BHct_001.h5', 'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',]
+    sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_STTH1L3BHct_001.h5',
+           'finalMVA_STTH1L3BHct_002.h5', 'finalMVA_STTH1L3BHct_003.h5',
+           'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',
+           'finalMVA_TTTH1L3BaTLepHct_001.h5', 'finalMVA_TTTH1L3BTLepHct_001.h5',
+          ]
   elif ch == "Hut":
-    sig = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_STTH1L3BHut_001.h5','finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',]
+    sig = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_STTH1L3BHut_001.h5',
+           'finalMVA_STTH1L3BHut_002.h5', 'finalMVA_STTH1L3BHut_003.h5',
+           'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',
+           'finalMVA_TTTH1L3BaTLepHut_001.h5', 'finalMVA_TTTH1L3BTLepHut_001.h5',
+          ]
   else:
     print("Check channel: Hct or Hut")
     sig_files = []
@@ -83,8 +91,26 @@ def train_files(ch):
         'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
         'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
         'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
+        'finalMVA_TTpowhegttlf_005.h5', 'finalMVA_TTpowhegttother_005.h5',
+        'finalMVA_TTpowhegttlf_006.h5', 'finalMVA_TTpowhegttother_006.h5',
+        'finalMVA_TTpowhegttlf_007.h5', 'finalMVA_TTpowhegttother_007.h5',
+        'finalMVA_TTpowhegttlf_008.h5', 'finalMVA_TTpowhegttother_008.h5',
+        'finalMVA_TTpowhegttlf_009.h5', 'finalMVA_TTpowhegttother_009.h5',
+        'finalMVA_TTpowhegttlf_010.h5', 'finalMVA_TTpowhegttother_010.h5',
+        'finalMVA_TTpowhegttlf_011.h5', 'finalMVA_TTpowhegttother_011.h5',
+        'finalMVA_TTpowhegttlf_012.h5', 'finalMVA_TTpowhegttother_012.h5',
+        'finalMVA_TTpowhegttlf_013.h5', 'finalMVA_TTpowhegttother_013.h5',
+        'finalMVA_TTpowhegttlf_014.h5', 'finalMVA_TTpowhegttother_014.h5',
+        'finalMVA_TTpowhegttlf_015.h5', 'finalMVA_TTpowhegttother_015.h5',
+        'finalMVA_TTpowhegttlf_016.h5', 'finalMVA_TTpowhegttother_016.h5',
+        'finalMVA_TTpowhegttlf_017.h5', 'finalMVA_TTpowhegttother_017.h5',
+        'finalMVA_TTpowhegttlf_018.h5', 'finalMVA_TTpowhegttother_018.h5',
+        'finalMVA_TTpowhegttlf_019.h5', 'finalMVA_TTpowhegttother_019.h5',
         'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5',
-        'finalMVA_TTLLpowheg_002.h5', 'finalMVA_TTLLpowheg_003.h5', 'finalMVA_TTLLpowheg_004.h5',
+        'finalMVA_TTLLpowheg_002.h5', 'finalMVA_TTLLpowheg_003.h5',
+        'finalMVA_TTLLpowheg_004.h5', 'finalMVA_TTLLpowheg_005.h5',
+        'finalMVA_TTLLpowheg_006.h5', 'finalMVA_TTLLpowheg_007.h5',
+        'finalMVA_TTLLpowheg_008.h5', 'finalMVA_TTLLpowheg_009.h5',
         ]
 
   return sig, bkg
@@ -92,7 +118,7 @@ def train_files(ch):
   
 def evalScale(ch, sig, bkg):
 
-  base_path = "/data/users/minerva1993/ntuple_Run2017/V9_3/181013/production"
+  base_path = "/data/users/minerva1993/ntuple_Run2017/V9_5/190117/production"
   ST, TT, TTLJ, TTLL = (0,0,0,0)
   for tmp_file in sig:
     if "STTH" in tmp_file:
