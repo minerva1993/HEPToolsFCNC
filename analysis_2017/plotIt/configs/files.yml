@@ -18,16 +18,16 @@
 
 'hist_TTTH1L3BaTLepHct.root':
   type: signal
-  pretty-name: 'TTTH1L3BTLepHct'
+  pretty-name: 'TTTH1L3BaTLepHct'
   cross-section: 0.93
   generated-events: 668890
   line-color: '#0000cc'
   legend: 'TTHct'
   order: 2
 
-'hist_TTTH1L3BaTLepHct.root':
+'hist_TTTH1L3BTLepHct.root':
   type: signal
-  pretty-name: 'TTTH1L3BaTLepHct'
+  pretty-name: 'TTTH1L3BTLepHct'
   cross-section: 0.93
   generated-events: 704864
   line-color: '#0000cc'
