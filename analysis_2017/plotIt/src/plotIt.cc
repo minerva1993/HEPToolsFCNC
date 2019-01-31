@@ -250,7 +250,8 @@ namespace plotIt {
         label.position = labelNode["position"].as<Point>();
 
         if (labelNode["size"])
-          label.size = labelNode["size"].as<uint32_t>();
+//          label.size = labelNode["size"].as<uint32_t>();
+          label.size = labelNode["size"].as<float>();
 
         labels.push_back(label);
       }
@@ -1068,7 +1069,7 @@ namespace plotIt {
 
       std::shared_ptr<TLatex> t(new TLatex(label.position.x, label.position.y, label.text.c_str()));
       t->SetNDC(true);
-      t->SetTextFont(62);
+      t->SetTextFont(64);
       t->SetTextSize(label.size);
       t->Draw();
 
