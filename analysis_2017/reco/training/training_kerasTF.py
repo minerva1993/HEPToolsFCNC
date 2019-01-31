@@ -144,6 +144,8 @@ def inputvars(sigdata, bkgdata, signame, bkgname, **kwds):
       high = max(np.max(d[colname].values) for d in dataset)
       if high > 500: low_high = (low,500)
       else: low_high = (low,high)
+      if any(name in colname for name in ['jet0m','jet1m','jet2m','jet3m']):
+        low_high = (low,50)
 
       plt.figure()
       sigdata[colname].plot.hist(color='b', density=True, range=low_high, bins=bins, histtype='step', label='signal')

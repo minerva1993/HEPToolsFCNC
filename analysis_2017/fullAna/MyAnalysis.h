@@ -135,12 +135,16 @@ public :
     TH1D *h_DPhi[3][12][43];
     TH1D *h_JetCSV[3][12][43];
 
-    //tagging variables
+    //leading and subleading jets
+    TH1D *h_LeadJetPt[3][12][43];
+    TH1D *h_LeadJetEta[3][12][43];
+    TH1D *h_SubleadJetPt[3][12][43];
+    TH1D *h_SubleadJetEta[3][12][43];
+
+    //Reco
     TH1D *h_csv[3][12][43];
     TH1D *h_cvsl[3][12][43];
     TH1D *h_cvsb[3][12][43];
-
-    //DR
     TH1D *h_FCNHkinLepWMass[3][12][43];
     TH1D *h_FCNHkinHadWMass[3][12][43];
     TH1D *h_FCNHkinHMass[3][12][43];
@@ -158,11 +162,14 @@ public :
     TH1D *h_FCNHkinHb2CSVfull[3][12][43];
     TH1D *h_FCNHkinLepTopPt[3][12][43];
     TH1D *h_FCNHkinHadTopPt[3][12][43];
-
     TH1D *h_genDR[3][12][43];
     TH1D *h_matchDR[3][12][43];
     TH1D *h_genHm[3][12][43];
     TH1D *h_matchHm[3][12][43];
+
+    //SF specific histos
+    TH1D *h_PVnoSF[3][12][43];
+    TH1D *h_JetCSVnoSF[3][12][43];
 
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");

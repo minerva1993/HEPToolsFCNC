@@ -8,7 +8,9 @@
   save-extensions: ['pdf']
   for-yields: true
   yields-table-order: 0
-  yields-title: '$j3b2$'
+  yields-title: '$b2j3$'
+  labels:
+    - {text: 'b2j3', position: [0.778, 0.82], size: 18}
 #  signal-normalize-data: false
 
 'h_DNN_j3b3_Ch2':
@@ -17,8 +19,10 @@
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
   for-yields: true
-  yields-table-order: 1
+  yields-table-order: 2
   yields-title: '$j3b3$'
+  labels:
+    - {text: 'b3j3', position: [0.778, 0.82], size: 18}
 #  signal-normalize-data: false
 
 'h_DNN_j4b2_Ch2':
@@ -27,8 +31,10 @@
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
   for-yields: true
-  yields-table-order: 2
-  yields-title: '$j4b2$'
+  yields-table-order: 1
+  yields-title: '$b2j4$'
+  labels:
+    - {text: 'b2j4', position: [0.778, 0.82], size: 18}
 #  signal-normalize-data: false
 
 'h_DNN_j4b3_Ch2':
@@ -38,7 +44,9 @@
   save-extensions: ['pdf']
   for-yields: true
   yields-table-order: 3
-  yields-title: '$j4b3$'
+  yields-title: '$b3j4$'
+  labels:
+    - {text: 'b3j4', position: [0.778, 0.82], size: 18}
 #  signal-normalize-data: false
 
 'h_DNN_j4b4_Ch2':
@@ -48,7 +56,9 @@
   save-extensions: ['pdf']
   for-yields: true
   yields-table-order: 4
-  yields-title: '$j4b4$'
+  yields-title: '$b4j4$'
+  labels:
+    - {text: 'b4j4', position: [0.778, 0.82], size: 18}
 #  signal-normalize-data: false
 
 ####################
@@ -159,7 +169,7 @@
 #  save-extensions: ['pdf']
 #  for-yields: true
 #  yields-table-order: 0
-
+#
 #'h_DNN_b3_Ch0':
 #  y-axis: "Entries"
 #  y-axis-format: "%1% / %2$.2f"

@@ -84,7 +84,7 @@ for ch in ['Hct','Hut']:
         l.AddEntry(trainB, 'Background (training)', 'p')
         l.AddEntry(testS, 'Signal (testing)', 'f')
         l.AddEntry(testB, 'Background (testing)', 'f')
-        label2.AddText(ch+', '+method)
+        label2.AddText(ch + ', ' + jetcat[2:4]+jetcat[0:2] +', ' + method)
 
         testS.Draw('hist')
         testB.Draw('hist same')

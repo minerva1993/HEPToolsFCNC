@@ -15,6 +15,7 @@ from sklearn.metrics import f1_score, precision_score, recall_score
 import numpy as np
 from root_numpy import array2tree, tree2array
 from variables import input_variables, train_files, evalScale
+from variables import input_variables_bdt
 
 #Version of classifier
 ch = sys.argv[1]
@@ -51,9 +52,12 @@ else: nbjets_cut = 0
 
 input_features = []
 input_features.extend(input_variables(jetcat))
+#input_features.extend(input_variables_bdt(jetcat))
 input_features.append(label_name)
 sig_files, bkg_files = train_files(ch)
 scaleST, scaleTT, scaleTTLJ, scaleTTLL, frac_sig, frac_bkg = evalScale(ch, sig_files, bkg_files)
+input_features.remove('STTT')
+input_features.remove('channel')
 
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
@@ -153,6 +157,8 @@ def inputvars(sigdata, bkgdata, signame, bkgname, **kwds):
       high = max(np.max(d[colname].values) for d in dataset)
       if high > 500: low_high = (low,500)
       else: low_high = (low,high)
+      if any(name in colname for name in ['jet0m','jet1m','jet2m','jet3m']):
+        low_high = (low,50)
 
       plt.figure()
       sigdata[colname].plot.hist(color='b', density=True, range=low_high, bins=bins, histtype='step', label='signal')
