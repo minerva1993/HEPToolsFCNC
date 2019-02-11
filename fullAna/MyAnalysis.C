@@ -23,15 +23,13 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     dosyst = false;
   }
 
-  if( option.Contains("Run2017") ) dosyst = false;
+  if( option.Contains("Run201") ) dosyst = false;
 
   //Delete ntuple number and data era so that we can merge histos w.r.t. dataset, prepare assign ntuple
   const char* assign_file = "";
   if( doreco ){
-    //if     ( option.Contains("Run2017") ) sample.erase(sample.find_first_of("_")-1, string::npos);
-    //else if( option.Contains("part") )    sample.erase(sample.find_last_of("p"),    string::npos);
-    //else                                  sample.erase(sample.find_first_of("_"),   string::npos);
-    string reco_scheme = sample.substr(sample.find_first_of("-")+1,string::npos);
+    string reco_era =  sample.substr(sample.find_first_of("-")+1,4);
+    string reco_scheme = sample.substr(sample.find_first_of("-")+5,string::npos);
     if     ( reco_scheme.find("STFCNC") != string::npos ) reco_id = 0;
     else if( reco_scheme.find("TTFCNC") != string::npos ) reco_id = 1;
     else if( reco_scheme.find("TTBKG") != string::npos )  reco_id = 2;
@@ -51,8 +49,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     }
 
     sample.erase( sample.find_first_of("-"),string::npos );
-    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assign%s/assign_deepReco_%s.root",
-                       reco_scheme.c_str(), sample.c_str());
+    assign_file = Form("./../reco/%s/assign%s/assign_deepReco_%s.root", reco_era.c_str(), reco_scheme.c_str(), sample.c_str());
 
     string file_tmp_path = assign_file;
     ifstream file_tmp(file_tmp_path);
@@ -72,7 +69,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     }
     else cout << option.Data() << endl;
 
-    if( !dosyst and syst_ext.length() < 5 and !option.Contains("Run2017") ) cout << sample.c_str() << " " << "No external systematic option!" << endl;
+    if( !dosyst and syst_ext.length() < 5 and !option.Contains("Run201") ) cout << sample.c_str() << " " << "No external systematic option!" << endl;
   }
 
 
@@ -305,46 +302,53 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   fReader.SetEntry(entry);
   TString option = GetOption();
 
+  int era = 0;
+  TString current_file_name = MyAnalysis::fReader.GetTree()->GetCurrentFile()->GetName();
+  if     ( current_file_name.Contains("2017") ) era = 2017;
+  else if( current_file_name.Contains("2018") ) era = 2018;
+  cout << era;
+
   int mode = 999; 
   mode = *channel;
-
   if( mode > 2 ) return kTRUE;
 
   float wrongPVrate = 1;
-  if( !option.Contains("Run2017") ){
-    if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04849;
-    else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.02703;
-    else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.02484;
-    else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03186;
-    else if( option.Contains("QCDEM30to50") ) wrongPVrate = 1.02575;
-    else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.04114;
-    else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.02968;
-    else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02597;
-    else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.04353;
-    else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.03696;
-    else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02918;
-    else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.02786;
-    else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03188;
-    else if( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.03469;
-    else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04218;
-    else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.0482;
-    else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04601;
-    else if( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04702;
-    else if( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.0467;
-    else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.0479;
-    else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.0475;
-    else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.0478;
-    else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04738;
-    else if( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04806;
-    else if( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04762;
-    else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04195;
-    else if( option.Contains("WW") ) wrongPVrate = 1.04685;
-    else if( option.Contains("WZ") ) wrongPVrate = 1.04381;
-    else if( option.Contains("ZZ") ) wrongPVrate = 1.02981;
-    else   wrongPVrate = 1.0;
-  }
-  if( wrongPVrate > 1.01 ){
-    if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
+  if( era == 2017 ){
+    if( !option.Contains("Run2017") ){
+      if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04849;
+      else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.02703;
+      else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.02484;
+      else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03186;
+      else if( option.Contains("QCDEM30to50") ) wrongPVrate = 1.02575;
+      else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.04114;
+      else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.02968;
+      else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02597;
+      else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.04353;
+      else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.03696;
+      else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02918;
+      else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.02786;
+      else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03188;
+      else if( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.03469;
+      else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04218;
+      else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.0482;
+      else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04601;
+      else if( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04702;
+      else if( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.0467;
+      else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.0479;
+      else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.0475;
+      else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.0478;
+      else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04738;
+      else if( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04806;
+      else if( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04762;
+      else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04195;
+      else if( option.Contains("WW") ) wrongPVrate = 1.04685;
+      else if( option.Contains("WZ") ) wrongPVrate = 1.04381;
+      else if( option.Contains("ZZ") ) wrongPVrate = 1.02981;
+      else   wrongPVrate = 1.0;
+    }
+    if( wrongPVrate > 1.01 ){
+      if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
+    }
   }
 
   float relIso = *lepton_relIso; 
@@ -411,7 +415,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     TLorentzVector jet;
     jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
 
-    if( !option.Contains("Run2017") ){
+    if( !option.Contains("Run201") ){
       if     ( syst_ext == "jecup" )   jet = jet * jet_JER_Nom[iJet] * jet_JES_Up[iJet];
       else if( syst_ext == "jecdown" ) jet = jet * jet_JER_Nom[iJet] * jet_JES_Down[iJet];
       else if( syst_ext == "jerup" )   jet = jet * jet_JER_Up[iJet];
@@ -470,7 +474,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
       for( int i=0; i < 4; i++) jetP4s[i].SetPtEtaPhiE(jet_pt[jetIdx[i]], jet_eta[jetIdx[i]], jet_phi[jetIdx[i]], jet_e[jetIdx[i]]);
 
-      if( !option.Contains("Run2017") ){
+      if( !option.Contains("Run201") ){
         if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
         else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
         else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Up[jetIdx[i]];
@@ -515,7 +519,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
           float EventWeight = 1.0;
           //Multiply syst. to event weight
-          if( !option.Contains("Run2017") ){
+          if( !option.Contains("Run201") ){
             EventWeight *= wrongPVrate;
             EventWeight *= *genweight;
             //PUWight
@@ -708,11 +712,12 @@ void MyAnalysis::Terminate()
     dosyst = false;
   }
 
-  if( option.Contains("Run2017") ) dosyst = false;
+  if( option.Contains("Run201") ) dosyst = false;
 
   const char* assign_file = "";
   if( doreco ){
-    string reco_scheme = sample.substr(sample.find_first_of("-")+1,string::npos);
+    string reco_era =  sample.substr(sample.find_first_of("-")+1,4);
+    string reco_scheme = sample.substr(sample.find_first_of("-")+5,string::npos);
     syst_ext = "";
     if( reco_scheme.find("jec") != string::npos or reco_scheme.find("jer") != string::npos
       or reco_scheme.find("TuneCP5") != string::npos or reco_scheme.find("hdamp") != string::npos ){
@@ -726,8 +731,7 @@ void MyAnalysis::Terminate()
       else if( reco_scheme.find("hdampdown") != string::npos )   syst_ext = "__hdampdown";
     }
     sample.erase( sample.find_first_of("-"),string::npos );
-    assign_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assign%s/assign_deepReco_%s.root",
-                       reco_scheme.c_str(), sample.c_str());
+    assign_file = Form("./../reco/%s/assign%s/assign_deepReco_%s.root", reco_era.c_str(), reco_scheme.c_str(), sample.c_str());
     string file_tmp_path = assign_file;
     ifstream file_tmp(file_tmp_path);
 

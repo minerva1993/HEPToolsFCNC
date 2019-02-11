@@ -3,15 +3,19 @@ import os, sys
 from subprocess import call
 from ROOT import *
 
+if len(sys.argv) < 8:
+  print("Not enough arguements: Ver, Input, Output")
+  sys.exit()
 ch = sys.argv[1]
-v_j3b2 = sys.argv[2]
-v_j3b3 = sys.argv[3]
-v_j4b2 = sys.argv[4]
-v_j4b3 = sys.argv[5]
-v_j4b4 = sys.argv[6]
-v_out = sys.argv[7]
+era = sys.argv[2]
+v_j3b2 = sys.argv[3]
+v_j3b3 = sys.argv[4]
+v_j4b2 = sys.argv[5]
+v_j4b3 = sys.argv[6]
+v_j4b4 = sys.argv[7]
+v_out = sys.argv[8]
 
-base_path = "./"
+base_path = "./" + era
 if not os.path.exists(os.path.join( base_path + ch + "_merged_" + v_out )):
   os.makedirs(os.path.join( base_path, ch + "_merged_" + v_out, "hist_j3" ))
   os.makedirs(os.path.join( base_path, ch + "_merged_" + v_out, "hist_j4" ))

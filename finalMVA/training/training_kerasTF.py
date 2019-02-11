@@ -18,11 +18,16 @@ from variables import input_variables, train_files, evalScale
 from variables import input_variables_bdt
 
 #Version of classifier
+if len(sys.argv) < 5:
+  print("Not enough arguements: Ch, JetCat, Ver, Era")
+  sys.exit()
 ch = sys.argv[1]
 jetcat = sys.argv[2]
 ver = sys.argv[3]
+era = sys.argv[4]
 
 #Options
+input_only = False
 multiGPU = True
 if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
   multiGPU = False
@@ -33,9 +38,9 @@ include_eventWeight = True
 sklearn_based_overtraining_check = False #If it set to false, directly plot DNN scores
 
 #directory name
-configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
-weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
-scoreDir = 'scores/' + ch + '_' +jetcat + '_'
+configDir = '../'
+weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
+scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
 label_name = 'label'
 weight_name = 'EventWeight'
 weight_name_modi = 'SampleWeight'
@@ -54,8 +59,8 @@ input_features = []
 input_features.extend(input_variables(jetcat))
 #input_features.extend(input_variables_bdt(jetcat))
 input_features.append(label_name)
-sig_files, bkg_files = train_files(ch)
-scaleST, scaleTT, scaleTTLJ, scaleTTLL, frac_sig, frac_bkg = evalScale(ch, sig_files, bkg_files)
+sig_files, bkg_files = train_files(ch, era)
+scaleST, scaleTT, scaleTTLJ, scaleTTLL, frac_sig, frac_bkg = evalScale(ch, era, sig_files, bkg_files)
 input_features.remove('STTT')
 input_features.remove('channel')
 
@@ -328,7 +333,7 @@ class roc_callback(Callback):
 nST, nTT = (0,0)
 #Signal first
 for files in sig_files:
-  data_temp = pd.read_hdf('../mkNtuple/hdf_/' + files)
+  data_temp = pd.read_hdf('../mkNtuple/' + era + '/hdf_/' + files)
   if njets_cut == 3:
     data_temp = data_temp[data_temp['njets'] ==  njets_cut]
   elif njets_cut == 4:
@@ -361,7 +366,7 @@ frac_list = [(nST * scaleST)/(nST * scaleST + nTT * scaleTT), (nTT * scaleTT)/(n
 
 #Next, background
 for files in bkg_files:
-  data_temp = pd.read_hdf('../mkNtuple/hdf_/' + files)
+  data_temp = pd.read_hdf('../mkNtuple/' + era + '/hdf_/' + files)
   if njets_cut == 3:
     data_temp = data_temp[data_temp['njets'] ==  njets_cut]
   elif njets_cut == 4:
@@ -421,7 +426,7 @@ if plot_figures:
 
 data = data.drop(label_name, axis=1) #then drop label
 
-sys.exit() #for input draw
+if input_only: sys.exit() #for input draw
 
 ###############
 #split datasets

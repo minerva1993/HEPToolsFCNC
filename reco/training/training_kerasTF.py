@@ -32,8 +32,12 @@ from keras.callbacks import Callback, ModelCheckpoint
 from variables import input_variables, gen_label, train_files
 
 #Channel and version
+if len(sys.argv) < 4:
+  print("Not enough arguements: Ch, Ver, Era")
+  sys.exit()
 ch = sys.argv[1]
 ver = sys.argv[2]
+era = sys.argv[3]
 if ch not in ["STFCNC", "TTFCNC", "TTBKG"]:
   print("Check channal again!: STFCNC, TTFCNC, of TTBKG are available")
 
@@ -43,16 +47,16 @@ if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
   multiGPU = False
 
 #directory name
-configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/'
-weightDir = 'training/reco'+ch
-scoreDir = 'score'+ch
-assignDir = 'assign'+ch
+configDir = '../'
+weightDir = 'training/' + era + '/reco' + ch
+scoreDir = era + '/score' + ch
+assignDir = era + '/assign' + ch
 
 #Options for data preparation
 input_files = []
 input_features = []
 signal_label = gen_label(ch)
-input_files.extend(train_files(ch))
+input_files.extend(train_files(ch, era))
 input_features.extend(input_variables(ch))
 input_features.append('genMatch')
 
@@ -314,7 +318,7 @@ class roc_callback(Callback):
 ####################
 for files in input_files:
 #  data_temp = pd.read_hdf('../mkNtuple/hdf_' + ch + '/' + files)
-  data_temp = pd.read_hdf('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver/hdf_' + ch + '/' + files)
+  data_temp = pd.read_hdf('/data/users/minerva1993/work/' + str(int(era)+1) + '_fcnc_RunII' + era + '/reco/current_ver/hdf_' + ch + '/' + files)
   if files == input_files[0]: data = data_temp
   else: data = pd.concat([data,data_temp], ignore_index=True)
 #print(daaxis=data.index.is_unique)#check if indices are duplicated

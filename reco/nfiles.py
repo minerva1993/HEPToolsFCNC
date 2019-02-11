@@ -1,18 +1,32 @@
 #!/usr/bin/python
 import os, sys
 
-
-allfolders = sorted(os.listdir("."))
-
-for folder in allfolders:
-  if folder.startswith("assign"):
+folder17 = sorted(os.listdir("./2017"))
+print "Scores for 2017 Reco"
+for folder in folder17:
+  if 'assign' in folder:
     tmp = []
-    for files in os.listdir("./" + folder):
+    for files in os.listdir("./2017/" + folder):
       if files.endswith(".root"): tmp.append(files)
     print folder + ": " + str(len(tmp)).rjust(30-len(folder))
-for folder in allfolders:
+for folder in folder17:
   if folder.startswith("score"):
     tmp = []
-    for files in os.listdir("./" + folder):
+    for files in os.listdir("./2017/" + folder):
+      if files.endswith(".root"): tmp.append(files)
+    print folder + ": " + str(len(tmp)).rjust(30-len(folder))
+
+folder18 = sorted(os.listdir("./2018"))
+print "Scores for 2018 Reco"
+for folder in folder18:
+  if 'assign' in folder:
+    tmp = []
+    for files in os.listdir("./2018/" + folder):
+      if files.endswith(".root"): tmp.append(files)
+    print folder + ": " + str(len(tmp)).rjust(30-len(folder))
+for folder in folder18:
+  if folder.startswith("score"):
+    tmp = []
+    for files in os.listdir("./2018/" + folder):
       if files.endswith(".root"): tmp.append(files)
     print folder + ": " + str(len(tmp)).rjust(30-len(folder))

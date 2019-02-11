@@ -1,12 +1,21 @@
-import os, shutil, re
+import os, shutil, re, sys
 
-version = 'V9_5/190117/'
-path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
+if len(sys.argv) < 2:
+  print("Specify year: 2017/2018")
+  sys.exit()
+era = sys.argv[1]
 
-run_file_name = 'runNoReco.py'
+if era == '2017':
+  version = 'V9_5/190117/'
+  path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
+elif era == '2018':
+  version = 'V10_0/190212/'
+  path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2018/' + version
+
+run_file_name = 'runNoReco_' + era + '.py'
 string_for_run = ''
 
-merge_file_name = 'job_merge.sh'
+merge_file_name = 'job_merge_' + era +'.sh'
 string_for_merge = ''
 
 print("Write options for bypassing reconstruction")
@@ -47,24 +56,39 @@ string_for_merge += 'mkdir temp/not_using\n'
 string_for_merge += 'rm pre_process/hist_*.root\n'
 
 for syst_tmp in syst + syst2:
-  for num in range(0,4): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-  for num in range(0,2): string_for_merge += "mv temp/hist_TTTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-  for num in range(0,10): string_for_merge += "mv temp/hist_TTLL*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-  for num in range(0,5):
-    string_for_merge += "mv temp/hist_TTpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    string_for_merge += "mv temp/hist_TTpowhegttbj_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    string_for_merge += "mv temp/hist_TTpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-  for num in range(0,10):
-    string_for_merge += "mv temp/hist_TTpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    string_for_merge += "mv temp/hist_TTpowhegttother_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-  for num in range(11,20):
-    string_for_merge += "mv temp/hist_TTpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
-    string_for_merge += "mv temp/hist_TTpowhegttother_0" + str(num) + syst_tmp + ".root temp/not_using\n"
+  if era == '2017':
+    for num in range(0,4): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,2): string_for_merge += "mv temp/hist_TTTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,10): string_for_merge += "mv temp/hist_TTLL*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,5):
+      string_for_merge += "mv temp/hist_TTpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTpowhegttbj_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,10):
+      string_for_merge += "mv temp/hist_TTpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTpowhegttother_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(11,20):
+      string_for_merge += "mv temp/hist_TTpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTpowhegttother_0" + str(num) + syst_tmp + ".root temp/not_using\n"
+  elif era == '2018':
+    for num in range(0,4): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,2): string_for_merge += "mv temp/hist_TTTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,10): string_for_merge += "mv temp/hist_TTLL*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,5):
+      string_for_merge += "mv temp/hist_TTpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTpowhegttbj_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,10):
+      string_for_merge += "mv temp/hist_TTpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTpowhegttother_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(11,20):
+      string_for_merge += "mv temp/hist_TTpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTpowhegttother_0" + str(num) + syst_tmp + ".root temp/not_using\n"
 
 for lines in noreco_list:
   if "v2" in lines.split(' ')[1]: ext_dataset.append(lines.split(' ')[1])
   elif "TTTH" in lines.split(' ')[1]: fcnc_dataset.append(lines.split(' ')[1])
-  elif "Run2017" in lines.split(' ')[1]:
+  elif "Run201" in lines.split(' ')[1]:
     string_for_merge += "hadd pre_process/hist_" + (lines.split(' ')[1]) + ".root temp/hist_" + (lines.split(' ')[1]) + "[A-F]_*[0-9].root\n"
   else:
     for syst_ext in syst + syst1 + syst2:
@@ -100,4 +124,4 @@ if os.path.exists('doReco/' + merge_file_name): os.remove('doReco/' + merge_file
 with open('doReco/' + merge_file_name, 'w') as g:
   g.write(string_for_merge)
 
-shutil.copy2("doReco/job_merge.sh", "./../finalMVA/histos")
+shutil.copy2("doReco/job_merge_" + era +".sh", "./../finalMVA/histos")

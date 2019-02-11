@@ -1,11 +1,16 @@
 from subprocess import call
 import sys
 
-sig_only = sys.argv[1]
-ch = sys.argv[2]
-ver = sys.argv[3]
-filepath = sys.argv[4]
-filename = sys.argv[5]
+#Channel and version
+if len(sys.argv) < 7:
+  print("Not enough arguements: Ch, Ver, Era, Signal only, File path, name")
+  sys.exit()
+ch = sys.argv[1]
+ver = sys.argv[2]
+era = sys.argv[3]
+sig_only = sys.argv[4]
+filepath = sys.argv[5]
+filename = sys.argv[6]
 
 syst = [""]
 syst1 = ["jecup", "jecdown", "jerup", "jerdown"]
@@ -32,4 +37,4 @@ for syst_ext in syst + syst1 + syst2:
   else:
     if (syst_ext in syst2): filename = filename.replace(syst_ext,"")
 
-  call(["root", "-b", "-l", 'run.C("'+ ch + '","' + ver + '","' + syst_ext + '","' + filepath + ' ' + filename + '")'], shell=False)
+  call(["root", "-b", "-l", 'run.C("'+ ch + '","' + ver + '","' + era + '","' + syst_ext + '","' + filepath + ' ' + filename + '")'], shell=False)

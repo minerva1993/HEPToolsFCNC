@@ -3,9 +3,14 @@ from ROOT import *
 import os, sys
 gROOT.SetBatch(True)
 
+#Channel and version
+if len(sys.argv) < 4:
+  print("Not enough arguements: Ver, Input, Output")
+  sys.exit()
 train_scheme = sys.argv[1]
-file_path = sys.argv[2]
-name = sys.argv[3]
+era = sys.argv[2]
+file_path = sys.argv[3]
+name = sys.argv[4]
 syst = ["","jecup","jecdown","jerup","jerdown",]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
@@ -26,7 +31,7 @@ def runAna(file_path, name):
   print 'processing ' + file_path.split('/')[-2] + '/' + file_path.split('/')[-1]
 
   for syst_ext in syst + syst2:
-    if ("Run2017" in name) and syst_ext != "": continue
+    if ("Run201" in name) and syst_ext != "": continue
     elif (syst_ext in syst2) and not (syst_ext in name): continue
     elif (syst_ext in syst) and any(tmp in name for tmp in syst2): continue
     else:
@@ -55,4 +60,4 @@ def runAna(file_path, name):
     out.Write()
     out.Close()
 
-if not dupl: runAna(file_path, name + '-' + train_scheme)
+if not dupl: runAna(file_path, name + '-' + era + train_scheme)

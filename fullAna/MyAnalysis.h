@@ -50,11 +50,11 @@ public :
    TTreeReaderArray<float> jet_phi = {fReader, "jet_phi"};
    TTreeReaderArray<float> jet_e = {fReader, "jet_e"};
    TTreeReaderArray<int> jet_index = {fReader, "jet_index"};
-   TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
+//   TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
    TTreeReaderArray<float> jet_deepCSV = {fReader, "jet_deepCSV"};
    TTreeReaderArray<float> jet_SF_deepCSV_30 = {fReader, "jet_SF_deepCSV_30"};
-   TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
-   TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
+//   TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
+//   TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
    TTreeReaderArray<float> jet_deepCvsB = {fReader, "jet_deepCvsB"};
    TTreeReaderValue<Int_t> jet_njet = {fReader, "jet_njet"};
@@ -197,7 +197,6 @@ public :
 void MyAnalysis::Init(TTree *tree)
 {
    fReader.SetTree(tree);
-
 }
 
 Bool_t MyAnalysis::Notify()

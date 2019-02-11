@@ -1,18 +1,20 @@
 #!/usr/bin/python
 import os, sys
 
-
-allfolders = sorted(os.listdir("."))
-
-for folder in allfolders:
-  if folder.startswith("Hct"):
+folder17 = sorted(os.listdir("./2017"))
+print "Scores for 2017 Reco"
+for folder in folder17:
+  if 'H' in folder:
     tmp = []
-    for files in os.listdir("./" + folder):
+    for files in os.listdir("./2017/" + folder):
       if files.endswith(".root"): tmp.append(files)
     print folder + ": " + str(len(tmp)).rjust(30-len(folder))
-for folder in allfolders:
-  if folder.startswith("Hut"):
+
+folder18 = sorted(os.listdir("./2018"))
+print "Scores for 2018 Reco"
+for folder in folder18:
+  if 'H' in folder:
     tmp = []
-    for files in os.listdir("./" + folder):
+    for files in os.listdir("./2018/" + folder):
       if files.endswith(".root"): tmp.append(files)
     print folder + ": " + str(len(tmp)).rjust(30-len(folder))

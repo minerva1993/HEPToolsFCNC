@@ -19,11 +19,16 @@ import keras
 from keras.models import load_model
 from training.variables import input_variables, gen_label
 
+#Channel and version
+if len(sys.argv) < 4:
+  print("Not enough arguements: Ch, Ver, Era")
+  sys.exit()
 ch = sys.argv[1] #STFCNC, TTFCNC. TTBKG
 ver = sys.argv[2] #01
+era = sys.argv[3]
 
-configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/'
-weightDir = 'training/reco'+ch
+configDir = './'
+weightDir = 'training/' + era + '/reco' + ch
 
 input_files = []
 input_features = []
@@ -44,9 +49,8 @@ for files in file_list:
     print('Start evaluation on version '+ ch + ver + ' classifier with the model '+ files)
 
 #    for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch)):
-    for filename in os.listdir(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'hdf_' + ch)):
+    for filename in os.listdir(os.path.join('/data/users/minerva1993/work/' + str(int(era)+1) + '_fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch)):
       if filename == '.gitkeep': continue
-
       if   ch == "STFCNC":
         if "STTH1L3BH" not in filename: continue
         if not filename.endswith(('005.h5')): continue
@@ -58,7 +62,7 @@ for files in file_list:
         if not (any(x in filename for x in ["bb","bj","cc"]) and filename.endswith(('020.h5'))) and not (any(x in filename for x in ["lf","other"]) and filename.endswith(('080.h5','081.h5','082.h5','083.h5'))) : continue
 
 #      eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch, filename))
-      eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'hdf_' + ch, filename))
+      eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/' + str(int(era)+1) + '_fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch, filename))
       ncombi = eval_df.shape[0]
 
       matchable = len(eval_df.query('genMatch == '+ str(signal_label)).index)
@@ -102,5 +106,5 @@ for files in file_list:
     if ch == "TTFCNC":
       print("Total eff Hct = " + str(tot_selected_1*1.0/tot_matchable_1))
       print("Total eff Hut = " + str(tot_selected_2*1.0/tot_matchable_2))
-    elif ch == "TTBKG":
+    elif ch == "TTBKG" or ch == "STFCNC":
       print("Total eff = " + str(tot_selected_1*1.0/tot_matchable_1))

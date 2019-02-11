@@ -5,10 +5,15 @@ ch = ['', 'jecup', 'jecdown', 'jerup', 'jerdown',
       'hdampup', 'hdampdown', 'TuneCP5up', 'TuneCP5down',]
 
 for chs in ch:
-  if not os.path.exists( "root_" + chs ):
-    os.makedirs( "root_" + chs )
-  if not os.path.exists( "hdf_" + chs ):
-    os.makedirs( "hdf_" + chs )
+  if not os.path.exists( "2017/root_" + chs ):
+    os.makedirs( "2017/root_" + chs )
+  if not os.path.exists( "2017/hdf_" + chs ):
+    os.makedirs( "2017/hdf_" + chs )
+  if not os.path.exists( "2018/root_" + chs ):
+    os.makedirs( "2018/root_" + chs )
+  if not os.path.exists( "2018/hdf_" + chs ):
+    os.makedirs( "2018/hdf_" + chs )
+
 
 def nfile(dirname):
   tmp = []
@@ -18,6 +23,10 @@ def nfile(dirname):
   print dirname + ": " + str(len(tmp)).rjust(30-len(dirname))
 
 for chs in ch:
-  nfile("root_" + chs)
+  nfile("2017/root_" + chs)
 for chs in ch:
-  nfile("hdf_" + chs)
+  nfile("2017/hdf_" + chs)
+for chs in ch:
+  nfile("2018/root_" + chs)
+for chs in ch:
+  nfile("2018/hdf_" + chs)

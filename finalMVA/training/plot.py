@@ -5,6 +5,8 @@ from style import *
 from variables import input_variables
 gROOT.SetBatch()
 
+era = sys.argv[1]
+
 c1 = TCanvas( 'c1', 'c1', 450, 450 ) 
 #c1.SetLogy()
 
@@ -43,7 +45,7 @@ for ch in ['Hct','Hut']:
   for jetcat in ['j3b2','j3b3','j4b2','j4b3','j4b4']:
     for i in ['01']:
       ver = str(i)
-      out = TFile.Open('./final_'+ch+'_'+jetcat+'_'+ver+'/output_'+ch+'_'+jetcat+'.root')
+      out = TFile.Open(era + '/final_'+ch+'_'+jetcat+'_'+ver+'/output_'+ch+'_'+jetcat+'.root')
       for method in ['BDT']:
         trainS = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_Train_S')
         trainB = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_Train_B')

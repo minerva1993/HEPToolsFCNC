@@ -11,20 +11,27 @@ from root_numpy import array2tree, tree2array
 from ROOT import TFile, TTree
 from training.variables import input_variables, train_files, evalScale, evalFrac
 
+#Channel and version
+if len(sys.argv) < 7:
+  print("Not enough arguements: Ch, JetCat, Ver, Era, Syst. var, Model")
+  sys.exit()
 ch = sys.argv[1]
 jetcat = sys.argv[2]
 ver = sys.argv[3]
-bestModel = sys.argv[4]
+era = sys.argv[4]
 syst_cat = sys.argv[5]
+bestModel = sys.argv[6]
 
-configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
-weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
-scoreDir = 'scores/' + ch + '_' +jetcat + '_'
+configDir = '.'
+weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
+scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
 
 input_files = []
 input_features = []
 input_features.extend(input_variables(jetcat))
-sig_files, bkg_files = train_files(ch)
+sig_files, bkg_files = train_files(ch, era)
+input_features.remove('STTT')
+input_features.remove('channel')
 
 njets_cut = int(jetcat[1:2]) #Must be jXbX
 if njets_cut not in [3,4]:
@@ -37,7 +44,7 @@ if len(jetcat) > 3:
     sys.exit()
 else: nbjets_cut = 0
 
-frac_list = evalFrac(ch, sig_files, njets_cut, nbjets_cut)
+frac_list = evalFrac(ch, era, sig_files, njets_cut, nbjets_cut)
 
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
@@ -64,7 +71,7 @@ for syst_ext in syst:
   model_best = load_model(os.path.join(configDir, weightDir+ver, bestModel))
   print('Start evaluation on version '+ ch + ver + syst_ext + ' classifier with the model '+ bestModel)
 
-  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + syst_ext)):
+  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', era + '/hdf_' + syst_ext)):
     if filename == '.gitkeep': continue
     if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg", "TTLL"]): continue
     if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg", "TTLL"]): continue
@@ -73,7 +80,7 @@ for syst_ext in syst:
       print(scoreDir + ver + "/"  + filename.replace('h5','root') + (' is already exist!').rjust(50-len(filename)))
       continue
 
-    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + syst_ext, filename))
+    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', era + '/hdf_' + syst_ext, filename))
     print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
 
     eval_df = eval_df[eval_df['njets'] ==  njets_cut]

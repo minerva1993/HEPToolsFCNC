@@ -5,7 +5,7 @@
 
 R__LOAD_LIBRARY(idxToNtuple.C+)
 
-void run( const char* ch, const char* ver, const char* syst_ext, const char* name )
+void run( const char* ch, const char* ver, const char* era, const char* syst_ext, const char* name )
 {
   gROOT->SetBatch(1);
   string name_str = name;
@@ -13,8 +13,8 @@ void run( const char* ch, const char* ver, const char* syst_ext, const char* nam
   pos=name_str.find(' ',0);
   name_str.erase(0, pos+1);
 
-  string base_path = "/home/minerva1993/HEPToolsFCNC/analysis_2017/reco";
-  string file_path = base_path + "/score" + ch + ver + syst_ext + "/score_deepReco_" + name_str + ".root";
+  string base_path = ".";
+  string file_path = base_path + "/" + era + "/score" + ch + ver + syst_ext + "/score_deepReco_" + name_str + ".root";
 
   ifstream file(file_path);
   if(!file.is_open()){

@@ -7,9 +7,13 @@ TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
 
 #Version of classifier
+if len(sys.argv) < 5:
+  print("Not enough arguements: Ch, JetCat, Ver, Era")
+  sys.exit()
 ch = sys.argv[1]
 jetcat = sys.argv[2]
 ver = sys.argv[3]
+era = sys.argv[4]
 
 njets_cut = int(jetcat[1:2]) #Must be jXbX
 if njets_cut not in [3,4]:
@@ -36,11 +40,18 @@ idx['j4b2'] = 2
 idx['j4b3'] = 3
 idx['j4b4'] = 4
 
-nsig_Hct = ['55000', '23000', '50000', '31000', '2600']
-nsig_Hut = ['50000', '17000', '52000', '28000', '1150']
-nbkg = ['180000', '7100', '280000', '25000', '1300']
-ntree = ['600', '200', '600', '300', '50']
-ncut = ['30', '20', '30', '20', '20']
+if era == "2017":
+  nsig_Hct = ['55000', '23000', '50000', '31000', '2600']
+  nsig_Hut = ['50000', '17000', '52000', '28000', '1150']
+  nbkg = ['180000', '7100', '280000', '25000', '1300']
+  ntree = ['600', '200', '600', '300', '50']
+  ncut = ['30', '20', '30', '20', '20']
+elif era == "2018":
+  nsig_Hct = ['55000', '23000', '50000', '31000', '2600']
+  nsig_Hut = ['50000', '17000', '52000', '28000', '1150']
+  nbkg = ['180000', '7100', '280000', '25000', '1300']
+  ntree = ['600', '200', '600', '300', '50']
+  ncut = ['30', '20', '30', '20', '20']
 
 if ch == "Hct":
   options = "nTrain_Signal=" + nsig_Hct[idx[jetcat]] + ":nTrain_Background=" + nbkg[idx[jetcat]] + ":nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
@@ -48,21 +59,10 @@ elif ch == "Hut":
   options = "nTrain_Signal=" + nsig_Hut[idx[jetcat]] + ":nTrain_Background=" + nbkg[idx[jetcat]] + ":nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 
 #directory name
-#rootDir = '/data/users/minerva1993/work/2018_fcnc_RunII2017/finalMVA/mkNtuple/1101/root_/'
-rootDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/mkNtuple/root_/'
-configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
-weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
-scoreDir = 'scores/' + ch + '_' +jetcat + '_'
-njets_cut = int(jetcat[1:2]) #Must be jXbX
-if njets_cut not in [3,4]:
-  print("Check jet category")
-  sys.exit()
-if len(jetcat) > 3:
-  nbjets_cut = int(jetcat[3:4])
-  if nbjets_cut not in [2,3,4]:
-    print("Check b jet category")
-    sys.exit()
-else: nbjets_cut = 0
+rootDir = '../mkNtuple/' + era + '/root_/'
+configDir = '../'
+weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
+scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
 
 #Check if the model and files already exist
 if not os.path.exists( os.path.join(configDir, weightDir+ver, 'weights') ):
@@ -78,7 +78,7 @@ if not os.path.exists( os.path.join(configDir, weightDir+ver, 'training_bdt.py')
   shutil.copy2('training_bdt.py', os.path.join(configDir, weightDir+ver, 'training_bdt.py'))
 
 #Options for data preparation
-sig_files, bkg_files = train_files(ch)
+sig_files, bkg_files = train_files(ch, era)
 
 #int_vars = []
 input_features = []
@@ -86,10 +86,10 @@ input_features.extend(input_variables_bdt(jetcat))
 input_features.remove('STTT')
 input_features.remove('channel')
 
-fout = TFile("output_"+ch+"_"+jetcat+".root","recreate")
+fout = TFile(era + "/output_"+ch+"_"+jetcat+".root","recreate")
 factory = TMVA.Factory("TMVAClassification", fout, "!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification" )
 
-loader = TMVA.DataLoader((weightDir+ver).split("/")[-1])
+loader = TMVA.DataLoader((weightDir+ver).split("/")[-2] + '/' + (weightDir+ver).split("/")[-1])
 #for var in int_vars:
 #    loader.AddVariable(var, "I")
 for var in input_features:
@@ -127,4 +127,4 @@ factory.EvaluateAllMethods()
 fout.Close()
 
 if not os.path.exists( os.path.join(configDir, weightDir+ver, "output_"+ch+"_"+jetcat+".root") ):
-  shutil.move("output_"+ch+"_"+jetcat+".root", os.path.join(configDir, weightDir+ver))
+  shutil.move(era + "/output_"+ch+"_"+jetcat+".root", os.path.join(configDir, weightDir+ver))

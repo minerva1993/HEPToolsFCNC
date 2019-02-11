@@ -19,16 +19,21 @@ import keras
 from keras.models import load_model
 from training.variables import input_variables
 
+#Channel and version
+if len(sys.argv) < 7:
+  print("Not enough arguements: Ch, Ver, Era, Signal only, Syst. var, Model")
+  sys.exit()
 ch = sys.argv[1] #STFCNC, TTFCNC. TTBKG
 ver = sys.argv[2] #01
-signal_only = sys.argv[3] == "True"
-syst_cat = sys.argv[4]
-bestModel = sys.argv[5]
+era = sys.argv[3]
+signal_only = sys.argv[4] == "True"
+syst_cat = sys.argv[5]
+bestModel = sys.argv[6]
 
-configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/'
-weightDir = 'training/reco'+ch
-scoreDir = 'score'+ch
-assignDir = 'assign'+ch
+configDir = './'
+weightDir = 'training/' + era + '/reco' + ch
+scoreDir = era + '/score' + ch
+assignDir = era + '/assign' + ch
 
 input_files = []
 input_features = []
@@ -54,7 +59,7 @@ for syst_ext in syst:
   print('Start evaluation on version '+ ch + ver + syst_ext + ' classifier with the model '+ bestModel)
 
 #  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext)):
-  for filename in os.listdir(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'hdf_' + ch + syst_ext)):
+  for filename in os.listdir(os.path.join('/data/users/minerva1993/work/' + str(int(era)+1) + '_fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch + syst_ext)):
     if filename == '.gitkeep': continue
     if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg"]): continue
     if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg"]): continue
@@ -74,7 +79,7 @@ for syst_ext in syst:
         if not (any(x in filename for x in ["bb","bj","cc"]) and filename.endswith(('020.h5','021.h5'))) and not (any(x in filename for x in ["lf","other"]) and filename.endswith(('080.h5','081.h5','082.h5','083.h5','084.h5','085.h5','086.h5','087.h5'))) : continue
 
 #    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext, filename))
-    eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver', 'hdf_' + ch + syst_ext, filename))
+    eval_df = pd.read_hdf(os.path.join('/data/users/minerva1993/work/' + str(int(era)+1) + '_fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch + syst_ext, filename))
     print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
 
     outfile = TFile.Open(os.path.join(scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root')),'RECREATE')

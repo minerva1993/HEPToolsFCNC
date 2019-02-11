@@ -294,7 +294,6 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
 
     fOutput->Add(bkgTree);
   }
-
   ////////////////////////////////////////////////////////////////////////
   testTree = new TTree("test_tree","background tree");
 
@@ -429,6 +428,11 @@ Bool_t makeTopTuple::Process(Long64_t entry)
   fReader.SetEntry(entry);
   TString option = GetOption();
 
+  int era = 0;
+  TString current_file_name = makeTopTuple::fReader.GetTree()->GetCurrentFile()->GetName();
+  if     ( current_file_name.Contains("2017") ) era = 2017;
+  else if( current_file_name.Contains("2018") ) era = 2018;
+
   //Ntuple for ST, TT respectively
   string ch = option.Data();
   ch.erase(ch.find_first_of("_"),string::npos);
@@ -440,46 +444,49 @@ Bool_t makeTopTuple::Process(Long64_t entry)
 
   float EventWeight = 1.0;
   float wrongPVrate = 1;
-  if( !option.Contains("Run2017") ){
+  if( !option.Contains("Run201") ){
     EventWeight *= lepton_SF[0]*lepton_SF[3]*lepton_SF[6];
+    if( mode == 1 ) EventWeight *= lepton_SF[9];
     EventWeight *= *genweight;
     EventWeight *= PUWeight[0];
-
-    if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04849;
-    else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.02703;
-    else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.02484;
-    else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03186;
-    else if( option.Contains("QCDEM30to50") ) wrongPVrate = 1.02575;
-    else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.04114;
-    else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.02968;
-    else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02597;
-    else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.04353;
-    else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.03696;
-    else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02918;
-    else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.02786;
-    else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03188;
-    else if( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.03469;
-    else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04218;
-    else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.0482;
-    else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04601;
-    else if( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04702;
-    else if( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.0467;
-    else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.0479;
-    else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.0475;
-    else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.0478;
-    else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04738;
-    else if( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04806;
-    else if( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04762;
-    else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04195;
-    else if( option.Contains("WW") ) wrongPVrate = 1.04685;
-    else if( option.Contains("WZ") ) wrongPVrate = 1.04381;
-    else if( option.Contains("ZZ") ) wrongPVrate = 1.02981;
-    else   wrongPVrate = 1.0;
-
-    EventWeight *= wrongPVrate;
   }
-  if( wrongPVrate > 1.01 ){
-    if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
+  if( era == 2017 ){
+    if( !option.Contains("Run2017") ){
+      if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04849;
+      else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.02703;
+      else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.02484;
+      else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03186;
+      else if( option.Contains("QCDEM30to50") ) wrongPVrate = 1.02575;
+      else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.04114;
+      else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.02968;
+      else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02597;
+      else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.04353;
+      else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.03696;
+      else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02918;
+      else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.02786;
+      else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03188;
+      else if( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.03469;
+      else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04218;
+      else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.0482;
+      else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04601;
+      else if( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04702;
+      else if( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.0467;
+      else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.0479;
+      else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.0475;
+      else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.0478;
+      else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04738;
+      else if( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04806;
+      else if( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04762;
+      else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04195;
+      else if( option.Contains("WW") ) wrongPVrate = 1.04685;
+      else if( option.Contains("WZ") ) wrongPVrate = 1.04381;
+      else if( option.Contains("ZZ") ) wrongPVrate = 1.02981;
+      else   wrongPVrate = 1.0;
+      EventWeight *= wrongPVrate;
+    }
+    if( wrongPVrate > 1.01 ){
+      if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
+    }
   }
 
   float relIso = *lepton_relIso; 
@@ -536,7 +543,7 @@ Bool_t makeTopTuple::Process(Long64_t entry)
     TLorentzVector jet;
     jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
 
-    if( !option.Contains("Run2017") ){
+    if( !option.Contains("Run201") ){
       if     ( syst_ext == "jecup" )   jet = jet * jet_JER_Nom[iJet] * jet_JES_Up[iJet];
       else if( syst_ext == "jecdown" ) jet = jet * jet_JER_Nom[iJet] * jet_JES_Down[iJet];
       else if( syst_ext == "jerup" )   jet = jet * jet_JER_Up[iJet];
@@ -556,7 +563,7 @@ Bool_t makeTopTuple::Process(Long64_t entry)
   else if( chBit == 1 and (njets <  3 or nbjets_m < 2) ) return kTRUE;
 
   //cout << nevt << endl;
-  if( option.Contains("Run2017") ) b_EventCategory = -1;
+  if( option.Contains("Run201") ) b_EventCategory = -1;
   else if( option.Contains("Hct") || option.Contains("Hut") ) b_EventCategory = 0;
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
   else if( option.Contains("ttbj") ) b_EventCategory = 2;
@@ -678,14 +685,14 @@ Bool_t makeTopTuple::Process(Long64_t entry)
 
           //construct particles: lepB = j0, hadB = j3, hadW = j1+j2
           TLorentzVector jetP4cor[4];
-          if( !option.Contains("Run2017") ){
+          if( !option.Contains("Run201") ){
             if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[tmp_idx[i]] * jet_JES_Up[tmp_idx[i]];
             else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[tmp_idx[i]] * jet_JES_Down[tmp_idx[i]];
             else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Up[tmp_idx[i]];
             else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Down[tmp_idx[i]];
             else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[tmp_idx[i]];
           }
-          else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
+          else if( option.Contains("Run201") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
 
           b_jet0pt = jetP4cor[0].Pt(); b_jet0eta = jetP4cor[0].Eta(); b_jet0phi = jetP4cor[0].Phi(); b_jet0m = jetP4cor[0].M();
           b_jet1pt = jetP4cor[1].Pt(); b_jet1eta = jetP4cor[1].Eta(); b_jet1phi = jetP4cor[1].Phi(); b_jet1m = jetP4cor[1].M();
@@ -778,11 +785,13 @@ void makeTopTuple::Terminate()
   TString option = GetOption();
   string ch = option.Data();
   ch.erase(ch.find_first_of("_"),string::npos);
+  string era = ch.substr(0,4);
+  ch.erase(0,4);
   string sample = option.Data();
   sample.erase(0,sample.find_first_of("_")+1);
 
-  TFile *hfile = TFile::Open(Form("root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
-  //TFile *hfile = TFile::Open(Form("/data/users/minerva1993/work/2018_fcnc_RunII2017/reco/current_ver/root_%s/deepReco_%s.root",ch.c_str(),sample.c_str()), "RECREATE");
+  TFile *hfile = TFile::Open(Form("%s/root_%s/deepReco_%s.root", era.c_str(), ch.c_str(),sample.c_str()), "RECREATE");
+  //TFile *hfile = TFile::Open(Form("/data/users/minerva1993/work/%s_fcnc_RunII%s/reco/current_ver/root_%s/deepReco_%s.root", (to_string(stoi(era)+1)).c_str, era.c_str(), ch.c_str(),sample.c_str()), "RECREATE");
 
   if ( (chBit == 1 and option.Contains("STTH1L3B"))
     or (chBit == 2 and option.Contains("TTTH1L3B"))

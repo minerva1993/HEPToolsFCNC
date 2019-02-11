@@ -8,11 +8,16 @@ from training.variables import input_variables_bdt, train_files, evalScale, eval
 
 TMVA.Tools.Instance()
 
+#Channel and version
+if len(sys.argv) < 7:
+  print("Not enough arguements: Ch, JetCat, Ver, Era, Syst. var, Model")
+  sys.exit()
 ch = sys.argv[1]
 jetcat = sys.argv[2]
 ver = sys.argv[3]
-file_path = sys.argv[4]
-name = sys.argv[5]
+era = sys.argv[4]
+file_path = sys.argv[5]
+name = sys.argv[6]
 
 njets_cut = int(jetcat[1:2]) #Must be jXbX
 if njets_cut not in [3,4]:
@@ -26,11 +31,10 @@ if len(jetcat) > 3:
 else: nbjets_cut = 0
 
 #directory name
-#rootDir = '/data/users/minerva1993/work/2018_fcnc_RunII2017/finalMVA/mkNtuple/1101/root_'
-rootDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/mkNtuple/root_'
-configDir = '/home/minerva1993/HEPToolsFCNC/analysis_2017/finalMVA/'
-weightDir = 'training/final' + '_' + ch + '_' +jetcat + '_'
-scoreDir = 'scores/' + ch + '_' +jetcat + '_'
+rootDir = 'mkNtuple/' + era + '/root_'
+configDir = './'
+weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
+scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
 
 # Load data
 syst = ["","jecup","jecdown","jerup","jerdown",]

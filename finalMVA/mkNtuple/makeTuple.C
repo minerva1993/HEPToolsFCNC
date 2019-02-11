@@ -14,8 +14,9 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   TString option = GetOption();
   string syst_str = option.Data();
   syst_str.erase(syst_str.find_first_of("_"),string::npos);
-  string ver = syst_str.substr(0,2); //FIXME: Only 2 digit of ver!? FIXME and classifier ver should be same!?!?
-  syst_str = syst_str.erase(0,2);
+  string ver = syst_str.substr(4,2);
+  string era = syst_str.substr(0,4);
+  syst_str = syst_str.erase(0,6);
   string sample = option.Data();
   sample.erase(0,sample.find_first_of("_")+1);
 
@@ -24,7 +25,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
     else if( syst_str.find("jecdown") != string::npos )     syst_ext = "jecdown";
     else if( syst_str.find("jerup") != string::npos )       syst_ext = "jerup";
     else if( syst_str.find("jerdown") != string::npos )     syst_ext = "jerdown";
-    else if( syst_str.find("TuneCP5up") != string::npos )   syst_ext = "Tuneup";
+    else if( syst_str.find("TuneCP5up") != string::npos )   syst_ext = "TuneCP5up";
     else if( syst_str.find("TuneCP5down") != string::npos ) syst_ext = "TuneCP5down";
     else if( syst_str.find("hdampup") != string::npos )     syst_ext = "hdampup";
     else if( syst_str.find("hdampdown") != string::npos )   syst_ext = "hdampdown";
@@ -34,8 +35,8 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   const char* ttfcnc_file = "";
   const char* ttbkg_file = "";
   //Load ST fcnc assign files
-  stfcnc_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignSTFCNC%s%s/assign_deepReco_%s.root",
-                    ver.c_str(),syst_str.c_str(),sample.c_str());
+  stfcnc_file = Form("../../reco/%s/assignSTFCNC%s%s/assign_deepReco_%s.root",
+                    era.c_str(),ver.c_str(),syst_str.c_str(),sample.c_str());
   string stfcnc_file_tmp_path = stfcnc_file;
   ifstream stfcnc_file_tmp(stfcnc_file_tmp_path);
 
@@ -56,8 +57,8 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   //else cout << "STFCNC: " << stfcnc_file << endl;
 
   //Load TT fcnc assign files
-  ttfcnc_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignTTFCNC%s%s/assign_deepReco_%s.root",
-                    ver.c_str(),syst_str.c_str(),sample.c_str());
+  ttfcnc_file = Form("../../reco/%s/assignTTFCNC%s%s/assign_deepReco_%s.root",
+                    era.c_str(),ver.c_str(),syst_str.c_str(),sample.c_str());
   string ttfcnc_file_tmp_path = ttfcnc_file;
   ifstream ttfcnc_file_tmp(ttfcnc_file_tmp_path);
 
@@ -78,8 +79,8 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   //else cout << "TTFCNC: " << ttfcnc_file << endl;
 
   //Load ttbkg assign files
-  ttbkg_file = Form("/home/minerva1993/HEPToolsFCNC/analysis_2017/reco/assignTTBKG%s%s/assign_deepReco_%s.root",
-                    ver.c_str(),syst_str.c_str(),sample.c_str());
+  ttbkg_file = Form("../../reco/%s/assignTTBKG%s%s/assign_deepReco_%s.root",
+                    era.c_str(),ver.c_str(),syst_str.c_str(),sample.c_str());
   string ttbkg_file_tmp_path = ttbkg_file;
   ifstream ttbkg_file_tmp(ttbkg_file_tmp_path);
 
@@ -536,7 +537,7 @@ Bool_t makeTuple::Process(Long64_t entry)
     TLorentzVector jet;
     jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
 
-    if( !option.Contains("Run2017") ){
+    if( !option.Contains("Run201") ){
       if     ( syst_ext == "jecup" )   jet = jet * jet_JER_Nom[iJet] * jet_JES_Up[iJet];
       else if( syst_ext == "jecdown" ) jet = jet * jet_JER_Nom[iJet] * jet_JES_Down[iJet];
       else if( syst_ext == "jerup" )   jet = jet * jet_JER_Up[iJet];
@@ -554,7 +555,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   bool tt_njet = (njets >= 4 and nbjets_m >= 2);
   if( !st_njet ) return kTRUE; // At least 3 jets including 2 b jets
 
-  if( option.Contains("Run2017") ) b_EventCategory = -1;
+  if( option.Contains("Run201") ) b_EventCategory = -1;
   else if( option.Contains("Hct") || option.Contains("Hut") ) b_EventCategory = 0;
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
   else if( option.Contains("ttbj") ) b_EventCategory = 2;
@@ -569,7 +570,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   else b_EventCategory = 20;
 
   b_EventWeight = 1.0;
-  if( !option.Contains("Run2017") ){
+  if( !option.Contains("Run201") ){
     if( passmuon ) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6];
     else if( passelectron) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6] * lepton_SF[9];
     b_EventWeight *= PUWeight[0] * wrongPVrate * jet_SF_deepCSV_30[0] * (*genweight);
@@ -627,14 +628,14 @@ Bool_t makeTuple::Process(Long64_t entry)
     }
 
     TLorentzVector jetP4cor[4];
-    if( !option.Contains("Run2017") ){
+    if( !option.Contains("Run201") ){
       if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
       else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
       else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Up[jetIdx[i]];
       else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Down[jetIdx[i]];
       else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]];
     }
-    else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
+    else if( option.Contains("Run201") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
 
     b_stfcnc_jet0pt = jetP4cor[0].Pt(); b_stfcnc_jet0eta = jetP4cor[0].Eta();
     b_stfcnc_jet0phi = jetP4cor[0].Phi(); b_stfcnc_jet0m = jetP4cor[0].M();
@@ -725,14 +726,14 @@ Bool_t makeTuple::Process(Long64_t entry)
     }
 
     TLorentzVector jetP4cor[4];
-    if( !option.Contains("Run2017") ){
+    if( !option.Contains("Run201") ){
       if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
       else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
       else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Up[jetIdx[i]];
       else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Down[jetIdx[i]];
       else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]];
     }
-    else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
+    else if( option.Contains("Run201") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
 
     b_ttfcnc_jet0pt = jetP4cor[0].Pt(); b_ttfcnc_jet0eta = jetP4cor[0].Eta();
     b_ttfcnc_jet0phi = jetP4cor[0].Phi(); b_ttfcnc_jet0m = jetP4cor[0].M();
@@ -823,14 +824,14 @@ Bool_t makeTuple::Process(Long64_t entry)
     }
 
     TLorentzVector jetP4cor[4];
-    if( !option.Contains("Run2017") ){
+    if( !option.Contains("Run201") ){
       if     ( syst_ext == "jecup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Up[jetIdx[i]];
       else if( syst_ext == "jecdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]] * jet_JES_Down[jetIdx[i]];
       else if( syst_ext == "jerup" )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Up[jetIdx[i]];
       else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Down[jetIdx[i]];
       else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[jetIdx[i]];
     }
-    else if( option.Contains("Run2017") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
+    else if( option.Contains("Run201") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
 
     b_ttbkg_jet0pt = jetP4cor[0].Pt(); b_ttbkg_jet0eta = jetP4cor[0].Eta();
     b_ttbkg_jet0phi = jetP4cor[0].Phi(); b_ttbkg_jet0m = jetP4cor[0].M();
@@ -905,12 +906,13 @@ void makeTuple::Terminate()
   TString option = GetOption();
   string syst_str = option.Data();
   syst_str.erase(syst_str.find_first_of("_"),string::npos);
-  string ver = syst_str.substr(0,2); //FIXME: Only 2 digit of ver!? FIXME and classifier ver should be same!?!?
-  syst_str = syst_str.erase(0,2);
-  string sample = option.Data();
+  string ver = syst_str.substr(4,6);
+  string era = syst_str.substr(0,4);
+  syst_str = syst_str.erase(0,6);
+  string sample = option.Data();  
   sample.erase(0,sample.find_first_of("_")+1);
 
-  TFile *hfile = TFile::Open(Form("root_%s/finalMVA_%s.root",syst_str.c_str(),sample.c_str()), "RECREATE");
+  TFile *hfile = TFile::Open(Form("%s/root_%s/finalMVA_%s.root",era.c_str(),syst_str.c_str(),sample.c_str()), "RECREATE");
 
   fOutput->FindObject("tree")->Write();
 

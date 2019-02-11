@@ -7,17 +7,22 @@ import pandas as pd
 import deepdish.io as io
 gROOT.SetBatch(True)
 
+#Channel and version
+if len(sys.argv) < 3:
+  print("Not enough arguements: Era, Input, Output")
+  sys.exit()
 ver = "01"
-input_filename = sys.argv[1]
-output_filename = sys.argv[2]
+era = sys.argv[1]
+input_filename = sys.argv[2]
+output_filename = sys.argv[3]
 syst = ["","jecup","jecdown","jerup","jerdown"]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
 for syst_ext in syst + syst2:
-  if not os.path.exists( "root_" + syst_ext ):
+  if not os.path.exists( era + "/root_" + syst_ext ):
     print "No folder"
     sys.exit()
-  if not os.path.exists( "hdf_" + syst_ext ):
+  if not os.path.exists( era + "/hdf_" + syst_ext ):
     print "No folder"
     sys.exit()
 
@@ -26,7 +31,7 @@ def runAna(input_filename, output_filename):
 #  print 'processing ' + input_filename
 
   for syst_ext in syst + syst2:
-    if   ("Run2017" in output_filename) and syst_ext != "": continue
+    if   ("Run201" in output_filename) and syst_ext != "": continue
     elif (syst_ext in syst2) and not (syst_ext in output_filename): continue
     elif (syst_ext in syst) and any(tmp in output_filename for tmp in syst2): continue
     else:
@@ -34,15 +39,15 @@ def runAna(input_filename, output_filename):
 
       chain = TChain("fcncLepJets/tree","events")
       chain.Add(input_filename)
-      chain.Process("makeTuple.C+", ver + syst_ext + '_' + output_filename)
+      chain.Process("makeTuple.C+", era + ver + syst_ext + '_' + output_filename)
 
-      if os.path.isfile("root_" + syst_ext + "/finalMVA_" + output_filename + ".root"):
-        f = TFile.Open("root_" + syst_ext + "/finalMVA_" + output_filename + ".root")
+      if os.path.isfile(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root"):
+        f = TFile.Open(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root")
         t = f.Get("tree")
         if t.GetEntries() != 0:
           a = tree2array(t)
           df = pd.DataFrame(a)
-          io.save("hdf_" + syst_ext + "/finalMVA_" + output_filename + ".h5", df)
-        else: os.remove("root_" + syst_ext + "/finalMVA_" + output_filename + ".root")
+          io.save(era + "/hdf_" + syst_ext + "/finalMVA_" + output_filename + ".h5", df)
+        else: os.remove(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root")
 
 runAna(input_filename, output_filename)
