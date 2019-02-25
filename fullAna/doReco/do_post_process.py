@@ -49,7 +49,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
   elif len(binNum) == 0 : mode = 1 #use dedicated sample
   else: mode == 99
 
-  if mode == 0:
+  if mode == 0: #FIXME
     if (histos + "__" + syst_name + "up")  in histo_list:
       for x in binNum:
         if x == binNum[0]:

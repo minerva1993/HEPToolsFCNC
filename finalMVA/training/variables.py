@@ -2,6 +2,9 @@ from ROOT import *
 import pandas as pd
 import os
 
+base_path17 = "/data/users/minerva1993/ntuple_Run2017/V9_5/190117/production"
+base_path18 = "/data/users/minerva1993/ntuple_Run2018/V10_0/190212/production"
+
 def input_variables(jetcat):
  
   var_list = ['STTT', 'channel', 'lepton_pt', 'lepton_eta', 'MET', 'lepDPhi', 'lepWpt', 'lepWm'] #"nbjets_m"
@@ -63,62 +66,114 @@ def input_variables(jetcat):
   return var_list
 
 
-def train_files(ch):
+def train_files(ch, era):
 
-  if ch == "Hct":
-    sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_STTH1L3BHct_001.h5',
-           'finalMVA_STTH1L3BHct_002.h5', 'finalMVA_STTH1L3BHct_003.h5',
-           'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',
-           'finalMVA_TTTH1L3BaTLepHct_001.h5', 'finalMVA_TTTH1L3BTLepHct_001.h5',
-          ]
-  elif ch == "Hut":
-    sig = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_STTH1L3BHut_001.h5',
-           'finalMVA_STTH1L3BHut_002.h5', 'finalMVA_STTH1L3BHut_003.h5',
-           'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',
-           'finalMVA_TTTH1L3BaTLepHut_001.h5', 'finalMVA_TTTH1L3BTLepHut_001.h5',
-          ]
-  else:
-    print("Check channel: Hct or Hut")
-    sig_files = []
+  if era == "2017":
+    if ch == "Hct":
+      sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_STTH1L3BHct_001.h5',
+             'finalMVA_STTH1L3BHct_002.h5', 'finalMVA_STTH1L3BHct_003.h5',
+             'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',
+             'finalMVA_TTTH1L3BaTLepHct_001.h5', 'finalMVA_TTTH1L3BTLepHct_001.h5',
+            ]
+    elif ch == "Hut":
+      sig = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_STTH1L3BHut_001.h5',
+             'finalMVA_STTH1L3BHut_002.h5', 'finalMVA_STTH1L3BHut_003.h5',
+             'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',
+             'finalMVA_TTTH1L3BaTLepHut_001.h5', 'finalMVA_TTTH1L3BTLepHut_001.h5',
+            ]
+    else:
+      print("Check channel: Hct or Hut")
+      sig_files = []
 
-  bkg = ['finalMVA_TTpowhegttbb_000.h5', 'finalMVA_TTpowhegttbj_000.h5', 'finalMVA_TTpowhegttcc_000.h5',
-        'finalMVA_TTpowhegttlf_000.h5', 'finalMVA_TTpowhegttother_000.h5',
-        'finalMVA_TTpowhegttbb_001.h5', 'finalMVA_TTpowhegttbj_001.h5', 'finalMVA_TTpowhegttcc_001.h5',
-        'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
-        'finalMVA_TTpowhegttbb_002.h5', 'finalMVA_TTpowhegttbj_002.h5', 'finalMVA_TTpowhegttcc_002.h5',
-        'finalMVA_TTpowhegttlf_002.h5', 'finalMVA_TTpowhegttother_002.h5',
-        'finalMVA_TTpowhegttbb_003.h5', 'finalMVA_TTpowhegttbj_003.h5', 'finalMVA_TTpowhegttcc_003.h5',
-        'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
-        'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
-        'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
-        'finalMVA_TTpowhegttlf_005.h5', 'finalMVA_TTpowhegttother_005.h5',
-        'finalMVA_TTpowhegttlf_006.h5', 'finalMVA_TTpowhegttother_006.h5',
-        'finalMVA_TTpowhegttlf_007.h5', 'finalMVA_TTpowhegttother_007.h5',
-        'finalMVA_TTpowhegttlf_008.h5', 'finalMVA_TTpowhegttother_008.h5',
-        'finalMVA_TTpowhegttlf_009.h5', 'finalMVA_TTpowhegttother_009.h5',
-        'finalMVA_TTpowhegttlf_010.h5', 'finalMVA_TTpowhegttother_010.h5',
-        'finalMVA_TTpowhegttlf_011.h5', 'finalMVA_TTpowhegttother_011.h5',
-        'finalMVA_TTpowhegttlf_012.h5', 'finalMVA_TTpowhegttother_012.h5',
-        'finalMVA_TTpowhegttlf_013.h5', 'finalMVA_TTpowhegttother_013.h5',
-        'finalMVA_TTpowhegttlf_014.h5', 'finalMVA_TTpowhegttother_014.h5',
-        'finalMVA_TTpowhegttlf_015.h5', 'finalMVA_TTpowhegttother_015.h5',
-        'finalMVA_TTpowhegttlf_016.h5', 'finalMVA_TTpowhegttother_016.h5',
-        'finalMVA_TTpowhegttlf_017.h5', 'finalMVA_TTpowhegttother_017.h5',
-        'finalMVA_TTpowhegttlf_018.h5', 'finalMVA_TTpowhegttother_018.h5',
-        'finalMVA_TTpowhegttlf_019.h5', 'finalMVA_TTpowhegttother_019.h5',
-        'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5',
-        'finalMVA_TTLLpowheg_002.h5', 'finalMVA_TTLLpowheg_003.h5',
-        'finalMVA_TTLLpowheg_004.h5', 'finalMVA_TTLLpowheg_005.h5',
-        'finalMVA_TTLLpowheg_006.h5', 'finalMVA_TTLLpowheg_007.h5',
-        'finalMVA_TTLLpowheg_008.h5', 'finalMVA_TTLLpowheg_009.h5',
-        ]
+    bkg = ['finalMVA_TTpowhegttbb_000.h5', 'finalMVA_TTpowhegttbj_000.h5', 'finalMVA_TTpowhegttcc_000.h5',
+          'finalMVA_TTpowhegttlf_000.h5', 'finalMVA_TTpowhegttother_000.h5',
+          'finalMVA_TTpowhegttbb_001.h5', 'finalMVA_TTpowhegttbj_001.h5', 'finalMVA_TTpowhegttcc_001.h5',
+          'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
+          'finalMVA_TTpowhegttbb_002.h5', 'finalMVA_TTpowhegttbj_002.h5', 'finalMVA_TTpowhegttcc_002.h5',
+          'finalMVA_TTpowhegttlf_002.h5', 'finalMVA_TTpowhegttother_002.h5',
+          'finalMVA_TTpowhegttbb_003.h5', 'finalMVA_TTpowhegttbj_003.h5', 'finalMVA_TTpowhegttcc_003.h5',
+          'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
+          'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
+          'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
+          'finalMVA_TTpowhegttlf_005.h5', 'finalMVA_TTpowhegttother_005.h5',
+          'finalMVA_TTpowhegttlf_006.h5', 'finalMVA_TTpowhegttother_006.h5',
+          'finalMVA_TTpowhegttlf_007.h5', 'finalMVA_TTpowhegttother_007.h5',
+          'finalMVA_TTpowhegttlf_008.h5', 'finalMVA_TTpowhegttother_008.h5',
+          'finalMVA_TTpowhegttlf_009.h5', 'finalMVA_TTpowhegttother_009.h5',
+          'finalMVA_TTpowhegttlf_010.h5', 'finalMVA_TTpowhegttother_010.h5',
+          'finalMVA_TTpowhegttlf_011.h5', 'finalMVA_TTpowhegttother_011.h5',
+          'finalMVA_TTpowhegttlf_012.h5', 'finalMVA_TTpowhegttother_012.h5',
+          'finalMVA_TTpowhegttlf_013.h5', 'finalMVA_TTpowhegttother_013.h5',
+          'finalMVA_TTpowhegttlf_014.h5', 'finalMVA_TTpowhegttother_014.h5',
+          'finalMVA_TTpowhegttlf_015.h5', 'finalMVA_TTpowhegttother_015.h5',
+          'finalMVA_TTpowhegttlf_016.h5', 'finalMVA_TTpowhegttother_016.h5',
+          'finalMVA_TTpowhegttlf_017.h5', 'finalMVA_TTpowhegttother_017.h5',
+          'finalMVA_TTpowhegttlf_018.h5', 'finalMVA_TTpowhegttother_018.h5',
+          'finalMVA_TTpowhegttlf_019.h5', 'finalMVA_TTpowhegttother_019.h5',
+          'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5',
+          'finalMVA_TTLLpowheg_002.h5', 'finalMVA_TTLLpowheg_003.h5',
+          'finalMVA_TTLLpowheg_004.h5', 'finalMVA_TTLLpowheg_005.h5',
+          'finalMVA_TTLLpowheg_006.h5', 'finalMVA_TTLLpowheg_007.h5',
+          'finalMVA_TTLLpowheg_008.h5', 'finalMVA_TTLLpowheg_009.h5',
+          ]
+
+  elif era == "2018":
+    if ch == "Hct":
+      sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_STTH1L3BHct_001.h5',
+             'finalMVA_STTH1L3BHct_002.h5', 'finalMVA_STTH1L3BHct_003.h5',
+             'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',
+             'finalMVA_TTTH1L3BaTLepHct_001.h5', 'finalMVA_TTTH1L3BTLepHct_001.h5',
+            ]
+    elif ch == "Hut":
+      sig = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_STTH1L3BHut_001.h5',
+             'finalMVA_STTH1L3BHut_002.h5', 'finalMVA_STTH1L3BHut_003.h5',
+             'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',
+             'finalMVA_TTTH1L3BaTLepHut_001.h5', 'finalMVA_TTTH1L3BTLepHut_001.h5',
+            ]
+    else:
+      print("Check channel: Hct or Hut")
+      sig_files = []
+
+    bkg = ['finalMVA_TTpowhegttbb_000.h5', 'finalMVA_TTpowhegttbj_000.h5', 'finalMVA_TTpowhegttcc_000.h5',
+          'finalMVA_TTpowhegttlf_000.h5', 'finalMVA_TTpowhegttother_000.h5',
+          'finalMVA_TTpowhegttbb_001.h5', 'finalMVA_TTpowhegttbj_001.h5', 'finalMVA_TTpowhegttcc_001.h5',
+          'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
+          'finalMVA_TTpowhegttbb_002.h5', 'finalMVA_TTpowhegttbj_002.h5', 'finalMVA_TTpowhegttcc_002.h5',
+          'finalMVA_TTpowhegttlf_002.h5', 'finalMVA_TTpowhegttother_002.h5',
+          'finalMVA_TTpowhegttbb_003.h5', 'finalMVA_TTpowhegttbj_003.h5', 'finalMVA_TTpowhegttcc_003.h5',
+          'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
+          'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
+          'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
+          'finalMVA_TTpowhegttlf_005.h5', 'finalMVA_TTpowhegttother_005.h5',
+          'finalMVA_TTpowhegttlf_006.h5', 'finalMVA_TTpowhegttother_006.h5',
+          'finalMVA_TTpowhegttlf_007.h5', 'finalMVA_TTpowhegttother_007.h5',
+          'finalMVA_TTpowhegttlf_008.h5', 'finalMVA_TTpowhegttother_008.h5',
+          'finalMVA_TTpowhegttlf_009.h5', 'finalMVA_TTpowhegttother_009.h5',
+          'finalMVA_TTpowhegttlf_010.h5', 'finalMVA_TTpowhegttother_010.h5',
+          'finalMVA_TTpowhegttlf_011.h5', 'finalMVA_TTpowhegttother_011.h5',
+          'finalMVA_TTpowhegttlf_012.h5', 'finalMVA_TTpowhegttother_012.h5',
+          'finalMVA_TTpowhegttlf_013.h5', 'finalMVA_TTpowhegttother_013.h5',
+          'finalMVA_TTpowhegttlf_014.h5', 'finalMVA_TTpowhegttother_014.h5',
+          'finalMVA_TTpowhegttlf_015.h5', 'finalMVA_TTpowhegttother_015.h5',
+          'finalMVA_TTpowhegttlf_016.h5', 'finalMVA_TTpowhegttother_016.h5',
+          'finalMVA_TTpowhegttlf_017.h5', 'finalMVA_TTpowhegttother_017.h5',
+          'finalMVA_TTpowhegttlf_018.h5', 'finalMVA_TTpowhegttother_018.h5',
+          'finalMVA_TTpowhegttlf_019.h5', 'finalMVA_TTpowhegttother_019.h5',
+          'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5',
+          'finalMVA_TTLLpowheg_002.h5', 'finalMVA_TTLLpowheg_003.h5',
+          'finalMVA_TTLLpowheg_004.h5', 'finalMVA_TTLLpowheg_005.h5',
+          'finalMVA_TTLLpowheg_006.h5', 'finalMVA_TTLLpowheg_007.h5',
+          'finalMVA_TTLLpowheg_008.h5', 'finalMVA_TTLLpowheg_009.h5',
+          ]
 
   return sig, bkg
 
   
-def evalScale(ch, sig, bkg):
+def evalScale(ch, era, sig, bkg):
 
-  base_path = "/data/users/minerva1993/ntuple_Run2017/V9_5/190117/production"
+  if   era == "2017": base_path = base_path17
+  elif era == "2018": base_path = base_path18
+
   ST, TT, TTLJ, TTLL = (0,0,0,0)
   for tmp_file in sig:
     if "STTH" in tmp_file:
@@ -168,9 +223,11 @@ def evalScale(ch, sig, bkg):
   return float(ST), float(TT), float(TTLJ), float(TTLL), frac_sig, frac_bkg
 
 
-def evalFrac(ch, sig, nj, nbj):
+def evalFrac(ch, era, sig, nj, nbj):
 
-  base_path = "/data/users/minerva1993/ntuple_Run2017/V9_3/181013/production"
+  if   era == "2017": base_path = base_path17
+  elif era == "2018": base_path = base_path18
+
   ST, TT = (0,0)
   for tmp_file in sig:
     if "STTH" in tmp_file:
@@ -194,7 +251,7 @@ def evalFrac(ch, sig, nj, nbj):
   nST, nTT = (0,0)
   #Signal first
   for files in sig:
-    data_temp = pd.read_hdf('./mkNtuple/hdf_/' + files)
+    data_temp = pd.read_hdf('./mkNtuple/' + era + '/hdf_/' + files)
     data_temp = data_temp[data_temp['njets'] ==  nj]
     if nbj != 0:
       data_temp = data_temp[data_temp['nbjets_m'] == nbj]
@@ -227,10 +284,10 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
                   'stfcnc_jet12_lepdR', 'stfcnc_jet12_0dR',
                   'stfcnc_lepTjet12dphi'])
   if "j4" in jetcat:
-    var_list.extend(['ttfcnc_jet0pt', 'ttfcnc_jet0eta', 'ttfcnc_jet0m',
-                    'ttfcnc_jet1pt', 'ttfcnc_jet1eta', 'ttfcnc_jet1m',
-                    'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m',
-                    'ttfcnc_jet3pt', 'ttfcnc_jet3eta', 'ttfcnc_jet3m',
+    var_list.extend(['ttfcnc_jet0pt', 'ttfcnc_jet0eta', 'ttfcnc_jet0m', 'ttfcnc_jet0csv',
+                    'ttfcnc_jet1pt', 'ttfcnc_jet1eta', 'ttfcnc_jet1m',  'ttfcnc_jet1csv',
+                    'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m',  'ttfcnc_jet2csv',
+                    'ttfcnc_jet3pt', 'ttfcnc_jet3eta', 'ttfcnc_jet3m',  'ttfcnc_jet3csv'
                     'ttfcnc_jet12pt', 'ttfcnc_jet12eta', 'ttfcnc_jet12deta',
                     'ttfcnc_jet12dphi', 'ttfcnc_jet12dR', 'ttfcnc_jet12m',
                     'ttfcnc_jet23pt', 'ttfcnc_jet23eta','ttfcnc_jet23deta',
@@ -247,10 +304,10 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
                     'ttfcnc_jet12_lepdR', 'ttfcnc_jet23_lepdR', 'ttfcnc_jet31_lepdR',
                     'ttfcnc_jet12_0dR', 'ttfcnc_jet23_0dR', 'ttfcnc_jet31_0dR',
                     'ttfcnc_lepTjet12dphi', 'ttfcnc_lepTjet23dphi', 'ttfcnc_lepTjet31dphi', 'ttfcnc_hadT_jet0dR',])
-    var_list.extend(['ttbkg_jet0pt', 'ttbkg_jet0eta', 'ttbkg_jet0m',
-                    'ttbkg_jet1pt', 'ttbkg_jet1eta', 'ttbkg_jet1m',
-                    'ttbkg_jet2pt', 'ttbkg_jet2eta', 'ttbkg_jet2m',
-                    'ttbkg_jet3pt', 'ttbkg_jet3eta', 'ttbkg_jet3m',
+    var_list.extend(['ttbkg_jet0pt', 'ttbkg_jet0eta', 'ttbkg_jet0m', 'ttbkg_jet0csv',
+                    'ttbkg_jet1pt', 'ttbkg_jet1eta', 'ttbkg_jet1m', 'ttbkg_jet1csv',
+                    'ttbkg_jet2pt', 'ttbkg_jet2eta', 'ttbkg_jet2m', 'ttbkg_jet2csv',
+                    'ttbkg_jet3pt', 'ttbkg_jet3eta', 'ttbkg_jet3m', 'ttbkg_jet3csv',
                     'ttbkg_jet12pt', 'ttbkg_jet12eta', 'ttbkg_jet12deta',
                     'ttbkg_jet12dphi', 'ttbkg_jet12dR', 'ttbkg_jet12m',
                     'ttbkg_jet23pt', 'ttbkg_jet23eta','ttbkg_jet23deta', 
