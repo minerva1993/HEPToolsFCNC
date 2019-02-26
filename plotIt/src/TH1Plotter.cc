@@ -586,13 +586,16 @@ namespace plotIt {
       if (!plot.y_axis_auto_range) setMaximum(toDraw[0].first, maximum);
       else {
         float maxfrac = 0.4;
-        std::vector<float> sigMax;
-        for (File& signal: signal_files) {
-          TH1* h_sig_temp = dynamic_cast<TH1*>(signal.object);
-          if (plot.signal_normalize_data) h_sig_temp->Scale(h_data->Integral()/h_sig_temp->Integral());
-          sigMax.push_back(h_sig_temp->GetMaximum());
-        }          
-        float max_sig = *std::max_element(sigMax.begin(), sigMax.end());
+        float max_sig = 0.0;
+        if ( signal_files.size() > 0 ) {
+          std::vector<float> sigMax;
+          for (File& signal: signal_files) {
+            TH1* h_sig_temp = dynamic_cast<TH1*>(signal.object);
+            if (plot.signal_normalize_data) h_sig_temp->Scale(h_data->Integral()/h_sig_temp->Integral());
+            sigMax.push_back(h_sig_temp->GetMaximum());
+          }          
+          max_sig = *std::max_element(sigMax.begin(), sigMax.end());
+        }
         auto& mc_stack = mc_stacks.begin()->second;
         float max_mc = mc_stack.stack->GetMaximum();
         int max_data = h_data->GetMaximum();
