@@ -598,7 +598,8 @@ namespace plotIt {
         }
         auto& mc_stack = mc_stacks.begin()->second;
         float max_mc = mc_stack.stack->GetMaximum();
-        int max_data = h_data->GetMaximum();
+        int max_data = 0.0;
+        if (!plot.no_data) max_data = h_data->GetMaximum();
 
         if (max_mc > max_sig) {
           if (plot.log_y) {
