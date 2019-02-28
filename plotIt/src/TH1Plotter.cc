@@ -597,7 +597,8 @@ namespace plotIt {
           max_sig = *std::max_element(sigMax.begin(), sigMax.end());
         }
         auto& mc_stack = mc_stacks.begin()->second;
-        float max_mc = mc_stack.stack->GetMaximum();
+        float max_mc = 0.0;
+        if (has_mc) max_mc = mc_stack.stack->GetMaximum();
         int max_data = 0.0;
         if (!plot.no_data) max_data = h_data->GetMaximum();
 
