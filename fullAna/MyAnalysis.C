@@ -407,8 +407,10 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }
   //if( passmuon || passelectron ){
 
+  //For reco
   int jetIdx[4];
   TLorentzVector jetP4s[4];
+  //For reco
 
   for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
 

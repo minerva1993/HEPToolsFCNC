@@ -16,10 +16,9 @@ You can make control plots without signal reconstruction to save time and check 
 ```{.Bash}
 cd ../fullAna
 python create_script.py 2017
-source compile.sh
 python runNoReco.py
 cd doNoReco
-python python ../ratioPlot.py
+python ../ratioPlot.py
 ```
   *Reconstruction
 This is for ST FCNC reconstruction using Keras+TF. For TT FCNC, some options in flat ntuplizer must be changes (eg. event selection, b tagging requirements). The flat ntuples for jer assignment is stored in both root and hdf format. root output is kept for BDT test. Default training code uses 0th ST Hct ntuple with classifier version '01'. score and assign folders will be made automatically.
@@ -44,6 +43,7 @@ cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python combi_assi
 #cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python nohup combi_assign.py STFCNC 01 2017 False > log &
 #Plot histograms with reconstruction
 cd ../fullAna/
+source compile.sh
 cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python runReco.py STFCNC01 2017
 #cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python runReco.py STFCNC01 2017 > log &
 cd doReco
