@@ -1,0 +1,15 @@
+'h_PVnoSF_Ch0_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+
+'h_PVnoSF_Ch1_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+
+'h_PVnoSF_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+

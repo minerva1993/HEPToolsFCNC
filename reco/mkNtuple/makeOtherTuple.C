@@ -276,6 +276,11 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
 
   b_lepton_pt = lepton.Pt(); b_lepton_eta = lepton.Eta(); b_lepton_phi = lepton.Phi();
 
+  float bWP_M, bWP_T, cvsbWP_M, cvslWP_M;
+  if      ( era == 2017 ) bWP_M = 0.4941;
+  else if ( era == 2018 ) bWP_M = 0.4184;
+  else                    bWP_M = 0.0;
+
   vector<size_t> jetIdxs;
   for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
 
@@ -294,7 +299,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
       njets++;
       jetIdxs.push_back(iJet);
 
-      if( jet_deepCSV[iJet] > 0.4941 ) nbjets_m++;
+      if( jet_deepCSV[iJet] > bWP_M ) nbjets_m++;
     }
   }
 
@@ -346,23 +351,23 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   //int count = 0;
   TLorentzVector jetP4[4];
   for( auto ii0 = jetIdxs.begin(); ii0 != jetIdxs.end(); ++ii0 ){
-    if( chBit == 3 and jet_deepCSV[*ii0] < 0.4941 ) continue; //for ttbar reco signal
+    if( chBit == 3 and jet_deepCSV[*ii0] < bWP_M ) continue; //for ttbar reco signal
     jetP4[0].SetPtEtaPhiE(jet_pt[*ii0], jet_eta[*ii0], jet_phi[*ii0], jet_e[*ii0]);
 
     for( auto ii1 = jetIdxs.begin(); ii1 != jetIdxs.end(); ++ii1 ){
       if( (chBit == 2 or chBit == 3) and *ii1 == *ii0 ) continue;
-      if( chBit == 3 and jet_deepCSV[*ii1] < 0.4941 ) continue; //for ttbar reco signal
+      if( chBit == 3 and jet_deepCSV[*ii1] < bWP_M ) continue; //for ttbar reco signal
       if( chBit == 2 or chBit == 3 ) jetP4[3].SetPtEtaPhiE(jet_pt[*ii1], jet_eta[*ii1], jet_phi[*ii1], jet_e[*ii1]);
 
       for( auto ii2 = jetIdxs.begin(); ii2 != jetIdxs.end(); ++ii2 ){
         if( *ii2 == *ii0 ) continue;
         if( (chBit == 2 or chBit == 3) and *ii2 == *ii1 ) continue;
-        if( (chBit == 1 or chBit == 2) and jet_deepCSV[*ii2] < 0.4941 ) continue;
+        if( (chBit == 1 or chBit == 2) and jet_deepCSV[*ii2] < bWP_M ) continue;
 
         for( auto ii3 = ii2+1; ii3 != jetIdxs.end(); ++ii3 ){
           if( *ii3 == *ii0 or *ii3 == *ii2 ) continue;
           if( (chBit == 2 or chBit == 3) and *ii3 == *ii1 ) continue;
-          if( (chBit == 1 or chBit == 2) and nbjets_m > 2 and jet_deepCSV[*ii3] < 0.4941 ) continue;
+          if( (chBit == 1 or chBit == 2) and nbjets_m > 2 and jet_deepCSV[*ii3] < bWP_M ) continue;
           if( jet_deepCSV[*ii2] > jet_deepCSV[*ii3] ){
             jetP4[1].SetPtEtaPhiE(jet_pt[*ii2], jet_eta[*ii2], jet_phi[*ii2], jet_e[*ii2]);
             jetP4[2].SetPtEtaPhiE(jet_pt[*ii3], jet_eta[*ii3], jet_phi[*ii3], jet_e[*ii3]);

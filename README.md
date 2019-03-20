@@ -18,7 +18,10 @@ cd ../fullAna
 python create_script.py 2017
 python runNoReco.py
 cd doNoReco
-python ../ratioPlot.py
+mv hist*.root 2017
+cd 2017
+python ../../ratioPlot.py
+#../../../plotIt/plotIt -o figures/ ../../../plotIt/configs/config_2017.yml #histos_control.yml
 ```
   *Reconstruction
 This is for ST FCNC reconstruction using Keras+TF. For TT FCNC, some options in flat ntuplizer must be changes (eg. event selection, b tagging requirements). The flat ntuples for jer assignment is stored in both root and hdf format. root output is kept for BDT test. Default training code uses 0th ST Hct ntuple with classifier version '01'. score and assign folders will be made automatically.
@@ -54,7 +57,7 @@ mkdir figures
 mv post_process pre_process temp 2017STFCNC01
 #python ratioEMuCombine.py
 cd STFCNC01/post_process
-../../../../plotIt/plotIt -o ../figures/ ../../../../plotIt/configs/config.yml -y
+../../../../plotIt/plotIt -o ../figures/ ../../../../plotIt/configs/config_2017.yml -y
 ```
   *Final MVA
 ```{.Bash}
@@ -75,7 +78,7 @@ mkdir Hct_j4_01
 mv post_process pre_process temp Hct_j3b2_01
 ...
 python merge_histos.py Hct 01 2017 01 01 01 01 01
-../../../../plotIt/plotIt -o ../ ../../../../plotIt/configs/config.yml -y
+../../../../plotIt/plotIt -o ../ ../../../../plotIt/configs/config_2017.yml -y
 ```
 If you use BDT,
 ```{.Bash}

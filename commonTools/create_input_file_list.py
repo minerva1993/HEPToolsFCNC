@@ -5,12 +5,19 @@ if len(sys.argv) < 2:
   sys.exit()
 era = sys.argv[1]
 
+ttbb = False
+file_postfix = ''
+if len(sys.argv) > 2:
+  if sys.argv[2] == 'ttbb':
+    ttbb = True
+    file_postfix = '_ttbb'
+
 if era == '2017':
   version = 'V9_5/190117/'
   path_to_prod = '/data/users/minerva1993/ntuple_Run2017/' + version + 'production/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 elif era == '2018':
-  version = 'V10_0/190212/'
+  version = 'V10_1/190318/'
   path_to_prod = '/data/users/minerva1993/ntuple_Run2018/' + version + 'production/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2018/' + version
 
@@ -19,16 +26,16 @@ print("Looking for files in %s"%path_to_prod)
 merge_file_name = 'merge_' + era + '_ntuples.sh'
 string_for_merge = ''
 
-input_list_signal_file_name = 'file_' + era + '_top.txt'
+input_list_signal_file_name = 'file_' + era + '_top' + file_postfix + '.txt'
 string_for_signal_processing = ''
 
-input_list_bkg_file_name = 'file_' + era + '_other.txt'
+input_list_bkg_file_name = 'file_' + era + '_other' + file_postfix + '.txt'
 string_for_bkg_processing = ''
 
-input_list_syst_file_name = 'file_' + era + '_syst.txt'
+input_list_syst_file_name = 'file_' + era + '_syst' + file_postfix + '.txt'
 string_for_syst_processing = ''
 
-input_list_all_file_name = 'file_' + era + '_all.txt'
+input_list_all_file_name = 'file_' + era + '_all' + file_postfix + '.txt'
 string_for_all_processing = ''
 
 #This part is for making script file for ntuple merging

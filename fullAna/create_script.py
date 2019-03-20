@@ -5,11 +5,18 @@ if len(sys.argv) < 2:
   sys.exit()
 era = sys.argv[1]
 
+ttbb = False
+file_postfix = ''
+if len(sys.argv) > 2:
+  if sys.argv[2] == 'ttbb':
+    ttbb = True
+    file_postfix = '_ttbb'
+
 if era == '2017':
   version = 'V9_5/190117/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 elif era == '2018':
-  version = 'V10_0/190212/'
+  version = 'V10_1/190318/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2018/' + version
 
 run_file_name = 'runNoReco_' + era + '.py'
@@ -37,7 +44,7 @@ if os.path.exists(run_file_name): os.remove(run_file_name)
 shutil.copy2('template_runNoReco', run_file_name)
 
 for lines in noreco_list:
-  if any(sys in lines for sys in ['hdamp', 'TuneCP5down', 'TuneCP5up']): continue
+  if not any(sys in lines for sys in ['hdamp', 'TuneCP5down', 'TuneCP5up']): continue
   string_for_run += '  runAna("' + lines.split(' ')[0] + '", "' + (lines.split(' ')[1]) + '")\n'
 
 with open(run_file_name, 'a') as target:

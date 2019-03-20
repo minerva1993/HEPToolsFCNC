@@ -2,7 +2,8 @@ from ROOT import *
 import ROOT
 import os
 
-base_path = "/home/minerva1993/HEPToolsFCNC/analysis_2017/fullAna/doReco/"
+#base_path = "/home/minerva1993/HEPToolsFCNC/analysis_2017/fullAna/doReco/"
+base_path = "./"
 if not os.path.exists( base_path + "post_process" ):
   os.makedirs( base_path + "post_process" )
 

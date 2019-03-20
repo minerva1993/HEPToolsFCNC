@@ -532,6 +532,11 @@ Bool_t makeTuple::Process(Long64_t entry)
     if( !passmuon && !passelectron ) return kTRUE;
   }
 
+  float bWP_M, bWP_T, cvsbWP_M, cvslWP_M;
+  if      ( era == 2017 ) bWP_M = 0.4941;
+  else if ( era == 2018 ) bWP_M = 0.4184;
+  else                    bWP_M = 0.0;
+
   for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
 
     TLorentzVector jet;
@@ -547,7 +552,7 @@ Bool_t makeTuple::Process(Long64_t entry)
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
       njets++;
-      if( jet_deepCSV[iJet] > 0.4941 ) nbjets_m++;
+      if( jet_deepCSV[iJet] > bWP_M ) nbjets_m++;
     }
   } 
 

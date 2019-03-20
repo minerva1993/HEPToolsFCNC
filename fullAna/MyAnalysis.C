@@ -306,7 +306,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   TString current_file_name = MyAnalysis::fReader.GetTree()->GetCurrentFile()->GetName();
   if     ( current_file_name.Contains("2017") ) era = 2017;
   else if( current_file_name.Contains("2018") ) era = 2018;
-  cout << era;
+  //cout << era;
 
   int mode = 999; 
   mode = *channel;
@@ -412,6 +412,26 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   TLorentzVector jetP4s[4];
   //For reco
 
+  float bWP_M, bWP_T, cvsbWP_M, cvslWP_M;
+  if( era == 2017 ){
+    bWP_M = 0.4941;
+    bWP_T = 0.8001;
+    cvsbWP_M = 0.28;
+    cvslWP_M = 0.15;
+  }
+  else if( era == 2018 ){
+    bWP_M = 0.4184;
+    bWP_T = 0.7527;
+    cvsbWP_M = 0.29;
+    cvslWP_M = 0.137;
+  }
+  else{
+    bWP_M = 0.0;
+    bWP_T = 0.0;
+    cvsbWP_M = 0.0;
+    cvslWP_M = 0.0;
+  }
+
   for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
 
     TLorentzVector jet;
@@ -429,9 +449,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       njets++;
       jetIdxs.push_back(iJet);
 
-      if( jet_deepCSV[iJet] > 0.4941 ) nbjets_m++;
-      if( jet_deepCSV[iJet] > 0.8001 ) nbjets_t++;
-      if( jet_deepCvsL[iJet] > 0.15 && jet_deepCvsB[iJet] > 0.28 ) ncjets_m++;
+      if( jet_deepCSV[iJet] > bWP_M ) nbjets_m++;
+      if( jet_deepCSV[iJet] > bWP_T ) nbjets_t++;
+      if( jet_deepCvsL[iJet] > cvslWP_M && jet_deepCvsB[iJet] > cvsbWP_M ) ncjets_m++;
     }
   }
 
@@ -573,9 +593,11 @@ Bool_t MyAnalysis::Process(Long64_t entry)
               if     ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
               else if( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
               else   EventWeight *= lepton_SF[6];
-              if     ( isPartOf("__eltrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[10];
-              else if( isPartOf("__eltrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[11];
-              else   EventWeight *= lepton_SF[9];
+              if ( era == 2017 ){
+                if     ( isPartOf("__eltrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[10];
+                else if( isPartOf("__eltrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[11];
+                else   EventWeight *= lepton_SF[9];
+              }
             }
             //ME&PS
             //[0] = muF up , [1] = muF down, [2] = muR up, [3] = muR up && muF up, [4] = muR down, [5] = muF down && muF down
