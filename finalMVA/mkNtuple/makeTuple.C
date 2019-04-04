@@ -447,9 +447,14 @@ Bool_t makeTuple::Process(Long64_t entry)
   fReader.SetEntry(entry);
   TString option = GetOption();
 
+  int era = 0;
+  TString current_file_name = makeTuple::fReader.GetTree()->GetCurrentFile()->GetName();
+  if     ( current_file_name.Contains("2017") ) era = 2017;
+  else if( current_file_name.Contains("2018") ) era = 2018;
+  //cout << era;
+
   int mode = 999;
   mode = *channel;
-
   if( mode > 2 ) return kTRUE;
 
   float wrongPVrate = 1.0;
@@ -644,16 +649,23 @@ Bool_t makeTuple::Process(Long64_t entry)
 
     b_stfcnc_jet0pt = jetP4cor[0].Pt(); b_stfcnc_jet0eta = jetP4cor[0].Eta();
     b_stfcnc_jet0phi = jetP4cor[0].Phi(); b_stfcnc_jet0m = jetP4cor[0].M();
-    b_stfcnc_jet0csv = jet_deepCSV[jetIdx[0]]; b_stfcnc_jet0cvsl = jet_CvsL[jetIdx[0]]; b_stfcnc_jet0cvsb = jet_CvsB[jetIdx[0]];
+    b_stfcnc_jet0csv = jet_deepCSV[jetIdx[0]];
+    b_stfcnc_jet0cvsl = jet_deepCvsL[jetIdx[0]]; b_stfcnc_jet0cvsb = jet_deepCvsB[jetIdx[0]];
+
     b_stfcnc_jet1pt = jetP4cor[1].Pt(); b_stfcnc_jet1eta = jetP4cor[1].Eta();
     b_stfcnc_jet1phi = jetP4cor[1].Phi(); b_stfcnc_jet1m = jetP4cor[1].M();
-    b_stfcnc_jet1csv = jet_deepCSV[jetIdx[1]]; b_stfcnc_jet1cvsl = jet_CvsL[jetIdx[1]]; b_stfcnc_jet1cvsb = jet_CvsB[jetIdx[1]];
+    b_stfcnc_jet1csv = jet_deepCSV[jetIdx[1]];
+    b_stfcnc_jet1cvsl = jet_deepCvsL[jetIdx[1]]; b_stfcnc_jet1cvsb = jet_deepCvsB[jetIdx[1]];
+
     b_stfcnc_jet2pt = jetP4cor[2].Pt(); b_stfcnc_jet2eta = jetP4cor[2].Eta();
     b_stfcnc_jet2phi = jetP4cor[2].Phi(); b_stfcnc_jet2m = jetP4cor[2].M();
-    b_stfcnc_jet2csv = jet_deepCSV[jetIdx[2]]; b_stfcnc_jet2cvsl = jet_CvsL[jetIdx[2]]; b_stfcnc_jet2cvsb = jet_CvsB[jetIdx[2]];
+    b_stfcnc_jet2csv = jet_deepCSV[jetIdx[2]];
+    b_stfcnc_jet2cvsl = jet_deepCvsL[jetIdx[2]]; b_stfcnc_jet2cvsb = jet_deepCvsB[jetIdx[2]];
+
     b_stfcnc_jet3pt = jetP4cor[3].Pt(); b_stfcnc_jet3eta = jetP4cor[3].Eta();
     b_stfcnc_jet3phi = jetP4cor[3].Phi(); b_stfcnc_jet3m = jetP4cor[3].M();
-    b_stfcnc_jet3csv = jet_deepCSV[jetIdx[3]]; b_stfcnc_jet3cvsl = jet_CvsL[jetIdx[3]]; b_stfcnc_jet3cvsb = jet_CvsB[jetIdx[3]];
+    b_stfcnc_jet3csv = jet_deepCSV[jetIdx[3]];
+    b_stfcnc_jet3cvsl = jet_deepCvsL[jetIdx[3]]; b_stfcnc_jet3cvsb = jet_deepCvsB[jetIdx[3]];
 
     if( b_stfcnc_jet0csv < 0 ) b_stfcnc_jet0csv = 0; if( b_stfcnc_jet1csv < 0 ) b_stfcnc_jet1csv = 0;
     if( b_stfcnc_jet2csv < 0 ) b_stfcnc_jet2csv = 0; if( b_stfcnc_jet3csv < 0 ) b_stfcnc_jet3csv = 0;
@@ -664,35 +676,58 @@ Bool_t makeTuple::Process(Long64_t entry)
     const auto had31 = jetP4cor[3] + jetP4cor[1];
     const auto hadT = jetP4cor[1] + jetP4cor[2] + jetP4cor[3];
 
-    b_stfcnc_jet12pt = had12.Pt(); b_stfcnc_jet12eta = had12.Eta(); b_stfcnc_jet12phi = had12.Phi(); b_stfcnc_jet12m = had12.M();
-    b_stfcnc_jet12deta = (jetP4cor[1]-jetP4cor[2]).Eta(); b_stfcnc_jet12dphi = jetP4cor[1].DeltaPhi(jetP4cor[2]);
+    b_stfcnc_jet12pt = had12.Pt(); b_stfcnc_jet12eta = had12.Eta();
+    b_stfcnc_jet12phi = had12.Phi(); b_stfcnc_jet12m = had12.M();
+    b_stfcnc_jet12deta = (jetP4cor[1]-jetP4cor[2]).Eta();
+    b_stfcnc_jet12dphi = jetP4cor[1].DeltaPhi(jetP4cor[2]);
     b_stfcnc_jet12dR = jetP4cor[1].DeltaR(jetP4cor[2]);
 
-    b_stfcnc_jet23pt = had23.Pt(); b_stfcnc_jet23eta = had23.Eta(); b_stfcnc_jet23phi = had23.Phi(); b_stfcnc_jet23m = had23.M();
-    b_stfcnc_jet23deta = (jetP4cor[2]-jetP4cor[3]).Eta(); b_stfcnc_jet23dphi = jetP4cor[2].DeltaPhi(jetP4cor[3]);
+    b_stfcnc_jet23pt = had23.Pt(); b_stfcnc_jet23eta = had23.Eta();
+    b_stfcnc_jet23phi = had23.Phi(); b_stfcnc_jet23m = had23.M();
+    b_stfcnc_jet23deta = (jetP4cor[2]-jetP4cor[3]).Eta();
+    b_stfcnc_jet23dphi = jetP4cor[2].DeltaPhi(jetP4cor[3]);
     b_stfcnc_jet23dR = jetP4cor[2].DeltaR(jetP4cor[3]);
 
-    b_stfcnc_jet31pt = had31.Pt(); b_stfcnc_jet31eta = had31.Eta(); b_stfcnc_jet31phi = had31.Phi(); b_stfcnc_jet31m = had31.M();
-    b_stfcnc_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta(); b_stfcnc_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
+    b_stfcnc_jet31pt = had31.Pt(); b_stfcnc_jet31eta = had31.Eta();
+    b_stfcnc_jet31phi = had31.Phi(); b_stfcnc_jet31m = had31.M();
+    b_stfcnc_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta();
+    b_stfcnc_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
     b_stfcnc_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
-    b_stfcnc_lepTpt = lepT.Pt(); b_stfcnc_lepTeta = lepT.Eta(); b_stfcnc_lepTphi = lepT.Phi(); b_stfcnc_lepTm = lepT.M();
-    b_stfcnc_lepTdeta = (lepW-jetP4cor[0]).Eta(); b_stfcnc_lepTdphi = lepW.DeltaPhi(jetP4cor[0]); b_stfcnc_lepTdR = lepW.DeltaR(jetP4cor[0]);
+    b_stfcnc_lepTpt = lepT.Pt(); b_stfcnc_lepTeta = lepT.Eta();
+    b_stfcnc_lepTphi = lepT.Phi(); b_stfcnc_lepTm = lepT.M();
+    b_stfcnc_lepTdeta = (lepW-jetP4cor[0]).Eta();
+    b_stfcnc_lepTdphi = lepW.DeltaPhi(jetP4cor[0]);
+    b_stfcnc_lepTdR = lepW.DeltaR(jetP4cor[0]);
 
-    b_stfcnc_hadTpt = hadT.Pt(); b_stfcnc_hadTeta = hadT.Eta(); b_stfcnc_hadTphi = hadT.Phi(); b_stfcnc_hadTm = hadT.M();
-    b_stfcnc_hadT12_3deta = (had12-jetP4cor[3]).Eta(); b_stfcnc_hadT23_1deta = (had23-jetP4cor[1]).Eta();
-    b_stfcnc_hadT31_2deta = (had31-jetP4cor[2]).Eta(); b_stfcnc_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]);
-    b_stfcnc_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]); b_stfcnc_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
-    b_stfcnc_hadT12_3dR = had12.DeltaR(jetP4cor[3]); b_stfcnc_hadT23_1dR = had23.DeltaR(jetP4cor[1]); b_stfcnc_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
+    b_stfcnc_hadTpt = hadT.Pt(); b_stfcnc_hadTeta = hadT.Eta();
+    b_stfcnc_hadTphi = hadT.Phi(); b_stfcnc_hadTm = hadT.M();
+    b_stfcnc_hadT12_3deta = (had12-jetP4cor[3]).Eta();
+    b_stfcnc_hadT23_1deta = (had23-jetP4cor[1]).Eta();
+    b_stfcnc_hadT31_2deta = (had31-jetP4cor[2]).Eta();
+    b_stfcnc_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]);
+    b_stfcnc_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]);
+    b_stfcnc_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
+    b_stfcnc_hadT12_3dR = had12.DeltaR(jetP4cor[3]);
+    b_stfcnc_hadT23_1dR = had23.DeltaR(jetP4cor[1]);
+    b_stfcnc_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
 
-    b_stfcnc_jet0lepdR = jetP4cor[0].DeltaR(lepton); b_stfcnc_jet1lepdR = jetP4cor[1].DeltaR(lepton);
-    b_stfcnc_jet2lepdR = jetP4cor[2].DeltaR(lepton); b_stfcnc_jet3lepdR = jetP4cor[3].DeltaR(lepton);
-    b_stfcnc_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]); b_stfcnc_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]);
-    b_stfcnc_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]); b_stfcnc_jet12_lepdR = lepton.DeltaR(had12);
-    b_stfcnc_jet23_lepdR = lepton.DeltaR(had23); b_stfcnc_jet31_lepdR = lepton.DeltaR(had31);
-    b_stfcnc_jet12_0dR = jetP4cor[0].DeltaR(had12); b_stfcnc_jet23_0dR = jetP4cor[0].DeltaR(had23);
-    b_stfcnc_jet31_0dR = jetP4cor[0].DeltaR(had31); b_stfcnc_lepTjet12dphi = lepT.DeltaPhi(had12);
-    b_stfcnc_lepTjet23dphi = lepT.DeltaPhi(had23); b_stfcnc_lepTjet31dphi = lepT.DeltaPhi(had31);
+    b_stfcnc_jet0lepdR = jetP4cor[0].DeltaR(lepton);
+    b_stfcnc_jet1lepdR = jetP4cor[1].DeltaR(lepton);
+    b_stfcnc_jet2lepdR = jetP4cor[2].DeltaR(lepton);
+    b_stfcnc_jet3lepdR = jetP4cor[3].DeltaR(lepton);
+    b_stfcnc_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]);
+    b_stfcnc_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]);
+    b_stfcnc_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]);
+    b_stfcnc_jet12_lepdR = lepton.DeltaR(had12);
+    b_stfcnc_jet23_lepdR = lepton.DeltaR(had23);
+    b_stfcnc_jet31_lepdR = lepton.DeltaR(had31);
+    b_stfcnc_jet12_0dR = jetP4cor[0].DeltaR(had12);
+    b_stfcnc_jet23_0dR = jetP4cor[0].DeltaR(had23);
+    b_stfcnc_jet31_0dR = jetP4cor[0].DeltaR(had31);
+    b_stfcnc_lepTjet12dphi = lepT.DeltaPhi(had12);
+    b_stfcnc_lepTjet23dphi = lepT.DeltaPhi(had23);
+    b_stfcnc_lepTjet31dphi = lepT.DeltaPhi(had31);
     b_stfcnc_hadT_jet0dR = hadT.DeltaR(jetP4cor[0]);
 
   }
@@ -742,16 +777,23 @@ Bool_t makeTuple::Process(Long64_t entry)
 
     b_ttfcnc_jet0pt = jetP4cor[0].Pt(); b_ttfcnc_jet0eta = jetP4cor[0].Eta();
     b_ttfcnc_jet0phi = jetP4cor[0].Phi(); b_ttfcnc_jet0m = jetP4cor[0].M();
-    b_ttfcnc_jet0csv = jet_deepCSV[jetIdx[0]]; b_ttfcnc_jet0cvsl = jet_CvsL[jetIdx[0]]; b_ttfcnc_jet0cvsb = jet_CvsB[jetIdx[0]];
+    b_ttfcnc_jet0csv = jet_deepCSV[jetIdx[0]];
+    b_ttfcnc_jet0cvsl = jet_deepCvsL[jetIdx[0]]; b_ttfcnc_jet0cvsb = jet_deepCvsB[jetIdx[0]];
+
     b_ttfcnc_jet1pt = jetP4cor[1].Pt(); b_ttfcnc_jet1eta = jetP4cor[1].Eta();
     b_ttfcnc_jet1phi = jetP4cor[1].Phi(); b_ttfcnc_jet1m = jetP4cor[1].M();
-    b_ttfcnc_jet1csv = jet_deepCSV[jetIdx[1]]; b_ttfcnc_jet1cvsl = jet_CvsL[jetIdx[1]]; b_ttfcnc_jet1cvsb = jet_CvsB[jetIdx[1]];
+    b_ttfcnc_jet1csv = jet_deepCSV[jetIdx[1]];
+    b_ttfcnc_jet1cvsl = jet_deepCvsL[jetIdx[1]]; b_ttfcnc_jet1cvsb = jet_deepCvsB[jetIdx[1]];
+
     b_ttfcnc_jet2pt = jetP4cor[2].Pt(); b_ttfcnc_jet2eta = jetP4cor[2].Eta();
     b_ttfcnc_jet2phi = jetP4cor[2].Phi(); b_ttfcnc_jet2m = jetP4cor[2].M();
-    b_ttfcnc_jet2csv = jet_deepCSV[jetIdx[2]]; b_ttfcnc_jet2cvsl = jet_CvsL[jetIdx[2]]; b_ttfcnc_jet2cvsb = jet_CvsB[jetIdx[2]];
+    b_ttfcnc_jet2csv = jet_deepCSV[jetIdx[2]];
+    b_ttfcnc_jet2cvsl = jet_deepCvsL[jetIdx[2]]; b_ttfcnc_jet2cvsb = jet_deepCvsB[jetIdx[2]];
+
     b_ttfcnc_jet3pt = jetP4cor[3].Pt(); b_ttfcnc_jet3eta = jetP4cor[3].Eta();
     b_ttfcnc_jet3phi = jetP4cor[3].Phi(); b_ttfcnc_jet3m = jetP4cor[3].M();
-    b_ttfcnc_jet3csv = jet_deepCSV[jetIdx[3]]; b_ttfcnc_jet3cvsl = jet_CvsL[jetIdx[3]]; b_ttfcnc_jet3cvsb = jet_CvsB[jetIdx[3]];
+    b_ttfcnc_jet3csv = jet_deepCSV[jetIdx[3]];
+    b_ttfcnc_jet3cvsl = jet_deepCvsL[jetIdx[3]]; b_ttfcnc_jet3cvsb = jet_deepCvsB[jetIdx[3]];
 
     if( b_ttfcnc_jet0csv < 0 ) b_ttfcnc_jet0csv = 0; if( b_ttfcnc_jet1csv < 0 ) b_ttfcnc_jet1csv = 0;
     if( b_ttfcnc_jet2csv < 0 ) b_ttfcnc_jet2csv = 0; if( b_ttfcnc_jet3csv < 0 ) b_ttfcnc_jet3csv = 0;
@@ -762,35 +804,58 @@ Bool_t makeTuple::Process(Long64_t entry)
     const auto had31 = jetP4cor[3] + jetP4cor[1];
     const auto hadT = jetP4cor[1] + jetP4cor[2] + jetP4cor[3];
 
-    b_ttfcnc_jet12pt = had12.Pt(); b_ttfcnc_jet12eta = had12.Eta(); b_ttfcnc_jet12phi = had12.Phi(); b_ttfcnc_jet12m = had12.M();
-    b_ttfcnc_jet12deta = (jetP4cor[1]-jetP4cor[2]).Eta(); b_ttfcnc_jet12dphi = jetP4cor[1].DeltaPhi(jetP4cor[2]);
+    b_ttfcnc_jet12pt = had12.Pt(); b_ttfcnc_jet12eta = had12.Eta();
+    b_ttfcnc_jet12phi = had12.Phi(); b_ttfcnc_jet12m = had12.M();
+    b_ttfcnc_jet12deta = (jetP4cor[1]-jetP4cor[2]).Eta();
+    b_ttfcnc_jet12dphi = jetP4cor[1].DeltaPhi(jetP4cor[2]);
     b_ttfcnc_jet12dR = jetP4cor[1].DeltaR(jetP4cor[2]);
 
-    b_ttfcnc_jet23pt = had23.Pt(); b_ttfcnc_jet23eta = had23.Eta(); b_ttfcnc_jet23phi = had23.Phi(); b_ttfcnc_jet23m = had23.M();
-    b_ttfcnc_jet23deta = (jetP4cor[2]-jetP4cor[3]).Eta(); b_ttfcnc_jet23dphi = jetP4cor[2].DeltaPhi(jetP4cor[3]);
+    b_ttfcnc_jet23pt = had23.Pt(); b_ttfcnc_jet23eta = had23.Eta();
+    b_ttfcnc_jet23phi = had23.Phi(); b_ttfcnc_jet23m = had23.M();
+    b_ttfcnc_jet23deta = (jetP4cor[2]-jetP4cor[3]).Eta();
+    b_ttfcnc_jet23dphi = jetP4cor[2].DeltaPhi(jetP4cor[3]);
     b_ttfcnc_jet23dR = jetP4cor[2].DeltaR(jetP4cor[3]);
 
-    b_ttfcnc_jet31pt = had31.Pt(); b_ttfcnc_jet31eta = had31.Eta(); b_ttfcnc_jet31phi = had31.Phi(); b_ttfcnc_jet31m = had31.M();
-    b_ttfcnc_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta(); b_ttfcnc_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
+    b_ttfcnc_jet31pt = had31.Pt(); b_ttfcnc_jet31eta = had31.Eta();
+    b_ttfcnc_jet31phi = had31.Phi(); b_ttfcnc_jet31m = had31.M();
+    b_ttfcnc_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta();
+    b_ttfcnc_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
     b_ttfcnc_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
-    b_ttfcnc_lepTpt = lepT.Pt(); b_ttfcnc_lepTeta = lepT.Eta(); b_ttfcnc_lepTphi = lepT.Phi(); b_ttfcnc_lepTm = lepT.M();
-    b_ttfcnc_lepTdeta = (lepW-jetP4cor[0]).Eta(); b_ttfcnc_lepTdphi = lepW.DeltaPhi(jetP4cor[0]); b_ttfcnc_lepTdR = lepW.DeltaR(jetP4cor[0]);
+    b_ttfcnc_lepTpt = lepT.Pt(); b_ttfcnc_lepTeta = lepT.Eta();
+    b_ttfcnc_lepTphi = lepT.Phi(); b_ttfcnc_lepTm = lepT.M();
+    b_ttfcnc_lepTdeta = (lepW-jetP4cor[0]).Eta();
+    b_ttfcnc_lepTdphi = lepW.DeltaPhi(jetP4cor[0]);
+    b_ttfcnc_lepTdR = lepW.DeltaR(jetP4cor[0]);
 
-    b_ttfcnc_hadTpt = hadT.Pt(); b_ttfcnc_hadTeta = hadT.Eta(); b_ttfcnc_hadTphi = hadT.Phi(); b_ttfcnc_hadTm = hadT.M();
-    b_ttfcnc_hadT12_3deta = (had12-jetP4cor[3]).Eta(); b_ttfcnc_hadT23_1deta = (had23-jetP4cor[1]).Eta();
-    b_ttfcnc_hadT31_2deta = (had31-jetP4cor[2]).Eta(); b_ttfcnc_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]);
-    b_ttfcnc_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]); b_ttfcnc_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
-    b_ttfcnc_hadT12_3dR = had12.DeltaR(jetP4cor[3]); b_ttfcnc_hadT23_1dR = had23.DeltaR(jetP4cor[1]); b_ttfcnc_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
+    b_ttfcnc_hadTpt = hadT.Pt(); b_ttfcnc_hadTeta = hadT.Eta();
+    b_ttfcnc_hadTphi = hadT.Phi(); b_ttfcnc_hadTm = hadT.M();
+    b_ttfcnc_hadT12_3deta = (had12-jetP4cor[3]).Eta();
+    b_ttfcnc_hadT23_1deta = (had23-jetP4cor[1]).Eta();
+    b_ttfcnc_hadT31_2deta = (had31-jetP4cor[2]).Eta();
+    b_ttfcnc_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]);
+    b_ttfcnc_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]);
+    b_ttfcnc_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
+    b_ttfcnc_hadT12_3dR = had12.DeltaR(jetP4cor[3]);
+    b_ttfcnc_hadT23_1dR = had23.DeltaR(jetP4cor[1]);
+    b_ttfcnc_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
 
-    b_ttfcnc_jet0lepdR = jetP4cor[0].DeltaR(lepton); b_ttfcnc_jet1lepdR = jetP4cor[1].DeltaR(lepton);
-    b_ttfcnc_jet2lepdR = jetP4cor[2].DeltaR(lepton); b_ttfcnc_jet3lepdR = jetP4cor[3].DeltaR(lepton);
-    b_ttfcnc_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]); b_ttfcnc_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]);
-    b_ttfcnc_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]); b_ttfcnc_jet12_lepdR = lepton.DeltaR(had12);
-    b_ttfcnc_jet23_lepdR = lepton.DeltaR(had23); b_ttfcnc_jet31_lepdR = lepton.DeltaR(had31);
-    b_ttfcnc_jet12_0dR = jetP4cor[0].DeltaR(had12); b_ttfcnc_jet23_0dR = jetP4cor[0].DeltaR(had23);
-    b_ttfcnc_jet31_0dR = jetP4cor[0].DeltaR(had31); b_ttfcnc_lepTjet12dphi = lepT.DeltaPhi(had12);
-    b_ttfcnc_lepTjet23dphi = lepT.DeltaPhi(had23); b_ttfcnc_lepTjet31dphi = lepT.DeltaPhi(had31);
+    b_ttfcnc_jet0lepdR = jetP4cor[0].DeltaR(lepton);
+    b_ttfcnc_jet1lepdR = jetP4cor[1].DeltaR(lepton);
+    b_ttfcnc_jet2lepdR = jetP4cor[2].DeltaR(lepton);
+    b_ttfcnc_jet3lepdR = jetP4cor[3].DeltaR(lepton);
+    b_ttfcnc_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]);
+    b_ttfcnc_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]);
+    b_ttfcnc_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]);
+    b_ttfcnc_jet12_lepdR = lepton.DeltaR(had12);
+    b_ttfcnc_jet23_lepdR = lepton.DeltaR(had23);
+    b_ttfcnc_jet31_lepdR = lepton.DeltaR(had31);
+    b_ttfcnc_jet12_0dR = jetP4cor[0].DeltaR(had12);
+    b_ttfcnc_jet23_0dR = jetP4cor[0].DeltaR(had23);
+    b_ttfcnc_jet31_0dR = jetP4cor[0].DeltaR(had31);
+    b_ttfcnc_lepTjet12dphi = lepT.DeltaPhi(had12);
+    b_ttfcnc_lepTjet23dphi = lepT.DeltaPhi(had23);
+    b_ttfcnc_lepTjet31dphi = lepT.DeltaPhi(had31);
     b_ttfcnc_hadT_jet0dR = hadT.DeltaR(jetP4cor[0]);
 
   }
@@ -840,16 +905,23 @@ Bool_t makeTuple::Process(Long64_t entry)
 
     b_ttbkg_jet0pt = jetP4cor[0].Pt(); b_ttbkg_jet0eta = jetP4cor[0].Eta();
     b_ttbkg_jet0phi = jetP4cor[0].Phi(); b_ttbkg_jet0m = jetP4cor[0].M();
-    b_ttbkg_jet0csv = jet_deepCSV[jetIdx[0]]; b_ttbkg_jet0cvsl = jet_CvsL[jetIdx[0]]; b_ttbkg_jet0cvsb = jet_CvsB[jetIdx[0]];
+    b_ttbkg_jet0csv = jet_deepCSV[jetIdx[0]];
+    b_ttbkg_jet0cvsl = jet_deepCvsL[jetIdx[0]]; b_ttbkg_jet0cvsb = jet_deepCvsB[jetIdx[0]];
+
     b_ttbkg_jet1pt = jetP4cor[1].Pt(); b_ttbkg_jet1eta = jetP4cor[1].Eta();
     b_ttbkg_jet1phi = jetP4cor[1].Phi(); b_ttbkg_jet1m = jetP4cor[1].M();
-    b_ttbkg_jet1csv = jet_deepCSV[jetIdx[1]]; b_ttbkg_jet1cvsl = jet_CvsL[jetIdx[1]]; b_ttbkg_jet1cvsb = jet_CvsB[jetIdx[1]];
+    b_ttbkg_jet1csv = jet_deepCSV[jetIdx[1]];
+    b_ttbkg_jet1cvsl = jet_deepCvsL[jetIdx[1]]; b_ttbkg_jet1cvsb = jet_deepCvsB[jetIdx[1]];
+
     b_ttbkg_jet2pt = jetP4cor[2].Pt(); b_ttbkg_jet2eta = jetP4cor[2].Eta();
     b_ttbkg_jet2phi = jetP4cor[2].Phi(); b_ttbkg_jet2m = jetP4cor[2].M();
-    b_ttbkg_jet2csv = jet_deepCSV[jetIdx[2]]; b_ttbkg_jet2cvsl = jet_CvsL[jetIdx[2]]; b_ttbkg_jet2cvsb = jet_CvsB[jetIdx[2]];
+    b_ttbkg_jet2csv = jet_deepCSV[jetIdx[2]];
+    b_ttbkg_jet2cvsl = jet_deepCvsL[jetIdx[2]]; b_ttbkg_jet2cvsb = jet_deepCvsB[jetIdx[2]];
+
     b_ttbkg_jet3pt = jetP4cor[3].Pt(); b_ttbkg_jet3eta = jetP4cor[3].Eta();
     b_ttbkg_jet3phi = jetP4cor[3].Phi(); b_ttbkg_jet3m = jetP4cor[3].M();
-    b_ttbkg_jet3csv = jet_deepCSV[jetIdx[3]]; b_ttbkg_jet3cvsl = jet_CvsL[jetIdx[3]]; b_ttbkg_jet3cvsb = jet_CvsB[jetIdx[3]];
+    b_ttbkg_jet3csv = jet_deepCSV[jetIdx[3]];
+    b_ttbkg_jet3cvsl = jet_deepCvsL[jetIdx[3]]; b_ttbkg_jet3cvsb = jet_deepCvsB[jetIdx[3]];
 
     if( b_ttbkg_jet0csv < 0 ) b_ttbkg_jet0csv = 0; if( b_ttbkg_jet1csv < 0 ) b_ttbkg_jet1csv = 0;
     if( b_ttbkg_jet2csv < 0 ) b_ttbkg_jet2csv = 0; if( b_ttbkg_jet3csv < 0 ) b_ttbkg_jet3csv = 0;
@@ -860,35 +932,58 @@ Bool_t makeTuple::Process(Long64_t entry)
     const auto had31 = jetP4cor[3] + jetP4cor[1];
     const auto hadT = jetP4cor[1] + jetP4cor[2] + jetP4cor[3];
 
-    b_ttbkg_jet12pt = had12.Pt(); b_ttbkg_jet12eta = had12.Eta(); b_ttbkg_jet12phi = had12.Phi(); b_ttbkg_jet12m = had12.M();
-    b_ttbkg_jet12deta = (jetP4cor[1]-jetP4cor[2]).Eta(); b_ttbkg_jet12dphi = jetP4cor[1].DeltaPhi(jetP4cor[2]);
+    b_ttbkg_jet12pt = had12.Pt(); b_ttbkg_jet12eta = had12.Eta();
+    b_ttbkg_jet12phi = had12.Phi(); b_ttbkg_jet12m = had12.M();
+    b_ttbkg_jet12deta = (jetP4cor[1]-jetP4cor[2]).Eta();
+    b_ttbkg_jet12dphi = jetP4cor[1].DeltaPhi(jetP4cor[2]);
     b_ttbkg_jet12dR = jetP4cor[1].DeltaR(jetP4cor[2]);
 
-    b_ttbkg_jet23pt = had23.Pt(); b_ttbkg_jet23eta = had23.Eta(); b_ttbkg_jet23phi = had23.Phi(); b_ttbkg_jet23m = had23.M();
-    b_ttbkg_jet23deta = (jetP4cor[2]-jetP4cor[3]).Eta(); b_ttbkg_jet23dphi = jetP4cor[2].DeltaPhi(jetP4cor[3]);
+    b_ttbkg_jet23pt = had23.Pt(); b_ttbkg_jet23eta = had23.Eta();
+    b_ttbkg_jet23phi = had23.Phi(); b_ttbkg_jet23m = had23.M();
+    b_ttbkg_jet23deta = (jetP4cor[2]-jetP4cor[3]).Eta();
+    b_ttbkg_jet23dphi = jetP4cor[2].DeltaPhi(jetP4cor[3]);
     b_ttbkg_jet23dR = jetP4cor[2].DeltaR(jetP4cor[3]);
 
-    b_ttbkg_jet31pt = had31.Pt(); b_ttbkg_jet31eta = had31.Eta(); b_ttbkg_jet31phi = had31.Phi(); b_ttbkg_jet31m = had31.M();
-    b_ttbkg_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta(); b_ttbkg_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
+    b_ttbkg_jet31pt = had31.Pt(); b_ttbkg_jet31eta = had31.Eta();
+    b_ttbkg_jet31phi = had31.Phi(); b_ttbkg_jet31m = had31.M();
+    b_ttbkg_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta();
+    b_ttbkg_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
     b_ttbkg_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
-    b_ttbkg_lepTpt = lepT.Pt(); b_ttbkg_lepTeta = lepT.Eta(); b_ttbkg_lepTphi = lepT.Phi(); b_ttbkg_lepTm = lepT.M();
-    b_ttbkg_lepTdeta = (lepW-jetP4cor[0]).Eta(); b_ttbkg_lepTdphi = lepW.DeltaPhi(jetP4cor[0]); b_ttbkg_lepTdR = lepW.DeltaR(jetP4cor[0]);
+    b_ttbkg_lepTpt = lepT.Pt(); b_ttbkg_lepTeta = lepT.Eta();
+    b_ttbkg_lepTphi = lepT.Phi(); b_ttbkg_lepTm = lepT.M();
+    b_ttbkg_lepTdeta = (lepW-jetP4cor[0]).Eta();
+    b_ttbkg_lepTdphi = lepW.DeltaPhi(jetP4cor[0]);
+    b_ttbkg_lepTdR = lepW.DeltaR(jetP4cor[0]);
 
-    b_ttbkg_hadTpt = hadT.Pt(); b_ttbkg_hadTeta = hadT.Eta(); b_ttbkg_hadTphi = hadT.Phi(); b_ttbkg_hadTm = hadT.M();
-    b_ttbkg_hadT12_3deta = (had12-jetP4cor[3]).Eta(); b_ttbkg_hadT23_1deta = (had23-jetP4cor[1]).Eta();
-    b_ttbkg_hadT31_2deta = (had31-jetP4cor[2]).Eta(); b_ttbkg_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]);
-    b_ttbkg_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]); b_ttbkg_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
-    b_ttbkg_hadT12_3dR = had12.DeltaR(jetP4cor[3]); b_ttbkg_hadT23_1dR = had23.DeltaR(jetP4cor[1]); b_ttbkg_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
+    b_ttbkg_hadTpt = hadT.Pt(); b_ttbkg_hadTeta = hadT.Eta();
+    b_ttbkg_hadTphi = hadT.Phi(); b_ttbkg_hadTm = hadT.M();
+    b_ttbkg_hadT12_3deta = (had12-jetP4cor[3]).Eta();
+    b_ttbkg_hadT23_1deta = (had23-jetP4cor[1]).Eta();
+    b_ttbkg_hadT31_2deta = (had31-jetP4cor[2]).Eta();
+    b_ttbkg_hadT12_3dphi = had12.DeltaPhi(jetP4cor[3]);
+    b_ttbkg_hadT23_1dphi = had23.DeltaPhi(jetP4cor[1]);
+    b_ttbkg_hadT31_2dphi = had31.DeltaPhi(jetP4cor[2]);
+    b_ttbkg_hadT12_3dR = had12.DeltaR(jetP4cor[3]);
+    b_ttbkg_hadT23_1dR = had23.DeltaR(jetP4cor[1]);
+    b_ttbkg_hadT31_2dR = had31.DeltaR(jetP4cor[2]);
 
-    b_ttbkg_jet0lepdR = jetP4cor[0].DeltaR(lepton); b_ttbkg_jet1lepdR = jetP4cor[1].DeltaR(lepton);
-    b_ttbkg_jet2lepdR = jetP4cor[2].DeltaR(lepton); b_ttbkg_jet3lepdR = jetP4cor[3].DeltaR(lepton);
-    b_ttbkg_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]); b_ttbkg_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]);
-    b_ttbkg_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]); b_ttbkg_jet12_lepdR = lepton.DeltaR(had12);
-    b_ttbkg_jet23_lepdR = lepton.DeltaR(had23); b_ttbkg_jet31_lepdR = lepton.DeltaR(had31);
-    b_ttbkg_jet12_0dR = jetP4cor[0].DeltaR(had12); b_ttbkg_jet23_0dR = jetP4cor[0].DeltaR(had23);
-    b_ttbkg_jet31_0dR = jetP4cor[0].DeltaR(had31); b_ttbkg_lepTjet12dphi = lepT.DeltaPhi(had12);
-    b_ttbkg_lepTjet23dphi = lepT.DeltaPhi(had23); b_ttbkg_lepTjet31dphi = lepT.DeltaPhi(had31);
+    b_ttbkg_jet0lepdR = jetP4cor[0].DeltaR(lepton);
+    b_ttbkg_jet1lepdR = jetP4cor[1].DeltaR(lepton);
+    b_ttbkg_jet2lepdR = jetP4cor[2].DeltaR(lepton);
+    b_ttbkg_jet3lepdR = jetP4cor[3].DeltaR(lepton);
+    b_ttbkg_jet01dR = jetP4cor[0].DeltaR(jetP4cor[1]);
+    b_ttbkg_jet02dR = jetP4cor[0].DeltaR(jetP4cor[2]);
+    b_ttbkg_jet03dR = jetP4cor[0].DeltaR(jetP4cor[3]);
+    b_ttbkg_jet12_lepdR = lepton.DeltaR(had12);
+    b_ttbkg_jet23_lepdR = lepton.DeltaR(had23);
+    b_ttbkg_jet31_lepdR = lepton.DeltaR(had31);
+    b_ttbkg_jet12_0dR = jetP4cor[0].DeltaR(had12);
+    b_ttbkg_jet23_0dR = jetP4cor[0].DeltaR(had23);
+    b_ttbkg_jet31_0dR = jetP4cor[0].DeltaR(had31);
+    b_ttbkg_lepTjet12dphi = lepT.DeltaPhi(had12);
+    b_ttbkg_lepTjet23dphi = lepT.DeltaPhi(had23);
+    b_ttbkg_lepTjet31dphi = lepT.DeltaPhi(had31);
     b_ttbkg_hadT_jet0dR = hadT.DeltaR(jetP4cor[0]);
 
   }

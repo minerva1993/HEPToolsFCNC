@@ -79,16 +79,17 @@ for syst_tmp in syst + syst2:
       string_for_merge += "mv temp/hist_TTpowhegttother_0" + str(num) + syst_tmp + ".root temp/not_using\n"
   elif era == '2018':
     for num in range(0,4): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    string_for_merge += "mv temp/hist_STTH1L3BHct_004*" + syst_tmp + ".root temp/not_using\n"
     for num in range(0,2): string_for_merge += "mv temp/hist_TTTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
     for num in range(0,5): string_for_merge += "mv temp/hist_TTLL*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    for num in range(0,4):
+    for num in range(0,3):
       string_for_merge += "mv temp/hist_TTpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
       string_for_merge += "mv temp/hist_TTpowhegttbj_00" + str(num) + syst_tmp + ".root temp/not_using\n"
       string_for_merge += "mv temp/hist_TTpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
     for num in range(0,10):
       string_for_merge += "mv temp/hist_TTpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
       string_for_merge += "mv temp/hist_TTpowhegttother_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    for num in range(10,16):
+    for num in range(10,12):
       string_for_merge += "mv temp/hist_TTpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
       string_for_merge += "mv temp/hist_TTpowhegttother_0" + str(num) + syst_tmp + ".root temp/not_using\n"
 

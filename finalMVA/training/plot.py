@@ -1,4 +1,4 @@
-import os
+import os, sys
 from ROOT import TStyle, TF1, TFile, TCanvas, gDirectory, TTree, TH1D, TH1F, THStack, TLegend, gROOT, TColor
 import ROOT
 from style import *
@@ -16,7 +16,8 @@ label.SetY1NDC(1.0-gStyle.GetPadTopMargin())
 label.SetX2NDC(1.0-gStyle.GetPadRightMargin()+0.03)
 label.SetY2NDC(1.0)
 label.SetTextFont(62)
-label.AddText("Work in Progress        CMS, 41.5 fb^{-1} at #sqrt{s} = 13 TeV")
+if   era == "2017": label.AddText("Work in Progress        CMS, 41.5 fb^{-1} at #sqrt{s} = 13 TeV")
+elif era == "2018": label.AddText("Work in Progress        CMS, 59.7 fb^{-1} at #sqrt{s} = 13 TeV")
 label.SetFillStyle(0)
 label.SetBorderSize(0)
 label.SetTextSize(0.035)
@@ -46,15 +47,19 @@ for ch in ['Hct','Hut']:
     for i in ['01']:
       ver = str(i)
       out = TFile.Open(era + '/final_'+ch+'_'+jetcat+'_'+ver+'/output_'+ch+'_'+jetcat+'.root')
+
+      if   era == "2017": tmp = ''
+      elif era == "2018": tmp = '2018/'
+
       for method in ['BDT']:
-        trainS = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_Train_S')
-        trainB = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_Train_B')
-        testS = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_S')
-        testB = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_B')
-        corrS = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/CorrelationMatrixS')
-        corrB = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/CorrelationMatrixB')
-        if method == 'BDT': rocBDT = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_BDT_rejBvsS')
-        elif method == 'Keras_TF': rocKeras = out.Get('final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_Keras_TF_rejBvsS')
+        trainS = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_Train_S')
+        trainB = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_Train_B')
+        testS = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_S')
+        testB = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_'+method+'_B')
+        corrS = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/CorrelationMatrixS')
+        corrB = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/CorrelationMatrixB')
+        if method == 'BDT': rocBDT = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_BDT_rejBvsS')
+        elif method == 'Keras_TF': rocKeras = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_Keras_TF_rejBvsS')
 
         if jetcat == 'j4b4':
           trainS.Rebin(2)
@@ -96,7 +101,7 @@ for ch in ['Hct','Hut']:
         label2.Draw('same')
         l.Draw('same')
         testS.Draw('axis same')
-        c1.Print('bdt_plots/overtrain_'+ch+'_'+jetcat+'_'+method+'.pdf')
+        c1.Print(era+'/bdt_plots/overtrain_'+ch+'_'+jetcat+'_'+method+'.pdf')
         l.Clear()
         label2.Clear()
         c1.Clear()
@@ -116,7 +121,7 @@ for ch in ['Hct','Hut']:
       c1.SetGrid(1,1)
       corrS.Draw('colz')
       label.Draw('same')
-      #c1.Print('bdt_plots/corr_'+ch+'_'+jetcat+'_sig.pdf')
+      #c1.Print(era+'bdt_plots/corr_'+ch+'_'+jetcat+'_sig.pdf')
       c1.Clear()
 
       corrB.SetTitle('')
@@ -130,7 +135,7 @@ for ch in ['Hct','Hut']:
       c1.SetGrid(1,1)
       corrS.Draw('colz')
       label.Draw('same')
-      #c1.Print('bdt_plots/corr_'+ch+'_'+jetcat+'_bkg.pdf')
+      #c1.Print(era+'bdt_plots/corr_'+ch+'_'+jetcat+'_bkg.pdf')
       c1.Clear()
 
 
@@ -158,4 +163,4 @@ for ch in ['Hct','Hut']:
       #rocKeras.Draw('hist same l')
       label.Draw('same')
       l2.Draw('same')
-      #c1.Print('bdt_plots/roc_'+ch+'_'+jetcat+'.pdf')
+      #c1.Print(era+'bdt_plots/roc_'+ch+'_'+jetcat+'.pdf')

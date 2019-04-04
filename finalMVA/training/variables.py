@@ -121,6 +121,7 @@ def train_files(ch, era):
     if ch == "Hct":
       sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_STTH1L3BHct_001.h5',
              'finalMVA_STTH1L3BHct_002.h5', 'finalMVA_STTH1L3BHct_003.h5',
+             'finalMVA_STTH1L3BHct_004.h5',
              'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',
              'finalMVA_TTTH1L3BaTLepHct_001.h5', 'finalMVA_TTTH1L3BTLepHct_001.h5',
             ]
@@ -140,9 +141,7 @@ def train_files(ch, era):
           'finalMVA_TTpowhegttlf_001.h5', 'finalMVA_TTpowhegttother_001.h5',
           'finalMVA_TTpowhegttbb_002.h5', 'finalMVA_TTpowhegttbj_002.h5', 'finalMVA_TTpowhegttcc_002.h5',
           'finalMVA_TTpowhegttlf_002.h5', 'finalMVA_TTpowhegttother_002.h5',
-          'finalMVA_TTpowhegttbb_003.h5', 'finalMVA_TTpowhegttbj_003.h5', 'finalMVA_TTpowhegttcc_003.h5',
           'finalMVA_TTpowhegttlf_003.h5', 'finalMVA_TTpowhegttother_003.h5',
-          'finalMVA_TTpowhegttbb_004.h5', 'finalMVA_TTpowhegttbj_004.h5', 'finalMVA_TTpowhegttcc_004.h5',
           'finalMVA_TTpowhegttlf_004.h5', 'finalMVA_TTpowhegttother_004.h5',
           'finalMVA_TTpowhegttlf_005.h5', 'finalMVA_TTpowhegttother_005.h5',
           'finalMVA_TTpowhegttlf_006.h5', 'finalMVA_TTpowhegttother_006.h5',
@@ -151,19 +150,9 @@ def train_files(ch, era):
           'finalMVA_TTpowhegttlf_009.h5', 'finalMVA_TTpowhegttother_009.h5',
           'finalMVA_TTpowhegttlf_010.h5', 'finalMVA_TTpowhegttother_010.h5',
           'finalMVA_TTpowhegttlf_011.h5', 'finalMVA_TTpowhegttother_011.h5',
-          'finalMVA_TTpowhegttlf_012.h5', 'finalMVA_TTpowhegttother_012.h5',
-          'finalMVA_TTpowhegttlf_013.h5', 'finalMVA_TTpowhegttother_013.h5',
-          'finalMVA_TTpowhegttlf_014.h5', 'finalMVA_TTpowhegttother_014.h5',
-          'finalMVA_TTpowhegttlf_015.h5', 'finalMVA_TTpowhegttother_015.h5',
-          'finalMVA_TTpowhegttlf_016.h5', 'finalMVA_TTpowhegttother_016.h5',
-          'finalMVA_TTpowhegttlf_017.h5', 'finalMVA_TTpowhegttother_017.h5',
-          'finalMVA_TTpowhegttlf_018.h5', 'finalMVA_TTpowhegttother_018.h5',
-          'finalMVA_TTpowhegttlf_019.h5', 'finalMVA_TTpowhegttother_019.h5',
           'finalMVA_TTLLpowheg_000.h5', 'finalMVA_TTLLpowheg_001.h5',
           'finalMVA_TTLLpowheg_002.h5', 'finalMVA_TTLLpowheg_003.h5',
-          'finalMVA_TTLLpowheg_004.h5', 'finalMVA_TTLLpowheg_005.h5',
-          'finalMVA_TTLLpowheg_006.h5', 'finalMVA_TTLLpowheg_007.h5',
-          'finalMVA_TTLLpowheg_008.h5', 'finalMVA_TTLLpowheg_009.h5',
+          'finalMVA_TTLLpowheg_004.h5',
           ]
 
   return sig, bkg
@@ -287,7 +276,7 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
     var_list.extend(['ttfcnc_jet0pt', 'ttfcnc_jet0eta', 'ttfcnc_jet0m', 'ttfcnc_jet0csv',
                     'ttfcnc_jet1pt', 'ttfcnc_jet1eta', 'ttfcnc_jet1m',  'ttfcnc_jet1csv',
                     'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m',  'ttfcnc_jet2csv',
-                    'ttfcnc_jet3pt', 'ttfcnc_jet3eta', 'ttfcnc_jet3m',  'ttfcnc_jet3csv'
+                    'ttfcnc_jet3pt', 'ttfcnc_jet3eta', 'ttfcnc_jet3m',  'ttfcnc_jet3csv',
                     'ttfcnc_jet12pt', 'ttfcnc_jet12eta', 'ttfcnc_jet12deta',
                     'ttfcnc_jet12dphi', 'ttfcnc_jet12dR', 'ttfcnc_jet12m',
                     'ttfcnc_jet23pt', 'ttfcnc_jet23eta','ttfcnc_jet23deta',

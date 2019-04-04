@@ -27,7 +27,7 @@ ver = sys.argv[3]
 era = sys.argv[4]
 
 #Options
-input_only = False
+input_only = True
 multiGPU = True
 if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
   multiGPU = False
@@ -60,7 +60,9 @@ input_features.extend(input_variables(jetcat))
 #input_features.extend(input_variables_bdt(jetcat))
 input_features.append(label_name)
 sig_files, bkg_files = train_files(ch, era)
-scaleST, scaleTT, scaleTTLJ, scaleTTLL, frac_sig, frac_bkg = evalScale(ch, era, sig_files, bkg_files)
+if not input_only:
+  scaleST, scaleTT, scaleTTLJ, scaleTTLL, frac_sig, frac_bkg = evalScale(ch, era, sig_files, bkg_files)
+else: scaleST=1.0; scaleTT=1.0; scaleTTLJ=1.0; scaleTTLL=1.0; frac_sig=1.0; frac_bkg=1.0
 input_features.remove('STTT')
 input_features.remove('channel')
 

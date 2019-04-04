@@ -6,6 +6,7 @@ import glob
 import pandas as pd
 import deepdish.io as io
 gROOT.SetBatch(True)
+gROOT.ProcessLine("gErrorIgnoreLevel = kFatal;")
 
 #Channel and version
 if len(sys.argv) < 3:
