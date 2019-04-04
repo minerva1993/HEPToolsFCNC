@@ -7,7 +7,7 @@ configuration:
   extra-label: "Work in Progress"
   root: ''
   luminosity: 59741
-  #luminosity-error: 0.023
+  luminosity-error: 0.023
   luminosity-error: 0.0
   error-fill-style: 3154
   error-fill-color: "#ee556270"
@@ -24,80 +24,80 @@ files:
   include: ['files_2018.yml']
 
 systematics:
-#  - ttbb_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbb.root'}
-#  - ttbj_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbj.root'}
-#  - ttcc_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttcc.root'}
-#  - ttlf_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttlf.root'}
-#  - ttother_xsec:  {type: const, value: 1.055, on: 'hist_TTpowhegttother.root'}
-#  - ttll_xsec:     {type: const, value: 1.055, on: 'hist_TTLLpowheg.root'}
-#  - tthad_xsec:    {type: const, value: 1.055, on: 'hist_TTHadpowheg.root'}
-#  - ttbb_xsec2:    {type: const, value: 1.3, on: 'hist_TTpowhegttbb.root'}
-#  - ttcc_xsec2:    {type: const, value: 1.5, on: 'hist_TTpowhegttcc.root'}
-#  - other_xsec1:   {type: const, value: 1.1, on: 'hist_DYJetsv2.root'}
-#  - other_xsec2:   {type: const, value: 1.1, on: 'hist_DYJets10to50.root'}
-#  - other_xsec3:   {type: const, value: 1.1, on: 'hist_W1JetsToLNu.root'}
-#  - other_xsec4:   {type: const, value: 1.1, on: 'hist_W2JetsToLNu.root'}
-#  - other_xsec5:   {type: const, value: 1.1, on: 'hist_W3JetsToLNu.root'}
-#  - other_xsec6:   {type: const, value: 1.1, on: 'hist_W4JetsToLNu.root'}
-#  - other_xsec7:   {type: const, value: 1.1, on: 'hist_SingleTops.root'}
-#  - other_xsec8:   {type: const, value: 1.1, on: 'hist_SingleTopt.root'}
-#  - other_xsec9:   {type: const, value: 1.1, on: 'hist_SingleTbart.root'}
-#  - other_xsec10:  {type: const, value: 1.1, on: 'hist_SingleToptW.root'}
-#  - other_xsec11:  {type: const, value: 1.1, on: 'hist_SingleTbartW.root'}
-#  - other_xsec12:  {type: const, value: 1.1, on: 'hist_WW.root'}
-#  - other_xsec13:  {type: const, value: 1.1, on: 'hist_WZ.root'}
-#  - other_xsec14:  {type: const, value: 1.1, on: 'hist_ZZ.root'}
-#  - other_xsec15:  {type: const, value: 1.1, on: 'hist_ttHTobb.root'}
-#  - other_xsec16:  {type: const, value: 1.1, on: 'hist_ttHToNonbb.root'}
-#  - other_xsec17:  {type: const, value: 1.1, on: 'hist_TTWJetsToLNuPSweight.root'}
-#  - other_xsec18:  {type: const, value: 1.1, on: 'hist_TTWJetsToQQ.root'}
-#  - other_xsec19:  {type: const, value: 1.1, on: 'hist_TTZToLLNuNu.root'}
-#  - other_xsec20:  {type: const, value: 1.1, on: 'hist_TTZToQQ.root'}
-#  - pu
-#  - muid
-#  - muiso
-#  - mutrg
-#  - elid
-#  - elreco
-#  - elzvtx
-#  - eltrg
-#  - jec
-#  - jer
-#  - scale: {type: shape, on: 'hist_TTpowhegttbb.root'}
-#  - scale: {type: shape, on: 'hist_TTpowhegttbj.root'}
-#  - scale: {type: shape, on: 'hist_TTpowhegttcc.root'}
-#  - scale: {type: shape, on: 'hist_TTpowhegttlf.root'}
-#  - scale: {type: shape, on: 'hist_TTpowhegttother.root'}
-#  - scale: {type: shape, on: 'hist_TTLLpowheg.root'}
-#  - scale: {type: shape, on: 'hist_TTHadpowheg.root'}
-#  - ps: {type: shape, on: 'hist_TTpowhegttbb.root'}
-#  - ps: {type: shape, on: 'hist_TTpowhegttbj.root'}
-#  - ps: {type: shape, on: 'hist_TTpowhegttcc.root'}
-#  - ps: {type: shape, on: 'hist_TTpowhegttlf.root'}
-#  - ps: {type: shape, on: 'hist_TTpowhegttother.root'}
-#  - ps: {type: shape, on: 'hist_TTLLpowheg.root'}
-#  - ps: {type: shape, on: 'hist_TTHadpowheg.root'}
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttbb.root'}
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttbj.root'}
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttcc.root'}
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttlf.root'}
-#  - hdamp: {type: shape, on: 'hist_TTpowhegttother.root'}
-#  - hdamp: {type: shape, on: 'hist_TTLLpowheg.root'}
-#  - hdamp: {type: shape, on: 'hist_TTHadpowheg.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttbj.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttother.root'}
-#  - pdf: {type: shape, on: 'hist_TTLLpowheg.root'}
-#  - pdf: {type: shape, on: 'hist_TTHadpowheg.root'}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbb.root'}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbj.root'}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttcc.root'}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttlf.root'}
-#  - TuneCP5: {type: shape, on: 'hist_TTpowhegttother.root'}
-#  - TuneCP5: {type: shape, on: 'hist_TTLLpowheg.root'}
-#  - TuneCP5: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - ttbb_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbb.root'}
+  - ttbj_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbj.root'}
+  - ttcc_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttcc.root'}
+  - ttlf_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttlf.root'}
+  - ttother_xsec:  {type: const, value: 1.055, on: 'hist_TTpowhegttother.root'}
+  - ttll_xsec:     {type: const, value: 1.055, on: 'hist_TTLLpowheg.root'}
+  - tthad_xsec:    {type: const, value: 1.055, on: 'hist_TTHadpowheg.root'}
+  - ttbb_xsec2:    {type: const, value: 1.3, on: 'hist_TTpowhegttbb.root'}
+  - ttcc_xsec2:    {type: const, value: 1.5, on: 'hist_TTpowhegttcc.root'}
+  - other_xsec1:   {type: const, value: 1.1, on: 'hist_DYJetsv2.root'}
+  - other_xsec2:   {type: const, value: 1.1, on: 'hist_DYJets10to50.root'}
+  - other_xsec3:   {type: const, value: 1.1, on: 'hist_W1JetsToLNu.root'}
+  - other_xsec4:   {type: const, value: 1.1, on: 'hist_W2JetsToLNu.root'}
+  - other_xsec5:   {type: const, value: 1.1, on: 'hist_W3JetsToLNu.root'}
+  - other_xsec6:   {type: const, value: 1.1, on: 'hist_W4JetsToLNu.root'}
+  - other_xsec7:   {type: const, value: 1.1, on: 'hist_SingleTops.root'}
+  - other_xsec8:   {type: const, value: 1.1, on: 'hist_SingleTopt.root'}
+  - other_xsec9:   {type: const, value: 1.1, on: 'hist_SingleTbart.root'}
+  - other_xsec10:  {type: const, value: 1.1, on: 'hist_SingleToptW.root'}
+  - other_xsec11:  {type: const, value: 1.1, on: 'hist_SingleTbartW.root'}
+  - other_xsec12:  {type: const, value: 1.1, on: 'hist_WW.root'}
+  - other_xsec13:  {type: const, value: 1.1, on: 'hist_WZ.root'}
+  - other_xsec14:  {type: const, value: 1.1, on: 'hist_ZZ.root'}
+  - other_xsec15:  {type: const, value: 1.1, on: 'hist_ttHTobb.root'}
+  - other_xsec16:  {type: const, value: 1.1, on: 'hist_ttHToNonbb.root'}
+  - other_xsec17:  {type: const, value: 1.1, on: 'hist_TTWJetsToLNuPSweight.root'}
+  - other_xsec18:  {type: const, value: 1.1, on: 'hist_TTWJetsToQQ.root'}
+  - other_xsec19:  {type: const, value: 1.1, on: 'hist_TTZToLLNuNu.root'}
+  - other_xsec20:  {type: const, value: 1.1, on: 'hist_TTZToQQ.root'}
+  - pu
+  - muid
+  - muiso
+  - mutrg
+  - elid
+  - elreco
+  - elzvtx
+  - eltrg
+  - jec
+  - jer
+  - scale: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - scale: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - scale: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - scale: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - scale: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - scale: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - scale: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - ps: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - ps: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - ps: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - hdamp: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - hdamp: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - hdamp: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - pdf: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - pdf: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbj.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTpowhegttother.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTLLpowheg.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTHadpowheg.root'}
 #  - lf
 #  - hf
 #  - lfstat1
@@ -108,17 +108,17 @@ systematics:
 #  - cferr2
 
 plots:
-  include: ['histos_control.yml']
+#  include: ['histos_control.yml']
 #  include: ['histos_stfcnc.yml']
 #  include: ['histos_nopuSF.yml']
 #  include: ['histos_nobSF.yml']
 #  include: ['histos_ttfcnc.yml']
 #  include: ['histos_ttbkg.yml']
-#  include: ['histos_dnn.yml'] #FIXME change legend as well
+  include: ['histos_dnn.yml'] #FIXME change legend as well
 
 legend:
-  position: [0.18, 0.68, 0.92, 0.89]
-#  position: [0.18, 0.73, 0.92, 0.89] #For DNN
+#  position: [0.18, 0.68, 0.92, 0.89]
+  position: [0.18, 0.73, 0.92, 0.89] #For DNN
   columns: 5
 
 groups:

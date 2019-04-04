@@ -2,6 +2,7 @@
 from ROOT import *
 import os, sys
 gROOT.SetBatch(True)
+gROOT.ProcessLine("gErrorIgnoreLevel = kFatal;")
 
 test = os.listdir("./doNoReco")
 dupl = False

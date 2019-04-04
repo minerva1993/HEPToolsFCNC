@@ -2,6 +2,7 @@
 from ROOT import *
 import os, sys
 gROOT.SetBatch(True)
+gROOT.ProcessLine("gErrorIgnoreLevel = kFatal;")
 
 #Channel and version
 if len(sys.argv) < 4:
@@ -43,7 +44,7 @@ def runAna(file_path, name):
     else:              postfix = "__"
 
     f = TFile.Open(file_path, "READ")
-    out = TFile("doReco/temp/hist_" + name.replace("-" + reco_scheme,"") + postfix + syst_ext + ".root","update")
+    out = TFile("doReco/temp/hist_" + name.replace("-" + era + reco_scheme,"") + postfix + syst_ext + ".root","update")
     hevt = f.Get("fcncLepJets/EventInfo")
     hevt.Write()
     hscale = f.Get("fcncLepJets/ScaleWeights")

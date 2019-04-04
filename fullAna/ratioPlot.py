@@ -181,12 +181,12 @@ if era == "2017":
   #AddBkg("hist_QCDMu300to470.root","QCD",ROOT.kGray, 797.4)
   #AddBkg("hist_QCDMu470to600.root","QCD",ROOT.kGray, 79)
   #AddBkg("hist_QCDMu1000toInf.root","QCD",ROOT.kGray, 1.6)
-  #AddHut("hist_TTTH1L3BHut.root", "Hut", 401, 1.86)
-  #AddHct("hist_TTTH1L3BHct.root", "Hct", 433, 1.86)
-  AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 0.93)
-  AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 0.93)
-  AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 0.93)
-  AddHct("hist_TTTH1L3BTLepHct.root", "Hct", 433, 0.93) 
+  AddHut("hist_TTTH1L3BHut.root", "Hut", 401, 1.86)
+  AddHct("hist_TTTH1L3BHct.root", "Hct", 433, 1.86)
+  #AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 0.93)
+  #AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 0.93)
+  #AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 0.93)
+  #AddHct("hist_TTTH1L3BTLepHct.root", "Hct", 433, 0.93) 
   AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 0.55)#13.84*0.04
   AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 0.076)#1.9*0.04
 
@@ -240,10 +240,12 @@ elif era == "2018":
   #AddBkg("hist_QCDMu1000toInf.root","QCD",ROOT.kGray, 1.6)
   #AddHut("hist_TTTH1L3BHut.root", "Hut", 401, 1.86)
   #AddHct("hist_TTTH1L3BHct.root", "Hct", 433, 1.86)
-  AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 0.93)
-  AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 0.93)
-  AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 0.93)
-  AddHct("hist_TTTH1L3BTLepHct.root", "Hct", 433, 0.93) 
+#  AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 0.93)
+#  AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 0.93)
+#  AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 0.93)
+#  AddHct("hist_TTTH1L3BTLepHct.root", "Hct", 433, 0.93)
+  AddHut("hist_TTTH1L3BHut.root", "Hut", 401, 1.86)
+  AddHct("hist_TTTH1L3BHct.root", "Hct", 433, 1.86)
   AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 0.55)#13.84*0.04
   AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 0.076)#1.9*0.04
 else:

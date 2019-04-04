@@ -20,7 +20,7 @@ configuration:
   yields-table-numerical-precision-yields: 2
 
 files: 
-  include: ['files.yml']
+  include: ['files_2017.yml']
 
 systematics:
   - ttbb_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbb.root'}

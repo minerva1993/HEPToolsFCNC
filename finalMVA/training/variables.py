@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 base_path17 = "/data/users/minerva1993/ntuple_Run2017/V9_5/190117/production"
-base_path18 = "/data/users/minerva1993/ntuple_Run2018/V10_0/190212/production"
+base_path18 = "/data/users/minerva1993/ntuple_Run2018/V10_1/190318/production"
 
 def input_variables(jetcat):
  

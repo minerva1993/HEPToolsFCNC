@@ -161,7 +161,7 @@
   cross-section: 0.2934
   generated-events: 7833734
   fill-color: '#ff66ff'
-  legend: 'ttV'
+  legend: 'ttV/H'
   group: GttV
   yields-group: '5Other'
   order: 7
@@ -172,7 +172,7 @@
   cross-section: 0.2151
   generated-events: 7814711
   fill-color: '#ff66ff'
-  legend: 'ttV'
+  legend: 'ttV/H'
   group: GttV
   yields-group: '5Other'
   order: 8
@@ -183,7 +183,7 @@
   cross-section: 0.2043 
   generated-events: 2686141
   fill-color: '#ff66ff'
-  legend: 'ttV'
+  legend: 'ttV/H'
   group: GttV
   yields-group: '5Other'
   order: 9
@@ -194,7 +194,7 @@
   cross-section: 0.4062
   generated-events: 441560
   fill-color: '#ff66ff'
-  legend: 'ttV'
+  legend: 'ttV/H'
   group: GttV
   yields-group: '5Other'
   order: 10
@@ -205,7 +205,7 @@
   cross-section: 0.2529
   generated-events: 3570720
   fill-color: '#ff66ff'
-  legend: 'ttV'
+  legend: 'ttV/H'
   group: GttV
   yields-group: '5Other'
   order: 11
@@ -216,7 +216,7 @@
   cross-section: 0.5297
   generated-events: 356286
   fill-color: '#ff66ff'
-  legend: 'ttV'
+  legend: 'ttV/H'
   group: GttV
   yields-group: '5Other'
   order: 12

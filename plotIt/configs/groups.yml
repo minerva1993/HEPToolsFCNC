@@ -9,7 +9,7 @@ GttBkg:
   legend: 'ttBkg'
 GttV:
   fill-color: '#ff66ff'
-  legend: 'ttV'
+  legend: 'ttV/H'
 GZJets:
   fill-color: '#000099'
   legend: 'ZJets'

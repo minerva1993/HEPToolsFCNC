@@ -32,9 +32,11 @@ python dir_manage.py #make directories
 source compile.sh
 source job_ntuple.sh
 python dir_manage.py #check number of generated files
+
 #Launch training
 cd ../training
 python training_kerasTF.py STFCNC 01 2017
+
 #With classifier, run prediction. In evlauation, you can assign sytematic from 0 to 6
 cd ..
 python select_model.py STFCNC 01 2017
@@ -44,6 +46,7 @@ python evaluation_kerasTF.py STFCNC 01 2017 True 1 model.h5
 cat ../commonTools/file_2017_top.txt | xargs -i -P1 -n2 python combi_assign.py STFCNC 01 2017 True #for signal efficiency
 cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python combi_assign.py STFCNC 01 2017 False
 #cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python nohup combi_assign.py STFCNC 01 2017 False > log &
+
 #Plot histograms with reconstruction
 cd ../fullAna/
 source compile.sh
@@ -54,10 +57,11 @@ source job_merge.sh
 python do_post_process.py
 mkdir STFCNC01
 mkdir figures
-mv post_process pre_process temp 2017STFCNC01
+mv post_process pre_process temp STFCNC01
+mv STFCNC01 2017
 #python ratioEMuCombine.py
-cd STFCNC01/post_process
-../../../../plotIt/plotIt -o ../figures/ ../../../../plotIt/configs/config_2017.yml -y
+cd 2017/STFCNC01/post_process
+../../../../../plotIt/plotIt -o ../figures/ ../../../../../plotIt/configs/config_2017.yml -y
 ```
   *Final MVA
 ```{.Bash}
@@ -77,8 +81,8 @@ python do_post_process.py
 mkdir Hct_j4_01
 mv post_process pre_process temp Hct_j3b2_01
 ...
-python merge_histos.py Hct 01 2017 01 01 01 01 01
-../../../../plotIt/plotIt -o ../ ../../../../plotIt/configs/config_2017.yml -y
+python merge_histos.py Hct 2017 01 01 01 01 01 01
+../../../../../../plotIt/plotIt -o ../ ../../../../../../plotIt/configs/config_2017.yml -y
 ```
 If you use BDT,
 ```{.Bash}
