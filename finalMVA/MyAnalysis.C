@@ -196,6 +196,11 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }
   //if( passmuon || passelectron ){
 
+  float bWP_M;
+  if      ( era == 2017 ) bWP_M = 0.4941;
+  else if ( era == 2018 ) bWP_M = 0.4184;
+  else                    bWP_M = 0.0;
+
   int jetIdx[4];
   TLorentzVector jetP4s[4];
 
@@ -214,7 +219,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
     if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
       njets++;
-      if( jet_deepCSV[iJet] > 0.4941 ) nbjets_m++;
+      if( jet_deepCSV[iJet] > bWP_M ) nbjets_m++;
     }
   }
 
@@ -241,6 +246,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
     dupCheck.push_back(evtIdx);
     //cout << evtIdx << endl;
+    //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
 
     scoreT->GetEntry(evtIdx);
     tmp_score = scoreT->GetLeaf("MLScore")->GetValue(0);

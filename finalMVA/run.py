@@ -2,6 +2,7 @@
 from ROOT import *
 import os, sys
 gROOT.SetBatch(True)
+gROOT.ProcessLine("gErrorIgnoreLevel = kFatal;")
 
 #Channel and version
 if len(sys.argv) < 4:
@@ -22,10 +23,10 @@ if not os.path.exists("./histos/temp"):
   os.makedirs("./histos/temp")
 test = os.listdir("./histos/temp")
 dupl = False
-for item in test:
-  if item.endswith(name + ".root"):
-    dupl = True
-if dupl == True: print 'Previous verion of histogram root file exists!! Please remove them first.'
+#for item in test:
+#  if item.endswith(name + ".root"):
+#    dupl = True
+#if dupl == True: print 'Previous verion of histogram root file exists!! Please remove them first.'
 
 def runAna(file_path, name):
   print 'processing ' + file_path.split('/')[-2] + '/' + file_path.split('/')[-1]
@@ -48,7 +49,7 @@ def runAna(file_path, name):
 
     f = TFile.Open(file_path, "READ")
     #out = TFile("histos/" + train_scheme + "/hist_" + name.replace("-" + train_scheme,"") + postfix + syst_ext + ".root","update")
-    out = TFile("histos/temp/hist_" + name.replace("-" + train_scheme,"") + postfix + syst_ext + ".root","update")
+    out = TFile("histos/temp/hist_" + name.replace("-" + era+train_scheme,"") + postfix + syst_ext + ".root","update")
     hevt = f.Get("fcncLepJets/EventInfo")
     hevt.Write()
     hscale = f.Get("fcncLepJets/ScaleWeights")

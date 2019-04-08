@@ -16,23 +16,23 @@
   legend: 'TTHct'
   order: 2
 
-'hist_STTH1L3BHut.root':
-  type: signal
-  pretty-name: 'STTH1L3BHut'
-  cross-section: 0.55
-  generated-events: 3199740 #3848532
-  line-color: '#666600'
-  legend: 'STHut'
-  order: 3
-
-'hist_TTTH1L3BHut.root':
-  type: signal
-  pretty-name: 'TTTH1L3BHut'
-  cross-section: 1.86
-  generated-events: 1579213 #1922868
-  line-color: '#cccc00'
-  legend: 'TTHut'
-  order: 4
+#'hist_STTH1L3BHut.root':
+#  type: signal
+#  pretty-name: 'STTH1L3BHut'
+#  cross-section: 0.55
+#  generated-events: 3199740 #3848532
+#  line-color: '#666600'
+#  legend: 'STHut'
+#  order: 3
+#
+#'hist_TTTH1L3BHut.root':
+#  type: signal
+#  pretty-name: 'TTTH1L3BHut'
+#  cross-section: 1.86
+#  generated-events: 1579213 #1922868
+#  line-color: '#cccc00'
+#  legend: 'TTHut'
+#  order: 4
 
 'hist_SingleMuonRun2018.root':
   type: data
