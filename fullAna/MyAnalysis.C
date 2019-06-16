@@ -302,6 +302,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   fReader.SetEntry(entry);
   TString option = GetOption();
 
+  bool doQCDEst = false;
+
   int era = 0;
   TString current_file_name = MyAnalysis::fReader.GetTree()->GetCurrentFile()->GetName();
   if     ( current_file_name.Contains("2017") ) era = 2017;
@@ -389,6 +391,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   if( makeIso && !isIso ) return kTRUE;
   if( !makeIso && isIso ) return kTRUE;
 
+  if( doQCDEst && !isQCD ) return kTRUE;
+
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
   bool passelectron = (mode == 1) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
@@ -454,6 +458,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       if( jet_deepCvsL[iJet] > cvslWP_M && jet_deepCvsB[iJet] > cvsbWP_M ) ncjets_m++;
     }
   }
+
+  //if( doQCDEst && (njets >= 3 || njets == 0) ) return kTRUE;
+  //if( doQCDEst && nbjets_m >= 2 ) return kTRUE;
 
   TLorentzVector hbjet1, hbjet2, genH;
   if( option.Contains("Hct") || option.Contains("Hut") ){

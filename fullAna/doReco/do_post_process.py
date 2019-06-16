@@ -107,6 +107,9 @@ for files in file_list:
 
   #Creat output file, in post_process folder
   post_path = os.path.join(base_path, "post_process")
+  if os.path.exists(os.path.join(post_path, files)):
+    print files + " exists!"
+    continue
   f_new = TFile.Open( os.path.join(post_path, files), "RECREATE")
 
   #Store nominal names, drop scale vars.

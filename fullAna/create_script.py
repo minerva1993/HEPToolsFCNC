@@ -127,6 +127,8 @@ for ttsig in fcnc_dataset:
     if ch not in ttsig: continue
     for syst_ext in syst + syst2:
       string_for_merge += "hadd pre_process/hist_TTTH1L3B" + ch + syst_ext + ".root temp/hist_TTTH*" + ch + "_*[0-9]" + syst_ext + ".root\n"
+      string_for_merge += "hadd pre_process/hist_TTTH1L3BTLep" + ch + syst_ext + ".root temp/hist_TTTH1L3BTLep" + ch + "_*[0-9]" + syst_ext + ".root\n"
+      string_for_merge += "hadd pre_process/hist_TTTH1L3BaTLep" + ch + syst_ext + ".root temp/hist_TTTH1L3BaTLep" + ch + "_*[0-9]" + syst_ext + ".root\n"
 
 if os.path.exists('doReco/' + merge_file_name): os.remove('doReco/' + merge_file_name)
 with open('doReco/' + merge_file_name, 'w') as g:
