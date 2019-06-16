@@ -5,6 +5,8 @@ Before start, make sure the nuples are located in correct place and update the p
   * Making file lists, ntuple merge script,  and overall PU weight
 ```{.Bash}
 cd HEPToolsFCNC/commonTools
+python preprocessSmallFiles.py 2017 
+source arrange_2017_ntuples.sh #merge small ntuples first
 python create_input_file_list.py 2017
 python countZeroPU.py
 source merge_ntuples.sh
