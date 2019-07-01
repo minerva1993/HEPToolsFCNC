@@ -1,0 +1,7 @@
+find */*.e* | xargs grep "Begin Fatal Exception"
+find */*.e* | xargs grep "open denied"
+find */*.e* | xargs grep "file already exists"
+find */*.e* | xargs grep "Trying to recover."
+find */*.e* | xargs grep "command not found"
+find */*.e* | xargs grep "fatal"
+find */*.e* | xargs grep "error"
