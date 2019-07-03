@@ -13,10 +13,10 @@ if len(sys.argv) > 2:
     file_postfix = '_ttbb'
 
 if era == '2017':
-  version = 'V9_5/190117/'
+  version = 'V9_6/190702/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 elif era == '2018':
-  version = 'V10_1/190318/'
+  version = 'V10_2/190702/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2018/' + version
 
 run_file_name = 'runNoReco_' + era + '.py'
@@ -27,8 +27,10 @@ string_for_merge = ''
 
 print("Write options for bypassing reconstruction")
 #This part is for bypass reconstruction
+bare_list =  os.listdir(path_to_prod_noreco)
+bare_list = sorted(bare_list)
 noreco_list = []
-for file_name in os.listdir(path_to_prod_noreco):
+for file_name in bare_list:
   if file_name.endswith(".root"):
     #if 'WJet' in file_name: continue
     dataset_path = os.path.join(path_to_prod_noreco, file_name)

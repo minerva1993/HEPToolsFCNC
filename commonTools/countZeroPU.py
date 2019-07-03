@@ -8,7 +8,7 @@ import numpy as np
 if os.path.isfile('TruePVWeight.txt'):
   os.remove('TruePVWeight.txt')
 
-basedir = '/data/users/minerva1993/ntuple_Run2017/V9_5/190117/'
+basedir = '/data/users/minerva1993/ntuple_Run2017/V9_6/190625/'
 
 path = os.listdir(basedir)
 filelist = []

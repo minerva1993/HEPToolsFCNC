@@ -13,11 +13,11 @@ if len(sys.argv) > 2:
     file_postfix = '_ttbb'
 
 if era == '2017':
-  version = 'V9_5/190117/'
+  version = 'V9_6/190702/'
   path_to_prod = '/data/users/minerva1993/ntuple_Run2017/' + version + 'production/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
 elif era == '2018':
-  version = 'V10_1/190318/'
+  version = 'V10_2/190702/'
   path_to_prod = '/data/users/minerva1993/ntuple_Run2018/' + version + 'production/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2018/' + version
 
@@ -47,9 +47,9 @@ for dataset_folder in os.listdir(path_to_prod):
     dataset_folder = dataset_folder[:-6]
     string_for_merge += 'hadd ' + path_to_prod + dataset_folder + '_v2.root ' + path_to_prod + dataset_folder+ '.root ' + path_to_prod + dataset_folder + '_part2.root\n'
     string_for_merge += 'rm ' + path_to_prod + dataset_folder+ '.root ' + path_to_prod + dataset_folder + '_part2.root\n'
-string_for_merge += 'hadd ' + path_to_prod + 'SingleElectron_Run2017.root ' + path_to_prod + 'SingleElectron_Run2017*.root\n'
-string_for_merge += 'hadd ' + path_to_prod + 'SingleMuon_Run2017.root ' + path_to_prod + 'SingleMuon_Run2017*.root\n'
-string_for_merge += 'rm ' + path_to_prod + 'SingleMuon_Run2017[B-F].root ' + path_to_prod + 'SingleElectron_Run2017[B-F].root\n'
+string_for_merge += 'hadd ' + path_to_prod + 'SingleElectron_Run' + era + '.root ' + path_to_prod + 'SingleElectron_Run201*.root\n'
+string_for_merge += 'hadd ' + path_to_prod + 'SingleMuon_Run' + era + '.root ' + path_to_prod + 'SingleMuon_Run201*.root\n'
+string_for_merge += 'rm ' + path_to_prod + 'SingleMuon_Run201[6-8][A-F].root ' + path_to_prod + 'SingleElectron_Run201[6-8][A-F].root\n'
 
 string_for_merge += 'mv ' + path_to_prod + '*.root ' + path_to_prod_noreco + '\n'
 

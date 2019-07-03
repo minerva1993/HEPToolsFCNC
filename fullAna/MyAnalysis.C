@@ -370,7 +370,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   p4met.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
-  lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
+  lepton.SetPtEtaPhiE(*lepton_pt*lepton_scale[0], *lepton_eta, *lepton_phi, *lepton_e);
 
   double transverseM = transverseMass(lepton, p4met);
   double lepDphi = lepton.DeltaPhi(p4met);
@@ -551,7 +551,14 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           if( !option.Contains("Run201") ){
             EventWeight *= wrongPVrate;
             EventWeight *= *genweight;
-            //PUWight
+            if( era == 2017 ){
+              //PrefireWeight
+              if     ( isPartOf("prefireup", std::string(syst_name[syst])) )   EventWeight *= prefireweight[1];
+              else if( isPartOf("prefiredown", std::string(syst_name[syst])) ) EventWeight *= prefireweight[2];
+              else   EventWeight *= prefireweight[0];
+            }
+            //if( option.Contains("owheg") ) EventWeight *= *topptweight; //for now, apply only for ttbar
+            //PUWeight
             if     ( isPartOf("puup", std::string(syst_name[syst])) )   EventWeight *= PUWeight[1];
             else if( isPartOf("pudown", std::string(syst_name[syst])) ) EventWeight *= PUWeight[2];
             else   EventWeight *= PUWeight[0];
@@ -600,11 +607,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
               if     ( isPartOf("__elzvtxup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
               else if( isPartOf("__elzvtxdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
               else   EventWeight *= lepton_SF[6];
-              if ( era == 2017 ){
-                if     ( isPartOf("__eltrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[10];
-                else if( isPartOf("__eltrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[11];
-                else   EventWeight *= lepton_SF[9];
-              }
+              if     ( isPartOf("__eltrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[10];
+              else if( isPartOf("__eltrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[11];
+              else   EventWeight *= lepton_SF[9];
             }
             //ME&PS
             //[0] = muF up , [1] = muF down, [2] = muR up, [3] = muR up && muF up, [4] = muR down, [5] = muF down && muF down
