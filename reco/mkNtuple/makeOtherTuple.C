@@ -222,8 +222,8 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
       else if( option.Contains("WZ") ) wrongPVrate = 1.04381;
       else if( option.Contains("ZZ") ) wrongPVrate = 1.02981;
       else   wrongPVrate = 1.0;
-
       EventWeight *= wrongPVrate;
+      EventWeight *= prefireweight[0];
     }
     if( wrongPVrate > 1.01 ){
       if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
@@ -246,7 +246,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   metP4.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
-  lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
+  lepton.SetPtEtaPhiE(*lepton_pt*lepton_scale[0], *lepton_eta, *lepton_phi, *lepton_e);
 
   double transverseM = transverseMass(lepton, metP4);
   double lepDphi = lepton.DeltaPhi(metP4);

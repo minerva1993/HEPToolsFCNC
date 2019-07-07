@@ -483,6 +483,7 @@ Bool_t makeTopTuple::Process(Long64_t entry)
       else if( option.Contains("ZZ") ) wrongPVrate = 1.02981;
       else   wrongPVrate = 1.0;
       EventWeight *= wrongPVrate;
+      EventWeight *= prefireweight[0];
     }
     if( wrongPVrate > 1.01 ){
       if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
@@ -505,7 +506,7 @@ Bool_t makeTopTuple::Process(Long64_t entry)
   metP4.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
-  lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
+  lepton.SetPtEtaPhiE(*lepton_pt*lepton_scale[0], *lepton_eta, *lepton_phi, *lepton_e);
 
   double transverseM = transverseMass(lepton, metP4);
   double lepDphi = lepton.DeltaPhi(metP4);
@@ -757,6 +758,7 @@ Bool_t makeTopTuple::Process(Long64_t entry)
 
           testTree->Fill();
 
+          /*
           if( (chBit == 1 and option.Contains("STTH1L3B"))
             or (chBit == 2 and option.Contains("TTTH1L3B"))
             or (chBit == 3 and option.Contains("TT") and option.Contains("tt")) ){
@@ -771,6 +773,7 @@ Bool_t makeTopTuple::Process(Long64_t entry)
             }
             //else continue;
           }
+          */
         }//last jet loop
       }
     }
@@ -795,15 +798,17 @@ void makeTopTuple::Terminate()
   string sample = option.Data();
   sample.erase(0,sample.find_first_of("_")+1);
 
-  TFile *hfile = TFile::Open(Form("%s/root_%s/deepReco_%s.root", era.c_str(), ch.c_str(),sample.c_str()), "RECREATE");
-  //TFile *hfile = TFile::Open(Form("/data1/users/minerva1993/work/fcnc_RunII%s/reco/current_ver/root_%s/deepReco_%s.root", era.c_str(), ch.c_str(),sample.c_str()), "RECREATE");
+  //TFile *hfile = TFile::Open(Form("%s/root_%s/deepReco_%s.root", era.c_str(), ch.c_str(),sample.c_str()), "RECREATE");
+  TFile *hfile = TFile::Open(Form("/data1/users/minerva1993/work/fcnc_RunII%s/reco/current_ver/root_%s/deepReco_%s.root", era.c_str(), ch.c_str(),sample.c_str()), "RECREATE");
 
+  /*
   if ( (chBit == 1 and option.Contains("STTH1L3B"))
     or (chBit == 2 and option.Contains("TTTH1L3B"))
     or (chBit == 3 and option.Contains("TT") and option.Contains("tt")) ){
     fOutput->FindObject("sig_tree")->Write();
     fOutput->FindObject("bkg_tree")->Write();
   }
+  */
   fOutput->FindObject("test_tree")->Write();
 
   hfile->Write();
