@@ -88,7 +88,6 @@ public :
    TTreeReaderValue<Int_t> b_GenCone_NgJetsW = {fReader, "gencone_NgjetsW"};
    TTreeReaderValue<Float_t> draddJets = {fReader, "draddjets"};
    TTreeReaderValue<Int_t> genhiggscatid = {fReader, "genhiggscatid"};
-   TTreeReaderValue<Int_t> genchannel = {fReader, "genchannel"};
    TTreeReaderValue<Float_t> genlepton_pt = {fReader, "genlepton_pt"};
    TTreeReaderValue<Float_t> genlepton_eta = {fReader, "genlepton_eta"};
    TTreeReaderValue<Float_t> genlepton_phi = {fReader, "genlepton_phi"};
