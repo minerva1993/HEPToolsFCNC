@@ -42,7 +42,9 @@ string_for_all_processing = ''
 string_for_merge += '#!/bin/sh\n'
 string_for_merge += 'for i in ' + path_to_prod + '*; do hadd $i.root $i/*.root; done\n'
 
-for dataset_folder in os.listdir(path_to_prod):
+bare_list =  os.listdir(path_to_prod)
+bare_list = sorted(bare_list)
+for dataset_folder in bare_list:
   if "part2" in dataset_folder:
     dataset_folder = dataset_folder[:-6]
     string_for_merge += 'hadd ' + path_to_prod + dataset_folder + '_v2.root ' + path_to_prod + dataset_folder+ '.root ' + path_to_prod + dataset_folder + '_part2.root\n'
@@ -58,7 +60,7 @@ with open(merge_file_name, 'w') as f:
 
 
 #This part is for reconstruction
-for dataset_folder in os.listdir(path_to_prod):
+for dataset_folder in bare_list:
   dataset_path = os.path.join(path_to_prod, dataset_folder)
   for file_name in os.listdir(dataset_path):
     tmp_string = ''
