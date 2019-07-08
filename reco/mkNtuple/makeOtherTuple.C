@@ -51,7 +51,6 @@ void makeOtherTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("lepton_phi", &b_lepton_phi, "lepton_phi/F");
   testTree->Branch("MET"       , &b_met       , "MET/F");
   testTree->Branch("MET_phi"   , &b_met_phi   , "MET_phi/F");
-  testTree->Branch("lepDPhi"   , &b_lepdphi   , "lepDPhi/F");
 
   //jet assignment
   testTree->Branch("jet0pt"  , &b_jet0pt  , "jet0pt/F");
@@ -118,7 +117,7 @@ void makeOtherTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("lepWeta" , &b_lepWeta , "lepWeta/F");
   testTree->Branch("lepWphi" , &b_lepWphi , "lepWphi/F");
   testTree->Branch("lepWdphi", &b_lepWdphi, "lepWdphi/F");
-  testTree->Branch("lepWm"   , &b_lepWm   , "lepWm/F");
+  testTree->Branch("lepWm"   , &b_lepWmt  , "lepWm/F");//Should be transverse M
 
   testTree->Branch("lepTpt"  , &b_lepTpt  , "lepTpt/F");
   testTree->Branch("lepTeta" , &b_lepTeta , "lepTeta/F");
@@ -126,7 +125,7 @@ void makeOtherTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("lepTphi" , &b_lepTphi , "lepTphi/F");
   testTree->Branch("lepTdphi", &b_lepTdphi, "lepTdphi/F");//W and b
   testTree->Branch("lepTdR"  , &b_lepTdR  , "lepTdR/F");
-  testTree->Branch("lepTm"   , &b_lepTm   , "lepTm/F");
+  testTree->Branch("lepTm"   , &b_lepTmt  , "lepTm/F");//Should be transverse M
 
   testTree->Branch("hadTpt"      , &b_hadTpt      , "hadTpt/F");
   testTree->Branch("hadTeta"     , &b_hadTeta     , "hadTeta/F");
@@ -189,6 +188,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
     if( mode == 1 ) EventWeight *= lepton_SF[9];
     EventWeight *= *genweight;
     EventWeight *= PUWeight[0];
+    EventWeight *= jet_SF_deepCSV_30[0];
   }
   if( era == 2017 ){
     if( !option.Contains("Run2017") ){
@@ -308,16 +308,14 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   if( option.Contains("Run201") ) b_EventCategory = -1;
   else if( option.Contains("Hct") || option.Contains("Hut") ) b_EventCategory = 0;
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
-  else if( option.Contains("ttbj") ) b_EventCategory = 2;
-  else if( option.Contains("ttcc") ) b_EventCategory = 3;
-  else if( option.Contains("ttlf") ) b_EventCategory = 4;
-  else if( option.Contains("ttother") or option.Contains("TTLL") or option.Contains("TTHad") ) b_EventCategory = 5;
-  else if( option.Contains("SingleT") ) b_EventCategory = 6; //singletop
-  else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 7; //VV
-  else if( option.Contains("DY") ) b_EventCategory = 8;
-  else if( option.Contains("W1Jets") or option.Contains("W2Jets") or option.Contains("W3Jets") or option.Contains("W4Jets") ) b_EventCategory = 9;
-  else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 10;
-  else b_EventCategory = 20;
+  else if( option.Contains("ttcc") ) b_EventCategory = 2;
+  else if( option.Contains("ttlf") ) b_EventCategory = 3;
+  else if( option.Contains("SingleT") ) b_EventCategory = 4; //singletop
+  else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 5; //ttX
+  else if( option.Contains("DY") ) b_EventCategory = 6;
+  else if( option.Contains("W1Jets") or option.Contains("W2Jets") or option.Contains("W3Jets") or option.Contains("W4Jets") ) b_EventCategory = 7;
+  else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 8;
+  else b_EventCategory = 10;
 
   //gen particles
   TLorentzVector gen_lep, gen_nu, gen_lepB, gen_hadJ1, gen_hadJ2, gen_hadJ3;
@@ -334,17 +332,14 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
 
   b_met = met;
   b_met_phi = met_phi;
-  b_lepdphi = lepDphi;
-  b_transversem = transverseMass(lepton, metP4);
-
 
   //jet assignments
   TLorentzVector lepW = lepton + metP4;
   b_lepWpt    = lepW.Pt();
   b_lepWeta   = lepW.Eta();
   b_lepWphi   = lepW.Phi();
-  b_lepWdphi  = lepton.DeltaPhi(metP4);
-  b_lepWm     = lepW.M();
+  b_lepWdphi  = lepDphi;
+  b_lepWmt    = transverseM;
 
   //int count = 0;
   TLorentzVector jetP4[4];
@@ -416,7 +411,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
 
           const auto lepT = lepW + jetP4cor[0];
           const auto had12 = jetP4cor[1] + jetP4cor[2];//This is W or H
-          const auto had23 = jetP4cor[2] + jetP4cor[3]; 
+          const auto had23 = jetP4cor[2] + jetP4cor[3];
           const auto had31 = jetP4cor[3] + jetP4cor[1];
           const auto hadT = jetP4cor[1] + jetP4cor[2] + jetP4cor[3];
 
@@ -428,7 +423,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
           b_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta(); b_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
           b_jet12dR = jetP4cor[1].DeltaR(jetP4cor[2]); b_jet23dR = jetP4cor[2].DeltaR(jetP4cor[3]); b_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
-          b_lepTpt = lepT.Pt(); b_lepTeta = lepT.Eta(); b_lepTphi = lepT.Phi(); b_lepTm = lepT.M();
+          b_lepTpt = lepT.Pt(); b_lepTeta = lepT.Eta(); b_lepTphi = lepT.Phi(); b_lepTmt = transverseMass(lepton+jetP4cor[0],metP4);
           b_lepTdeta = (lepW-jetP4cor[0]).Eta(); b_lepTdphi = lepW.DeltaPhi(jetP4cor[0]); b_lepTdR = lepW.DeltaPhi(jetP4cor[0]);
 
           b_hadTpt = hadT.Pt(); b_hadTeta = hadT.Eta(); b_hadTphi = hadT.Phi(); b_hadTm = hadT.M();

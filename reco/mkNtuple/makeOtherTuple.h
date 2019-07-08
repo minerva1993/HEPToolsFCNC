@@ -113,10 +113,9 @@ public :
     int b_njets = 0; int b_nbjets_m = 0;
     float b_lepton_pt = 0; float b_lepton_phi = 10; float b_lepton_eta = 10;
     float b_met = 0; float b_met_phi = +10; float b_lepdphi = 0;
-    float b_transversem = 0;
 
     float b_lepWpt = 0; float b_lepWeta = 10; float b_lepWphi = 10; 
-    float b_lepWdphi = 10; float b_lepWm = 0;
+    float b_lepWdphi = 10; float b_lepWmt = 0;
 
     float b_jet0pt = 0; float b_jet0eta = 10; float b_jet0phi = 10; float b_jet0m = 0;
     float b_jet0csv = 5; float b_jet0cvsl = 5; float b_jet0cvsb = 5; int b_jet0Idx = -1;
@@ -135,7 +134,7 @@ public :
     float b_jet31dphi = 10; float b_jet31dR = 0; float b_jet31m = 0;
 
     float b_lepTpt = 0; float b_lepTeta = 10; float b_lepTdeta = 10; float b_lepTphi = 10;
-    float b_lepTdphi = 10; float b_lepTdR = 0; float b_lepTm = 0;
+    float b_lepTdphi = 10; float b_lepTdR = 0; float b_lepTmt = 0;
 
     float b_hadTpt = 0; float b_hadTphi = 10;
     float b_hadTeta = 10; float b_hadT12_3deta = 10; float b_hadT23_1deta = 10; float b_hadT31_2deta = 10;

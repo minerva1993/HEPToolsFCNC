@@ -54,7 +54,6 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
     sigTree->Branch("lepton_phi", &b_lepton_phi, "lepton_phi/F");
     sigTree->Branch("MET"       , &b_met       , "MET/F");
     sigTree->Branch("MET_phi"   , &b_met_phi   , "MET_phi/F");
-    sigTree->Branch("lepDPhi"   , &b_lepdphi   , "lepDPhi/F");
 
     //jet assignment
     sigTree->Branch("jet0pt"  , &b_jet0pt  , "jet0pt/F");
@@ -121,7 +120,7 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
     sigTree->Branch("lepWeta" , &b_lepWeta , "lepWeta/F");
     sigTree->Branch("lepWphi" , &b_lepWphi , "lepWphi/F");
     sigTree->Branch("lepWdphi", &b_lepWdphi, "lepWdphi/F");
-    sigTree->Branch("lepWm"   , &b_lepWm   , "lepWm/F");
+    sigTree->Branch("lepWm"   , &b_lepWmt  , "lepWm/F");//Should be transverse M
 
     sigTree->Branch("lepTpt"  , &b_lepTpt  , "lepTpt/F");
     sigTree->Branch("lepTeta" , &b_lepTeta , "lepTeta/F");
@@ -129,7 +128,7 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
     sigTree->Branch("lepTphi" , &b_lepTphi , "lepTphi/F");
     sigTree->Branch("lepTdphi", &b_lepTdphi, "lepTdphi/F");//W and b
     sigTree->Branch("lepTdR"  , &b_lepTdR  , "lepTdR/F");
-    sigTree->Branch("lepTm"   , &b_lepTm   , "lepTm/F");
+    sigTree->Branch("lepTm"   , &b_lepTmt  , "lepTm/F");//Should be transverse M
 
     sigTree->Branch("hadTpt"      , &b_hadTpt      , "hadTpt/F");
     sigTree->Branch("hadTeta"     , &b_hadTeta     , "hadTeta/F");
@@ -183,7 +182,6 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
     bkgTree->Branch("lepton_phi", &b_lepton_phi, "lepton_phi/F");
     bkgTree->Branch("MET"       , &b_met       , "MET/F");
     bkgTree->Branch("MET_phi"   , &b_met_phi   , "MET_phi/F");
-    bkgTree->Branch("lepDPhi"   , &b_lepdphi   , "lepDPhi/F");
 
     //jet assignment
     bkgTree->Branch("jet0pt"  , &b_jet0pt  , "jet0pt/F");
@@ -250,7 +248,7 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
     bkgTree->Branch("lepWeta" , &b_lepWeta , "lepWeta/F");
     bkgTree->Branch("lepWphi" , &b_lepWphi , "lepWphi/F");
     bkgTree->Branch("lepWdphi", &b_lepWdphi, "lepWdphi/F");
-    bkgTree->Branch("lepWm"   , &b_lepWm   , "lepWm/F");
+    bkgTree->Branch("lepWm"   , &b_lepWmt  , "lepWm/F");//Should be transverse M
 
     bkgTree->Branch("lepTpt"  , &b_lepTpt  , "lepTpt/F");
     bkgTree->Branch("lepTeta" , &b_lepTeta , "lepTeta/F");
@@ -258,7 +256,7 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
     bkgTree->Branch("lepTphi" , &b_lepTphi , "lepTphi/F");
     bkgTree->Branch("lepTdphi", &b_lepTdphi, "lepTdphi/F");//W and b
     bkgTree->Branch("lepTdR"  , &b_lepTdR  , "lepTdR/F");
-    bkgTree->Branch("lepTm"   , &b_lepTm   , "lepTm/F");
+    bkgTree->Branch("lepTm"   , &b_lepTmt  , "lepTm/F");//Should be transverse M
 
     bkgTree->Branch("hadTpt"      , &b_hadTpt      , "hadTpt/F");
     bkgTree->Branch("hadTeta"     , &b_hadTeta     , "hadTeta/F");
@@ -311,7 +309,6 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("lepton_phi", &b_lepton_phi, "lepton_phi/F");
   testTree->Branch("MET"       , &b_met       , "MET/F");
   testTree->Branch("MET_phi"   , &b_met_phi   , "MET_phi/F");
-  testTree->Branch("lepDPhi"   , &b_lepdphi   , "lepDPhi/F");
 
   //jet assignment
   testTree->Branch("jet0pt"  , &b_jet0pt  , "jet0pt/F");
@@ -378,7 +375,7 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("lepWeta" , &b_lepWeta , "lepWeta/F");
   testTree->Branch("lepWphi" , &b_lepWphi , "lepWphi/F");
   testTree->Branch("lepWdphi", &b_lepWdphi, "lepWdphi/F");
-  testTree->Branch("lepWm"   , &b_lepWm   , "lepWm/F");
+  testTree->Branch("lepWm"   , &b_lepWmt  , "lepWm/F");//Should be transverse M
 
   testTree->Branch("lepTpt"  , &b_lepTpt  , "lepTpt/F");
   testTree->Branch("lepTeta" , &b_lepTeta , "lepTeta/F");
@@ -386,7 +383,7 @@ void makeTopTuple::SlaveBegin(TTree * /*tree*/)
   testTree->Branch("lepTphi" , &b_lepTphi , "lepTphi/F");
   testTree->Branch("lepTdphi", &b_lepTdphi, "lepTdphi/F");//W and b
   testTree->Branch("lepTdR"  , &b_lepTdR  , "lepTdR/F");
-  testTree->Branch("lepTm"   , &b_lepTm   , "lepTm/F");
+  testTree->Branch("lepTm"   , &b_lepTmt  , "lepTm/F");//Should be transverse M
 
   testTree->Branch("hadTpt"      , &b_hadTpt      , "hadTpt/F");
   testTree->Branch("hadTeta"     , &b_hadTeta     , "hadTeta/F");
@@ -449,6 +446,7 @@ Bool_t makeTopTuple::Process(Long64_t entry)
     if( mode == 1 ) EventWeight *= lepton_SF[9];
     EventWeight *= *genweight;
     EventWeight *= PUWeight[0];
+    EventWeight *= jet_SF_deepCSV_30[0];
   }
   if( era == 2017 ){
     if( !option.Contains("Run2017") ){
@@ -532,8 +530,6 @@ Bool_t makeTopTuple::Process(Long64_t entry)
     if( !passmuon && !passelectron ) return kTRUE;
   }
 
-  EventWeight *= jet_SF_deepCSV_30[0];
-
   b_lepton_pt = lepton.Pt(); b_lepton_eta = lepton.Eta(); b_lepton_phi = lepton.Phi();
 
   float bWP_M, bWP_T, cvsbWP_M, cvslWP_M;
@@ -570,16 +566,14 @@ Bool_t makeTopTuple::Process(Long64_t entry)
   if( option.Contains("Run201") ) b_EventCategory = -1;
   else if( option.Contains("Hct") || option.Contains("Hut") ) b_EventCategory = 0;
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
-  else if( option.Contains("ttbj") ) b_EventCategory = 2;
-  else if( option.Contains("ttcc") ) b_EventCategory = 3;
-  else if( option.Contains("ttlf") ) b_EventCategory = 4;
-  else if( option.Contains("ttother") or option.Contains("TTLL") or option.Contains("TTHad") ) b_EventCategory = 5;
-  else if( option.Contains("SingleT") ) b_EventCategory = 6; //singletop
-  else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 7; //VV
-  else if( option.Contains("DY") ) b_EventCategory = 8;
-  else if( option.Contains("W1Jets") or option.Contains("W2Jets") or option.Contains("W3Jets") or option.Contains("W4Jets") ) b_EventCategory = 9;
-  else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 10;
-  else b_EventCategory = 20;
+  else if( option.Contains("ttcc") ) b_EventCategory = 2;
+  else if( option.Contains("ttlf") ) b_EventCategory = 3;
+  else if( option.Contains("SingleT") ) b_EventCategory = 4; //singletop
+  else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 5; //ttX
+  else if( option.Contains("DY") ) b_EventCategory = 6;
+  else if( option.Contains("W1Jets") or option.Contains("W2Jets") or option.Contains("W3Jets") or option.Contains("W4Jets") ) b_EventCategory = 7;
+  else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 8;
+  else b_EventCategory = 10;
 
   /////////////////////////////////////
   // REMARK :: genjet2+3 = W
@@ -632,17 +626,14 @@ Bool_t makeTopTuple::Process(Long64_t entry)
 
   b_met = met;
   b_met_phi = met_phi;
-  b_lepdphi = lepDphi;
-  b_transversem = transverseMass(lepton, metP4);
-
 
   //jet assignments
   TLorentzVector lepW = lepton + metP4;
   b_lepWpt    = lepW.Pt();
   b_lepWeta   = lepW.Eta();
   b_lepWphi   = lepW.Phi();
-  b_lepWdphi  = lepton.DeltaPhi(metP4);
-  b_lepWm     = lepW.M();
+  b_lepWdphi  = lepDphi;
+  b_lepWmt    = transverseM;
 
   //int count = 0;
   TLorentzVector jetP4[4];
@@ -726,7 +717,7 @@ Bool_t makeTopTuple::Process(Long64_t entry)
           b_jet31deta = (jetP4cor[3]-jetP4cor[1]).Eta(); b_jet31dphi = jetP4cor[3].DeltaPhi(jetP4cor[1]);
           b_jet12dR = jetP4cor[1].DeltaR(jetP4cor[2]); b_jet23dR = jetP4cor[2].DeltaR(jetP4cor[3]); b_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
-          b_lepTpt = lepT.Pt(); b_lepTeta = lepT.Eta(); b_lepTphi = lepT.Phi(); b_lepTm = lepT.M();
+          b_lepTpt = lepT.Pt(); b_lepTeta = lepT.Eta(); b_lepTphi = lepT.Phi(); b_lepTmt = transverseMass(lepton+jetP4cor[0],metP4);
           b_lepTdeta = (lepW-jetP4cor[0]).Eta(); b_lepTdphi = lepW.DeltaPhi(jetP4cor[0]); b_lepTdR = lepW.DeltaPhi(jetP4cor[0]);
 
           b_hadTpt = hadT.Pt(); b_hadTeta = hadT.Eta(); b_hadTphi = hadT.Phi(); b_hadTm = hadT.M();
