@@ -101,7 +101,7 @@ public :
    virtual TList  *GetOutputList() const { return fOutput; }
    virtual void    SlaveTerminate();
    virtual void    Terminate();
-   double transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
+   float transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
    bool isPartOf(const std::string& word, const std::string& sentence);
 
    ClassDef(MyAnalysis,0);

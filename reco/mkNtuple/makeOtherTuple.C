@@ -236,18 +236,18 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   int ncjets_m = 0; 
 
   TLorentzVector metP4;
-  double met = *MET;
-  double met_phi = *MET_phi;
-  double apt = TMath::Abs(met);
-  double met_x =  apt*TMath::Cos(met_phi);
-  double met_y =  apt*TMath::Sin(met_phi);
+  float met = *MET;
+  float met_phi = *MET_phi;
+  float apt = TMath::Abs(met);
+  float met_x =  apt*TMath::Cos(met_phi);
+  float met_y =  apt*TMath::Sin(met_phi);
   metP4.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
   lepton.SetPtEtaPhiE(*lepton_pt*lepton_scale[0], *lepton_eta, *lepton_phi, *lepton_e);
 
-  double transverseM = transverseMass(lepton, metP4);
-  double lepDphi = lepton.DeltaPhi(metP4);
+  float transverseM = transverseMass(lepton, metP4);
+  float lepDphi = lepton.DeltaPhi(metP4);
 
   //Selection Option
   bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -476,13 +476,13 @@ void makeOtherTuple::Terminate()
 
 }
 
-double makeOtherTuple::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){
+float makeOtherTuple::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){
 
   TLorentzVector leptonT(lepton.Px(),lepton.Py(),0.,lepton.E()*TMath::Sin(lepton.Theta()));
   TLorentzVector metT(met.Px(), met.Py(), 0, met.E());
 
   TLorentzVector sumT=leptonT+metT;
-  double out = TMath::Sqrt( sumT.M2() );
+  float out = TMath::Sqrt( sumT.M2() );
 
   return out;
 

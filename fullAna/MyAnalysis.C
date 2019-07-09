@@ -197,7 +197,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
         h_cvsb[ich][i][syst]->Sumw2();
         fOutput->Add(h_cvsb[ich][i][syst]);
 
-        h_FCNHkinLepWMass[ich][i][syst] = new TH1D(Form("h_FCNHkinLepWMass_Ch%i_S%i%s",ich,i,syst_name[syst]), "W Mass (Lep)", 30 , 0, 300);
+        h_FCNHkinLepWMass[ich][i][syst] = new TH1D(Form("h_FCNHkinLepWMass_Ch%i_S%i%s",ich,i,syst_name[syst]), "W Transverse Mass (Lep)", 30 , 0, 300);
         h_FCNHkinLepWMass[ich][i][syst]->SetXTitle("W Mass (Lep) (GeV)");
         h_FCNHkinLepWMass[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinLepWMass[ich][i][syst]);
@@ -217,12 +217,12 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
         h_FCNHkinDR[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinDR[ich][i][syst]);
 
-        h_FCNHkinLepTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinLepTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Mass (Lep)", 30 , 50, 450);
+        h_FCNHkinLepTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinLepTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Transverse Mass (Lep)", 30 , 50, 450);
         h_FCNHkinLepTopM[ich][i][syst]->SetXTitle("Top Mass (Lep) (GeV)");
         h_FCNHkinLepTopM[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinLepTopM[ich][i][syst]);
 
-        h_FCNHkinHadTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinHadTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Mass from Hc/u", 30, 50, 450);
+        h_FCNHkinHadTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinHadTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Mass (Had)", 30, 50, 450);
         h_FCNHkinHadTopM[ich][i][syst]->SetXTitle("Top Mass (Had) (GeV)");
         h_FCNHkinHadTopM[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinHadTopM[ich][i][syst]);
@@ -360,27 +360,27 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   int ncjets_m = 0; 
 
   TLorentzVector p4met;
-  double met = *MET;
-  double met_phi = *MET_phi;
-  double apt = TMath::Abs(met);
-  double met_x =  apt*TMath::Cos(met_phi);
-  double met_y =  apt*TMath::Sin(met_phi);
+  float met = *MET;
+  float met_phi = *MET_phi;
+  float apt = TMath::Abs(met);
+  float met_x =  apt*TMath::Cos(met_phi);
+  float met_y =  apt*TMath::Sin(met_phi);
   p4met.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
   lepton.SetPtEtaPhiE(*lepton_pt*lepton_scale[0], *lepton_eta, *lepton_phi, *lepton_e);
 
-  double transverseM = transverseMass(lepton, p4met);
-  double lepDphi = lepton.DeltaPhi(p4met);
+  float transverseM = transverseMass(lepton, p4met);
+  float lepDphi = lepton.DeltaPhi(p4met);
 
   //for Kin 
   vector<size_t> jetIdxs;
   bool match1 = false;
   bool match2 = false;
-  double gendR = -1.0;
-  double matchdR = -1.0;
-  double genHm = 0;
-  double matchHm = 0;
+  float gendR = -1.0;
+  float matchdR = -1.0;
+  float genHm = 0;
+  float matchHm = 0;
 
   //Selection Option
   bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -691,9 +691,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
               }
               if( jet_deepCSV[jetIdx[1]] < 0 ) jet_deepCSV[jetIdx[1]] = 0;
               if( jet_deepCSV[jetIdx[2]] < 0 ) jet_deepCSV[jetIdx[2]] = 0;
-              h_FCNHkinLepWMass[MODE][cut][syst]  ->Fill((lepton+p4met).M(), EventWeight);
+              h_FCNHkinLepWMass[MODE][cut][syst]  ->Fill(transverseM, EventWeight);
               h_FCNHkinHadWMass[MODE][cut][syst]  ->Fill((jetP4s[2]+jetP4s[3]).M(), EventWeight);
-              h_FCNHkinLepTopM[MODE][cut][syst]   ->Fill((lepton+p4met+jetP4s[0]).M(), EventWeight);
+              h_FCNHkinLepTopM[MODE][cut][syst]   ->Fill(transverseMass(lepton+jetP4s[0], p4met), EventWeight);
               h_FCNHkinHMass[MODE][cut][syst]     ->Fill((jetP4s[1]+jetP4s[2]).M(), EventWeight);
               h_FCNHkinDR[MODE][cut][syst]        ->Fill(jetP4s[1].DeltaR(jetP4s[2]), EventWeight);
               h_FCNHkinHadTopM[MODE][cut][syst]   ->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).M(), EventWeight);
@@ -794,13 +794,13 @@ void MyAnalysis::Terminate()
   out->Close();
 }
 
-double MyAnalysis::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){
+float MyAnalysis::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){
 
   TLorentzVector leptonT(lepton.Px(),lepton.Py(),0.,lepton.E()*TMath::Sin(lepton.Theta()));
   TLorentzVector metT(met.Px(), met.Py(), 0, met.E());
 
   TLorentzVector sumT=leptonT+metT;
-  double out = TMath::Sqrt( sumT.M2() );
+  float out = TMath::Sqrt( sumT.M2() );
 
   return out;
 
