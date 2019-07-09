@@ -811,7 +811,7 @@ float makeTopTuple::transverseMass( const TLorentzVector & lepton, const TLorent
   TLorentzVector metT(met.Px(), met.Py(), 0, met.E());
 
   TLorentzVector sumT=leptonT+metT;
-  float out = TMath::Sqrt( sumT.M2() );
+  float out = sumT.M();
 
   return out;
 
