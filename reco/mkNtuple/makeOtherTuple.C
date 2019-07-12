@@ -244,7 +244,8 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   metP4.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
-  lepton.SetPtEtaPhiE(*lepton_pt*lepton_scale[0], *lepton_eta, *lepton_phi, *lepton_e);
+  lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
+  lepton = lepton*(lepton_scale[0]);
 
   float transverseM = transverseMass(lepton, metP4);
   float lepDphi = lepton.DeltaPhi(metP4);

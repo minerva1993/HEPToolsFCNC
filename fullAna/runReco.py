@@ -20,7 +20,8 @@ if not os.path.exists("./doReco/temp"):
 test = os.listdir("./doReco/temp")
 dupl = False
 for item in test:
-  if item.endswith(name + ".root"):
+  #if item.endswith(name + ".root"):
+  if item.endswith("hist_" + name + ".root"):
     dupl = True
 if dupl == True: print 'Previous verion of histogram root file exists!! Please remove them first.'
 

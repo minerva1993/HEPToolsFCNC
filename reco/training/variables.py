@@ -4,7 +4,7 @@ def input_variables(ch):
     var_list = ['jet0pt', 'jet0eta', 'jet0m', 'jet0csv', 'jet1pt', 'jet1eta', 'jet1m', 'jet1csv',
                 'jet2pt', 'jet2eta', 'jet2m', 'jet2csv',
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
-                'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
+                'lepTdphi', 'lepTm',
                 'jet0lepdR', 'jet1lepdR', 'jet2lepdR', 'jet01dR', 'jet02dR', 'jet12_lepdR', 'jet12_0dR', 'lepTjet12dphi']
 
   elif ch == "TTFCNC":
@@ -13,7 +13,7 @@ def input_variables(ch):
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                 'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
                 'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m',
-                'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
+                'lepTdphi', 'lepTm',
                 'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta',
                 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                 'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',
@@ -27,7 +27,7 @@ def input_variables(ch):
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                 'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
                 'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m',
-                'lepWpt', 'lepWdphi', 'lepWm', 'lepTdphi', 'lepTm',
+                'lepTdphi', 'lepTm',
                 'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta',
                 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                 'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',
@@ -66,21 +66,17 @@ def train_files(ch, era):
                   ]
 
     elif ch == "TTBKG":
-      file_list = ['deepReco_TTpowhegttbb_000.h5', 'deepReco_TTpowhegttbj_000.h5', 'deepReco_TTpowhegttcc_000.h5',
-                   'deepReco_TTpowhegttlf_000.h5', 'deepReco_TTpowhegttother_000.h5',
-                   'deepReco_TTpowhegttbb_001.h5', 'deepReco_TTpowhegttbj_001.h5', 'deepReco_TTpowhegttcc_001.h5',
-                   'deepReco_TTpowhegttlf_001.h5', 'deepReco_TTpowhegttother_001.h5',
-                   'deepReco_TTpowhegttbb_002.h5', 'deepReco_TTpowhegttbj_002.h5', 'deepReco_TTpowhegttcc_002.h5',
-                   'deepReco_TTpowhegttlf_002.h5', 'deepReco_TTpowhegttother_002.h5',
-                   'deepReco_TTpowhegttlf_003.h5', 'deepReco_TTpowhegttother_003.h5',
-                   'deepReco_TTpowhegttlf_004.h5', 'deepReco_TTpowhegttother_004.h5',
-                   'deepReco_TTpowhegttlf_005.h5', 'deepReco_TTpowhegttother_005.h5',
-                   'deepReco_TTpowhegttlf_006.h5', 'deepReco_TTpowhegttother_006.h5',
-                   'deepReco_TTpowhegttlf_007.h5', 'deepReco_TTpowhegttother_007.h5',
-                   'deepReco_TTpowhegttlf_008.h5', 'deepReco_TTpowhegttother_008.h5',
-                   'deepReco_TTpowhegttlf_009.h5', 'deepReco_TTpowhegttother_009.h5',
-                   'deepReco_TTpowhegttlf_010.h5', 'deepReco_TTpowhegttother_010.h5',
-                   'deepReco_TTpowhegttlf_011.h5', 'deepReco_TTpowhegttother_011.h5',
+      file_list = ['deepReco_TTpowhegttbb_000.h5', 'deepReco_TTpowhegttcc_000.h5',
+                   'deepReco_TTpowhegttbb_001.h5', 'deepReco_TTpowhegttcc_001.h5',
+                   'deepReco_TTpowhegttbb_002.h5', 'deepReco_TTpowhegttcc_002.h5',#0~2 for ttbb,cc
+                   'deepReco_TTpowhegttlf_000.h5', 'deepReco_TTpowhegttlf_001.h5',
+                   'deepReco_TTpowhegttlf_002.h5', 'deepReco_TTpowhegttlf_003.h5',
+                   'deepReco_TTpowhegttlf_004.h5', 'deepReco_TTpowhegttlf_005.h5',
+                   'deepReco_TTpowhegttlf_006.h5', 'deepReco_TTpowhegttlf_007.h5',
+                   'deepReco_TTpowhegttlf_008.h5', 'deepReco_TTpowhegttlf_009.h5',
+                   'deepReco_TTpowhegttlf_010.h5', 'deepReco_TTpowhegttlf_011.h5',
+                   'deepReco_TTpowhegttlf_012.h5', 'deepReco_TTpowhegttlf_013.h5',
+                   'deepReco_TTpowhegttlf_014.h5', #0(0~4), 1(5~9), 2(10~14)
                     ]
 
   elif era == "2018":
@@ -99,16 +95,13 @@ def train_files(ch, era):
                   ]
 
     elif ch == "TTBKG":
-      file_list = ['deepReco_TTpowhegttbb_000.h5', 'deepReco_TTpowhegttbj_000.h5', 'deepReco_TTpowhegttcc_000.h5',
-                   'deepReco_TTpowhegttlf_000.h5', 'deepReco_TTpowhegttother_000.h5',
-                   'deepReco_TTpowhegttbb_001.h5', 'deepReco_TTpowhegttbj_001.h5', 'deepReco_TTpowhegttcc_001.h5',
-                   'deepReco_TTpowhegttlf_001.h5', 'deepReco_TTpowhegttother_001.h5',
-                   'deepReco_TTpowhegttlf_002.h5', 'deepReco_TTpowhegttother_002.h5',
-                   'deepReco_TTpowhegttlf_003.h5', 'deepReco_TTpowhegttother_003.h5',
-                   'deepReco_TTpowhegttlf_004.h5', 'deepReco_TTpowhegttother_004.h5',
-                   'deepReco_TTpowhegttlf_005.h5', 'deepReco_TTpowhegttother_005.h5',
-                   'deepReco_TTpowhegttlf_006.h5', 'deepReco_TTpowhegttother_006.h5',
-                   'deepReco_TTpowhegttlf_007.h5', 'deepReco_TTpowhegttother_007.h5',
+      file_list = ['deepReco_TTpowhegttbb_000.h5', 'deepReco_TTpowhegttcc_000.h5',#0~1
+                   'deepReco_TTpowhegttbb_001.h5', 'deepReco_TTpowhegttcc_001.h5',
+                   'deepReco_TTpowhegttlf_000.h5', 'deepReco_TTpowhegttlf_001.h5',
+                   'deepReco_TTpowhegttlf_002.h5', 'deepReco_TTpowhegttlf_003.h5',
+                   'deepReco_TTpowhegttlf_004.h5', 'deepReco_TTpowhegttlf_005.h5',
+                   'deepReco_TTpowhegttlf_006.h5', 'deepReco_TTpowhegttlf_007.h5',
+                   'deepReco_TTpowhegttlf_008.h5', 'deepReco_TTpowhegttlf_009.h5',
                     ]
 
   else: file_list = []

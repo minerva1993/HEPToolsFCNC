@@ -97,14 +97,14 @@ public :
    virtual TList  *GetOutputList() const { return fOutput; }
    virtual void    SlaveTerminate();
    virtual void    Terminate();
-   double transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
+   float transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
    bool isPartOf(const std::string& word, const std::string& sentence);
 
    ClassDef(MyAnalysis,0);
 
     //Declare systematics here FIXME
     const std::vector<const char*> syst_name = {"",
-          "__puup", "__pudown",
+          "__puup", "__pudown", "__prefireup", "_prefiredown",
           "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
           "__elidup", "__eliddown", "__elrecoup", "__elrecodown",
           "__elzvtxup", "__elzvtxdown", "__eltrgup", "__eltrgdown",
@@ -137,9 +137,9 @@ public :
           "__pdf100", "__pdf101", "__pdf102",};
     int syst_num = syst_name.size();
 
-    TH1D *h_MVA_b2[3][146];
-    TH1D *h_MVA_b3[3][146];
-    TH1D *h_MVA_b4[3][146];
+    TH1D *h_MVA_b2[3][148];
+    TH1D *h_MVA_b3[3][148];
+    TH1D *h_MVA_b4[3][148];
 
     TFile *scoreF;
     TTree *scoreT;

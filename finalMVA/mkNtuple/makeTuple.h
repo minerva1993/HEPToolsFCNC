@@ -32,6 +32,7 @@ public :
    TTreeReaderValue<Int_t> GoodPV = {fReader, "GoodPV"};
    TTreeReaderValue<Int_t> channel = {fReader, "channel"};
    TTreeReaderArray<float> PUWeight = {fReader, "PUWeight"};
+   TTreeReaderArray<double> prefireweight = {fReader, "prefireweight"};
    TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
    TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    TTreeReaderArray<float> psweight = {fReader, "psweight"};
@@ -41,8 +42,8 @@ public :
    TTreeReaderValue<Float_t> lepton_eta = {fReader, "lepton_eta"};
    TTreeReaderValue<Float_t> lepton_phi = {fReader, "lepton_phi"};
    TTreeReaderValue<Float_t> lepton_e = {fReader, "lepton_e"};
-   TTreeReaderValue<Float_t> lepton_LES = {fReader, "lepton_LES"};
    TTreeReaderArray<float> lepton_SF = {fReader, "lepton_SF"};
+   TTreeReaderArray<float> lepton_scale = {fReader, "lepton_scale"};
    TTreeReaderValue<Float_t> lepton_relIso = {fReader, "lepton_relIso"};
    TTreeReaderValue<Bool_t> lepton_isIso = {fReader, "lepton_isIso"};
    TTreeReaderArray<float> jet_pt = {fReader, "jet_pt"};
@@ -109,7 +110,7 @@ public :
 
     float b_lepton_pt = 0; float b_lepton_phi = 10; float b_lepton_eta = 10; float b_lepton_m = 0;
     float b_met = 0; float b_met_phi = 10; float b_lepdphi = 0;
-    float b_lepWpt = 0; float b_lepWeta = 10; float b_lepWphi = 10; float b_lepWdphi = 10; float b_lepWm = 0;
+    float b_lepWpt = 0; float b_lepWeta = 10; float b_lepWphi = 10; float b_lepWdphi = 10; float b_lepWmt = 0;
 
     //ST FCNC
     int b_stfcnc_genMatch = -1; float b_stfcnc_score = -1;
@@ -128,7 +129,7 @@ public :
     float b_stfcnc_jet31pt = 0; float b_stfcnc_jet31eta = 10; float b_stfcnc_jet31deta = 10; float b_stfcnc_jet31phi = 10;
     float b_stfcnc_jet31dphi = 10; float b_stfcnc_jet31dR = 0; float b_stfcnc_jet31m = 0;
     float b_stfcnc_lepTpt = 0; float b_stfcnc_lepTeta = 10; float b_stfcnc_lepTdeta = 10;
-    float b_stfcnc_lepTphi = 10; float b_stfcnc_lepTdphi = 10; float b_stfcnc_lepTdR = 0; float b_stfcnc_lepTm = 0;
+    float b_stfcnc_lepTphi = 10; float b_stfcnc_lepTdphi = 10; float b_stfcnc_lepTdR = 0; float b_stfcnc_lepTmt = 0;
     float b_stfcnc_hadTpt = 0; float b_stfcnc_hadTeta = 10; float b_stfcnc_hadTphi = 10;
     float b_stfcnc_hadT12_3deta = 10; float b_stfcnc_hadT23_1deta = 10; float b_stfcnc_hadT31_2deta = 10;
     float b_stfcnc_hadT12_3dphi = 10; float b_stfcnc_hadT23_1dphi = 10; float b_stfcnc_hadT31_2dphi = 10;
@@ -158,7 +159,7 @@ public :
     float b_ttfcnc_jet31pt = 0; float b_ttfcnc_jet31eta = 10; float b_ttfcnc_jet31deta = 10; float b_ttfcnc_jet31phi = 10;
     float b_ttfcnc_jet31dphi = 10; float b_ttfcnc_jet31dR = 0; float b_ttfcnc_jet31m = 0;
     float b_ttfcnc_lepTpt = 0; float b_ttfcnc_lepTeta = 10; float b_ttfcnc_lepTdeta = 10;
-    float b_ttfcnc_lepTphi = 10; float b_ttfcnc_lepTdphi = 10; float b_ttfcnc_lepTdR = 0; float b_ttfcnc_lepTm = 0;
+    float b_ttfcnc_lepTphi = 10; float b_ttfcnc_lepTdphi = 10; float b_ttfcnc_lepTdR = 0; float b_ttfcnc_lepTmt = 0;
     float b_ttfcnc_hadTpt = 0; float b_ttfcnc_hadTeta = 10; float b_ttfcnc_hadTphi = 10;
     float b_ttfcnc_hadT12_3deta = 10; float b_ttfcnc_hadT23_1deta = 10; float b_ttfcnc_hadT31_2deta = 10;
     float b_ttfcnc_hadT12_3dphi = 10; float b_ttfcnc_hadT23_1dphi = 10; float b_ttfcnc_hadT31_2dphi = 10;
@@ -187,7 +188,7 @@ public :
     float b_ttbkg_jet31pt = 0; float b_ttbkg_jet31eta = 10; float b_ttbkg_jet31deta = 10; float b_ttbkg_jet31phi = 10;
     float b_ttbkg_jet31dphi = 10; float b_ttbkg_jet31dR = 0; float b_ttbkg_jet31m = 0;
     float b_ttbkg_lepTpt = 0; float b_ttbkg_lepTeta = 10; float b_ttbkg_lepTdeta = 10;
-    float b_ttbkg_lepTphi = 10; float b_ttbkg_lepTdphi = 10; float b_ttbkg_lepTdR = 0; float b_ttbkg_lepTm = 0;
+    float b_ttbkg_lepTphi = 10; float b_ttbkg_lepTdphi = 10; float b_ttbkg_lepTdR = 0; float b_ttbkg_lepTmt = 0;
     float b_ttbkg_hadTpt = 0; float b_ttbkg_hadTeta = 10; float b_ttbkg_hadTphi = 10;
     float b_ttbkg_hadT12_3deta = 10; float b_ttbkg_hadT23_1deta = 10; float b_ttbkg_hadT31_2deta = 10;
     float b_ttbkg_hadT12_3dphi = 10; float b_ttbkg_hadT23_1dphi = 10; float b_ttbkg_hadT31_2dphi = 10;

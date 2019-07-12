@@ -1,7 +1,7 @@
-SCENARIO=TTBKG
-ERA=2018
+SCENARIO=STFCNC
+ERA=2017
 VER=01
-MODEL=model_47_0.9503.h5
+MODEL=model_50_0.9749.h5
 nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} ${ERA} False 0 ${MODEL} > log1 &
 nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} ${ERA} False 1 ${MODEL} > log2 &
 nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} ${ERA} False 2 ${MODEL} > log3 &

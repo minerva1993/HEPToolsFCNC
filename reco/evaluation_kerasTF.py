@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize
@@ -59,7 +59,7 @@ for syst_ext in syst:
   print('Start evaluation on version '+ ch + ver + syst_ext + ' classifier with the model '+ bestModel)
 
 #  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext)):
-  for filename in os.listdir(os.path.join('/data1/users/minerva1993/work/' + str(int(era)+1) + '_fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch + syst_ext)):
+  for filename in os.listdir(os.path.join('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch + syst_ext)):
     if filename == '.gitkeep': continue
     if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg"]): continue
     if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg"]): continue
@@ -79,7 +79,7 @@ for syst_ext in syst:
         if not (any(x in filename for x in ["bb","bj","cc"]) and filename.endswith(('020.h5','021.h5'))) and not (any(x in filename for x in ["lf","other"]) and filename.endswith(('080.h5','081.h5','082.h5','083.h5','084.h5','085.h5','086.h5','087.h5'))) : continue
 
 #    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext, filename))
-    eval_df = pd.read_hdf(os.path.join('/data1/users/minerva1993/work/' + str(int(era)+1) + '_fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch + syst_ext, filename))
+    eval_df = pd.read_hdf(os.path.join('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch + syst_ext, filename))
     print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
 
     outfile = TFile.Open(os.path.join(scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root')),'RECREATE')

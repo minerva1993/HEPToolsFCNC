@@ -119,28 +119,26 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04849;
       else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.02703;
       else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.02484;
-      else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03186;
+      else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03165;
       else if( option.Contains("QCDEM30to50") ) wrongPVrate = 1.02575;
       else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.04114;
       else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.02968;
-      else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02597;
+      else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02596;
       else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.04353;
       else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.03696;
-      else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02918;
+      else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02922;
       else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.02786;
-      else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03188;
-      else if( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.03469;
-      else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04218;
-      else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.0482;
-      else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04601;
-      else if( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04702;
-      else if( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.0467;
-      else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.0479;
-      else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.0475;
-      else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.0478;
-      else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04738;
-      else if( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04806;
-      else if( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04762;
+      else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03184;
+      else if( option.Contains("TTLLpowhegttbbhdampup") ) wrongPVrate = 1.03463;
+      else if( option.Contains("TTLLpowhegttcchdampup") ) wrongPVrate = 1.03494;
+      else if( option.Contains("TTLLpowhegttlfhdampup") ) wrongPVrate = 1.03468;
+      else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04219;
+      else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.04743;
+      else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04677;
+      else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04768;
+      else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04708;
+      else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.048;
+      else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04758;
       else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04195;
       else if( option.Contains("WW") ) wrongPVrate = 1.04685;
       else if( option.Contains("WZ") ) wrongPVrate = 1.04381;
@@ -158,18 +156,18 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   int nbjets_m = 0; 
 
   TLorentzVector p4met;
-  double met = *MET;
-  double met_phi = *MET_phi;
-  double apt = TMath::Abs(met);
-  double met_x =  apt*TMath::Cos(met_phi);
-  double met_y =  apt*TMath::Sin(met_phi);
+  float met = *MET;
+  float met_phi = *MET_phi;
+  float apt = TMath::Abs(met);
+  float met_x =  apt*TMath::Cos(met_phi);
+  float met_y =  apt*TMath::Sin(met_phi);
   p4met.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
   lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
 
-  double transverseM = transverseMass(lepton, p4met);
-  double lepDphi = lepton.DeltaPhi(p4met);
+  float transverseM = transverseMass(lepton, p4met);
+  float lepDphi = lepton.DeltaPhi(p4met);
 
   //Selection Option
   bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
@@ -264,6 +262,13 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       if( !option.Contains("Run201") ){
         EventWeight *= wrongPVrate;
         EventWeight *= *genweight;
+        if( era == 2017 ){
+          //PrefireWeight
+          if     ( isPartOf("prefireup", std::string(syst_name[syst])) )   EventWeight *= prefireweight[1];
+          else if( isPartOf("prefiredown", std::string(syst_name[syst])) ) EventWeight *= prefireweight[2];
+          else   EventWeight *= prefireweight[0];
+        }
+        //if( option.Contains("owheg") ) EventWeight *= *topptweight; //for now, apply only for ttbar
         //PUWight
         if     ( isPartOf("puup", std::string(syst_name[syst])) )   EventWeight *= PUWeight[1];
         else if( isPartOf("pudown", std::string(syst_name[syst])) ) EventWeight *= PUWeight[2];
@@ -441,13 +446,13 @@ void MyAnalysis::Terminate()
   out->Close();
 }
 
-double MyAnalysis::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){
+float MyAnalysis::transverseMass( const TLorentzVector & lepton, const TLorentzVector & met){
 
   TLorentzVector leptonT(lepton.Px(),lepton.Py(),0.,lepton.E()*TMath::Sin(lepton.Theta()));
   TLorentzVector metT(met.Px(), met.Py(), 0, met.E());
 
   TLorentzVector sumT=leptonT+metT;
-  double out = TMath::Sqrt( sumT.M2() );
+  float out = sumT.M();
 
   return out;
 

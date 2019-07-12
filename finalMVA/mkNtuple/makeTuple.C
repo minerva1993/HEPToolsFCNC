@@ -125,7 +125,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("lepWeta" , &b_lepWeta , "lepWeta/F");
   tree->Branch("lepWphi" , &b_lepWphi , "lepWphi/F");
   tree->Branch("lepWdphi", &b_lepWdphi, "lepWdphi/F");
-  tree->Branch("lepWm"   , &b_lepWm   , "lepWm/F");
+  tree->Branch("lepWm"   , &b_lepWmt  , "lepWm/F");
 
   //STFCNC part
   tree->Branch("stfcnc_genMatch", &b_stfcnc_genMatch, "stfcnc_genMatch/I");
@@ -196,7 +196,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("stfcnc_lepTphi" , &b_stfcnc_lepTphi , "stfcnc_lepTphi/F");
   tree->Branch("stfcnc_lepTdphi", &b_stfcnc_lepTdphi, "stfcnc_lepTdphi/F");//W and b
   tree->Branch("stfcnc_lepTdR"  , &b_stfcnc_lepTdR  , "stfcnc_lepTdR/F");
-  tree->Branch("stfcnc_lepTm"   , &b_stfcnc_lepTm   , "stfcnc_lepTm/F");
+  tree->Branch("stfcnc_lepTm"   , &b_stfcnc_lepTmt  , "stfcnc_lepTm/F");
 
   tree->Branch("stfcnc_hadTpt"      , &b_stfcnc_hadTpt      , "stfcnc_hadTpt/F");
   tree->Branch("stfcnc_hadTeta"     , &b_stfcnc_hadTeta     , "stfcnc_hadTeta/F");
@@ -299,7 +299,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("ttfcnc_lepTphi" , &b_ttfcnc_lepTphi , "ttfcnc_lepTphi/F");
   tree->Branch("ttfcnc_lepTdphi", &b_ttfcnc_lepTdphi, "ttfcnc_lepTdphi/F");//W and b
   tree->Branch("ttfcnc_lepTdR"  , &b_ttfcnc_lepTdR  , "ttfcnc_lepTdR/F");
-  tree->Branch("ttfcnc_lepTm"   , &b_ttfcnc_lepTm   , "ttfcnc_lepTm/F");
+  tree->Branch("ttfcnc_lepTm"   , &b_ttfcnc_lepTmt  , "ttfcnc_lepTm/F");
 
   tree->Branch("ttfcnc_hadTpt"      , &b_ttfcnc_hadTpt      , "ttfcnc_hadTpt/F");
   tree->Branch("ttfcnc_hadTeta"     , &b_ttfcnc_hadTeta     , "ttfcnc_hadTeta/F");
@@ -403,7 +403,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   tree->Branch("ttbkg_lepTphi" , &b_ttbkg_lepTphi , "ttbkg_lepTphi/F");
   tree->Branch("ttbkg_lepTdphi", &b_ttbkg_lepTdphi, "ttbkg_lepTdphi/F");//W and b
   tree->Branch("ttbkg_lepTdR"  , &b_ttbkg_lepTdR  , "ttbkg_lepTdR/F");
-  tree->Branch("ttbkg_lepTm"   , &b_ttbkg_lepTm   , "ttbkg_lepTm/F");
+  tree->Branch("ttbkg_lepTm"   , &b_ttbkg_lepTmt  , "ttbkg_lepTm/F");
 
   tree->Branch("ttbkg_hadTpt"      , &b_ttbkg_hadTpt      , "ttbkg_hadTpt/F");
   tree->Branch("ttbkg_hadTeta"     , &b_ttbkg_hadTeta     , "ttbkg_hadTeta/F");
@@ -463,28 +463,26 @@ Bool_t makeTuple::Process(Long64_t entry)
       if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04849;
       else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.02703;
       else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.02484;
-      else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03186;
+      else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03165;
       else if( option.Contains("QCDEM30to50") ) wrongPVrate = 1.02575;
       else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.04114;
       else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.02968;
-      else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02597;
+      else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02596;
       else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.04353;
       else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.03696;
-      else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02918;
+      else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02922;
       else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.02786;
-      else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03188;
-      else if( option.Contains("TTLLpowheghdampup") ) wrongPVrate = 1.03469;
-      else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04218;
-      else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.0482;
-      else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04601;
-      else if( option.Contains("TTpowhegttbjTuneCP5down") ) wrongPVrate = 1.04702;
-      else if( option.Contains("TTpowhegttbjhdampdown") ) wrongPVrate = 1.0467;
-      else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.0479;
-      else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.0475;
-      else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.0478;
-      else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04738;
-      else if( option.Contains("TTpowhegttotherTuneCP5down") ) wrongPVrate = 1.04806;
-      else if( option.Contains("TTpowhegttotherhdampdown") ) wrongPVrate = 1.04762;
+      else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03184;
+      else if( option.Contains("TTLLpowhegttbbhdampup") ) wrongPVrate = 1.03463;
+      else if( option.Contains("TTLLpowhegttcchdampup") ) wrongPVrate = 1.03494;
+      else if( option.Contains("TTLLpowhegttlfhdampup") ) wrongPVrate = 1.03468;
+      else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04219;
+      else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.04743;
+      else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04677;
+      else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04768;
+      else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04708;
+      else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.048;
+      else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04758;
       else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04195;
       else if( option.Contains("WW") ) wrongPVrate = 1.04685;
       else if( option.Contains("WZ") ) wrongPVrate = 1.04381;
@@ -512,6 +510,7 @@ Bool_t makeTuple::Process(Long64_t entry)
 
   TLorentzVector lepton;
   lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
+  lepton = lepton*(lepton_scale[0]);
 
   float transverseM = transverseMass(lepton, p4met);
   float lepDphi = lepton.DeltaPhi(p4met);
@@ -568,24 +567,24 @@ Bool_t makeTuple::Process(Long64_t entry)
   if( !st_njet ) return kTRUE; // At least 3 jets including 2 b jets
 
   if( option.Contains("Run201") ) b_EventCategory = -1;
+  if( option.Contains("Run201") ) b_EventCategory = -1;
   else if( option.Contains("Hct") || option.Contains("Hut") ) b_EventCategory = 0;
   else if( option.Contains("ttbb") ) b_EventCategory = 1;
-  else if( option.Contains("ttbj") ) b_EventCategory = 2;
-  else if( option.Contains("ttcc") ) b_EventCategory = 3;
-  else if( option.Contains("ttlf") ) b_EventCategory = 4;
-  else if( option.Contains("ttother") or option.Contains("TTLL") or option.Contains("TTHad")) b_EventCategory = 5;
-  else if( option.Contains("SingleT") ) b_EventCategory = 6; //singletop
-  else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 7; //VV
-  else if( option.Contains("DY") ) b_EventCategory = 8;
-  else if( option.Contains("W1Jets") or option.Contains("W2Jets") or option.Contains("W3Jets") or option.Contains("W4Jets") ) b_EventCategory = 9;
-  else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 10;
-  else b_EventCategory = 20;
+  else if( option.Contains("ttcc") ) b_EventCategory = 2;
+  else if( option.Contains("ttlf") ) b_EventCategory = 3;
+  else if( option.Contains("SingleT") ) b_EventCategory = 4; //singletop
+  else if( option.Contains("TTZ") or option.Contains("TTW") or option.Contains("ttH")) b_EventCategory = 5; //ttX
+  else if( option.Contains("DY") ) b_EventCategory = 6;
+  else if( option.Contains("W1Jets") or option.Contains("W2Jets") or option.Contains("W3Jets") or option.Contains("W4Jets") ) b_EventCategory = 7;
+  else if( option.Contains("WW") or option.Contains("WZ") or option.Contains("ZZ") ) b_EventCategory = 8;
+  else b_EventCategory = 10;
 
   b_EventWeight = 1.0;
   if( !option.Contains("Run201") ){
     if( passmuon ) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6];
     else if( passelectron) b_EventWeight *= lepton_SF[0] * lepton_SF[3] * lepton_SF[6] * lepton_SF[9];
     b_EventWeight *= PUWeight[0] * wrongPVrate * jet_SF_deepCSV_30[0] * (*genweight);
+    if( era == 2017 ) b_EventWeight *= prefireweight[0];
   }
 
   b_channel = mode;
@@ -603,7 +602,7 @@ Bool_t makeTuple::Process(Long64_t entry)
   TLorentzVector lepW = lepton + p4met;
 
   b_lepton_pt = lepton.Pt(); b_lepton_phi = lepton.Phi(); b_lepton_eta = lepton.Eta(); b_lepton_m = lepton.M();
-  b_lepWpt = (lepW).Pt(); b_lepWeta = (lepW).Eta(); b_lepWphi = (lepW).Phi(); b_lepWm = (lepW).M();
+  b_lepWpt = (lepW).Pt(); b_lepWeta = (lepW).Eta(); b_lepWphi = (lepW).Phi(); b_lepWmt = transverseM;
   b_lepWdphi = lepton.DeltaPhi(p4met);
 
   //Jet Assignment
@@ -697,7 +696,7 @@ Bool_t makeTuple::Process(Long64_t entry)
     b_stfcnc_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
     b_stfcnc_lepTpt = lepT.Pt(); b_stfcnc_lepTeta = lepT.Eta();
-    b_stfcnc_lepTphi = lepT.Phi(); b_stfcnc_lepTm = lepT.M();
+    b_stfcnc_lepTphi = lepT.Phi(); b_stfcnc_lepTmt = transverseMass(lepton+jetP4cor[0],p4met);
     b_stfcnc_lepTdeta = (lepW-jetP4cor[0]).Eta();
     b_stfcnc_lepTdphi = lepW.DeltaPhi(jetP4cor[0]);
     b_stfcnc_lepTdR = lepW.DeltaR(jetP4cor[0]);
@@ -825,7 +824,7 @@ Bool_t makeTuple::Process(Long64_t entry)
     b_ttfcnc_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
     b_ttfcnc_lepTpt = lepT.Pt(); b_ttfcnc_lepTeta = lepT.Eta();
-    b_ttfcnc_lepTphi = lepT.Phi(); b_ttfcnc_lepTm = lepT.M();
+    b_ttfcnc_lepTphi = lepT.Phi(); b_ttfcnc_lepTmt = transverseMass(lepton+jetP4cor[0],p4met);
     b_ttfcnc_lepTdeta = (lepW-jetP4cor[0]).Eta();
     b_ttfcnc_lepTdphi = lepW.DeltaPhi(jetP4cor[0]);
     b_ttfcnc_lepTdR = lepW.DeltaR(jetP4cor[0]);
@@ -953,7 +952,7 @@ Bool_t makeTuple::Process(Long64_t entry)
     b_ttbkg_jet31dR = jetP4cor[3].DeltaR(jetP4cor[1]);
 
     b_ttbkg_lepTpt = lepT.Pt(); b_ttbkg_lepTeta = lepT.Eta();
-    b_ttbkg_lepTphi = lepT.Phi(); b_ttbkg_lepTm = lepT.M();
+    b_ttbkg_lepTphi = lepT.Phi(); b_ttbkg_lepTmt = transverseMass(lepton+jetP4cor[0],p4met);
     b_ttbkg_lepTdeta = (lepW-jetP4cor[0]).Eta();
     b_ttbkg_lepTdphi = lepW.DeltaPhi(jetP4cor[0]);
     b_ttbkg_lepTdR = lepW.DeltaR(jetP4cor[0]);
