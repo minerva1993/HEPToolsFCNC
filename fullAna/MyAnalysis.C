@@ -75,7 +75,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
 
   //cout << "SlaveBegin" << endl;
   for( int ich=0; ich < 3; ich++ ){
-    for( int i=0; i < 12; i++ ){
+    for( int i=0; i < 9; i++ ){
       for( int syst = 0; syst != syst_num; ++syst ){
         if( syst > 0 and !dosyst ) continue;
 
@@ -368,7 +368,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   p4met.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
-  lepton.SetPtEtaPhiE(*lepton_pt*lepton_scale[0], *lepton_eta, *lepton_phi, *lepton_e);
+  lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
+  lepton = lepton*lepton_scale[0];
 
   float transverseM = transverseMass(lepton, p4met);
   float lepDphi = lepton.DeltaPhi(p4met);
@@ -517,7 +518,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }//reco option
 
   /////Fill histograms
-  int Ncuts = 12;
+  int Ncuts = 9;
   bool eventSelection[Ncuts];
   for(int bcut=0; bcut < Ncuts; bcut++) eventSelection[bcut] = false;
 
@@ -530,16 +531,13 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   eventSelection[6]  = ( njets >= 4 ) && ( nbjets_m == 2 ); 
   eventSelection[7]  = ( njets >= 4 ) && ( nbjets_m == 3 );
   eventSelection[8]  = ( njets >= 4 ) && ( nbjets_m == 4 );
-  eventSelection[9]  = ( njets >= 4 ) && ( nbjets_m >= 2 );
-  eventSelection[10] = ( njets >= 4 ) && ( nbjets_m >= 3 );
-  eventSelection[11] = ( njets >= 4 ) && ( nbjets_m >= 4 );
 
   if( reco_id > 0 ) for( int i=0; i <5; i++) eventSelection[i] = false;
 
   int modeArray[2] = {mode, 2};
 
   for( int MODE : modeArray ){
-    for( int cut = 0; cut < 12; cut++){
+    for( int cut = 0; cut < 9; cut++){
       if( eventSelection[cut] ){
         for( int syst = 0; syst != syst_num; ++syst ){
           if( syst > 0 and !dosyst ) continue;

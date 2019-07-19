@@ -48,7 +48,7 @@ for ch in ['Hct','Hut']:
       ver = str(i)
       out = TFile.Open(era + '/final_'+ch+'_'+jetcat+'_'+ver+'/output_'+ch+'_'+jetcat+'.root')
 
-      if   era == "2017": tmp = ''
+      if   era == "2017": tmp = '2017/'
       elif era == "2018": tmp = '2018/'
 
       for method in ['BDT']:
@@ -61,42 +61,46 @@ for ch in ['Hct','Hut']:
         if method == 'BDT': rocBDT = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_BDT_rejBvsS')
         elif method == 'Keras_TF': rocKeras = out.Get(tmp+'final_'+ch+'_'+jetcat+'_'+ver+'/Method_'+method+'/'+method+'/MVA_Keras_TF_rejBvsS')
 
-        if jetcat == 'j4b4':
-          trainS.Rebin(2)
-          trainB.Rebin(2)
-          testS.Rebin(2)
-          testB.Rebin(2)
+#        if jetcat == 'j4b4':
+#          trainS.Rebin(2)
+#          trainB.Rebin(2)
+#          testS.Rebin(2)
+#          testB.Rebin(2)
 
-        testS.SetStats(0)
-        testS.SetTitle('')
+        trainS.SetStats(0)
+        trainS.SetTitle('')
 
-        testS.GetXaxis().SetTitle('MVA score')
-        testS.GetYaxis().SetTitle('A.U. (Normalized)')
-        testB.SetFillStyle(3554)
-        testS.SetFillColor(38)
-        testB.SetFillColor(2)
-        testS.SetLineColor(4)
-        testB.SetLineColor(2)
-        trainS.SetMarkerStyle(20)
-        trainB.SetMarkerStyle(20)
-        trainS.SetMarkerSize(0.7)
-        trainB.SetMarkerSize(0.7)
-        trainS.SetMarkerColor(4)
-        trainB.SetMarkerColor(2)
+        trainS.GetXaxis().SetTitle('MVA score')
+        trainS.GetYaxis().SetTitle('A.U. (Normalized)')
+        trainB.SetFillStyle(3554)
+        trainS.SetFillColor(38)
+        trainB.SetFillColor(2)
+        trainS.SetLineColor(4)
+        trainB.SetLineColor(2)
+        testS.SetMarkerStyle(20)
+        testB.SetMarkerStyle(20)
+        testS.SetMarkerSize(0.7)
+        testB.SetMarkerSize(0.7)
+        testS.SetMarkerColor(4)
+        testB.SetMarkerColor(2)
+        testS.Rebin(2)
+        testB.Rebin(2)
+        trainS.Rebin(2)
+        trainB.Rebin(2)
 
         histoMax = [trainS.GetMaximum(), trainB.GetMaximum(), testS.GetMaximum(), testB.GetMaximum()]
-        testS.SetMaximum(max(histoMax)*1.25)
+        trainS.SetMaximum(max(histoMax)*1.25)
 
-        l.AddEntry(trainS, 'Signal (training)', 'p')
-        l.AddEntry(trainB, 'Background (training)', 'p')
-        l.AddEntry(testS, 'Signal (testing)', 'f')
-        l.AddEntry(testB, 'Background (testing)', 'f')
+        l.AddEntry(trainS, 'Signal (training)', 'f')
+        l.AddEntry(trainB, 'Background (training)', 'f')
+        l.AddEntry(testS, 'Signal (testing)', 'p')
+        l.AddEntry(testB, 'Background (testing)', 'p')
         label2.AddText(ch + ', ' + jetcat[2:4]+jetcat[0:2] +', ' + method)
 
-        testS.Draw('hist')
-        testB.Draw('hist same')
-        trainS.Draw('ep same')
-        trainB.Draw('ep same')
+        trainS.Draw('hist')
+        trainB.Draw('hist same')
+        testS.Draw('ep same')
+        testB.Draw('ep same')
         label.Draw('same')
         label2.Draw('same')
         l.Draw('same')

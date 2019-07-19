@@ -63,8 +63,8 @@ sig_files, bkg_files = train_files(ch, era)
 if not input_only:
   scaleST, scaleTT, scaleTTLJ, scaleTTLL, frac_sig, frac_bkg = evalScale(ch, era, sig_files, bkg_files)
 else: scaleST=1.0; scaleTT=1.0; scaleTTLJ=1.0; scaleTTLL=1.0; frac_sig=1.0; frac_bkg=1.0
-input_features.remove('STTT')
-input_features.remove('channel')
+#input_features.remove('STTT')
+#input_features.remove('channel')
 
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session

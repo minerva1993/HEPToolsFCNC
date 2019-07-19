@@ -120,58 +120,58 @@ public :
           "__ps0", "__ps1", "__ps2", "__ps3"};
     int syst_num = syst_name.size();
 
-    TH1D *h_PV[3][12][45];
-    TH1D *h_EventWeight[3][12][45];
-    TH1D *h_NJet[3][12][45];
-    TH1D *h_NBJetCSVv2M[3][12][45];
-    TH1D *h_NBJetCSVv2T[3][12][45];
-    TH1D *h_NCJetM[3][12][45];
-    TH1D *h_LepPt[3][12][45];
-    TH1D *h_LepPhi[3][12][45];
-    TH1D *h_LepEta[3][12][45];
-    TH1D *h_MET[3][12][45];
+    TH1D *h_PV[3][9][45];
+    TH1D *h_EventWeight[3][9][45];
+    TH1D *h_NJet[3][9][45];
+    TH1D *h_NBJetCSVv2M[3][9][45];
+    TH1D *h_NBJetCSVv2T[3][9][45];
+    TH1D *h_NCJetM[3][9][45];
+    TH1D *h_LepPt[3][9][45];
+    TH1D *h_LepPhi[3][9][45];
+    TH1D *h_LepEta[3][9][45];
+    TH1D *h_MET[3][9][45];
 
-    TH1D *h_WMass[3][12][45];
-    TH1D *h_LepIso[3][12][45];
-    TH1D *h_LepIsoQCD[3][12][45];
-    TH1D *h_DPhi[3][12][45];
-    TH1D *h_JetCSV[3][12][45];
+    TH1D *h_WMass[3][9][45];
+    TH1D *h_LepIso[3][9][45];
+    TH1D *h_LepIsoQCD[3][9][45];
+    TH1D *h_DPhi[3][9][45];
+    TH1D *h_JetCSV[3][9][45];
 
     //leading and subleading jets
-    TH1D *h_LeadJetPt[3][12][45];
-    TH1D *h_LeadJetEta[3][12][45];
-    TH1D *h_SubleadJetPt[3][12][45];
-    TH1D *h_SubleadJetEta[3][12][45];
+    TH1D *h_LeadJetPt[3][9][45];
+    TH1D *h_LeadJetEta[3][9][45];
+    TH1D *h_SubleadJetPt[3][9][45];
+    TH1D *h_SubleadJetEta[3][9][45];
 
     //Reco
-    TH1D *h_csv[3][12][45];
-    TH1D *h_cvsl[3][12][45];
-    TH1D *h_cvsb[3][12][45];
-    TH1D *h_FCNHkinLepWMass[3][12][45];
-    TH1D *h_FCNHkinHadWMass[3][12][45];
-    TH1D *h_FCNHkinHMass[3][12][45];
-    TH1D *h_FCNHkinDR[3][12][45];
-    TH1D *h_FCNHkinLepTopM[3][12][45];
-    TH1D *h_FCNHkinHadTopM[3][12][45];
-    TH1D *h_FCNHkinHPt[3][12][45];
-    TH1D *h_FCNHkinHdPhi[3][12][45];
-    TH1D *h_FCNHkinHdEta[3][12][45];
-    TH1D *h_FCNHkinHb1Pt[3][12][45];
-    TH1D *h_FCNHkinHb2Pt[3][12][45];
-    TH1D *h_FCNHkinHb1CSV[3][12][45];
-    TH1D *h_FCNHkinHb2CSV[3][12][45];
-    TH1D *h_FCNHkinHb1CSVfull[3][12][45];
-    TH1D *h_FCNHkinHb2CSVfull[3][12][45];
-    TH1D *h_FCNHkinLepTopPt[3][12][45];
-    TH1D *h_FCNHkinHadTopPt[3][12][45];
-    TH1D *h_genDR[3][12][45];
-    TH1D *h_matchDR[3][12][45];
-    TH1D *h_genHm[3][12][45];
-    TH1D *h_matchHm[3][12][45];
+    TH1D *h_csv[3][9][45];
+    TH1D *h_cvsl[3][9][45];
+    TH1D *h_cvsb[3][9][45];
+    TH1D *h_FCNHkinLepWMass[3][9][45];
+    TH1D *h_FCNHkinHadWMass[3][9][45];
+    TH1D *h_FCNHkinHMass[3][9][45];
+    TH1D *h_FCNHkinDR[3][9][45];
+    TH1D *h_FCNHkinLepTopM[3][9][45];
+    TH1D *h_FCNHkinHadTopM[3][9][45];
+    TH1D *h_FCNHkinHPt[3][9][45];
+    TH1D *h_FCNHkinHdPhi[3][9][45];
+    TH1D *h_FCNHkinHdEta[3][9][45];
+    TH1D *h_FCNHkinHb1Pt[3][9][45];
+    TH1D *h_FCNHkinHb2Pt[3][9][45];
+    TH1D *h_FCNHkinHb1CSV[3][9][45];
+    TH1D *h_FCNHkinHb2CSV[3][9][45];
+    TH1D *h_FCNHkinHb1CSVfull[3][9][45];
+    TH1D *h_FCNHkinHb2CSVfull[3][9][45];
+    TH1D *h_FCNHkinLepTopPt[3][9][45];
+    TH1D *h_FCNHkinHadTopPt[3][9][45];
+    TH1D *h_genDR[3][9][45];
+    TH1D *h_matchDR[3][9][45];
+    TH1D *h_genHm[3][9][45];
+    TH1D *h_matchHm[3][9][45];
 
     //SF specific histos
-    TH1D *h_PVnoSF[3][12][45];
-    TH1D *h_JetCSVnoSF[3][12][45];
+    TH1D *h_PVnoSF[3][9][45];
+    TH1D *h_JetCSVnoSF[3][9][45];
 
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");

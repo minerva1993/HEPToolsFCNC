@@ -8,3 +8,6 @@
 *.class.C
 *.pdf
 *.o
+commonTools/file*
+commonTools/merge*
+commonTools/arrange*

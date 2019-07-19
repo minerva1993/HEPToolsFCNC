@@ -6,6 +6,8 @@ from ROOT import *
 TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
 
+checkNevt = False
+
 #Version of classifier
 if len(sys.argv) < 5:
   print("Not enough arguements: Ch, JetCat, Ver, Era")
@@ -41,17 +43,17 @@ idx['j4b3'] = 3
 idx['j4b4'] = 4
 
 if era == "2017":
-  nsig_Hct = ['55000', '23000', '50000', '31000', '2600']
-  nsig_Hut = ['50000', '17000', '52000', '28000', '1150']
-  nbkg = ['180000', '7100', '280000', '25000', '1300']
-  ntree = ['600', '200', '600', '300', '50']
-  ncut = ['30', '20', '30', '20', '20']
+  nsig_Hct = ['48000', '17000', '53000', '31000', '2500']
+  nsig_Hut = ['49000', '16000', '57000', '31000', '1500']
+  nbkg = ['194000', '8300', '320000', '31000', '1700']
+  ntree = ['400', '100', '400', '200', '20']
+  ncut = ['20', '20', '20', '20', '10']
 elif era == "2018":
-  nsig_Hct = ['57000', '24000', '59000', '38000', '3600']
-  nsig_Hut = ['46000', '15000', '52000', '30000', '1400']
-  nbkg = ['170000', '7700', '250000', '25000', '1300']
-  ntree = ['600', '200', '600', '300', '50']
-  ncut = ['30', '20', '30', '20', '20']
+  nsig_Hct = ['47200', '19700', '47600', '31200', '2900']
+  nsig_Hut = ['40600', '13200', '46000', '26000', '1300']
+  nbkg = ['379200', '17400', '400000', '63100', '3200'] #Max 0.4M
+  ntree = ['400', '100', '400', '200', '20']
+  ncut = ['20', '20', '20', '20', '10']
 
 if ch == "Hct":
   options = "nTrain_Signal=" + nsig_Hct[idx[jetcat]] + ":nTrain_Background=" + nbkg[idx[jetcat]] + ":nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
@@ -83,11 +85,11 @@ sig_files, bkg_files = train_files(ch, era)
 #int_vars = []
 input_features = []
 input_features.extend(input_variables_bdt(jetcat))
-input_features.remove('STTT')
-input_features.remove('channel')
+#input_features.remove('STTT')
+#input_features.remove('channel')
 
 fout = TFile(era + "/output_"+ch+"_"+jetcat+".root","recreate")
-factory = TMVA.Factory("TMVAClassification", fout, "!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification" )
+factory = TMVA.Factory("TMVAClassification", fout, "!V:!Silent:DrawProgressBar:AnalysisType=Classification" )
 
 loader = TMVA.DataLoader((weightDir+ver).split("/")[-2] + '/' + (weightDir+ver).split("/")[-1])
 #for var in int_vars:
@@ -100,18 +102,24 @@ loader.AddSpectator("EventCategory")
 loader.AddSpectator("njets")
 loader.AddSpectator("nbjets_m")
 
+nst, ntt, nttlj, nttll, frac_sig, frac_bkg = evalScale(ch, era, sig_files, bkg_files)
+print("Sum of weights of training samples - ST = " + str(nst) + ", TT = " + str(ntt) + ", TTLJ = " + str(nttlj) + ", TTLL = " + str(nttll)) 
+print("Relative file weights - ST/TT = " + str(frac_sig) + ", LL/LJ = " + str(frac_bkg))
+#if checkNevt: sys.exit()
+
 trees = []
 for fName in sig_files:
     fileWeight = 1
     if "TTTH" in fName: fileWeight = 1
-    elif "STTH" in fName and "Hct" in fName: fileWeight = 0.04
-    elif "STTH" in fName and "Hut" in fName: fileWeight = 0.3
+    elif "STTH" in fName and "Hct" in fName: fileWeight = frac_sig#0.044
+    elif "STTH" in fName and "Hut" in fName: fileWeight = frac_sig#0.441 #from note, ST/TT
     f = TFile(rootDir+fName.replace("h5","root"))
     t = f.Get("tree")
     loader.AddSignalTree(t, fileWeight)
     trees.append([f, t])
 for fName in bkg_files:
     fileWeight = 1
+    if "TTLL" in fName: fileWeight = frac_bkg
     f = TFile(rootDir+fName.replace("h5","root"))
     t = f.Get("tree")
     loader.AddBackgroundTree(t, fileWeight)
@@ -121,10 +129,12 @@ loader.PrepareTrainingAndTestTree(sigCut, bkgCut, options)
 
 factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=" + ntree[idx[jetcat]] + ":MinNodeSize=5%:MaxDepth=5:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=" + ncut[idx[jetcat]])
 
+if checkNevt: sys.exit()
+
 factory.TrainAllMethods()
 factory.TestAllMethods()
 factory.EvaluateAllMethods()
 fout.Close()
 
-if not os.path.exists( os.path.join(configDir, weightDir+ver, "output_"+ch+"_"+jetcat+".root") ):
-  shutil.move(era + "/output_"+ch+"_"+jetcat+".root", os.path.join(configDir, weightDir+ver))
+if not os.path.exists( os.path.join(configDir, weightDir+ver, "output_" + ch + "_" + jetcat + ".root") ):
+  shutil.move(era + "/output_" + ch + "_" + jetcat + ".root", os.path.join(configDir, weightDir+ver))

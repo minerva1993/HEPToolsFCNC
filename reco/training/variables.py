@@ -66,18 +66,14 @@ def train_files(ch, era):
                   ]
 
     elif ch == "TTBKG":
-      file_list = ['deepReco_TTpowhegttbb_000.h5', 'deepReco_TTpowhegttcc_000.h5',
-                   'deepReco_TTpowhegttbb_001.h5', 'deepReco_TTpowhegttcc_001.h5',
-                   'deepReco_TTpowhegttbb_002.h5', 'deepReco_TTpowhegttcc_002.h5',#0~2 for ttbb,cc
-                   'deepReco_TTpowhegttlf_000.h5', 'deepReco_TTpowhegttlf_001.h5',
-                   'deepReco_TTpowhegttlf_002.h5', 'deepReco_TTpowhegttlf_003.h5',
-                   'deepReco_TTpowhegttlf_004.h5', 'deepReco_TTpowhegttlf_005.h5',
-                   'deepReco_TTpowhegttlf_006.h5', 'deepReco_TTpowhegttlf_007.h5',
-                   'deepReco_TTpowhegttlf_008.h5', 'deepReco_TTpowhegttlf_009.h5',
-                   'deepReco_TTpowhegttlf_010.h5', 'deepReco_TTpowhegttlf_011.h5',
-                   'deepReco_TTpowhegttlf_012.h5', 'deepReco_TTpowhegttlf_013.h5',
-                   'deepReco_TTpowhegttlf_014.h5', #0(0~4), 1(5~9), 2(10~14)
-                    ]
+      file_list = []
+      for i in range(0,3): #upto 2
+        file_list.append('deepReco_TTpowhegttbb_00'+str(i)+'.h5')
+        file_list.append('deepReco_TTpowhegttcc_00'+str(i)+'.h5')
+      for i in range(0,10):
+        file_list.append('deepReco_TTpowhegttlf_00'+str(i)+'.h5')
+      for i in range(10,15): #upto 14
+        file_list.append('deepReco_TTpowhegttlf_0'+str(i)+'.h5')
 
   elif era == "2018":
     if ch == "STFCNC":
@@ -95,14 +91,14 @@ def train_files(ch, era):
                   ]
 
     elif ch == "TTBKG":
-      file_list = ['deepReco_TTpowhegttbb_000.h5', 'deepReco_TTpowhegttcc_000.h5',#0~1
-                   'deepReco_TTpowhegttbb_001.h5', 'deepReco_TTpowhegttcc_001.h5',
-                   'deepReco_TTpowhegttlf_000.h5', 'deepReco_TTpowhegttlf_001.h5',
-                   'deepReco_TTpowhegttlf_002.h5', 'deepReco_TTpowhegttlf_003.h5',
-                   'deepReco_TTpowhegttlf_004.h5', 'deepReco_TTpowhegttlf_005.h5',
-                   'deepReco_TTpowhegttlf_006.h5', 'deepReco_TTpowhegttlf_007.h5',
-                   'deepReco_TTpowhegttlf_008.h5', 'deepReco_TTpowhegttlf_009.h5',
-                    ]
+      file_list = []
+      for i in range(0,2): #upto 1
+        file_list.append('deepReco_TTpowhegttbb_00'+str(i)+'.h5')
+        file_list.append('deepReco_TTpowhegttcc_00'+str(i)+'.h5')
+      for i in range(0,10):
+        file_list.append('deepReco_TTpowhegttlf_00'+str(i)+'.h5')
+      #for i in range(10,15): #upto 9
+      #  file_list.append('deepReco_TTpowhegttlf_0'+str(i)+'.h5')
 
   else: file_list = []
 

@@ -25,6 +25,12 @@ string_for_run = ''
 merge_file_name = 'job_merge_' + era +'.sh'
 string_for_merge = ''
 
+move_file_name = 'job_prep_' + era +'.sh'
+string_for_move = ''
+
+hadd_file_name = 'job_hadd_' + era +'.sh'
+string_for_hadd = ''
+
 print("Write options for bypassing reconstruction")
 #This part is for bypass reconstruction
 bare_list =  os.listdir(path_to_prod_noreco)
@@ -71,29 +77,33 @@ for syst_tmp in syst + syst2:
     for num in range(0,10): string_for_merge += "mv temp/hist_TTLL*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
     for num in range(0,5):
       string_for_merge += "mv temp/hist_TTpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-      string_for_merge += "mv temp/hist_TTpowhegttbj_00" + str(num) + syst_tmp + ".root temp/not_using\n"
       string_for_merge += "mv temp/hist_TTpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
     for num in range(0,10):
       string_for_merge += "mv temp/hist_TTpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-      string_for_merge += "mv temp/hist_TTpowhegttother_00" + str(num) + syst_tmp + ".root temp/not_using\n"
     for num in range(10,20):
       string_for_merge += "mv temp/hist_TTpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
-      string_for_merge += "mv temp/hist_TTpowhegttother_0" + str(num) + syst_tmp + ".root temp/not_using\n"
   elif era == '2018':
-    for num in range(0,4): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    string_for_merge += "mv temp/hist_STTH1L3BHct_004*" + syst_tmp + ".root temp/not_using\n"
+    #Signals
+    for num in range(0,6): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
     for num in range(0,2): string_for_merge += "mv temp/hist_TTTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    for num in range(0,5): string_for_merge += "mv temp/hist_TTLL*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    for num in range(0,3):
+    #TTLJ
+    for num in range(0,8):
       string_for_merge += "mv temp/hist_TTpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-      string_for_merge += "mv temp/hist_TTpowhegttbj_00" + str(num) + syst_tmp + ".root temp/not_using\n"
       string_for_merge += "mv temp/hist_TTpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
     for num in range(0,10):
       string_for_merge += "mv temp/hist_TTpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-      string_for_merge += "mv temp/hist_TTpowhegttother_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    for num in range(10,12):
+    for num in range(10,40):
       string_for_merge += "mv temp/hist_TTpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
-      string_for_merge += "mv temp/hist_TTpowhegttother_0" + str(num) + syst_tmp + ".root temp/not_using\n"
+    #TTLL
+    for num in range(0,4):
+      string_for_merge += "mv temp/hist_TTLLpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTLLpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,10):
+      string_for_merge += "mv temp/hist_TTLLpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(10,16):
+      string_for_merge += "mv temp/hist_TTLLpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
+
+string_for_move = string_for_merge
 
 for lines in noreco_list:
   if "v2" in lines.split(' ')[1]: ext_dataset.append(lines.split(' ')[1])
@@ -132,8 +142,19 @@ for ttsig in fcnc_dataset:
       string_for_merge += "hadd pre_process/hist_TTTH1L3BTLep" + ch + syst_ext + ".root temp/hist_TTTH1L3BTLep" + ch + "_*[0-9]" + syst_ext + ".root\n"
       string_for_merge += "hadd pre_process/hist_TTTH1L3BaTLep" + ch + syst_ext + ".root temp/hist_TTTH1L3BaTLep" + ch + "_*[0-9]" + syst_ext + ".root\n"
 
+string_for_hadd = string_for_merge
+string_for_hadd = string_for_hadd[string_for_hadd.find('hadd'):]
+
 if os.path.exists('doReco/' + merge_file_name): os.remove('doReco/' + merge_file_name)
 with open('doReco/' + merge_file_name, 'w') as g:
   g.write(string_for_merge)
+
+if os.path.exists('doReco/' + move_file_name): os.remove('doReco/' + move_file_name)
+with open('doReco/' + move_file_name, 'w') as g:
+  g.write(string_for_move)
+
+if os.path.exists('doReco/' + hadd_file_name): os.remove('doReco/' + hadd_file_name)
+with open('doReco/' + hadd_file_name, 'w') as g:
+  g.write(string_for_hadd)
 
 shutil.copy2("doReco/job_merge_" + era +".sh", "./../finalMVA/histos")
