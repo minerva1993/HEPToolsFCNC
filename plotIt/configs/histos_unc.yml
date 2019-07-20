@@ -1,0 +1,64 @@
+'h_DNN_j3b2_Ch2':
+  x-axis: "BDT Score"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  for-yields: true
+  yields-table-order: 0
+  yields-title: '$b2j3$'
+  rebin: 2
+  labels:
+    - {text: 'b2j3', position: [0.778, 0.82], size: 18}
+  signal-normalize-data: false
+
+'h_DNN_j3b3_Ch2':
+  x-axis: "BDT Score"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  for-yields: true
+  yields-table-order: 2
+  yields-title: '$j3b3$'
+  rebin: 2
+  labels:
+    - {text: 'b3j3', position: [0.778, 0.82], size: 18}
+  signal-normalize-data: false
+
+'h_DNN_j4b2_Ch2':
+  x-axis: "BDT Score"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  for-yields: true
+  yields-table-order: 1
+  yields-title: '$b2j4$'
+  rebin: 2
+  labels:
+    - {text: 'b2j4', position: [0.778, 0.82], size: 18}
+  signal-normalize-data: false
+
+'h_DNN_j4b3_Ch2':
+  x-axis: "BDT Score"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  for-yields: true
+  yields-table-order: 3
+  yields-title: '$b3j4$'
+  rebin: 2
+  labels:
+    - {text: 'b3j4', position: [0.778, 0.82], size: 18}
+  signal-normalize-data: false
+
+'h_DNN_j4b4_Ch2':
+  x-axis: "BDT Score"
+  y-axis: "Entries"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  for-yields: true
+  yields-table-order: 4
+  yields-title: '$b4j4$'
+  rebin: 2
+  labels:
+    - {text: 'b4j4', position: [0.778, 0.82], size: 18}
+  signal-normalize-data: false

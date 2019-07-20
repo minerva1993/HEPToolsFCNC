@@ -1,24 +1,36 @@
 GData:
   legend: 'Data'
   marker-size: 0.6
+
 GWJets:
   fill-color: '#ff9933'
   legend: 'WJets'
-GttBkg:
-  fill-color: '#ff6666'
-  legend: 'ttBkg'
+
+Gttbb:
+  fill-color: '#330000'
+  legend: 'ttbb'
+
+Gttcc:
+  fill-color: '#990000'
+  legend: 'ttcc'
+
+Gttlf:
+  fill-color: '#cc0000'
+  legend: 'ttlf'
+
 GttV:
   fill-color: '#ff66ff'
   legend: 'ttV/H'
+
 GZJets:
   fill-color: '#000099'
   legend: 'ZJets'
+
 GSingleT:
   fill-color: '#990099'
   legend: 'SingleT'
+
 GVV:
   fill-color: '#00cccc'
   legend: 'VV'
-GTTHut:
-  fill-color: '#cccc00'
-  legend: "TTHut"
+

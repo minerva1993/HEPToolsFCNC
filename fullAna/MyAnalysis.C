@@ -136,7 +136,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
           fOutput->Add(h_LepEta[ich][i][syst]);
 
           h_WMass[ich][i][syst] = new TH1D(Form("h_WMass_Ch%i_S%i%s",ich,i,syst_name[syst]), "W Mass", 30 ,0 ,200);
-          h_WMass[ich][i][syst]->SetXTitle("Transverse Mass (GeV)");
+          h_WMass[ich][i][syst]->SetXTitle("W Transverse Mass (Lep) (GeV)");
           h_WMass[ich][i][syst]->Sumw2();
           fOutput->Add(h_WMass[ich][i][syst]);
 
@@ -198,7 +198,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
         fOutput->Add(h_cvsb[ich][i][syst]);
 
         h_FCNHkinLepWMass[ich][i][syst] = new TH1D(Form("h_FCNHkinLepWMass_Ch%i_S%i%s",ich,i,syst_name[syst]), "W Transverse Mass (Lep)", 30 , 0, 300);
-        h_FCNHkinLepWMass[ich][i][syst]->SetXTitle("W Mass (Lep) (GeV)");
+        h_FCNHkinLepWMass[ich][i][syst]->SetXTitle("W Transverse Mass (Lep) (GeV)");
         h_FCNHkinLepWMass[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinLepWMass[ich][i][syst]);
 
@@ -217,8 +217,8 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
         h_FCNHkinDR[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinDR[ich][i][syst]);
 
-        h_FCNHkinLepTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinLepTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Transverse Mass (Lep)", 30 , 50, 450);
-        h_FCNHkinLepTopM[ich][i][syst]->SetXTitle("Top Mass (Lep) (GeV)");
+        h_FCNHkinLepTopM[ich][i][syst] = new TH1D(Form("h_FCNHkinLepTopM_Ch%i_S%i%s",ich,i,syst_name[syst]), "Top Transverse Mass (Lep)", 30 , 0, 450);
+        h_FCNHkinLepTopM[ich][i][syst]->SetXTitle("Top Transverse Mass (Lep) (GeV)");
         h_FCNHkinLepTopM[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinLepTopM[ich][i][syst]);
 
