@@ -11,3 +11,14 @@
 commonTools/file*
 commonTools/merge*
 commonTools/arrange*
+finalMVA/training/201*/final*
+finalMVA/histos/job*
+fullAna/doReco/job*
+fullAna/runNoReco*
+plotIt/external/include/
+plotIt/external/lib/
+plotIt/external/share/
+plotIt/external/tclap-1.2.1/
+plotIt/external/yaml-cpp-release-0.5.3/
+plotIt/plotIt
+reco/training/201*/reco*

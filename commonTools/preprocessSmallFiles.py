@@ -18,7 +18,7 @@ merge_file_name = 'arrange_' + era + '_ntuples.sh'
 string_for_merge = ''
 
 string_for_merge += '#!/bin/sh\n'
-for i in ['DY*', 'QCD*', 'TTHad*', 'W*Jets*', 'WW*', 'WZ*', 'ZZ*']:
+for i in ['DYJets_10to50', 'QCD*', 'TTHad*', 'WW*', 'WZ*', 'ZZ*']:
   string_for_merge += 'for i in ' + path_to_prod + i + '; do hadd $i/Tree_fcncLepJets.root $i/*.root; rm -f $i/Tree_fcncLepJets_*.root; mv $i/Tree_fcncLepJets.root  $i/Tree_fcncLepJets_000.root; chmod 777 $i/Tree_fcncLepJets_000.root; done\n'
 
 with open(merge_file_name, 'w') as f:
