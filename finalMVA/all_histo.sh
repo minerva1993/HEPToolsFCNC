@@ -1,13 +1,13 @@
 ERA=2018
 VER=01
-CH=Hct
+CH=Hut
 JETCAT=( "j3b2" "j3b3" "j4b2" "j4b3" "j4b4" )
 
 for i in "${JETCAT[@]}"; do
   cd histos
   mkdir temp
   cd ..
-  cat ../commonTools/file_2018_all.txt | xargs -i -P$(nproc) -n2 python run.py ${CH}_${i}_${VER} ${ERA}
+  cat ../commonTools/file_${ERA}_all.txt | xargs -i -P$(nproc) -n2 python run.py ${CH}_${i}_${VER} ${ERA}
   cd histos
   source job_merge_${ERA}.sh
   python do_post_process.py

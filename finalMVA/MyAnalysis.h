@@ -32,17 +32,19 @@ public :
    TTreeReaderValue<Int_t> GoodPV = {fReader, "GoodPV"};
    TTreeReaderValue<Int_t> channel = {fReader, "channel"};
    TTreeReaderArray<float> PUWeight = {fReader, "PUWeight"};
+   TTreeReaderArray<double> prefireweight = {fReader, "prefireweight"};
    TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
    TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    TTreeReaderArray<float> psweight = {fReader, "psweight"};
+   TTreeReaderValue<Float_t> topptweight = {fReader, "topptweight"};
    TTreeReaderValue<Float_t> MET = {fReader, "MET"};
    TTreeReaderValue<Float_t> MET_phi = {fReader, "MET_phi"};
    TTreeReaderValue<Float_t> lepton_pt = {fReader, "lepton_pt"};
    TTreeReaderValue<Float_t> lepton_eta = {fReader, "lepton_eta"};
    TTreeReaderValue<Float_t> lepton_phi = {fReader, "lepton_phi"};
    TTreeReaderValue<Float_t> lepton_e = {fReader, "lepton_e"};
-   TTreeReaderValue<Float_t> lepton_LES = {fReader, "lepton_LES"};
    TTreeReaderArray<float> lepton_SF = {fReader, "lepton_SF"};
+   TTreeReaderArray<float> lepton_scale = {fReader, "lepton_scale"};
    TTreeReaderValue<Float_t> lepton_relIso = {fReader, "lepton_relIso"};
    TTreeReaderValue<Bool_t> lepton_isIso = {fReader, "lepton_isIso"};
    TTreeReaderArray<float> jet_pt = {fReader, "jet_pt"};
@@ -80,7 +82,6 @@ public :
    TTreeReaderValue<Float_t> Hbquarkjet2_eta = {fReader, "Hbquarkjet2_eta"};
    TTreeReaderValue<Float_t> Hbquarkjet2_phi = {fReader, "Hbquarkjet2_phi"};
    TTreeReaderValue<Float_t> Hbquarkjet2_e = {fReader, "Hbquarkjet2_e"};
-   TTreeReaderValue<Int_t> eeprefire = {fReader, "eeprefire"};
 
    MyAnalysis(TTree * /*tree*/ =0) { }
    virtual ~MyAnalysis() { }

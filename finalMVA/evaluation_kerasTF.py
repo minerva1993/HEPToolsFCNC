@@ -30,8 +30,8 @@ input_files = []
 input_features = []
 input_features.extend(input_variables(jetcat))
 sig_files, bkg_files = train_files(ch, era)
-input_features.remove('STTT')
-input_features.remove('channel')
+#input_features.remove('STTT')
+#input_features.remove('channel')
 
 njets_cut = int(jetcat[1:2]) #Must be jXbX
 if njets_cut not in [3,4]:

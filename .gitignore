@@ -11,10 +11,12 @@
 commonTools/file*
 commonTools/merge*
 commonTools/arrange*
+commonTools/TruePVWeight.txt
 finalMVA/training/201*/final*
 finalMVA/histos/job*
 fullAna/doReco/job*
 fullAna/runNoReco*
+plotIt/.travis.yml
 plotIt/external/include/
 plotIt/external/lib/
 plotIt/external/share/

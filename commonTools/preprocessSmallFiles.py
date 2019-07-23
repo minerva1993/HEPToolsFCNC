@@ -7,12 +7,12 @@ era = sys.argv[1]
 
 if era == '2017':
   version = 'V9_6/190702/'
-  path_to_prod = '/data/users/minerva1993/ntuple_Run2017/' + version + 'production/'
-  #path_to_prod = '/pnfs/knu.ac.kr/data/cms/store/user/jipark/ntuple_jw/2017/' + version + 'production/'
+  path_to_prod = '/data/users/minerva1993/ntuple/' + version + 'production/'
+  #path_to_prod = '/pnfs/knu.ac.kr/data/cms/store/user/jipark/ntuple_jw/' + version + 'production/'
 elif era == '2018':
   version = 'V10_2/190702/'
-  path_to_prod = '/data/users/minerva1993/ntuple_Run2018/' + version + 'production/'
-  #path_to_prod = '/pnfs/knu.ac.kr/data/cms/store/user/jipark/ntuple_jw/2018/' + version + 'production/'
+  path_to_prod = '/data/users/minerva1993/ntuple/' + version + 'production/'
+  #path_to_prod = '/pnfs/knu.ac.kr/data/cms/store/user/jipark/ntuple_jw/' + version + 'production/'
 
 merge_file_name = 'arrange_' + era + '_ntuples.sh'
 string_for_merge = ''

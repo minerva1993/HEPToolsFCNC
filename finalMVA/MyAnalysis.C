@@ -111,7 +111,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   mode = *channel;
 
   if( mode > 2 ) return kTRUE;
-//  if( eeprefire > 0 ) return kTRUE;
 
   float wrongPVrate = 1;
   if( era == 2017 ){
@@ -165,6 +164,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   TLorentzVector lepton;
   lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
+  lepton = lepton*lepton_scale[0];
 
   float transverseM = transverseMass(lepton, p4met);
   float lepDphi = lepton.DeltaPhi(p4met);

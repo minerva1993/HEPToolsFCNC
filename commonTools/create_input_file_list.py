@@ -14,12 +14,12 @@ if len(sys.argv) > 2:
 
 if era == '2017':
   version = 'V9_6/190702/'
-  path_to_prod = '/data/users/minerva1993/ntuple_Run2017/' + version + 'production/'
-  path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2017/' + version
+  path_to_prod = '/data/users/minerva1993/ntuple/' + version + 'production/'
+  path_to_prod_noreco = '/data/users/minerva1993/ntuple/' + version
 elif era == '2018':
   version = 'V10_2/190702/'
-  path_to_prod = '/data/users/minerva1993/ntuple_Run2018/' + version + 'production/'
-  path_to_prod_noreco = '/data/users/minerva1993/ntuple_Run2018/' + version
+  path_to_prod = '/data/users/minerva1993/ntuple/' + version + 'production/'
+  path_to_prod_noreco = '/data/users/minerva1993/ntuple/' + version
 
 print("Looking for files in %s"%path_to_prod)
 

@@ -15,7 +15,7 @@
   line-color: '#0000cc'
   legend: 'TTHct'
   order: 2
-
+#
 #
 #'hist_TTTH1L3BaTLepHct.root':
 #  type: signal
@@ -98,7 +98,7 @@
   type: mc
   pretty-name: 'TTLLpowhegttbb'
   cross-section: 88.29
-  generated-events: 55751966 #100728756
+  generated-events: 55751966
   fill-color: "#330000"
   legend: "ttbb"
   group: Gttbb
@@ -131,7 +131,7 @@
   type: mc
   pretty-name: 'TTLLpowhegttcc'
   cross-section: 88.29
-  generated-events: 55751966 #100728756
+  generated-events: 55751966
   fill-color: '#990000'
   legend: 'ttcc'
   group: Gttcc
@@ -153,7 +153,7 @@
   type: mc
   pretty-name: 'TTpowhegttlf'
   cross-section: 365.34
-  generated-events: 90347648 #100728756
+  generated-events: 90347648
   fill-color: '#cc0000'
   legend: 'ttLF'
   group: Gttlf
@@ -164,7 +164,7 @@
   type: mc
   pretty-name: 'TTLLpowhegttlf'
   cross-section: 88.29
-  generated-events: 55751966 #100728756
+  generated-events: 55751966
   fill-color: '#cc0000'
   legend: 'ttLF'
   group: Gttlf

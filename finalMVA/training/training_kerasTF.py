@@ -157,7 +157,7 @@ def correlations(data, name, **kwds):
 #####################
 def inputvars(sigdata, bkgdata, signame, bkgname, **kwds):
     print('Plotting input variables')
-    bins = 40
+    bins = 20
     for colname in sigdata:
       dataset = [sigdata, bkgdata]
       low = min(np.min(d[colname].values) for d in dataset)

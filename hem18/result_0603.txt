@@ -1,0 +1,356 @@
+@@@@@@@@@@@One Lepton@@@@@@@@@@@@@@@@@@
+processing /data/users/minerva1993/ntuple/V10_1/190318/TTLL_powheg.root
+/data/users/minerva1993/ntuple/V10_1/190318/TTLL_powheg.root
+all_lep = 16624544
+all_mu = 9676772
+all_mu_sig = 7545086
+all_mu_fake = 2131686
+all_el = 6947772
+all_el_sig = 5420396
+all_el_fake = 1527376
+hem_lep = 245896
+hem_mu = 154517
+hem_mu_sig = 119468
+hem_mu_fake = 35049
+hem_el = 91379
+hem_el_sig = 70588
+hem_el_fake = 20791
+all fake rate = 22.01+-0.0115063
+all mu fake rate = 22.0289+-0.015088
+all el fake rate = 21.9837+-0.017788
+hem fake rate = 22.7088+-0.0960995
+hem mu fake rate = 22.6829+-0.121161
+hem el fake rate = 22.7525+-0.157794
+processing /data/users/minerva1993/ntuple/V10_1_HEM/TTLL_HEM.root
+/data/users/minerva1993/ntuple/V10_1_HEM/TTLL_HEM.root
+all_lep = 723940
+all_mu = 422029
+all_mu_sig = 330969
+all_mu_fake = 91060
+all_el = 301911
+all_el_sig = 236434
+all_el_fake = 65477
+hem_lep = 11571
+hem_mu = 6867
+hem_mu_sig = 5347
+hem_mu_fake = 1520
+hem_el = 4704
+hem_el_sig = 3636
+hem_el_fake = 1068
+all fake rate = 21.6229+-0.054652
+all mu fake rate = 21.5767+-0.0715025
+all el fake rate = 21.6875+-0.084755
+hem fake rate = 22.3663+-0.439654
+hem mu fake rate = 22.1348+-0.567747
+hem el fake rate = 22.7041+-0.694734
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbb.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbb.root
+all_lep = 109256
+all_mu = 63065
+all_mu_sig = 62972
+all_mu_fake = 93
+all_el = 46191
+all_el_sig = 46169
+all_el_fake = 22
+hem_lep = 1503
+hem_mu = 944
+hem_mu_sig = 943
+hem_mu_fake = 1
+hem_el = 559
+hem_el_sig = 559
+hem_el_fake = 0
+all fake rate = 0.105257+-0.0098153
+all mu fake rate = 0.147467+-0.0152916
+all el fake rate = 0.0476283+-0.0101544
+hem fake rate = 0.0665337+-0.0665336
+hem mu fake rate = 0.105932+-0.105932
+hem el fake rate = 1.78891e-07+-0
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbj.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbj.root
+all_lep = 371797
+all_mu = 216006
+all_mu_sig = 215781
+all_mu_fake = 225
+all_el = 155791
+all_el_sig = 155686
+all_el_fake = 105
+hem_lep = 5151
+hem_mu = 3254
+hem_mu_sig = 3248
+hem_mu_fake = 6
+hem_el = 1897
+hem_el_sig = 1894
+hem_el_fake = 3
+all fake rate = 0.0887581+-0.00488597
+all mu fake rate = 0.104164+-0.00694425
+all el fake rate = 0.067398+-0.00657737
+hem fake rate = 0.174723+-0.0582411
+hem mu fake rate = 0.184388+-0.0752763
+hem el fake rate = 0.158144+-0.0913047
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttcc.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttcc.root
+all_lep = 225832
+all_mu = 130627
+all_mu_sig = 130503
+all_mu_fake = 124
+all_el = 95205
+all_el_sig = 95134
+all_el_fake = 71
+hem_lep = 3044
+hem_mu = 1919
+hem_mu_sig = 1918
+hem_mu_fake = 1
+hem_el = 1125
+hem_el_sig = 1124
+hem_el_fake = 1
+all fake rate = 0.0863474+-0.00618346
+all mu fake rate = 0.0949268+-0.00852468
+all el fake rate = 0.0745759+-0.00885053
+hem fake rate = 0.0657031+-0.0464591
+hem mu fake rate = 0.0521105+-0.0521105
+hem el fake rate = 0.088889+-0.0888889
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttlf.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttlf.root
+all_lep = 9146639
+all_mu = 5301888
+all_mu_sig = 5295246
+all_mu_fake = 6642
+all_el = 3844751
+all_el_sig = 3841044
+all_el_fake = 3707
+hem_lep = 126414
+hem_mu = 79023
+hem_mu_sig = 78917
+hem_mu_fake = 106
+hem_el = 47391
+hem_el_sig = 47335
+hem_el_fake = 56
+all fake rate = 0.113145+-0.00111221
+all mu fake rate = 0.125276+-0.00153716
+all el fake rate = 0.0964172+-0.00158359
+hem fake rate = 0.12815+-0.0100684
+hem mu fake rate = 0.134138+-0.0130287
+hem el fake rate = 0.118166+-0.0157906
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttother.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttother.root
+all_lep = 18681581
+all_mu = 10863398
+all_mu_sig = 10857121
+all_mu_fake = 6277
+all_el = 7818183
+all_el_sig = 7816142
+all_el_fake = 2041
+hem_lep = 277243
+hem_mu = 174305
+hem_mu_sig = 174122
+hem_mu_fake = 183
+hem_el = 102938
+hem_el_sig = 102884
+hem_el_fake = 54
+all fake rate = 0.0445251+-0.000488198
+all mu fake rate = 0.0577812+-0.000729307
+all el fake rate = 0.0261058+-0.000577851
+hem fake rate = 0.0854846+-0.00555282
+hem mu fake rate = 0.104988+-0.00776096
+hem el fake rate = 0.0524588+-0.00713873
+processing /data/users/minerva1993/ntuple/V10_1_HEM/TTLJ_HEM.root
+/data/users/minerva1993/ntuple/V10_1_HEM/TTLJ_HEM.root
+all_lep = 1554728
+all_mu = 902768
+all_mu_sig = 902095
+all_mu_fake = 673
+all_el = 651960
+all_el_sig = 651610
+all_el_fake = 350
+hem_lep = 24213
+hem_mu = 14430
+hem_mu_sig = 14415
+hem_mu_fake = 15
+hem_el = 9783
+hem_el_sig = 9761
+hem_el_fake = 22
+all fake rate = 0.0657993+-0.00205723
+all mu fake rate = 0.0745485+-0.00287363
+all el fake rate = 0.0536843+-0.00286955
+hem fake rate = 0.15281+-0.0251219
+hem mu fake rate = 0.10395+-0.0268398
+hem el fake rate = 0.22488+-0.0479446
+
+
+@@@@@@@@@@@@@BASELINE SELECTION@@@@@@@@@@@@
+processing /data/users/minerva1993/ntuple/V10_1/190318/TTLL_powheg.root
+/data/users/minerva1993/ntuple/V10_1/190318/TTLL_powheg.root
+all_lep = 3461553
+all_mu = 2006525
+all_mu_sig = 1604027
+all_mu_fake = 402498
+all_el = 1455028
+all_el_sig = 1162799
+all_el_fake = 292229
+hem_lep = 42648
+hem_mu = 26844
+hem_mu_sig = 21342
+hem_mu_fake = 5502
+hem_el = 15804
+hem_el_sig = 12729
+hem_el_fake = 3075
+all fake rate = 20.0698+-0.0240789
+all mu fake rate = 20.0595+-0.0316182
+all el fake rate = 20.0841+-0.0371527
+hem fake rate = 20.1111+-0.217155
+hem mu fake rate = 20.4962+-0.27632
+hem el fake rate = 19.4571+-0.350878
+processing /data/users/minerva1993/ntuple/V10_1_HEM/TTLL_HEM.root
+/data/users/minerva1993/ntuple/V10_1_HEM/TTLL_HEM.root
+all_lep = 161978
+all_mu = 93916
+all_mu_sig = 75473
+all_mu_fake = 18443
+all_el = 68062
+all_el_sig = 54718
+all_el_fake = 13344
+hem_lep = 2197
+hem_mu = 1349
+hem_mu_sig = 1096
+hem_mu_fake = 253
+hem_el = 848
+hem_el_sig = 687
+hem_el_fake = 161
+all fake rate = 19.6243+-0.11007
+all mu fake rate = 19.6378+-0.144603
+all el fake rate = 19.6057+-0.169722
+hem fake rate = 18.8439+-0.926126
+hem mu fake rate = 18.7546+-1.17909
+hem el fake rate = 18.9858+-1.49629
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbb.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbb.root
+all_lep = 78974
+all_mu = 45724
+all_mu_sig = 45672
+all_mu_fake = 52
+all_el = 33250
+all_el_sig = 33235
+all_el_fake = 15
+hem_lep = 1071
+hem_mu = 687
+hem_mu_sig = 687
+hem_mu_fake = 0
+hem_el = 384
+hem_el_sig = 384
+hem_el_fake = 0
+all fake rate = 0.084838+-0.0103646
+all mu fake rate = 0.113726+-0.0157709
+all el fake rate = 0.0451128+-0.0116481
+hem fake rate = 9.33707e-08+-0
+hem mu fake rate = 1.4556e-07+-0
+hem el fake rate = 2.60417e-07+-0
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbj.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbj.root
+all_lep = 204170
+all_mu = 118557
+all_mu_sig = 118463
+all_mu_fake = 94
+all_el = 85613
+all_el_sig = 85560
+all_el_fake = 53
+hem_lep = 2642
+hem_mu = 1667
+hem_mu_sig = 1665
+hem_mu_fake = 2
+hem_el = 975
+hem_el_sig = 973
+hem_el_fake = 2
+all fake rate = 0.0719988+-0.00593836
+all mu fake rate = 0.0792868+-0.0081778
+all el fake rate = 0.0619065+-0.00850351
+hem fake rate = 0.1514+-0.0757002
+hem mu fake rate = 0.119976+-0.0848358
+hem el fake rate = 0.205128+-0.145048
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttcc.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttcc.root
+all_lep = 87623
+all_mu = 50593
+all_mu_sig = 50563
+all_mu_fake = 30
+all_el = 37030
+all_el_sig = 37008
+all_el_fake = 22
+hem_lep = 1047
+hem_mu = 652
+hem_mu_sig = 652
+hem_mu_fake = 0
+hem_el = 395
+hem_el_sig = 394
+hem_el_fake = 1
+all fake rate = 0.0593452+-0.00822969
+all mu fake rate = 0.0592967+-0.0108261
+all el fake rate = 0.0594113+-0.0126665
+hem fake rate = 0.0955111+-0.095511
+hem mu fake rate = 1.53374e-07+-0
+hem el fake rate = 0.253165+-0.253165
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttlf.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttlf.root
+all_lep = 2937120
+all_mu = 1701908
+all_mu_sig = 1700278
+all_mu_fake = 1630
+all_el = 1235212
+all_el_sig = 1234143
+all_el_fake = 1069
+hem_lep = 36222
+hem_mu = 22672
+hem_mu_sig = 22645
+hem_mu_fake = 27
+hem_el = 13550
+hem_el_sig = 13538
+hem_el_fake = 12
+all fake rate = 0.0918927+-0.0017688
+all mu fake rate = 0.0957749+-0.00237224
+all el fake rate = 0.0865438+-0.00264696
+hem fake rate = 0.107669+-0.0172409
+hem mu fake rate = 0.11909+-0.0229188
+hem el fake rate = 0.0885609+-0.0255653
+processing /data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttother.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttother.root
+all_lep = 5702141
+all_mu = 3311982
+all_mu_sig = 3311351
+all_mu_fake = 631
+all_el = 2390159
+all_el_sig = 2389758
+all_el_fake = 401
+hem_lep = 73152
+hem_mu = 46356
+hem_mu_sig = 46349
+hem_mu_fake = 7
+hem_el = 26796
+hem_el_sig = 26789
+hem_el_fake = 7
+all fake rate = 0.0180985+-0.000563381
+all mu fake rate = 0.019052+-0.00075845
+all el fake rate = 0.0167771+-0.00083781
+hem fake rate = 0.0191382+-0.00511491
+hem mu fake rate = 0.0151005+-0.00570746
+hem el fake rate = 0.0261233+-0.00987368
+processing /data/users/minerva1993/ntuple/V10_1_HEM/TTLJ_HEM.root
+/data/users/minerva1993/ntuple/V10_1_HEM/TTLJ_HEM.root
+all_lep = 532913
+all_mu = 308244
+all_mu_sig = 308128
+all_mu_fake = 116
+all_el = 224669
+all_el_sig = 224569
+all_el_fake = 100
+hem_lep = 7220
+hem_mu = 4340
+hem_mu_sig = 4339
+hem_mu_fake = 1
+hem_el = 2880
+hem_el_sig = 2876
+hem_el_fake = 4
+all fake rate = 0.0405319+-0.00275785
+all mu fake rate = 0.0376325+-0.00349409
+all el fake rate = 0.0445099+-0.00445099
+hem fake rate = 0.0692521+-0.0309705
+hem mu fake rate = 0.0230415+-0.0230415
+hem el fake rate = 0.138889+-0.0694444

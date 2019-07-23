@@ -4,7 +4,7 @@ from ROOT import *
 from subprocess import call
 gROOT.SetBatch(True)
 
-basedir = '/data/users/minerva1993/ntuple_Run2017/V9_5/190117'
+basedir = '/data/users/minerva1993/ntuple/V9_5/190117'
 split_path = os.path.join(basedir, 'production')
 
 if not os.path.exists( basedir+'_genLepSel' ):

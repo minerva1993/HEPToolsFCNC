@@ -1,8 +1,8 @@
-/data/users/minerva1993/ntuple_Run2018/V10_1_HEM/TTLJ_HEM.root
-/data/users/minerva1993/ntuple_Run2018/V10_1_HEM/TTLL_HEM.root
-/data/users/minerva1993/ntuple_Run2018/V10_1/190318/TT_powheg_ttbb.root
-/data/users/minerva1993/ntuple_Run2018/V10_1/190318/TT_powheg_ttbj.root
-/data/users/minerva1993/ntuple_Run2018/V10_1/190318/TT_powheg_ttcc.root
-/data/users/minerva1993/ntuple_Run2018/V10_1/190318/TT_powheg_ttlf.root
-/data/users/minerva1993/ntuple_Run2018/V10_1/190318/TT_powheg_ttother.root
-/data/users/minerva1993/ntuple_Run2018/V10_1/190318/TTLL_powheg.root
+/data/users/minerva1993/ntuple/V10_1_HEM/TTLJ_HEM.root
+/data/users/minerva1993/ntuple/V10_1_HEM/TTLL_HEM.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbb.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttbj.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttcc.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttlf.root
+/data/users/minerva1993/ntuple/V10_1/190318/TT_powheg_ttother.root
+/data/users/minerva1993/ntuple/V10_1/190318/TTLL_powheg.root

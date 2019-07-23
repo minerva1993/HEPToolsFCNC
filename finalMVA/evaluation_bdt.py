@@ -42,8 +42,8 @@ syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples ex
 
 input_features = []
 input_features.extend(input_variables_bdt(jetcat))
-input_features.remove('STTT')
-input_features.remove('channel')
+#input_features.remove('STTT')
+#input_features.remove('channel')
 
 for syst_ext in syst + syst2:
   if syst_ext != "" and not os.path.exists(os.path.join(configDir, scoreDir + ver + "-" + syst_ext)):
