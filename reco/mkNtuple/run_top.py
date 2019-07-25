@@ -61,6 +61,6 @@ def runAna(input_filename, output_filename):
           a = tree2array(t)
           df = pd.DataFrame(a)
           io.save('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver/hdf_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.h5', df)
-        else: os.remove('root_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.root')
+        else: os.remove('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver/root_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.root')
 
 runAna(input_filename, output_filename)
