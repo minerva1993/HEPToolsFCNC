@@ -427,8 +427,8 @@ Bool_t makeTopTuple::Process(Long64_t entry)
 
   int era = 0;
   TString current_file_name = makeTopTuple::fReader.GetTree()->GetCurrentFile()->GetName();
-  if     ( current_file_name.Contains("2017") ) era = 2017;
-  else if( current_file_name.Contains("2018") ) era = 2018;
+  if     ( current_file_name.Contains("V9") ) era = 2017;
+  else if( current_file_name.Contains("V10") ) era = 2018;
 
   //Ntuple for ST, TT respectively
   string ch = option.Data();

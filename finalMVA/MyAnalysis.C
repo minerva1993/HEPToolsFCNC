@@ -92,8 +92,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   int era = 0;
   TString current_file_name = MyAnalysis::fReader.GetTree()->GetCurrentFile()->GetName();
-  if     ( current_file_name.Contains("2017") ) era = 2017;
-  else if( current_file_name.Contains("2018") ) era = 2018;
+  if     ( current_file_name.Contains("V9") ) era = 2017;
+  else if( current_file_name.Contains("V10") ) era = 2018;
 
   int njet_cut = 0;
   int nbjet_cut = 0;
