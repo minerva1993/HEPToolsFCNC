@@ -55,7 +55,6 @@ def train_files(ch, era):
       file_list = ['deepReco_STTH1L3BHct_000.h5', 'deepReco_STTH1L3BHut_000.h5',
                    'deepReco_STTH1L3BHct_001.h5', 'deepReco_STTH1L3BHut_001.h5',
                    'deepReco_STTH1L3BHct_002.h5', 'deepReco_STTH1L3BHut_002.h5',
-                   'deepReco_STTH1L3BHct_003.h5', 'deepReco_STTH1L3BHut_003.h5',
                   ]
 
     elif ch == "TTFCNC":

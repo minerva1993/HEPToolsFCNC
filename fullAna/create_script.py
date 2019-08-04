@@ -72,16 +72,26 @@ string_for_merge += 'rm pre_process/hist_*.root\n'
 
 for syst_tmp in syst + syst2:
   if era == '2017':
-    for num in range(0,4): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    #Signals
+    for num in range(0,6): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
     for num in range(0,2): string_for_merge += "mv temp/hist_TTTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    for num in range(0,10): string_for_merge += "mv temp/hist_TTLL*_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    for num in range(0,5): #TTLL *6, TTLJ *5
+    #TTLJ
+    for num in range(0,9): #TTLL *6, TTLJ *5
       string_for_merge += "mv temp/hist_TTpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
       string_for_merge += "mv temp/hist_TTpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
     for num in range(0,10):
       string_for_merge += "mv temp/hist_TTpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
-    for num in range(10,20):
+    for num in range(10,45):
       string_for_merge += "mv temp/hist_TTpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
+    #TTLL
+    for num in range(0,4):
+      string_for_merge += "mv temp/hist_TTLLpowhegttbb_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+      string_for_merge += "mv temp/hist_TTLLpowhegttcc_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(0,10):
+      string_for_merge += "mv temp/hist_TTLLpowhegttlf_00" + str(num) + syst_tmp + ".root temp/not_using\n"
+    for num in range(10,24):
+      string_for_merge += "mv temp/hist_TTLLpowhegttlf_0" + str(num) + syst_tmp + ".root temp/not_using\n"
+
   elif era == '2018':
     #Signals
     for num in range(0,6): string_for_merge += "mv temp/hist_STTH*_00" + str(num) + syst_tmp + ".root temp/not_using\n"

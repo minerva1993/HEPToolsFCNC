@@ -3,8 +3,8 @@ configuration:
   height: 450
   luminosity-label: '%1$.1f fb^{-1} at #sqrt{s} = 13 TeV'
   experiment: " CMS"
-  #extra-label: "Preliminary"
-  extra-label: "Work in Progress"
+  extra-label: "Preliminary"
+  #extra-label: "Work in Progress"
   root: ''
   luminosity: 41529
   luminosity-error: 0.023
@@ -23,15 +23,21 @@ files:
   include: ['files_2017.yml']
 
 systematics:
-  - ttbb_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbb.root'}
-  - ttbj_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttbj.root'}
-  - ttcc_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttcc.root'}
-  - ttlf_xsec:     {type: const, value: 1.055, on: 'hist_TTpowhegttlf.root'}
-  - ttother_xsec:  {type: const, value: 1.055, on: 'hist_TTpowhegttother.root'}
-  - ttll_xsec:     {type: const, value: 1.055, on: 'hist_TTLLpowheg.root'}
-  - tthad_xsec:    {type: const, value: 1.055, on: 'hist_TTHadpowheg.root'}
-  - ttbb_xsec2:    {type: const, value: 1.3, on: 'hist_TTpowhegttbb.root'}
-  - ttcc_xsec2:    {type: const, value: 1.5, on: 'hist_TTpowhegttcc.root'}
+  - ttLJbb_xsec:   {type: const, value: 1.055, on: 'hist_TTpowhegttbb.root'}
+  - ttLJcc_xsec:   {type: const, value: 1.055, on: 'hist_TTpowhegttcc.root'}
+  - ttLJlf_xsec:   {type: const, value: 1.055, on: 'hist_TTpowhegttlf.root'}
+  - ttLLbb_xsec:   {type: const, value: 1.055, on: 'hist_TTLLpowhegttbb.root'}
+  - ttLLcc_xsec:   {type: const, value: 1.055, on: 'hist_TTLLpowhegttcc.root'}
+  - ttLLlf_xsec:   {type: const, value: 1.055, on: 'hist_TTLLpowhegttlf.root'}
+  - ttHadbb_xsec:  {type: const, value: 1.055, on: 'hist_TTHadpowhegttbb.root'}
+  - ttHadcc_xsec:  {type: const, value: 1.055, on: 'hist_TTHadpowhegttcc.root'}
+  - ttHadlf_xsec:  {type: const, value: 1.055, on: 'hist_TTHadpowhegttlf.root'}
+  - ttLJbb_xsec2:  {type: const, value: 1.3, on: 'hist_TTpowhegttbb.root'}
+  - ttLLbb_xsec2:  {type: const, value: 1.3, on: 'hist_TTLLpowhegttbb.root'}
+  - ttHadbb_xsec2: {type: const, value: 1.3, on: 'hist_TTHadpowhegttbb.root'}
+  - ttLJcc_xsec2:  {type: const, value: 1.5, on: 'hist_TTpowhegttcc.root'}
+  - ttLLcc_xsec2:  {type: const, value: 1.5, on: 'hist_TTLLpowhegttcc.root'}
+  - ttHadcc_xsec2: {type: const, value: 1.5, on: 'hist_TTHadpowhegttcc.root'}
   - other_xsec1:   {type: const, value: 1.1, on: 'hist_DYJetsv2.root'}
   - other_xsec2:   {type: const, value: 1.1, on: 'hist_DYJets10to50.root'}
   - other_xsec3:   {type: const, value: 1.1, on: 'hist_W1JetsToLNu.root'}
@@ -63,40 +69,50 @@ systematics:
   - jec
   - jer
   - scale: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - scale: {type: shape, on: 'hist_TTpowhegttbj.root'}
   - scale: {type: shape, on: 'hist_TTpowhegttcc.root'}
   - scale: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - scale: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - scale: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - scale: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - scale: {type: shape, on: 'hist_TTLLpowhegttbb.root'}
+  - scale: {type: shape, on: 'hist_TTLLpowhegttcc.root'}
+  - scale: {type: shape, on: 'hist_TTLLpowhegttlf.root'}
+  - scale: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
+  - scale: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
+  - scale: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
   - ps: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - ps: {type: shape, on: 'hist_TTpowhegttbj.root'}
   - ps: {type: shape, on: 'hist_TTpowhegttcc.root'}
   - ps: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - ps: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - ps: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - ps: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - ps: {type: shape, on: 'hist_TTLLpowhegttbb.root'}
+  - ps: {type: shape, on: 'hist_TTLLpowhegttcc.root'}
+  - ps: {type: shape, on: 'hist_TTLLpowhegttlf.root'}
+  - ps: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
+  - ps: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
+  - ps: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
   - hdamp: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - hdamp: {type: shape, on: 'hist_TTpowhegttbj.root'}
   - hdamp: {type: shape, on: 'hist_TTpowhegttcc.root'}
   - hdamp: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - hdamp: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - hdamp: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - hdamp: {type: shape, on: 'hist_TTHadpowheg.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttbj.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttother.root'}
-#  - pdf: {type: shape, on: 'hist_TTLLpowheg.root'}
-#  - pdf: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - hdamp: {type: shape, on: 'hist_TTLLpowhegttbb.root'}
+  - hdamp: {type: shape, on: 'hist_TTLLpowhegttcc.root'}
+  - hdamp: {type: shape, on: 'hist_TTLLpowhegttlf.root'}
+  - hdamp: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
+  - hdamp: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
+  - hdamp: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_TTLLpowhegttbb.root'}
+  - pdf: {type: shape, on: 'hist_TTLLpowhegttcc.root'}
+  - pdf: {type: shape, on: 'hist_TTLLpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
+  - pdf: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
+  - pdf: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttbb.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTpowhegttbj.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttcc.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttlf.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTpowhegttother.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTLLpowheg.root'}
-  - TuneCP5: {type: shape, on: 'hist_TTHadpowheg.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTLLpowhegttbb.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTLLpowhegttcc.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTLLpowhegttlf.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
+  - TuneCP5: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
   - lf
   - hf
   - lfstat1
@@ -107,6 +123,7 @@ systematics:
   - cferr2
 
 plots:
+#  include: ['histos_control.yml']
 #  include: ['histos_stfcnc.yml']
 #  include: ['histos_nopuSF.yml']
 #  include: ['histos_nobSF.yml']
@@ -114,11 +131,10 @@ plots:
 #  include: ['histos_ttbkg.yml']
   include: ['histos_dnn.yml'] #FIXME change legend as well
 #  include: ['histos_unc.yml']
-#  include: ['temp.yml']
 
 legend:
-#  position: [0.18, 0.68, 0.92, 0.89]
-  position: [0.18, 0.73, 0.92, 0.89] #For DNN
+  position: [0.18, 0.70, 0.96, 0.88]
+#  position: [0.18, 0.73, 0.92, 0.89] #For DNN
   columns: 5
 
 groups:

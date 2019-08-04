@@ -2,8 +2,8 @@ from ROOT import *
 import pandas as pd
 import os
 
-base_path17 = "/data/users/minerva1993/ntuple_Run2017/V9_6/190702/production"
-base_path18 = "/data/users/minerva1993/ntuple_Run2018/V10_2/190702/production"
+base_path17 = "/data/users/minerva1993/ntuple/V9_6/190702/production"
+base_path18 = "/data/users/minerva1993/ntuple/V10_2/190702/production"
 
 def input_variables_bdt(jetcat): #Order Does Matter!!
  
@@ -135,12 +135,14 @@ def train_files(ch, era):
     if ch == "Hct":
       sig = ['finalMVA_STTH1L3BHct_000.h5', 'finalMVA_STTH1L3BHct_001.h5',
              'finalMVA_STTH1L3BHct_002.h5', 'finalMVA_STTH1L3BHct_003.h5',
+             'finalMVA_STTH1L3BHct_004.h5', 'finalMVA_STTH1L3BHct_005.h5',
              'finalMVA_TTTH1L3BaTLepHct_000.h5', 'finalMVA_TTTH1L3BTLepHct_000.h5',
              'finalMVA_TTTH1L3BaTLepHct_001.h5', 'finalMVA_TTTH1L3BTLepHct_001.h5',
             ]
     elif ch == "Hut":
       sig = ['finalMVA_STTH1L3BHut_000.h5', 'finalMVA_STTH1L3BHut_001.h5',
              'finalMVA_STTH1L3BHut_002.h5', 'finalMVA_STTH1L3BHut_003.h5',
+             'finalMVA_STTH1L3BHut_004.h5', 'finalMVA_STTH1L3BHut_005.h5',
              'finalMVA_TTTH1L3BaTLepHut_000.h5', 'finalMVA_TTTH1L3BTLepHut_000.h5',
              'finalMVA_TTTH1L3BaTLepHut_001.h5', 'finalMVA_TTTH1L3BTLepHut_001.h5',
             ]
@@ -149,21 +151,21 @@ def train_files(ch, era):
       sig_files = []
 
     bkg = []
-    for i in range(0,5): #upto 5
+    for i in range(0,9): #upto 8
       bkg.append('finalMVA_TTpowhegttbb_00'+str(i)+'.h5')
       bkg.append('finalMVA_TTpowhegttcc_00'+str(i)+'.h5')
     for i in range(0,10):
       bkg.append('finalMVA_TTpowhegttlf_00'+str(i)+'.h5')
-    for i in range(10,25): #upto 24, *5
+    for i in range(10,45): #upto 40, *5
       bkg.append('finalMVA_TTpowhegttlf_0'+str(i)+'.h5')
 
-    for i in range(0,3): #upto 2
+    for i in range(0,4): #upto 3
       bkg.append('finalMVA_TTLLpowhegttbb_00'+str(i)+'.h5')
       bkg.append('finalMVA_TTLLpowhegttcc_00'+str(i)+'.h5')
-    for i in range(0,9): #upto 8, *4
+    for i in range(0,10):
       bkg.append('finalMVA_TTLLpowhegttlf_00'+str(i)+'.h5')
-    #for i in range(10,16): #upto 15, *4
-    #  bkg.append('finalMVA_TTLLpowhegttlf_0'+str(i)+'.h5')
+    for i in range(10,24): #upto 24, *6
+      bkg.append('finalMVA_TTLLpowhegttlf_0'+str(i)+'.h5')
 
   elif era == "2018":
     if ch == "Hct":
@@ -198,7 +200,7 @@ def train_files(ch, era):
       bkg.append('finalMVA_TTLLpowhegttcc_00'+str(i)+'.h5')
     for i in range(0,10):
       bkg.append('finalMVA_TTLLpowhegttlf_00'+str(i)+'.h5')
-    for i in range(10,16): #upto 15, *4
+    for i in range(10,24): #upto 23, *6
       bkg.append('finalMVA_TTLLpowhegttlf_0'+str(i)+'.h5')
 
   return sig, bkg

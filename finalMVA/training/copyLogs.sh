@@ -1,4 +1,4 @@
-ERA=2018
+ERA=$1
 VER=01
 mv log_Hct_j3b2 ${ERA}/final_Hct_j3b2_${VER}/
 mv log_Hct_j3b3 ${ERA}/final_Hct_j3b3_${VER}/

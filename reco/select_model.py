@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize
@@ -56,7 +56,8 @@ for files in file_list:
         if not filename.endswith(('005.h5')): continue
       elif ch == "TTFCNC":
         if "TTTH1L3B" not in filename: continue
-        if not filename.endswith(('005.h5')): continue
+        #if not filename.endswith(('005.h5')): continue
+        if not filename.endswith(('004.h5')): continue
       elif ch == "TTBKG":
         if "TTpowheg" not in filename: continue
         if not (any(x in filename for x in ["bb","cc"]) and filename.endswith(('020.h5'))) and not (any(x in filename for x in ["lf"]) and filename.endswith(('100.h5','101.h5','102.h5','103.h5','104.h5'))) : continue

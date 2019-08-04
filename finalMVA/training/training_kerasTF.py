@@ -69,7 +69,7 @@ else: scaleST=1.0; scaleTT=1.0; scaleTTLJ=1.0; scaleTTLL=1.0; frac_sig=1.0; frac
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.2
+config.gpu_options.per_process_gpu_memory_fraction = 0.1
 set_session(tf.Session(config=config))
 
 import keras

@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize
@@ -60,6 +60,7 @@ for syst_ext in syst:
 
 #  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext)):
   for filename in os.listdir(os.path.join('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch + syst_ext)):
+    #if not 'TTTH1L3BTLepHct' in filename: continue
     if filename == '.gitkeep': continue
     if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg"]): continue
     if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg"]): continue
