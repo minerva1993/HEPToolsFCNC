@@ -90,6 +90,7 @@ source all_histo.sh
 ...
 python merge_histos.py Hct 2017 01 01 01 01 01 01
 ../../../../../plotIt/plotIt -o ../ ../../../../../plotIt/configs/config_2017.yml -y
+python print_syst_table.py 2017 01 #Systematic table
 ```
 If you use BDT,
 ```{.Bash}

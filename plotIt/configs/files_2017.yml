@@ -123,7 +123,7 @@
   fill-color: '#990000'
   legend: 'ttcc'
   group: Gttcc
-  yields-group: '2\ttbar\ccbar'
+  yields-group: '1\ttbar\ccbar'
   order: 3
 
 'hist_TTLLpowhegttcc.root':
@@ -134,7 +134,7 @@
   fill-color: '#990000'
   legend: 'ttcc'
   group: Gttcc
-  yields-group: '2\ttbar\ccbar'
+  yields-group: '1\ttbar\ccbar'
   order: 4
 
 'hist_TTHadpowhegttcc.root':

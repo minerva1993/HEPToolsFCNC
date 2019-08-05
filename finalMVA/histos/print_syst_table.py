@@ -2,14 +2,14 @@ import os, shutil, re, sys
 from subprocess import call
 from collections import OrderedDict
 
-if len(sys.argv) < 4:
+if len(sys.argv) < 3:
   print("Specify year: 2017/2018, Ver, systematic type: all / source by source (a/s)")
   sys.exit()
 era = sys.argv[1]
 ver = sys.argv[2]
 
 config_path = '../../plotIt/configs/'
-
+dest_path = './' + era + '/Hct_merged_' + ver + '/'
 tmp_file_name = 'temp_' + era + '_' + ver + '.yml'
 string_to_add = 'systematics:\n'
 plot_to_add = "plots:\n  include: ['histos_unc.yml']\n\n"
@@ -54,7 +54,7 @@ for key, value in unc_cat.items():
           line += "0.0\n"
         if 'root:' in line:
           line = line[:line.find(':')+2]
-          line += "'./" + era + "/Hct_merged_" + ver + "/merged/'\n"
+          line += "'" + dest_path + "merged/'\n"
         if 'systematics' in line: syst_delete = True
         if 'plots:' in line:
           syst_delete = False
@@ -72,10 +72,38 @@ for key, value in unc_cat.items():
         if any(x in line for x in value): string_to_add += str(line)
       f1.writelines(string_to_add)
   syst_postfix = key
-  call(['../../plotIt/plotIt', '-o ' + './' + era + '/Hct_merged_' + ver + '/' ,config_path + tmp_file_name, '-y'], shell=False)
-  with open('./' + era + '/Hct_merged_' + ver + '/yields.tex', 'r') as f:
-    with open('./' + era + '/Hct_merged_' + ver + '/yields_' + syst_postfix + '.tex', 'w+') as f1:
+  call(['../../plotIt/plotIt', '-o ' + dest_path, config_path + tmp_file_name, '-y'], shell=False)
+
+  #Remove signals in TT specific sources
+  with open(dest_path + 'yields.tex', 'r') as f:
+    with open(dest_path + 'yields_' + syst_postfix + '.tex', 'w+') as f1:
+      isTT = False
+      if any(x in key for x in ['scale', 'ps', 'hdamp', 'tune', 'pdf', 'xsec']): isTT = True
       for line in f:
+        if isTT and 'ttbar' in line: isTT = False
+        if isTT: continue
         if any(x in line[0] for x in ['0','1','2','3']): line = line[1:]
         f1.write(line)
+
   string_to_add = 'systematics:\n'
+
+unc_summary = OrderedDict([
+('xsec', 'Cross section'), ('pu', 'Pileup'), ('lep', 'Lepton SF'), ('jec', 'JES'), ('jer', 'JER'),
+('scale', 'ME scale'), ('ps', 'PS scale'), ('hdamp', 'ME-PS matching'), ('pdf', 'PDF'), ('tune', 'Underlying event'),
+('bAll', 'DeepCSV shape'), ('all', 'Total sys. unc.'),
+])
+
+print "Generating summary table..."
+#Gather all results into one summary table
+with open("total_syst_template.tex") as f:
+  lines = f.readlines()
+  with open(dest_path + 'total_syst.tex', "w") as f1:
+    for line in lines:
+      for key, value in unc_summary.items():
+        if value in line:
+          with open(dest_path + 'yields_' + key + '.tex','r') as f2:
+            lines = f2.read().splitlines()
+            last_line = lines[-1]
+            last_line = last_line[last_line.find("&")+1:]
+            line = line.rstrip('\n') + last_line + '\n'
+      f1.write(line)
