@@ -7,12 +7,8 @@ if len(sys.argv) < 4:
   sys.exit()
 era = sys.argv[1]
 ver = sys.argv[2]
-tmp_all = sys.argv[3]
 
 config_path = '../../plotIt/configs/'
-
-if tmp_all == "s": isAll = False
-else: isAll = True
 
 tmp_file_name = 'temp_' + era + '_' + ver + '.yml'
 string_to_add = 'systematics:\n'
