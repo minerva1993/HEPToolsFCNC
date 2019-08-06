@@ -14,6 +14,7 @@ commonTools/arrange*
 commonTools/TruePVWeight.txt
 finalMVA/training/201*/final*
 finalMVA/histos/job*
+finalMVA/training/201*/inputs/final*
 fullAna/doReco/job*
 fullAna/runNoReco*
 plotIt/.travis.yml

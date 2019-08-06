@@ -3,8 +3,8 @@ configuration:
   height: 450
   luminosity-label: '%1$.1f fb^{-1} at #sqrt{s} = 13 TeV'
   experiment: " CMS"
-  #extra-label: "Preliminary"
-  extra-label: "Work in Progress"
+  extra-label: "Preliminary"
+  #extra-label: "Work in Progress"
   root: ''
   luminosity: 59741
   luminosity-error: 0.025
@@ -96,15 +96,15 @@ systematics:
   - hdamp: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
   - hdamp: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
   - hdamp: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
-#  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
-#  - pdf: {type: shape, on: 'hist_TTLLpowhegttbb.root'}
-#  - pdf: {type: shape, on: 'hist_TTLLpowhegttcc.root'}
-#  - pdf: {type: shape, on: 'hist_TTLLpowhegttlf.root'}
-#  - pdf: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
-#  - pdf: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
-#  - pdf: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttbb.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttcc.root'}
+  - pdf: {type: shape, on: 'hist_TTpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_TTLLpowhegttbb.root'}
+  - pdf: {type: shape, on: 'hist_TTLLpowhegttcc.root'}
+  - pdf: {type: shape, on: 'hist_TTLLpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
+  - pdf: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
+  - pdf: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttbb.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttcc.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttlf.root'}
@@ -129,8 +129,8 @@ plots:
 #  include: ['histos_nopuSF.yml']
 #  include: ['histos_nobSF.yml']
 #  include: ['histos_ttfcnc.yml']
-  include: ['histos_ttbkg.yml']
-#  include: ['histos_dnn.yml'] #FIXME change legend as well
+#  include: ['histos_ttbkg.yml']
+  include: ['histos_dnn.yml']
 #  include: ['histos_unc.yml']
 
 legend:

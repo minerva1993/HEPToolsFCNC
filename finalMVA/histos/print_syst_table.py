@@ -41,6 +41,10 @@ unc_cat = OrderedDict([
 ('bAll', ['lf', 'hf', 'lfstat1', 'lfstat2', 'hfstat1', 'hfstat2', 'cferr1', 'cferr2']),
 ])
 
+if era == "2017":
+  unc_cat['prefire'] = ['prefire']
+  unc_cat['all'].append('prefire')
+
 for key, value in unc_cat.items():
   print "Print yield tables with source: " + key
   #prep for systematics
@@ -93,12 +97,15 @@ unc_summary = OrderedDict([
 ('bAll', 'DeepCSV shape'), ('all', 'Total sys. unc.'),
 ])
 
+if era == "2017": unc_summary['prefire'] = 'Prefire Reweight'
+
 print "Generating summary table..."
 #Gather all results into one summary table
 with open("total_syst_template.tex") as f:
   lines = f.readlines()
   with open(dest_path + 'total_syst.tex', "w") as f1:
     for line in lines:
+      if era != '2017' and 'Prefire' in line: continue
       for key, value in unc_summary.items():
         if value in line:
           with open(dest_path + 'yields_' + key + '.tex','r') as f2:

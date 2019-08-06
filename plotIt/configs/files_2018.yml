@@ -16,7 +16,6 @@
   legend: 'TTHct'
   order: 2
 
-
 #'hist_TTTH1L3BaTLepHct.root':
 #  type: signal
 #  pretty-name: 'TTTH1L3BaTLepHct'

@@ -34,6 +34,7 @@
   - other_xsec19:  {type: const, value: 1.1, on: 'hist_TTZToLLNuNu.root'}
   - other_xsec20:  {type: const, value: 1.1, on: 'hist_TTZToQQ.root'}
   - pu
+  - prefire
   - muid
   - muiso
   - mutrg

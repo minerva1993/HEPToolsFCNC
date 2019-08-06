@@ -89,7 +89,7 @@ source all_histo.sh
 #mv post_process pre_process temp Hct_j3b2_01
 ...
 python merge_histos.py Hct 2017 01 01 01 01 01 01
-../../../../../plotIt/plotIt -o ../ ../../../../../plotIt/configs/config_2017.yml -y
+../../../../../plotIt/plotIt -o ../prefit ../../../../../plotIt/configs/config_2017.yml -y
 python print_syst_table.py 2017 01 #Systematic table
 ```
 If you use BDT,

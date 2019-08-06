@@ -105,7 +105,7 @@ public :
 
     //Declare systematics here FIXME
     const std::vector<const char*> syst_name = {"",
-          "__puup", "__pudown", "__prefireup", "_prefiredown",
+          "__puup", "__pudown", "__prefireup", "__prefiredown",
           "__muidup", "__muiddown", "__muisoup", "__muisodown", "__mutrgup", "__mutrgdown",
           "__elidup", "__eliddown", "__elrecoup", "__elrecodown",
           "__elzvtxup", "__elzvtxdown", "__eltrgup", "__eltrgdown",
