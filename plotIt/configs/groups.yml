@@ -34,3 +34,18 @@ GVV:
   fill-color: '#00cccc'
   legend: 'VV'
 
+GSTHct:
+  line-color: '#006666'
+  legend: 'STHct'
+
+GSTHut:
+  line-color: '#666600'
+  legend: 'STHut'
+
+GTTHct:
+  line-color: '#0000cc'
+  legend: 'TTHct'
+
+GTTHut:
+  line-color: '#cccc00'
+  legend: 'TTHut'
