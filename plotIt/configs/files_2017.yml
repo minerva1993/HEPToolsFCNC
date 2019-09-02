@@ -5,6 +5,7 @@
   generated-events: 3099824
   line-color: '#006666'
   legend: 'STHct'
+  group: GSTHct
   order: 1
 
 'hist_TTTH1L3BHct.root':
@@ -14,8 +15,9 @@
   generated-events: 988758
   line-color: '#0000cc'
   legend: 'TTHct'
+  group: GTTHct
   order: 2
-#
+
 #'hist_TTTH1L3BaTLepHct.root':
 #  type: signal
 #  pretty-name: 'TTTH1L3BaTLepHct'
@@ -23,6 +25,7 @@
 #  generated-events: 688297
 #  line-color: '#0000cc'
 #  legend: 'TTHct'
+#  group: GTTHct
 #  order: 2
 #
 #'hist_TTTH1L3BTLepHct.root':
@@ -32,6 +35,7 @@
 #  generated-events: 300461
 #  line-color: '#0000cc'
 #  legend: 'TTHct'
+#  group: GTTHct
 #  order: 2
 
 'hist_STTH1L3BHut.root':
@@ -41,6 +45,7 @@
   generated-events: 2598940
   line-color: '#666600'
   legend: 'STHut'
+  group: GSTHut
   order: 3
 
 'hist_TTTH1L3BHut.root':
@@ -50,6 +55,7 @@
   generated-events: 1586324
   line-color: '#cccc00'
   legend: 'TTHut'
+  group: GTTHut
   order: 4
 
 #'hist_TTTH1L3BaTLepHut.root':
@@ -59,6 +65,7 @@
 #  generated-events: 796066
 #  line-color: '#cccc00'
 #  legend: 'TTHut'
+#  group: GTTHut
 #  order: 4
 #
 #'hist_TTTH1L3BTLepHut.root':
@@ -68,6 +75,7 @@
 #  generated-events: 790258
 #  line-color: '#cccc00'
 #  legend: 'TTHut'
+#  group: GTTHut
 #  order: 4
 
 'hist_SingleMuonRun2017.root':
@@ -372,7 +380,7 @@
   type: mc
   pretty-name: 'WW'
   cross-section: 118.7
-  generated-events: 7791498.0
+  generated-events: 7791498
   fill-color: '#00cccc'
   legend: 'VV'
   group: GVV
@@ -394,7 +402,7 @@
   type: mc
   pretty-name: 'ZZ'
   cross-section: 16.523
-  generated-events: 1949768.0
+  generated-events: 1949768
   fill-color: '#00cccc'
   legend: 'VV'
   group: GVV

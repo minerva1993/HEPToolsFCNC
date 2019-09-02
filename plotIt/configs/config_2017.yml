@@ -38,7 +38,7 @@ systematics:
   - ttLJcc_xsec2:  {type: const, value: 1.5, on: 'hist_TTpowhegttcc.root'}
   - ttLLcc_xsec2:  {type: const, value: 1.5, on: 'hist_TTLLpowhegttcc.root'}
   - ttHadcc_xsec2: {type: const, value: 1.5, on: 'hist_TTHadpowhegttcc.root'}
-  - other_xsec1:   {type: const, value: 1.1, on: 'hist_DYJetsv2.root'}
+  - other_xsec1:   {type: const, value: 1.1, on: 'hist_DYJets.root'}
   - other_xsec2:   {type: const, value: 1.1, on: 'hist_DYJets10to50.root'}
   - other_xsec3:   {type: const, value: 1.1, on: 'hist_W1JetsToLNu.root'}
   - other_xsec4:   {type: const, value: 1.1, on: 'hist_W2JetsToLNu.root'}

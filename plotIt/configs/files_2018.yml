@@ -2,18 +2,20 @@
   type: signal
   pretty-name: 'STTH1L3BHct'
   cross-section: 0.076
-  generated-events: 3016710 #
+  generated-events: 3016710
   line-color: '#006666'
   legend: 'STHct'
+  group: GSTHct
   order: 1
 
 'hist_TTTH1L3BHct.root':
   type: signal
   pretty-name: 'TTTH1L3BHct'
   cross-section: 1.86
-  generated-events: 1585684 #
+  generated-events: 1585684
   line-color: '#0000cc'
   legend: 'TTHct'
+  group: GTTHct
   order: 2
 
 #'hist_TTTH1L3BaTLepHct.root':
@@ -23,6 +25,7 @@
 #  generated-events: 800715
 #  line-color: '#0000cc'
 #  legend: 'TTHct'
+#  group: GTTHct
 #  order: 2
 #
 #'hist_TTTH1L3BTLepHct.root':
@@ -32,24 +35,27 @@
 #  generated-events: 784969
 #  line-color: '#0000cc'
 #  legend: 'TTHct'
+#  group: GTTHct
 #  order: 2
 
 'hist_STTH1L3BHut.root':
   type: signal
   pretty-name: 'STTH1L3BHut'
   cross-section: 0.55
-  generated-events: 3105204 #
+  generated-events: 3105204
   line-color: '#666600'
   legend: 'STHut'
+  group: GSTHut
   order: 3
 
 'hist_TTTH1L3BHut.root':
   type: signal
   pretty-name: 'TTTH1L3BHut'
   cross-section: 1.86
-  generated-events: 1569372 #
+  generated-events: 1569372
   line-color: '#cccc00'
   legend: 'TTHut'
+  group: GTTHut
   order: 4
 
 #'hist_TTTH1L3BaTLepHut.root':
@@ -59,6 +65,7 @@
 #  generated-events: 809380
 #  line-color: '#cccc00'
 #  legend: 'TTHut'
+#  group: GTTHut
 #  order: 4
 #
 #'hist_TTTH1L3BTLepHut.root':
@@ -68,6 +75,7 @@
 #  generated-events: 759992
 #  line-color: '#cccc00'
 #  legend: 'TTHut'
+#  group: GTTHut
 #  order: 4
 
 'hist_SingleMuonRun2018.root':
@@ -86,7 +94,7 @@
   type: mc
   pretty-name: 'TTpowhegttbb'
   cross-section: 365.34
-  generated-events: 90347648 #100728756
+  generated-events: 90347648
   fill-color: "#330000"
   legend: "ttbb"
   group: Gttbb
@@ -119,7 +127,7 @@
   type: mc
   pretty-name: 'TTpowhegttcc'
   cross-section: 365.34
-  generated-events: 90347648 #10728756
+  generated-events: 90347648
   fill-color: '#990000'
   legend: 'ttcc'
   group: Gttcc
@@ -206,7 +214,7 @@
 'hist_TTWJetsToLNu.root':
   type: mc
   pretty-name: 'TTWJetsToLNu'
-  cross-section: 0.2043 
+  cross-section: 0.2043
   generated-events: 2686095
   fill-color: '#ff66ff'
   legend: 'ttV/H'
