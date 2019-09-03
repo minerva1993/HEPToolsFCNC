@@ -15,8 +15,8 @@ common_syst = 'systematics:\n'
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
                     'jec', 'jer',
                     'lf', 'hf', 'lfstat1', 'lfstat2', 'hfstat1', 'hfstat2', 'cferr1', 'cferr2']
-reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
-#reco_scenario = ['TTFCNC']
+#reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
+reco_scenario = ['STFCNC']
 
 for item in common_syst_list:
   common_syst += '  - ' + item + '\n'
@@ -86,11 +86,31 @@ for scenario in reco_scenario:
     """.format(scenario)
     fnew.write(string_for_files)
 
+  file_syst = ''
+  with open(config_path + 'config_2017.yml') as f:
+    lines = f.readlines()
+    for line in lines:
+      if 'type' in line:
+        if 'const' in line:
+          file_syst += line[:line.find(':')] + '_17' + line[line.find(':'):line.find('hist')] + '2017/' + scenario + ver17 + '/post_process/' + line[line.find('hist'):]
+        elif 'shape' in line:
+          file_syst += line[:line.find('hist')] + '2017/' + scenario + ver17 + '/post_process/' + line[line.find('hist'):]
+
+  with open(config_path + 'config_2018.yml') as f:
+    lines = f.readlines()
+    for line in lines:
+      if 'type' in line:
+        if 'const' in line:
+          file_syst += line[:line.find(':')] + '_18' + line[line.find(':'):line.find('hist')] + '2018/' + scenario + ver18 + '/post_process/' + line[line.find('hist'):]
+        elif 'shape' in line:
+          file_syst += line[:line.find('hist')] + '2018/' + scenario + ver18 + '/post_process/' + line[line.find('hist'):]
+
   with open(config_path + 'template_1718.yml') as f:
     lines = f.readlines()
     with open(config_path + 'config_1718.yml', 'w+') as f1:
       for line in lines: f1.write(line)
       f1.write(common_syst)
+      f1.write(file_syst)
       f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + ".yml']\n")
 
   call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario, config_path + 'config_1718.yml'], shell=False)
