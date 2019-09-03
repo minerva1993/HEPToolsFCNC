@@ -3,7 +3,7 @@ from subprocess import call
 from collections import OrderedDict
 
 if len(sys.argv) < 3:
-  print("Specify year: 2017/2018, Ver, systematic type: all / source by source (a/s)")
+  print("Specify year: 2017/2018, Ver")
   sys.exit()
 era = sys.argv[1]
 ver = sys.argv[2]
@@ -45,6 +45,20 @@ if era == "2017":
   unc_cat['prefire'] = ['prefire']
   unc_cat['all'].append('prefire')
 
+#Create syst yaml everytime, to avoid crash due to different treatments
+with open(config_path + "config_" + era + ".yml") as f:
+  lines = f.readlines()
+  with open(config_path + "syst_all_" + era + ".yml", 'w+') as f1:
+    write_lines = False
+    for line in lines:
+      if write_lines and 'plots' in line: write_lines = False
+      if write_lines and line in ['\n', '\r\n']: write_lines = False
+      if not write_lines: pass
+      else: f1.write(line)
+      if 'systematics' in line: write_lines = True
+
+#sys.exit()
+
 for key, value in unc_cat.items():
   print "Print yield tables with source: " + key
   #prep for systematics
@@ -68,7 +82,7 @@ for key, value in unc_cat.items():
         if plot_delete == True: continue
         f1.write(line)
 
-  with open(config_path + "syst_all.yml") as f:
+  with open(config_path + "syst_all_" + era + ".yml") as f:
     lines = f.readlines()
     with open(config_path + tmp_file_name, "a") as f1:
       f1.writelines(plot_to_add)

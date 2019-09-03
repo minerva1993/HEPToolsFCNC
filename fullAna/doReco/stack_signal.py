@@ -1,7 +1,10 @@
 from ROOT import *
 import ROOT
 import sys, os
-from subprocess import call
+from subprocess import check_call
+from os import listdir, path
+import collections
+import glob
 
 if len(sys.argv) < 3:
   print("Ver of 2017 and 2018")
@@ -9,76 +12,45 @@ if len(sys.argv) < 3:
 ver17 = sys.argv[1]
 ver18 = sys.argv[2]
 
-lumi = {'2017': 41529, '2018':59741}
-files = []
-for ch in ['Hct', 'Hut']:
-  for proc in ['ST', 'TT']:
-    tmp = 'YEAR' + '/RECOVER/post_process/' + 'hist_' + proc + 'TH1L3B'
-    if proc == 'TT':
-      tmp2 = tmp + 'LEP' + ch + 'SYST.root'
-      files.append(tmp2)
-    else:
-      tmp += ch + 'SYST.root'
-      files.append(tmp)
+ver_dict = {'2017': ver17, '2018':ver18}
+lumi_dict = {'2017': 41529, '2018':59741}
+file_names = collections.OrderedDict()
 
-for f in files:
-  print f
+for era in ['2017','2018']:
   for reco in ['STFCNC', 'TTFCNC', 'TTBKG']:
-    for syst in ['', '__jecup', '__jecdown', '__jerup', '__jerdown']:
+    dir_path = os.path.join(era, reco + ver_dict[era], 'post_process')
+    dirs = os.listdir(dir_path)
+    dirs[:] = [item for item in dirs if any(i in item for i in ['STTH1L3B','TTTH1L3BaTLep','TTTH1L3BTLep'])] #avoid TTTH merged
+    file_names[dir_path] = dirs
+"""
+for path, file_name in file_names.iteritems():
+  for f in file_name:
+    ftmp = TFile.Open(os.path.join(path, f), 'READ')
 
-      samples_to_merge = []
+    hist_names = [x.GetName() for x in ftmp.GetListOfKeys()] 
+    hist_names = list(dict.fromkeys(hist_names)) #remove duplicates from more than one instances 
+    hist_names[:] = [item for item in hist_names if item not in ['EventInfo', 'PSWeights', 'ScaleWeights']] 
+    hist_names.sort() 
+   
+    ntmp = ftmp.Get("EventInfo").GetBinContent(2) 
 
-      f17 = f.replace('YEAR', '2017')
-      f17 = f17.replace('RECO', reco)
-      f17 = f17.replace('VER', ver17)
-      f17 = f17.replace('SYST', syst)
-      f18 = f.replace('YEAR', '2018')
-      f18 = f18.replace('RECO', reco)
-      f18 = f18.replace('VER', ver18)
-      f18 = f18.replace('SYST', syst)
+    dest_name = './full1718/' + path.split('/')[1].rstrip(ver_dict[era]) + '/' + f[:-5] + path.split('/')[0] + '.root'
+    dest = TFile.Open(dest_name, 'RECREATE')
 
-      if 'LEP' in f:
-        f17_1 = f17.replace('LEP','TLep')
-        f17_2 = f17.replace('LEP','aTLep')
-        f18_1 = f18.replace('LEP','TLep')
-        f18_2 = f18.replace('LEP','aTLep')
-        samples_to_merge.extend([f17_1, f17_2, f18_1, f18_2])
-      else: samples_to_merge.extend([f17, f18])
+    print 'Writing scaled histogram to ' + dest_name
 
-      print samples_to_merge
+    for hist in hist_names: 
+      htmp = ftmp.Get(hist) 
+      htmp.Scale(lumi_dict[path.split('/')[0]]/ntmp)
+      dest.cd()
+      htmp.Write()
+    dest.Write()
+    dest.Close()
+"""
 
-      nevt_dict = {}
-      file_dict = {}
-      hist_names = []
-      for tmp in samples_to_merge:
-        ftmp = TFile.Open(tmp, 'READ')
-        if len(hist_names) == 0 and '2018' in tmp:
-          hist_names = [x.GetName() for x in ftmp.GetListOfKeys()]
-          hist_names = list(dict.fromkeys(hist_names)) #remove duplicates from more than one instances
-          hist_names[:] = [item for item in hist_names if item not in ['EventInfo', 'PSWeights', 'ScaleWeights']]
-          hist_names.sort()
-        ntmp = ftmp.Get("EventInfo").GetBinContent(2)
-        nevt_dict[tmp] = ntmp
-        file_dict[tmp] = ftmp #Is this the best way?
-
-      target_name = f17.split('/')[3].replace('LEP','')
-      dest = TFile.Open('./full1718/' + reco + '/' + target_name, 'RECREATE')
-
-      for hist in hist_names:
-        print hist
-        for path, fi in file_dict.iteritems(): #f is used
-          htmp = fi.Get(hist)
-          htmp.Scale(lumi[path.split('/')[0]]/nevt_dict[path])
-          try:
-            hnew #check if it exists
-          except NameError:
-            hnew = htmp.Clone('hnew')
-            hnew.SetDirectory(0)
-          else:
-            hnew.Add(htmp, 1.0)
-          dest.cd()
-          hnew.SetName(hist)
-          hnew.Write()
-        del hnew
-      dest.Write()
-      dest.Close()
+for reco in ['STFCNC', 'TTFCNC', 'TTBKG']:
+  for syst in ['', '__jecup', '__jecdown', '__jerup', '__jerdown']:
+    for ch in ['Hct', 'Hut']:
+      print './full1718/' + reco + '/hist_STTH1L3B' + ch + syst + '.root'
+      #check_call(['hadd','-f', './full1718/' + reco + '/hist_STTH1L3B' + ch + syst + '.root'] +  glob.glob('./full1718/' + reco + '/hist_STTH1L3B' + ch + syst + '201*.root'))
+      check_call(['hadd','-f', './full1718/' + reco + '/hist_TTTH1L3B' + ch + syst + '.root'] +  glob.glob('./full1718/' + reco + '/hist_TTTH1L3B*TLep' + ch + syst + '201*.root'))
