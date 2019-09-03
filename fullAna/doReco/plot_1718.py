@@ -9,7 +9,7 @@ ver17 = sys.argv[1]
 ver18 = sys.argv[2]
 
 config_path = '../../plotIt/configs/'
-dest_path = './fullRun2'
+dest_path = './full1718'
 common_syst = 'systematics:\n'
 #not include prefire and elzvtx which exist only in 2017
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
@@ -53,8 +53,6 @@ for scenario in reco_scenario:
   with open(config_path + 'files_1718.yml', 'w+') as fnew:
     fnew.write(string_for_files)
 
-    
-
   with open(config_path + 'template_1718.yml') as f:
     lines = f.readlines()
     with open(config_path + 'config_1718.yml', 'w+') as f1:
@@ -62,4 +60,4 @@ for scenario in reco_scenario:
       f1.write(common_syst)
       f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + ".yml']\n")
 
-
+  call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario, config_path + 'config_1718.yml'], shell=False)
