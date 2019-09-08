@@ -66,6 +66,10 @@ mv STFCNC01 2017
 #python ratioPlot.py
 cd 2017/STFCNC01/post_process
 ../../../../../plotIt/plotIt -o ../figures/ ../../../../../plotIt/configs/config_2017.yml -y
+#17+18 plot
+cd ../../../
+python stack_signal.py 01 01
+python plot_1718.py 01 01
 ```
   *Final MVA
 ```{.Bash}
@@ -94,7 +98,7 @@ python print_syst_table.py 2017 01 #Systematic table
 ```
 If you use BDT,
 ```{.Bash}
-python training_bdt.py Hct j3b2 01
+python training_bdt.py Hct j3b2 01 2017
 #nohup python training_bdt.py Hct j3b2 01 2017 > log_Hct_j3b2 &
 cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python evaluation_bdt.py Hct j3b2 01 2017
 #cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python evaluation_bdt.py Hct j3b2 01 2017 > log &

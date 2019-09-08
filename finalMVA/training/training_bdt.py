@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 import sys, os, shutil
-from variables import input_variables_bdt, train_files, evalScale
+from variables import input_variables_bdt, train_files, evalScale, input_selected_bdt
 from ROOT import *
 
 TMVA.Tools.Instance()
 TMVA.PyMethodBase.PyInitialize()
-
-checkNevt = False
 
 #Version of classifier
 if len(sys.argv) < 5:
@@ -16,6 +14,12 @@ ch = sys.argv[1]
 jetcat = sys.argv[2]
 ver = sys.argv[3]
 era = sys.argv[4]
+
+feature_sel = False
+if len(sys.argv) > 5: #flag for input feature selection
+  if sys.argv[5] == 'True':
+    feature_sel = True
+    ver = '99'
 
 njets_cut = int(jetcat[1:2]) #Must be jXbX
 if njets_cut not in [3,4]:
@@ -84,7 +88,8 @@ sig_files, bkg_files = train_files(ch, era)
 
 #int_vars = []
 input_features = []
-input_features.extend(input_variables_bdt(jetcat))
+if not feature_sel: input_features.extend(input_variables_bdt(jetcat))
+else: input_features.extend(input_selected_bdt(jetcat))
 #input_features.remove('STTT')
 #input_features.remove('channel')
 
@@ -128,8 +133,6 @@ for fName in bkg_files:
 loader.PrepareTrainingAndTestTree(sigCut, bkgCut, options)
 
 factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=" + ntree[idx[jetcat]] + ":MinNodeSize=5%:MaxDepth=5:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=" + ncut[idx[jetcat]])
-
-if checkNevt: sys.exit()
 
 factory.TrainAllMethods()
 factory.TestAllMethods()
