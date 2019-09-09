@@ -7,6 +7,8 @@ base_path18 = "/data/users/minerva1993/ntuple/V10_2/190702/production"
 
 def input_selected_bdt(ch, jetcat): #Order Does Matter!!
 
+  selected = {}
+
   var_list = selected[ch + '_' + jetcat]
 
   return var_list
