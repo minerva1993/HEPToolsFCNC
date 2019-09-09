@@ -5,6 +5,14 @@ import os
 base_path17 = "/data/users/minerva1993/ntuple/V9_6/190702/production"
 base_path18 = "/data/users/minerva1993/ntuple/V10_2/190702/production"
 
+def input_selected_bdt(ch, jetcat): #Order Does Matter!!
+
+  var_list = selected[ch + '_' + jetcat]
+
+  return var_list
+
+
+
 def input_variables_bdt(jetcat): #Order Does Matter!!
  
   #var_list = ['STTT', 'channel', 'MET', 'lepDPhi', 'lepWpt', 'lepWm']

@@ -16,6 +16,8 @@ era = sys.argv[4]
 
 nfeat = {'j3b2':10, 'j3b3':10, 'j4b2':10, 'j4b3':10, 'j4b4':5}
 
+print '####Extracting top N features for ' + ch + '_' + jetcat
+
 #Run training for check separation
 proc = subprocess.Popen('python training_bdt.py ' + ch + ' ' + jetcat + ' 99 ' + era + ' > ' + 'log_' + ch + '_' + jetcat + '_99 &', shell=True, preexec_fn=os.setsid)
 
@@ -34,27 +36,39 @@ while True:
 
 keep_line = False
 rank_list = []
+num_evt = []
 
 #going to the first line of log file, check NEvents and ranking
 log_file = open('./log_' + ch + '_' + jetcat + '_99', 'r')
 loglines = log_file.readlines()
 
 for line in loglines:
-  if any(i in line for i in ['number of events passed', '-- training events', '-- testing events']): print line
+  if any(i in line for i in ['number of events passed', '-- training events', '-- testing events']):
+    #print line
+    pass
   if 'Train method' in line: keep_line = False
   if 'Separation' in line: keep_line = True
+  if 'number of events passed' in line: num_evt.append(line.split(':')[3].split('/')[0].strip())
   if keep_line and line.count(':') == 3: rank_list.append(line.split(':')[2].strip())
 
-rank_list = rank_list[1:]
+#Check number of events for training
+#print num_evt
+print 'Signal * 0.8 =', str(round(int(num_evt[0]) * 0.8)) #Signal first in TMVA
+print 'Background * 0.8 =', str(round(int(num_evt[1]) * 0.8))
+
 #Select top N = nfeat[jetcat] variables and sort by the order of features in root file
+rank_list = rank_list[1:]
 rank_list = rank_list[:nfeat[jetcat]]
-print rank_list
+#print rank_list
 
 all_vars = input_variables_bdt(jetcat)
 sorted_rank_list = []
-
 for var in all_vars:
   if var in rank_list: sorted_rank_list.append(var)
 
-print sorted_rank_list
+print "selected['" + ch + '_' + jetcat + "']:" + str(sorted_rank_list)
 
+try:
+  shutil.rmtree( os.path.join(era, 'final_' + ch + '_' + jetcat + '_99') )
+  os.remove( os.path.join(era, 'output_' + ch + '_' + jetcat + '.root') )
+except: print "No folder or output file!"

@@ -89,7 +89,7 @@ sig_files, bkg_files = train_files(ch, era)
 #int_vars = []
 input_features = []
 if not feature_sel: input_features.extend(input_variables_bdt(jetcat))
-else: input_features.extend(input_selected_bdt(jetcat))
+else: input_features.extend(input_selected_bdt(ch, jetcat))
 #input_features.remove('STTT')
 #input_features.remove('channel')
 
