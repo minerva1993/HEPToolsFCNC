@@ -156,6 +156,7 @@
 'h_FCNHkinHb2CSVfull_Ch2_S7':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f"
+  x-axis-range: [0.4,1.0]
   save-extensions: ['pdf']
   labels:
     - {text: 'b3j4', position: [0.789, 0.806], size: 18}
@@ -163,6 +164,7 @@
 'h_FCNHkinHb2CSVfull_Ch2_S8':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f"
+  x-axis-range: [0.4,1.0]
   save-extensions: ['pdf']
   labels:
     - {text: 'b4j4', position: [0.789, 0.806], size: 18}
