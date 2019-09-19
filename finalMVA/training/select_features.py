@@ -6,40 +6,49 @@ import time
 from variables import input_variables_bdt
 
 #Version of classifier
-if len(sys.argv) < 5:
-  print("Not enough arguements: Ch, JetCat, Ver, Era")
+if len(sys.argv) < 6:
+  print("Not enough arguements: Ch, JetCat, Ver, Era, Recompute")
   sys.exit()
 ch = sys.argv[1]
 jetcat = sys.argv[2] #will be overidden as 99
 ver = sys.argv[3]
 era = sys.argv[4]
+do_recompute = sys.argv[5] == "True"
 
 nfeat = {'j3b2':10, 'j3b3':10, 'j4b2':10, 'j4b3':10, 'j4b4':5}
-
+#nfeat = {'j3b2':28, 'j3b3':28, 'j4b2':28, 'j4b3':28, 'j4b4':28}
 print '####Extracting top N features for ' + ch + '_' + jetcat
 
 #Run training for check separation
-proc = subprocess.Popen('python training_bdt.py ' + ch + ' ' + jetcat + ' 99 ' + era + ' > ' + 'log_' + ch + '_' + jetcat + '_99 &', shell=True, preexec_fn=os.setsid)
+if do_recompute: proc = subprocess.Popen('python training_bdt.py ' + ch + ' ' + jetcat + ' 99 ' + era + ' True > ' + 'log_' + ch + '_' + jetcat + '_99 &', shell=True, preexec_fn=os.setsid)
 
 #wait until log file created: for double check!!
-time.sleep(3)
-
-log_file = open('./log_' + ch + '_' + jetcat + '_99', 'r')
-
 while True:
-  logline = log_file.readline()
-  #if logline.find('number of events passed') > 0: print logline
-  #if logline.find('Separation') > 0: print logline
-  if logline.find('Train method') > 0:
-    os.killpg(proc.pid, signal.SIGTERM)
+  if do_recompute:
+    try:
+      log_file = open('./log_' + ch + '_' + jetcat + '_99', 'r')
+    except: continue
+    else: break
+  else:
+    log_file = open('Var_logs/' + era + '/log_' + ch + '_' + jetcat + '_99', 'r')
     break
+
+if do_recompute:
+  while True:
+    logline = log_file.readline()
+    #if logline.find('number of events passed') > 0: print logline
+    #if logline.find('Separation') > 0: print logline
+    if logline.find('Train method') > 0:
+      os.killpg(proc.pid, signal.SIGTERM)
+      break
 
 keep_line = False
 rank_list = []
 num_evt = []
 
 #going to the first line of log file, check NEvents and ranking
-log_file = open('./log_' + ch + '_' + jetcat + '_99', 'r')
+if do_recompute: log_file = open('./log_' + ch + '_' + jetcat + '_99', 'r')
+else: log_file = open('Var_logs/' + era + '/log_' + ch + '_' + jetcat + '_99', 'r')
 loglines = log_file.readlines()
 
 for line in loglines:
@@ -53,8 +62,8 @@ for line in loglines:
 
 #Check number of events for training
 #print num_evt
-print 'Signal * 0.8 =', str(round(int(num_evt[0]) * 0.8)) #Signal first in TMVA
-print 'Background * 0.8 =', str(round(int(num_evt[1]) * 0.8))
+print 'Signal * 0.8 =', str(int(round(int(num_evt[0]) * 0.8))) #Signal first in TMVA
+print 'Background * 0.8 =', str(int(round(int(num_evt[1]) * 0.8)))
 
 #Select top N = nfeat[jetcat] variables and sort by the order of features in root file
 rank_list = rank_list[1:]
@@ -66,9 +75,10 @@ sorted_rank_list = []
 for var in all_vars:
   if var in rank_list: sorted_rank_list.append(var)
 
-print "selected['" + ch + '_' + jetcat + "']:" + str(sorted_rank_list)
+print "  selected['" + ch + '_' + jetcat + '_' + era + "'] = " + str(sorted_rank_list)
 
 try:
   shutil.rmtree( os.path.join(era, 'final_' + ch + '_' + jetcat + '_99') )
   os.remove( os.path.join(era, 'output_' + ch + '_' + jetcat + '.root') )
 except: print "No folder or output file!"
+print " "

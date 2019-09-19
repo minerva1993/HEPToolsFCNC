@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys, os, shutil
-from variables import input_variables_bdt, train_files, evalScale, input_selected_bdt
+from variables import input_variables_bdt, input_selected_bdt, train_files, evalScale
 from ROOT import *
 
 TMVA.Tools.Instance()
@@ -15,6 +15,7 @@ jetcat = sys.argv[2]
 ver = sys.argv[3]
 era = sys.argv[4]
 
+all_features = False
 feature_sel = False
 if len(sys.argv) > 5: #flag for input feature selection
   if sys.argv[5] == 'True':
@@ -79,7 +80,7 @@ for item in os.listdir( os.path.join(configDir, weightDir+ver, 'weights') ) or o
   if item.endswith(".C") or item.endswith(".root") or item.endswith("log"):
     #os.remove(os.path.join(os.path.join(configDir, weightDir+ver), item))
     print("Remove previous files or move on to next version!")
-    #sys.exit()
+    sys.exit()
 if not os.path.exists( os.path.join(configDir, weightDir+ver, 'training_bdt.py') ):
   shutil.copy2('training_bdt.py', os.path.join(configDir, weightDir+ver, 'training_bdt.py'))
 
@@ -88,8 +89,12 @@ sig_files, bkg_files = train_files(ch, era)
 
 #int_vars = []
 input_features = []
-if not feature_sel: input_features.extend(input_variables_bdt(jetcat))
-else: input_features.extend(input_selected_bdt(ch, jetcat))
+if feature_sel: input_features.extend(input_variables_bdt(jetcat))
+else:
+  if all_features: input_features.append(input_variables(jetcat))
+  else:
+    try: input_features.extend(input_selected_bdt(ch, jetcat, era))
+    except: input_features.extend(input_variables(jetcat))
 #input_features.remove('STTT')
 #input_features.remove('channel')
 

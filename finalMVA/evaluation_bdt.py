@@ -4,7 +4,7 @@ import os, sys
 from ROOT import *
 from array import array
 import numpy as np
-from training.variables import input_variables_bdt, train_files, evalScale, evalFrac
+from training.variables import input_variables_bdt, input_selected_bdt, train_files, evalScale, evalFrac
 
 TMVA.Tools.Instance()
 
@@ -18,6 +18,8 @@ ver = sys.argv[3]
 era = sys.argv[4]
 file_path = sys.argv[5]
 name = sys.argv[6]
+
+all_features = False
 
 njets_cut = int(jetcat[1:2]) #Must be jXbX
 if njets_cut not in [3,4]:
@@ -40,8 +42,12 @@ scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
 syst = ["","jecup","jecdown","jerup","jerdown",]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
+#For now, toggle by hand between selected and all vars
 input_features = []
-input_features.extend(input_variables_bdt(jetcat))
+if all_features: input_features.append(input_variables(jetcat))
+else:
+  try: input_features.extend(input_selected_bdt(ch, jetcat, era))
+  except: input_features.extend(input_variables(jetcat))
 #input_features.remove('STTT')
 #input_features.remove('channel')
 

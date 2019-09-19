@@ -15,7 +15,7 @@ from sklearn.metrics import f1_score, precision_score, recall_score
 import numpy as np
 from root_numpy import array2tree, tree2array
 from variables import input_variables, train_files, evalScale
-from variables import input_variables_bdt
+from variables import input_variables_bdt, input_selected_bdt
 
 #Version of classifier
 if len(sys.argv) < 5:
@@ -36,6 +36,7 @@ train_test_rate = 0.8
 plot_figures = True
 include_eventWeight = True
 sklearn_based_overtraining_check = False #If it set to false, directly plot DNN scores
+all_features = False
 
 #directory name
 configDir = '../'
@@ -56,9 +57,12 @@ if len(jetcat) > 3:
 else: nbjets_cut = 0
 
 input_features = []
-input_features.extend(input_variables(jetcat))
-#input_features.extend(input_variables_bdt(jetcat))
+if all_features: input_features.append(input_variables(jetcat))
+else:
+  try: input_features.extend(input_selected_bdt(ch, jetcat, era))
+  except: input_features.extend(input_variables(jetcat))
 input_features.append(label_name)
+
 sig_files, bkg_files = train_files(ch, era)
 if not input_only:
   scaleST, scaleTT, scaleTTLJ, scaleTTLL, frac_sig, frac_bkg = evalScale(ch, era, sig_files, bkg_files)

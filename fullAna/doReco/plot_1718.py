@@ -15,8 +15,8 @@ common_syst = 'systematics:\n'
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
                     'jec', 'jer',
                     'lf', 'hf', 'lfstat1', 'lfstat2', 'hfstat1', 'hfstat2', 'cferr1', 'cferr2']
-#reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
-reco_scenario = ['STFCNC']
+reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
+#reco_scenario = ['STFCNC']
 
 for item in common_syst_list:
   common_syst += '  - ' + item + '\n'
