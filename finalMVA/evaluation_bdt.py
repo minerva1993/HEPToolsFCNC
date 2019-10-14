@@ -19,7 +19,7 @@ era = sys.argv[4]
 file_path = sys.argv[5]
 name = sys.argv[6]
 
-all_features = False
+all_features = True
 
 njets_cut = int(jetcat[1:2]) #Must be jXbX
 if njets_cut not in [3,4]:
@@ -44,10 +44,10 @@ syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples ex
 
 #For now, toggle by hand between selected and all vars
 input_features = []
-if all_features: input_features.append(input_variables(jetcat))
+if all_features: input_features.extend(input_variables_bdt(jetcat))
 else:
   try: input_features.extend(input_selected_bdt(ch, jetcat, era))
-  except: input_features.extend(input_variables(jetcat))
+  except: input_features.extend(input_variables_bdt(jetcat))
 #input_features.remove('STTT')
 #input_features.remove('channel')
 

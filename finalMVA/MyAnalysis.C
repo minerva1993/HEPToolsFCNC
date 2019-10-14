@@ -13,15 +13,22 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
   string sample = option.Data();
-  string era = sample.substr(sample.find_first_of("-")+1,4);
-  string train_scheme = sample.substr(sample.find_first_of("-")+5,string::npos);
-  sample.erase(sample.find_first_of("-"),string::npos);
-  
+  string era = sample.substr(sample.find_first_of("-")+1,4); //STTH1L3BHct_000-2017Hct_0101010101__syst
+  string train_scheme = sample.substr(sample.find_first_of("-")+5,string::npos); //Hct_0101010101__syst
+  sample.erase(sample.find_first_of("-"),string::npos); //STTH1L3BHct_000
+  string sig_ch = train_scheme.substr(0,3);
+  string ver_j3b2 = train_scheme.substr(train_scheme.find_first_of("_")+1,2);
+  string ver_j3b3 = train_scheme.substr(train_scheme.find_first_of("_")+3,2);
+  string ver_j4b2 = train_scheme.substr(train_scheme.find_first_of("_")+5,2);
+  string ver_j4b3 = train_scheme.substr(train_scheme.find_first_of("_")+7,2);
+  string ver_j4b4 = train_scheme.substr(train_scheme.find_first_of("_")+9,2);
+
+//  cout << sig_ch << " " << ver_j3b2 << " " << ver_j3b3 << " " << ver_j4b2 << " " << ver_j4b3 << " " << ver_j4b4 << endl;
+
   dosyst = true;
   if( option.Contains("Run201") ) dosyst = false;
 
   //Delete ntuple number and data era so that we can merge histos w.r.t. dataset, prepare assign ntuple
-  const char* score_file = "";
   if( train_scheme.find("jec") != string::npos or train_scheme.find("jer") != string::npos 
     or train_scheme.find("TuneCP5") != string::npos or train_scheme.find("hdamp") != string::npos ){
     dosyst = false;//make another hist file
@@ -38,25 +45,128 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
   if( syst_ext == "" ) syst_str.erase(0,1);
   train_scheme.erase( train_scheme.find_last_of("_"),string::npos );
 
-  score_file = Form("./scores/%s/%s%s/score_finalMVA_%s.root", era.c_str(), train_scheme.c_str(), syst_str.c_str(), sample.c_str());
+  const char* score_file_j3b2 = "";
+  const char* score_file_j3b3 = "";
+  const char* score_file_j4b2 = "";
+  const char* score_file_j4b3 = "";
+  const char* score_file_j4b4 = "";
 
-  string file_tmp_path = score_file;
-  ifstream file_tmp(file_tmp_path);
-  if( file_tmp.is_open() ){
-    scoreF = TFile::Open(score_file, "READ");
-    scoreT = (TTree*) scoreF->Get("tree");
-    int nevt = scoreT->GetEntries();
+  score_file_j3b2 = Form("./scores/%s/%s_j3b2_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j3b2.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j3b3 = Form("./scores/%s/%s_j3b3_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j3b3.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j4b2 = Form("./scores/%s/%s_j4b2_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j4b2.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j4b3 = Form("./scores/%s/%s_j4b3_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j4b3.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j4b4 = Form("./scores/%s/%s_j4b4_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j4b4.c_str(), syst_str.c_str(), sample.c_str());
+
+  string file_tmp_path_j3b2 = score_file_j3b2;
+  ifstream file_tmp_j3b2(file_tmp_path_j3b2);
+  if( file_tmp_j3b2.is_open() ){
+    scoreF_j3b2 = TFile::Open(score_file_j3b2, "READ");
+    scoreT_j3b2 = (TTree*) scoreF_j3b2->Get("tree");
+    int nevt = scoreT_j3b2->GetEntries();
     if( nevt > 0){
       for(int i = 0; i < nevt; i++){
-        scoreT->GetEntry(i);
-        float pt = scoreT->GetLeaf("lepPt")->GetValue(0);
-        float met = scoreT->GetLeaf("missinget")->GetValue(0);
-        lepPt.push_back(pt);
-        missET.push_back(met);
+        scoreT_j3b2->GetEntry(i);
+        float pt = scoreT_j3b2->GetLeaf("lepPt")->GetValue(0);
+        float met = scoreT_j3b2->GetLeaf("missinget")->GetValue(0);
+        lepPt_j3b2.push_back(pt);
+        missET_j3b2.push_back(met);
       }
     }
   }
-  else cout << option.Data() << endl;
+  else cout << "Not opened in j3b2 : " << option.Data() << " - " << file_tmp_path_j3b2 << endl;
+
+  string file_tmp_path_j3b3 = score_file_j3b3;
+  ifstream file_tmp_j3b3(file_tmp_path_j3b3);
+  if( file_tmp_j3b3.is_open() ){
+    scoreF_j3b3 = TFile::Open(score_file_j3b3, "READ");
+    scoreT_j3b3 = (TTree*) scoreF_j3b3->Get("tree");
+    int nevt = scoreT_j3b3->GetEntries();
+    if( nevt > 0){
+      for(int i = 0; i < nevt; i++){
+        scoreT_j3b3->GetEntry(i);
+        float pt = scoreT_j3b3->GetLeaf("lepPt")->GetValue(0);
+        float met = scoreT_j3b3->GetLeaf("missinget")->GetValue(0);
+        lepPt_j3b3.push_back(pt);
+        missET_j3b3.push_back(met);
+      }
+    }
+  }
+  else cout << "Not opened in j3b3 : " << option.Data() << " - " << file_tmp_path_j3b3 << endl;
+
+  string file_tmp_path_j4b2 = score_file_j4b2;
+  ifstream file_tmp_j4b2(file_tmp_path_j4b2);
+  if( file_tmp_j4b2.is_open() ){
+    scoreF_j4b2 = TFile::Open(score_file_j4b2, "READ");
+    scoreT_j4b2 = (TTree*) scoreF_j4b2->Get("tree");
+    int nevt = scoreT_j4b2->GetEntries();
+    if( nevt > 0){
+      for(int i = 0; i < nevt; i++){
+        scoreT_j4b2->GetEntry(i);
+        float pt = scoreT_j4b2->GetLeaf("lepPt")->GetValue(0);
+        float met = scoreT_j4b2->GetLeaf("missinget")->GetValue(0);
+        lepPt_j4b2.push_back(pt);
+        missET_j4b2.push_back(met);
+      }
+    }
+  }
+  else cout << "Not opened in j4b2 : " << option.Data() << " - " << file_tmp_path_j4b2 << endl;
+
+  string file_tmp_path_j4b3 = score_file_j4b3;
+  ifstream file_tmp_j4b3(file_tmp_path_j4b3);
+  if( file_tmp_j4b3.is_open() ){
+    scoreF_j4b3 = TFile::Open(score_file_j4b3, "READ");
+    scoreT_j4b3 = (TTree*) scoreF_j4b3->Get("tree");
+    int nevt = scoreT_j4b3->GetEntries();
+    if( nevt > 0){
+      for(int i = 0; i < nevt; i++){
+        scoreT_j4b3->GetEntry(i);
+        float pt = scoreT_j4b3->GetLeaf("lepPt")->GetValue(0);
+        float met = scoreT_j4b3->GetLeaf("missinget")->GetValue(0);
+        lepPt_j4b3.push_back(pt);
+        missET_j4b3.push_back(met);
+      }
+    }
+  }
+  else cout << "Not opened in j4b3 : " << option.Data() << " - " << file_tmp_path_j4b3 << endl;
+
+  string file_tmp_path_j4b4 = score_file_j4b4;
+  ifstream file_tmp_j4b4(file_tmp_path_j4b4);
+  if( file_tmp_j4b4.is_open() ){
+    scoreF_j4b4 = TFile::Open(score_file_j4b4, "READ");
+    scoreT_j4b4 = (TTree*) scoreF_j4b4->Get("tree");
+    int nevt = scoreT_j4b4->GetEntries();
+    if( nevt > 0){
+      for(int i = 0; i < nevt; i++){
+        scoreT_j4b4->GetEntry(i);
+        float pt = scoreT_j4b4->GetLeaf("lepPt")->GetValue(0);
+        float met = scoreT_j4b4->GetLeaf("missinget")->GetValue(0);
+        lepPt_j4b4.push_back(pt);
+        missET_j4b4.push_back(met);
+      }
+    }
+  }
+  else cout << "Not opened in j4b4 : " << option.Data() << " - " << file_tmp_path_j4b4 << endl;
+
+//  const char* score_file = "";
+//  score_file = Form("./scores/%s/%s%s/score_finalMVA_%s.root", era.c_str(), train_scheme.c_str(), syst_str.c_str(), sample.c_str());
+//
+//  string file_tmp_path = score_file;
+//  ifstream file_tmp(file_tmp_path);
+//  if( file_tmp.is_open() ){
+//    scoreF = TFile::Open(score_file, "READ");
+//    scoreT = (TTree*) scoreF->Get("tree");
+//    int nevt = scoreT->GetEntries();
+//    if( nevt > 0){
+//      for(int i = 0; i < nevt; i++){
+//        scoreT->GetEntry(i);
+//        float pt = scoreT->GetLeaf("lepPt")->GetValue(0);
+//        float met = scoreT->GetLeaf("missinget")->GetValue(0);
+//        lepPt.push_back(pt);
+//        missET.push_back(met);
+//      }
+//    }
+//  }
+//  else cout << option.Data() << endl;
 
   if( !dosyst and syst_ext.length() < 5 and !option.Contains("Run201") ) cout << sample.c_str() << " " << "No external systematic option!" << endl;
 
@@ -66,20 +176,45 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     for( int syst = 0; syst != syst_num; ++syst ){
       if( syst > 0 and !dosyst ) continue;
 
-      h_MVA_b2[ich][syst] = new TH1D(Form("h_DNN_b2_Ch%i%s",ich,syst_name[syst]), "Final MVA b2", 40, -1, 1);
-      h_MVA_b2[ich][syst]->SetXTitle("DNN Score");
-      h_MVA_b2[ich][syst]->Sumw2();
-      fOutput->Add(h_MVA_b2[ich][syst]);
+//      h_MVA_b2[ich][syst] = new TH1D(Form("h_DNN_b2_Ch%i%s",ich,syst_name[syst]), "Final MVA b2", 40, -1, 1);
+//      h_MVA_b2[ich][syst]->SetXTitle("DNN Score");
+//      h_MVA_b2[ich][syst]->Sumw2();
+//      fOutput->Add(h_MVA_b2[ich][syst]);
+//
+//      h_MVA_b3[ich][syst] = new TH1D(Form("h_DNN_b3_Ch%i%s",ich,syst_name[syst]), "Final MVA b3", 40, -1, 1);
+//      h_MVA_b3[ich][syst]->SetXTitle("DNN Score");
+//      h_MVA_b3[ich][syst]->Sumw2();
+//      fOutput->Add(h_MVA_b3[ich][syst]);
+//
+//      h_MVA_b4[ich][syst] = new TH1D(Form("h_DNN_b4_Ch%i%s",ich,syst_name[syst]), "Final MVA b4", 40, -1, 1);
+//      h_MVA_b4[ich][syst]->SetXTitle("DNN Score");
+//      h_MVA_b4[ich][syst]->Sumw2();
+//      fOutput->Add(h_MVA_b4[ich][syst]);
 
-      h_MVA_b3[ich][syst] = new TH1D(Form("h_DNN_b3_Ch%i%s",ich,syst_name[syst]), "Final MVA b3", 40, -1, 1);
-      h_MVA_b3[ich][syst]->SetXTitle("DNN Score");
-      h_MVA_b3[ich][syst]->Sumw2();
-      fOutput->Add(h_MVA_b3[ich][syst]);
+      h_MVA_j3b2[ich][syst] = new TH1D(Form("h_DNN_j3b2_Ch%i%s",ich,syst_name[syst]), "Final MVA j3b2", 40, -1, 1);
+      h_MVA_j3b2[ich][syst]->SetXTitle("MVA Score");
+      h_MVA_j3b2[ich][syst]->Sumw2();
+      fOutput->Add(h_MVA_j3b2[ich][syst]);
 
-      h_MVA_b4[ich][syst] = new TH1D(Form("h_DNN_b4_Ch%i%s",ich,syst_name[syst]), "Final MVA b4", 40, -1, 1);
-      h_MVA_b4[ich][syst]->SetXTitle("DNN Score");
-      h_MVA_b4[ich][syst]->Sumw2();
-      fOutput->Add(h_MVA_b4[ich][syst]);
+      h_MVA_j3b3[ich][syst] = new TH1D(Form("h_DNN_j3b3_Ch%i%s",ich,syst_name[syst]), "Final MVA j3b3", 40, -1, 1);
+      h_MVA_j3b3[ich][syst]->SetXTitle("MVA Score");
+      h_MVA_j3b3[ich][syst]->Sumw2();
+      fOutput->Add(h_MVA_j3b3[ich][syst]);
+
+      h_MVA_j4b2[ich][syst] = new TH1D(Form("h_DNN_j4b2_Ch%i%s",ich,syst_name[syst]), "Final MVA j4b2", 40, -1, 1);
+      h_MVA_j4b2[ich][syst]->SetXTitle("MVA Score");
+      h_MVA_j4b2[ich][syst]->Sumw2();
+      fOutput->Add(h_MVA_j4b2[ich][syst]);
+
+      h_MVA_j4b3[ich][syst] = new TH1D(Form("h_DNN_j4b3_Ch%i%s",ich,syst_name[syst]), "Final MVA j4b3", 40, -1, 1);
+      h_MVA_j4b3[ich][syst]->SetXTitle("MVA Score");
+      h_MVA_j4b3[ich][syst]->Sumw2();
+      fOutput->Add(h_MVA_j4b3[ich][syst]);
+
+      h_MVA_j4b4[ich][syst] = new TH1D(Form("h_DNN_j4b4_Ch%i%s",ich,syst_name[syst]), "Final MVA j4b4", 40, -1, 1);
+      h_MVA_j4b4[ich][syst]->SetXTitle("MVA Score");
+      h_MVA_j4b4[ich][syst]->Sumw2();
+      fOutput->Add(h_MVA_j4b4[ich][syst]);
     }
   }
 } 
@@ -95,17 +230,17 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   if     ( current_file_name.Contains("V9") ) era = 2017;
   else if( current_file_name.Contains("V10") ) era = 2018;
 
-  int njet_cut = 0;
-  int nbjet_cut = 0;
-  if     ( isPartOf("j3", sample) ) njet_cut = 3;
-  else if( isPartOf("j4", sample) ) njet_cut = 4;
-  else{
-    cout << "Wrong njet cut!" << endl;
-    return kTRUE;
-  }
-  if     ( isPartOf("b2", sample) ) nbjet_cut = 2;
-  else if( isPartOf("b3", sample) ) nbjet_cut = 3; 
-  else if( isPartOf("b4", sample) ) nbjet_cut = 4;
+//  int njet_cut = 0;
+//  int nbjet_cut = 0;
+//  if     ( isPartOf("j3", sample) ) njet_cut = 3;
+//  else if( isPartOf("j4", sample) ) njet_cut = 4;
+//  else{
+//    cout << "Wrong njet cut!" << endl;
+//    return kTRUE;
+//  }
+//  if     ( isPartOf("b2", sample) ) nbjet_cut = 2;
+//  else if( isPartOf("b3", sample) ) nbjet_cut = 3; 
+//  else if( isPartOf("b4", sample) ) nbjet_cut = 4;
 
   int mode = 999; 
   mode = *channel;
@@ -222,33 +357,121 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }
 
   //Event selection is done here!
-  if     ( njet_cut == 3 and njets != njet_cut) return kTRUE;
-  else if( njet_cut == 4 and njets < 4 ) return kTRUE;
-  if( nbjet_cut != 0 ){
-    if( nbjets_m != nbjet_cut ) return kTRUE;
-  }
-  else{
-    if( nbjets_m < 2 or nbjets_m > 4 ) return kTRUE;
-  }
+  if( njets < 3 ) return kTRUE;
+  if( nbjets_m < 2 or nbjets_m > 4 ) return kTRUE;
+//  if     ( njet_cut == 3 and njets != njet_cut) return kTRUE;
+//  else if( njet_cut == 4 and njets < 4 ) return kTRUE;
+//  if( nbjet_cut != 0 ){
+//    if( nbjets_m != nbjet_cut ) return kTRUE;
+//  }
+//  else{
+//    if( nbjets_m < 2 or nbjets_m > 4 ) return kTRUE;
+//  }
 
+  //Hard-coded, FIXME
   float tmp_score = -1;
   vector<double>::iterator iter;
   int evtIdx = 0;
-  if( !lepPt.empty() ){
-    for( iter = lepPt.begin(); iter != lepPt.end(); iter++ ){
-      if( *iter == static_cast<float>(lepton.Pt()) ){
-        int tmpIdx = distance(lepPt.begin(), iter);
-        if( missET[tmpIdx] == met ) evtIdx = tmpIdx;
-        else continue;
-      }
-    }
-    dupCheck.push_back(evtIdx);
-    //cout << evtIdx << endl;
-    //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
 
-    scoreT->GetEntry(evtIdx);
-    tmp_score = scoreT->GetLeaf("MLScore")->GetValue(0);
+  if( njets == 3 and nbjets_m == 2 ){
+    if( !lepPt_j3b2.empty() ){
+      for( iter = lepPt_j3b2.begin(); iter != lepPt_j3b2.end(); iter++ ){
+        if( *iter == static_cast<float>(lepton.Pt()) ){
+          int tmpIdx = distance(lepPt_j3b2.begin(), iter);
+          if( missET_j3b2[tmpIdx] == met ) evtIdx = tmpIdx;
+          else continue;
+        }
+      }
+      dupCheck_j3b2.push_back(evtIdx);
+      //cout << evtIdx << endl;
+      //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
+      scoreT_j3b2->GetEntry(evtIdx);
+      tmp_score = scoreT_j3b2->GetLeaf("MLScore")->GetValue(0);
+    }
   }
+  else if( njets == 3 and nbjets_m == 3 ){
+    if( !lepPt_j3b3.empty() ){
+      for( iter = lepPt_j3b3.begin(); iter != lepPt_j3b3.end(); iter++ ){
+        if( *iter == static_cast<float>(lepton.Pt()) ){
+          int tmpIdx = distance(lepPt_j3b3.begin(), iter);
+          if( missET_j3b3[tmpIdx] == met ) evtIdx = tmpIdx;
+          else continue;
+        }
+      }
+      dupCheck_j3b3.push_back(evtIdx);
+      //cout << evtIdx << endl;
+      //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
+      scoreT_j3b3->GetEntry(evtIdx);
+      tmp_score = scoreT_j3b3->GetLeaf("MLScore")->GetValue(0);
+    }
+  }
+  else if( njets >= 4 and nbjets_m == 2 ){
+    if( !lepPt_j4b2.empty() ){
+      for( iter = lepPt_j4b2.begin(); iter != lepPt_j4b2.end(); iter++ ){
+        if( *iter == static_cast<float>(lepton.Pt()) ){
+          int tmpIdx = distance(lepPt_j4b2.begin(), iter);
+          if( missET_j4b2[tmpIdx] == met ) evtIdx = tmpIdx;
+          else continue;
+        }
+      }
+      dupCheck_j4b2.push_back(evtIdx);
+      //cout << evtIdx << endl;
+      //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
+      scoreT_j4b2->GetEntry(evtIdx);
+      tmp_score = scoreT_j4b2->GetLeaf("MLScore")->GetValue(0);
+    }
+  }
+  else if( njets >= 4 and nbjets_m == 3 ){
+    if( !lepPt_j4b3.empty() ){
+      for( iter = lepPt_j4b3.begin(); iter != lepPt_j4b3.end(); iter++ ){
+        if( *iter == static_cast<float>(lepton.Pt()) ){
+          int tmpIdx = distance(lepPt_j4b3.begin(), iter);
+          if( missET_j4b3[tmpIdx] == met ) evtIdx = tmpIdx;
+          else continue;
+        }
+      }
+      dupCheck_j4b3.push_back(evtIdx);
+      //cout << evtIdx << endl;
+      //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
+      scoreT_j4b3->GetEntry(evtIdx);
+      tmp_score = scoreT_j4b3->GetLeaf("MLScore")->GetValue(0);
+    }
+  }
+  else if( njets >= 4 and nbjets_m == 4 ){
+    if( !lepPt_j4b4.empty() ){
+      for( iter = lepPt_j4b4.begin(); iter != lepPt_j4b4.end(); iter++ ){
+        if( *iter == static_cast<float>(lepton.Pt()) ){
+          int tmpIdx = distance(lepPt_j4b4.begin(), iter);
+          if( missET_j4b4[tmpIdx] == met ) evtIdx = tmpIdx;
+          else continue;
+        }
+      }
+      dupCheck_j4b4.push_back(evtIdx);
+      //cout << evtIdx << endl;
+      //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
+      scoreT_j4b4->GetEntry(evtIdx);
+      tmp_score = scoreT_j4b4->GetLeaf("MLScore")->GetValue(0);
+    }
+  }
+
+//  float tmp_score = -1;
+//  vector<double>::iterator iter;
+//  int evtIdx = 0;
+//  if( !lepPt.empty() ){
+//    for( iter = lepPt.begin(); iter != lepPt.end(); iter++ ){
+//      if( *iter == static_cast<float>(lepton.Pt()) ){
+//        int tmpIdx = distance(lepPt.begin(), iter);
+//        if( missET[tmpIdx] == met ) evtIdx = tmpIdx;
+//        else continue;
+//      }
+//    }
+//    dupCheck.push_back(evtIdx);
+//    //cout << evtIdx << endl;
+//    //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
+//
+//    scoreT->GetEntry(evtIdx);
+//    tmp_score = scoreT->GetLeaf("MLScore")->GetValue(0);
+//  }
 
   /////Fill histograms
   int modeArray[2] = {mode, 2};
@@ -371,10 +594,12 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         else                                                             EventWeight *= jet_SF_deepCSV_30[0];
       }
 
-      if     ( nbjets_m == 2 ) h_MVA_b2[MODE][syst]->Fill(tmp_score,EventWeight);
-      else if( nbjets_m == 3 ) h_MVA_b3[MODE][syst]->Fill(tmp_score,EventWeight);
-      else if( nbjets_m == 4 ) h_MVA_b4[MODE][syst]->Fill(tmp_score,EventWeight);
-      else cout << "wrong b jet multiplicity" << endl;
+      if     ( njets == 3 and nbjets_m == 2 ) h_MVA_j3b2[MODE][syst]->Fill(tmp_score,EventWeight);
+      else if( njets == 3 and nbjets_m == 3 ) h_MVA_j3b3[MODE][syst]->Fill(tmp_score,EventWeight);
+      else if( njets >= 4 and nbjets_m == 2 ) h_MVA_j4b2[MODE][syst]->Fill(tmp_score,EventWeight);
+      else if( njets >= 4 and nbjets_m == 3 ) h_MVA_j4b3[MODE][syst]->Fill(tmp_score,EventWeight);
+      else if( njets >= 4 and nbjets_m == 4 ) h_MVA_j4b4[MODE][syst]->Fill(tmp_score,EventWeight);
+      else cout << "Wrong jet multiplicity" << endl;
 
     }//syst loop
   }//mode loop : e or mu + emu
@@ -394,13 +619,19 @@ void MyAnalysis::Terminate()
 {
   TString option = GetOption();
   string sample = option.Data();
+  string era =  sample.substr(sample.find_first_of("-")+1,4);
+  string train_scheme = sample.substr(sample.find_first_of("-")+5,string::npos);
+  sample.erase(sample.find_first_of("-"),string::npos);
+  string sig_ch = train_scheme.substr(0,3);
+  string ver_j3b2 = train_scheme.substr(train_scheme.find_first_of("_")+1,2);
+  string ver_j3b3 = train_scheme.substr(train_scheme.find_first_of("_")+3,2);
+  string ver_j4b2 = train_scheme.substr(train_scheme.find_first_of("_")+5,2);
+  string ver_j4b3 = train_scheme.substr(train_scheme.find_first_of("_")+7,2);
+  string ver_j4b4 = train_scheme.substr(train_scheme.find_first_of("_")+9,2);
 
   dosyst = true;
   if( option.Contains("Run201") ) dosyst = false;
 
-  const char* score_file = "";
-  string era =  sample.substr(sample.find_first_of("-")+1,4);
-  string train_scheme = sample.substr(sample.find_first_of("-")+5,string::npos);
   syst_ext = "";
   if( train_scheme.find("jec") != string::npos or train_scheme.find("jer") != string::npos
     or train_scheme.find("TuneCP5") != string::npos or train_scheme.find("hdamp") != string::npos ){
@@ -413,22 +644,21 @@ void MyAnalysis::Terminate()
     else if( train_scheme.find("hdampup") != string::npos )     syst_ext = "__hdampup";
     else if( train_scheme.find("hdampdown") != string::npos )   syst_ext = "__hdampdown";
   }
-  sample.erase( sample.find_first_of("-"),string::npos );
   string syst_str = "-" + train_scheme.substr(train_scheme.find_last_of("_")+1,string::npos );
   if( syst_ext == "" ) syst_str.erase(0,1);
   train_scheme.erase( train_scheme.find_last_of("_"),string::npos );
 
-  score_file = Form("scores/%s/%s%s/score_finalMVA_%s.root", era.c_str(), train_scheme.c_str(), syst_str.c_str(), sample.c_str());
-  string file_tmp_path = score_file;
-  ifstream file_tmp(file_tmp_path);
-
-  if(file_tmp.is_open()){
-    //cout << lepcount << endl;
-    auto it = unique( dupCheck.begin(), dupCheck.end() );
-    if( it != dupCheck.end() ) cout << string(option.Data()) + string(": Duplicate(s)") << endl;
-  }
-  else cout << "file " + file_tmp_path + " not opened!" << endl;
-  //out = TFile::Open(Form("./histos/%s/hist_%s%s.root", train_scheme.c_str(), sample.c_str(), syst_ext.c_str()),"RECREATE");
+//  const char* score_file = "";
+//  score_file = Form("scores/%s/%s%s/score_finalMVA_%s.root", era.c_str(), train_scheme.c_str(), syst_str.c_str(), sample.c_str());
+//  string file_tmp_path = score_file;
+//  ifstream file_tmp(file_tmp_path);
+//
+//  if(file_tmp.is_open()){
+//    //cout << lepcount << endl;
+//    auto it = unique( dupCheck.begin(), dupCheck.end() );
+//    if( it != dupCheck.end() ) cout << string(option.Data()) + string(": Duplicate(s)") << endl;
+//  }
+//  else cout << "file " + file_tmp_path + " not opened!" << endl;
   out = TFile::Open(Form("./histos/temp/hist_%s%s.root", sample.c_str(), syst_ext.c_str()),"RECREATE");
 
   TList * l = GetOutputList();

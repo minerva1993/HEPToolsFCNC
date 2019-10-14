@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os, shutil
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 import matplotlib
 matplotlib.use('Agg')
@@ -41,10 +41,10 @@ era = sys.argv[3]
 if ch not in ["STFCNC", "TTFCNC", "TTBKG"]:
   print("Check channal again!: STFCNC, TTFCNC, of TTBKG are available")
 
-#MultiGPU option
-multiGPU = True
-if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
-  multiGPU = False
+##MultiGPU option
+#multiGPU = True
+#if os.environ["CUDA_VISIBLE_DEVICES"] in ["0", "1","2","3"]:
+#  multiGPU = False
 
 #directory name
 configDir = '../'
@@ -395,75 +395,76 @@ a = 300
 b = 0.2
 init = 'glorot_uniform'
 
-with tf.device("/cpu:0"):
-  inputs = Input(shape=(data.shape[1],))
-  x = Dense(a, kernel_regularizer=l2(1E-2))(inputs)
-  x = BatchNormalization()(x)
+#with tf.device("/cpu:0"):
+inputs = Input(shape=(data.shape[1],))
+x = Dense(a, kernel_regularizer=l2(1E-2))(inputs)
+x = BatchNormalization()(x)
 
-  branch_point1 = Dense(a, name='branch_point1')(x)
+branch_point1 = Dense(a, name='branch_point1')(x)
 
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
 
-  x = BatchNormalization()(x)
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
+x = BatchNormalization()(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
 
-  x = add([x, branch_point1])
+x = add([x, branch_point1])
 
-  x = BatchNormalization()(x)
-  branch_point2 = Dense(a, name='branch_point2')(x)
+x = BatchNormalization()(x)
+branch_point2 = Dense(a, name='branch_point2')(x)
 
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
-  x = BatchNormalization()(x)
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
+x = BatchNormalization()(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
 
-  x = add([x, branch_point2])
+x = add([x, branch_point2])
 
-  x = BatchNormalization()(x)
-  branch_point3 = Dense(a, name='branch_point3')(x)
+x = BatchNormalization()(x)
+branch_point3 = Dense(a, name='branch_point3')(x)
 
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
-  x = BatchNormalization()(x)
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
+x = BatchNormalization()(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
 
-  x = add([x, branch_point3])
+x = add([x, branch_point3])
 
-  x = BatchNormalization()(x)
-  branch_point4 = Dense(a, name='branch_point4')(x)
+x = BatchNormalization()(x)
+branch_point4 = Dense(a, name='branch_point4')(x)
 
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
-  x = BatchNormalization()(x)
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
+x = BatchNormalization()(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
 
-  x = add([x, branch_point4])
+x = add([x, branch_point4])
 
-  x = BatchNormalization()(x)
-  branch_point5 = Dense(a, name='branch_point5')(x)
+x = BatchNormalization()(x)
+branch_point5 = Dense(a, name='branch_point5')(x)
 
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
-  x = BatchNormalization()(x)
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
+x = BatchNormalization()(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
 
-  x = add([x, branch_point5])
+x = add([x, branch_point5])
 
-  x = BatchNormalization()(x)
-  x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
-  x = Dropout(b)(x)
+x = BatchNormalization()(x)
+x = Dense(a, activation='relu', kernel_initializer=init, bias_initializer='zeros')(x)
+x = Dropout(b)(x)
 
-  predictions = Dense(2, activation='softmax')(x)
-  model = Model(inputs=inputs, outputs=predictions)
+predictions = Dense(2, activation='softmax')(x)
+model = Model(inputs=inputs, outputs=predictions)
 
-if multiGPU: train_model = multi_gpu_model(model, gpus=2)
-else: train_model = model
+#if multiGPU: train_model = multi_gpu_model(model, gpus=2)
+#else: train_model = model
+train_moel = model
 
 train_model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0.9, beta_2=0.999, epsilon=1e-8, decay=1E-3), metrics=['binary_accuracy'])
 #model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=1E-3), metrics=['binary_accuracy'])

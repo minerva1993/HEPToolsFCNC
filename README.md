@@ -77,13 +77,24 @@ cd /HEPToolsFCNC/finalMVA/mkNtuple
 python dir_manage.py
 cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py 2017
 #cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python run.py 2017 > log &
+
+#Select features if needed, and train
 cd ../training
-python training_kerasTF.py Hct j3b3 01 2017
-cd ..
-python evaluation_kerasTF.py Hct j3b3 01 2017 0 model.h5
+source job_select_features.sh #Change flag 'False' to 'True' if you want recompute rankings
+source job_select_common_features.sh #print out common features between 17 and 18
+
+source job_train_bdt.sh #If you want to train with all features, change flag in the code
+#python training_bdt.py Hct j3b2 01 2017
+#nohup python training_bdt.py Hct j3b2 01 2017 > log_Hct_j3b2 &
+source job_eval_bdt.sh
+cd scores
+python nfiles 01 #print out the number of files with specified version
+#cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python evaluation_bdt.py Hct j3b2 01 2017
+#cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python evaluation_bdt.py Hct j3b2 01 2017 > log &
 
 #Histogram
-source all_histo.sh
+cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_0101010101 2017
+#source all_histo.sh
 #cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j3b2_01 2017
 #cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python run.py Hct_j3b2_01 2017 > log &
 #cd histos
@@ -95,13 +106,6 @@ source all_histo.sh
 python merge_histos.py Hct 2017 01 01 01 01 01 01
 ../../../../../plotIt/plotIt -o ../prefit ../../../../../plotIt/configs/config_2017.yml -y
 python print_syst_table.py 2017 01 #Systematic table
-```
-If you use BDT,
-```{.Bash}
-python training_bdt.py Hct j3b2 01 2017
-#nohup python training_bdt.py Hct j3b2 01 2017 > log_Hct_j3b2 &
-cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python evaluation_bdt.py Hct j3b2 01 2017
-#cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python evaluation_bdt.py Hct j3b2 01 2017 > log &
 ```
 
 

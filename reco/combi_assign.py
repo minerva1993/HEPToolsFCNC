@@ -12,6 +12,8 @@ sig_only = sys.argv[4]
 filepath = sys.argv[5]
 filename = sys.argv[6]
 
+#if not 'TTTH1L3BTLepHct' in filename: sys.exit()
+
 syst = [""]
 syst1 = ["jecup", "jecdown", "jerup", "jerdown"]
 syst2 = ["TuneCP5up", "TuneCP5down", "hdampup", "hdampdown"]

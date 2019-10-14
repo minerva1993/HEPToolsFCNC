@@ -4,7 +4,6 @@ import os, sys
 from root_numpy import tree2array
 import glob
 import pandas as pd
-import deepdish.io as io
 gROOT.SetBatch(True)
 gROOT.ProcessLine("gErrorIgnoreLevel = kFatal;")
 
@@ -12,7 +11,7 @@ gROOT.ProcessLine("gErrorIgnoreLevel = kFatal;")
 if len(sys.argv) < 3:
   print("Not enough arguements: Era, Input, Output")
   sys.exit()
-ver = "01"
+ver = "010201"
 era = sys.argv[1]
 input_filename = sys.argv[2]
 output_filename = sys.argv[3]
@@ -48,7 +47,8 @@ def runAna(input_filename, output_filename):
         if t.GetEntries() != 0:
           a = tree2array(t)
           df = pd.DataFrame(a)
-          io.save(era + "/hdf_" + syst_ext + "/finalMVA_" + output_filename + ".h5", df)
+          #io.save(era + "/hdf_" + syst_ext + "/finalMVA_" + output_filename + ".h5", df)
+          df.to_hdf(era + "/hdf_" + syst_ext + "/finalMVA_" + output_filename + ".h5", key='df', mode='w', complib='bzip2', complevel=9)
         else: os.remove(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root")
 
 runAna(input_filename, output_filename)

@@ -138,17 +138,27 @@ public :
           "__pdf100", "__pdf101", "__pdf102",};
     int syst_num = syst_name.size();
 
-    TH1D *h_MVA_b2[3][148];
-    TH1D *h_MVA_b3[3][148];
-    TH1D *h_MVA_b4[3][148];
+//    TH1D *h_MVA_b2[3][148];
+//    TH1D *h_MVA_b3[3][148];
+//    TH1D *h_MVA_b4[3][148];
+    TH1D *h_MVA_j3b2[3][148];
+    TH1D *h_MVA_j3b3[3][148];
+    TH1D *h_MVA_j4b2[3][148];
+    TH1D *h_MVA_j4b3[3][148];
+    TH1D *h_MVA_j4b4[3][148];
 
-    TFile *scoreF;
-    TTree *scoreT;
+//    TFile *scoreF;
+//    TTree *scoreT;
+    TFile *scoreF_j3b2, *scoreF_j3b3, *scoreF_j4b2, *scoreF_j4b3, *scoreF_j4b4;
+    TTree *scoreT_j3b2, *scoreT_j3b3, *scoreT_j4b2, *scoreT_j4b3, *scoreT_j4b4;
 
-    vector<double> lepPt;
-    vector<double> missET;
+//    vector<double> lepPt;
+//    vector<double> missET;
+    vector<double> lepPt_j3b2, lepPt_j3b3, lepPt_j4b2, lepPt_j4b3, lepPt_j4b4;
+    vector<double> missET_j3b2, missET_j3b3, missET_j4b2, missET_j4b3, missET_j4b4;
 
-    vector<int> dupCheck;
+//    vector<int> dupCheck;
+    vector<int> dupCheck_j3b2, dupCheck_j3b3, dupCheck_j4b2, dupCheck_j4b3, dupCheck_j4b4;
  
     int evtNum = 0;
 

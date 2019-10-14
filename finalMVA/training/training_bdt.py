@@ -15,7 +15,7 @@ jetcat = sys.argv[2]
 ver = sys.argv[3]
 era = sys.argv[4]
 
-all_features = False
+all_features = True
 feature_sel = False
 if len(sys.argv) > 5: #flag for input feature selection
   if sys.argv[5] == 'True':
@@ -48,7 +48,7 @@ idx['j4b3'] = 3
 idx['j4b4'] = 4
 
 if era == "2017":
-  nsig_Hct = ['55300', '21600', '60000', '36700', '3200'] #bit too large. (#of file per TT ntuple issue?)
+  nsig_Hct = ['51300', '20443', '54000', '33200', '2900'] #bit too large. (#of file per TT ntuple issue?)
   nsig_Hut = ['51800', '17400', '55800', '30700', '1460'] #bit too large. (#of file per ST ntuple issue?)
   nbkg = ['408300', '16000', '400000', '56900', '2900'] #Max 0.4M
   ntree = ['400', '100', '400', '200', '20']
@@ -91,10 +91,10 @@ sig_files, bkg_files = train_files(ch, era)
 input_features = []
 if feature_sel: input_features.extend(input_variables_bdt(jetcat))
 else:
-  if all_features: input_features.append(input_variables(jetcat))
+  if all_features: input_features.extend(input_variables_bdt(jetcat))
   else:
     try: input_features.extend(input_selected_bdt(ch, jetcat, era))
-    except: input_features.extend(input_variables(jetcat))
+    except: input_features.extend(input_variables_bdt(jetcat))
 #input_features.remove('STTT')
 #input_features.remove('channel')
 

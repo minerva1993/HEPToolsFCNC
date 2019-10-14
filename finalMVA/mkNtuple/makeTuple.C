@@ -14,9 +14,12 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   TString option = GetOption();
   string syst_str = option.Data();
   syst_str.erase(syst_str.find_first_of("_"),string::npos);
-  string ver = syst_str.substr(4,2);
+  string ver = syst_str.substr(4,6);
   string era = syst_str.substr(0,4);
-  syst_str = syst_str.erase(0,6);
+  string verSTFCNC = ver.substr(0,2);
+  string verTTFCNC = ver.substr(2,2);
+  string verTTBKG  = ver.substr(4,2);
+  syst_str = syst_str.erase(0,10);
   string sample = option.Data();
   sample.erase(0,sample.find_first_of("_")+1);
 
@@ -36,7 +39,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
   const char* ttbkg_file = "";
   //Load ST fcnc assign files
   stfcnc_file = Form("../../reco/%s/assignSTFCNC%s%s/assign_deepReco_%s.root",
-                    era.c_str(),ver.c_str(),syst_str.c_str(),sample.c_str());
+                    era.c_str(),verSTFCNC.c_str(),syst_str.c_str(),sample.c_str());
   string stfcnc_file_tmp_path = stfcnc_file;
   ifstream stfcnc_file_tmp(stfcnc_file_tmp_path);
 
@@ -58,7 +61,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
 
   //Load TT fcnc assign files
   ttfcnc_file = Form("../../reco/%s/assignTTFCNC%s%s/assign_deepReco_%s.root",
-                    era.c_str(),ver.c_str(),syst_str.c_str(),sample.c_str());
+                    era.c_str(),verTTFCNC.c_str(),syst_str.c_str(),sample.c_str());
   string ttfcnc_file_tmp_path = ttfcnc_file;
   ifstream ttfcnc_file_tmp(ttfcnc_file_tmp_path);
 
@@ -80,7 +83,7 @@ void makeTuple::SlaveBegin(TTree * /*tree*/)
 
   //Load ttbkg assign files
   ttbkg_file = Form("../../reco/%s/assignTTBKG%s%s/assign_deepReco_%s.root",
-                    era.c_str(),ver.c_str(),syst_str.c_str(),sample.c_str());
+                    era.c_str(),verTTBKG.c_str(),syst_str.c_str(),sample.c_str());
   string ttbkg_file_tmp_path = ttbkg_file;
   ifstream ttbkg_file_tmp(ttbkg_file_tmp_path);
 
@@ -1009,7 +1012,7 @@ void makeTuple::Terminate()
   syst_str.erase(syst_str.find_first_of("_"),string::npos);
   string ver = syst_str.substr(4,6);
   string era = syst_str.substr(0,4);
-  syst_str = syst_str.erase(0,6);
+  syst_str = syst_str.erase(0,10);
   string sample = option.Data();  
   sample.erase(0,sample.find_first_of("_")+1);
 
