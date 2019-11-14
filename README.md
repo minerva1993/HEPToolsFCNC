@@ -94,6 +94,7 @@ python nfiles 01 #print out the number of files with specified version
 
 #Histogram
 cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_0101010101 2017
+source job_merge.sh
 #source all_histo.sh
 #cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_j3b2_01 2017
 #cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python run.py Hct_j3b2_01 2017 > log &
@@ -102,10 +103,13 @@ cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct
 #python do_post_process.py
 #mkdir Hct_j4_01
 #mv post_process pre_process temp Hct_j3b2_01
-...
-python merge_histos.py Hct 2017 01 01 01 01 01 01
+#...
+#python merge_histos.py Hct 2017 01 01 01 01 01 01
 ../../../../../plotIt/plotIt -o ../prefit ../../../../../plotIt/configs/config_2017.yml -y
 python print_syst_table.py 2017 01 #Systematic table
+########################################################
+#DON'T FORGET TO UPDATE YML FILE IN LIMIT SETTING REPO!!
+########################################################
 ```
 
 
