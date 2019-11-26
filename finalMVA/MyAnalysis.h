@@ -146,6 +146,7 @@ public :
     TH1D *h_MVA_j4b2[3][148];
     TH1D *h_MVA_j4b3[3][148];
     TH1D *h_MVA_j4b4[3][148];
+    TH1D *bSFInfo[3][3];
 
 //    TFile *scoreF;
 //    TTree *scoreT;

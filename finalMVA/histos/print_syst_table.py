@@ -9,7 +9,7 @@ era = sys.argv[1]
 ver = sys.argv[2]
 
 config_path = '../../plotIt/configs/'
-dest_path = './' + era + '/Hct_merged_' + ver + '/'
+dest_path = './' + era + '/Hct_' + ver + '/'
 tmp_file_name = 'temp_' + era + '_' + ver + '.yml'
 string_to_add = 'systematics:\n'
 plot_to_add = "plots:\n  include: ['histos_unc.yml']\n\n"
@@ -72,7 +72,7 @@ for key, value in unc_cat.items():
           line += "0.0\n"
         if 'root:' in line:
           line = line[:line.find(':')+2]
-          line += "'" + dest_path + "merged/'\n"
+          line += "'" + dest_path + "post_process/'\n"
         if 'systematics' in line: syst_delete = True
         if 'plots:' in line:
           syst_delete = False
