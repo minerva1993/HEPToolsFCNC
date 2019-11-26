@@ -878,7 +878,8 @@ namespace plotIt {
             std::shared_ptr<TLatex> t(new TLatex(plot.ratio_fit_legend_position.x, plot.ratio_fit_legend_position.y, legend.c_str()));
             t->SetNDC(true);
             t->SetTextFont(62);
-            t->SetTextSize(LABEL_FONTSIZE - 4);
+            //t->SetTextSize(LABEL_FONTSIZE - 4);
+            t->SetTextSize(0.65*0.2);
             t->Draw();
 
             TemporaryPool::get().add(t);

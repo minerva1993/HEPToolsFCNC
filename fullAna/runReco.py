@@ -16,7 +16,8 @@ syst = ["","jecup","jecdown","jerup","jerdown",]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
 if not os.path.exists("./doReco/temp"):
-  os.makedirs("./doReco/temp")
+  try: os.makedirs("./doReco/temp")
+  except: pass
 test = os.listdir("./doReco/temp")
 dupl = False
 for item in test:

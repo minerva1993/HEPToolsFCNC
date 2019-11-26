@@ -106,7 +106,7 @@ source job_merge.sh
 #...
 #python merge_histos.py Hct 2017 01 01 01 01 01 01
 ../../../../../plotIt/plotIt -o ../prefit ../../../../../plotIt/configs/config_2017.yml -y
-python print_syst_table.py 2017 01 #Systematic table
+python print_syst_table.py 2017 0101010101 #Systematic table
 ########################################################
 #DON'T FORGET TO UPDATE YML FILE IN LIMIT SETTING REPO!!
 ########################################################

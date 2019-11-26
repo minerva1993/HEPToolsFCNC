@@ -17,6 +17,8 @@ finalMVA/histos/job*
 finalMVA/training/201*/inputs/final*
 finalMVA/training/Var_logs/201*/log*
 fullAna/doReco/job*
+fullAna/doNoReco/2017/*
+fullAna/doNoReco/2018/*
 fullAna/runNoReco*
 plotIt/.travis.yml
 plotIt/external/include/
