@@ -78,13 +78,10 @@ source job_select_features.sh #Change flag 'False' to 'True' if you want recompu
 source job_select_common_features.sh #print out common features between 17 and 18
 
 source job_train_bdt.sh #If you want to train with all features, change flag in the code
-#python training_bdt.py Hct j3b2 01 2017
-#nohup python training_bdt.py Hct j3b2 01 2017 > log_Hct_j3b2 &
 source job_eval_bdt.sh
 cd scores
 python nfiles 01 #print out the number of files with specified version
-#cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python evaluation_bdt.py Hct j3b2 01 2017
-#cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python evaluation_bdt.py Hct j3b2 01 2017 > log &
+source job_eval_bdt.sh
 
 #Histogram
 cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_0101010101 2017
