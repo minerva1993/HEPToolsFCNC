@@ -47,6 +47,8 @@ for ch in ['Hct','Hut']:
     for i in ['01']:
       ver = str(i)
       out = TFile.Open(era + '/final_'+ch+'_'+jetcat+'_'+ver+'/output_'+ch+'_'+jetcat+'.root')
+      if not os.path.exists(era+'/bdt_plots/' + i):
+        os.makedirs(era+'/bdt_plots/' + i)
 
       if   era == "2017": tmp = '2017/'
       elif era == "2018": tmp = '2018/'
@@ -105,7 +107,7 @@ for ch in ['Hct','Hut']:
         label2.Draw('same')
         l.Draw('same')
         testS.Draw('axis same')
-        c1.Print(era+'/bdt_plots/overtrain_'+ch+'_'+jetcat+'_'+method+'.pdf')
+        c1.Print(era+'/bdt_plots/' + i + '/overtrain_'+ch+'_'+jetcat+'_'+method+'.pdf')
         l.Clear()
         label2.Clear()
         c1.Clear()
@@ -125,7 +127,7 @@ for ch in ['Hct','Hut']:
       c1.SetGrid(1,1)
       corrS.Draw('colz')
       label.Draw('same')
-      #c1.Print(era+'bdt_plots/corr_'+ch+'_'+jetcat+'_sig.pdf')
+      #c1.Print(era+'bdt_plots/' + i + '/corr_'+ch+'_'+jetcat+'_sig.pdf')
       c1.Clear()
 
       corrB.SetTitle('')
@@ -139,7 +141,7 @@ for ch in ['Hct','Hut']:
       c1.SetGrid(1,1)
       corrS.Draw('colz')
       label.Draw('same')
-      #c1.Print(era+'bdt_plots/corr_'+ch+'_'+jetcat+'_bkg.pdf')
+      #c1.Print(era+'bdt_plots/' + i + '/corr_'+ch+'_'+jetcat+'_bkg.pdf')
       c1.Clear()
 
 
@@ -167,4 +169,4 @@ for ch in ['Hct','Hut']:
       #rocKeras.Draw('hist same l')
       label.Draw('same')
       l2.Draw('same')
-      #c1.Print(era+'bdt_plots/roc_'+ch+'_'+jetcat+'.pdf')
+      #c1.Print(era+'bdt_plots/' + i + '/roc_'+ch+'_'+jetcat+'.pdf')

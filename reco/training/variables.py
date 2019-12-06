@@ -4,7 +4,7 @@ def input_variables(ch):
     var_list = ['jet0pt', 'jet0eta', 'jet0m', 'jet0csv', 'jet1pt', 'jet1eta', 'jet1m', 'jet1csv',
                 'jet2pt', 'jet2eta', 'jet2m', 'jet2csv',
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
-                'lepTdphi', 'lepTm',
+                'lepTpt', 'lepTdphi', 'lepTm',
                 'jet0lepdR', 'jet1lepdR', 'jet2lepdR', 'jet01dR', 'jet02dR', 'jet12_lepdR', 'jet12_0dR', 'lepTjet12dphi']
 
   elif ch == "TTFCNC":
@@ -13,7 +13,7 @@ def input_variables(ch):
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                 'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
                 'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m',
-                'lepTdphi', 'lepTm',
+                'lepTpt', 'lepTdphi', 'lepTm',
                 'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta',
                 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                 'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',
@@ -27,7 +27,7 @@ def input_variables(ch):
                 'jet12pt', 'jet12eta', 'jet12deta', 'jet12dphi', 'jet12dR', 'jet12m',
                 'jet23pt', 'jet23eta', 'jet23deta', 'jet23dphi', 'jet23dR', 'jet23m',
                 'jet31pt', 'jet31eta', 'jet31deta', 'jet31dphi', 'jet31dR', 'jet31m',
-                'lepTdphi', 'lepTm',
+                'lepTpt', 'lepTdphi', 'lepTm',
                 'hadTpt', 'hadTeta', 'hadT12_3deta', 'hadT23_1deta', 'hadT31_2deta',
                 'hadT12_3dphi', 'hadT23_1dphi', 'hadT31_2dphi',
                 'hadT12_3dR', 'hadT23_1dR', 'hadT31_2dR', 'hadTm',

@@ -53,7 +53,8 @@ cd doReco
 #source job_merge_2017.sh
 source job_prep_2017.sh
 cat job_hadd_2017.sh | xargs -i -P$(nporc) -n3 python multiHadd.py 
-python do_post_process.py
+#python do_post_process.py
+python do_post_process_mult.py
 mkdir STFCNC01
 mkdir figures
 mv post_process pre_process temp STFCNC01

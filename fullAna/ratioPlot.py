@@ -14,7 +14,7 @@ era = sys.argv[1]
 
 log = False
 each_plot = False
-printscale = True
+printscale = False
 
 from collections import OrderedDict
 datasamples=OrderedDict()
@@ -217,7 +217,7 @@ elif era == "2018":
   AddBkg("hist_W2JetsToLNu.root","WJets",ROOT.kYellow, 2793)
   AddBkg("hist_W3JetsToLNu.root","WJets",ROOT.kYellow, 992.5)
   AddBkg("hist_W4JetsToLNu.root","WJets",ROOT.kYellow, 544.3)
-  #AddBkg("hist_WJetsToLNu.root","WJets",ROOT.kYellow, 61526)
+#  AddBkg("hist_WJetsToLNu.root","WJets",ROOT.kYellow, 61526)
   AddBkg("hist_DYJets.root","ZJets",ROOT.kBlue, 6225.42)
   AddBkg("hist_DYJets10to50.root","ZJets",ROOT.kBlue, 18610.0)
   AddBkg("hist_SingleTops.root","Single t",6, 3.36)
@@ -228,25 +228,25 @@ elif era == "2018":
   AddBkg("hist_WW.root","VV",ROOT.kCyan, 118.7)
   AddBkg("hist_WZ.root","VV",ROOT.kCyan, 47.13)
   AddBkg("hist_ZZ.root","VV",ROOT.kCyan, 16.523)
-  #AddBkg("hist_QCDEM15to20.root","QCD",ROOT.kGray, 2302200)
-  #AddBkg("hist_QCDEM20to30.root","QCD",ROOT.kGray, 5352960)
-  #AddBkg("hist_QCDEM30to50.root","QCD",ROOT.kGray, 9928000)
-  #AddBkg("hist_QCDEM50to80.root","QCD",ROOT.kGray, 2890800)
-  #AddBkg("hist_QCDEM80to120.root","QCD",ROOT.kGray, 350000)
-  #AddBkg("hist_QCDEM120to170.root","QCD",ROOT.kGray, 62964)
-  #AddBkg("hist_QCDEM170to300.root","QCD",ROOT.kGray, 18810)
-  #AddBkg("hist_QCDEM300toInf.root","QCD",ROOT.kGray, 1350)
-  #AddBkg("hist_QCDMu15to20.root","QCD",ROOT.kGray, 3819570)
-  #AddBkg("hist_QCDMu20to30.root","QCD",ROOT.kGray, 2960198.4)
-  #AddBkg("hist_QCDMu30to50.root","QCD",ROOT.kGray, 1652471.5)
-  #AddBkg("hist_QCDMu50to80.root","QCD",ROOT.kGray, 437504.1)
-  #AddBkg("hist_QCDMu80to120.root","QCD",ROOT.kGray, 106033.7)
-  #AddBkg("hist_QCDMu120to170.root","QCD",ROOT.kGray, 25190.5)
-  #AddBkg("hist_QCDMu170to300.root","QCD",ROOT.kGray, 8654.5)
-  #AddBkg("hist_QCDMu300to470.root","QCD",ROOT.kGray, 797.4)
-  #AddBkg("hist_QCDMu470to600.root","QCD",ROOT.kGray, 79)
-  #AddBkg("hist_QCDMu600to800.root","QCD",ROOT.kGray, 25.1)
-  #AddBkg("hist_QCDMu1000toInf.root","QCD",ROOT.kGray, 1.6)
+  AddBkg("hist_QCDEM15to20.root","QCD",ROOT.kGray, 2302200)
+  AddBkg("hist_QCDEM20to30.root","QCD",ROOT.kGray, 5352960)
+  AddBkg("hist_QCDEM30to50.root","QCD",ROOT.kGray, 9928000)
+  AddBkg("hist_QCDEM50to80.root","QCD",ROOT.kGray, 2890800)
+  AddBkg("hist_QCDEM80to120.root","QCD",ROOT.kGray, 350000)
+  AddBkg("hist_QCDEM120to170.root","QCD",ROOT.kGray, 62964)
+  AddBkg("hist_QCDEM170to300.root","QCD",ROOT.kGray, 18810)
+  AddBkg("hist_QCDEM300toInf.root","QCD",ROOT.kGray, 1350)
+  AddBkg("hist_QCDMu15to20.root","QCD",ROOT.kGray, 3819570)
+  AddBkg("hist_QCDMu20to30.root","QCD",ROOT.kGray, 2960198.4)
+  AddBkg("hist_QCDMu30to50.root","QCD",ROOT.kGray, 1652471.5)
+  AddBkg("hist_QCDMu50to80.root","QCD",ROOT.kGray, 437504.1)
+  AddBkg("hist_QCDMu80to120.root","QCD",ROOT.kGray, 106033.7)
+  AddBkg("hist_QCDMu120to170.root","QCD",ROOT.kGray, 25190.5)
+  AddBkg("hist_QCDMu170to300.root","QCD",ROOT.kGray, 8654.5)
+  AddBkg("hist_QCDMu300to470.root","QCD",ROOT.kGray, 797.4)
+  AddBkg("hist_QCDMu470to600.root","QCD",ROOT.kGray, 79)
+  AddBkg("hist_QCDMu600to800.root","QCD",ROOT.kGray, 25.1)
+  AddBkg("hist_QCDMu1000toInf.root","QCD",ROOT.kGray, 1.6)
   AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 0.93)
   AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 0.93)
   AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 0.93)
@@ -262,6 +262,7 @@ else:
 noRecoList = [ x for x in datasamples[datasamples.keys()[0]]["hname"] if "FCNH" not in x ]
 noRecoList = [ x for x in noRecoList if "gen" not in x ]
 noRecoList = [ x for x in noRecoList if "match" not in x ]
+noRecoList = [ x for x in noRecoList if "bSFInfo" not in x ]
 N_hist_noReco = len(noRecoList)
 N_hist = len(datasamples[datasamples.keys()[0]]["hname"])
 N_bkgsamples = len(bkgsamples)
@@ -269,6 +270,11 @@ N_Hctsamples = len(hctsamples)
 N_Hutsamples = len(hutsamples)
 N_stHctsamples = len(sthctsamples)
 N_stHutsamples = len(sthutsamples)
+if any('DNN' in x for x in datasamples[datasamples.keys()[0]]["hname"]):
+  N_hist_noReco = 15
+  rebin = 4
+else:
+  rebin = 1
 
 fNevt = open("Nevt_ratio.txt",'w')
 for fname in bkgsamples.keys():
@@ -288,16 +294,19 @@ for i in range(0, N_hist):
   elif "Ch1" in datasamples[datasamples.keys()[0]]["hname"][i]: mode = 1
   elif "Ch2" in datasamples[datasamples.keys()[0]]["hname"][i]: mode = 2
   if any(reco in datasamples[datasamples.keys()[0]]["hname"][i] for reco in ["FCNH","gen","match"] ): continue
+  if "bSFInfo" in datasamples[datasamples.keys()[0]]["hname"][i]: continue
 
   string_fname = ''
   string_nevt =  ''
   hnames = datasamples[datasamples.keys()[0]]["hname"][i].split("_")
 
   printHistName = "NJet"
-  if hnames[1] == printHistName:
+  if len(hnames) < 2: continue
+  if hnames[1] == printHistName or 'DNN' in hnames[1]:
     print hnames[2] + "_" + hnames[3]
     string_fname += "%s \n" %hnames
     string_nevt += "%s \n" %hnames
+
 
   ##if hnames[1] == printHistName :
   #print hnames[1], " ", hnames[2], " ", hnames[3]  
@@ -316,6 +325,7 @@ for i in range(0, N_hist):
     h_data.Add(datasamples[datasamples.keys()[1]]["file"].Get(datasamples[datasamples.keys()[1]]["hname"][i]))
   nbins = h_data.GetNbinsX()
   h_data.AddBinContent( nbins, h_data.GetBinContent( nbins+1 ) )  #overflow
+  h_data.Rebin(rebin)
 
   h_sub = h_data.Clone("h_sub")
 
@@ -331,6 +341,7 @@ for i in range(0, N_hist):
     else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(bkgsamples[fname]["total"]/bkgsamples[fname]["xsection"])
 
     h_tmp.Scale(scale)
+    h_tmp.Rebin(rebin)
 
     ## check if the sample is the same as previous process. 
     if k < N_bkgsamples-1 :
@@ -346,7 +357,7 @@ for i in range(0, N_hist):
     numevt = h_tmp.Integral()
     rawevt = h_tmp.GetEntries()
     ntotalbkg = ntotalbkg + numevt
-    if hnames[1] == printHistName:
+    if hnames[1] == printHistName or 'DNN' in hnames[1]:
       string_nevt += "%f \n"%(numevt)
       string_fname += "%s :  %s = %f \n"%(fname,bkgsamples[fname]["name"],numevt)
       print fname, " : ", bkgsamples[fname]["name"], " = ", "{0:.5g}".format(numevt), " scale : " ,"{0:.3g}".format(scale)
@@ -374,6 +385,7 @@ for i in range(0, N_hist):
     if mode != 2: scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
     else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(hutsamples[fname]["total"]/hutsamples[fname]["xsection"])
     h_Hut.Scale(scale)
+    h_Hut.Rebin(rebin)
 
     ## check if the sample is the same as previous process. 
     if n < N_Hutsamples-1 :
@@ -388,7 +400,7 @@ for i in range(0, N_hist):
     ## print out number of events
     numevt = h_Hut.Integral()
     rawevt = h_Hut.GetEntries()
-    if hnames[1] == printHistName:
+    if hnames[1] == printHistName or 'DNN' in hnames[1]:
       string_nevt += "%f \n"%(numevt)
       string_fname += "%s :  %s = %f \n"%(fname,hutsamples[fname]["name"],numevt)
       print fname, " : ", hutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
@@ -417,6 +429,7 @@ for i in range(0, N_hist):
     if mode != 2: scale = datasamples[datasamples.keys()[mode]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
     else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(hctsamples[fname]["total"]/hctsamples[fname]["xsection"])
     h_Hct.Scale(scale)
+    h_Hct.Rebin(rebin)
 
     ## check if the sample is the same as previous process. 
     if m < N_Hctsamples-1 :
@@ -431,7 +444,7 @@ for i in range(0, N_hist):
     ## print out number of events
     numevt = h_Hct.Integral()
     rawevt = h_Hct.GetEntries()
-    if hnames[1] == printHistName:
+    if hnames[1] == printHistName or 'DNN' in hnames[1]:
       string_nevt += "%f \n"%(numevt)
       string_fname += "%s :  %s = %f \n"%(fname,hctsamples[fname]["name"],numevt)
       print fname, " : ", hctsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
@@ -460,6 +473,7 @@ for i in range(0, N_hist):
     if mode != 2: scale = datasamples[datasamples.keys()[mode]]["lumi"]/(sthutsamples[fname]["total"]/sthutsamples[fname]["xsection"])
     else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(sthutsamples[fname]["total"]/sthutsamples[fname]["xsection"])
     h_stHut.Scale(scale)
+    h_stHut.Rebin(rebin)
 
     ## check if the sample is the same as previous process. 
     if stn < N_stHutsamples-1 :
@@ -474,7 +488,7 @@ for i in range(0, N_hist):
     ## print out number of events
     numevt = h_stHut.Integral()
     rawevt = h_stHut.GetEntries()
-    if hnames[1] == printHistName:
+    if hnames[1] == printHistName or 'DNN' in hnames[1]:
       string_nevt += "%f \n"%(numevt)
       string_fname += "%s :  %s = %f \n"%(fname,sthutsamples[fname]["name"],numevt)
       print fname, " : ", sthutsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
@@ -504,6 +518,7 @@ for i in range(0, N_hist):
     if mode != 2: scale = datasamples[datasamples.keys()[mode]]["lumi"]/(sthctsamples[fname]["total"]/sthctsamples[fname]["xsection"])
     else: scale = datasamples[datasamples.keys()[0]]["lumi"]/(sthctsamples[fname]["total"]/sthctsamples[fname]["xsection"])
     h_stHct.Scale(scale)
+    h_stHct.Rebin(rebin)
 
     ## check if the sample is the same as previous process. 
     if stm < N_stHctsamples-1 :
@@ -518,7 +533,7 @@ for i in range(0, N_hist):
     ## print out number of events
     numevt = h_stHct.Integral()
     rawevt = h_stHct.GetEntries()
-    if hnames[1] == printHistName:
+    if hnames[1] == printHistName or 'DNN' in hnames[1]:
       string_nevt += "%f \n"%(numevt)
       string_fname += "%s :  %s = %f \n"%(fname,sthctsamples[fname]["name"],numevt)
       print fname, " : ", sthctsamples[fname]["name"], " = ", "{0:.5g}".format(numevt),  " scale : " ,"{0:.3g}".format(scale)
@@ -535,7 +550,7 @@ for i in range(0, N_hist):
 
   ndata= h_data.Integral()
   nsub = ndata-ntotalbkg
-  if hnames[1] == printHistName:
+  if hnames[1] == printHistName or 'DNN' in hnames[1]:
     string_nevt += "%f \n" % ntotalbkg
     string_nevt += "%d \n" % ndata
     string_nevt += "%f \n" % nsub
