@@ -72,6 +72,7 @@ cd /HEPToolsFCNC/finalMVA/mkNtuple
 python dir_manage.py
 cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py 2017
 #cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python run.py 2017 > log &
+# Currently, due to location of reco assign files, ntuples should be generated in t630 and then move to htop
 
 #Select features if needed, and train
 cd ../training

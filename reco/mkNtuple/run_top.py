@@ -51,7 +51,8 @@ def runAna(input_filename, output_filename):
 #        if t.GetEntries() != 0:
 #          a = tree2array(t)
 #          df = pd.DataFrame(a)
-#          io.save(era+ '/hdf_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.h5', df)
+#          #io.save(era+ '/hdf_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.h5', df)
+#          df.to_hdf(era + '/hdf_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.h5', key='df', mode='w', complib='bzip2', complevel=9)
 #        else: os.remove(era + '/root_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.root')
 
       if os.path.isfile('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver/root_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.root'):
@@ -60,7 +61,8 @@ def runAna(input_filename, output_filename):
         if t.GetEntries() != 0:
           a = tree2array(t)
           df = pd.DataFrame(a)
-          io.save('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver/hdf_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.h5', df)
+          #io.save('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver/hdf_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.h5', df)
+          df.to_hdf('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver/hdf_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.h5', key='df', mode='w', complib='bzip2', complevel=9)
         else: os.remove('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver/root_' + reco_scheme + syst_ext + '/deepReco_' + output_filename + '.root')
 
 runAna(input_filename, output_filename)
