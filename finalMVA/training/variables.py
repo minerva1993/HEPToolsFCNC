@@ -42,17 +42,19 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
   #var_list = ['STTT', 'channel', 'MET', 'lepDPhi', 'lepWpt', 'lepWm']
   var_list = []
 
+  var_list.extend(['stfcnc_score'])
   var_list.extend(['stfcnc_jet0pt', 'stfcnc_jet0eta', 'stfcnc_jet0m', 'stfcnc_jet0csv',
                   'stfcnc_jet1pt', 'stfcnc_jet1eta', 'stfcnc_jet1m', 'stfcnc_jet1csv',
                   'stfcnc_jet2pt', 'stfcnc_jet2eta', 'stfcnc_jet2m', 'stfcnc_jet2csv',
                   'stfcnc_jet12pt', 'stfcnc_jet12eta', 'stfcnc_jet12deta',
                   'stfcnc_jet12dphi', 'stfcnc_jet12dR', 'stfcnc_jet12m',
-                  'stfcnc_lepTdphi', 'stfcnc_lepTm',
+                  'stfcnc_lepTpt', 'stfcnc_lepTdphi', 'stfcnc_lepTm',
                   'stfcnc_jet0lepdR', 'stfcnc_jet1lepdR', 'stfcnc_jet2lepdR',
                   'stfcnc_jet01dR', 'stfcnc_jet02dR',
                   'stfcnc_jet12_lepdR', 'stfcnc_jet12_0dR',
                   'stfcnc_lepTjet12dphi'])
   if "j4" in jetcat:
+    var_list.extend(['ttfcnc_score'])
     var_list.extend(['ttfcnc_jet0pt', 'ttfcnc_jet0eta', 'ttfcnc_jet0m', 'ttfcnc_jet0csv',
                     'ttfcnc_jet1pt', 'ttfcnc_jet1eta', 'ttfcnc_jet1m',  'ttfcnc_jet1csv',
                     'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m',  'ttfcnc_jet2csv',
@@ -73,6 +75,7 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
                     'ttfcnc_jet12_lepdR', 'ttfcnc_jet23_lepdR', 'ttfcnc_jet31_lepdR',
                     'ttfcnc_jet12_0dR', 'ttfcnc_jet23_0dR', 'ttfcnc_jet31_0dR',
                     'ttfcnc_lepTjet12dphi', 'ttfcnc_lepTjet23dphi', 'ttfcnc_lepTjet31dphi', 'ttfcnc_hadT_jet0dR',])
+    var_list.extend(['ttbkg_score'])
     var_list.extend(['ttbkg_jet0pt', 'ttbkg_jet0eta', 'ttbkg_jet0m', 'ttbkg_jet0csv',
                     'ttbkg_jet1pt', 'ttbkg_jet1eta', 'ttbkg_jet1m', 'ttbkg_jet1csv',
                     'ttbkg_jet2pt', 'ttbkg_jet2eta', 'ttbkg_jet2m', 'ttbkg_jet2csv',
@@ -103,6 +106,7 @@ def input_variables(jetcat):
  
   #var_list = ['STTT', 'channel', 'MET', 'lepDPhi', 'lepWpt', 'lepWm']
   var_list = []
+  var_list.extend(['stfcnc_score'])
 
   var_list.extend(['stfcnc_jet0pt', 'stfcnc_jet0eta', 'stfcnc_jet0m', 'stfcnc_jet0csv',
                   'stfcnc_jet1pt', 'stfcnc_jet1eta', 'stfcnc_jet1m', 'stfcnc_jet1csv',
@@ -115,6 +119,7 @@ def input_variables(jetcat):
                   'stfcnc_jet12_lepdR', 'stfcnc_jet12_0dR',
                   'stfcnc_lepTjet12dphi'])
   if "j4" in jetcat:
+    var_list.extend(['ttfcnc_score', 'ttbkg_score'])
     var_list.extend(['ttfcnc_jet0pt', 'ttfcnc_jet0eta', 'ttfcnc_jet0m', 'ttfcnc_jet0csv',
                     'ttfcnc_jet1pt', 'ttfcnc_jet1eta', 'ttfcnc_jet1m', 'ttfcnc_jet1csv',
                     'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m', 'ttfcnc_jet2csv',
@@ -321,10 +326,15 @@ def evalFrac(ch, era, sig, nj, nbj):
       TT += info_tmp.GetBinContent(2)
       ftmp.Close()
 
+  rootDir = '/data1/users/minerva1993/work/'
+  if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_version/hdf_/'
+  elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_version/hdf_/'
+
   nST, nTT = (0,0)
   #Signal first
   for files in sig:
-    data_temp = pd.read_hdf('./mkNtuple/' + era + '/hdf_/' + files)
+    #data_temp = pd.read_hdf('./mkNtuple/' + era + '/hdf_/' + files)
+    data_temp = pd.read_hdf(rootDir + files)
     data_temp = data_temp[data_temp['njets'] ==  nj]
     if nbj != 0:
       data_temp = data_temp[data_temp['nbjets_m'] == nbj]

@@ -39,6 +39,9 @@ sklearn_based_overtraining_check = False #If it set to false, directly plot DNN 
 all_features = True
 
 #directory name
+rootDir = '/data1/users/minerva1993/work/'
+if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_version/hdf_/'
+elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_version/hdf_/'
 configDir = '../'
 weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
 scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
@@ -339,7 +342,7 @@ class roc_callback(Callback):
 nST, nTT = (0,0)
 #Signal first
 for files in sig_files:
-  data_temp = pd.read_hdf('../mkNtuple/' + era + '/hdf_/' + files)
+  data_temp = pd.read_hdf(rootDir + files)
   if njets_cut == 3:
     data_temp = data_temp[data_temp['njets'] ==  njets_cut]
   elif njets_cut == 4:
@@ -372,7 +375,7 @@ frac_list = [(nST * scaleST)/(nST * scaleST + nTT * scaleTT), (nTT * scaleTT)/(n
 
 #Next, background
 for files in bkg_files:
-  data_temp = pd.read_hdf('../mkNtuple/' + era + '/hdf_/' + files)
+  data_temp = pd.read_hdf(rootDir + files)
   if njets_cut == 3:
     data_temp = data_temp[data_temp['njets'] ==  njets_cut]
   elif njets_cut == 4:

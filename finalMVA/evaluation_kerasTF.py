@@ -22,6 +22,9 @@ era = sys.argv[4]
 syst_cat = sys.argv[5]
 bestModel = sys.argv[6]
 
+rootDir = '/data1/users/minerva1993/work/'
+if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_version/hdf_'
+elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_version/hdf_' #no /
 configDir = '.'
 weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
 scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
@@ -71,7 +74,7 @@ for syst_ext in syst:
   model_best = load_model(os.path.join(configDir, weightDir+ver, bestModel))
   print('Start evaluation on version '+ ch + ver + syst_ext + ' classifier with the model '+ bestModel)
 
-  for filename in os.listdir(os.path.join(configDir, 'mkNtuple', era + '/hdf_' + syst_ext)):
+  for filename in os.listdir(os.path.join(rootDir + syst_ext)):
     if filename == '.gitkeep': continue
     if int(syst_cat) == 0 and all(x not in filename for x in ["TTpowheg", "TTLL"]): continue
     if int(syst_cat) == 1 and any(x in filename for x in ["TTpowheg", "TTLL"]): continue
@@ -80,7 +83,7 @@ for syst_ext in syst:
       print(scoreDir + ver + "/"  + filename.replace('h5','root') + (' is already exist!').rjust(50-len(filename)))
       continue
 
-    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', era + '/hdf_' + syst_ext, filename))
+    eval_df = pd.read_hdf(os.path.join(rootDir + syst_ext, filename))
     print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
 
     eval_df = eval_df[eval_df['njets'] ==  njets_cut]

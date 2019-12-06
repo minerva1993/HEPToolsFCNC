@@ -66,7 +66,10 @@ elif ch == "Hut":
   options = "nTrain_Signal=" + nsig_Hut[idx[jetcat]] + ":nTrain_Background=" + nbkg[idx[jetcat]] + ":nTest_Signal=0:nTest_Background=0:SplitMode=Random:NormMode=NumEvents:!V"
 
 #directory name
-rootDir = '../mkNtuple/' + era + '/root_/'
+#rootDir = '../mkNtuple/' + era + '/root_/'
+rootDir = '/data1/users/minerva1993/work/'
+if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_version/root_/'
+elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_version/root_/'
 configDir = '../'
 weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
 scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
