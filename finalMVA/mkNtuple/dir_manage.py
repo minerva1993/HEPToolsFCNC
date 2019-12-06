@@ -25,7 +25,7 @@ def nfile(dirname):
   allfiles = os.listdir(dirname)
   for files in allfiles:
     if files.endswith(".root") or files.endswith(".h5"): tmp.append(files)
-  print dirname + ": " + str(len(tmp)).rjust(30-len(dirname))
+  print dirname.split('/')[-1] + ": " + str(len(tmp)).rjust(25-len(dirname.split('/')[-1]))
 
 for chs in ch:
   nfile(base_path17 + "/root_" + chs)
