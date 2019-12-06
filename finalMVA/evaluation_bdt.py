@@ -35,8 +35,8 @@ else: nbjets_cut = 0
 #directory name
 #rootDir = 'mkNtuple/' + era + '/root_'
 rootDir = '/data1/users/minerva1993/work/'
-if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_version/root_'
-elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_version/root_'
+if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_ver/root_'
+elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_ver/root_'
 configDir = './'
 weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
 scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'

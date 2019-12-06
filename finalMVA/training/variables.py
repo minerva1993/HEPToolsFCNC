@@ -327,8 +327,8 @@ def evalFrac(ch, era, sig, nj, nbj):
       ftmp.Close()
 
   rootDir = '/data1/users/minerva1993/work/'
-  if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_version/hdf_/'
-  elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_version/hdf_/'
+  if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_ver/hdf_/'
+  elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_ver/hdf_/'
 
   nST, nTT = (0,0)
   #Signal first

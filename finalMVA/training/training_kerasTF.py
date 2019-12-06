@@ -40,8 +40,8 @@ all_features = True
 
 #directory name
 rootDir = '/data1/users/minerva1993/work/'
-if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_version/hdf_/'
-elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_version/hdf_/'
+if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_ver/hdf_/'
+elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_ver/hdf_/'
 configDir = '../'
 weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
 scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
