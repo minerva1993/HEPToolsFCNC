@@ -164,6 +164,7 @@ public :
     TH1D *h_FCNHkinHb2CSVfull[3][9][45];
     TH1D *h_FCNHkinLepTopPt[3][9][45];
     TH1D *h_FCNHkinHadTopPt[3][9][45];
+    TH1D *h_FCNHkinScore[3][9][45];
     TH1D *h_genDR[3][9][45];
     TH1D *h_matchDR[3][9][45];
     TH1D *h_genHm[3][9][45];
@@ -172,6 +173,7 @@ public :
     //SF specific histos
     TH1D *h_PVnoSF[3][9][45];
     TH1D *h_JetCSVnoSF[3][9][45];
+    TH1D *bSFInfo[3][3];
 
     ////RECO
     TFile *assignF;// = new TFile("assign/ref_ttbb.root", "READ");

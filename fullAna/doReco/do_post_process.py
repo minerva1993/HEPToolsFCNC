@@ -37,6 +37,8 @@ def write_envelope(syst, nhists, new_sumW):
       up.SetBinContent(i, maximum)
       down.SetBinContent(i, minimum)
 
+    up = bSFNorm(up)
+    down = bSFNorm(down)
     up.SetName(histos + "__" + syst + "up")
     down.SetName(histos + "__" + syst + "down")
     up.Write()
@@ -70,6 +72,37 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
       f_new.cd()
       h.Write()
 
+
+def bSFNorm(htmp):
+  if any(bSFInfo):
+    hname = htmp.GetName()
+    keystr = ''
+    if   'Ch0' in hname: keystr += 'Ch0_'
+    elif 'Ch1' in hname: keystr += 'Ch1_'
+    elif 'Ch2' in hname: keystr += 'Ch2_'
+
+    if 'h_DNN' in hname:
+      #case1: MVA -> j3b2, j3b3, j4b2, j4b3, j4b4
+      if   'j3' in hname: keystr += 'J1'
+      elif 'j4' in hname: keystr += 'J2'
+      infotmp = bSFInfo[keystr].Clone()
+    else:
+      #case2: fullAna -> S1,2,3,5,6,7,8
+      if   'S0'in hname: keystr += 'J0'
+      elif any(i in hname for i in ['S1','S2','S3','S4']): keystr += 'J1'
+      elif any(i in hname for i in ['S5','S6','S7','S8']): keystr += 'J2'
+      infotmp = bSFInfo[keystr].Clone()
+      if 'S4' in hname: infotmp.Add(bSFInfo[keystr.replace('J1','J2')], 1.0)
+
+    binnum = 2 #nominal = 1
+    if any(i in hname for i in ['__lf', '__hf', '__cferr']):
+      binnum = infotmp.GetXaxis().FindBin(str(hname.split('__')[-1]))
+    if infotmp.GetBinContent(binnum) > 0:
+      htmp.Scale(infotmp.GetBinContent(1)/infotmp.GetBinContent(binnum))
+
+  return htmp
+
+
 #Starts loop over histogram root files
 file_list = os.listdir( os.path.join(base_path, "pre_process") )
 if "systamatics" in file_list: file_list.remove("systematics")
@@ -96,6 +129,20 @@ for files in file_list:
   nScaleWeight = ScaleWeights.Integral()
   nPSWeight = PSWeights.Integral()
 
+  #bSF - 6 histos
+  bSFInfo = {}
+  bSFInfo['Ch0_J0'] = f.Get("bSFInfo_Ch0_J0")
+  bSFInfo['Ch0_J1'] = f.Get("bSFInfo_Ch0_J1")
+  bSFInfo['Ch0_J2'] = f.Get("bSFInfo_Ch0_J2")
+  bSFInfo['Ch1_J0'] = f.Get("bSFInfo_Ch1_J0")
+  bSFInfo['Ch1_J1'] = f.Get("bSFInfo_Ch1_J1")
+  bSFInfo['Ch1_J2'] = f.Get("bSFInfo_Ch1_J2")
+  bSFInfo['Ch2_J0'] = f.Get("bSFInfo_Ch2_J0")
+  bSFInfo['Ch2_J1'] = f.Get("bSFInfo_Ch2_J1")
+  bSFInfo['Ch2_J2'] = f.Get("bSFInfo_Ch2_J2")
+  if bSFInfo['Ch2_J0'].Integral() == 0 and bSFInfo['Ch2_J2'].Integral() == 0:
+    bSFInfo.clear() #If sum is 0, remove items: for data, J0 = 0 in MVA
+
   #Prepare nominal file for rescaling
   syst_name = ""
   if "__" in files:
@@ -119,6 +166,9 @@ for files in file_list:
     if "scale" in histos: continue
     if "ps" in histos: continue
     h = f.Get(histos)
+    if not any(i in h.GetName() for i in ['Info', 'Weight']):
+      h = bSFNorm(h)
+    else: pass
     h.Write()
 
   #Store envelope, rescale histos

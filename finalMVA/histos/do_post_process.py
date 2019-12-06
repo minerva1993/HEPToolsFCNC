@@ -73,7 +73,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
 
 
 def bSFNorm(htmp):
-  if any(bSFInfo): 
+  if any(bSFInfo):
     hname = htmp.GetName()
     keystr = ''
     if   'Ch0' in hname: keystr += 'Ch0_'
@@ -84,13 +84,13 @@ def bSFNorm(htmp):
       #case1: MVA -> j3b2, j3b3, j4b2, j4b3, j4b4
       if   'j3' in hname: keystr += 'J1'
       elif 'j4' in hname: keystr += 'J2'
-      infotmp = bSFInfo[keystr]
+      infotmp = bSFInfo[keystr].Clone()
     else:
       #case2: fullAna -> S1,2,3,5,6,7,8
       if   'S0'in hname: keystr += 'J0'
       elif any(i in hname for i in ['S1','S2','S3','S4']): keystr += 'J1'
       elif any(i in hname for i in ['S5','S6','S7','S8']): keystr += 'J2'
-      infotmp = bSFInfo[keystr]
+      infotmp = bSFInfo[keystr].Clone()
       if 'S4' in hname: infotmp.Add(bSFInfo[keystr.replace('J1','J2')], 1.0)
 
     binnum = 2 #nominal = 1
@@ -140,7 +140,7 @@ for files in file_list:
   bSFInfo['Ch2_J0'] = f.Get("bSFInfo_Ch2_J0")
   bSFInfo['Ch2_J1'] = f.Get("bSFInfo_Ch2_J1")
   bSFInfo['Ch2_J2'] = f.Get("bSFInfo_Ch2_J2")
-  if bSFInfo['Ch2_J0'].Integral() == 0 and bSFInfo['Ch2_J1'].Integral() == 0:
+  if bSFInfo['Ch2_J0'].Integral() == 0 and bSFInfo['Ch2_J2'].Integral() == 0:
     bSFInfo.clear() #If sum is 0, remove items: for data, J0 = 0 in MVA
 
   #Prepare nominal file for rescaling
