@@ -184,7 +184,7 @@ if __name__ == '__main__':
   if not os.path.exists( base_path + "post_process" ):
     os.makedirs( base_path + "post_process" )
 
-  pool = multiprocessing.Pool(10)
+  pool = multiprocessing.Pool(30)
   pool.map(postProcess, file_list)
   pool.close()
   pool.join()

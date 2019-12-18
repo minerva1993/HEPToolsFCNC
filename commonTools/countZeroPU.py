@@ -8,7 +8,7 @@ import numpy as np
 if os.path.isfile('TruePVWeight.txt'):
   os.remove('TruePVWeight.txt')
 
-basedir = '/data/users/minerva1993/ntuple/V9_6/190702/'
+basedir = '/data/users/minerva1993/ntuple/V9_6/191205/'
 
 path = os.listdir(basedir)
 filelist = []
@@ -37,7 +37,8 @@ for item in filelist:
     #Change here!!!!!!!!
     ####################
     hfull = tree.Draw("TruePV>>h1","","")
-    hgood = tree.Draw("TruePV>>h2","TruePV >= 10 && TruePV <= 75","")
+    #hgood = tree.Draw("TruePV>>h2","TruePV >= 10 && TruePV <= 75","")
+    hgood = tree.Draw("TruePV>>h2","TruePV > 0","")
 
     text_file = open("TruePVWeight.txt", "a")
     if h2.Integral() == 0 : ratio = 1.0

@@ -120,8 +120,15 @@ def correlations(data, name, **kwds):
         # shift location of ticks to center of the bins
         ax.set_xticks(np.arange(len(labels))+0.5, minor=False)
         ax.set_yticks(np.arange(len(labels))+0.5, minor=False)
-        ax.set_xticklabels(labels, minor=False, ha='right', rotation=90)
-        ax.set_yticklabels(labels, minor=False)
+        if len(labels) < 50:
+          ax.set_xticklabels(labels, minor=False, ha='right', rotation=90)
+          ax.set_yticklabels(labels, minor=False)
+        elif len(labels) >= 50 and len(labels) < 100:
+          ax.set_xticklabels(labels, minor=False, ha='right', rotation=90, fontsize=4)
+          ax.set_yticklabels(labels, minor=False, fontsize=4)
+        else:
+          ax.set_xticklabels(labels, minor=False, ha='right', rotation=90, fontsize=2)
+          ax.set_yticklabels(labels, minor=False, fontsize=2)
 
     plt.tight_layout()
     #plt.show()
@@ -348,7 +355,6 @@ if plot_figures:
   correlations(data.loc[data[label_name] == 0].drop(label_name, axis=1), 'bkg')
   correlations(data.loc[data[label_name] == 1].drop(label_name, axis=1), 'sig')
   inputvars(data.loc[data[label_name] == 1].drop(label_name, axis=1), data.loc[data[label_name] == 0].drop(label_name, axis=1), 'sig', 'bkg')
-
 data = data.drop(label_name, axis=1) #then drop label
 
 
