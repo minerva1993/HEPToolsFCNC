@@ -36,6 +36,8 @@ public :
    TTreeReaderArray<float> psweight = {fReader, "psweight"};
    TTreeReaderValue<Float_t> MET = {fReader, "MET"};
    TTreeReaderValue<Float_t> MET_phi = {fReader, "MET_phi"};
+   TTreeReaderArray<float> MET_unc_x = {fReader, "MET_unc_x"};
+   TTreeReaderArray<float> MET_unc_y = {fReader, "MET_unc_y"};
    TTreeReaderValue<Float_t> lepton_pt = {fReader, "lepton_pt"};
    TTreeReaderValue<Float_t> lepton_eta = {fReader, "lepton_eta"};
    TTreeReaderValue<Float_t> lepton_phi = {fReader, "lepton_phi"};

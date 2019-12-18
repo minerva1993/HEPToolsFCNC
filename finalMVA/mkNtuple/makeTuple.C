@@ -463,37 +463,36 @@ Bool_t makeTuple::Process(Long64_t entry)
   float wrongPVrate = 1.0;
   if( era == 2017 ){
     if( !option.Contains("Run2017") ){
-      if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.04849;
-      else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.02703;
-      else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.02484;
-      else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.03165;
-      else if( option.Contains("QCDEM30to50") ) wrongPVrate = 1.02575;
-      else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.04114;
-      else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.02968;
-      else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.02596;
-      else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.04353;
-      else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.03696;
-      else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.02922;
-      else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.02786;
-      else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.03184;
-      else if( option.Contains("TTLLpowhegttbbhdampup") ) wrongPVrate = 1.03463;
-      else if( option.Contains("TTLLpowhegttcchdampup") ) wrongPVrate = 1.03494;
-      else if( option.Contains("TTLLpowhegttlfhdampup") ) wrongPVrate = 1.03468;
-      else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.04219;
-      else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.04743;
-      else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.04677;
-      else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.04768;
-      else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.04708;
-      else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.048;
-      else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.04758;
-      else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.04195;
-      else if( option.Contains("WW") ) wrongPVrate = 1.04685;
-      else if( option.Contains("WZ") ) wrongPVrate = 1.04381;
-      else if( option.Contains("ZZ") ) wrongPVrate = 1.02981;
+      if     ( option.Contains("DYJets10to50") ) wrongPVrate = 1.02921;
+      else if( option.Contains("QCDEM15to20") ) wrongPVrate = 1.01333;
+      else if( option.Contains("QCDEM20to30") ) wrongPVrate = 1.01227;
+      else if( option.Contains("QCDEM300toInf") ) wrongPVrate = 1.01194;
+      else if( option.Contains("QCDEM50to80") ) wrongPVrate = 1.02226;
+      else if( option.Contains("QCDMu120to170") ) wrongPVrate = 1.01289;
+      else if( option.Contains("QCDMu170to300") ) wrongPVrate = 1.01181;
+      else if( option.Contains("QCDMu20to30") ) wrongPVrate = 1.0253;
+      else if( option.Contains("QCDMu30to50") ) wrongPVrate = 1.02105;
+      else if( option.Contains("QCDMu470to600") ) wrongPVrate = 1.0141;
+      else if( option.Contains("QCDMu50to80") ) wrongPVrate = 1.01149;
+      else if( option.Contains("QCDMu80to120") ) wrongPVrate = 1.01278;
+      else if( option.Contains("TTLLpowhegttbbhdampup") ) wrongPVrate = 1.01807;
+      else if( option.Contains("TTLLpowhegttcchdampup") ) wrongPVrate = 1.01978;
+      else if( option.Contains("TTLLpowhegttlfhdampup") ) wrongPVrate = 1.01938;
+      else if( option.Contains("TTZToLLNuNu") ) wrongPVrate = 1.02425;
+      else if( option.Contains("TTpowhegttbbTuneCP5down") ) wrongPVrate = 1.02715;
+      else if( option.Contains("TTpowhegttbbhdampdown") ) wrongPVrate = 1.02717;
+      else if( option.Contains("TTpowhegttccTuneCP5down") ) wrongPVrate = 1.0273;
+      else if( option.Contains("TTpowhegttcchdampdown") ) wrongPVrate = 1.02746;
+      else if( option.Contains("TTpowhegttlfTuneCP5down") ) wrongPVrate = 1.02742;
+      else if( option.Contains("TTpowhegttlfhdampdown") ) wrongPVrate = 1.02774;
+      else if( option.Contains("W3JetsToLNu") ) wrongPVrate = 1.02348;
+      else if( option.Contains("WW") ) wrongPVrate = 1.0295;
+      else if( option.Contains("WZ") ) wrongPVrate = 1.02298;
+      else if( option.Contains("ZZ") ) wrongPVrate = 1.01508;
       else   wrongPVrate = 1.0;
     }
     if( wrongPVrate > 1.01 ){
-      if( *TruePV < 10 || *TruePV > 75 ) return kTRUE;
+      if( *TruePV <=0 ) return kTRUE;
     }
   }
 
@@ -507,23 +506,13 @@ Bool_t makeTuple::Process(Long64_t entry)
   float met = *MET;
   float met_phi = *MET_phi;
   float apt = TMath::Abs(met);
-  float met_x =  apt*TMath::Cos(met_phi);
-  float met_y =  apt*TMath::Sin(met_phi);
-  p4met.SetPxPyPzE( met_x, met_y, 0, met);
+  float met_x = apt*TMath::Cos(met_phi);
+  float met_y = apt*TMath::Sin(met_phi);
+  //p4met.SetPxPyPzE( met_x, met_y, 0, met);
 
   TLorentzVector lepton;
   lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
   lepton = lepton*(lepton_scale[0]);
-
-  float transverseM = transverseMass(lepton, p4met);
-  float lepDphi = lepton.DeltaPhi(p4met);
-
-  //Selection Option
-  bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
-  bool makeIso = true;
-  bool isIso = *lepton_isIso; 
-  if( makeIso && !isIso ) return kTRUE;
-  if( !makeIso && isIso ) return kTRUE;
 
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);
@@ -563,7 +552,32 @@ Bool_t makeTuple::Process(Long64_t entry)
       njets++;
       if( jet_deepCSV[iJet] > bWP_M ) nbjets_m++;
     }
-  } 
+  }
+
+  if( !option.Contains("Run201") ){
+    if( syst_ext == "jecup" ){
+      met_x = MET_unc_x[0]; met_y = MET_unc_y[0];
+    }
+    else if( syst_ext == "jecdown" ){
+      met_x = MET_unc_x[1]; met_y = MET_unc_y[1];
+    }
+    else if( syst_ext == "jerup" ){
+      met_x = MET_unc_x[2]; met_y = MET_unc_y[2];
+    }
+    else if( syst_ext == "jerdown" ){
+      met_x = MET_unc_x[3]; met_y = MET_unc_y[3];
+    }
+  }
+  p4met.SetPxPyPzE(met_x, met_y, 0, sqrt(met_x*met_x + met_y*met_y));
+
+  //Selection Option
+  float transverseM = transverseMass(lepton, p4met);
+  float lepDphi = lepton.DeltaPhi(p4met);
+  bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
+  bool makeIso = true;
+  bool isIso = *lepton_isIso;
+  if( makeIso && !isIso ) return kTRUE;
+  if( !makeIso && isIso ) return kTRUE;
 
   bool st_njet = (njets >= 3 and nbjets_m >= 2);
   bool tt_njet = (njets >= 4 and nbjets_m >= 2);
