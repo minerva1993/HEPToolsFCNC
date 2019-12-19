@@ -68,7 +68,7 @@ for syst_ext in syst:
     #if not 'TTTH1L3BTLepHct' in filename: continue
 
     if os.path.exists(os.path.join(configDir, scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root'))):
-      print('score_' + filename.replace('h5','root') + (' is already exist!').rjust(50-len(filename)))
+      print('score_' + filename.replace('h5','root') + (' is already exist!').rjust(60-len(filename)))
       continue
     if signal_only:
       if   ch == "STFCNC":

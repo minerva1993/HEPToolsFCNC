@@ -522,14 +522,29 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         //leptonSF
         if( passmuon ){
           //mu ID: 0, mu Iso: 1, mu Trg: 2
-          if     ( isPartOf("__muidup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[1];
-          else if( isPartOf("__muiddown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[2];
+          //if     ( isPartOf("__muidup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[1];
+          //else if( isPartOf("__muiddown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[2];
+          //else   EventWeight *= lepton_SF[0];
+          //if     ( isPartOf("__muisoup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[4];
+          //else if( isPartOf("__muisodown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[5];
+          //else   EventWeight *= lepton_SF[3];
+          //if     ( isPartOf("__mutrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
+          //else if( isPartOf("__mutrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
+          //else   EventWeight *= lepton_SF[6];
+          if     ( isPartOf("__muidup", std::string(syst_name[syst])) )
+                 EventWeight *= lepton_SF[0] + sqrt(pow(lepton_SF[1] - lepton_SF[0], 2) + pow(0.005, 2));
+          else if( isPartOf("__muiddown", std::string(syst_name[syst])) )
+                 EventWeight *= lepton_SF[0] - sqrt(pow(lepton_SF[2] - lepton_SF[0], 2) + pow(0.005, 2));
           else   EventWeight *= lepton_SF[0];
-          if     ( isPartOf("__muisoup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[4];
-          else if( isPartOf("__muisodown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[5];
+          if     ( isPartOf("__muisoup", std::string(syst_name[syst])) )
+                 EventWeight *= lepton_SF[3] + sqrt(pow(lepton_SF[4] - lepton_SF[3], 2) + pow(0.005, 2));
+          else if( isPartOf("__muisodown", std::string(syst_name[syst])) )
+                 EventWeight *= lepton_SF[3] - sqrt(pow(lepton_SF[5] - lepton_SF[3], 2) + pow(0.005, 2));
           else   EventWeight *= lepton_SF[3];
-          if     ( isPartOf("__mutrgup", std::string(syst_name[syst])) )   EventWeight *= lepton_SF[7];
-          else if( isPartOf("__mutrgdown", std::string(syst_name[syst])) ) EventWeight *= lepton_SF[8];
+          if     ( isPartOf("__mutrgup", std::string(syst_name[syst])) )
+                 EventWeight *= lepton_SF[6] + sqrt(pow(lepton_SF[7] - lepton_SF[6], 2) + pow(0.005, 2));
+          else if( isPartOf("__mutrgdown", std::string(syst_name[syst])) )
+                 EventWeight *= lepton_SF[6] - sqrt(pow(lepton_SF[8] - lepton_SF[6], 2) + pow(0.005, 2));
           else   EventWeight *= lepton_SF[6];
           if     ( isPartOf("__elidup", std::string(syst_name[syst])) )   EventWeight *= 1.0;
           else if( isPartOf("__eliddown", std::string(syst_name[syst])) ) EventWeight *= 1.0;

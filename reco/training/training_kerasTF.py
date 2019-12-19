@@ -470,20 +470,21 @@ model = Model(inputs=inputs, outputs=predictions)
 
 #if multiGPU: train_model = multi_gpu_model(model, gpus=2)
 #else: train_model = model
-train_moel = model
+#train_moel = model
 
-train_model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0.9, beta_2=0.999, epsilon=1e-8, decay=1E-3), metrics=['binary_accuracy'])
-#model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=1E-3), metrics=['binary_accuracy'])
+#train_model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0.9, beta_2=0.999, epsilon=1e-8, decay=1E-3), metrics=['binary_accuracy'])
+model.compile(loss='binary_crossentropy', optimizer=Adam(lr=1E-3, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=1E-3), metrics=['binary_accuracy'])
 #parallel_model.summary()
 
 modelfile = 'model_{epoch:02d}_{val_binary_accuracy:.4f}.h5'
 checkpoint = ModelCheckpoint(os.path.join(configDir, weightDir+ver, modelfile), monitor='val_binary_accuracy', verbose=1, save_best_only=False)#, mode='max')
-history = train_model.fit(X_train, Y_train,
-                          epochs=50, batch_size=1000,
-                          validation_data=(X_test, Y_test),
-                          #class_weight={ 0: 14, 1: 1 }, 
-                          callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model)]
-                          )
+#history = train_model.fit(X_train, Y_train,
+history = model.fit(X_train, Y_train,
+                    epochs=50, batch_size=1000,
+                    validation_data=(X_test, Y_test),
+                    #class_weight={ 0: 14, 1: 1 }, 
+                    callbacks=[roc_callback(training_data=(X_train, Y_train), validation_data=(X_test, Y_test), model=model)]
+                    )
 model.save(os.path.join(configDir, weightDir+ver, 'model.h5'))#save template model, rather than the model returned by multi_gpu_model.
 
 print("Plotting scores")

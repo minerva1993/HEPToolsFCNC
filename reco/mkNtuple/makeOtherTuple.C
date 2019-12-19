@@ -242,7 +242,7 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
 
   TLorentzVector lepton;
   lepton.SetPtEtaPhiE(*lepton_pt, *lepton_eta, *lepton_phi, *lepton_e);
-  lepton = lepton*(lepton_scale[0]);
+  //lepton = lepton*(lepton_scale[0]);
 
   //Event selection 
   bool passmuon = (mode == 0) && (lepton.Pt() > 30) && (abs(lepton.Eta()) <= 2.4);

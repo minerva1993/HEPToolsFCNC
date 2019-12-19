@@ -105,7 +105,7 @@ for files in file_list:
     for i in matchable_list_1: tot_matchable_1 += i
     for i in matchable_list_2: tot_matchable_2 += i
     if ch == "TTFCNC" or ch == "STFCNC":
-      print("Total eff Hct = " + str(tot_selected_1*1.0/tot_matchable_1))
       print("Total eff Hut = " + str(tot_selected_2*1.0/tot_matchable_2))
+      print("Total eff Hct = " + str(tot_selected_1*1.0/tot_matchable_1))
     elif ch == "TTBKG":
       print("Total eff = " + str(tot_selected_1*1.0/tot_matchable_1))
