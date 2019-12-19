@@ -343,8 +343,8 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   b_njets = njets;
   b_nbjets_m = nbjets_m;
 
-  b_met = met;
-  b_met_phi = met_phi;
+  b_met = p4met.Pt();
+  b_met_phi = p4met.Phi();
 
   //jet assignments
   TLorentzVector lepW = lepton + p4met;
