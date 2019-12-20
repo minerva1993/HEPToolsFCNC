@@ -373,6 +373,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
   }
   p4met.SetPxPyPzE(met_x, met_y, 0, sqrt(met_x*met_x + met_y*met_y));
+  met = p4met.Pt();
+  met_phi = p4met.Phi();
 
   //Selection Option
   float transverseM = transverseMass(lepton, p4met);

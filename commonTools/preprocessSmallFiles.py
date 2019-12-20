@@ -6,7 +6,7 @@ if len(sys.argv) < 2:
 era = sys.argv[1]
 
 if era == '2017':
-  version = 'V9_6/191205/'
+  version = 'V9_6/191220/'
   path_to_prod = '/data/users/minerva1993/ntuple/' + version + 'production/'
   #path_to_prod = '/pnfs/knu.ac.kr/data/cms/store/user/jipark/ntuple_jw/' + version + 'production/'
 elif era == '2018':

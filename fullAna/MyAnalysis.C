@@ -443,6 +443,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   else if( era == 2018 ){
     bWP_M = 0.4184;
     bWP_T = 0.7527;
+    //bWP_M = 0.2770;
+    //bWP_T = 0.7264;
     cvsbWP_M = 0.29;
     cvslWP_M = 0.137;
   }
@@ -471,6 +473,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       jetIdxs.push_back(iJet);
 
       if( jet_deepCSV[iJet] > bWP_M ) nbjets_m++;
+      //if( jet_deepJet[iJet] > bWP_M ) nbjets_m++;
       if( jet_deepCSV[iJet] > bWP_T ) nbjets_t++;
       if( jet_deepCvsL[iJet] > cvslWP_M && jet_deepCvsB[iJet] > cvsbWP_M ) ncjets_m++;
     }
@@ -491,6 +494,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
   }
   p4met.SetPxPyPzE(met_x, met_y, 0, sqrt(met_x*met_x + met_y*met_y));
+  met = p4met.Pt();
+  met_phi = p4met.Phi();
 
   //Selection Option
   float transverseM = transverseMass(lepton, p4met);
@@ -760,6 +765,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             }
             else{
               bSF = jet_SF_deepCSV_30[0];
+              //bSF = jet_SF_deepJet_30[0];
               if( !isPartOf("__", std::string(syst_name[syst])) ){
                 if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(0.5, EventWeight);
                 if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(1.5, EventWeight*bSF);

@@ -56,11 +56,15 @@ public :
    TTreeReaderArray<int> jet_index = {fReader, "jet_index"};
 //   TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
    TTreeReaderArray<float> jet_deepCSV = {fReader, "jet_deepCSV"};
+   TTreeReaderArray<float> jet_deepJet = {fReader, "jet_deepJet"};
    TTreeReaderArray<float> jet_SF_deepCSV_30 = {fReader, "jet_SF_deepCSV_30"};
+   TTreeReaderArray<float> jet_SF_deepJet_30 = {fReader, "jet_SF_deepJet_30"};
 //   TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
 //   TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
    TTreeReaderArray<float> jet_deepCvsB = {fReader, "jet_deepCvsB"};
+   TTreeReaderArray<float> jet_deepJetCvsL = {fReader, "jet_deepJetCvsL"};
+   TTreeReaderArray<float> jet_deepJetCvsB = {fReader, "jet_deepJetCvsB"};
    TTreeReaderValue<Int_t> jet_njet = {fReader, "jet_njet"};
    TTreeReaderValue<Int_t> jet_nbjetm = {fReader, "jet_nbjetm"};
    TTreeReaderArray<int> jet_partonFlavour = {fReader, "jet_partonFlavour"};
