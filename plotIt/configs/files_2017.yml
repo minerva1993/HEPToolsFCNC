@@ -10,7 +10,7 @@
   type: signal
   pretty-name: 'TTTH1L3BHct'
   cross-section: 1.86
-  generated-events: 988758
+  generated-events: 1486746
   group: GTTHct
   order: 2
 
@@ -26,7 +26,7 @@
 #  type: signal
 #  pretty-name: 'TTTH1L3BTLepHct'
 #  cross-section: 0.93
-#  generated-events: 300461
+#  generated-events: 798449
 #  group: GTTHct
 #  order: 2
 

@@ -9,16 +9,16 @@ def input_selected_bdt(ch, jetcat, era): #Order Does Matter!!
 
   selected = {}
 
-  selected['Hct_j3b2_2017'] = ['stfcnc_jet0pt', 'stfcnc_jet0csv', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12pt', 'stfcnc_jet12m', 'stfcnc_lepTm', 'stfcnc_jet02dR', 'stfcnc_jet12_lepdR', 'stfcnc_jet12_0dR']
-  selected['Hct_j3b3_2017'] = ['stfcnc_jet0csv', 'stfcnc_jet1csv', 'stfcnc_jet2pt', 'stfcnc_jet2eta', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12m', 'stfcnc_lepTm', 'stfcnc_jet02dR', 'stfcnc_jet12_0dR']
+  selected['Hct_j3b2_2017'] = ['lepWm', 'stfcnc_jet0pt', 'stfcnc_jet0csv', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12m', 'stfcnc_lepTm', 'stfcnc_jet02dR', 'stfcnc_jet12_lepdR', 'stfcnc_jet12_0dR']
+  selected['Hct_j3b3_2017'] = ['lepWm', 'stfcnc_jet1csv', 'stfcnc_jet2eta', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12eta', 'stfcnc_jet12m', 'stfcnc_lepTm', 'stfcnc_jet02dR', 'stfcnc_jet12_0dR']
   selected['Hct_j4b2_2017'] = ['stfcnc_jet0csv', 'stfcnc_jet2csv', 'ttfcnc_jet0csv', 'ttfcnc_jet2csv', 'ttfcnc_jet3csv', 'ttbkg_jet1csv', 'ttbkg_jet2csv', 'ttbkg_jet12m', 'ttbkg_jet23m', 'ttbkg_hadTm']
   selected['Hct_j4b3_2017'] = ['stfcnc_jet1csv', 'stfcnc_jet2csv', 'stfcnc_jet12m', 'ttfcnc_jet1csv', 'ttfcnc_jet2csv', 'ttfcnc_jet3csv', 'ttfcnc_jet12m', 'ttbkg_jet1csv', 'ttbkg_jet2csv', 'ttbkg_jet23m']
-  selected['Hct_j4b4_2017'] = ['ttfcnc_jet3csv', 'ttfcnc_jet12m', 'ttfcnc_hadTm', 'ttbkg_jet1csv', 'ttbkg_jet2csv']
-  selected['Hut_j3b2_2017'] = ['stfcnc_jet0pt', 'stfcnc_jet0m', 'stfcnc_jet0csv', 'stfcnc_jet2pt', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12pt', 'stfcnc_jet12m', 'stfcnc_jet02dR', 'stfcnc_jet12_0dR']
-  selected['Hut_j3b3_2017'] = ['stfcnc_jet0csv', 'stfcnc_jet1csv', 'stfcnc_jet2pt', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12pt', 'stfcnc_jet12m', 'stfcnc_lepTm', 'stfcnc_jet02dR', 'stfcnc_jet12_lepdR']
+  selected['Hct_j4b4_2017'] = ['ttfcnc_jet3csv', 'ttfcnc_jet12m', 'ttbkg_jet1csv', 'ttbkg_jet2csv', 'ttbkg_hadTm']
+  selected['Hut_j3b2_2017'] = ['lepWpt', 'lepWm', 'stfcnc_jet0pt', 'stfcnc_jet0m', 'stfcnc_jet0csv', 'stfcnc_jet2pt', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12pt', 'stfcnc_lepTpt']
+  selected['Hut_j3b3_2017'] = ['lepWm', 'stfcnc_jet0csv', 'stfcnc_jet1csv', 'stfcnc_jet2pt', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12pt', 'stfcnc_jet12m', 'stfcnc_lepTpt', 'stfcnc_lepTm']
   selected['Hut_j4b2_2017'] = ['stfcnc_jet0csv', 'stfcnc_jet2csv', 'ttfcnc_jet0csv', 'ttfcnc_jet2csv', 'ttfcnc_jet23m', 'ttbkg_jet1csv', 'ttbkg_jet12dR', 'ttbkg_jet12m', 'ttbkg_jet23m', 'ttbkg_hadTm']
-  selected['Hut_j4b3_2017'] = ['stfcnc_jet0csv', 'stfcnc_jet1csv', 'stfcnc_jet2csv', 'stfcnc_jet12m', 'ttfcnc_jet1csv', 'ttfcnc_jet2csv', 'ttfcnc_jet12m', 'ttbkg_jet1csv', 'ttbkg_jet23m', 'ttbkg_jet31m']
-  selected['Hut_j4b4_2017'] = ['stfcnc_jet1csv', 'stfcnc_jet2csv', 'ttfcnc_jet2csv', 'ttfcnc_jet12m', 'ttbkg_jet1csv']
+  selected['Hut_j4b3_2017'] = ['stfcnc_jet1csv', 'stfcnc_jet2csv', 'stfcnc_jet12m', 'ttfcnc_jet1csv', 'ttfcnc_jet2csv', 'ttfcnc_jet12m', 'ttfcnc_jet31m', 'ttbkg_jet1csv', 'ttbkg_jet23m', 'ttbkg_jet31m']
+  selected['Hut_j4b4_2017'] = ['stfcnc_jet1csv', 'stfcnc_jet2csv', 'ttfcnc_jet1csv', 'ttfcnc_jet2csv', 'ttbkg_jet1csv']
 
   selected['Hct_j3b2_2018'] = ['stfcnc_jet0pt', 'stfcnc_jet0csv', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12pt', 'stfcnc_jet12m', 'stfcnc_lepTm', 'stfcnc_jet02dR', 'stfcnc_jet12_lepdR', 'stfcnc_jet12_0dR']
   selected['Hct_j3b3_2018'] = ['stfcnc_jet0csv', 'stfcnc_jet1eta', 'stfcnc_jet1csv', 'stfcnc_jet2pt', 'stfcnc_jet2eta', 'stfcnc_jet2m', 'stfcnc_jet2csv', 'stfcnc_jet12m', 'stfcnc_lepTm', 'stfcnc_jet12_0dR']
@@ -40,7 +40,8 @@ def input_selected_bdt(ch, jetcat, era): #Order Does Matter!!
 def input_variables_bdt(jetcat): #Order Does Matter!!
  
   #var_list = ['STTT', 'channel', 'MET', 'lepDPhi', 'lepWpt', 'lepWm']
-  var_list = []
+  var_list = ['lepWpt', 'lepWdphi', 'lepWm',]
+  #var_list = []
 
 #  var_list.extend(['stfcnc_score'])
   var_list.extend(['stfcnc_jet0pt', 'stfcnc_jet0eta', 'stfcnc_jet0m', 'stfcnc_jet0csv',
@@ -69,7 +70,7 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
                     'ttfcnc_hadTpt', 'ttfcnc_hadTeta',
                     'ttfcnc_hadT12_3deta', 'ttfcnc_hadT23_1deta', 'ttfcnc_hadT31_2deta',
                     'ttfcnc_hadT12_3dphi', 'ttfcnc_hadT23_1dphi', 'ttfcnc_hadT31_2dphi',
-                    'ttfcnc_hadT12_3dR', 'ttfcnc_hadT23_1dR', 'ttfcnc_hadT31_2dR','ttfcnc_hadTm',
+                    'ttfcnc_hadT12_3dR', 'ttfcnc_hadT23_1dR', 'ttfcnc_hadT31_2dR', 'ttfcnc_hadTm',
                     'ttfcnc_jet0lepdR', 'ttfcnc_jet1lepdR', 'ttfcnc_jet2lepdR', 'ttfcnc_jet3lepdR',
                     'ttfcnc_jet01dR', 'ttfcnc_jet02dR', 'ttfcnc_jet03dR',
                     'ttfcnc_jet12_lepdR', 'ttfcnc_jet23_lepdR', 'ttfcnc_jet31_lepdR',
@@ -87,10 +88,10 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
                     'ttbkg_jet31pt', 'ttbkg_jet31eta', 'ttbkg_jet31deta',
                     'ttbkg_jet31dphi', 'ttbkg_jet31dR', 'ttbkg_jet31m',
                     'ttbkg_lepTpt', 'ttbkg_lepTdphi', 'ttbkg_lepTm',
-                    'ttbkg_hadTpt', 'ttbkg_hadTeta', 
+                    'ttbkg_hadTpt', 'ttbkg_hadTeta',
                     'ttbkg_hadT12_3deta', 'ttbkg_hadT23_1deta', 'ttbkg_hadT31_2deta',
                     'ttbkg_hadT12_3dphi', 'ttbkg_hadT23_1dphi', 'ttbkg_hadT31_2dphi',
-                    'ttbkg_hadT12_3dR', 'ttbkg_hadT23_1dR', 'ttbkg_hadT31_2dR','ttbkg_hadTm',
+                    'ttbkg_hadT12_3dR', 'ttbkg_hadT23_1dR', 'ttbkg_hadT31_2dR', 'ttbkg_hadTm',
                     'ttbkg_jet0lepdR', 'ttbkg_jet1lepdR', 'ttbkg_jet2lepdR', 'ttbkg_jet3lepdR',
                     'ttbkg_jet01dR', 'ttbkg_jet02dR', 'ttbkg_jet03dR',
                     'ttbkg_jet12_lepdR', 'ttbkg_jet23_lepdR', 'ttbkg_jet31_lepdR',
@@ -105,8 +106,9 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
 def input_variables(jetcat):
  
   #var_list = ['STTT', 'channel', 'MET', 'lepDPhi', 'lepWpt', 'lepWm']
-  var_list = []
-#  var_list.extend(['stfcnc_score'])
+  var_list = ['lepWpt', 'lepWdphi', 'lepWm',]
+  #'var_list' =' []
+  #var_list.extend(['stfcnc_score'])
 
   var_list.extend(['stfcnc_jet0pt', 'stfcnc_jet0eta', 'stfcnc_jet0m', 'stfcnc_jet0csv',
                   'stfcnc_jet1pt', 'stfcnc_jet1eta', 'stfcnc_jet1m', 'stfcnc_jet1csv',

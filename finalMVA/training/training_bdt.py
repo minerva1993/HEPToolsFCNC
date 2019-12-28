@@ -48,15 +48,15 @@ idx['j4b3'] = 3
 idx['j4b4'] = 4
 
 if era == "2017":
-  nsig_Hct = ['51300', '20443', '54000', '33200', '2900'] #bit too large. (#of file per TT ntuple issue?)
-  nsig_Hut = ['51800', '17400', '55800', '30700', '1460'] #bit too large. (#of file per ST ntuple issue?)
-  nbkg = ['408300', '16000', '400000', '56900', '2900'] #Max 0.4M
+  nsig_Hct = ['51698', '20553', '54520', '33482', '2930'] #bit too large. (#of file per TT ntuple issue?)
+  nsig_Hut = ['51854', '17410', '55746', '30680', '1462'] #bit too large. (#of file per ST ntuple issue?)
+  nbkg = ['408366', '16034', '617468', '56877', '2894']
   ntree = ['400', '100', '400', '200', '20']
   ncut = ['20', '20', '20', '20', '10']
 elif era == "2018":
   nsig_Hct = ['47200', '19700', '47600', '31200', '2900']
   nsig_Hut = ['40600', '13200', '46000', '26000', '1300']
-  nbkg = ['379200', '17400', '400000', '63100', '3200'] #Max 0.4M
+  nbkg = ['379200', '17400', '400000', '63100', '3200']
   ntree = ['400', '100', '400', '200', '20']
   ncut = ['20', '20', '20', '20', '10']
 
@@ -80,7 +80,7 @@ if not os.path.exists( os.path.join(configDir, weightDir+ver, 'weights') ):
 if not os.path.exists( os.path.join(configDir, scoreDir+ver) ):
   os.makedirs( os.path.join(configDir, scoreDir+ver) )
 for item in os.listdir( os.path.join(configDir, weightDir+ver, 'weights') ) or os.listdir( os.path.join(configDir, scoreDir+ver) ):
-  if item.endswith(".C") or item.endswith(".root") or item.endswith("log"):
+  if item.endswith(".C") or item.endswith(".root") or item.startswith("log"):
     #os.remove(os.path.join(os.path.join(configDir, weightDir+ver), item))
     print("Remove previous files or move on to next version!")
     sys.exit()

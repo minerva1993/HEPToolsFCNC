@@ -83,7 +83,6 @@ source job_train_bdt.sh #If you want to train with all features, change flag in 
 source job_eval_bdt.sh
 cd scores
 python nfiles 01 #print out the number of files with specified version
-source job_eval_bdt.sh
 
 #Histogram
 cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_0101010101 2017
