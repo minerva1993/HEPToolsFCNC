@@ -247,7 +247,7 @@
   type: mc
   pretty-name: 'DYJets'
   cross-section: 6225.42
-  generated-events: 100114403
+  generated-events: 130939668
   group: GZJets
   yields-group: '3Other'
   order: 23

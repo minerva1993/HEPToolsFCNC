@@ -16,7 +16,7 @@ if era == '2017':
   version = 'V9_6/200101/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple/' + version
 elif era == '2018':
-  version = 'V10_2/190702/'
+  version = 'V10_3/200101/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple/' + version
 
 run_file_name = 'runNoReco_' + era + '.py'

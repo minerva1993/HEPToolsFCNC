@@ -87,7 +87,7 @@ python nfiles 01 #print out the number of files with specified version
 #Histogram
 cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_0101010101 2017
 cd histos
-source job_merge.sh
+source job_merge_2017.sh
 python do_post_process.py
 mkdir Hct_0101010101
 mkdir prefit

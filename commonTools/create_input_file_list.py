@@ -17,7 +17,7 @@ if era == '2017':
   path_to_prod = '/data/users/minerva1993/ntuple/' + version + 'production/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple/' + version
 elif era == '2018':
-  version = 'V10_2/190702/'
+  version = 'V10_3/200101/'
   path_to_prod = '/data/users/minerva1993/ntuple/' + version + 'production/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple/' + version
 
