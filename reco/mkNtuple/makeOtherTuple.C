@@ -308,11 +308,11 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
   //Selection Option
   float transverseM = transverseMass(lepton, p4met);
   float lepDphi = lepton.DeltaPhi(p4met);
-  bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
-  bool makeIso = true;
-  bool isIso = *lepton_isIso;
-  if( makeIso && !isIso ) return kTRUE;
-  if( !makeIso && isIso ) return kTRUE;
+  //bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
+  //bool makeIso = true;
+  //bool isIso = *lepton_isIso;
+  //if( makeIso && !isIso ) return kTRUE;
+  //if( !makeIso && isIso ) return kTRUE;
 
   if( (chBit == 2 or chBit == 3 ) and (njets <  4 or nbjets_m < 2) ) return kTRUE;
   else if( chBit == 1 and (njets <  3 or nbjets_m < 2) ) return kTRUE;

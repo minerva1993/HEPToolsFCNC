@@ -500,12 +500,12 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   //Selection Option
   float transverseM = transverseMass(lepton, p4met);
   float lepDphi = lepton.DeltaPhi(p4met);
-  bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
-  bool makeIso = true;
-  bool isIso = *lepton_isIso;
-  if( makeIso && !isIso ) return kTRUE;
-  if( !makeIso && isIso ) return kTRUE;
-  if( doQCDEst && !isQCD ) return kTRUE;
+  //bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
+  //bool makeIso = true;
+  //bool isIso = *lepton_isIso;
+  //if( makeIso && !isIso ) return kTRUE;
+  //if( !makeIso && isIso ) return kTRUE;
+  //if( doQCDEst && !isQCD ) return kTRUE;
 
   //if( doQCDEst && (njets >= 3 || njets == 0) ) return kTRUE;
   //if( doQCDEst && nbjets_m >= 2 ) return kTRUE;

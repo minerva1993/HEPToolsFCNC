@@ -379,11 +379,11 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   //Selection Option
   float transverseM = transverseMass(lepton, p4met);
   float lepDphi = lepton.DeltaPhi(p4met);
-  bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
-  bool makeIso = true;
-  bool isIso = *lepton_isIso;
-  if( makeIso && !isIso ) return kTRUE;
-  if( !makeIso && isIso ) return kTRUE;
+  //bool isQCD = transverseM < 10 && met < 10 && lepDphi < 1;
+  //bool makeIso = true;
+  //bool isIso = *lepton_isIso;
+  //if( makeIso && !isIso ) return kTRUE;
+  //if( !makeIso && isIso ) return kTRUE;
 
   //Event selection is done here!
   if( njets < 3 ) return kTRUE;
