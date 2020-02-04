@@ -54,6 +54,16 @@ num_evt = []
 #going to the first line of log file, check NEvents and ranking
 #if do_recompute: log_file = open('./log_' + ch + '_' + jetcat + '_' + ver, 'r')
 #else: log_file = open('Var_logs/' + era + '/log_' + ch + '_' + jetcat + '_' + ver, 'r')
+if do_recompute:
+  try:
+    log_file = open('./log_' + ch + '_' + jetcat + '_' + ver, 'r')
+  except: print "Wrong log file name for re-computation"
+else:
+  try:
+    log_file = open('Var_logs/' + era + '/log_' + ch + '_' + jetcat + '_' + ver, 'r')
+  except:
+    log_file = open('Var_logs/' + era + '/log_' + ch + '_' + jetcat, 'r')
+
 loglines = log_file.readlines()
 
 for line in loglines:
@@ -66,7 +76,7 @@ for line in loglines:
   if keep_line and line.count(':') == 3: rank_list.append(line.split(':')[2].strip())
 
 #Check number of events for training
-#print num_evt
+print num_evt
 print 'Signal * 0.8 =', str(int(round(int(num_evt[0]) * 0.8))) #Signal first in TMVA
 print 'Background * 0.8 =', str(int(round(int(num_evt[1]) * 0.8)))
 

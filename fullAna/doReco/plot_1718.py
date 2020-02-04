@@ -31,6 +31,7 @@ for scenario in reco_scenario:
       if '#' in line[0]: line = line[1:]
       if skip_signal and 'hist' in line: skip_signal = False
       if 'TH1L3B' in line: skip_signal = True
+      if 'hist_QCD' in line: skip_signal = True
       if 'hist' in line:
         line = line[0] + '2017/' + scenario + ver17 + '/post_process/' + line[1:]
         if not any(i in line for i in ['TH1L3B', 'Run201']):
@@ -44,6 +45,7 @@ for scenario in reco_scenario:
       if '#' in line[0]: line = line[1:]
       if skip_signal and 'hist' in line: skip_signal = False
       if 'TH1L3B' in line: skip_signal = True
+      if 'hist_QCD' in line: skip_signal = True
       if 'hist' in line:
         line = line[0] + '2018/' + scenario + ver18 + '/post_process/' + line[1:]
         if not any(i in line for i in ['TH1L3B', 'Run201']):

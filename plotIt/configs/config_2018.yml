@@ -129,6 +129,9 @@ plots:
 #  include: ['histos_nobSF.yml']
 #  include: ['histos_ttfcnc.yml']
 #  include: ['histos_ttbkg.yml']
+#  include: ['histos_stfcnc_qcd.yml']
+#  include: ['histos_ttfcnc_qcd.yml']
+#  include: ['histos_ttbkg_qcd.yml']
   include: ['histos_dnn.yml']
 #  include: ['histos_unc.yml']
 

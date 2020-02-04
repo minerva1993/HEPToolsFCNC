@@ -333,3 +333,182 @@
   yields-group: '3Other'
   order: 22
 
+#'hist_QCDMu15to20.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 3819570.0
+#  generated-events: 4576061
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 29
+#
+#'hist_QCDMu20to30.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 2960198.4
+#  generated-events: 30612338
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 30
+#
+#'hist_QCDMu30to50.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 1652471.5
+#  generated-events: 29884616
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 31
+#
+#'hist_QCDMu50to80.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 437504.1
+#  generated-events: 20268872
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 32
+#
+#'hist_QCDMu80to120.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 106033.7
+#  generated-events: 25039361
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 33
+#
+#'hist_QCDMu120to170.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 25190.5
+#  generated-events: 20682254
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 34
+#
+#'hist_QCDMu170to300.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 8654.5
+#  generated-events: 35978539
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 35
+#
+#'hist_QCDMu300to470.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 797.4
+#  generated-events: 28996145
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 36
+#
+#'hist_QCDMu470to600.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 79.0
+#  generated-events: 20003034
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 37
+#
+#'hist_QCDMu600to800.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 25.1
+#  generated-events: 16618977
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 38
+#
+#'hist_QCDMu800to1000.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 4.7
+#  generated-events: 16749914
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 39
+#
+#'hist_QCDMu1000toInf.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 1.6
+#  generated-events: 10719790
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 40
+#
+#'hist_QCDEM15to20.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 2302200.0
+#  generated-events: 14578212
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 41
+#
+#'hist_QCDEM20to30.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 5352960.0
+#  generated-events: 14255377
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 42
+#
+#'hist_QCDEM30to50.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 9928000.0
+#  generated-events: 15086084
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 43
+#
+#'hist_QCDEM50to80.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 2890800.0
+#  generated-events: 10798233
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 44
+#
+#'hist_QCDEM80to120.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 350000.0
+#  generated-events: 9648791
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 45
+#
+#'hist_QCDEM120to170.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 62964.0
+#  generated-events: 9964143
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 46
+#
+#'hist_QCDEM170to300.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 18810.0
+#  generated-events: 3712174
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 47
+#
+#'hist_QCDEM300toInf.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 1350.0
+#  generated-events: 2901355
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 48

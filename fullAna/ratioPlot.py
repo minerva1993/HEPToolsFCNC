@@ -172,6 +172,7 @@ if era == "2017":
   AddBkg("hist_QCDEM50to80.root","QCD",ROOT.kGray, 2890800)
   AddBkg("hist_QCDEM80to120.root","QCD",ROOT.kGray, 350000)
   AddBkg("hist_QCDEM120to170.root","QCD",ROOT.kGray, 62964)
+  AddBkg("hist_QCDEM170to300.root","QCD",ROOT.kGray, 18810)
   AddBkg("hist_QCDEM300toInf.root","QCD",ROOT.kGray, 1350)
   AddBkg("hist_QCDMu15to20.root","QCD",ROOT.kGray, 3819570)
   AddBkg("hist_QCDMu20to30.root","QCD",ROOT.kGray, 2960198.4)
@@ -217,7 +218,7 @@ elif era == "2018":
   AddBkg("hist_W2JetsToLNu.root","WJets",ROOT.kYellow, 2793)
   AddBkg("hist_W3JetsToLNu.root","WJets",ROOT.kYellow, 992.5)
   AddBkg("hist_W4JetsToLNu.root","WJets",ROOT.kYellow, 544.3)
-#  AddBkg("hist_WJetsToLNu.root","WJets",ROOT.kYellow, 61526)
+  #AddBkg("hist_WJetsToLNu.root","WJets",ROOT.kYellow, 61526)
   AddBkg("hist_DYJets.root","ZJets",ROOT.kBlue, 6225.42)
   AddBkg("hist_DYJets10to50.root","ZJets",ROOT.kBlue, 18610.0)
   AddBkg("hist_SingleTops.root","Single t",6, 3.36)
@@ -246,6 +247,7 @@ elif era == "2018":
   AddBkg("hist_QCDMu300to470.root","QCD",ROOT.kGray, 797.4)
   AddBkg("hist_QCDMu470to600.root","QCD",ROOT.kGray, 79)
   AddBkg("hist_QCDMu600to800.root","QCD",ROOT.kGray, 25.1)
+  AddBkg("hist_QCDMu800to1000.root","QCD",ROOT.kGray, 4.7)
   AddBkg("hist_QCDMu1000toInf.root","QCD",ROOT.kGray, 1.6)
   AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 0.93)
   AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 0.93)
@@ -260,6 +262,7 @@ else:
   sys.exit()
 
 noRecoList = [ x for x in datasamples[datasamples.keys()[0]]["hname"] if "FCNH" not in x ]
+#noRecoList = [ x for x in datasamples[datasamples.keys()[0]]["hname"]]
 noRecoList = [ x for x in noRecoList if "gen" not in x ]
 noRecoList = [ x for x in noRecoList if "match" not in x ]
 noRecoList = [ x for x in noRecoList if "bSFInfo" not in x ]
@@ -294,6 +297,7 @@ for i in range(0, N_hist):
   elif "Ch1" in datasamples[datasamples.keys()[0]]["hname"][i]: mode = 1
   elif "Ch2" in datasamples[datasamples.keys()[0]]["hname"][i]: mode = 2
   if any(reco in datasamples[datasamples.keys()[0]]["hname"][i] for reco in ["FCNH","gen","match"] ): continue
+  #if any(reco in datasamples[datasamples.keys()[0]]["hname"][i] for reco in ["gen","match"] ): continue
   if "bSFInfo" in datasamples[datasamples.keys()[0]]["hname"][i]: continue
 
   string_fname = ''

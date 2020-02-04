@@ -61,6 +61,13 @@ mv post_process pre_process temp STFCNC01
 mv STFCNC01 2017
 cd 2017/STFCNC01/post_process
 ../../../../../plotIt/plotIt -o ../figures/ ../../../../../plotIt/configs/config_2017.yml -y
+
+#QCD
+cd ..
+mkdir figures/qcd
+cd post_process
+../../../../../plotIt/plotIt -o ../figures/qcd/ ../../../../../plotIt/configs/config_2017.yml -y
+
 #17+18 plot
 cd ../../../
 python stack_signal.py 01 01
@@ -68,7 +75,7 @@ python plot_1718.py 01 01
 ```
   *Final MVA
 ```{.Bash}
-cd /HEPToolsFCNC/finalMVA/mkNtuple
+cd ~/HEPToolsFCNC/finalMVA/mkNtuple
 python dir_manage.py
 cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py 2017
 #cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python run.py 2017 > log &
@@ -82,7 +89,8 @@ source job_select_common_features.sh #print out common features between 17 and 1
 source job_train_bdt.sh #If you want to train with all features, change flag in the code
 source job_eval_bdt.sh
 cd scores
-python nfiles 01 #print out the number of files with specified version
+python nfiles.py 2017 01 #print out the number of files with specified version
+find 201*/*/log* | xargs grep "BDT            :" # to get AUROC
 
 #Histogram
 cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_0101010101 2017

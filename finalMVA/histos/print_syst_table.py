@@ -9,7 +9,7 @@ era = sys.argv[1]
 ver = sys.argv[2]
 
 config_path = '../../plotIt/configs/'
-dest_path = './' + era + '/Hct_' + ver + '/'
+dest_path = './' + era + '/Hut_' + ver + '/'
 tmp_file_name = 'temp_' + era + '_' + ver + '.yml'
 string_to_add = 'systematics:\n'
 plot_to_add = "plots:\n  include: ['histos_unc.yml']\n\n"

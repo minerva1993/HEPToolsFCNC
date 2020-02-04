@@ -34,6 +34,10 @@ GVV:
   fill-color: '#00cccc'
   legend: 'VV'
 
+GQCD:
+  fill-color: '#d0cfd4'
+  legend: 'QCD'
+
 GSTHct:
   line-color: '#006666'
   legend: 'STHct'
