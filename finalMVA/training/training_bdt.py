@@ -48,15 +48,15 @@ idx['j4b3'] = 3
 idx['j4b4'] = 4
 
 if era == "2017":
-  nsig_Hct = ['51698', '20553', '54520', '33482', '2930'] #bit too large. (#of file per TT ntuple issue?)
-  nsig_Hut = ['51854', '17410', '55746', '30680', '1462'] #bit too large. (#of file per ST ntuple issue?)
-  nbkg = ['408366', '16034', '617468', '56877', '2894']
+  nsig_Hct = ['52078', '20707', '54919', '33732', '2949'] #bit too large. (#of file per TT ntuple issue?)
+  nsig_Hut = ['52221', '17549', '56145', '30905', '1475'] #bit too large. (#of file per ST ntuple issue?)
+  nbkg = ['411412', '16154', '622156', '57348', '2921']
   ntree = ['400', '100', '400', '200', '50']
   ncut = ['20', '20', '20', '20', '10']
 elif era == "2018":
-  nsig_Hct = ['49507', '20862', '49254', '31996', '2986']
-  nsig_Hut = ['45054', '15186', '50280', '28530', '1421']
-  nbkg = ['441374', '19465', '655535', '65670', '3231']
+  nsig_Hct = ['49866', '21017', '49608', '32232', '3006']
+  nsig_Hut = ['45379', '15302', '50638', '28746', '1433']
+  nbkg = ['444537', '19610', '660410', '66157', '3260']
   ntree = ['400', '100', '400', '200', '20']
   ncut = ['20', '20', '20', '20', '10']
 
@@ -79,10 +79,15 @@ if not os.path.exists( os.path.join(configDir, weightDir+ver, 'weights') ):
   os.makedirs( os.path.join(configDir, weightDir+ver, 'weights') )
 if not os.path.exists( os.path.join(configDir, scoreDir+ver) ):
   os.makedirs( os.path.join(configDir, scoreDir+ver) )
-for item in os.listdir( os.path.join(configDir, weightDir+ver, 'weights') ) or os.listdir( os.path.join(configDir, scoreDir+ver) ):
+for item in os.listdir( os.path.join(configDir, weightDir+ver, 'weights') ):
   if item.endswith(".C") or item.endswith(".root") or item.startswith("log"):
     #os.remove(os.path.join(os.path.join(configDir, weightDir+ver), item))
-    print("Remove previous files or move on to next version!")
+    print("Remove previous training files!")
+    sys.exit()
+for item in os.listdir( os.path.join(configDir, scoreDir+ver) ):
+  if item.endswith(".C") or item.endswith(".root") or item.startswith("log"):
+    #os.remove(os.path.join(os.path.join(configDir, weightDir+ver), item))
+    print("Remove previous score files!")
     sys.exit()
 if not os.path.exists( os.path.join(configDir, weightDir+ver, 'training_bdt.py') ):
   shutil.copy2('training_bdt.py', os.path.join(configDir, weightDir+ver, 'training_bdt.py'))
