@@ -12,7 +12,12 @@ def write_envelope(syst, nhists, new_sumW):
     var_list = []
     for x in range(0,nhists):
       h = f.Get(histos + "__" + syst + str(x))
-      h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(x+1))
+      if any(x in syst for x in ['scale', 'ps']):
+        pass
+      elif 'pdf' in syst:
+        if x == 0: continue
+        h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(1))
+      else: h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(x+1))
       var_list.append(h)
 
     nominal = f.Get(histos)
@@ -68,6 +73,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
     if syst_name in files:
       h = f.Get(histos)
       h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
+      #h.Smooth(10)#This mode is for external samples
       f_new.cd()
       h.Write()
 
