@@ -95,9 +95,15 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
             if h_nom.GetBinContent(xbin+1) == 0: h.SetBinContent(xbin+1, 0.)
             else:
               ratio = h.GetBinContent(xbin+1) / h_nom.GetBinContent(xbin+1)
+              ratio_opp = 1.
+              if h_opp.GetBinContent(xbin+1) > 0: ratio_opp = h.GetBinContent(xbin+1) / h_opp.GetBinContent(xbin+1)
               diff = abs(h_nom.GetBinContent(xbin+1)-h.GetBinContent(xbin+1)) + abs(h_nom.GetBinContent(xbin+1)-h_opp.GetBinContent(xbin+1))
-              if ratio > 1.: h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) + diff/2.)
-              else: h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) - diff/2.)
+              if ratio_opp > 1.:
+                h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) + diff/2.)
+                if ratio > 1.2: h.SetBinContent(xbin+1, 1.2 * h_nom.GetBinContent(xbin+1))
+              else:
+                h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) - diff/2.)
+                if ratio < 0.8: h.SetBinContent(xbin+1, 0.8 * h_nom.GetBinContent(xbin+1))
 
 #          for xbin in xrange(h.GetNbinsX()):
 #            if h_nom.GetBinContent(xbin+1) == 0: h.SetBinContent(xbin+1, 0.)
