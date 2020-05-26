@@ -29,7 +29,7 @@ def write_envelope(syst, nhists, new_sumW):
     down.SetDirectory(ROOT.nullptr)
     down.Reset()
 
-    for i in range(0, n_bins+1):
+    for i in range(0, n_bins+2):
       minimum = float("inf")
       maximum = float("-inf")
 
@@ -91,6 +91,17 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
           h_opp = bSFNorm(h_opp, bSFInfo_opp)
           h_opp.Scale(nom_EventInfo.GetBinContent(2) / opp_EventInfo.GetBinContent(2))
 
+          #Smoothing1
+          #h.Smooth(5)
+          #h_opp.Smooth(5)
+          #Smoothing2
+          #h.Add(h, h_nom, -1.0)
+          #h_opp.Add(h_opp, h_nom, -1.0)
+          #h.Smooth(5)
+          #h_opp.Smooth(5)
+          #h.Add(h, h_nom, 1.0)
+          #h_opp.Add(h_opp, h_nom, 1.0)
+
           for xbin in xrange(h.GetNbinsX()):
             if h_nom.GetBinContent(xbin+1) == 0: h.SetBinContent(xbin+1, 0.)
             else:
@@ -105,6 +116,13 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
                 h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) - diff/2.)
                 if ratio < 0.8: h.SetBinContent(xbin+1, 0.8 * h_nom.GetBinContent(xbin+1))
 
+          #Smoothing1
+          #h.Smooth(5)
+          #Smoothing2
+          #h.Add(h, h_nom, -1.0)
+          #h.Smooth(5)
+          #h.Add(h, h_nom, 1.0)
+
 #          for xbin in xrange(h.GetNbinsX()):
 #            if h_nom.GetBinContent(xbin+1) == 0: h.SetBinContent(xbin+1, 0.)
 #            else:
@@ -117,6 +135,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
 
 
 def fill_bSFInfo(f_in):
+
   bSFInfo_tmp = {}
   bSFInfo_tmp['Ch0_J0'] = f_in.Get("bSFInfo_Ch0_J0")
   bSFInfo_tmp['Ch0_J1'] = f_in.Get("bSFInfo_Ch0_J1")
@@ -134,6 +153,7 @@ def fill_bSFInfo(f_in):
 
 
 def bSFNorm(htmp, infos):
+
   if any(infos):
     hname = htmp.GetName()
     keystr = ''

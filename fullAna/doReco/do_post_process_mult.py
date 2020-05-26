@@ -29,7 +29,7 @@ def postProcess(files):
       down.SetDirectory(ROOT.nullptr)
       down.Reset()
 
-      for i in range(0, n_bins+1):
+      for i in range(0, n_bins+2):
         minimum = float("inf")
         maximum = float("-inf")
 
