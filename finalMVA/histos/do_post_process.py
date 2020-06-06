@@ -21,13 +21,14 @@ def write_envelope(syst, nhists, new_sumW):
       var_list.append(h)
 
     nominal = f.Get(histos)
+    nominal.SetDirectory(ROOT.nullptr)
     n_bins = nominal.GetNcells()
     up = nominal.Clone()
     up.SetDirectory(ROOT.nullptr)
     up.Reset()
-    down = nominal.Clone()
-    down.SetDirectory(ROOT.nullptr)
-    down.Reset()
+    dn = nominal.Clone()
+    dn.SetDirectory(ROOT.nullptr)
+    dn.Reset()
 
     for i in range(0, n_bins+2):
       minimum = float("inf")
@@ -39,14 +40,37 @@ def write_envelope(syst, nhists, new_sumW):
         maximum = max(maximum, c)
 
       up.SetBinContent(i, maximum)
-      down.SetBinContent(i, minimum)
+      dn.SetBinContent(i, minimum)
 
     up = bSFNorm(up, bSFInfo)
-    down = bSFNorm(down, bSFInfo)
+    dn = bSFNorm(dn, bSFInfo)
     up.SetName(histos + "__" + syst + "up")
-    down.SetName(histos + "__" + syst + "down")
+    dn.SetName(histos + "__" + syst + "down")
+
+    if syst == 'pdf' and 'j4b4' in up.GetName():
+      nominal = bSFNorm(nominal, bSFInfo)
+
+      for xbin in xrange(up.GetNbinsX()):
+        if nominal.GetBinContent(xbin+1) == 0:
+          up.SetBinContent(xbin+1, 0.)
+          dn.SetBinContent(xbin+1, 0.)
+        else:
+          ratio_up = up.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
+          ratio_dn = dn.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
+
+          #By construction, up shape is always above the down shape
+          diff = abs(nominal.GetBinContent(xbin+1)-up.GetBinContent(xbin+1)) + abs(nominal.GetBinContent(xbin+1)-dn.GetBinContent(xbin+1))
+          up.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) + diff/2.)
+          dn.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) - diff/2.)
+          if dn.GetBinContent(xbin+1) < 0: dn.SetBinContent(xbin+1, 0)
+#          if ratio_up > 1.2:
+#            up.SetBinContent(xbin+1, 1.2 * nominal.GetBinContent(xbin+1))
+#          if ratio_dn < 0.8:
+#            dn.SetBinContent(xbin+1, 0.8 * nominal.GetBinContent(xbin+1))
+      #print str(up.Integral() / nominal.Integral()) + " " + str(dn.Integral() / nominal.Integral())
+
     up.Write()
-    down.Write()
+    dn.Write()
 
 
 def rescale(binNum, new_sumW): # rescale up/dn histos
@@ -63,11 +87,11 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
           up = f.Get(histos + "__" + syst_name + "up")
           up.Scale(EventInfo.GetBinContent(2) / sumW_hist.GetBinContent(x))
         elif x == binNum[1]:
-          down = f.Get(histos + "__" + syst_name + "down")
-          down.Scale(EventInfo.GetBinContent(2) / sumW_hist.GetBinContent(x))
+          dn = f.Get(histos + "__" + syst_name + "down")
+          dn.Scale(EventInfo.GetBinContent(2) / sumW_hist.GetBinContent(x))
 
       up.Write()
-      down.Write()
+      dn.Write()
 
   elif mode == 1:
     if syst_name in files:
@@ -76,6 +100,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
 
         if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']):
+        #if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']) or ('jer' in f.GetName() and 'j3b2' in h.GetName()): #2017
           bSFInfo_nom = fill_bSFInfo(nom_f)
           h_nom = nom_f.Get(histos)
           h_nom = bSFNorm(h_nom, bSFInfo_nom)
@@ -94,6 +119,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
           #Smoothing1
           #h.Smooth(5)
           #h_opp.Smooth(5)
+
           #Smoothing2
           #h.Add(h, h_nom, -1.0)
           #h_opp.Add(h_opp, h_nom, -1.0)
@@ -102,26 +128,88 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
           #h.Add(h, h_nom, 1.0)
           #h_opp.Add(h_opp, h_nom, 1.0)
 
+          #Smoothing3
+          #from array import array
+          #h_arr = array('d',[])
+          #h_nom_arr = array('d',[])
+          #h_opp_arr = array('d',[])
+          #for xbin in xrange(h.GetNbinsX()):
+          #  h_arr.append(h.GetBinContent(xbin+1))
+          #  h_nom_arr.append(h_nom.GetBinContent(xbin+1))
+          #  h_opp_arr.append(h_opp.GetBinContent(xbin+1))
+          #s1 = TSpectrum()
+          #s2 = TSpectrum()
+          #s3 = TSpectrum()
+          #s1.SmoothMarkov(h_arr, h.GetNbinsX(), 1)
+          #s2.SmoothMarkov(h_nom_arr, h.GetNbinsX(), 1)
+          #s3.SmoothMarkov(h_opp_arr, h.GetNbinsX(), 1)
+          #h_smooth = h.Clone()
+          #h_smooth.SetDirectory(ROOT.nullptr)
+          #h_smooth.Reset()
+          #h_nom_smooth = h_nom.Clone()
+          #h_nom_smooth.SetDirectory(ROOT.nullptr)
+          #h_nom_smooth.Reset()
+          #h_opp_smooth = h_opp.Clone()
+          #h_opp_smooth.SetDirectory(ROOT.nullptr)
+          #h_opp_smooth.Reset()
+          #for xbin in xrange(h.GetNbinsX()):
+          #  h_smooth.SetBinContent(xbin+1, h_arr[xbin]);
+          #  h_nom_smooth.SetBinContent(xbin+1, h_nom_arr[xbin]);
+          #  h_opp_smooth.SetBinContent(xbin+1, h_opp_arr[xbin]);
+          #h = h_smooth
+          #h_nom = h_nom_smooth
+          #h_opp = h_opp_smooth
+
           for xbin in xrange(h.GetNbinsX()):
             if h_nom.GetBinContent(xbin+1) == 0: h.SetBinContent(xbin+1, 0.)
             else:
               ratio = h.GetBinContent(xbin+1) / h_nom.GetBinContent(xbin+1)
               ratio_opp = 1.
               if h_opp.GetBinContent(xbin+1) > 0: ratio_opp = h.GetBinContent(xbin+1) / h_opp.GetBinContent(xbin+1)
-              diff = abs(h_nom.GetBinContent(xbin+1)-h.GetBinContent(xbin+1)) + abs(h_nom.GetBinContent(xbin+1)-h_opp.GetBinContent(xbin+1))
+
+              #if xbin > 36:#for last 4 bins
+              #  if ratio_opp > 1.:
+              #    h.SetBinContent(xbin+1, h.GetBinContent(xbin+1) + h.GetBinError(xbin+1))
+              #  else:
+              #    h.SetBinContent(xbin+1, h.GetBinContent(xbin+1) - h.GetBinError(xbin+1))
+
+              diff_pdf = abs(h_nom.GetBinContent(xbin+1)-h.GetBinContent(xbin+1)) + abs(h_nom.GetBinContent(xbin+1)-h_opp.GetBinContent(xbin+1))
               if ratio_opp > 1.:
-                h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) + diff/2.)
+                h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) + diff_pdf/2.)
                 if ratio > 1.2: h.SetBinContent(xbin+1, 1.2 * h_nom.GetBinContent(xbin+1))
               else:
-                h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) - diff/2.)
+                h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) - diff_pdf/2.)
                 if ratio < 0.8: h.SetBinContent(xbin+1, 0.8 * h_nom.GetBinContent(xbin+1))
+
+            #if xbin >= 36:#for last 4 bins
+            #  ratio_opp = 1.
+            #  if h_opp.GetBinContent(xbin+1) > 0: ratio_opp = h.GetBinContent(xbin+1) / h_opp.GetBinContent(xbin+1)
+            #  if ratio_opp > 1.:
+            #    h.SetBinContent(xbin+1, h.GetBinContent(xbin+1) + h.GetBinError(xbin+1))
+            #  else:
+            #    h.SetBinContent(xbin+1, h.GetBinContent(xbin+1) - h.GetBinError(xbin+1))
 
           #Smoothing1
           #h.Smooth(5)
+
           #Smoothing2
           #h.Add(h, h_nom, -1.0)
           #h.Smooth(5)
           #h.Add(h, h_nom, 1.0)
+
+          #Smoothing3
+          #from array import array
+          #h_arr = array('d',[])
+          #for xbin in xrange(h.GetNbinsX()):
+          #  h_arr.append(h.GetBinContent(xbin+1))
+          #s1 = TSpectrum()
+          #s1.SmoothMarkov(h_arr, h.GetNbinsX(), 1)
+          #h_smooth = h.Clone()
+          #h_smooth.SetDirectory(ROOT.nullptr)
+          #h_smooth.Reset()
+          #for xbin in xrange(h.GetNbinsX()):
+          #  h_smooth.SetBinContent(xbin+1, h_arr[xbin]);
+          #h = h_smooth
 
 #          for xbin in xrange(h.GetNbinsX()):
 #            if h_nom.GetBinContent(xbin+1) == 0: h.SetBinContent(xbin+1, 0.)
@@ -240,6 +328,38 @@ for files in file_list:
     if not any(i in h.GetName() for i in ['Info', 'Weight']):
       h = bSFNorm(h, bSFInfo)
     else: pass
+
+    #FIXME for test
+    if ('cferr1' in h.GetName() and 'j4b4' in h.GetName()):
+      if 'down' in h.GetName():
+        h_opp = f.Get(h.GetName().replace('down','up'))
+      elif 'up' in h.GetName():
+        h_opp = f.Get(h.GetName().replace('up','down'))
+
+      h_nom = f.Get(h.GetName().split('__')[0])
+      h_nom = bSFNorm(h_nom, bSFInfo)
+      h_opp = bSFNorm(h_opp, bSFInfo)
+
+      for xbin in xrange(h.GetNbinsX()):
+        if h_nom.GetBinContent(xbin+1) == 0: h.SetBinContent(xbin+1, 0.)
+        else:
+          ratio = h.GetBinContent(xbin+1) / h_nom.GetBinContent(xbin+1)
+          ratio_opp = 1.
+          if h_opp.GetBinContent(xbin+1) > 0: ratio_opp = h.GetBinContent(xbin+1) / h_opp.GetBinContent(xbin+1)
+
+          #if xbin > 36:#for last 4 bins
+          #  if ratio_opp > 1.:
+          #    h.SetBinContent(xbin+1, h.GetBinContent(xbin+1) + h.GetBinError(xbin+1))
+          #  else:
+          #    h.SetBinContent(xbin+1, h.GetBinContent(xbin+1) - h.GetBinError(xbin+1))
+
+          diff = abs(h_nom.GetBinContent(xbin+1)-h.GetBinContent(xbin+1)) + abs(h_nom.GetBinContent(xbin+1)-h_opp.GetBinContent(xbin+1))
+          if ratio_opp > 1.:
+            h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) + diff/2.)
+            if ratio > 1.2: h.SetBinContent(xbin+1, 1.2 * h_nom.GetBinContent(xbin+1))
+          else:
+            h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) - diff/2.)
+            if ratio < 0.8: h.SetBinContent(xbin+1, 0.8 * h_nom.GetBinContent(xbin+1))
     h.Write()
 
   #Store envelope, rescale histos
