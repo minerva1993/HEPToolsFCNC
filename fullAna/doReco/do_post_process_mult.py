@@ -98,7 +98,8 @@ def postProcess(files):
           h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
 
 #          if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']):
-          if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']) or ('jer' in f.GetName() and 'j3b2' in h.GetName()): #2017
+          if ( any(low_stat in syst_name for low_stat in ['Tune', 'hdamp'])
+            or ('jer' in f.GetName() and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
             bSFInfo_nom = fill_bSFInfo(nom_f)
             h_nom = nom_f.Get(histos)
             h_nom = bSFNorm(h_nom, bSFInfo_nom)
@@ -213,6 +214,19 @@ def postProcess(files):
     if not any(i in h.GetName() for i in ['Info', 'Weight']):
       h = bSFNorm(h, bSFInfo)
     else: pass
+
+    #Special treatements
+    if 'cferr1' in h.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
+      if 'down' in h.GetName():
+        h_opp = f.Get(h.GetName().replace('down','up'))
+      elif 'up' in h.GetName():
+        h_opp = f.Get(h.GetName().replace('up','down'))
+
+      h_nom = f.Get(h.GetName().split('__')[0])
+      h_nom = bSFNorm(h_nom, bSFInfo)
+      h_opp = bSFNorm(h_opp, bSFInfo)
+      h = symmetrize(h, h_opp, h_nom)
+
     h.Write()
 
   #Store envelope, rescale histos
