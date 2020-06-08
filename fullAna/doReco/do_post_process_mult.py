@@ -3,8 +3,27 @@ import ROOT
 import os
 import multiprocessing
 
-#base_path = "/home/minerva1993/HEPToolsFCNC/analysis_2017/fullAna/doReco/"
 def postProcess(files):
+
+  def symmetrize(var, var_opp, nom):
+
+    for xbin in xrange(var.GetNbinsX()):
+      if nom.GetBinContent(xbin+1) == 0: var.SetBinContent(xbin+1, 0.)
+      else:
+        ratio = var.GetBinContent(xbin+1) / nom.GetBinContent(xbin+1)
+        ratio_opp = 1.
+        if var_opp.GetBinContent(xbin+1) > 0: ratio_opp = var.GetBinContent(xbin+1) / var_opp.GetBinContent(xbin+1)
+
+        diff = abs(nom.GetBinContent(xbin+1)-var.GetBinContent(xbin+1)) + abs(nom.GetBinContent(xbin+1)-var_opp.GetBinContent(xbin+1))
+        if ratio_opp > 1.:
+          var.SetBinContent(xbin+1, nom.GetBinContent(xbin+1) + diff/2.)
+          if ratio > 1.2: var.SetBinContent(xbin+1, 1.2 * nom.GetBinContent(xbin+1))
+        else:
+          var.SetBinContent(xbin+1, nom.GetBinContent(xbin+1) - diff/2.)
+          if ratio < 0.8: var.SetBinContent(xbin+1, 0.8 * nom.GetBinContent(xbin+1))
+
+    return var
+
 
   def write_envelope(syst, nhists, new_sumW):
 
@@ -21,6 +40,7 @@ def postProcess(files):
         var_list.append(h)
 
       nominal = f.Get(histos)
+      nominal.SetDirectory(ROOT.nullptr)
       n_bins = nominal.GetNcells()
       up = nominal.Clone()
       up.SetDirectory(ROOT.nullptr)
@@ -45,6 +65,8 @@ def postProcess(files):
       down = bSFNorm(down, bSFInfo)
       up.SetName(histos + "__" + syst + "up")
       down.SetName(histos + "__" + syst + "down")
+      #We don't draw pdf in full ana due to computing resources
+
       up.Write()
       down.Write()
 
@@ -75,7 +97,8 @@ def postProcess(files):
         if not any(i in h.GetName() for i in ['Info', 'Weight']):
           h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
 
-          if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']):
+#          if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']):
+          if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']) or ('jer' in f.GetName() and 'j3b2' in h.GetName()): #2017
             bSFInfo_nom = fill_bSFInfo(nom_f)
             h_nom = nom_f.Get(histos)
             h_nom = bSFNorm(h_nom, bSFInfo_nom)
@@ -90,27 +113,7 @@ def postProcess(files):
             h_opp = f_opp.Get(histos)
             h_opp = bSFNorm(h_opp, bSFInfo_opp)
             h_opp.Scale(nom_EventInfo.GetBinContent(2) / opp_EventInfo.GetBinContent(2))
-
-            for xbin in xrange(h.GetNbinsX()):
-              if h_nom.GetBinContent(xbin+1) == 0: h.SetBinContent(xbin+1, 0.)
-              else:
-                ratio = h.GetBinContent(xbin+1) / h_nom.GetBinContent(xbin+1)
-                ratio_opp = 1.
-                if h_opp.GetBinContent(xbin+1) > 0: ratio_opp = h.GetBinContent(xbin+1) / h_opp.GetBinContent(xbin+1)
-                diff = abs(h_nom.GetBinContent(xbin+1)-h.GetBinContent(xbin+1)) + abs(h_nom.GetBinContent(xbin+1)-h_opp.GetBinContent(xbin+1))
-                if ratio_opp > 1.:
-                  h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) + diff/2.)
-                  if ratio > 1.2: h.SetBinContent(xbin+1, 1.2 * h_nom.GetBinContent(xbin+1))
-                else:
-                  h.SetBinContent(xbin+1, h_nom.GetBinContent(xbin+1) - diff/2.)
-                  if ratio < 0.8: h.SetBinContent(xbin+1, 0.8 * h_nom.GetBinContent(xbin+1))
-
-#            for xbin in xrange(h.GetNbinsX()):
-#              if h_nom.GetBinContent(xbin+1) == 0: h.SetBinContent(xbin+1, 0.)
-#              else:
-#                ratio = h.GetBinContent(xbin+1) / h_nom.GetBinContent(xbin+1)
-#                if ratio > 1.2: h.SetBinContent(xbin+1, 1.2 * h_nom.GetBinContent(xbin+1))
-#                elif ratio < 0.8: h.SetBinContent(xbin+1, 0.8 * h_nom.GetBinContent(xbin+1))
+            h = symmetrize(h, h_opp, h_nom)
 
         f_new.cd()
         h.Write()

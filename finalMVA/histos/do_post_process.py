@@ -67,7 +67,8 @@ def write_envelope(syst, nhists, new_sumW):
     up.SetName(histos + "__" + syst + "up")
     dn.SetName(histos + "__" + syst + "down")
 
-#    if syst == 'pdf' and 'j4b4' in up.GetName():
+    #We don't draw pdf in full ana due to computing resources
+#    if syst == 'pdf' and 'j4b4' in up.GetName(): #For 2018
 #      nominal = bSFNorm(nominal, bSFInfo)
 #
 #      for xbin in xrange(up.GetNbinsX()):
@@ -83,10 +84,10 @@ def write_envelope(syst, nhists, new_sumW):
 #          up.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) + diff/2.)
 #          dn.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) - diff/2.)
 #          if dn.GetBinContent(xbin+1) < 0: dn.SetBinContent(xbin+1, 0)
-##          if ratio_up > 1.2:
-##            up.SetBinContent(xbin+1, 1.2 * nominal.GetBinContent(xbin+1))
-##          if ratio_dn < 0.8:
-##            dn.SetBinContent(xbin+1, 0.8 * nominal.GetBinContent(xbin+1))
+#          if ratio_up > 1.2:
+#            up.SetBinContent(xbin+1, 1.2 * nominal.GetBinContent(xbin+1))
+#          if ratio_dn < 0.8:
+#            dn.SetBinContent(xbin+1, 0.8 * nominal.GetBinContent(xbin+1))
 
     up.Write()
     dn.Write()
@@ -118,7 +119,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
       if not any(i in h.GetName() for i in ['Info', 'Weight']):
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
 
-        #if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']): #2018
+#        if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']): #2018
         if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']) or ('jer' in f.GetName() and 'j3b2' in h.GetName()): #2017
           bSFInfo_nom = fill_bSFInfo(nom_f)
           h_nom = nom_f.Get(histos)
@@ -321,7 +322,7 @@ for files in file_list:
       h = bSFNorm(h, bSFInfo)
     else: pass
 
-    #FIXME for test
+    #Special treatements
     if ('cferr1' in h.GetName() and 'j4b4' in h.GetName()):
       if 'down' in h.GetName():
         h_opp = f.Get(h.GetName().replace('down','up'))
