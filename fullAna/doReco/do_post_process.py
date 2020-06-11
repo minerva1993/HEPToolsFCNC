@@ -9,7 +9,7 @@ if not os.path.exists( base_path + "post_process" ):
 def symmetrize(var, var_opp, nom):
 
   for xbin in xrange(var.GetNbinsX()):
-    if nom.GetBinContent(xbin+1) == 0: var.SetBinContent(xbin+1, 0.)
+    if nom.GetBinContent(xbin+1) == 0: ratio = 1.
     else:
       ratio = var.GetBinContent(xbin+1) / nom.GetBinContent(xbin+1)
       ratio_opp = 1.
@@ -98,9 +98,10 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
       if not any(i in h.GetName() for i in ['Info', 'Weight']):
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
 
-#        if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']): #2018
+        #if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']): #2018
         if ( any(low_stat in syst_name for low_stat in ['Tune', 'hdamp'])
-          or ('jer' in f.GetName() and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
+          #or ('jer' in f.GetName() and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
+          or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
           bSFInfo_nom = fill_bSFInfo(nom_f)
           h_nom = nom_f.Get(histos)
           h_nom = bSFNorm(h_nom, bSFInfo_nom)
@@ -229,7 +230,8 @@ for files in file_list:
     else: pass
 
     #Special treatements
-    if 'cferr1' in h.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
+    #if 'cferr1' in h.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
+    if 'cferr1' in h.GetName() and 'ttcc' in f.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
       if 'down' in h.GetName():
         h_opp = f.Get(h.GetName().replace('down','up'))
       elif 'up' in h.GetName():
