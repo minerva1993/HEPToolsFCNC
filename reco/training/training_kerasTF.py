@@ -388,8 +388,8 @@ Y_test = np_utils.to_categorical(labels_test)
 #Standardization
 ################
 scaler = StandardScaler()
-data_train_sc = scaler.fit_transform(data_train)
-data_test_sc = scaler.fit_transform(data_test)
+data_train_sc = scaler.fit_transform(data_train.astype(float))
+data_test_sc = scaler.fit_transform(data_test.astype(float))
 X_train = data_train_sc
 X_test = data_test_sc
 

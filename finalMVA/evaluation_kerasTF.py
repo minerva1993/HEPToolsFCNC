@@ -102,8 +102,8 @@ for syst_ext in syst:
     eval_df.astype('float32')
 
     eval_scaler = StandardScaler()
-    eval_scaler.fit(eval_df)
-    eval_df_sc = eval_scaler.transform(eval_df)
+    eval_scaler.fit(eval_df.astype(float))
+    eval_df_sc = eval_scaler.transform(eval_df.astype(float))
     X = eval_df_sc
     y = model_best.predict(X, batch_size=4000)
     y.dtype = [('MLScore', np.float32)]
