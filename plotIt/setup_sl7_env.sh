@@ -1,8 +1,10 @@
 #/usr/bin/bash
-source /cvmfs/cms.cern.ch/slc7_amd64_gcc700/cms/cmssw/CMSSW_10_6_9/external/slc7_amd64_gcc700/bin/thisroot.sh
-source /cvmfs/cms.cern.ch/slc7_amd64_gcc700/external/gcc/7.0.0/etc/profile.d/init.sh 
-source /cvmfs/cms.cern.ch/slc7_amd64_gcc700/external/boost/1.67.0/etc/profile.d/init.sh 
+export BOOST_ROOT=/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/boost/1.72.0
+export ROOTSYS=/cvmfs/cms.cern.ch/slc7_amd64_gcc820/cms/cmssw/CMSSW_11_2_0_pre1/external/slc7_amd64_gcc820/
 
-export PATH=$PATH:$HOME/bin
+source /cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/gcc/8.2.0/etc/profile.d/init.sh
+source $ROOTSYS/bin/thisroot.sh
+source $BOOST_ROOT/etc/profile.d/init.sh
+
 export PATH=$ROOTSYS/bin:$PATH
 export LD_Library_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
