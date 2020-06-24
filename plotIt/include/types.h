@@ -132,6 +132,8 @@ namespace plotIt {
     std::string pretty_name;
     size_t id = 0;
 
+    std::string era = "";
+
     // For MC and Signal
     float cross_section = 1.;
     float branching_ratio = 1.;
@@ -404,7 +406,8 @@ namespace plotIt {
     float margin_right = 0.03;
     float margin_top = 0.06;
     float margin_bottom = 0.1;
-    float luminosity = -1;
+    std::vector<std::string> eras = {};
+    std::map<std::string,float> luminosity = { { "", -1. } };
     float scale = 1;
     bool no_lumi_rescaling = false;
 
@@ -413,6 +416,7 @@ namespace plotIt {
 
     std::string y_axis_format = "%1% / %2$.2f";
     std::string ratio_y_axis_title = "Data / MC";
+    std::string ratio_style = "P0";
 
     int16_t error_fill_color = 42;
     int16_t error_fill_style = 3154;

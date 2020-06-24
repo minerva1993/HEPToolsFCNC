@@ -2,28 +2,29 @@
 
 # YAML
 
-curl -O -L https://github.com/jbeder/yaml-cpp/archive/release-0.5.3.tar.gz
-tar xf release-0.5.3.tar.gz
+curl -O -L https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.6.2.tar.gz
+tar xf yaml-cpp-0.6.2.tar.gz
 
-patch -p0 < yaml-cpp-cmake-fix.patch
-
-cd yaml-cpp-release-0.5.3
+cd yaml-cpp-yaml-cpp-0.6.2
 mkdir build
 cd build
 
-cmake -DBoost_NO_BOOST_CMAKE=TRUE -DYAML_CPP_BUILD_TOOLS=OFF -DYAML_CPP_BUILD_CONTRIB=OFF -DCMAKE_INSTALL_PREFIX:PATH=../../ ..
+CC=$(which gcc) CXX=$(which g++) cmake -DYAML_CPP_BUILD_TOOLS=OFF -DYAML_CPP_BUILD_CONTRIB=OFF -DCMAKE_INSTALL_PREFIX:PATH=$(pwd)/../../ ..
 
 make -j4
 make install
 
 cd ../..
-rm release-0.5.3.tar.gz
+rm yaml-cpp-0.6.2.tar.gz
 
 # TCLAP
-curl -L "http://downloads.sourceforge.net/project/tclap/{tclap-1.2.1.tar.gz}?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Ftclap%2Ffiles%2F&ts=1431017326&use_mirror=freefr" -o "#1"
+curl -L "https://github.com/mirror/tclap/archive/tclap-1-2-1-release-final.tar.gz" -o "tclap-1.2.1.tar.gz"
 tar xf tclap-1.2.1.tar.gz
+mv tclap-tclap-1-2-1-release-final tclap-1.2.1
 
 cd tclap-1.2.1
+
+./autotools.sh
 ./configure --prefix=$PWD/../
 
 make -j4

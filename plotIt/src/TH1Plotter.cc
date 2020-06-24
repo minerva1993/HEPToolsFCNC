@@ -14,7 +14,6 @@
 #include <commandlinecfg.h>
 #include <pool.h>
 #include <utilities.h>
-#include <vector>
 
 namespace plotIt {
 
@@ -67,7 +66,7 @@ namespace plotIt {
   TH1Plotter::Stacks TH1Plotter::buildStacks(bool sortByYields) {
       std::set<int64_t> indices;
 
-      for (const File& file: m_plotIt.getFiles()) {
+      for (auto& file: m_plotIt.getFiles()) {
           if (file.type == MC)
               indices.emplace(file.stack_index);
       }
@@ -93,26 +92,14 @@ namespace plotIt {
       // histogram.
       // Key is group name, value is group histogram
       std::vector<std::pair<std::string, std::shared_ptr<TH1>>> group_histograms;
-      for (File& file: m_plotIt.getFiles()) {
-          if (file.type != MC)
-              continue;
-
-          if (file.stack_index != index)
-              continue;
-
-          if (file.legend_group.empty())
-              continue;
-
+      for ( auto& file: m_plotIt.getFiles([this,index] ( const File& f ) {
+            return ( f.type == MC ) && ( f.stack_index == index )
+                && ( ! f.legend_group.empty() ) && ( dynamic_cast<TH1*>(f.object)->GetEntries() != 0 );
+            } ) ) {
+          TH1* nominal = dynamic_cast<TH1*>(file.object);
           auto it = std::find_if(group_histograms.begin(), group_histograms.end(), [&file](const std::pair<std::string, std::shared_ptr<TH1>>& item) {
                   return item.first == file.legend_group;
                   });
-
-          TH1* nominal = dynamic_cast<TH1*>(file.object);
-
-          // Do not bother with histograms with no entries
-          if (nominal->GetEntries() == 0) {
-              continue;
-          }
 
           if (it == group_histograms.end()) {
               std::string name = "group_histo_" + file.legend_group + "_" + stack_name;
@@ -126,19 +113,12 @@ namespace plotIt {
 
       std::vector<std::tuple<TH1*, std::string>> histograms_in_stack;
 
-      for (File& file: m_plotIt.getFiles()) {
-          if (file.type != MC)
-              continue;
-
-          if (file.stack_index != index)
-              continue;
+      for ( auto& file: m_plotIt.getFiles([this,index] ( const File& f ) {
+            return ( f.type == MC ) && ( f.stack_index == index )
+                && ( ! ( ( dynamic_cast<TH1*>(f.object)->GetEntries() == 0 ) && (f.legend_group.empty()) ) );
+            } ) ) {
 
           TH1* nominal = dynamic_cast<TH1*>(file.object);
-
-          // Do not bother with histograms with no entries
-          if (file.legend_group.empty() && nominal->GetEntries() == 0)
-              continue;
-
           if (!stack) {
               stack = std::make_shared<THStack>(stack_name.c_str(), stack_name.c_str());
               TemporaryPool::get().add(stack);
@@ -206,12 +186,10 @@ namespace plotIt {
       // Key is systematics name, value is the combined systematics value for each bin
       std::map<std::string, std::vector<float>> combined_systematics_map;
 
-      for (File& file: m_plotIt.getFiles()) {
-          if (file.type == DATA || file.systematics->size() == 0)
-              continue;
-
-          if (file.type == MC && file.stack_index != index)
-              continue;
+      for ( auto& file: m_plotIt.getFiles([this,index] ( const File& f ) {
+            return ( f.type != DATA ) && ( ! f.systematics->empty() )
+                && ( ( f.type != MC ) || ( f.stack_index == index ) ) ;
+            } ) ) {
 
           for (auto& syst: *file.systematics) {
 
@@ -291,7 +269,7 @@ namespace plotIt {
     Summary global_summary;
 
     // Rescale and style histograms
-    for (File& file: m_plotIt.getFiles()) {
+    for (auto& file : m_plotIt.getFiles()) {
       setHistogramStyle(file);
 
       TH1* h = dynamic_cast<TH1*>(file.object);
@@ -302,7 +280,7 @@ namespace plotIt {
         float factor = file.cross_section * file.branching_ratio / file.generated_events;
 
         if (! m_plotIt.getConfiguration().no_lumi_rescaling) {
-          factor *= m_plotIt.getConfiguration().luminosity;
+          factor *= m_plotIt.getConfiguration().luminosity.at(file.era);
         }
 
         if (! CommandLineCfg::get().ignore_scales) {
@@ -374,7 +352,7 @@ namespace plotIt {
 
     std::vector<File> signal_files;
 
-    for (File& file: m_plotIt.getFiles()) {
+    for (auto& file: m_plotIt.getFiles()) {
       if (file.type == SIGNAL) {
         signal_files.push_back(file);
       } else if (file.type == DATA) {
@@ -402,7 +380,7 @@ namespace plotIt {
 
     if (plot.normalized) {
         // Normalize each plot
-        for (File& file: m_plotIt.getFiles()) {
+        for (auto& file: m_plotIt.getFiles()) {
             if (file.type == SIGNAL) {
                 TH1* h = dynamic_cast<TH1*>(file.object);
                 h->Scale(1. / fabs(h->GetSumOfWeights()));
@@ -799,7 +777,7 @@ namespace plotIt {
       auto& mc_stack = mc_stacks.begin()->second;
 
       std::shared_ptr<TGraphAsymmErrors> ratio = getRatio(h_data.get(), mc_stack.stat_only.get());
-      ratio->Draw("P0 same");
+      ratio->Draw((m_plotIt.getConfiguration().ratio_style + "same").c_str());
 
       // Compute systematic errors
       std::shared_ptr<TH1> h_systematics(static_cast<TH1*>(h_low_pad_axis->Clone()));
@@ -891,7 +869,7 @@ namespace plotIt {
       }
 
       h_low_pad_axis->Draw("same");
-      ratio->Draw("P0 same");
+      ratio->Draw((m_plotIt.getConfiguration().ratio_style + "same").c_str());
 
       // Hide top pad label
       hideXTitle(toDraw[0].first);

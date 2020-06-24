@@ -185,6 +185,9 @@ namespace plotIt {
         file.pretty_name = path.stem().native();
       }
 
+      if (node["era"])
+        file.era = node["era"].as<std::string>();
+
       if (node["type"]) {
         std::string type = node["type"].as<std::string>();
         file.type = string_to_type(type);
@@ -326,9 +329,35 @@ namespace plotIt {
       if (node["scale"])
         m_config.scale = node["scale"].as<float>();
 
-      if (node["luminosity"])
-        m_config.luminosity = node["luminosity"].as<float>();
-      else {
+      if (node["eras"]) {
+        auto availEras = node["eras"].as<std::vector<std::string>>();
+        if ( CommandLineCfg::get().era.empty() ) {
+          m_config.eras = availEras;
+        } else {
+          const auto reqEra = CommandLineCfg::get().era;
+          if ( std::end(availEras) == std::find(std::begin(availEras), std::end(availEras), reqEra) ) {
+            throw std::runtime_error("Requested era "+reqEra+" not found in configuration file");
+          }
+          m_config.eras = { CommandLineCfg::get().era };
+        }
+      }
+
+      if (node["luminosity"]) {
+        const auto& lumiNd = node["luminosity"];
+        if ( lumiNd.IsScalar() ) {
+          m_config.luminosity[""] = lumiNd.as<float>();
+        } else if ( lumiNd.IsMap() ) {
+          float totLumi = 0;
+          for ( const auto& era : m_config.eras ) {
+            const auto eraLumi = lumiNd[era].as<float>();
+            m_config.luminosity[era] = eraLumi;
+            totLumi += eraLumi;
+          }
+          m_config.luminosity[""] = totLumi;
+        } else {
+          throw YAML::ParserException(YAML::Mark::null_mark(), "luminosity should be a single value or a map (one value per era)");
+        }
+      } else {
         throw YAML::ParserException(YAML::Mark::null_mark(), "'configuration' block is missing luminosity");
       }
 
@@ -416,6 +445,9 @@ namespace plotIt {
       if (node["ratio-y-axis"])
         m_config.ratio_y_axis_title = node["ratio-y-axis"].as<std::string>();
 
+      if (node["ratio-style"])
+        m_config.ratio_style = node["ratio-style"].as<std::string>();
+
       if (node["mode"])
           m_config.mode = node["mode"].as<std::string>();
 
@@ -475,7 +507,9 @@ namespace plotIt {
             parseFileNode(file, *it);
 
         file.id = process_id++;
-        m_files.push_back(file);
+        if ( filter_eras(file) ) {
+          m_files.push_back(file);
+        }
     }
 
     if (! expandFiles())
@@ -508,11 +542,25 @@ namespace plotIt {
       group.plot_style->loadFromYAML(node, file->type);
 
       m_legend_groups[group.name] = group;
+
+      if ( node["order"] ) {
+        const auto groupOrder = node["order"].as<int16_t>();
+        for ( auto& file : m_files ) {
+          if ( ( file.legend_group == group.name ) && ( file.order == std::numeric_limits<int16_t>::min() ) ) {
+            file.order = groupOrder;
+          }
+        }
+      }
     }
+
+    std::sort(m_files.begin(), m_files.end(), [](const File& a, const File& b) {
+      return a.order < b.order;
+     });
 
     // Remove non-existant groups from files and update yields group
     for (auto& file: m_files) {
       if (!file.legend_group.empty() && !m_legend_groups.count(file.legend_group)) {
+        std::cout << "Warning: group " << file.legend_group << " (used for file " << file.pretty_name << ") not found, ignoring" << std::endl;
         file.legend_group = "";
       }
 
@@ -825,7 +873,7 @@ namespace plotIt {
 
     boost::format formatter = get_formatter(m_config.lumi_label);
 
-    float lumi = m_config.luminosity / 1000.;
+    float lumi = m_config.luminosity[""] / 1000.;
     formatter % lumi;
 
     m_config.lumi_label = formatter.str();
@@ -979,6 +1027,11 @@ namespace plotIt {
         c.SetFrameFillStyle(4000);
     }
 
+    if ( m_files.empty() ) {
+      std::cout << "No files selected" << std::endl;
+      return false;
+    }
+
     boost::optional<Summary> summary = ::plotIt::plot(m_files[0], c, plot);
 
     if (! summary)
@@ -1118,7 +1171,7 @@ namespace plotIt {
     return true;
   }
 
-  bool plotIt::yields(std::vector<Plot>& plots){
+  bool plotIt::yields(std::vector<Plot>::iterator plots_begin, std::vector<Plot>::iterator plots_end){
     std::cout << "Producing LaTeX yield table.\n";
 
     std::map<std::string, double> data_yields;
@@ -1145,7 +1198,8 @@ namespace plotIt {
 
     bool has_data(false);
 
-    for(Plot& plot: plots){
+    for ( auto it = plots_begin; it != plots_end; ++it ) {
+      auto& plot = *it;
       if (!plot.use_for_yields)
         continue;
 
@@ -1159,7 +1213,7 @@ namespace plotIt {
       std::map<std::tuple<Type, std::string>, double> plot_total_systematics;
 
       // Open all files, and find histogram in each
-      for (File& file: m_files) {
+      for (auto& file: m_files) {
         if (! loadObject(file, plot)) {
           std::cout << "Could not retrieve plot from " << file.path << std::endl;
           return false;
@@ -1191,7 +1245,7 @@ namespace plotIt {
         double factor = file.cross_section * file.branching_ratio / file.generated_events;
 
         if (! m_config.no_lumi_rescaling) {
-          factor *= m_config.luminosity;
+          factor *= m_config.luminosity.at(file.era);
         }
         if (!CommandLineCfg::get().ignore_scales)
           factor *= m_config.scale * file.scale;
@@ -1341,42 +1395,57 @@ namespace plotIt {
       }
     }
 
-    if (CommandLineCfg::get().verbose)
-        std::cout << "Loading all plots..." << std::endl;
-
-    for (File& file: m_files) {
-      if (! loadAllObjects(file, plots))
-          return;
-
-      file.handle.reset();
-      file.friend_handles.clear();
-    }
-
-    if (CommandLineCfg::get().verbose)
-        std::cout << "done." << std::endl;
-
     if (!m_config.book_keeping_file_name.empty()) {
       fs::path outputName = m_outputPath / m_config.book_keeping_file_name;
       m_config.book_keeping_file.reset(TFile::Open(outputName.native().c_str(), "recreate"));
     }
 
-    if (CommandLineCfg::get().do_plots) {
-      for (Plot& plot: plots) {
-        plotIt::plot(plot);
+    constexpr std::size_t plots_per_chunk = 100;
+
+    auto plots_begin = plots.begin();
+    auto plots_end = plots.begin();
+    while ( plots_end != plots.end() ) {
+      plots_begin = plots_end;
+      if ( std::distance(plots_begin, plots.end()) > plots_per_chunk ) {
+        plots_end = plots_begin+plots_per_chunk;
+      } else {
+        plots_end = plots.end();
       }
+
+      if (CommandLineCfg::get().verbose)
+          std::cout << "Loading plots " << std::distance(plots.begin(), plots_begin) << "-" << std::distance(plots.begin(), plots_end) << " of " << plots.size() << "..." << std::endl;
+
+      for (File& file: m_files) {
+        if (! loadAllObjects(file, plots_begin, plots_end))
+            return;
+      }
+
+      if (CommandLineCfg::get().verbose)
+          std::cout << "done." << std::endl;
+
+      if (CommandLineCfg::get().do_plots) {
+        for ( auto it = plots_begin; it != plots_end; ++it ) {
+          plotIt::plot(*it);
+        }
+      }
+
+      if (CommandLineCfg::get().do_yields) {
+        plotIt::yields(plots_begin, plots_end);
+      }
+    }
+
+    for (File& file: m_files) {
+      file.handle.reset();
+      file.friend_handles.clear();
     }
 
     if (m_config.book_keeping_file) {
       m_config.book_keeping_file->Close();
       m_config.book_keeping_file.reset();
     }
-
-    if (CommandLineCfg::get().do_yields) {
-      plotIt::yields(plots);
-    }
   }
 
-  bool plotIt::loadAllObjects(File& file, const std::vector<Plot>& plots) {
+  bool plotIt::loadAllObjects(File& file, std::vector<Plot>::const_iterator plots_begin, std::vector<Plot>::const_iterator plots_end) {
 
     file.object = nullptr;
     file.objects.clear();
@@ -1388,7 +1457,8 @@ namespace plotIt {
           file.chain->Add(file.path.c_str());
         }
 
-        for (const auto& plot: plots) {
+        for ( auto it = plots_begin; it != plots_end; ++it ) {
+          const auto& plot = *it;
 
           auto x_axis_range = plot.log_x ? plot.log_x_axis_range : plot.x_axis_range;
 
@@ -1407,13 +1477,15 @@ namespace plotIt {
         return true;
     }
 
-    file.handle.reset(TFile::Open(file.path.c_str()));
-    if (! file.handle.get())
+    if (! file.handle)
+      file.handle.reset(TFile::Open(file.path.c_str()));
+    if (! file.handle)
       return false;
 
     file.systematics_cache.clear();
 
-    for (const auto& plot: plots) {
+    for ( auto it = plots_begin; it != plots_end; ++it ) {
+      const auto& plot = *it;
 
       std::string plot_name = plot.name;
 
@@ -1632,6 +1704,8 @@ int main(int argc, char** argv) {
 
     TCLAP::ValueArg<std::string> outputFolderArg("o", "output-folder", "output folder", true, "", "string", cmd);
 
+    TCLAP::ValueArg<std::string> eraArg("e", "era", "era to restrict to", false, "", "string", cmd);
+
     TCLAP::SwitchArg ignoreScaleArg("", "ignore-scales", "Ignore any scales present in the configuration file", cmd, false);
 
     TCLAP::SwitchArg verboseArg("v", "verbose", "Verbose output (print summary)", cmd, false);
@@ -1668,6 +1742,7 @@ int main(int argc, char** argv) {
       return 1;
     }
 
+    CommandLineCfg::get().era = eraArg.getValue();
     CommandLineCfg::get().ignore_scales = ignoreScaleArg.getValue();
     CommandLineCfg::get().verbose = verboseArg.getValue();
     CommandLineCfg::get().do_plots = !plotsArg.getValue();
