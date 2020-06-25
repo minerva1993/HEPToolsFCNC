@@ -26,5 +26,6 @@ plotIt/external/lib/
 plotIt/external/share/
 plotIt/external/tclap-1.2.1/
 plotIt/external/yaml-cpp-release-0.5.3/
+plotIt/external/yaml-cpp-yaml-cpp-0.6.2
 plotIt/plotIt
 reco/training/201*/reco*
