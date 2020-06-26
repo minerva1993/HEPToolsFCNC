@@ -99,8 +99,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
 
         #if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']): #2018
-        if ( any(low_stat in syst_name for low_stat in ['Tune', 'hdamp'])
-          #or ('jer' in f.GetName() and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
+        if ( any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']) #2017
           or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
           bSFInfo_nom = fill_bSFInfo(nom_f)
           h_nom = nom_f.Get(histos)

@@ -45,9 +45,9 @@ def postProcess(files):
       up = nominal.Clone()
       up.SetDirectory(ROOT.nullptr)
       up.Reset()
-      down = nominal.Clone()
-      down.SetDirectory(ROOT.nullptr)
-      down.Reset()
+      dn = nominal.Clone()
+      dn.SetDirectory(ROOT.nullptr)
+      dn.Reset()
 
       for i in range(0, n_bins+2):
         minimum = float("inf")
@@ -59,16 +59,16 @@ def postProcess(files):
           maximum = max(maximum, c)
 
         up.SetBinContent(i, maximum)
-        down.SetBinContent(i, minimum)
+        dn.SetBinContent(i, minimum)
 
       up = bSFNorm(up, bSFInfo)
-      down = bSFNorm(down, bSFInfo)
+      dn = bSFNorm(dn, bSFInfo)
       up.SetName(histos + "__" + syst + "up")
-      down.SetName(histos + "__" + syst + "down")
+      dn.SetName(histos + "__" + syst + "down")
       #We don't draw pdf in full ana due to computing resources
 
       up.Write()
-      down.Write()
+      dn.Write()
 
 
   def rescale(binNum, new_sumW): # rescale up/dn histos
@@ -85,11 +85,11 @@ def postProcess(files):
             up = f.Get(histos + "__" + syst_name + "up")
             up.Scale(EventInfo.GetBinContent(2) / sumW_hist.GetBinContent(x))
           elif x == binNum[1]:
-            down = f.Get(histos + "__" + syst_name + "down")
-            down.Scale(EventInfo.GetBinContent(2) / sumW_hist.GetBinContent(x))
+            dn = f.Get(histos + "__" + syst_name + "down")
+            dn.Scale(EventInfo.GetBinContent(2) / sumW_hist.GetBinContent(x))
 
         up.Write()
-        down.Write()
+        dn.Write()
 
     elif mode == 1:
       if syst_name in files:
@@ -98,8 +98,7 @@ def postProcess(files):
           h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
 
           #if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']): #2018
-          if ( any(low_stat in syst_name for low_stat in ['Tune', 'hdamp'])
-            #or ('jer' in f.GetName() and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
+          if ( any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']) #2017
             or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
             bSFInfo_nom = fill_bSFInfo(nom_f)
             h_nom = nom_f.Get(histos)
@@ -258,7 +257,7 @@ if __name__ == '__main__':
   if not os.path.exists( base_path + "post_process" ):
     os.makedirs( base_path + "post_process" )
 
-  pool = multiprocessing.Pool(30)
+  pool = multiprocessing.Pool(40)
   pool.map(postProcess, file_list)
   pool.close()
   pool.join()
