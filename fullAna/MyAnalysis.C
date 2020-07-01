@@ -443,7 +443,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   else if( era == 2018 ){
     bWP_M = 0.4184;
     bWP_T = 0.7527;
-    //bWP_M = 0.2770;
+    //bWP_M = 0.2770; //deepJet
     //bWP_T = 0.7264;
     cvsbWP_M = 0.29;
     cvslWP_M = 0.137;
@@ -581,6 +581,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   eventSelection[6]  = ( njets >= 4 ) && ( nbjets_m == 2 ); 
   eventSelection[7]  = ( njets >= 4 ) && ( nbjets_m == 3 );
   eventSelection[8]  = ( njets >= 4 ) && ( nbjets_m == 4 );
+  //eventSelection[0]  = ( njets >= 4 ) && ( nbjets_m >= 2 );
+  //eventSelection[1]  = ( njets >= 6 ) && ( nbjets_m >= 2 );
+  //eventSelection[2]  = ( njets >= 6 ) && ( nbjets_m >= 4 );
 
   if( reco_id > 0 ) for( int i=0; i <5; i++) eventSelection[i] = false;
 
