@@ -1,4 +1,5 @@
 #define MyAnalysis_cxx
+#include <boost/algorithm/string/replace.hpp>
 
 #include "MyAnalysis.h"
 #include <TH2.h>
@@ -587,7 +588,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   if( reco_id > 0 ) for( int i=0; i <5; i++) eventSelection[i] = false;
 
-  int modeArray[2] = {mode, 2};
+  //int modeArray[2] = {mode, 2};
+  int modeArray[1] = {mode};
 
   for( int MODE : modeArray ){
     for( int cut = 0; cut < 9; cut++){
@@ -915,6 +917,19 @@ void MyAnalysis::Terminate()
   while( ( object = next()) ){
     const char * name = object->GetName();
     std::string str(name);
+
+    if(str.find("Ch2") != std::string::npos ){
+      std::string strMuon = boost::replace_all_copy(str, "Ch2", "Ch0");
+      std::string strElec = boost::replace_all_copy(str, "Ch2", "Ch1");
+      TList *tmp = new TList;
+      if( object->InheritsFrom(TH1D::Class()) ){
+        auto htmp = dynamic_cast<TH1D *>(object);
+        tmp->Add((TH1D *)fOutput->FindObject(strMuon.c_str()));
+        tmp->Add((TH1D *)fOutput->FindObject(strElec.c_str()));
+        htmp->Merge(tmp);
+      }
+    }
+
     if (str.find("h_") !=std::string::npos or str.find("Info") !=std::string::npos){
       object->Write();
     }
