@@ -1,4 +1,5 @@
 #define MyAnalysis_cxx
+#include <boost/algorithm/string/replace.hpp>
 
 #include "MyAnalysis.h"
 #include <TH2.h>
@@ -496,7 +497,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
 
   /////Fill histograms
-  int modeArray[2] = {mode, 2};
+  //int modeArray[2] = {mode, 2};
+  int modeArray[1] = {mode};
   int jetmode = 0; //for b SF normalization, 0 is useless in mva hist
   if     ( njets == 3 ) jetmode = 1;
   else if( njets >= 4 ) jetmode = 2;
@@ -764,6 +766,19 @@ void MyAnalysis::Terminate()
   while( ( object = next()) ){
     const char * name = object->GetName();
     std::string str(name);
+
+    if(str.find("Ch2") != std::string::npos ){
+      std::string strMuon = boost::replace_all_copy(str, "Ch2", "Ch0");
+      std::string strElec = boost::replace_all_copy(str, "Ch2", "Ch1");
+      TList *tmp = new TList;
+      if( object->InheritsFrom(TH1D::Class()) ){
+        auto htmp = dynamic_cast<TH1D *>(object);
+        tmp->Add((TH1D *)fOutput->FindObject(strMuon.c_str()));
+        tmp->Add((TH1D *)fOutput->FindObject(strElec.c_str()));
+        htmp->Merge(tmp);
+      }
+    }
+
     if (str.find("h_") !=std::string::npos or str.find("Info") !=std::string::npos){
       object->Write();
     }
