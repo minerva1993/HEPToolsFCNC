@@ -14,10 +14,14 @@ ch = ['STFCNC', 'STFCNCjecup', 'STFCNCjecdown', 'STFCNCjerup', 'STFCNCjerdown',
       'TTBKGhdampup', 'TTBKGhdampdown', 'TTBKGTuneCP5up', 'TTBKGTuneCP5down',]
 
 for chs in ch:
+  if not os.path.exists( base_path17 ):
+    os.makedirs( base_path17 )
   if not os.path.exists( base_path17 + "/root_" + chs ):
     os.makedirs( base_path17 + "/root_" + chs )
   if not os.path.exists( base_path17 + "/hdf_" + chs ):
     os.makedirs( base_path17 + "/hdf_" + chs )
+  if not os.path.exists( base_path18 ):
+    os.makedirs( base_path18 )
   if not os.path.exists( base_path18 + "/root_" + chs ):
     os.makedirs( base_path18 + "/root_" + chs )
   if not os.path.exists( base_path18 + "/hdf_" + chs ):
