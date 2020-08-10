@@ -10,10 +10,14 @@ ch = ['', 'jecup', 'jecdown', 'jerup', 'jerdown',
       'hdampup', 'hdampdown', 'TuneCP5up', 'TuneCP5down',]
 
 for chs in ch:
+  if not os.path.exists( base_path17 ):
+    os.makedirs( base_path17 )
   if not os.path.exists( base_path17 + "/root_" + chs ):
     os.makedirs( base_path17 + "/root_" + chs )
   if not os.path.exists( base_path17 + "/hdf_" + chs ):
     os.makedirs( base_path17 + "/hdf_" + chs )
+  if not os.path.exists( base_path18 ):
+    os.makedirs( base_path18 )
   if not os.path.exists( base_path18 + "/root_" + chs ):
     os.makedirs( base_path18 + "/root_" + chs )
   if not os.path.exists( base_path18 + "/hdf_" + chs ):

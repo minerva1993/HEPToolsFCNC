@@ -13,9 +13,8 @@
 #SBATCH --time 00:30:00
 #SBATCH --hint=compute_bound
 
-scenario=$1
-era=$2
-path=$3
-name=$4
+era=$1
+path=$2
+name=$3
 
-python runReco.py $scenario $era $path $name
+python run.py $era $path $name

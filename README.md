@@ -48,7 +48,8 @@ cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python combi_assi
 #Plot histograms with reconstruction
 cd ../fullAna/
 source compile.sh
-cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python runReco.py STFCNC01 2017
+#cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python runReco.py STFCNC01 2017
+cat ../commonTools/file_2017_all.txt | xargs -i -n2 sbatch job_slurm.sh STFCNC01 2017
 cd doReco
 #source job_merge_2017.sh
 source job_prep_2017.sh
@@ -77,9 +78,8 @@ python plot_1718.py 01 01
 ```{.Bash}
 cd ~/HEPToolsFCNC/finalMVA/mkNtuple
 python dir_manage.py
-cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py 2017
-#cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 nohup python run.py 2017 > log &
-# Currently, due to location of reco assign files, ntuples should be generated in t630 and then move to htop
+#cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py 2017
+cat ../../commonTools/file_2017_all.txt | xargs -i -n2 sbatch job_slurm.sh
 
 #Select features if needed, and train
 cd ../training
@@ -93,7 +93,8 @@ python nfiles.py 2017 01 #print out the number of files with specified version
 find 201*/*/log* | xargs grep "BDT            :" # to get AUROC
 
 #Histogram
-cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_0101010101 2017
+#cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py Hct_0101010101 2017
+cat ../commonTools/file_2017_all.txt | xargs -i -n2 sbatch job_slurm.sh Hct_0101010101 2017
 cd histos
 source job_merge_2017.sh
 python do_post_process.py

@@ -18,4 +18,4 @@ era=$2
 path=$3
 name=$4
 
-python runReco.py $scenario $era $path $name
+python run.py $scenario $era $path $name

@@ -20,11 +20,13 @@ syst = ["","jecup","jecdown","jerup","jerdown"]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
 for syst_ext in syst + syst2:
-  if not os.path.exists( era + "/root_" + syst_ext ):
-    print "No folder"
+  #if not os.path.exists( era + "/root_" + syst_ext ):
+  if not os.path.exists('/data1/users/minerva1993/work/fcnc_RunII' + era + '/finalMVA/current_ver/root_' + syst_ext):
+    print "No folder, run 'python dir_manage.py'"
     sys.exit()
-  if not os.path.exists( era + "/hdf_" + syst_ext ):
-    print "No folder"
+  #if not os.path.exists( era + "/hdf_" + syst_ext ):
+  if not os.path.exists('/data1/users/minerva1993/work/fcnc_RunII' + era + '/finalMVA/current_ver/hdf_' + syst_ext):
+    print "No folder, run 'python dir_manage.py'"
     sys.exit()
 
 def runAna(input_filename, output_filename):
@@ -42,14 +44,22 @@ def runAna(input_filename, output_filename):
       chain.Add(input_filename)
       chain.Process("makeTuple.C+", era + ver + syst_ext + '_' + output_filename)
 
-      if os.path.isfile(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root"):
-        f = TFile.Open(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root")
+      #if os.path.isfile(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root"):
+      #  f = TFile.Open(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root")
+      #  t = f.Get("tree")
+      #  if t.GetEntries() != 0:
+      #    a = tree2array(t)
+      #    df = pd.DataFrame(a)
+      #    df.to_hdf(era + "/hdf_" + syst_ext + "/finalMVA_" + output_filename + ".h5", key='df', mode='w', complib='bzip2', complevel=9)
+      #  else: os.remove(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root")
+
+      if os.path.isfile('/data1/users/minerva1993/work/fcnc_RunII' + era + '/finalMVA/current_ver/root_' + syst_ext + "/finalMVA_" + output_filename + ".root"):
+        f = TFile.Open('/data1/users/minerva1993/work/fcnc_RunII' + era + '/finalMVA/current_ver/root_' + syst_ext + "/finalMVA_" + output_filename + ".root")
         t = f.Get("tree")
         if t.GetEntries() != 0:
           a = tree2array(t)
           df = pd.DataFrame(a)
-          #io.save(era + "/hdf_" + syst_ext + "/finalMVA_" + output_filename + ".h5", df)
-          df.to_hdf(era + "/hdf_" + syst_ext + "/finalMVA_" + output_filename + ".h5", key='df', mode='w', complib='bzip2', complevel=9)
-        else: os.remove(era + "/root_" + syst_ext + "/finalMVA_" + output_filename + ".root")
+          df.to_hdf( '/data1/users/minerva1993/work/fcnc_RunII' + era + '/finalMVA/current_ver/hdf_' + syst_ext + "/finalMVA_" + output_filename + ".h5", key='df', mode='w', complib='bzip2', complevel=9)
+        else: os.remove('/data1/users/minerva1993/work/fcnc_RunII' + era + '/finalMVA/current_ver/root_' + syst_ext + "/finalMVA_" + output_filename + ".root")
 
 runAna(input_filename, output_filename)

@@ -1032,7 +1032,8 @@ void makeTuple::Terminate()
   string sample = option.Data();  
   sample.erase(0,sample.find_first_of("_")+1);
 
-  TFile *hfile = TFile::Open(Form("%s/root_%s/finalMVA_%s.root",era.c_str(),syst_str.c_str(),sample.c_str()), "RECREATE");
+  //TFile *hfile = TFile::Open(Form("%s/root_%s/finalMVA_%s.root",era.c_str(),syst_str.c_str(),sample.c_str()), "RECREATE");
+  TFile *hfile = TFile::Open(Form("/data1/users/minerva1993/work/fcnc_RunII%s/finalMVA/current_ver/root_%s/finalMVA_%s.root",era.c_str(),syst_str.c_str(),sample.c_str()), "RECREATE");
 
   fOutput->FindObject("tree")->Write();
 

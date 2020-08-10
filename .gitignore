@@ -8,6 +8,8 @@
 *.class.C
 *.pdf
 *.o
+*.err
+*.out
 commonTools/file*
 commonTools/merge*
 commonTools/arrange*
