@@ -6,6 +6,8 @@ base_path = "./"
 if not os.path.exists( base_path + "post_process" ):
   os.makedirs( base_path + "post_process" )
 
+nrebin = 1
+
 def symmetrize(var, var_opp, nom):
 
   for xbin in xrange(var.GetNbinsX()):
@@ -64,6 +66,8 @@ def write_envelope(syst, nhists, new_sumW):
 
     up = bSFNorm(up, bSFInfo)
     dn = bSFNorm(dn, bSFInfo)
+    up.Rebin(nrebin)
+    dn.Rebin(nrebin)
     up.SetName(histos + "__" + syst + "up")
     dn.SetName(histos + "__" + syst + "down")
 
@@ -118,6 +122,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
       h = f.Get(histos)
       if not any(i in h.GetName() for i in ['Info', 'Weight']):
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
+        h.Rebin(nrebin)
 
         #if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']): #2018
         if ( any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']) #2017
@@ -125,6 +130,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
           bSFInfo_nom = fill_bSFInfo(nom_f)
           h_nom = nom_f.Get(histos)
           h_nom = bSFNorm(h_nom, bSFInfo_nom)
+          h_nom.Rebin(nrebin)
 
           if 'down' in files:
             f_opp = TFile.Open( os.path.join(pre_path, files.replace('down','up')), "READ")
@@ -135,6 +141,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
           bSFInfo_opp = fill_bSFInfo(f_opp)
           h_opp = f_opp.Get(histos)
           h_opp = bSFNorm(h_opp, bSFInfo_opp)
+          h_opp.Rebin(nrebin)
           h_opp.Scale(nom_EventInfo.GetBinContent(2) / opp_EventInfo.GetBinContent(2))
           h = symmetrize(h, h_opp, h_nom)
 
@@ -319,8 +326,10 @@ for files in file_list:
     if "ps" in histos: continue
     if "pdf" in histos: continue
     h = f.Get(histos)
+    h.SetDirectory(ROOT.nullptr)
     if not any(i in h.GetName() for i in ['Info', 'Weight']):
       h = bSFNorm(h, bSFInfo)
+      h.Rebin(nrebin)
     else: pass
 
     #Special treatements
@@ -330,10 +339,14 @@ for files in file_list:
         h_opp = f.Get(h.GetName().replace('down','up'))
       elif 'up' in h.GetName():
         h_opp = f.Get(h.GetName().replace('up','down'))
+      h_opp.SetDirectory(ROOT.nullptr)
 
       h_nom = f.Get(h.GetName().split('__')[0])
+      h_nom.SetDirectory(ROOT.nullptr)
       h_nom = bSFNorm(h_nom, bSFInfo)
       h_opp = bSFNorm(h_opp, bSFInfo)
+      h_nom.Rebin(nrebin)
+      h_opp.Rebin(nrebin)
       h = symmetrize(h, h_opp, h_nom)
 
     h.Write()

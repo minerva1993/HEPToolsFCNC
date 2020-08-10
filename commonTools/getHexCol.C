@@ -50,4 +50,12 @@ cout << "zz" << " " << TColor::GetColor("#660066") << endl;
 cout << "cmuta" << " " << TColor::GetColor("#00ffff") << endl;
 cout << "ctata" << " " << TColor::GetColor("#ff0000") << endl;
 cout << "cnunu" << " " << TColor::GetColor("#ffff00") << endl;
+
+cout << "ttbb" << " " << TColor::GetColor("#330000") << endl;
+cout << "ttcc" << " " << TColor::GetColor("#990000") << endl;
+cout << "ttlf" << " " << TColor::GetColor("#cc0000") << endl;
+cout << "other" << " " << TColor::GetColor("#ff9933") << endl;
+cout << "qcd" << " " << TColor::GetColor("#d0cfd4") << endl;
+cout << "hut" << " " << TColor::GetColor("#666600") << endl;
+cout << "hct" << " " << TColor::GetColor("#0000cc") << endl;
 }
