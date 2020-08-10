@@ -79,7 +79,7 @@ python plot_1718.py 01 01
 cd ~/HEPToolsFCNC/finalMVA/mkNtuple
 python dir_manage.py
 #cat ../../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python run.py 2017
-cat ../../commonTools/file_2017_all.txt | xargs -i -n2 sbatch job_slurm.sh
+cat ../../commonTools/file_2017_all.txt | xargs -i -n2 sbatch job_slurm.sh 2017
 
 #Select features if needed, and train
 cd ../training
