@@ -705,67 +705,83 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             //Deep CSV shape
             float bSF = 1.0;
             if     ( isPartOf("lfup",        std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[3];
+              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[3];
+              bSF = jet_SF_deepCSV_30[3];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(2.5, EventWeight*bSF);
             }
             else if( isPartOf("lfdown",      std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[4];
+              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[4];
+              bSF = jet_SF_deepCSV_30[4];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(3.5, EventWeight*bSF);
             }
             else if( isPartOf("hfup",        std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[5];
+              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[5];
+              bSF = jet_SF_deepCSV_30[5];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(4.5, EventWeight*bSF);
             }
             else if( isPartOf("hfdown",      std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[6];
+              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[6];
+              bSF = jet_SF_deepCSV_30[6];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(5.5, EventWeight*bSF);
             }
             else if( isPartOf("hfstat1up",   std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[7];
+              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[7];
+              bSF = jet_SF_deepCSV_30[7];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(6.5, EventWeight*bSF);
             }
             else if( isPartOf("hfstat1down", std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[8];
+              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[8];
+              bSF = jet_SF_deepCSV_30[8];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(7.5, EventWeight*bSF);
             }
             else if( isPartOf("hfstat2up",   std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[9];
+              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[9];
+              bSF = jet_SF_deepCSV_30[9];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(8.5, EventWeight*bSF);
             }
             else if( isPartOf("hfstat2down", std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[10];
+              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[10];
+              bSF = jet_SF_deepCSV_30[10];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(9.5, EventWeight*bSF);
             }
             else if( isPartOf("lfstat1up",   std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[11];
+              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[11];
+              bSF = jet_SF_deepCSV_30[11];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(10.5, EventWeight*bSF);
             }
             else if( isPartOf("lfstat1down", std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[12];
+              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[12];
+              bSF = jet_SF_deepCSV_30[12];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(11.5, EventWeight*bSF);
             }
             else if( isPartOf("lfstat2up",   std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[13];
+              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[13];
+              bSF = jet_SF_deepCSV_30[13];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(12.5, EventWeight*bSF);
             }
             else if( isPartOf("lfstat2down", std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[14];
+              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[14];
+              bSF = jet_SF_deepCSV_30[14];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(13.5, EventWeight*bSF);
             }
             else if( isPartOf("cferr1up",    std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[15];
+              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[15];
+              bSF = jet_SF_deepCSV_30[15];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(14.5, EventWeight*bSF);
             }
             else if( isPartOf("cferr1down",  std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[16];
+              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[16];
+              bSF = jet_SF_deepCSV_30[16];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(15.5, EventWeight*bSF);
             }
             else if( isPartOf("cferr2up",    std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[17];
+              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[17];
+              bSF = jet_SF_deepCSV_30[17];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(16.5, EventWeight*bSF);
             }
             else if( isPartOf("cferr2down",  std::string(syst_name[syst])) ){
-              bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[18];
+              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[18];
+              bSF = jet_SF_deepCSV_30[18];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(17.5, EventWeight*bSF);
             }
             else{

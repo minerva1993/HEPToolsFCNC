@@ -17,6 +17,11 @@ ver_dict = {'2017': ver17, '2018':ver18}
 lumi_dict = {'2017': 41529, '2018':59741}
 file_names = collections.OrderedDict()
 
+for i in ['STFCNC','TTFCNC','TTBKG']:
+  if not os.path.exists("./full1718/" + i):
+    try: os.makedirs("./full1718/" + i)
+    except: pass
+
 def store_file(it):
   path = it[0]
   file_name = it[1]
