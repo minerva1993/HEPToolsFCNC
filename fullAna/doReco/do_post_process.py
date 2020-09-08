@@ -98,9 +98,10 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
       if not any(i in h.GetName() for i in ['Info', 'Weight']):
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
 
-        #if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']): #2018
-        if ( any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']) #2017
-          or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
+        if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S7'])) #2017
+          or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S8']))
+          or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j3b2', 'S2']))
+          or ('jec' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j4b4', 'S9'])) ):
           bSFInfo_nom = fill_bSFInfo(nom_f)
           h_nom = nom_f.Get(histos)
           h_nom = bSFNorm(h_nom, bSFInfo_nom)
@@ -228,6 +229,7 @@ for files in file_list:
       h = bSFNorm(h, bSFInfo)
     else: pass
 
+    """
     #Special treatements
     #if 'cferr1' in h.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
     if 'cferr1' in h.GetName() and 'ttcc' in f.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
@@ -240,6 +242,7 @@ for files in file_list:
       h_nom = bSFNorm(h_nom, bSFInfo)
       h_opp = bSFNorm(h_opp, bSFInfo)
       h = symmetrize(h, h_opp, h_nom)
+    """
 
     h.Write()
 

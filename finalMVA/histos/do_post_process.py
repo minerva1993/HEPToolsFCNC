@@ -72,26 +72,27 @@ def write_envelope(syst, nhists, new_sumW):
     dn.SetName(histos + "__" + syst + "down")
 
     #We don't draw pdf in full ana due to computing resources
-#    if syst == 'pdf' and ('j4b4' in h.GetName() or 'S8' in h.GetName()): #For 2018
-#      nominal = bSFNorm(nominal, bSFInfo)
-#
-#      for xbin in xrange(up.GetNbinsX()):
-#        if nominal.GetBinContent(xbin+1) == 0:
-#          ratio_up = 1.
-#          ratio_dn = 1.
-#        else:
-#          ratio_up = up.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
-#          ratio_dn = dn.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
-#
-#          #By construction, up shape is always above the down shape
-#          diff = abs(nominal.GetBinContent(xbin+1)-up.GetBinContent(xbin+1)) + abs(nominal.GetBinContent(xbin+1)-dn.GetBinContent(xbin+1))
-#          up.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) + diff/2.)
-#          dn.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) - diff/2.)
-#          if dn.GetBinContent(xbin+1) < 0: dn.SetBinContent(xbin+1, 0)
-#          if ratio_up > 1.2:
-#            up.SetBinContent(xbin+1, 1.2 * nominal.GetBinContent(xbin+1))
-#          if ratio_dn < 0.8:
-#            dn.SetBinContent(xbin+1, 0.8 * nominal.GetBinContent(xbin+1))
+    if syst == 'pdf' and any(sname in h.GetName() for sname in ['j4b2', 'S7', 'j4b4', 'S9']): #For 2017
+    #if syst == 'pdf' and any(sname in h.GetName() for sname in ['j4b4', 'S9']): #For 2018
+      nominal = bSFNorm(nominal, bSFInfo)
+
+      for xbin in xrange(up.GetNbinsX()):
+        if nominal.GetBinContent(xbin+1) == 0:
+          ratio_up = 1.
+          ratio_dn = 1.
+        else:
+          ratio_up = up.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
+          ratio_dn = dn.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
+
+          #By construction, up shape is always above the down shape
+          diff = abs(nominal.GetBinContent(xbin+1)-up.GetBinContent(xbin+1)) + abs(nominal.GetBinContent(xbin+1)-dn.GetBinContent(xbin+1))
+          up.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) + diff/2.)
+          dn.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) - diff/2.)
+          if dn.GetBinContent(xbin+1) < 0: dn.SetBinContent(xbin+1, 0)
+          if ratio_up > 1.2:
+            up.SetBinContent(xbin+1, 1.2 * nominal.GetBinContent(xbin+1))
+          if ratio_dn < 0.8:
+            dn.SetBinContent(xbin+1, 0.8 * nominal.GetBinContent(xbin+1))
 
     up.Write()
     dn.Write()
@@ -124,9 +125,10 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
         h.Rebin(nrebin)
 
-        #if any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']): #2018
-        if ( any(low_stat in syst_name for low_stat in ['Tune', 'hdamp']) #2017
-          or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and ('j3b2' in h.GetName() or 'S2' in h.GetName())) ): #2017
+        if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S7'])) #2017
+          or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S8']))
+          or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j3b2', 'S2']))
+          or ('jec' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j4b4', 'S9'])) ):
           bSFInfo_nom = fill_bSFInfo(nom_f)
           h_nom = nom_f.Get(histos)
           h_nom = bSFNorm(h_nom, bSFInfo_nom)
@@ -332,6 +334,7 @@ for files in file_list:
       h.Rebin(nrebin)
     else: pass
 
+    """
     #Special treatements
     #if 'cferr1' in h.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
     if 'cferr1' in h.GetName() and 'ttcc' in f.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
@@ -348,6 +351,7 @@ for files in file_list:
       h_nom.Rebin(nrebin)
       h_opp.Rebin(nrebin)
       h = symmetrize(h, h_opp, h_nom)
+    """
 
     h.Write()
 
