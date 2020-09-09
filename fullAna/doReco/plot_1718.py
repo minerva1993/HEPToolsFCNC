@@ -15,8 +15,7 @@ common_syst = 'systematics:\n'
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
                     'jec', 'jer',
                     'lf', 'hf', 'lfstat1', 'lfstat2', 'hfstat1', 'hfstat2', 'cferr1', 'cferr2']
-#reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
-reco_scenario = ['TTBKG']
+reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
 
 for i in ['STFCNC','TTFCNC','TTBKG']:
   if not os.path.exists("./full1718/" + i + '/qcd'):
