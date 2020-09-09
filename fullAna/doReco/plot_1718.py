@@ -15,8 +15,13 @@ common_syst = 'systematics:\n'
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
                     'jec', 'jer',
                     'lf', 'hf', 'lfstat1', 'lfstat2', 'hfstat1', 'hfstat2', 'cferr1', 'cferr2']
-reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
-#reco_scenario = ['STFCNC']
+#reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
+reco_scenario = ['TTBKG']
+
+for i in ['STFCNC','TTFCNC','TTBKG']:
+  if not os.path.exists("./full1718/" + i + '/qcd'):
+    try: os.makedirs("./full1718/" + i + '/qcd')
+    except: pass
 
 for item in common_syst_list:
   common_syst += '  - ' + item + '\n'
@@ -116,3 +121,39 @@ for scenario in reco_scenario:
       f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + ".yml']\n")
 
   call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario, config_path + 'config_1718.yml'], shell=False)
+
+
+  #For QCD
+  string_for_qcd = ''
+  with open(config_path + 'files_2017.yml') as f:
+    lines = f.readlines()
+    skip_signal = True
+    for line in lines:
+      if '#' in line[0]: line = line[1:]
+      if skip_signal and 'hist_QCD' in line: skip_signal = False
+      if 'hist_QCD' in line:
+        line = line[0] + '2017/' + scenario + ver17 + '/post_process/' + line[1:]
+      if not skip_signal and not any(i in line for i in ['yields-group']): string_for_qcd += line
+
+  with open(config_path + 'files_2018.yml') as f:
+    lines = f.readlines()
+    skip_signal = True
+    for line in lines:
+      if '#' in line[0]: line = line[1:]
+      if skip_signal and 'hist_QCD' in line: skip_signal = False
+      if 'hist_QCD' in line:
+        line = line[0] + '2018/' + scenario + ver18 + '/post_process/' + line[1:]
+      if not skip_signal and not any(i in line for i in ['yields-group']): string_for_qcd += line
+
+  with open(config_path + 'files_1718.yml', 'a') as fnew:
+    fnew.write(string_for_qcd)
+
+  with open(config_path + 'template_1718.yml') as f:
+    lines = f.readlines()
+    with open(config_path + 'config_1718.yml', 'w+') as f1:
+      for line in lines: f1.write(line)
+      f1.write(common_syst)
+      f1.write(file_syst)
+      f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_qcd.yml']\n")
+
+  call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario + '/qcd', config_path + 'config_1718.yml'], shell=False)
