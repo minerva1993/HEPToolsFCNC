@@ -20,7 +20,8 @@ syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples ex
 #test = os.listdir("./histos/" + train_scheme)
 
 if not os.path.exists("./histos/temp"):
-  os.makedirs("./histos/temp")
+  try: os.makedirs("./histos/temp")
+  except: pass
 test = os.listdir("./histos/temp")
 dupl = False
 #for item in test:
