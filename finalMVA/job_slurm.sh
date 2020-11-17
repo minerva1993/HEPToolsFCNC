@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #SBATCH -J slurm
-#SBATCH -p cpu,gpu
+#SBATCH -p gpu,cpu -x gpu-0-1,compute-0-2
 #SBATCH -N 1
 #SBATCH --open-mode=append
 #SBATCH -o %x.out
