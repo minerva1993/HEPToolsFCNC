@@ -1,0 +1,23 @@
+'h_Events_Ch0':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  signal-normalize-data: false
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_Events_Ch1':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  signal-normalize-data: false
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_Events_Ch2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  signal-normalize-data: false
+  sort-by-yields: true
+  save-extensions: ['pdf']

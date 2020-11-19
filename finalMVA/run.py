@@ -45,6 +45,7 @@ def runAna(file_path, name):
     chain = TChain("fcncLepJets/tree","events")
     chain.Add(file_path)
     chain.Process("MyAnalysis.C+", name + "_" + syst_ext) #one '_'!
+    #chain.Process("Yield.C+", name + "_" + syst_ext) #one '_'!
     #print chain.GetCurrentFile().GetName()
 
     ## save Event Summary histogram ##
