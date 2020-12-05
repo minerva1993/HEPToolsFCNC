@@ -106,6 +106,9 @@ for syst_ext in syst + syst2:
   EventCategory = np.zeros(1, dtype=int)
   lepPt         = np.zeros(1, dtype=np.float32)
   missinget     = np.zeros(1, dtype=np.float32)
+  score_stfcnc  = np.zeros(1, dtype=np.float32)
+  score_ttfcnc  = np.zeros(1, dtype=np.float32)
+  score_ttbkg   = np.zeros(1, dtype=np.float32)
 
   outtree.Branch('MLScore'      , score        , 'MLScore/F')
   outtree.Branch('nevt'         , nevt         , 'nevt/I')
@@ -114,6 +117,9 @@ for syst_ext in syst + syst2:
   outtree.Branch('EventCategory', EventCategory, 'EventCategory/I')
   outtree.Branch('lepPt'        , lepPt        , 'lepPt/F')
   outtree.Branch('missinget'    , missinget    , 'missinget/F')
+  outtree.Branch('score_stfcnc' , score_stfcnc , 'score_stfcnc/F')
+  outtree.Branch('score_ttfcnc' , score_ttfcnc , 'score_ttfcnc/F')
+  outtree.Branch('score_ttbkg'  , score_ttbkg  , 'score_ttbkg/F')
 
   for i in xrange(totalevt):
     data_tree.GetEntry(i)
@@ -133,6 +139,15 @@ for syst_ext in syst + syst2:
     EventCategory[0] = data_tree.EventCategory
     lepPt[0]         = data_tree.lepton_pt
     missinget[0]     = data_tree.MET
+
+    if data_tree.njets == 3:
+      score_stfcnc[0] = data_tree.stfcnc_score
+      score_ttfcnc[0] = -1.0
+      score_ttbkg[0]  = -1.0
+    else:
+      score_stfcnc[0] = data_tree.stfcnc_score
+      score_ttfcnc[0] = data_tree.ttfcnc_score
+      score_ttbkg[0]  = data_tree.ttbkg_score
     outtree.Fill()
     #print('processing '+str(Nevt)+'th event', end='\r')
 
@@ -143,6 +158,9 @@ for syst_ext in syst + syst2:
   EventCategory[0] = 0
   lepPt[0]         = 0
   missinget[0]     = 0
+  score_stfcnc[0]  = -1.0
+  score_ttfcnc[0]  = -1.0
+  score_ttbkg[0]   = -1.0
   outtree.Fill()
 
   outfile.Write()

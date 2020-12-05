@@ -67,23 +67,6 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
-   TTreeReaderValue<Float_t> Hbjet1_pt = {fReader, "Hbjet1_pt"};
-   TTreeReaderValue<Float_t> Hbjet1_eta = {fReader, "Hbjet1_eta"};
-   TTreeReaderValue<Float_t> Hbjet1_phi = {fReader, "Hbjet1_phi"};
-   TTreeReaderValue<Float_t> Hbjet1_e = {fReader, "Hbjet1_e"};
-   TTreeReaderValue<Float_t> Hbjet2_pt = {fReader, "Hbjet2_pt"};
-   TTreeReaderValue<Float_t> Hbjet2_eta = {fReader, "Hbjet2_eta"};
-   TTreeReaderValue<Float_t> Hbjet2_phi = {fReader, "Hbjet2_phi"};
-   TTreeReaderValue<Float_t> Hbjet2_e = {fReader, "Hbjet2_e"};
-   TTreeReaderValue<Float_t> dRHbb = {fReader, "dRHbb"};
-   TTreeReaderValue<Float_t> Hbquarkjet1_pt = {fReader, "Hbquarkjet1_pt"};
-   TTreeReaderValue<Float_t> Hbquarkjet1_eta = {fReader, "Hbquarkjet1_eta"};
-   TTreeReaderValue<Float_t> Hbquarkjet1_phi = {fReader, "Hbquarkjet1_phi"};
-   TTreeReaderValue<Float_t> Hbquarkjet1_e = {fReader, "Hbquarkjet1_e"};
-   TTreeReaderValue<Float_t> Hbquarkjet2_pt = {fReader, "Hbquarkjet2_pt"};
-   TTreeReaderValue<Float_t> Hbquarkjet2_eta = {fReader, "Hbquarkjet2_eta"};
-   TTreeReaderValue<Float_t> Hbquarkjet2_phi = {fReader, "Hbquarkjet2_phi"};
-   TTreeReaderValue<Float_t> Hbquarkjet2_e = {fReader, "Hbquarkjet2_e"};
 
    MyAnalysis(TTree * /*tree*/ =0) { }
    virtual ~MyAnalysis() { }
@@ -140,9 +123,6 @@ public :
           "__pdf100", "__pdf101", "__pdf102",};
     int syst_num = syst_name.size();
 
-//    TH1D *h_MVA_b2[3][148];
-//    TH1D *h_MVA_b3[3][148];
-//    TH1D *h_MVA_b4[3][148];
     TH1D *h_MVA_j3b2[3][148];
     TH1D *h_MVA_j3b3[3][148];
     TH1D *h_MVA_j4b2[3][148];
@@ -150,13 +130,9 @@ public :
     TH1D *h_MVA_j4b4[3][148];
     TH1D *bSFInfo[3][3];
 
-//    TFile *scoreF;
-//    TTree *scoreT;
     TFile *scoreF_j3b2, *scoreF_j3b3, *scoreF_j4b2, *scoreF_j4b3, *scoreF_j4b4;
     TTree *scoreT_j3b2, *scoreT_j3b3, *scoreT_j4b2, *scoreT_j4b3, *scoreT_j4b4;
 
-//    vector<double> lepPt;
-//    vector<double> missET;
     vector<double> lepPt_j3b2, lepPt_j3b3, lepPt_j4b2, lepPt_j4b3, lepPt_j4b4;
     vector<double> missET_j3b2, missET_j3b3, missET_j4b2, missET_j4b3, missET_j4b4;
 

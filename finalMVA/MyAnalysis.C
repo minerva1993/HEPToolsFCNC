@@ -177,21 +177,6 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     for( int syst = 0; syst != syst_num; ++syst ){
       if( syst > 0 and !dosyst ) continue;
 
-//      h_MVA_b2[ich][syst] = new TH1D(Form("h_DNN_b2_Ch%i%s",ich,syst_name[syst]), "Final MVA b2", 40, -1, 1);
-//      h_MVA_b2[ich][syst]->SetXTitle("DNN Score");
-//      h_MVA_b2[ich][syst]->Sumw2();
-//      fOutput->Add(h_MVA_b2[ich][syst]);
-//
-//      h_MVA_b3[ich][syst] = new TH1D(Form("h_DNN_b3_Ch%i%s",ich,syst_name[syst]), "Final MVA b3", 40, -1, 1);
-//      h_MVA_b3[ich][syst]->SetXTitle("DNN Score");
-//      h_MVA_b3[ich][syst]->Sumw2();
-//      fOutput->Add(h_MVA_b3[ich][syst]);
-//
-//      h_MVA_b4[ich][syst] = new TH1D(Form("h_DNN_b4_Ch%i%s",ich,syst_name[syst]), "Final MVA b4", 40, -1, 1);
-//      h_MVA_b4[ich][syst]->SetXTitle("DNN Score");
-//      h_MVA_b4[ich][syst]->Sumw2();
-//      fOutput->Add(h_MVA_b4[ich][syst]);
-
       h_MVA_j3b2[ich][syst] = new TH1D(Form("h_DNN_j3b2_Ch%i%s",ich,syst_name[syst]), "Final MVA j3b2", 40, -1, 1);
       h_MVA_j3b2[ich][syst]->SetXTitle("MVA Score");
       h_MVA_j3b2[ich][syst]->Sumw2();
@@ -476,26 +461,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
   }
 
-//  float tmp_score = -1;
-//  vector<double>::iterator iter;
-//  int evtIdx = 0;
-//  if( !lepPt.empty() ){
-//    for( iter = lepPt.begin(); iter != lepPt.end(); iter++ ){
-//      if( *iter == static_cast<float>(lepton.Pt()) ){
-//        int tmpIdx = distance(lepPt.begin(), iter);
-//        if( missET[tmpIdx] == met ) evtIdx = tmpIdx;
-//        else continue;
-//      }
-//    }
-//    dupCheck.push_back(evtIdx);
-//    //cout << evtIdx << endl;
-//    //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
-//
-//    scoreT->GetEntry(evtIdx);
-//    tmp_score = scoreT->GetLeaf("MLScore")->GetValue(0);
-//  }
-
-
   /////Fill histograms
   //int modeArray[2] = {mode, 2};
   int modeArray[1] = {mode};
@@ -619,82 +584,66 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         //Deep CSV shape
         float bSF = 1.0;
         if     ( isPartOf("lfup",        std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[3];
           bSF = jet_SF_deepCSV_30[3];
           bSFInfo[MODE][jetmode]->Fill(2.5, EventWeight*bSF);
         }
         else if( isPartOf("lfdown",      std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[4];
           bSF = jet_SF_deepCSV_30[4];
           bSFInfo[MODE][jetmode]->Fill(3.5, EventWeight*bSF);
         }
         else if( isPartOf("hfup",        std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[5];
           bSF = jet_SF_deepCSV_30[5];
           bSFInfo[MODE][jetmode]->Fill(4.5, EventWeight*bSF);
         }
         else if( isPartOf("hfdown",      std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[6];
           bSF = jet_SF_deepCSV_30[6];
           bSFInfo[MODE][jetmode]->Fill(5.5, EventWeight*bSF);
         }
         else if( isPartOf("hfstat1up",   std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[7];
           bSF = jet_SF_deepCSV_30[7];
           bSFInfo[MODE][jetmode]->Fill(6.5, EventWeight*bSF);
         }
         else if( isPartOf("hfstat1down", std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[8];
           bSF = jet_SF_deepCSV_30[8];
           bSFInfo[MODE][jetmode]->Fill(7.5, EventWeight*bSF);
         }
         else if( isPartOf("hfstat2up",   std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[9];
           bSF = jet_SF_deepCSV_30[9];
           bSFInfo[MODE][jetmode]->Fill(8.5, EventWeight*bSF);
         }
         else if( isPartOf("hfstat2down", std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[10];
           bSF = jet_SF_deepCSV_30[10];
           bSFInfo[MODE][jetmode]->Fill(9.5, EventWeight*bSF);
         }
         else if( isPartOf("lfstat1up",   std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[11];
           bSF = jet_SF_deepCSV_30[11];
           bSFInfo[MODE][jetmode]->Fill(10.5, EventWeight*bSF);
         }
         else if( isPartOf("lfstat1down", std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[12];
           bSF = jet_SF_deepCSV_30[12];
           bSFInfo[MODE][jetmode]->Fill(11.5, EventWeight*bSF);
         }
         else if( isPartOf("lfstat2up",   std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[13];
           bSF = jet_SF_deepCSV_30[13];
           bSFInfo[MODE][jetmode]->Fill(12.5, EventWeight*bSF);
         }
         else if( isPartOf("lfstat2down", std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[14];
           bSF = jet_SF_deepCSV_30[14];
           bSFInfo[MODE][jetmode]->Fill(13.5, EventWeight*bSF);
         }
         else if( isPartOf("cferr1up",    std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[15];
           bSF = jet_SF_deepCSV_30[15];
           bSFInfo[MODE][jetmode]->Fill(14.5, EventWeight*bSF);
         }
         else if( isPartOf("cferr1down",  std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[16];
           bSF = jet_SF_deepCSV_30[16];
           bSFInfo[MODE][jetmode]->Fill(15.5, EventWeight*bSF);
         }
         else if( isPartOf("cferr2up",    std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[17];
           bSF = jet_SF_deepCSV_30[17];
           bSFInfo[MODE][jetmode]->Fill(16.5, EventWeight*bSF);
         }
         else if( isPartOf("cferr2down",  std::string(syst_name[syst])) ){
-          //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[18];
           bSF = jet_SF_deepCSV_30[18];
           bSFInfo[MODE][jetmode]->Fill(17.5, EventWeight*bSF);
         }
