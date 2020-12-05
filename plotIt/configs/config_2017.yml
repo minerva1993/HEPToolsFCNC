@@ -4,7 +4,6 @@ configuration:
   luminosity-label: '%1$.1f fb^{-1} at #sqrt{s} = 13 TeV'
   experiment: " CMS"
   extra-label: "Preliminary"
-  #extra-label: "Work in Progress"
   root: ''
   luminosity: 41529
   luminosity-error: 0.023
