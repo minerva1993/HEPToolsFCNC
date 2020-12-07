@@ -295,6 +295,7 @@ namespace plotIt {
 
     // Axis range
     bool y_axis_auto_range = true; //not for log plot
+    bool ratio_y_axis_auto_range = false;
     Range x_axis_range;
     Range log_x_axis_range;
     Range y_axis_range;

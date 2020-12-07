@@ -779,6 +779,23 @@ namespace plotIt {
       std::shared_ptr<TGraphAsymmErrors> ratio = getRatio(h_data.get(), mc_stack.stat_only.get());
       ratio->Draw((m_plotIt.getConfiguration().ratio_style + "same").c_str());
 
+      if (plot.ratio_y_axis_auto_range) {
+        float ratio_max = plot.ratio_y_axis_range.end;
+        float ratio_min = plot.ratio_y_axis_range.start;
+        float current_max = TMath::MaxElement(ratio->GetN(), ratio->GetY());
+        float current_min = TMath::MinElement(ratio->GetN(), ratio->GetY());
+
+        if(current_max > ratio_max)
+          ratio_max = current_max * 1.2;
+        if(current_min < ratio_min)
+          ratio_min = current_min * 0.8;
+
+        Range ratio_auto_range = {ratio_min, ratio_max};
+        setRange(h_low_pad_axis.get(), x_axis_range, ratio_auto_range);
+        h_low_pad_axis->Draw();
+      }
+
+
       // Compute systematic errors
       std::shared_ptr<TH1> h_systematics(static_cast<TH1*>(h_low_pad_axis->Clone()));
       h_systematics->SetDirectory(nullptr);

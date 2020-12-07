@@ -702,6 +702,9 @@ namespace plotIt {
       if (node["ratio-y-axis-range"])
         plot.ratio_y_axis_range = node["ratio-y-axis-range"].as<Range>();
 
+      if (node["ratio-y-axis-auto-range"])
+        plot.ratio_y_axis_auto_range = node["ratio-y-axis-auto-range"].as<bool>();
+
       if (node["blinded-range"])
         plot.blinded_range = node["blinded-range"].as<Range>();
 
