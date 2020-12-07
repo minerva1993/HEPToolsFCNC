@@ -10,6 +10,7 @@
 #include <TPave.h>
 #include <TVirtualFitter.h>
 #include <TGraphAsymmErrors.h>
+#include <TMath.h>
 
 #include <commandlinecfg.h>
 #include <pool.h>
