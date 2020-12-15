@@ -13,11 +13,11 @@ if len(sys.argv) > 2:
     file_postfix = '_ttbb'
 
 if era == '2017':
-  version = 'V9_6/200101/'
+  version = 'V9_6/201215/'
   path_to_prod = '/data/users/minerva1993/ntuple/' + version + 'production/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple/' + version
 elif era == '2018':
-  version = 'V10_3/200101/'
+  version = 'V10_3/201215/'
   path_to_prod = '/data/users/minerva1993/ntuple/' + version + 'production/'
   path_to_prod_noreco = '/data/users/minerva1993/ntuple/' + version
 
