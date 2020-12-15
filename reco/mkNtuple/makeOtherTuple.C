@@ -460,20 +460,20 @@ Bool_t makeOtherTuple::Process(Long64_t entry)
             else if( syst_ext == "jerdown" ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Down[tmp_idx[i]];
             else                             for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * jet_JER_Nom[tmp_idx[i]];
 
-            if     ( syst_ext == "jecAbsoluteup" )                     for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(0));
-            else if( syst_ext == "jecAbsolutedown" )                   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(0));
-            else if( syst_ext == Form("jecAbsolute%iup",era) )         for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(1));
-            else if( syst_ext == Form("jecAbsolute%idown",era) )       for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(1));
-            else if( syst_ext == "jecBBEC1up" )                        for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(2));
-            else if( syst_ext == "jecBBEC1down" )                      for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(2));
-            else if( syst_ext == Form("jecBBEC1%iup",era) )            for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(3));
-            else if( syst_ext == Form("jecBBEC1%idown",era) )          for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(3));
-            else if( syst_ext == "jecFlavorQCDup" )                    for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(4));
-            else if( syst_ext == "jecFlavorQCDdown" )                  for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(4));
-            else if( syst_ext == "jecRelativeBalup" )                  for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(5));
-            else if( syst_ext == "jecRelativeBaldown" )                for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(5));
-            else if( syst_ext == Form("jecRelativeSample%iup",era) )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(6));
-            else if( syst_ext == Form("jecRelativeSample%idown",era) ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(6));
+            if     ( syst_ext == "jecAbsoluteup" )                     for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(0));
+            else if( syst_ext == "jecAbsolutedown" )                   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(0));
+            else if( syst_ext == Form("jecAbsolute%iup",era) )         for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(1));
+            else if( syst_ext == Form("jecAbsolute%idown",era) )       for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(1));
+            else if( syst_ext == "jecBBEC1up" )                        for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(2));
+            else if( syst_ext == "jecBBEC1down" )                      for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(2));
+            else if( syst_ext == Form("jecBBEC1%iup",era) )            for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(3));
+            else if( syst_ext == Form("jecBBEC1%idown",era) )          for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(3));
+            else if( syst_ext == "jecFlavorQCDup" )                    for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(4));
+            else if( syst_ext == "jecFlavorQCDdown" )                  for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(4));
+            else if( syst_ext == "jecRelativeBalup" )                  for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(5));
+            else if( syst_ext == "jecRelativeBaldown" )                for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(5));
+            else if( syst_ext == Form("jecRelativeSample%iup",era) )   for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1+jet_JESCom_Up[tmp_idx[i]].at(6));
+            else if( syst_ext == Form("jecRelativeSample%idown",era) ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4cor[i] * (1-jet_JESCom_Down[tmp_idx[i]].at(6));
           }
           else if( option.Contains("Run201") ) for( int i=0; i < 4; i++) jetP4cor[i] = jetP4[i];
 

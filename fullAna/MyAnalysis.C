@@ -36,6 +36,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     else if( reco_scheme.find("TTBKG") != string::npos )  reco_id = 2;
     else                                                  reco_id = -1;
 
+    int era = stoi(reco_era);
     if( reco_scheme.find("jec") != string::npos or reco_scheme.find("jer") != string::npos 
       or reco_scheme.find("TuneCP5") != string::npos or reco_scheme.find("hdamp") != string::npos ){
       dosyst = false;//make another hist file
@@ -47,6 +48,21 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
       else if( reco_scheme.find("TuneCP5down") != string::npos ) syst_ext = "TuneCP5down";
       else if( reco_scheme.find("hdampup") != string::npos )     syst_ext = "hdampup";
       else if( reco_scheme.find("hdampdown") != string::npos )   syst_ext = "hdampdown";
+      //Regrouped JEC V2
+      else if( reco_scheme.find("jecAbsoluteup") != string::npos )                     syst_ext = "jecAbsoluteup";
+      else if( reco_scheme.find("jecAbsolutedown") != string::npos )                   syst_ext = "jecAbsolutedown";
+      else if( reco_scheme.find(Form("jecAbsolute%iup",era)) != string::npos )         syst_ext = Form("jecAbsolute%iup",era);
+      else if( reco_scheme.find(Form("jecAbsolute%idown",era)) != string::npos )       syst_ext = Form("jecAbsolute%idown",era);
+      else if( reco_scheme.find("jecBBEC1up") != string::npos )                        syst_ext = "jecBBEC1up";
+      else if( reco_scheme.find("jecBBEC1down") != string::npos )                      syst_ext = "jecBBEC1down";
+      else if( reco_scheme.find(Form("jecBBEC1%iup",era)) != string::npos )            syst_ext = Form("jecBBEC1%iup",era);
+      else if( reco_scheme.find(Form("jecBBEC1%idown",era)) != string::npos )          syst_ext = Form("jecBBEC1%idown",era);
+      else if( reco_scheme.find("jecFlavorQCDup") != string::npos )                    syst_ext = "jecFlavorQCDup";
+      else if( reco_scheme.find("jecFlavorQCDdown") != string::npos )                  syst_ext = "jecFlavorQCDdown";
+      else if( reco_scheme.find("jecRelativeBalup") != string::npos )                  syst_ext = "jecRelativeBalup";
+      else if( reco_scheme.find("jecRelativeBaldown") != string::npos )                syst_ext = "jecRelativeBaldown";
+      else if( reco_scheme.find(Form("jecRelativeSample%iup",era)) != string::npos )   syst_ext = Form("jecRelativeSample%iup",era);
+      else if( reco_scheme.find(Form("jecRelativeSample%idown",era)) != string::npos ) syst_ext = Form("jecRelativeSample%idown",era);
     }
 
     sample.erase( sample.find_first_of("-"),string::npos );
@@ -402,7 +418,6 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   //lepton = lepton*lepton_scale[0];
 
   //for Kin 
-  vector<size_t> jetIdxs;
   bool match1 = false;
   bool match2 = false;
   float gendR = -1.0;
@@ -456,10 +471,19 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     cvslWP_M = 0.0;
   }
 
+  float met_var_x = 0.;
+  float met_var_y = 0.;
+  vector<size_t> jetIdxs;
+  vector<float> jetPts;
+  vector<float> jetEtas;
+
   for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
 
     TLorentzVector jet;
     jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
+
+    float org_px = jet.Px();
+    float org_py = jet.Py();
 
     if( !option.Contains("Run201") ){
       if     ( syst_ext == "jecup" )   jet = jet * jet_JER_Nom[iJet] * jet_JES_Up[iJet];
@@ -467,11 +491,39 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       else if( syst_ext == "jerup" )   jet = jet * jet_JER_Up[iJet];
       else if( syst_ext == "jerdown" ) jet = jet * jet_JER_Down[iJet];
       else                             jet = jet * jet_JER_Nom[iJet];
+
+      //Example of iterator for TTreeReaderArray
+      //TTreeReaderArray<vector<float>>::iterator iter;
+      //for( iter = jet_JESCom_Up.begin(); iter != jet_JESCom_Up.end(); iter++ ){
+      //  cout << iter->at(1) << " ";
+      //}
+      //Regouped JEC V2, JEC should be applied on top of JER_Nom
+      //ORDER DOES MATTER
+      if     ( syst_ext == "jecAbsoluteup" )                     jet = jet * (1+jet_JESCom_Up[iJet].at(0));
+      else if( syst_ext == "jecAbsolutedown" )                   jet = jet * (1-jet_JESCom_Down[iJet].at(0));
+      else if( syst_ext == Form("jecAbsolute%iup",era) )         jet = jet * (1+jet_JESCom_Up[iJet].at(1));
+      else if( syst_ext == Form("jecAbsolute%idown",era) )       jet = jet * (1-jet_JESCom_Down[iJet].at(1));
+      else if( syst_ext == "jecBBEC1up" )                        jet = jet * (1+jet_JESCom_Up[iJet].at(2));
+      else if( syst_ext == "jecBBEC1down" )                      jet = jet * (1-jet_JESCom_Down[iJet].at(2));
+      else if( syst_ext == Form("jecBBEC1%iup",era) )            jet = jet * (1+jet_JESCom_Up[iJet].at(3));
+      else if( syst_ext == Form("jecBBEC1%idown",era) )          jet = jet * (1-jet_JESCom_Down[iJet].at(3));
+      else if( syst_ext == "jecFlavorQCDup" )                    jet = jet * (1+jet_JESCom_Up[iJet].at(4));
+      else if( syst_ext == "jecFlavorQCDdown" )                  jet = jet * (1-jet_JESCom_Down[iJet].at(4));
+      else if( syst_ext == "jecRelativeBalup" )                  jet = jet * (1+jet_JESCom_Up[iJet].at(5));
+      else if( syst_ext == "jecRelativeBaldown" )                jet = jet * (1-jet_JESCom_Down[iJet].at(5));
+      else if( syst_ext == Form("jecRelativeSample%iup",era) )   jet = jet * (1+jet_JESCom_Up[iJet].at(6));
+      else if( syst_ext == Form("jecRelativeSample%idown",era) ) jet = jet * (1-jet_JESCom_Down[iJet].at(6));
+
+      //MET' = MET + \deltaMET, \deltaMET = MET' - MET
+      met_var_x = met_var_x + (jet.Px() - org_px);
+      met_var_y = met_var_y + (jet.Py() - org_py);
     }
 
-    if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
+    if( jet.Pt() > 30 && abs(jet.Eta()) <= 2.4 ){
       njets++;
       jetIdxs.push_back(iJet);
+      jetPts.push_back(jet.Pt());
+      jetEtas.push_back(jet.Eta());
 
       if( jet_deepCSV[iJet] > bWP_M ) nbjets_m++;
       //if( jet_deepJet[iJet] > bWP_M ) nbjets_m++;
@@ -492,6 +544,10 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
     else if( syst_ext == "jerdown" ){
       met_x = MET_unc_x[3]; met_y = MET_unc_y[3];
+    }
+    else{
+      met_x = met_x + met_var_x;
+      met_y = met_y + met_var_y;
     }
   }
   p4met.SetPxPyPzE(met_x, met_y, 0, sqrt(met_x*met_x + met_y*met_y));
@@ -559,6 +615,23 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         else if( syst_ext == "jerup" )   for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Up[jetIdx[i]];
         else if( syst_ext == "jerdown" ) for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Down[jetIdx[i]];
         else                             for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] * jet_JER_Nom[jetIdx[i]];
+
+        //Regouped JEC V2, JEC should be applied on top of JER_Nom
+        //ORDER DOES MATTER
+        if     ( syst_ext == "jecAbsoluteup" )                     for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1+jet_JESCom_Up[jetIdx[i]].at(0));
+        else if( syst_ext == "jecAbsolutedown" )                   for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1-jet_JESCom_Down[jetIdx[i]].at(0));
+        else if( syst_ext == Form("jecAbsolute%iup",era) )         for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1+jet_JESCom_Up[jetIdx[i]].at(1));
+        else if( syst_ext == Form("jecAbsolute%idown",era) )       for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1-jet_JESCom_Down[jetIdx[i]].at(1));
+        else if( syst_ext == "jecBBEC1up" )                        for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1+jet_JESCom_Up[jetIdx[i]].at(2));
+        else if( syst_ext == "jecBBEC1down" )                      for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1-jet_JESCom_Down[jetIdx[i]].at(2));
+        else if( syst_ext == Form("jecBBEC1%iup",era) )            for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1+jet_JESCom_Up[jetIdx[i]].at(3));
+        else if( syst_ext == Form("jecBBEC1%idown",era) )          for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1-jet_JESCom_Down[jetIdx[i]].at(3));
+        else if( syst_ext == "jecFlavorQCDup" )                    for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1+jet_JESCom_Up[jetIdx[i]].at(4));
+        else if( syst_ext == "jecFlavorQCDdown" )                  for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1-jet_JESCom_Down[jetIdx[i]].at(4));
+        else if( syst_ext == "jecRelativeBalup" )                  for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1+jet_JESCom_Up[jetIdx[i]].at(5));
+        else if( syst_ext == "jecRelativeBaldown" )                for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1-jet_JESCom_Down[jetIdx[i]].at(5));
+        else if( syst_ext == Form("jecRelativeSample%iup",era) )   for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1+jet_JESCom_Up[jetIdx[i]].at(6));
+        else if( syst_ext == Form("jecRelativeSample%idown",era) ) for(int i=0; i < 4; i++) jetP4s[i] = jetP4s[i] *  (1-jet_JESCom_Down[jetIdx[i]].at(6));
       }
 
       if( option.Contains("Hct") || option.Contains("Hut") ){
@@ -705,82 +778,66 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             //Deep CSV shape
             float bSF = 1.0;
             if     ( isPartOf("lfup",        std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[3];
               bSF = jet_SF_deepCSV_30[3];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(2.5, EventWeight*bSF);
             }
             else if( isPartOf("lfdown",      std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[4];
               bSF = jet_SF_deepCSV_30[4];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(3.5, EventWeight*bSF);
             }
             else if( isPartOf("hfup",        std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[5];
               bSF = jet_SF_deepCSV_30[5];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(4.5, EventWeight*bSF);
             }
             else if( isPartOf("hfdown",      std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[6];
               bSF = jet_SF_deepCSV_30[6];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(5.5, EventWeight*bSF);
             }
             else if( isPartOf("hfstat1up",   std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[7];
               bSF = jet_SF_deepCSV_30[7];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(6.5, EventWeight*bSF);
             }
             else if( isPartOf("hfstat1down", std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[8];
               bSF = jet_SF_deepCSV_30[8];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(7.5, EventWeight*bSF);
             }
             else if( isPartOf("hfstat2up",   std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[9];
               bSF = jet_SF_deepCSV_30[9];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(8.5, EventWeight*bSF);
             }
             else if( isPartOf("hfstat2down", std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[10];
               bSF = jet_SF_deepCSV_30[10];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(9.5, EventWeight*bSF);
             }
             else if( isPartOf("lfstat1up",   std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[11];
               bSF = jet_SF_deepCSV_30[11];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(10.5, EventWeight*bSF);
             }
             else if( isPartOf("lfstat1down", std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[12];
               bSF = jet_SF_deepCSV_30[12];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(11.5, EventWeight*bSF);
             }
             else if( isPartOf("lfstat2up",   std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[13];
               bSF = jet_SF_deepCSV_30[13];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(12.5, EventWeight*bSF);
             }
             else if( isPartOf("lfstat2down", std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[14];
               bSF = jet_SF_deepCSV_30[14];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(13.5, EventWeight*bSF);
             }
             else if( isPartOf("cferr1up",    std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[15];
               bSF = jet_SF_deepCSV_30[15];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(14.5, EventWeight*bSF);
             }
             else if( isPartOf("cferr1down",  std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[16];
               bSF = jet_SF_deepCSV_30[16];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(15.5, EventWeight*bSF);
             }
             else if( isPartOf("cferr2up",    std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]+jet_SF_deepCSV_30[17];
               bSF = jet_SF_deepCSV_30[17];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(16.5, EventWeight*bSF);
             }
             else if( isPartOf("cferr2down",  std::string(syst_name[syst])) ){
-              //bSF = jet_SF_deepCSV_30[0]-jet_SF_deepCSV_30[18];
               bSF = jet_SF_deepCSV_30[18];
               if( jetmode >= 0 ) bSFInfo[MODE][jetmode]->Fill(17.5, EventWeight*bSF);
             }
@@ -806,17 +863,17 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             h_LepPt[MODE][cut][syst]        ->Fill(lepton.Pt(), EventWeight);
             h_LepPhi[MODE][cut][syst]       ->Fill(lepton.Phi(), EventWeight);
             h_LepEta[MODE][cut][syst]       ->Fill(lepton.Eta(), EventWeight);
-            h_MET[MODE][cut][syst]          ->Fill(*MET, EventWeight);
+            h_MET[MODE][cut][syst]          ->Fill(met, EventWeight);
             h_WMass[MODE][cut][syst]        ->Fill(transverseM, EventWeight);
             h_DPhi[MODE][cut][syst]         ->Fill(lepDphi, EventWeight);
             h_LepIso[MODE][cut][syst]       ->Fill(relIso, EventWeight);
             if( jetIdxs.size() > 0 ){
-              h_LeadJetPt[MODE][cut][syst]    ->Fill(jet_pt[jetIdxs[0]], EventWeight);
-              h_LeadJetEta[MODE][cut][syst]   ->Fill(jet_eta[jetIdxs[0]], EventWeight);
+              h_LeadJetPt[MODE][cut][syst]    ->Fill(jetPts[0], EventWeight);
+              h_LeadJetEta[MODE][cut][syst]   ->Fill(jetEtas[0], EventWeight);
             }
             if( jetIdxs.size() > 1 ){
-              h_SubleadJetPt[MODE][cut][syst] ->Fill(jet_pt[jetIdxs[1]], EventWeight);
-              h_SubleadJetEta[MODE][cut][syst]->Fill(jet_eta[jetIdxs[1]], EventWeight);
+              h_SubleadJetPt[MODE][cut][syst] ->Fill(jetPts[1], EventWeight);
+              h_SubleadJetEta[MODE][cut][syst]->Fill(jetPts[1], EventWeight);
             }
             for( int ii = 0; ii < njets; ii++){
               const size_t ii1 = jetIdxs[ii];
@@ -901,6 +958,8 @@ void MyAnalysis::Terminate()
     string reco_era =  sample.substr(sample.find_first_of("-")+1,4);
     string reco_scheme = sample.substr(sample.find_first_of("-")+5,string::npos);
     syst_ext = "";
+
+    int era = stoi(reco_era);
     if( reco_scheme.find("jec") != string::npos or reco_scheme.find("jer") != string::npos
       or reco_scheme.find("TuneCP5") != string::npos or reco_scheme.find("hdamp") != string::npos ){
       if     ( reco_scheme.find("jecup") != string::npos )       syst_ext = "__jecup";
@@ -911,6 +970,21 @@ void MyAnalysis::Terminate()
       else if( reco_scheme.find("TuneCP5down") != string::npos ) syst_ext = "__TuneCP5down";
       else if( reco_scheme.find("hdampup") != string::npos )     syst_ext = "__hdampup";
       else if( reco_scheme.find("hdampdown") != string::npos )   syst_ext = "__hdampdown";
+      //Regrouped JEC V2
+      else if( reco_scheme.find("jecAbsoluteup") != string::npos )                     syst_ext = "__jecAbsoluteup";
+      else if( reco_scheme.find("jecAbsolutedown") != string::npos )                   syst_ext = "__jecAbsolutedown";
+      else if( reco_scheme.find(Form("jecAbsolute%iup",era)) != string::npos )         syst_ext = Form("__jecAbsolute%iup",era);
+      else if( reco_scheme.find(Form("jecAbsolute%idown",era)) != string::npos )       syst_ext = Form("__jecAbsolute%idown",era);
+      else if( reco_scheme.find("jecBBEC1up") != string::npos )                        syst_ext = "__jecBBEC1up";
+      else if( reco_scheme.find("jecBBEC1down") != string::npos )                      syst_ext = "__jecBBEC1down";
+      else if( reco_scheme.find(Form("jecBBEC1%iup",era)) != string::npos )            syst_ext = Form("__jecBBEC1%iup",era);
+      else if( reco_scheme.find(Form("jecBBEC1%idown",era)) != string::npos )          syst_ext = Form("__jecBBEC1%idown",era);
+      else if( reco_scheme.find("jecFlavorQCDup") != string::npos )                    syst_ext = "__jecFlavorQCDup";
+      else if( reco_scheme.find("jecFlavorQCDdown") != string::npos )                  syst_ext = "__jecFlavorQCDdown";
+      else if( reco_scheme.find("jecRelativeBalup") != string::npos )                  syst_ext = "__jecRelativeBalup";
+      else if( reco_scheme.find("jecRelativeBaldown") != string::npos )                syst_ext = "__jecRelativeBaldown";
+      else if( reco_scheme.find(Form("jecRelativeSample%iup",era)) != string::npos )   syst_ext = Form("__jecRelativeSample%iup",era);
+      else if( reco_scheme.find(Form("jecRelativeSample%idown",era)) != string::npos ) syst_ext = Form("__jecRelativeSample%idown",era);
     }
     sample.erase( sample.find_first_of("-"),string::npos );
     assign_file = Form("./../reco/%s/assign%s/assign_deepReco_%s.root", reco_era.c_str(), reco_scheme.c_str(), sample.c_str());

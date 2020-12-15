@@ -36,7 +36,6 @@ public :
    TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
    TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    TTreeReaderArray<float> psweight = {fReader, "psweight"};
-   TTreeReaderValue<Float_t> topptweight = {fReader, "topptweight"};
    TTreeReaderValue<Float_t> MET = {fReader, "MET"};
    TTreeReaderValue<Float_t> MET_phi = {fReader, "MET_phi"};
    TTreeReaderArray<float> MET_unc_x = {fReader, "MET_unc_x"};
@@ -54,13 +53,10 @@ public :
    TTreeReaderArray<float> jet_phi = {fReader, "jet_phi"};
    TTreeReaderArray<float> jet_e = {fReader, "jet_e"};
    TTreeReaderArray<int> jet_index = {fReader, "jet_index"};
-//   TTreeReaderArray<float> jet_CSV = {fReader, "jet_CSV"};
    TTreeReaderArray<float> jet_deepCSV = {fReader, "jet_deepCSV"};
    TTreeReaderArray<float> jet_deepJet = {fReader, "jet_deepJet"};
    TTreeReaderArray<float> jet_SF_deepCSV_30 = {fReader, "jet_SF_deepCSV_30"};
    TTreeReaderArray<float> jet_SF_deepJet_30 = {fReader, "jet_SF_deepJet_30"};
-//   TTreeReaderArray<float> jet_CvsL = {fReader, "jet_CvsL"};
-//   TTreeReaderArray<float> jet_CvsB = {fReader, "jet_CvsB"};
    TTreeReaderArray<float> jet_deepCvsL = {fReader, "jet_deepCvsL"};
    TTreeReaderArray<float> jet_deepCvsB = {fReader, "jet_deepCvsB"};
    TTreeReaderArray<float> jet_deepJetCvsL = {fReader, "jet_deepJetCvsL"};
@@ -74,6 +70,8 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
+   TTreeReaderArray<vector<float>> jet_JESCom_Up = {fReader, "jet_JESCom_Up"};
+   TTreeReaderArray<vector<float>> jet_JESCom_Down = {fReader, "jet_JESCom_Down"};
    TTreeReaderValue<Float_t> Hbjet1_pt = {fReader, "Hbjet1_pt"};
    TTreeReaderValue<Float_t> Hbjet1_eta = {fReader, "Hbjet1_eta"};
    TTreeReaderValue<Float_t> Hbjet1_phi = {fReader, "Hbjet1_phi"};
