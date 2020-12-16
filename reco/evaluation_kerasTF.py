@@ -2,7 +2,23 @@ from __future__ import print_function
 import sys, os
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+#Channel and version
+if len(sys.argv) < 7:
+  print("Not enough arguements: Ch, Ver, Era, Signal only, Syst. var, Model")
+  sys.exit()
+ch = sys.argv[1] #STFCNC, TTFCNC. TTBKG
+ver = sys.argv[2] #01
+era = sys.argv[3]
+signal_only = sys.argv[4] == "True"
+syst_cat = sys.argv[5]
+bestModel = sys.argv[6]
+if len(sys.argv) > 7:
+  gpunum = sys.argv[7]
+  if int(gpunum) > 4:
+    print("Invalid GPU id!")
+    sys.exit()
+
+os.environ["CUDA_VISIBLE_DEVICES"] = gpunum
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize
@@ -19,17 +35,6 @@ import keras
 from keras.models import load_model
 from training.variables import input_variables
 
-#Channel and version
-if len(sys.argv) < 7:
-  print("Not enough arguements: Ch, Ver, Era, Signal only, Syst. var, Model")
-  sys.exit()
-ch = sys.argv[1] #STFCNC, TTFCNC. TTBKG
-ver = sys.argv[2] #01
-era = sys.argv[3]
-signal_only = sys.argv[4] == "True"
-syst_cat = sys.argv[5]
-bestModel = sys.argv[6]
-
 configDir = './'
 weightDir = 'training/' + era + '/reco' + ch
 scoreDir = era + '/score' + ch
@@ -40,12 +45,26 @@ input_features = []
 input_features.extend(input_variables(ch))
 
 if   int(syst_cat) < 2: syst = [""]
-elif int(syst_cat) == 2: syst = ["jecup"]
-elif int(syst_cat) == 3: syst = ["jecdown"]
-elif int(syst_cat) == 4: syst = ["jerup"]
-elif int(syst_cat) == 5: syst = ["jerdown"]
-elif int(syst_cat) == 6: syst = ["hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
-else: print("Wrong systematic category number: 0(TTLJ), 1(other), 2,3(jec up/down), 4,5(jer up/down), 6(hdamp and tune)")
+elif int(syst_cat) == 2: syst = ["hdampup", "hdampdown", "TuneCP5up", "TuneCP5down"]
+elif int(syst_cat) == 3: syst = ["jerup"]
+elif int(syst_cat) == 4: syst = ["jerdown"]
+#elif int(syst_cat) == 5: syst = ["jecup"]
+#elif int(syst_cat) == 6: syst = ["jecdown"]
+elif int(syst_cat) == 5: syst = ["jecAbsoluteup"]
+elif int(syst_cat) == 6: syst = ["jecAbsolutedown"]
+elif int(syst_cat) == 7: syst = ["jecAbsolute"+era+"up"]
+elif int(syst_cat) == 8: syst = ["jecAbsolute"+era+"down"]
+elif int(syst_cat) == 9: syst = ["jecBBEC1up"]
+elif int(syst_cat) == 10: syst = ["jecBBEC1down"]
+elif int(syst_cat) == 11: syst = ["jecBBEC1"+era+"up"]
+elif int(syst_cat) == 12: syst = ["jecBBEC1"+era+"down"]
+elif int(syst_cat) == 13: syst = ["jecFlavorQCDup"]
+elif int(syst_cat) == 14: syst = ["jecFlavorQCDdown"]
+elif int(syst_cat) == 15: syst = ["jecRelativeBalup"]
+elif int(syst_cat) == 16: syst = ["jecRelativeBaldown"]
+elif int(syst_cat) == 17: syst = ["jecRelativeSample"+era+"up"]
+elif int(syst_cat) == 18: syst = ["jecRelativeSample"+era+"down"]
+else: print("Wrong systematic category number: 0(TTLJ), 1(other), 2(hdamp and tune), 3,4(jer), 5~(jec)")
 
 if signal_only: syst = [""]
 

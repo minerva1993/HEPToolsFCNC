@@ -62,7 +62,9 @@ with open(merge_file_name, 'w') as f:
 #This part is for reconstruction
 for dataset_folder in bare_list:
   dataset_path = os.path.join(path_to_prod, dataset_folder)
-  for file_name in os.listdir(dataset_path):
+  file_list = os.listdir(dataset_path)
+  file_list.sort()
+  for file_name in file_list:
     tmp_string = ''
     file_id = file_name.split('_')[-1].split('.')[0]
     tmp_string += os.path.join(dataset_path, file_name)

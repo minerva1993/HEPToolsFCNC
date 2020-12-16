@@ -20,14 +20,14 @@ if print17:
       tmp = []
       for files in os.listdir("./2017/" + folder):
         if files.endswith(".root"): tmp.append(files)
-      print folder + ": " + str(len(tmp)).rjust(30-len(folder))
+      print folder + ": " + str(len(tmp)).rjust(45-len(folder))
   for folder in folder17:
     if ver != '00' and ver not in folder: continue
     if folder.startswith("score"):
       tmp = []
       for files in os.listdir("./2017/" + folder):
         if files.endswith(".root"): tmp.append(files)
-      print folder + ": " + str(len(tmp)).rjust(30-len(folder))
+      print folder + ": " + str(len(tmp)).rjust(45-len(folder))
 
 if print18:
   folder18 = sorted(os.listdir("./2018"))
@@ -39,11 +39,11 @@ if print18:
       tmp = []
       for files in os.listdir("./2018/" + folder):
         if files.endswith(".root"): tmp.append(files)
-      print folder + ": " + str(len(tmp)).rjust(30-len(folder))
+      print folder + ": " + str(len(tmp)).rjust(45-len(folder))
   for folder in folder18:
     if ver != '00' and ver not in folder: continue
     if folder.startswith("score"):
       tmp = []
       for files in os.listdir("./2018/" + folder):
         if files.endswith(".root"): tmp.append(files)
-      print folder + ": " + str(len(tmp)).rjust(30-len(folder))
+      print folder + ": " + str(len(tmp)).rjust(45-len(folder))
