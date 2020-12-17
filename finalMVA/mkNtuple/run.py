@@ -12,11 +12,15 @@ if len(sys.argv) < 3:
   print("Not enough arguements: Era, Input, Output")
   sys.exit()
 ver = "010101"
-#ver = "010201"
 era = sys.argv[1]
 input_filename = sys.argv[2]
 output_filename = sys.argv[3]
-syst = ["","jecup","jecdown","jerup","jerdown"]
+#syst = ["","jecup","jecdown","jerup","jerdown"]
+syst = ["","jecAbsoluteup","jecAbsolutedown", "jecAbsolute"+era+"up", "jecAbsolute"+era+"down",
+        "jecBBEC1up", "jecBBEC1down", "jecBBEC1"+era+"up", "jecBBEC1"+era+"down",
+        "jecFlavorQCDup", "jecFlavorQCDdown", "jecRelativeBalup", "jecRelativeBaldown",
+        "jecRelativeSample"+era+"up", "jecRelativeSample"+era+"down",
+        "jerup","jerdown"]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
 for syst_ext in syst + syst2:

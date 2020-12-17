@@ -66,6 +66,8 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
+   TTreeReaderArray<vector<float>> jet_JESCom_Up = {fReader, "jet_JESCom_Up"};
+   TTreeReaderArray<vector<float>> jet_JESCom_Down = {fReader, "jet_JESCom_Down"};
    TTreeReaderValue<Float_t> Hbjet1_pt = {fReader, "Hbjet1_pt"};
    TTreeReaderValue<Float_t> Hbjet1_eta = {fReader, "Hbjet1_eta"};
    TTreeReaderValue<Float_t> Hbjet1_phi = {fReader, "Hbjet1_phi"};
