@@ -58,7 +58,12 @@ for lines in noreco_list:
 with open(run_file_name, 'a') as target:
   target.write(string_for_run)
 
-syst = ["__jecup", "__jecdown", "__jerup", "__jerdown",]
+#syst = ["__jecup", "__jecdown", "__jerup", "__jerdown",]
+syst = ["__jecAbsoluteup","__jecAbsolutedown", "__jecAbsolute"+era+"up", "__jecAbsolute"+era+"down",
+        "__jecBBEC1up", "__jecBBEC1down", "__jecBBEC1"+era+"up", "__jecBBEC1"+era+"down",
+        "__jecFlavorQCDup", "__jecFlavorQCDdown", "__jecRelativeBalup", "__jecRelativeBaldown",
+        "__jecRelativeSample"+era+"up", "__jecRelativeSample"+era+"down",
+        "__jerup","__jerdown"]
 syst1 = ["__TuneCP5up", "__TuneCP5down", "__hdampup", "__hdampdown",]
 syst2 = [""]
 

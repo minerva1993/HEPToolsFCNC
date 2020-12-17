@@ -53,7 +53,7 @@ cat ../commonTools/file_2017_all.txt | xargs -i -n2 sbatch job_slurm.sh STFCNC01
 cd doReco
 #source job_merge_2017.sh
 source job_prep_2017.sh
-cat job_hadd_2017.sh | xargs -i -P$(nporc) -n3 python multiHadd.py 
+cat job_hadd_2017.sh | xargs -i -P$(nproc) -l1 python multiHadd.py
 #python do_post_process.py
 python do_post_process_mult.py
 mkdir STFCNC01

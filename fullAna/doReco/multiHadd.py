@@ -6,11 +6,15 @@ if nargs == 4:
   excutable = sys.argv[1]
   target = sys.argv[2]
   inputs = sys.argv[3]
-  
-  if excutable != "hadd": sys.exit()
+elif nargs == 5:
+  excutable = sys.argv[1]
+  target = sys.argv[2]
+  inputs1 = sys.argv[3]
+  inputs2 = sys.argv[4]
+  inputs = inputs1 + " " + inputs2
 
-  call([excutable + " " + target + " " +  inputs], shell=True)
+if excutable != "hadd": sys.exit()
 
-else: pass
+call([excutable + " -f " + target + " " +  inputs], shell=True)
 
 #call(["hadd " + target + " " +  inputs], shell=True)

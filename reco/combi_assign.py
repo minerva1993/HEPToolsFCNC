@@ -15,7 +15,12 @@ filename = sys.argv[6]
 #if not 'TTTH1L3BTLepHct' in filename: sys.exit()
 
 syst = [""]
-syst1 = ["jecup", "jecdown", "jerup", "jerdown"]
+#syst1 = ["jecup", "jecdown", "jerup", "jerdown"]
+syst1 = ["jecAbsoluteup","jecAbsolutedown", "jecAbsolute"+era+"up", "jecAbsolute"+era+"down",
+        "jecBBEC1up", "jecBBEC1down", "jecBBEC1"+era+"up", "jecBBEC1"+era+"down",
+        "jecFlavorQCDup", "jecFlavorQCDdown", "jecRelativeBalup", "jecRelativeBaldown",
+        "jecRelativeSample"+era+"up", "jecRelativeSample"+era+"down",
+        "jerup","jerdown"]
 syst2 = ["TuneCP5up", "TuneCP5down", "hdampup", "hdampdown"]
 
 if sig_only == "True":
