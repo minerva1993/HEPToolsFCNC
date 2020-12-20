@@ -12,7 +12,11 @@ train_scheme = sys.argv[1] #supposed to be Hct_j3b2_01 or similar, change to Hct
 era = sys.argv[2]
 file_path = sys.argv[3]
 name = sys.argv[4]
-syst = ["","jecup","jecdown","jerup","jerdown",]
+syst = ["", "jecAbsoluteup","jecAbsolutedown", "jecAbsolute"+era+"up", "jecAbsolute"+era+"down",
+        "jecBBEC1up", "jecBBEC1down", "jecBBEC1"+era+"up", "jecBBEC1"+era+"down",
+        "jecFlavorQCDup", "jecFlavorQCDdown", "jecRelativeBalup", "jecRelativeBaldown",
+        "jecRelativeSample"+era+"up", "jecRelativeSample"+era+"down",
+        "jerup","jerdown"]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
 #if not os.path.exists("./histos/" + train_scheme):

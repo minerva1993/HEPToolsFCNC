@@ -19,11 +19,26 @@ if os.path.exists(config_path + tmp_file_name):
 #shutil.copy2(config_path + 'config_' + era + '.yml', config_path + tmp_file_name)
 
 unc_cat = OrderedDict([
-('all', ['xsec', 'pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'elzvtx', 'eltrg', 'jec', 'jer', 'scale', 'ps', 'hdamp', 'pdf', 'TuneCP5', 'lf', 'hf', 'lfstat1', 'lfstat2', 'hfstat1', 'hfstat2', 'cferr1', 'cferr2']),
+#('all', ['xsec', 'pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'elzvtx', 'eltrg',
+#         'jec', 'jer', 'scale', 'ps', 'hdamp', 'pdf', 'TuneCP5', 'lf', 'hf', 'lfstat1',
+#         'lfstat2', 'hfstat1', 'hfstat2', 'cferr1', 'cferr2']),
+('all', ['xsec', 'pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'elzvtx', 'eltrg',
+         'jecAbsolute', 'jecAbsolute'+era, 'jecBBEC1', 'jecBBEC1'+era, 'jecFlavorQCD',
+         'jecRelativeBal', 'jecRelativeSample'+era, 'jer', 'scale', 'ps', 'hdamp', 'pdf',
+         'TuneCP5', 'lf', 'hf', 'lfstat1', 'lfstat2', 'hfstat1', 'hfstat2', 'cferr1', 'cferr2']),
 ('pu', ['pu']),
 ('xsec', ['xsec']),
 ('lep', ['muid', 'muiso', 'mutrg', 'elid', 'elreco', 'elzvtx', 'eltrg']),
-('jec', ['jec']),
+#('jec', ['jec']),
+('jecAbsolute', ['jecAbsolute']),
+('jecAbsolute'+era, ['jecAbsolute'+era]),
+('jecBBEC1', ['jecBBEC1']),
+('jecBBEC1'+era, ['jecBBEC1'+era]),
+('jecFlavorQCD', ['jecFlavorQCD']),
+('jecRelativeBal', ['jecRelativeBal']),
+('jecRelativeSample'+era, ['jecRelativeSample'+era]),
+('jecAll', ['jecAbsolute', 'jecAbsolute'+era, 'jecBBEC1', 'jecBBEC1'+era,
+            'jecFlavorQCD', 'jecRelativeBal', 'jecRelativeSample'+era]),
 ('jer', ['jer']),
 ('scale', ['scale']),
 ('ps', ['ps']),
@@ -96,7 +111,8 @@ for key, value in unc_cat.items():
   with open(dest_path + 'yields.tex', 'r') as f:
     with open(dest_path + 'yields_' + syst_postfix + '.tex', 'w+') as f1:
       isTT = False
-      if any(x in key for x in ['scale', 'ps', 'hdamp', 'tune', 'pdf', 'xsec']): isTT = True
+      #if any(x in key for x in ['scale', 'ps', 'hdamp', 'tune', 'pdf', 'xsec']): isTT = True
+      if any(x in key for x in ['hdamp', 'tune', 'xsec']): isTT = True
       for line in f:
         if isTT and 'ttbar' in line: isTT = False
         if isTT: continue
@@ -106,7 +122,7 @@ for key, value in unc_cat.items():
   string_to_add = 'systematics:\n'
 
 unc_summary = OrderedDict([
-('xsec', 'Cross section'), ('pu', 'Pileup'), ('lep', 'Lepton SF'), ('jec', 'JES'), ('jer', 'JER'),
+('xsec', 'Cross section'), ('pu', 'Pileup'), ('lep', 'Lepton SF'), ('jecAll', 'JES'), ('jer', 'JER'),
 ('scale', 'ME scale'), ('ps', 'PS scale'), ('hdamp', 'ME-PS matching'), ('pdf', 'PDF'), ('tune', 'Underlying event'),
 ('bAll', 'DeepCSV shape'), ('all', 'Total sys. unc.'),
 ])

@@ -10,7 +10,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=1gb 
 #SBATCH --comment python
-#SBATCH --time 02:00:00
+#SBATCH --time 03:00:00
 #SBATCH --hint=compute_bound
 
 era=$1

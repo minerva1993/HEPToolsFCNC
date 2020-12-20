@@ -14,7 +14,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
 {
   TString option = GetOption();
   string sample = option.Data();
-  string era = sample.substr(sample.find_first_of("-")+1,4); //STTH1L3BHct_000-2017Hct_0101010101__syst
+  string era_s = sample.substr(sample.find_first_of("-")+1,4); //STTH1L3BHct_000-2017Hct_0101010101__syst
   string train_scheme = sample.substr(sample.find_first_of("-")+5,string::npos); //Hct_0101010101__syst
   sample.erase(sample.find_first_of("-"),string::npos); //STTH1L3BHct_000
   string sig_ch = train_scheme.substr(0,3);
@@ -30,6 +30,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
   if( option.Contains("Run201") ) dosyst = false;
 
   //Delete ntuple number and data era so that we can merge histos w.r.t. dataset, prepare assign ntuple
+  int era = stoi(era_s);
   if( train_scheme.find("jec") != string::npos or train_scheme.find("jer") != string::npos 
     or train_scheme.find("TuneCP5") != string::npos or train_scheme.find("hdamp") != string::npos ){
     dosyst = false;//make another hist file
@@ -41,6 +42,21 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     else if( train_scheme.find("TuneCP5down") != string::npos ) syst_ext = "TuneCP5down";
     else if( train_scheme.find("hdampup") != string::npos )     syst_ext = "hdampup";
     else if( train_scheme.find("hdampdown") != string::npos )   syst_ext = "hdampdown";
+    //Regrouped JEC V2
+    else if( train_scheme.find("jecAbsoluteup") != string::npos )                     syst_ext = "jecAbsoluteup";
+    else if( train_scheme.find("jecAbsolutedown") != string::npos )                   syst_ext = "jecAbsolutedown";
+    else if( train_scheme.find(Form("jecAbsolute%iup",era)) != string::npos )         syst_ext = Form("jecAbsolute%iup",era);
+    else if( train_scheme.find(Form("jecAbsolute%idown",era)) != string::npos )       syst_ext = Form("jecAbsolute%idown",era);
+    else if( train_scheme.find("jecBBEC1up") != string::npos )                        syst_ext = "jecBBEC1up";
+    else if( train_scheme.find("jecBBEC1down") != string::npos )                      syst_ext = "jecBBEC1down";
+    else if( train_scheme.find(Form("jecBBEC1%iup",era)) != string::npos )            syst_ext = Form("jecBBEC1%iup",era);
+    else if( train_scheme.find(Form("jecBBEC1%idown",era)) != string::npos )          syst_ext = Form("jecBBEC1%idown",era);
+    else if( train_scheme.find("jecFlavorQCDup") != string::npos )                    syst_ext = "jecFlavorQCDup";
+    else if( train_scheme.find("jecFlavorQCDdown") != string::npos )                  syst_ext = "jecFlavorQCDdown";
+    else if( train_scheme.find("jecRelativeBalup") != string::npos )                  syst_ext = "jecRelativeBalup";
+    else if( train_scheme.find("jecRelativeBaldown") != string::npos )                syst_ext = "jecRelativeBaldown";
+    else if( train_scheme.find(Form("jecRelativeSample%iup",era)) != string::npos )   syst_ext = Form("jecRelativeSample%iup",era);
+    else if( train_scheme.find(Form("jecRelativeSample%idown",era)) != string::npos ) syst_ext = Form("jecRelativeSample%idown",era);
   }
   string syst_str = "-" + train_scheme.substr(train_scheme.find_last_of("_")+1,string::npos );
   if( syst_ext == "" ) syst_str.erase(0,1);
@@ -52,11 +68,11 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
   const char* score_file_j4b3 = "";
   const char* score_file_j4b4 = "";
 
-  score_file_j3b2 = Form("./scores/%s/%s_j3b2_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j3b2.c_str(), syst_str.c_str(), sample.c_str());
-  score_file_j3b3 = Form("./scores/%s/%s_j3b3_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j3b3.c_str(), syst_str.c_str(), sample.c_str());
-  score_file_j4b2 = Form("./scores/%s/%s_j4b2_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j4b2.c_str(), syst_str.c_str(), sample.c_str());
-  score_file_j4b3 = Form("./scores/%s/%s_j4b3_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j4b3.c_str(), syst_str.c_str(), sample.c_str());
-  score_file_j4b4 = Form("./scores/%s/%s_j4b4_%s%s/score_finalMVA_%s.root", era.c_str(), sig_ch.c_str(), ver_j4b4.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j3b2 = Form("./scores/%s/%s_j3b2_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j3b2.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j3b3 = Form("./scores/%s/%s_j3b3_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j3b3.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j4b2 = Form("./scores/%s/%s_j4b2_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j4b2.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j4b3 = Form("./scores/%s/%s_j4b3_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j4b3.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j4b4 = Form("./scores/%s/%s_j4b4_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j4b4.c_str(), syst_str.c_str(), sample.c_str());
 
   string file_tmp_path_j3b2 = score_file_j3b2;
   ifstream file_tmp_j3b2(file_tmp_path_j3b2);
@@ -147,27 +163,6 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
     }
   }
   else cout << "Not opened in j4b4 : " << option.Data() << " - " << file_tmp_path_j4b4 << endl;
-
-//  const char* score_file = "";
-//  score_file = Form("./scores/%s/%s%s/score_finalMVA_%s.root", era.c_str(), train_scheme.c_str(), syst_str.c_str(), sample.c_str());
-//
-//  string file_tmp_path = score_file;
-//  ifstream file_tmp(file_tmp_path);
-//  if( file_tmp.is_open() ){
-//    scoreF = TFile::Open(score_file, "READ");
-//    scoreT = (TTree*) scoreF->Get("tree");
-//    int nevt = scoreT->GetEntries();
-//    if( nevt > 0){
-//      for(int i = 0; i < nevt; i++){
-//        scoreT->GetEntry(i);
-//        float pt = scoreT->GetLeaf("lepPt")->GetValue(0);
-//        float met = scoreT->GetLeaf("missinget")->GetValue(0);
-//        lepPt.push_back(pt);
-//        missET.push_back(met);
-//      }
-//    }
-//  }
-//  else cout << option.Data() << endl;
 
   if( !dosyst and syst_ext.length() < 5 and !option.Contains("Run201") ) cout << sample.c_str() << " " << "No external systematic option!" << endl;
 
@@ -324,11 +319,16 @@ Bool_t MyAnalysis::Process(Long64_t entry)
 
   int jetIdx[4];
   TLorentzVector jetP4s[4];
+  float met_var_x = 0.;
+  float met_var_y = 0.;
 
   for (unsigned int iJet = 0; iJet < jet_pt.GetSize() ; ++iJet) {
 
     TLorentzVector jet;
     jet.SetPtEtaPhiE(jet_pt[iJet], jet_eta[iJet], jet_phi[iJet], jet_e[iJet]);
+
+    float org_px = jet.Px();
+    float org_py = jet.Py();
 
     if( !option.Contains("Run201") ){
       if     ( syst_ext == "jecup" )   jet = jet * jet_JER_Nom[iJet] * jet_JES_Up[iJet];
@@ -336,9 +336,35 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       else if( syst_ext == "jerup" )   jet = jet * jet_JER_Up[iJet];
       else if( syst_ext == "jerdown" ) jet = jet * jet_JER_Down[iJet];
       else                             jet = jet * jet_JER_Nom[iJet];
+
+      //Example of iterator for TTreeReaderArray
+      //TTreeReaderArray<vector<float>>::iterator iter;
+      //for( iter = jet_JESCom_Up.begin(); iter != jet_JESCom_Up.end(); iter++ ){
+      //  cout << iter->at(1) << " ";
+      //}
+      //Regouped JEC V2, JEC should be applied on top of JER_Nom
+      //ORDER DOES MATTER
+      if     ( syst_ext == "jecAbsoluteup" )                     jet = jet * (1+jet_JESCom_Up[iJet].at(0));
+      else if( syst_ext == "jecAbsolutedown" )                   jet = jet * (1-jet_JESCom_Down[iJet].at(0));
+      else if( syst_ext == Form("jecAbsolute%iup",era) )         jet = jet * (1+jet_JESCom_Up[iJet].at(1));
+      else if( syst_ext == Form("jecAbsolute%idown",era) )       jet = jet * (1-jet_JESCom_Down[iJet].at(1));
+      else if( syst_ext == "jecBBEC1up" )                        jet = jet * (1+jet_JESCom_Up[iJet].at(2));
+      else if( syst_ext == "jecBBEC1down" )                      jet = jet * (1-jet_JESCom_Down[iJet].at(2));
+      else if( syst_ext == Form("jecBBEC1%iup",era) )            jet = jet * (1+jet_JESCom_Up[iJet].at(3));
+      else if( syst_ext == Form("jecBBEC1%idown",era) )          jet = jet * (1-jet_JESCom_Down[iJet].at(3));
+      else if( syst_ext == "jecFlavorQCDup" )                    jet = jet * (1+jet_JESCom_Up[iJet].at(4));
+      else if( syst_ext == "jecFlavorQCDdown" )                  jet = jet * (1-jet_JESCom_Down[iJet].at(4));
+      else if( syst_ext == "jecRelativeBalup" )                  jet = jet * (1+jet_JESCom_Up[iJet].at(5));
+      else if( syst_ext == "jecRelativeBaldown" )                jet = jet * (1-jet_JESCom_Down[iJet].at(5));
+      else if( syst_ext == Form("jecRelativeSample%iup",era) )   jet = jet * (1+jet_JESCom_Up[iJet].at(6));
+      else if( syst_ext == Form("jecRelativeSample%idown",era) ) jet = jet * (1-jet_JESCom_Down[iJet].at(6));
+
+      //MET' = MET + \deltaMET, \deltaMET = MET' - MET
+      met_var_x = met_var_x + (jet.Px() - org_px);
+      met_var_y = met_var_y + (jet.Py() - org_py);
     }
 
-    if( jet.Pt() > 30 && abs(jet.Eta())<=2.4){
+    if( jet.Pt() > 30 && abs(jet.Eta()) <= 2.4){
       njets++;
       if( jet_deepCSV[iJet] > bWP_M ) nbjets_m++;
     }
@@ -356,6 +382,10 @@ Bool_t MyAnalysis::Process(Long64_t entry)
     }
     else if( syst_ext == "jerdown" ){
       met_x = MET_unc_x[3]; met_y = MET_unc_y[3];
+    }
+    else{
+      met_x = met_x + met_var_x;
+      met_y = met_y + met_var_y;
     }
   }
   p4met.SetPxPyPzE(met_x, met_y, 0, sqrt(met_x*met_x + met_y*met_y));
@@ -554,7 +584,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         }
         //ME&PS
         //[0] = muF up , [1] = muF down, [2] = muR up, [3] = muR up && muF up, [4] = muR down, [5] = muF down && muF down
-        if( option.Contains("TTpowheg") or option.Contains("TTLL") or option.Contains("TTHad") ){
+        if( option.Contains("TTpowheg") or option.Contains("TTLL") or option.Contains("TTHad")
+          or option.Contains("STTH") or option.Contains("TTTH") ){
           //Scale weight
           if     ( isPartOf("scale0", std::string(syst_name[syst])) ) EventWeight *= scaleweight[0];
           else if( isPartOf("scale1", std::string(syst_name[syst])) ) EventWeight *= scaleweight[1];
@@ -573,11 +604,12 @@ Bool_t MyAnalysis::Process(Long64_t entry)
           if( isPartOf("pdf", std::string(syst_name[syst])) ){
             string tmp_name = string(syst_name[syst]);
             int pdf_unc_idx = std::stoi(tmp_name.erase(0,5));
-            if( pdf_unc_idx > 103 or pdf_unc_idx < 0 ){
-              cout << "Wrong pdf unc index!" << endl;
-              continue;
-            }
-            EventWeight *= pdfweight[pdf_unc_idx];
+            float tmppdf = 1.0;
+            if( option.Contains("STTH")
+                 and pdf_unc_idx >= 0 and pdf_unc_idx < 31 ) tmppdf = pdfweight[pdf_unc_idx];
+            else if( option.Contains("STTH") and pdf_unc_idx >= 31 ) tmppdf = 1.0;
+            else if( pdf_unc_idx >= 0 and pdf_unc_idx < 103 ) tmppdf = pdfweight[pdf_unc_idx];
+            EventWeight *= tmppdf;
           }
         }
         else EventWeight *= 1;
@@ -683,7 +715,7 @@ void MyAnalysis::Terminate()
 {
   TString option = GetOption();
   string sample = option.Data();
-  string era =  sample.substr(sample.find_first_of("-")+1,4);
+  string era_s = sample.substr(sample.find_first_of("-")+1,4);
   string train_scheme = sample.substr(sample.find_first_of("-")+5,string::npos);
   sample.erase(sample.find_first_of("-"),string::npos);
   string sig_ch = train_scheme.substr(0,3);
@@ -697,6 +729,7 @@ void MyAnalysis::Terminate()
   if( option.Contains("Run201") ) dosyst = false;
 
   syst_ext = "";
+  int era = stoi(era_s);
   if( train_scheme.find("jec") != string::npos or train_scheme.find("jer") != string::npos
     or train_scheme.find("TuneCP5") != string::npos or train_scheme.find("hdamp") != string::npos ){
     if     ( train_scheme.find("jecup") != string::npos )       syst_ext = "__jecup";
@@ -707,13 +740,29 @@ void MyAnalysis::Terminate()
     else if( train_scheme.find("TuneCP5down") != string::npos ) syst_ext = "__TuneCP5down";
     else if( train_scheme.find("hdampup") != string::npos )     syst_ext = "__hdampup";
     else if( train_scheme.find("hdampdown") != string::npos )   syst_ext = "__hdampdown";
+    //Regrouped JEC V2
+    else if( train_scheme.find("jecAbsoluteup") != string::npos )                     syst_ext = "__jecAbsoluteup";
+    else if( train_scheme.find("jecAbsolutedown") != string::npos )                   syst_ext = "__jecAbsolutedown";
+    else if( train_scheme.find(Form("jecAbsolute%iup",era)) != string::npos )         syst_ext = Form("__jecAbsolute%iup",era);
+    else if( train_scheme.find(Form("jecAbsolute%idown",era)) != string::npos )       syst_ext = Form("__jecAbsolute%idown",era);
+    else if( train_scheme.find("jecBBEC1up") != string::npos )                        syst_ext = "__jecBBEC1up";
+    else if( train_scheme.find("jecBBEC1down") != string::npos )                      syst_ext = "__jecBBEC1down";
+    else if( train_scheme.find(Form("jecBBEC1%iup",era)) != string::npos )            syst_ext = Form("__jecBBEC1%iup",era);
+    else if( train_scheme.find(Form("jecBBEC1%idown",era)) != string::npos )          syst_ext = Form("__jecBBEC1%idown",era);
+    else if( train_scheme.find("jecFlavorQCDup") != string::npos )                    syst_ext = "__jecFlavorQCDup";
+    else if( train_scheme.find("jecFlavorQCDdown") != string::npos )                  syst_ext = "__jecFlavorQCDdown";
+    else if( train_scheme.find("jecRelativeBalup") != string::npos )                  syst_ext = "__jecRelativeBalup";
+    else if( train_scheme.find("jecRelativeBaldown") != string::npos )                syst_ext = "__jecRelativeBaldown";
+    else if( train_scheme.find(Form("jecRelativeSample%iup",era)) != string::npos )   syst_ext = Form("__jecRelativeSample%iup",era);
+    else if( train_scheme.find(Form("jecRelativeSample%idown",era)) != string::npos ) syst_ext = Form("__jecRelativeSample%idown",era);
+
   }
   string syst_str = "-" + train_scheme.substr(train_scheme.find_last_of("_")+1,string::npos );
   if( syst_ext == "" ) syst_str.erase(0,1);
   train_scheme.erase( train_scheme.find_last_of("_"),string::npos );
 
 //  const char* score_file = "";
-//  score_file = Form("scores/%s/%s%s/score_finalMVA_%s.root", era.c_str(), train_scheme.c_str(), syst_str.c_str(), sample.c_str());
+//  score_file = Form("scores/%s/%s%s/score_finalMVA_%s.root", era_s.c_str(), train_scheme.c_str(), syst_str.c_str(), sample.c_str());
 //  string file_tmp_path = score_file;
 //  ifstream file_tmp(file_tmp_path);
 //
@@ -769,4 +818,40 @@ bool MyAnalysis::isPartOf(const std::string& word, const std::string& sentence) 
     return sentence.find(word)    // this returns the index of the first instance
                                   // word
            != std::string::npos;  // which will take this value if it's not found
+}
+
+float MyAnalysis::topptreweight( float toppt ){
+
+  float LO = 1.0;
+
+  if (toppt >= 0 and toppt < 50)      LO = ( 1.74875378 + 1.74752223 ) / 2.0;
+  if (toppt >= 50 and toppt < 100)    LO = ( 1.75537407 + 1.75596642 ) / 2.0;
+  if (toppt >= 100 and toppt < 150)   LO = ( 1.70683288 + 1.70787942 ) / 2.0;
+  if (toppt >= 150 and toppt < 200)   LO = ( 1.63940560 + 1.63768422 ) / 2.0;
+  if (toppt >= 200 and toppt < 250)   LO = ( 1.54387581 + 1.54680955 ) / 2.0;
+  if (toppt >= 250 and toppt < 300)   LO = ( 1.45804858 + 1.45509433 ) / 2.0;
+  if (toppt >= 300 and toppt < 350)   LO = ( 1.36343622 + 1.38202977 ) / 2.0;
+  if (toppt >= 350 and toppt < 400)   LO = ( 1.31025111 + 1.29551744 ) / 2.0;
+  if (toppt >= 400 and toppt < 450)   LO = ( 1.27175927 + 1.25660455 ) / 2.0;
+  if (toppt >= 450 and toppt < 500)   LO = ( 1.21881282 + 1.18759930 ) / 2.0;
+  if (toppt >= 500 and toppt < 550)   LO = ( 1.21895039 + 1.16878604 ) / 2.0;
+  if (toppt >= 550 and toppt < 600)   LO = ( 1.19146549 + 1.20095193 ) / 2.0;
+  if (toppt >= 600 and toppt < 650)   LO = ( 1.11857414 + 1.18858313 ) / 2.0;
+  if (toppt >= 650 and toppt < 700)   LO = ( 1.08578872 + 1.16489648 ) / 2.0;
+  if (toppt >= 700 and toppt < 800)   LO = ( 1.19721364 + 1.03029835 ) / 2.0;
+  if (toppt >= 800 and toppt < 900)   LO = ( 1.08539545 + 0.98989737 ) / 2.0;
+  if (toppt >= 900 and toppt < 1000)  LO = ( 1.09613990 + 1.09688580 ) / 2.0;
+  if (toppt >= 1000 and toppt < 1100) LO = ( 1.19505548 + 1.17764735 ) / 2.0;
+  if (toppt >= 1100 and toppt < 1200) LO = ( 1.17796266 + 1.15245246 ) / 2.0;
+  if (toppt >= 1200 and toppt < 1400) LO = ( 1.01297032 + 0.85969144 ) / 2.0;
+  if (toppt >= 1400 and toppt < 1600) LO = ( 0.97745841 + 0.93636757 ) / 2.0;
+  if (toppt >= 1600 and toppt < 1800) LO = ( 1.60921680 + 1.51381456 ) / 2.0;
+  if (toppt >= 1800 and toppt < 2000) LO = ( 1.07064831 + 1.32310998 ) / 2.0;
+
+  float NLO = 0.103 * TMath::Exp(-0.0118 * toppt) - 0.000134 * toppt + 0.973;
+
+  float weight = LO * NLO;
+
+  return weight;
+
 }

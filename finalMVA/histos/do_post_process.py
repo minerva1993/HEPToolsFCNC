@@ -127,8 +127,8 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
 
         if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S7'])) #2017
           or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S8']))
-          or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j3b2', 'S2']))
-          or ('jec' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j4b4', 'S9'])) ):
+          or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
+          #or ('jec' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j4b4', 'S9'])) ):
           bSFInfo_nom = fill_bSFInfo(nom_f)
           h_nom = nom_f.Get(histos)
           h_nom = bSFNorm(h_nom, bSFInfo_nom)
@@ -360,7 +360,9 @@ for files in file_list:
 
     if nScaleWeight > 0: write_envelope("scale", 6, ScaleWeights)
     if nPSWeight > 0: write_envelope("ps", 4, PSWeights)
-    if nPDFWeight > 0: write_envelope("pdf", 103, PDFWeights)
+    if nPDFWeight > 0:
+      if 'STTH' in files: write_envelope("pdf", 30, PDFWeights)
+      else:               write_envelope("pdf", 103, PDFWeights)
     if run_on_syst: rescale([], nom_EventInfo)
 
   f_new.Write()
