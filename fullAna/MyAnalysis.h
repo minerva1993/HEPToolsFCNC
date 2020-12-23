@@ -107,6 +107,7 @@ public :
    virtual void    Terminate();
    float transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
    bool isPartOf(const std::string& word, const std::string& sentence);
+   float topptreweight(float toppt);
 
    ClassDef(MyAnalysis,0);
 

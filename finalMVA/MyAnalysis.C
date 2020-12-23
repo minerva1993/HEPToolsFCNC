@@ -836,17 +836,20 @@ float MyAnalysis::topptreweight( float toppt ){
   if (toppt >= 450 and toppt < 500)   LO = ( 1.21881282 + 1.18759930 ) / 2.0;
   if (toppt >= 500 and toppt < 550)   LO = ( 1.21895039 + 1.16878604 ) / 2.0;
   if (toppt >= 550 and toppt < 600)   LO = ( 1.19146549 + 1.20095193 ) / 2.0;
-  if (toppt >= 600 and toppt < 650)   LO = ( 1.11857414 + 1.18858313 ) / 2.0;
-  if (toppt >= 650 and toppt < 700)   LO = ( 1.08578872 + 1.16489648 ) / 2.0;
-  if (toppt >= 700 and toppt < 800)   LO = ( 1.19721364 + 1.03029835 ) / 2.0;
-  if (toppt >= 800 and toppt < 900)   LO = ( 1.08539545 + 0.98989737 ) / 2.0;
-  if (toppt >= 900 and toppt < 1000)  LO = ( 1.09613990 + 1.09688580 ) / 2.0;
-  if (toppt >= 1000 and toppt < 1100) LO = ( 1.19505548 + 1.17764735 ) / 2.0;
-  if (toppt >= 1100 and toppt < 1200) LO = ( 1.17796266 + 1.15245246 ) / 2.0;
-  if (toppt >= 1200 and toppt < 1400) LO = ( 1.01297032 + 0.85969144 ) / 2.0;
-  if (toppt >= 1400 and toppt < 1600) LO = ( 0.97745841 + 0.93636757 ) / 2.0;
-  if (toppt >= 1600 and toppt < 1800) LO = ( 1.60921680 + 1.51381456 ) / 2.0;
-  if (toppt >= 1800 and toppt < 2000) LO = ( 1.07064831 + 1.32310998 ) / 2.0;
+  if (toppt >= 600 and toppt < 800)   LO = ( 1.11857414 + 1.18858313 ) / 2.0;
+  if (toppt >= 800 and toppt < 1000)  LO = ( 1.08578872 + 1.16489648 ) / 2.0;
+  if (toppt >= 1000 and toppt < 2000) LO = ( 1.19721364 + 1.03029835 ) / 2.0;
+//  if (toppt >= 600 and toppt < 650)   LO = ( 1.11857414 + 1.18858313 ) / 2.0;
+//  if (toppt >= 650 and toppt < 700)   LO = ( 1.08578872 + 1.16489648 ) / 2.0;
+//  if (toppt >= 700 and toppt < 800)   LO = ( 1.19721364 + 1.03029835 ) / 2.0;
+//  if (toppt >= 800 and toppt < 900)   LO = ( 1.08539545 + 0.98989737 ) / 2.0;
+//  if (toppt >= 900 and toppt < 1000)  LO = ( 1.09613990 + 1.09688580 ) / 2.0;
+//  if (toppt >= 1000 and toppt < 1100) LO = ( 1.19505548 + 1.17764735 ) / 2.0;
+//  if (toppt >= 1100 and toppt < 1200) LO = ( 1.17796266 + 1.15245246 ) / 2.0;
+//  if (toppt >= 1200 and toppt < 1400) LO = ( 1.01297032 + 0.85969144 ) / 2.0;
+//  if (toppt >= 1400 and toppt < 1600) LO = ( 0.97745841 + 0.93636757 ) / 2.0;
+//  if (toppt >= 1600 and toppt < 1800) LO = ( 1.60921680 + 1.51381456 ) / 2.0;
+//  if (toppt >= 1800 and toppt < 2000) LO = ( 1.07064831 + 1.32310998 ) / 2.0;
 
   float NLO = 0.103 * TMath::Exp(-0.0118 * toppt) - 0.000134 * toppt + 0.973;
 

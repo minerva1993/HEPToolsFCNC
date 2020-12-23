@@ -13,8 +13,19 @@ dest_path = './full1718'
 common_syst = 'systematics:\n'
 #not include prefire and elzvtx which exist only in 2017
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
-                    'jec', 'jer',
+#                    'jec', 'jer',
                     'lf', 'hf', 'lfstat1', 'lfstat2', 'hfstat1', 'hfstat2', 'cferr1', 'cferr2']
+syst = ["jecAbsoluteup","jecAbsolutedown", "jecAbsoluteERAup", "jecAbsoluteERAdown",
+        "jecBBEC1up", "jecBBEC1down", "jecBBEC1ERAup", "jecBBEC1ERAdown",
+        "jecFlavorQCDup", "jecFlavorQCDdown", "jecRelativeBalup", "jecRelativeBaldown",
+        "jecRelativeSampleERAup", "jecRelativeSampleERAdown",
+        "jerup","jerdown"]
+for sy in syst:
+  if 'ERA' in sy:
+    common_syst_list.append(sy.replace('ERA', '2017'))
+    common_syst_list.append(sy.replace('ERA', '2018'))
+  else: common_syst_list.append(sy)
+
 reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
 
 for i in ['STFCNC','TTFCNC','TTBKG']:

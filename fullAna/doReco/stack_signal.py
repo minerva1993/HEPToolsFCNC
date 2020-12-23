@@ -17,6 +17,19 @@ ver_dict = {'2017': ver17, '2018':ver18}
 lumi_dict = {'2017': 41529, '2018':59741}
 file_names = collections.OrderedDict()
 
+syst = ["","jecAbsoluteup","jecAbsolutedown", "jecAbsoluteERAup", "jecAbsoluteERAdown",
+        "jecBBEC1up", "jecBBEC1down", "jecBBEC1ERAup", "jecBBEC1ERAdown",
+        "jecFlavorQCDup", "jecFlavorQCDdown", "jecRelativeBalup", "jecRelativeBaldown",
+        "jecRelativeSampleERAup", "jecRelativeSampleERAdown",
+        "jerup","jerdown"]
+syst2 = []
+for sy in syst:
+  if 'ERA' in sy:
+    syst2.append('__' + sy.replace('ERA', '2017'))
+    syst2.append('__' + sy.replace('ERA', '2018'))
+  elif sy == "": syst2.append(sy)
+  else:          syst2.append('__' + sy)
+
 for i in ['STFCNC','TTFCNC','TTBKG']:
   if not os.path.exists("./full1718/" + i):
     try: os.makedirs("./full1718/" + i)
@@ -51,21 +64,21 @@ def store_file(it):
 
 if __name__ == '__main__':
 
-  for era in ['2017','2018']:
-    for reco in ['STFCNC', 'TTFCNC', 'TTBKG']:
-      dir_path = os.path.join(era, reco + ver_dict[era], 'post_process')
-      dirs = os.listdir(dir_path)
-      dirs[:] = [item for item in dirs if any(i in item for i in ['STTH1L3B','TTTH1L3BaTLep','TTTH1L3BTLep'])] #avoid TTTH merged
-      file_names[dir_path] = dirs
+  #for era in ['2017','2018']:
+  #  for reco in ['STFCNC', 'TTFCNC', 'TTBKG']:
+  #    dir_path = os.path.join(era, reco + ver_dict[era], 'post_process')
+  #    dirs = os.listdir(dir_path)
+  #    dirs[:] = [item for item in dirs if any(i in item for i in ['STTH1L3B','TTTH1L3BaTLep','TTTH1L3BTLep'])] #avoid TTTH merged
+  #    file_names[dir_path] = dirs
 
-  pool = multiprocessing.Pool(40)
-  pool.map(store_file, file_names.iteritems())
-  pool.close()
-  pool.join()
-
+  #pool = multiprocessing.Pool(40)
+  #pool.map(store_file, file_names.iteritems())
+  #pool.close()
+  #pool.join()
 
   for reco in ['STFCNC', 'TTFCNC', 'TTBKG']:
-    for syst in ['', '__jecup', '__jecdown', '__jerup', '__jerdown']:
+    #for sys in ['', '__jecup', '__jecdown', '__jerup', '__jerdown']:
+    for syst in syst2:
       for ch in ['Hct', 'Hut']:
         print './full1718/' + reco + '/hist_STTH1L3B' + ch + syst + '.root'
         check_call(['hadd','-f', './full1718/' + reco + '/hist_STTH1L3B' + ch + syst + '.root'] +  glob.glob('./full1718/' + reco + '/hist_STTH1L3B' + ch + syst + '201*.root'))

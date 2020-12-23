@@ -758,7 +758,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             }
             //ME&PS
             //[0] = muF up , [1] = muF down, [2] = muR up, [3] = muR up && muF up, [4] = muR down, [5] = muF down && muF down
-            if( option.Contains("TTpowheg") or option.Contains("TTLL") or option.Contains("TTHad") ){
+            if( option.Contains("TTpowheg") or option.Contains("TTLL") or option.Contains("TTHad")
+              or option.Contains("STTH") or option.Contains("TTTH") ){
               //Scale weight
               if     ( isPartOf("scale0", std::string(syst_name[syst])) ) EventWeight *= scaleweight[0];
               else if( isPartOf("scale1", std::string(syst_name[syst])) ) EventWeight *= scaleweight[1];
@@ -1045,4 +1046,43 @@ bool MyAnalysis::isPartOf(const std::string& word, const std::string& sentence) 
     return sentence.find(word)    // this returns the index of the first instance
                                   // word
            != std::string::npos;  // which will take this value if it's not found
+}
+
+float MyAnalysis::topptreweight( float toppt ){
+
+  float LO = 1.0;
+
+  if (toppt >= 0 and toppt < 50)      LO = ( 1.74875378 + 1.74752223 ) / 2.0;
+  if (toppt >= 50 and toppt < 100)    LO = ( 1.75537407 + 1.75596642 ) / 2.0;
+  if (toppt >= 100 and toppt < 150)   LO = ( 1.70683288 + 1.70787942 ) / 2.0;
+  if (toppt >= 150 and toppt < 200)   LO = ( 1.63940560 + 1.63768422 ) / 2.0;
+  if (toppt >= 200 and toppt < 250)   LO = ( 1.54387581 + 1.54680955 ) / 2.0;
+  if (toppt >= 250 and toppt < 300)   LO = ( 1.45804858 + 1.45509433 ) / 2.0;
+  if (toppt >= 300 and toppt < 350)   LO = ( 1.36343622 + 1.38202977 ) / 2.0;
+  if (toppt >= 350 and toppt < 400)   LO = ( 1.31025111 + 1.29551744 ) / 2.0;
+  if (toppt >= 400 and toppt < 450)   LO = ( 1.27175927 + 1.25660455 ) / 2.0;
+  if (toppt >= 450 and toppt < 500)   LO = ( 1.21881282 + 1.18759930 ) / 2.0;
+  if (toppt >= 500 and toppt < 550)   LO = ( 1.21895039 + 1.16878604 ) / 2.0;
+  if (toppt >= 550 and toppt < 600)   LO = ( 1.19146549 + 1.20095193 ) / 2.0;
+  if (toppt >= 600 and toppt < 800)   LO = ( 1.11857414 + 1.18858313 ) / 2.0;
+  if (toppt >= 800 and toppt < 1000)  LO = ( 1.08578872 + 1.16489648 ) / 2.0;
+  if (toppt >= 1000 and toppt < 2000) LO = ( 1.19721364 + 1.03029835 ) / 2.0;
+//  if (toppt >= 600 and toppt < 650)   LO = ( 1.11857414 + 1.18858313 ) / 2.0;
+//  if (toppt >= 650 and toppt < 700)   LO = ( 1.08578872 + 1.16489648 ) / 2.0;
+//  if (toppt >= 700 and toppt < 800)   LO = ( 1.19721364 + 1.03029835 ) / 2.0;
+//  if (toppt >= 800 and toppt < 900)   LO = ( 1.08539545 + 0.98989737 ) / 2.0;
+//  if (toppt >= 900 and toppt < 1000)  LO = ( 1.09613990 + 1.09688580 ) / 2.0;
+//  if (toppt >= 1000 and toppt < 1100) LO = ( 1.19505548 + 1.17764735 ) / 2.0;
+//  if (toppt >= 1100 and toppt < 1200) LO = ( 1.17796266 + 1.15245246 ) / 2.0;
+//  if (toppt >= 1200 and toppt < 1400) LO = ( 1.01297032 + 0.85969144 ) / 2.0;
+//  if (toppt >= 1400 and toppt < 1600) LO = ( 0.97745841 + 0.93636757 ) / 2.0;
+//  if (toppt >= 1600 and toppt < 1800) LO = ( 1.60921680 + 1.51381456 ) / 2.0;
+//  if (toppt >= 1800 and toppt < 2000) LO = ( 1.07064831 + 1.32310998 ) / 2.0;
+
+  float NLO = 0.103 * TMath::Exp(-0.0118 * toppt) - 0.000134 * toppt + 0.973;
+
+  float weight = LO * NLO;
+
+  return weight;
+
 }
