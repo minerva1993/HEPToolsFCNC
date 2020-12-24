@@ -41,7 +41,13 @@
   - elreco
   - elzvtx
   - eltrg
-  - jec
+  - jecAbsolute
+  - jecAbsolute2018
+  - jecBBEC1
+  - jecBBEC12018
+  - jecFlavorQCD
+  - jecRelativeBal
+  - jecRelativeSample2018
   - jer
   - scale: {type: shape, on: 'hist_TTpowhegttbb.root'}
   - scale: {type: shape, on: 'hist_TTpowhegttcc.root'}
@@ -52,6 +58,10 @@
   - scale: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
   - scale: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
   - scale: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
+  - scale: {type: shape, on: 'hist_STTH1L3BHut.root'}
+  - scale: {type: shape, on: 'hist_STTH1L3BHct.root'}
+  - scale: {type: shape, on: 'hist_TTTH1L3BHut.root'}
+  - scale: {type: shape, on: 'hist_TTTH1L3BHct.root'}
   - ps: {type: shape, on: 'hist_TTpowhegttbb.root'}
   - ps: {type: shape, on: 'hist_TTpowhegttcc.root'}
   - ps: {type: shape, on: 'hist_TTpowhegttlf.root'}
@@ -61,6 +71,10 @@
   - ps: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
   - ps: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
   - ps: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
+  - ps: {type: shape, on: 'hist_STTH1L3BHut.root'}
+  - ps: {type: shape, on: 'hist_STTH1L3BHct.root'}
+  - ps: {type: shape, on: 'hist_TTTH1L3BHut.root'}
+  - ps: {type: shape, on: 'hist_TTTH1L3BHct.root'}
   - hdamp: {type: shape, on: 'hist_TTpowhegttbb.root'}
   - hdamp: {type: shape, on: 'hist_TTpowhegttcc.root'}
   - hdamp: {type: shape, on: 'hist_TTpowhegttlf.root'}
@@ -79,6 +93,10 @@
   - pdf: {type: shape, on: 'hist_TTHadpowhegttbb.root'}
   - pdf: {type: shape, on: 'hist_TTHadpowhegttcc.root'}
   - pdf: {type: shape, on: 'hist_TTHadpowhegttlf.root'}
+  - pdf: {type: shape, on: 'hist_STTH1L3BHut.root'}
+  - pdf: {type: shape, on: 'hist_STTH1L3BHct.root'}
+  - pdf: {type: shape, on: 'hist_TTTH1L3BHut.root'}
+  - pdf: {type: shape, on: 'hist_TTTH1L3BHct.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttbb.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttcc.root'}
   - TuneCP5: {type: shape, on: 'hist_TTpowhegttlf.root'}
