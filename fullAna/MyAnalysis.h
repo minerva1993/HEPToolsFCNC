@@ -89,6 +89,8 @@ public :
    TTreeReaderValue<Float_t> Hbquarkjet2_eta = {fReader, "Hbquarkjet2_eta"};
    TTreeReaderValue<Float_t> Hbquarkjet2_phi = {fReader, "Hbquarkjet2_phi"};
    TTreeReaderValue<Float_t> Hbquarkjet2_e = {fReader, "Hbquarkjet2_e"};
+   TTreeReaderValue<Float_t> gentop1_pt = {fReader, "gentop1_pt"};
+   TTreeReaderValue<Float_t> gentop2_pt = {fReader, "gentop2_pt"};
 
    MyAnalysis(TTree * /*tree*/ =0) { }
    virtual ~MyAnalysis() { }
@@ -107,7 +109,8 @@ public :
    virtual void    Terminate();
    float transverseMass(const TLorentzVector & l, const TLorentzVector & nu); 
    bool isPartOf(const std::string& word, const std::string& sentence);
-   float topptreweight(float toppt);
+   float topPtLOtoNLO(float toppt);
+   float topPtNLOtoNNLO(float toppt);
 
    ClassDef(MyAnalysis,0);
 
