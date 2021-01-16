@@ -15,10 +15,12 @@ commonTools/merge*
 commonTools/arrange*
 commonTools/TruePVWeight.txt
 finalMVA/training/201*/final*
+finalMVA/histos/201*
 finalMVA/histos/job*
 finalMVA/training/201*/inputs/final*
 finalMVA/training/Var_logs/201*/log*
 fullAna/doReco/job*
+fullAna/doReco/201*
 fullAna/doNoReco/2017/*
 fullAna/doNoReco/2018/*
 fullAna/runNoReco*

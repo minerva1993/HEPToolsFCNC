@@ -7,7 +7,8 @@ from collections import OrderedDict
 gROOT.SetBatch(True)
 hostname = os.environ["HOSTNAME"]
 
-ver="V10_3"
+ver="V9_7"
+#ver="V10_3"
 datasets = OrderedDict()
 filelists = OrderedDict()
 
@@ -61,7 +62,7 @@ c.Print(ver+'_hut_ratio.pdf')
 print('Integral of Powheg+P8 dividev by Hut LO', hbkg_hut.Integral()/hbkg_hut.GetNbinsX())
 tmp_string = ''
 for i in xrange(1,hbkg_hut.GetNbinsX()+1):
-  tmp_string += '{'+str(hbkg_hut.GetBinCenter(i))+','+str(hbkg_hut.GetBinContent(i))+'},'
+  tmp_string += '{'+str(hbkg_hut.GetBinCenter(i))+', '+str(round(hbkg_hut.GetBinContent(i),6))+'},'
 with open(ver+'_hut_ratio.txt', 'w') as f: f.write(tmp_string)
 
 c.Clear()
@@ -70,7 +71,7 @@ c.Print(ver+'_hct_ratio.pdf')
 print('Inegral of Powheg+P8 dividev by Hct LO', hbkg_hct.Integral()/hbkg_hct.GetNbinsX())
 tmp_string = ''
 for i in xrange(1,hbkg_hct.GetNbinsX()+1):
-  tmp_string += '{'+str(hbkg_hct.GetBinCenter(i))+','+str(hbkg_hct.GetBinContent(i))+'},'
+  tmp_string += '{'+str(hbkg_hct.GetBinCenter(i))+', '+str(round(hbkg_hct.GetBinContent(i),6))+'},'
 with open(ver+'_hct_ratio.txt', 'w') as f: f.write(tmp_string)
 
 c.Clear()
@@ -84,6 +85,7 @@ l.AddEntry(hbkg_hct, 'Powheg+P8/Hct', 'l')
 hbkg_hut.SetTitle('Ratio between MG5 LO signal and Powheg NLO tt+LJ')
 hbkg_hut.SetLineColor(2)
 #hbkg_hut.Fit('pol4')
+hbkg_hut.GetYaxis().SetRangeUser(0.9,1.9)
 hbkg_hut.Draw('ep')
 hbkg_hct.SetLineColor(4)
 hbkg_hct.Draw('ep same')

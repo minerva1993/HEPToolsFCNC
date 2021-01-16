@@ -7,7 +7,8 @@ gROOT.SetBatch(True)
 hostname = os.environ["HOSTNAME"]
 
 basedir = "/pnfs/knu.ac.kr/data/cms"
-ver="V10_3"
+ver="V9_7"
+#ver="V10_3"
 datasets = OrderedDict()
 filelists = OrderedDict()
 
