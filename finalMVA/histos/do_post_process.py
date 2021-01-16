@@ -3,13 +3,13 @@ import ROOT
 import os, sys
 import numpy as np
 
-if len(sys.argv) < 2:
-  print "specify year"
-  sys.exit()
-year = sys.argv[1]
-if year not in ['2017', '2018']:
-  print "wrong year"
-  sys.exit()
+#if len(sys.argv) < 2:
+#  print "specify year"
+#  sys.exit()
+#year = sys.argv[1]
+#if year not in ['2017', '2018']:
+#  print "wrong year"
+#  sys.exit()
 
 base_path = "./"
 if not os.path.exists( base_path + "post_process" ):
@@ -114,27 +114,27 @@ def write_envelope(syst, nhists, new_sumW):
     dn.SetName(histos + "__" + syst + "down")
 
     #We don't draw pdf in full ana due to computing resources
-    if year == '2018':
-      if syst == 'pdf' and any(sname in h.GetName() for sname in ['j4b4', 'S8']): #For 2018
-        nominal = bSFNorm(nominal, bSFInfo)
+    #if year == '2018':
+    #  if syst == 'pdf' and any(sname in h.GetName() for sname in ['j4b4', 'S8']):
+    #    nominal = bSFNorm(nominal, bSFInfo)
 
-        for xbin in xrange(up.GetNbinsX()):
-          if nominal.GetBinContent(xbin+1) == 0:
-            ratio_up = 1.
-            ratio_dn = 1.
-          else:
-            ratio_up = up.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
-            ratio_dn = dn.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
+    #    for xbin in xrange(up.GetNbinsX()):
+    #      if nominal.GetBinContent(xbin+1) == 0:
+    #        ratio_up = 1.
+    #        ratio_dn = 1.
+    #      else:
+    #        ratio_up = up.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
+    #        ratio_dn = dn.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
 
-            #By construction, up shape is always above the down shape
-            diff = abs(nominal.GetBinContent(xbin+1)-up.GetBinContent(xbin+1)) + abs(nominal.GetBinContent(xbin+1)-dn.GetBinContent(xbin+1))
-            up.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) + diff/2.)
-            dn.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) - diff/2.)
-            if dn.GetBinContent(xbin+1) < 0: dn.SetBinContent(xbin+1, 0)
-            if ratio_up > 1.2:
-              up.SetBinContent(xbin+1, 1.2 * nominal.GetBinContent(xbin+1))
-            if ratio_dn < 0.8:
-              dn.SetBinContent(xbin+1, 0.8 * nominal.GetBinContent(xbin+1))
+    #        #By construction, up shape is always above the down shape
+    #        diff = abs(nominal.GetBinContent(xbin+1)-up.GetBinContent(xbin+1)) + abs(nominal.GetBinContent(xbin+1)-dn.GetBinContent(xbin+1))
+    #        up.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) + diff/2.)
+    #        dn.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) - diff/2.)
+    #        if dn.GetBinContent(xbin+1) < 0: dn.SetBinContent(xbin+1, 0)
+    #        if ratio_up > 1.2:
+    #          up.SetBinContent(xbin+1, 1.2 * nominal.GetBinContent(xbin+1))
+    #        if ratio_dn < 0.8:
+    #          dn.SetBinContent(xbin+1, 0.8 * nominal.GetBinContent(xbin+1))
 
     up.Write()
     dn.Write()
@@ -176,25 +176,25 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
         #if ('Tune' in syst_name or 'hdamp' in syst_name):
         #  smoothing(h, h_nom, 2)
 
-        if year == '2017'
-          if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S6'])) #2017
-            or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S7']))
-            or ('jer' in f.GetName() and not any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and  any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
+        #if year == '2017'
+        #  if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S6']))
+        #    or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S7']))
+        #    or ('jer' in f.GetName() and not any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and  any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
 
-            if 'down' in files:
-              f_opp = TFile.Open( os.path.join(pre_path, files.replace('down','up')), "READ")
-            elif 'up' in files:
-              f_opp = TFile.Open( os.path.join(pre_path, files.replace('up','down')), "READ")
+        #    if 'down' in files:
+        #      f_opp = TFile.Open( os.path.join(pre_path, files.replace('down','up')), "READ")
+        #    elif 'up' in files:
+        #      f_opp = TFile.Open( os.path.join(pre_path, files.replace('up','down')), "READ")
 
-            #print f.GetName(), h.GetName()
+        #    #print f.GetName(), h.GetName()
 
-            opp_EventInfo = f_opp.Get('EventInfo')
-            bSFInfo_opp = fill_bSFInfo(f_opp)
-            h_opp = f_opp.Get(histos)
-            h_opp = bSFNorm(h_opp, bSFInfo_opp)
-            h_opp.Rebin(nrebin)
-            h_opp.Scale(nom_EventInfo.GetBinContent(2) / opp_EventInfo.GetBinContent(2))
-            h = symmetrize(h, h_opp, h_nom)
+        #    opp_EventInfo = f_opp.Get('EventInfo')
+        #    bSFInfo_opp = fill_bSFInfo(f_opp)
+        #    h_opp = f_opp.Get(histos)
+        #    h_opp = bSFNorm(h_opp, bSFInfo_opp)
+        #    h_opp.Rebin(nrebin)
+        #    h_opp.Scale(nom_EventInfo.GetBinContent(2) / opp_EventInfo.GetBinContent(2))
+        #    h = symmetrize(h, h_opp, h_nom)
 
       f_new.cd()
       h.Write()

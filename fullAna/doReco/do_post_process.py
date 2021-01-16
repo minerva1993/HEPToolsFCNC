@@ -1,12 +1,53 @@
 from ROOT import *
 import ROOT
-import os
+import os, sys
+import numpy as np
+
+#if len(sys.argv) < 2:
+#  print "specify year"
+#  sys.exit()
+#year = sys.argv[1]
+#if year not in ['2017', '2018']:
+#  print "wrong year"
+#  sys.exit()
 
 base_path = "./"
 if not os.path.exists( base_path + "post_process" ):
   os.makedirs( base_path + "post_process" )
 
 nrebin = 1
+
+def fwhm2sigma(fwhm):
+
+  return fwhm / np.sqrt(8 * np.log(2))
+
+
+def smoothing(hin, hnom, fwhm):
+
+  htmp = hin.Clone()
+  htmp.SetDirectory(0)
+  htmp.Add(hnom, -1.0)
+  #htmp.Divide(hnom)
+
+  FWHM = fwhm
+  sigma = fwhm2sigma(FWHM)
+
+  x_vals = np.arange(htmp.GetNbinsX())
+  y_vals = np.zeros(htmp.GetNbinsX())
+
+  for i in xrange(htmp.GetNbinsX()):
+    y_vals[i] = htmp.GetBinContent(i+1)
+
+  #smoothed_vals = np.zeros(y_vals.shape)
+  for x_position in x_vals:
+    kernel = np.exp(-(x_vals - x_position) ** 2 / (2 * sigma ** 2))
+    kernel = kernel / sum(kernel)
+    #hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)))
+    hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)+hnom.GetBinContent(x_position+1)))
+    #hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)*hnom.GetBinContent(x_position+1)))
+
+  return hin
+
 
 def symmetrize(var, var_opp, nom):
 
@@ -18,6 +59,7 @@ def symmetrize(var, var_opp, nom):
       if var_opp.GetBinContent(xbin+1) > 0: ratio_opp = var.GetBinContent(xbin+1) / var_opp.GetBinContent(xbin+1)
 
       diff = abs(nom.GetBinContent(xbin+1)-var.GetBinContent(xbin+1)) + abs(nom.GetBinContent(xbin+1)-var_opp.GetBinContent(xbin+1))
+      #diff = max(abs(nom.GetBinContent(xbin+1)-var.GetBinContent(xbin+1)), abs(nom.GetBinContent(xbin+1)-var_opp.GetBinContent(xbin+1)))
       if ratio_opp > 1.:
         var.SetBinContent(xbin+1, nom.GetBinContent(xbin+1) + diff/2.)
         if ratio > 1.2: var.SetBinContent(xbin+1, 1.2 * nom.GetBinContent(xbin+1))
@@ -40,10 +82,12 @@ def write_envelope(syst, nhists, new_sumW):
         if x == 0: continue
         h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(1))
       else: h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(x+1))
+      h.Rebin(nrebin)
       var_list.append(h)
 
     nominal = f.Get(histos)
     nominal.SetDirectory(ROOT.nullptr)
+    nominal.Rebin(nrebin)
     n_bins = nominal.GetNcells()
     up = nominal.Clone()
     up.SetDirectory(ROOT.nullptr)
@@ -66,8 +110,6 @@ def write_envelope(syst, nhists, new_sumW):
 
     up = bSFNorm(up, bSFInfo)
     dn = bSFNorm(dn, bSFInfo)
-    up.Rebin(nrebin)
-    dn.Rebin(nrebin)
     up.SetName(histos + "__" + syst + "up")
     dn.SetName(histos + "__" + syst + "down")
     #We don't draw pdf in full ana due to computing resources
@@ -100,30 +142,37 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
     if syst_name in files:
       h = f.Get(histos)
       if not any(i in h.GetName() for i in ['Info', 'Weight']):
+        h = bSFNorm(h, bSFInfo)
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
         h.Rebin(nrebin)
 
-        if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S7'])) #2017
-          or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S8']))
-          or ('jer' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
-          #or ('jec' in f.GetName() and any(fname not in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j4b4', 'S9'])) ):
-          bSFInfo_nom = fill_bSFInfo(nom_f)
-          h_nom = nom_f.Get(histos)
-          h_nom = bSFNorm(h_nom, bSFInfo_nom)
-          h_nom.Rebin(nrebin)
+        bSFInfo_nom = fill_bSFInfo(nom_f)
+        h_nom = nom_f.Get(histos)
+        h_nom = bSFNorm(h_nom, bSFInfo_nom)
+        h_nom.Rebin(nrebin)
 
-          if 'down' in files:
-            f_opp = TFile.Open( os.path.join(pre_path, files.replace('down','up')), "READ")
-          elif 'up' in files:
-            f_opp = TFile.Open( os.path.join(pre_path, files.replace('up','down')), "READ")
+        #if ('Tune' in syst_name or 'hdamp' in syst_name):
+        #  smoothing(h, h_nom, 2)
 
-          opp_EventInfo = f_opp.Get('EventInfo')
-          bSFInfo_opp = fill_bSFInfo(f_opp)
-          h_opp = f_opp.Get(histos)
-          h_opp = bSFNorm(h_opp, bSFInfo_opp)
-          h_opp.Rebin(nrebin)
-          h_opp.Scale(nom_EventInfo.GetBinContent(2) / opp_EventInfo.GetBinContent(2))
-          h = symmetrize(h, h_opp, h_nom)
+        #if year == '2017'
+        #  if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S6']))
+        #    or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S7']))
+        #    or ('jer' in f.GetName() and not any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and  any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
+
+        #    if 'down' in files:
+        #      f_opp = TFile.Open( os.path.join(pre_path, files.replace('down','up')), "READ")
+        #    elif 'up' in files:
+        #      f_opp = TFile.Open( os.path.join(pre_path, files.replace('up','down')), "READ")
+
+        #    #print f.GetName(), h.GetName()
+
+        #    opp_EventInfo = f_opp.Get('EventInfo')
+        #    bSFInfo_opp = fill_bSFInfo(f_opp)
+        #    h_opp = f_opp.Get(histos)
+        #    h_opp = bSFNorm(h_opp, bSFInfo_opp)
+        #    h_opp.Rebin(nrebin)
+        #    h_opp.Scale(nom_EventInfo.GetBinContent(2) / opp_EventInfo.GetBinContent(2))
+        #    h = symmetrize(h, h_opp, h_nom)
 
       f_new.cd()
       h.Write()
@@ -228,6 +277,7 @@ for files in file_list:
   nominal_list = []
   for histos in histo_list:
     if "__" not in histos: nominal_list.append(histos)
+    if run_on_syst: continue
     if "scale" in histos: continue
     if "ps" in histos: continue
     #if "pdf" in histos: continue
@@ -241,7 +291,8 @@ for files in file_list:
     """
     #Special treatements
     #if 'cferr1' in h.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
-    if 'cferr1' in h.GetName() and 'ttcc' in f.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
+    #if 'cferr1' in h.GetName() and 'ttcc' in f.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
+    if "__" in h.GetName() and ('j3b2' in h.GetName() or 'S2' in h.GetName()):
       if 'down' in h.GetName():
         h_opp = f.Get(h.GetName().replace('down','up'))
       elif 'up' in h.GetName():
