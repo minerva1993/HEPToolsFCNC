@@ -48,6 +48,7 @@
   for-yields: true
   yields-table-order: 3
   yields-title: '$b3j4$'
+  ratio-y-axis-auto-range: true
   rebin: 4
   labels:
     - {text: 'b3j4', position: [0.781, 0.806], size: 18}

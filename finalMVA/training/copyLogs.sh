@@ -1,5 +1,5 @@
 ERA=$1
-VER=01
+VER=$2
 mv log_Hct_j3b2 ${ERA}/final_Hct_j3b2_${VER}/
 mv log_Hct_j3b3 ${ERA}/final_Hct_j3b3_${VER}/
 mv log_Hct_j4b2 ${ERA}/final_Hct_j4b2_${VER}/

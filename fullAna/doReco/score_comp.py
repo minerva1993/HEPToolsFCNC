@@ -9,7 +9,9 @@ dir_org = '/home2/minerva1993/HEPToolsFCNC/fullAna/doReco/'+year
 dir_new = '/home2/minerva1993/HEPToolsFCNC/fullAna/doReco/'+year + '/reco_20epoch'
 
 sigs = {'hist_STTH1L3BHct':['S2', 'S3', 'S6', 'S7', 'S8'], 'hist_STTH1L3BHut':['S2', 'S3', 'S6', 'S7', 'S8'],
-        'hist_TTTH1L3BHct':['S6', 'S7', 'S8'], 'hist_TTTH1L3BHut':['S6', 'S7', 'S8']}
+        'hist_TTTH1L3BHct':['S6', 'S7', 'S8'], 'hist_TTTH1L3BHut':['S6', 'S7', 'S8'],
+        'hist_TTpowhegttbb':['S6', 'S7', 'S8'], 'hist_TTpowhegttcc':['S6', 'S7', 'S8'],
+        'hist_TTpowhegttlf':['S6', 'S7', 'S8']}
 folders = ['STFCNC01', 'TTFCNC01', 'TTBKG01']
 
 c = TCanvas('c', 'c', 400, 400)
