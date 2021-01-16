@@ -146,6 +146,7 @@ for fName in bkg_files:
 loader.PrepareTrainingAndTestTree(sigCut, bkgCut, options)
 
 factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=" + ntree[idx[jetcat]] + ":MinNodeSize=5%:MaxDepth=5:BoostType=Grad:Shrinkage=0.5:SeparationType=GiniIndex:nCuts=" + ncut[idx[jetcat]])
+#factory.BookMethod(loader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=" + ntree[idx[jetcat]] + ":MinNodeSize=5%:MaxDepth=5:BoostType=AdaBoost:SeparationType=GiniIndex:nCuts=" + ncut[idx[jetcat]])
 
 factory.TrainAllMethods()
 factory.TestAllMethods()

@@ -1,4 +1,5 @@
 import os, shutil, re, sys
+from subprocess import call
 
 if len(sys.argv) < 2:
   print("Specify year: 2017/2018")
@@ -173,3 +174,8 @@ with open('doReco/' + hadd_file_name, 'w') as g:
   g.write(string_for_hadd)
 
 shutil.copy2("doReco/job_merge_" + era +".sh", "./../finalMVA/histos")
+
+if era == '2017':
+  call("for i in doReco/job*2017*; do sed -i 's/temp/\/data1\/users\/minerva1993\/work\/fcnc_RunII2017\/fullAna\/current_ver\/temp/g' $i; done", shell=True)
+elif era == '2018':
+  call("for i in doReco/job*2018*; do sed -i 's/temp/\/data1\/users\/minerva1993\/work\/fcnc_RunII2018\/fullAna\/current_ver\/temp/g' $i; done", shell=True)

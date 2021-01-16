@@ -20,10 +20,13 @@ syst = ["","jecAbsoluteup","jecAbsolutedown", "jecAbsolute"+era+"up", "jecAbsolu
         "jerup","jerdown"]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
-if not os.path.exists("./doReco/temp"):
-  try: os.makedirs("./doReco/temp")
+#dest = './doReco/temp'
+dest = '/data1/users/minerva1993/work/fcnc_RunII'+era+'/fullAna/current_ver/temp/'
+
+if not os.path.exists(dest):
+  try: os.makedirs(dest)
   except: pass
-test = os.listdir("./doReco/temp")
+test = os.listdir(dest)
 dupl = False
 for item in test:
   #if item.endswith(name + ".root"):
@@ -51,7 +54,7 @@ def runAna(file_path, name):
     else:              postfix = "__"
 
     f = TFile.Open(file_path, "READ")
-    out = TFile("doReco/temp/hist_" + name.replace("-" + era + reco_scheme,"") + postfix + syst_ext + ".root","update")
+    out = TFile(os.path.join(dest, "hist_" + name.replace("-" + era + reco_scheme,"") + postfix + syst_ext + ".root"),"update")
     hevt = f.Get("fcncLepJets/EventInfo")
     hevt.Write()
     hscale = f.Get("fcncLepJets/ScaleWeights")
