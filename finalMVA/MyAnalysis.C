@@ -768,7 +768,6 @@ void MyAnalysis::Terminate()
     else if( train_scheme.find("jecRelativeBaldown") != string::npos )                syst_ext = "__jecRelativeBaldown";
     else if( train_scheme.find(Form("jecRelativeSample%iup",era)) != string::npos )   syst_ext = Form("__jecRelativeSample%iup",era);
     else if( train_scheme.find(Form("jecRelativeSample%idown",era)) != string::npos ) syst_ext = Form("__jecRelativeSample%idown",era);
-
   }
   string syst_str = "-" + train_scheme.substr(train_scheme.find_last_of("_")+1,string::npos );
   if( syst_ext == "" ) syst_str.erase(0,1);

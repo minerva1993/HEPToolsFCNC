@@ -36,7 +36,6 @@ public :
    TTreeReaderArray<float> pdfweight = {fReader, "pdfweight"};
    TTreeReaderArray<float> scaleweight = {fReader, "scaleweight"};
    TTreeReaderArray<float> psweight = {fReader, "psweight"};
-   TTreeReaderValue<Float_t> topptweight = {fReader, "topptweight"};
    TTreeReaderValue<Float_t> MET = {fReader, "MET"};
    TTreeReaderValue<Float_t> MET_phi = {fReader, "MET_phi"};
    TTreeReaderValue<Float_t> lepton_pt = {fReader, "lepton_pt"};
@@ -61,6 +60,10 @@ public :
    TTreeReaderArray<float> jet_JER_Up = {fReader, "jet_JER_Up"};
    TTreeReaderArray<float> jet_JER_Nom = {fReader, "jet_JER_Nom"};
    TTreeReaderArray<float> jet_JER_Down = {fReader, "jet_JER_Down"};
+   TTreeReaderArray<vector<float>> jet_JESCom_Up = {fReader, "jet_JESCom_Up"};
+   TTreeReaderArray<vector<float>> jet_JESCom_Down = {fReader, "jet_JESCom_Down"};
+   TTreeReaderValue<Float_t> gentop1_pt = {fReader, "gentop1_pt"};
+   TTreeReaderValue<Float_t> gentop2_pt = {fReader, "gentop2_pt"};
 
    Yield(TTree * /*tree*/ =0) { }
    virtual ~Yield() { }
@@ -78,6 +81,8 @@ public :
    virtual void    SlaveTerminate();
    virtual void    Terminate();
    bool isPartOf(const std::string& word, const std::string& sentence);
+   float topPtLOtoNLO(float toppt);
+   float topPtNLOtoNNLO(float toppt);
 
    ClassDef(Yield,0);
 
