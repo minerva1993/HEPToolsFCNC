@@ -17,7 +17,7 @@ hsig2 = hbkg.Clone('hsig2')
 hsig3 = hbkg.Clone('hsig3')
 hsig4 = hbkg.Clone('hsig4')
 
-c = TCanvas('c','c',400,400)
+c = TCanvas('c','c',400,300)
 
 with open('V9_7_ttbkg.txt', 'r') as f:
   bins = f.readline() #Should be first line

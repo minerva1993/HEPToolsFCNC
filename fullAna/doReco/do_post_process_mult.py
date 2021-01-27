@@ -156,7 +156,7 @@ def postProcess(files):
           #if year == '2017'
           #  if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S6']))
           #    or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S7']))
-          #    or ('jer' in f.GetName() and not any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and  any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
+          #    or ('jer' in f.GetName() and not any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
 
           #    if 'down' in files:
           #      f_opp = TFile.Open( os.path.join(pre_path, files.replace('down','up')), "READ")

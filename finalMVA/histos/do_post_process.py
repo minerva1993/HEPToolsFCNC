@@ -115,7 +115,7 @@ def write_envelope(syst, nhists, new_sumW):
 
     #We don't draw pdf in full ana due to computing resources
     #if year == '2018':
-    #  if syst == 'pdf' and any(sname in h.GetName() for sname in ['j4b4', 'S8']):
+    #  if syst == 'pdf' and any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad']) and any(sname in h.GetName() for sname in ['j4b4', 'S8']):
     #    nominal = bSFNorm(nominal, bSFInfo)
 
     #    for xbin in xrange(up.GetNbinsX()):
@@ -179,7 +179,7 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
         #if year == '2017'
         #  if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S6']))
         #    or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S7']))
-        #    or ('jer' in f.GetName() and not any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and  any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
+        #    or ('jer' in f.GetName() and not any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
 
         #    if 'down' in files:
         #      f_opp = TFile.Open( os.path.join(pre_path, files.replace('down','up')), "READ")

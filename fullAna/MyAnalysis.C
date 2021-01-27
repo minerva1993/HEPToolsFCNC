@@ -887,7 +887,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             }
             if( jetIdxs.size() > 1 ){
               h_SubleadJetPt[MODE][cut][syst] ->Fill(jetPts[1], EventWeight);
-              h_SubleadJetEta[MODE][cut][syst]->Fill(jetPts[1], EventWeight);
+              h_SubleadJetEta[MODE][cut][syst]->Fill(jetEtas[1], EventWeight);
             }
             for( int ii = 0; ii < njets; ii++){
               const size_t ii1 = jetIdxs[ii];

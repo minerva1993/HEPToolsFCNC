@@ -64,17 +64,17 @@ def store_file(it):
 
 if __name__ == '__main__':
 
-  #for era in ['2017','2018']:
-  #  for reco in ['STFCNC', 'TTFCNC', 'TTBKG']:
-  #    dir_path = os.path.join(era, reco + ver_dict[era], 'post_process')
-  #    dirs = os.listdir(dir_path)
-  #    dirs[:] = [item for item in dirs if any(i in item for i in ['STTH1L3B','TTTH1L3BaTLep','TTTH1L3BTLep'])] #avoid TTTH merged
-  #    file_names[dir_path] = dirs
+  for era in ['2017','2018']:
+    for reco in ['STFCNC', 'TTFCNC', 'TTBKG']:
+      dir_path = os.path.join(era, reco + ver_dict[era], 'post_process')
+      dirs = os.listdir(dir_path)
+      dirs[:] = [item for item in dirs if any(i in item for i in ['STTH1L3B','TTTH1L3BaTLep','TTTH1L3BTLep'])] #avoid TTTH merged
+      file_names[dir_path] = dirs
 
-  #pool = multiprocessing.Pool(40)
-  #pool.map(store_file, file_names.iteritems())
-  #pool.close()
-  #pool.join()
+  pool = multiprocessing.Pool(40)
+  pool.map(store_file, file_names.iteritems())
+  pool.close()
+  pool.join()
 
   for reco in ['STFCNC', 'TTFCNC', 'TTBKG']:
     #for sys in ['', '__jecup', '__jecdown', '__jerup', '__jerdown']:
