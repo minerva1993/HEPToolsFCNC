@@ -387,6 +387,12 @@ namespace plotIt {
       if (node["error-fill-style"])
         m_config.error_fill_style = loadColor(node["error-fill-style"]);
 
+      if (node["staterror-fill-color"])
+        m_config.staterror_fill_color = loadColor(node["staterror-fill-color"]);
+
+      if (node["staterror-fill-style"])
+        m_config.staterror_fill_style = loadColor(node["staterror-fill-style"]);
+
       if (node["fit-line-style"])
         m_config.fit_line_style = node["fit-line-style"].as<int16_t>();
 
@@ -704,6 +710,9 @@ namespace plotIt {
 
       if (node["ratio-y-axis-auto-range"])
         plot.ratio_y_axis_auto_range = node["ratio-y-axis-auto-range"].as<bool>();
+
+      if (node["ratio-draw-mcstat-error"])
+        plot.ratio_draw_mcstat_error = node["ratio-draw-mcstat-error"].as<bool>();
 
       if (node["blinded-range"])
         plot.blinded_range = node["blinded-range"].as<Range>();

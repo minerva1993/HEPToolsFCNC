@@ -796,6 +796,35 @@ namespace plotIt {
         h_low_pad_axis->Draw();
       }
 
+      // Compute stat errors
+      std::shared_ptr<TH1> h_mcstat(static_cast<TH1*>(h_low_pad_axis->Clone()));
+      h_mcstat->SetDirectory(nullptr);
+      h_mcstat->Reset(); // Keep binning
+      h_mcstat->SetMarkerSize(0);
+      h_mcstat->SetBinErrorOption(TH1::kNormal);
+
+      if (plot.ratio_draw_mcstat_error) {
+
+        for (uint32_t i = 1; i <= (uint32_t) h_mcstat->GetNbinsX(); i++) {
+
+          if (mc_stack.stat_only->GetBinContent(i) == 0 || mc_stack.stat_only->GetBinError(i) == 0)
+            continue;
+
+          // relative error, delta X / X
+          float stat = mc_stack.stat_only->GetBinError(i) / mc_stack.stat_only->GetBinContent(i);
+
+          h_mcstat->SetBinContent(i, 1);
+          h_mcstat->SetBinError(i, stat);
+        }
+
+        h_mcstat->SetFillStyle(m_plotIt.getConfiguration().staterror_fill_style);
+        h_mcstat->SetFillColor(m_plotIt.getConfiguration().staterror_fill_color);
+        setRange(h_mcstat.get(), x_axis_range, {});
+        h_mcstat->Draw("E2 same");
+      }
+
+      h_low_pad_axis->Draw("same");
+
 
       // Compute systematic errors
       std::shared_ptr<TH1> h_systematics(static_cast<TH1*>(h_low_pad_axis->Clone()));
@@ -814,7 +843,10 @@ namespace plotIt {
             continue;
 
           // relative error, delta X / X
-          float syst = mc_stack.syst_only->GetBinError(i) / mc_stack.syst_only->GetBinContent(i);
+          float syst = 0.;
+          if (plot.ratio_draw_mcstat_error)
+            syst = sqrt(pow(mc_stack.syst_only->GetBinError(i),2) + pow(mc_stack.stat_only->GetBinError(i),2)) / mc_stack.syst_only->GetBinContent(i);
+          else syst = mc_stack.syst_only->GetBinError(i) / mc_stack.syst_only->GetBinContent(i);
 
           h_systematics->SetBinContent(i, 1);
           h_systematics->SetBinError(i, syst);
@@ -827,7 +859,7 @@ namespace plotIt {
         h_systematics->SetFillStyle(m_plotIt.getConfiguration().error_fill_style);
         h_systematics->SetFillColor(m_plotIt.getConfiguration().error_fill_color);
         setRange(h_systematics.get(), x_axis_range, {});
-        h_systematics->Draw("E2");
+        h_systematics->Draw("E2 same");
       }
 
       h_low_pad_axis->Draw("same");
@@ -906,6 +938,7 @@ namespace plotIt {
       TemporaryPool::get().add(h_low_pad_axis);
       TemporaryPool::get().add(ratio);
       TemporaryPool::get().add(h_systematics);
+      TemporaryPool::get().add(h_mcstat);
       TemporaryPool::get().add(hi_pad);
       TemporaryPool::get().add(low_pad);
     }

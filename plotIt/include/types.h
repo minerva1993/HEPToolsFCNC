@@ -314,6 +314,7 @@ namespace plotIt {
     std::vector<std::string> save_extensions = {"pdf"};
 
     bool show_ratio = true;
+    bool ratio_draw_mcstat_error = false;
 
     bool fit = false;
     std::string fit_function = "gaus";
@@ -421,6 +422,8 @@ namespace plotIt {
 
     int16_t error_fill_color = 42;
     int16_t error_fill_style = 3154;
+    int16_t staterror_fill_color = 30;
+    int16_t staterror_fill_style = 3145;
 
     uint16_t fit_n_points = 1000;
     int16_t fit_line_color = 46;
