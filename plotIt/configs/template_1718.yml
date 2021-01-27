@@ -10,6 +10,8 @@ configuration:
   luminosity-error: 0.024 #0.23 + 0.25 / 2
   error-fill-style: 3154
   error-fill-color: "#ee556270"
+  staterror-fill-style: 3145
+  staterror-fill-color: 7
   ratio-fit-error-fill-style: 1001
   ratio-fit-error-fill-color: "#aa556270"
   ratio-fit-line-color: "#0B486B"

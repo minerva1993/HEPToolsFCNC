@@ -1,0 +1,75 @@
+'h_PV_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_NJet_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2M_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_LepPt_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_LepEta_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_MET_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_WMass_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_JetCSV_Ch2_S2':
+  y-axis: "Number of jets"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_LeadJetPt_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_LeadJetEta_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_SubleadJetPt_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
+
+'h_SubleadJetEta_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  ratio-draw-mcstat-error: true
+  save-extensions: ['pdf']
