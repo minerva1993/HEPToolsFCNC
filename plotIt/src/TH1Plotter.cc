@@ -570,7 +570,11 @@ namespace plotIt {
           std::vector<float> sigMax;
           for (File& signal: signal_files) {
             TH1* h_sig_temp = dynamic_cast<TH1*>(signal.object);
-            if (plot.signal_normalize_data) h_sig_temp->Scale(h_data->Integral()/h_sig_temp->Integral());
+            if (plot.signal_normalize_data and !plot.no_data) h_sig_temp->Scale(h_data->Integral()/h_sig_temp->Integral());
+            else if (plot.signal_normalize_data and plot.no_data) {
+                auto& mc_stack_tmp = mc_stacks.begin()->second;
+                h_sig_temp->Scale(mc_stack_tmp.stat_only.get()->Integral()/h_sig_temp->Integral());
+            }
             sigMax.push_back(h_sig_temp->GetMaximum());
           }          
           max_sig = *std::max_element(sigMax.begin(), sigMax.end());
@@ -648,9 +652,15 @@ namespace plotIt {
     // Then signal
     for (File& signal: signal_files) {
       std::string options = m_plotIt.getPlotStyle(signal)->drawing_options + " same";
-      if (plot.signal_normalize_data) {
+      if (plot.signal_normalize_data and !plot.no_data) {
         TH1* h_sig_temp = dynamic_cast<TH1*>(signal.object);
         h_sig_temp->Scale(h_data->Integral()/h_sig_temp->Integral());
+        h_sig_temp->Draw(options.c_str());
+      }
+      else if (plot.signal_normalize_data and plot.no_data) {
+        TH1* h_sig_temp = dynamic_cast<TH1*>(signal.object);
+        auto& mc_stack_tmp = mc_stacks.begin()->second;
+        h_sig_temp->Scale(mc_stack_tmp.stat_only.get()->Integral()/h_sig_temp->Integral());
         h_sig_temp->Draw(options.c_str());
       }
       else signal.object->Draw(options.c_str());
