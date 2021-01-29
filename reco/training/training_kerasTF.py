@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os, shutil
 import google.protobuf
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 import matplotlib
 matplotlib.use('Agg')
@@ -282,10 +282,12 @@ class roc_callback(Callback):
       width = (bins[1] - bins[0])
       center = (bins[:-1] + bins[1:]) / 2
       plt.errorbar(center, hist, yerr=err, fmt='o', c='b', label='S (test)')
+      list_sig_test = hist
       hist, bins = np.histogram(fpr[1], bins=bins, range=low_high, density=True)
       scale = len(tpr[1]) / sum(hist)
       err = np.sqrt(hist * scale) / scale
       plt.errorbar(center, hist, yerr=err, fmt='o', c='r', label='B (test)')
+      list_bkg_test = hist
 
       plt.xlim(0,1)
       plt.ylim(bottom=0)
@@ -301,6 +303,28 @@ class roc_callback(Callback):
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_overtraining_log_%d_%.4f.pdf' %(epoch+1,round(roc_val,4))))
       plt.gcf().clear()
       print('ROC curve and overtraining check plots are saved!')
+
+      list_sig_train, _, __ = plt.hist(tpr[2], range=low_high, bins=bins, density=True)
+      list_bkg_train, _, __ = plt.hist(fpr[2], range=low_high, bins=bins, density=True)
+
+      with open(os.path.join(configDir, weightDir+ver, 'list_overtraining_%d_%.4f.txt' %(epoch+1,round(roc_val,4))), "w") as output:
+          output.write('Signal test\n')
+          output.write(str(list(list_sig_test))+'\n')
+          output.write('Background test\n')
+          output.write(str(list(list_bkg_test))+'\n')
+          output.write('Signal train\n')
+          output.write(str(list(list_sig_train))+'\n')
+          output.write('Background train\n')
+          output.write(str(list(list_bkg_train))+'\n')
+
+      with open(os.path.join(configDir, weightDir+ver, 'list_fpr1_%d_%.4f.txt' %(epoch+1,round(roc_val,4))), "w") as output:
+          output.write(str(list(fpr[1]))+'\n')
+      with open(os.path.join(configDir, weightDir+ver, 'list_fpr2_%d_%.4f.txt' %(epoch+1,round(roc_val,4))), "w") as output:
+          output.write(str(list(fpr[2]))+'\n')
+      with open(os.path.join(configDir, weightDir+ver, 'list_tpr1_%d_%.4f.txt' %(epoch+1,round(roc_val,4))), "w") as output:
+          output.write(str(list(tpr[1]))+'\n')
+      with open(os.path.join(configDir, weightDir+ver, 'list_tpr2_%d_%.4f.txt' %(epoch+1,round(roc_val,4))), "w") as output:
+          output.write(str(list(tpr[2]))+'\n')
 
       del y_pred, y_pred_val, fpr, tpr, roc_auc
 
