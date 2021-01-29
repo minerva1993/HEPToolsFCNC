@@ -422,6 +422,13 @@
   labels:
     - {text: 'b3j3', position: [0.789, 0.765], size: 18}
 
+'h_FCNHkinScore_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'all', position: [0.789, 0.765], size: 18}
+
 'h_FCNHkinScore_Ch2_S6':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f"
