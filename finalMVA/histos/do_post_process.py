@@ -1,7 +1,8 @@
-from ROOT import *
-import ROOT
 import os, sys
 import numpy as np
+#import statsmodels.api as sm
+from ROOT import *
+import ROOT
 
 #if len(sys.argv) < 2:
 #  print "specify year"
@@ -26,11 +27,11 @@ def smoothing(hin, hnom, fwhm):
 
   htmp = hin.Clone()
   htmp.SetDirectory(0)
-  htmp.Add(hnom, -1.0)
-  #htmp.Divide(hnom)
+  #htmp.Add(hnom, -1.0)
+  htmp.Divide(hnom)
 
-  FWHM = fwhm
-  sigma = fwhm2sigma(FWHM)
+  #FWHM = fwhm
+  #sigma = fwhm2sigma(FWHM)
 
   x_vals = np.arange(htmp.GetNbinsX())
   y_vals = np.zeros(htmp.GetNbinsX())
@@ -38,13 +39,21 @@ def smoothing(hin, hnom, fwhm):
   for i in xrange(htmp.GetNbinsX()):
     y_vals[i] = htmp.GetBinContent(i+1)
 
-  #smoothed_vals = np.zeros(y_vals.shape)
   for x_position in x_vals:
     kernel = np.exp(-(x_vals - x_position) ** 2 / (2 * sigma ** 2))
     kernel = kernel / sum(kernel)
     #hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)))
-    hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)+hnom.GetBinContent(x_position+1)))
-    #hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)*hnom.GetBinContent(x_position+1)))
+    #hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)+hnom.GetBinContent(x_position+1)))
+    hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)*hnom.GetBinContent(x_position+1)))
+
+  #lowess = sm.nonparametric.lowess
+  #smoothed_vals = np.zeros(y_vals.shape)
+  #smoothed_vals = lowess(y_vals, x_vals, frac=2./3, return_sorted=False)
+
+  #for x_position in x_vals:
+  #  #hin.SetBinContent(x_position+1, max(0, smoothed_vals[x_position]))
+  #  #hin.SetBinContent(x_position+1, max(0, smoothed_vals[x_position]+hnom.GetBinContent(x_position+1)))
+  #  hin.SetBinContent(x_position+1, max(0, smoothed_vals[x_position]*hnom.GetBinContent(x_position+1)))
 
   return hin
 
