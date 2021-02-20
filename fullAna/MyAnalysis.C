@@ -92,7 +92,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
 
   //cout << "SlaveBegin" << endl;
   for( int ich=0; ich < 3; ich++ ){
-    for( int i=0; i < 9; i++ ){
+    for( int i=0; i < 10; i++ ){
       for( int syst = 0; syst != syst_num; ++syst ){
         if( syst > 0 and !dosyst ) continue;
 
@@ -642,7 +642,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   }//reco option
 
   /////Fill histograms
-  int Ncuts = 9;
+  int Ncuts = 10;
   bool eventSelection[Ncuts];
   for(int bcut=0; bcut < Ncuts; bcut++) eventSelection[bcut] = false;
 
@@ -655,6 +655,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   eventSelection[6]  = ( njets >= 4 ) && ( nbjets_m == 2 ); 
   eventSelection[7]  = ( njets >= 4 ) && ( nbjets_m == 3 );
   eventSelection[8]  = ( njets >= 4 ) && ( nbjets_m == 4 );
+  eventSelection[9]  = ( njets >= 4 ) && ( nbjets_m >= 2 ) && ( nbjets_m <= 4 );
   //eventSelection[0]  = ( njets >= 4 ) && ( nbjets_m >= 2 );
   //eventSelection[1]  = ( njets >= 6 ) && ( nbjets_m >= 2 );
   //eventSelection[2]  = ( njets >= 6 ) && ( nbjets_m >= 4 );
@@ -665,7 +666,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   int modeArray[1] = {mode};
 
   for( int MODE : modeArray ){
-    for( int cut = 0; cut < 9; cut++){
+    for( int cut = 0; cut < 10; cut++){
       if( eventSelection[cut] ){
 
         int jetmode = -1;

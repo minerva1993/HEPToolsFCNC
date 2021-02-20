@@ -405,8 +405,11 @@ Bool_t MyAnalysis::Process(Long64_t entry)
   if( njets < 3 ) return kTRUE;
   //if( nbjets_m < 2 or nbjets_m > 4 ) return kTRUE; commented out to compute sumW of bSF
 
-  //Hard-coded, FIXME
+  //Get scores
   float tmp_score = -1;
+  float score_stfcnc = -1.;
+  float score_ttfcnc = -1.;
+  float score_ttbkg = -1.;
   vector<double>::iterator iter;
   int evtIdx = 0;
 
@@ -424,6 +427,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
       scoreT_j3b2->GetEntry(evtIdx);
       tmp_score = scoreT_j3b2->GetLeaf("MLScore")->GetValue(0);
+      score_stfcnc = scoreT_j3b2->GetLeaf("score_stfcnc")->GetValue(0);
+      score_ttfcnc = scoreT_j3b2->GetLeaf("score_ttfcnc")->GetValue(0);
+      score_ttbkg  = scoreT_j3b2->GetLeaf("score_ttbkg")->GetValue(0);
     }
   }
   else if( njets == 3 and nbjets_m == 3 ){
@@ -440,6 +446,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
       scoreT_j3b3->GetEntry(evtIdx);
       tmp_score = scoreT_j3b3->GetLeaf("MLScore")->GetValue(0);
+      score_stfcnc = scoreT_j3b3->GetLeaf("score_stfcnc")->GetValue(0);
+      score_ttfcnc = scoreT_j3b3->GetLeaf("score_ttfcnc")->GetValue(0);
+      score_ttbkg  = scoreT_j3b3->GetLeaf("score_ttbkg")->GetValue(0);
     }
   }
   else if( njets >= 4 and nbjets_m == 2 ){
@@ -456,6 +465,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
       scoreT_j4b2->GetEntry(evtIdx);
       tmp_score = scoreT_j4b2->GetLeaf("MLScore")->GetValue(0);
+      score_stfcnc = scoreT_j4b2->GetLeaf("score_stfcnc")->GetValue(0);
+      score_ttfcnc = scoreT_j4b2->GetLeaf("score_ttfcnc")->GetValue(0);
+      score_ttbkg  = scoreT_j4b2->GetLeaf("score_ttbkg")->GetValue(0);
     }
   }
   else if( njets >= 4 and nbjets_m == 3 ){
@@ -472,6 +484,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
       scoreT_j4b3->GetEntry(evtIdx);
       tmp_score = scoreT_j4b3->GetLeaf("MLScore")->GetValue(0);
+      score_stfcnc = scoreT_j4b3->GetLeaf("score_stfcnc")->GetValue(0);
+      score_ttfcnc = scoreT_j4b3->GetLeaf("score_ttfcnc")->GetValue(0);
+      score_ttbkg  = scoreT_j4b3->GetLeaf("score_ttbkg")->GetValue(0);
     }
   }
   else if( njets >= 4 and nbjets_m == 4 ){
@@ -488,6 +503,9 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       //if( evtIdx == 0 ) cout << lepton.Pt() << " " << met << endl;
       scoreT_j4b4->GetEntry(evtIdx);
       tmp_score = scoreT_j4b4->GetLeaf("MLScore")->GetValue(0);
+      score_stfcnc = scoreT_j4b4->GetLeaf("score_stfcnc")->GetValue(0);
+      score_ttfcnc = scoreT_j4b4->GetLeaf("score_ttfcnc")->GetValue(0);
+      score_ttbkg  = scoreT_j4b4->GetLeaf("score_ttbkg")->GetValue(0);
     }
   }
 
@@ -701,6 +719,11 @@ Bool_t MyAnalysis::Process(Long64_t entry)
         }
         EventWeight *= bSF;
       }
+
+      //if( option.Contains("STTH") and (score_stfcnc <= 0 or score_stfcnc > 0.1) ) continue;
+      //if( option.Contains("TTTH") and (score_ttfcnc <= 0 or score_ttfcnc > 0.1) ) continue;
+      //if( (option.Contains("TTpowheg") or option.Contains("TTLL") or option.Contains("TTHad"))
+      //  and (score_ttbkg <= 0 or score_ttbkg > 0.1) ) continue;
 
       if( nbjets_m < 2 or nbjets_m > 4 ) continue;
       if     ( njets == 3 and nbjets_m == 2 ) h_MVA_j3b2[MODE][syst]->Fill(tmp_score,EventWeight);

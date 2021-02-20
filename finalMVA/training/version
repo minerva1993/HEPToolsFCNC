@@ -1,0 +1,6 @@
+order: j3b2 j3b3 j4b2 j4b3 j4b4
+
+0101010101 - default
+0102010201 - 02: remove stfcnc_jet2csv (b3j3, b3j4)
+0102010301 - 03, remove stfcnc_jet2csv (b3j3, b3j4), ttfcnc_jet2csv (b3j4)
+0102010401 - 04, remove stfcnc_jet2csv (b3j3, b3j4), ttfcnc_jet2csv (b3j4), ttbkg_jet1csv (b3j4)

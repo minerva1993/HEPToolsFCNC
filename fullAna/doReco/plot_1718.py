@@ -10,6 +10,7 @@ ver18 = sys.argv[2]
 
 config_path = '../../plotIt/configs/'
 dest_path = './full1718'
+#dest_path = './temp'
 common_syst = 'systematics:\n'
 #not include prefire and elzvtx which exist only in 2017
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
@@ -29,8 +30,8 @@ for sy in syst:
 reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
 
 for i in ['STFCNC','TTFCNC','TTBKG']:
-  if not os.path.exists("./full1718/" + i + '/qcd'):
-    try: os.makedirs("./full1718/" + i + '/qcd')
+  if not os.path.exists(dest_path + "/" + i + '/qcd'):
+    try: os.makedirs(dest_path + "/" + i + '/qcd')
     except: pass
 
 for item in common_syst_list:
