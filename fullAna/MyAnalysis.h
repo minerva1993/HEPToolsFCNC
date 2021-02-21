@@ -173,10 +173,30 @@ public :
     TH1D *h_FCNHkinLepTopPt[3][10][45];
     TH1D *h_FCNHkinHadTopPt[3][10][45];
     TH1D *h_FCNHkinScore[3][10][45];
-    TH1D *h_genDR[3][10][45];
-    TH1D *h_matchDR[3][10][45];
-    TH1D *h_genHm[3][10][45];
-    TH1D *h_matchHm[3][10][45];
+
+    //finalMVA
+    TH1D *h_jet0pt[3][10][45]; TH1D *h_jet0eta[3][10][45]; TH1D *h_jet0m[3][10][45]; TH1D *h_jet0csv[3][10][45];
+    TH1D *h_jet1pt[3][10][45]; TH1D *h_jet1eta[3][10][45]; TH1D *h_jet1m[3][10][45]; TH1D *h_jet1csv[3][10][45];
+    TH1D *h_jet2pt[3][10][45]; TH1D *h_jet2eta[3][10][45]; TH1D *h_jet2m[3][10][45]; TH1D *h_jet2csv[3][10][45];
+    TH1D *h_jet3pt[3][10][45]; TH1D *h_jet3eta[3][10][45]; TH1D *h_jet3m[3][10][45]; TH1D *h_jet3csv[3][10][45];
+    TH1D *h_jet12pt[3][10][45];   TH1D *h_jet12eta[3][10][45]; TH1D *h_jet12deta[3][10][45];
+    TH1D *h_jet12dphi[3][10][45]; TH1D *h_jet12dR[3][10][45];  TH1D *h_jet12m[3][10][45];
+    TH1D *h_jet23pt[3][10][45];   TH1D *h_jet23eta[3][10][45]; TH1D *h_jet23deta[3][10][45];
+    TH1D *h_jet23dphi[3][10][45]; TH1D *h_jet23dR[3][10][45];  TH1D *h_jet23m[3][10][45];
+    TH1D *h_jet31pt[3][10][45];   TH1D *h_jet31eta[3][10][45]; TH1D *h_jet31deta[3][10][45];
+    TH1D *h_jet31dphi[3][10][45]; TH1D *h_jet31dR[3][10][45];  TH1D *h_jet31m[3][10][45];
+    TH1D *h_lepTpt[3][10][45]; TH1D *h_lepTdphi[3][10][45]; TH1D *h_lepTm[3][10][45];
+    TH1D *h_hadTpt[3][10][45]; TH1D *h_hadTeta[3][10][45];
+    TH1D *h_hadT12_3deta[3][10][45]; TH1D *h_hadT23_1deta[3][10][45]; TH1D *h_hadT31_2deta[3][10][45];
+    TH1D *h_hadT12_3dphi[3][10][45]; TH1D *h_hadT23_1dphi[3][10][45]; TH1D *h_hadT31_2dphi[3][10][45];
+    TH1D *h_hadT12_3dR[3][10][45];   TH1D *h_hadT23_1dR[3][10][45];   TH1D *h_hadT31_2dR[3][10][45];
+    TH1D *h_hadTm[3][10][45];
+    TH1D *h_jet0lepdR[3][10][45]; TH1D *h_jet1lepdR[3][10][45]; TH1D *h_jet2lepdR[3][10][45]; TH1D *h_jet3lepdR[3][10][45];
+    TH1D *h_jet01dR[3][10][45]; TH1D *h_jet02dR[3][10][45]; TH1D *h_jet03dR[3][10][45];
+    TH1D *h_jet12_lepdR[3][10][45]; TH1D *h_jet23_lepdR[3][10][45]; TH1D *h_jet31_lepdR[3][10][45];
+    TH1D *h_jet12_0dR[3][10][45]; TH1D *h_jet23_0dR[3][10][45]; TH1D *h_jet31_0dR[3][10][45];
+    TH1D *h_lepTjet12dphi[3][10][45]; TH1D *h_lepTjet23dphi[3][10][45]; TH1D *h_lepTjet31dphi[3][10][45];
+    TH1D *h_hadT_jet0dR[3][10][45];
 
     //SF specific histos
     TH1D *h_PVnoSF[3][10][45];
@@ -196,6 +216,7 @@ public :
     int lepcount = 0;
     int evtNum = 0;
 
+    bool draw_input;
     bool doreco;
     bool dosyst;
     string syst_ext;

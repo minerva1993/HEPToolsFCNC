@@ -214,7 +214,7 @@ def bSFNorm(htmp, infos):
       #case2: fullAna -> S1,2,3,5,6,7,8
       if   'S0'in hname: keystr += 'J0'
       elif any(i in hname for i in ['S1','S2','S3','S4']): keystr += 'J1'
-      elif any(i in hname for i in ['S5','S6','S7','S8']): keystr += 'J2'
+      elif any(i in hname for i in ['S5','S6','S7','S8','S9']): keystr += 'J2'
       infotmp = infos[keystr].Clone()
       if 'S4' in hname: infotmp.Add(infos[keystr.replace('J1','J2')], 1.0)
 
@@ -238,6 +238,7 @@ if not os.path.exists( pre_path ):
 
 for files in file_list:
 
+  if not '__' in files: continue
   print files
 
   #Prepare root file

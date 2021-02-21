@@ -1,0 +1,1019 @@
+#####S2#####
+'h_jet0pt_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet0eta_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet0m_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet0csv_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1pt_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1eta_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1m_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1csv_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2pt_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2eta_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2m_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2csv_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12pt_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12eta_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12deta_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12dphi_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12dR_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12m_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_lepTpt_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_lepTdphi_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_lepTm_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet0lepdR_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1lepdR_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2lepdR_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet01dR_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet02dR_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12_lepdR_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12_0dR_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+'h_lepTjet12dphi_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.789, 0.806], size: 18}
+
+#####S3#####
+'h_jet0pt_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet0eta_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet0m_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet0csv_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1pt_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1eta_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1m_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1csv_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2pt_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2eta_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2m_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2csv_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12pt_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12eta_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12deta_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12dphi_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12dR_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12m_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_lepTpt_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_lepTdphi_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_lepTm_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet0lepdR_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet1lepdR_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet2lepdR_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet01dR_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet02dR_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12_lepdR_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_jet12_0dR_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+'h_lepTjet12dphi_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}
+
+#####S6#####
+'h_jet0pt_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0eta_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0m_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0csv_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1pt_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1eta_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1m_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1csv_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2pt_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2eta_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2m_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2csv_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12pt_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12eta_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12deta_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12dphi_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12dR_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12m_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTpt_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTdphi_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTm_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0lepdR_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1lepdR_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2lepdR_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet01dR_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet02dR_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12_lepdR_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12_0dR_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTjet12dphi_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+
+#####S7#####
+'h_jet0pt_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0eta_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0m_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0csv_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1pt_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1eta_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1m_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1csv_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2pt_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2eta_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2m_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2csv_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12pt_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12eta_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12deta_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12dphi_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12dR_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12m_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTpt_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTdphi_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTm_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0lepdR_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1lepdR_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2lepdR_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet01dR_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet02dR_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12_lepdR_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12_0dR_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTjet12dphi_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.789, 0.806], size: 18}
+
+#####S8#####
+'h_jet0pt_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0eta_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0m_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0csv_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1pt_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1eta_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1m_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1csv_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2pt_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2eta_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2m_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2csv_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12pt_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12eta_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12deta_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12dphi_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12dR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12m_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTpt_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTdphi_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTm_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet0lepdR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet1lepdR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet2lepdR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet01dR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet02dR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12_lepdR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_jet12_0dR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_lepTjet12dphi_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
