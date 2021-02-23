@@ -482,7 +482,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
           h_lepTm[ich][i][syst] = new TH1D(Form("h_lepTm_Ch%i_S%i%s",ich,i,syst_name[syst]), "lepTm", 20,0,450);
           h_lepTm[ich][i][syst]->SetXTitle("lepTm");
           h_lepTm[ich][i][syst]->Sumw2();
-          fOutput->Add(h_FCNHkinLepTopM[ich][i][syst]);
+          fOutput->Add(h_lepTm[ich][i][syst]);
 
           h_hadTpt[ich][i][syst] = new TH1D(Form("h_hadTpt_Ch%i_S%i%s",ich,i,syst_name[syst]), "hadTpt", 20,0,400);
           h_hadTpt[ich][i][syst]->SetXTitle("hadTpt");
@@ -542,7 +542,7 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
           h_hadTm[ich][i][syst] = new TH1D(Form("h_hadTm_Ch%i_S%i%s",ich,i,syst_name[syst]), "hadTm", 20,50,450);
           h_hadTm[ich][i][syst]->SetXTitle("hadTm");
           h_hadTm[ich][i][syst]->Sumw2();
-          fOutput->Add(h_FCNHkinLepTopM[ich][i][syst]);
+          fOutput->Add(h_hadTm[ich][i][syst]);
 
           h_jet0lepdR[ich][i][syst] = new TH1D(Form("h_jet0lepdR_Ch%i_S%i%s",ich,i,syst_name[syst]), "jet0lepdR", 20,0,4.0);
           h_jet0lepdR[ich][i][syst]->SetXTitle("jet0lepdR");

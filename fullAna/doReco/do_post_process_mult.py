@@ -318,6 +318,7 @@ if __name__ == '__main__':
   #Starts loop over histogram root files
   file_list = os.listdir( os.path.join(base_path, "pre_process") )
   if "systamatics" in file_list: file_list.remove("systematics")
+  #file_list_sorted = sorted(file_list, key=lambda x:('__' in x, x))
 
   pre_path = os.path.join(base_path, "pre_process")
   if not os.path.exists( pre_path ):
@@ -326,7 +327,8 @@ if __name__ == '__main__':
   if not os.path.exists( base_path + "post_process" ):
     os.makedirs( base_path + "post_process" )
 
-  pool = multiprocessing.Pool(50)
+  pool = multiprocessing.Pool(54)
   pool.map(postProcess, file_list)
+  #pool.map(postProcess, file_list_sorted)
   pool.close()
   pool.join()
