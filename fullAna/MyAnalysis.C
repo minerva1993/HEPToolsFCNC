@@ -1195,7 +1195,7 @@ Bool_t MyAnalysis::Process(Long64_t entry)
             h_LepEta[MODE][cut][syst]       ->Fill(lepton.Eta(), EventWeight);
             h_MET[MODE][cut][syst]          ->Fill(met, EventWeight);
             h_WMass[MODE][cut][syst]        ->Fill(transverseM, EventWeight);
-            h_DPhi[MODE][cut][syst]         ->Fill(lepDphi, EventWeight);
+            h_DPhi[MODE][cut][syst]         ->Fill(abs(lepDphi), EventWeight);
             h_LepIso[MODE][cut][syst]       ->Fill(relIso, EventWeight);
             if( jetIdxs.size() > 0 ){
               h_LeadJetPt[MODE][cut][syst]    ->Fill(jetPts[0], EventWeight);
