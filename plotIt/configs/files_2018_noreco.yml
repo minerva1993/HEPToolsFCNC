@@ -76,21 +76,19 @@
   type: mc
   pretty-name: 'TTpowhegttbb'
   cross-section: 365.34
-  generated-events: 90347648
+  generated-events: 100728756 #90347648
   group: Gttbb
   yields-group: '0\ttbar\bbbar'
   order: 0
-  #scale: 1.231
 
 'hist_TTLLpowhegttbb.root':
   type: mc
   pretty-name: 'TTLLpowhegttbb'
   cross-section: 88.29
-  generated-events: 55751966
+  generated-events: 63791484 #55751966
   group: Gttbb
   yields-group: '0\ttbar\bbbar'
   order: 1
-  #scale: 1.286
 
 'hist_TTHadpowhegttbb.root':
   type: mc
@@ -105,7 +103,7 @@
   type: mc
   pretty-name: 'TTpowhegttcc'
   cross-section: 365.34
-  generated-events: 90347648
+  generated-events: 100728756 #90347648
   group: Gttcc
   yields-group: '1\ttbar\ccbar'
   order: 3
@@ -114,7 +112,7 @@
   type: mc
   pretty-name: 'TTLLpowhegttcc'
   cross-section: 88.29
-  generated-events: 55751966
+  generated-events: 63791484 #55751966
   group: Gttcc
   yields-group: '1\ttbar\ccbar'
   order: 4
@@ -132,7 +130,7 @@
   type: mc
   pretty-name: 'TTpowhegttlf'
   cross-section: 365.34
-  generated-events: 90347648
+  generated-events: 100728756 #90347648
   group: Gttlf
   yields-group: '2\ttbar LF'
   order: 6
@@ -141,7 +139,7 @@
   type: mc
   pretty-name: 'TTLLpowhegttlf'
   cross-section: 88.29
-  generated-events: 55751966
+  generated-events: 63791484 #55751966
   group: Gttlf
   yields-group: '2\ttbar LF'
   order: 7

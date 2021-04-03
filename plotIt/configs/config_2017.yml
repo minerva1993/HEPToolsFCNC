@@ -20,6 +20,7 @@ configuration:
 
 files: 
   include: ['files_2017.yml']
+  #include: ['files_2017_noreco.yml']
 
 systematics:
   - ttLJbb_xsec:   {type: const, value: 1.055, on: 'hist_TTpowhegttbb.root'}
@@ -142,6 +143,7 @@ systematics:
 
 plots:
 #  include: ['histos_control.yml']
+#  include: ['histos_control_qcd.yml']
 #  include: ['histos_nopuSF.yml']
 #  include: ['histos_nobSF.yml']
 #  include: ['histos_stfcnc.yml']
@@ -157,6 +159,8 @@ plots:
   include: ['histos_dnn.yml']
 #  include: ['histos_unc.yml']
 #  include: ['histos_yield.yml']
+#  include: ['histos_temp.yml']
+#  include: ['histos_temp_qcd.yml']
 
 legend:
   position: [0.18, 0.70, 0.96, 0.88]

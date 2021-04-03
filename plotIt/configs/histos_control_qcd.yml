@@ -33,6 +33,13 @@
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
 
+'h_MET_Ch0_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
 'h_WMass_Ch0_S4':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f"
@@ -98,6 +105,13 @@
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
 
+'h_MET_Ch1_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
 'h_WMass_Ch1_S4':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f"
@@ -161,6 +175,13 @@
 'h_MET_Ch2_S4':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+
+'h_MET_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  log-y: true
+  sort-by-yields: true
   save-extensions: ['pdf']
 
 'h_WMass_Ch2_S4':

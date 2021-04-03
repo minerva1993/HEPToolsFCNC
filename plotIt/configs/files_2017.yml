@@ -80,6 +80,7 @@
   group: Gttbb
   yields-group: '0\ttbar\bbbar'
   order: 0
+  #scale: 1.231
 
 'hist_TTLLpowhegttbb.root':
   type: mc
@@ -89,6 +90,7 @@
   group: Gttbb
   yields-group: '0\ttbar\bbbar'
   order: 1
+  #scale: 1.286
 
 'hist_TTHadpowhegttbb.root':
   type: mc
