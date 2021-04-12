@@ -67,7 +67,7 @@ for syst_ext in syst + syst2:
     try: os.makedirs(os.path.join(configDir, scoreDir + ver))
     except: pass
 
-  if ("Run2017" in name) and syst_ext != "": continue
+  if ("Run201" in name) and syst_ext != "": continue
   elif (syst_ext in syst2) and not (syst_ext in name): continue
   elif (syst_ext in syst) and any(tmp in name for tmp in syst2): continue
   else:

@@ -27,7 +27,8 @@ for sy in syst:
     common_syst_list.append(sy.replace('ERA', '2018'))
   else: common_syst_list.append(sy)
 
-reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
+#reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
+reco_scenario = ['STFCNC']
 
 for i in ['STFCNC','TTFCNC','TTBKG']:
   if not os.path.exists(dest_path + "/" + i + '/qcd'):
@@ -129,7 +130,8 @@ for scenario in reco_scenario:
       for line in lines: f1.write(line)
       f1.write(common_syst)
       f1.write(file_syst)
-      f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + ".yml']\n")
+      if scenario == 'STFCNC': f1.write("\nplots:\n  include: ['histos_control.yml', 'histos_" + scenario.lower() + ".yml']\n")
+      else: f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + ".yml']\n")
 
   call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario, config_path + 'config_1718.yml'], shell=False)
 
@@ -165,6 +167,7 @@ for scenario in reco_scenario:
       for line in lines: f1.write(line)
       f1.write(common_syst)
       f1.write(file_syst)
-      f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_qcd.yml']\n")
+      if scenario == 'STFCNC': f1.write("\nplots:\n  include: ['histos_control_qcd.yml', 'histos_" + scenario.lower() + "_qcd.yml']\n")
+      else: f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_qcd.yml']\n")
 
   call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario + '/qcd', config_path + 'config_1718.yml'], shell=False)

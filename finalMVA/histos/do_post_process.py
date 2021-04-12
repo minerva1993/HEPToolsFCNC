@@ -12,6 +12,9 @@ import ROOT
 #  print "wrong year"
 #  sys.exit()
 
+do_ttbb_rescale = False
+#do_ttbb_rescale = True
+
 base_path = "./"
 if not os.path.exists( base_path + "post_process" ):
   os.makedirs( base_path + "post_process" )
@@ -92,11 +95,23 @@ def write_envelope(syst, nhists, new_sumW):
         h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(1))
       else: h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(x+1))
       h.Rebin(nrebin)
+
+      #ttbb rescale: TOP-18-002
+      if do_ttbb_rescale:
+        if   'TTpowhegttbb'   in files: h.Scale(1.231)
+        elif 'TTLLpowhegttbb' in files: h.Scale(1.286)
+
       var_list.append(h)
 
     nominal = f.Get(histos)
     nominal.SetDirectory(ROOT.nullptr)
     nominal.Rebin(nrebin)
+
+    #ttbb rescale: TOP-18-002
+    if do_ttbb_rescale:
+      if   'TTpowhegttbb'   in files: nominal.Scale(1.231)
+      elif 'TTLLpowhegttbb' in files: nominal.Scale(1.286)
+
     n_bins = nominal.GetNcells()
     up = nominal.Clone()
     up.SetDirectory(ROOT.nullptr)
@@ -176,6 +191,11 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
         h = bSFNorm(h, bSFInfo)
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
         h.Rebin(nrebin)
+
+        #ttbb rescale: TOP-18-002
+        if do_ttbb_rescale:
+          if   'TTpowhegttbb'   in files: h.Scale(1.231)
+          elif 'TTLLpowhegttbb' in files: h.Scale(1.286)
 
         bSFInfo_nom = fill_bSFInfo(nom_f)
         h_nom = nom_f.Get(histos)
@@ -317,6 +337,12 @@ for files in file_list:
     if not any(i in h.GetName() for i in ['Info', 'Weight']):
       h = bSFNorm(h, bSFInfo)
       h.Rebin(nrebin)
+
+      #ttbb rescale: TOP-18-002
+      if do_ttbb_rescale:
+        if   'TTpowhegttbb'   in files: h.Scale(1.231)
+        elif 'TTLLpowhegttbb' in files: h.Scale(1.286)
+
     else: pass
 
     """

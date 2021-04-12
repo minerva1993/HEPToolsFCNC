@@ -1,5 +1,5 @@
 VER=01
-ERA=2018
+ERA=2017
 nohup python training_bdt.py Hct j3b2 ${VER} ${ERA} > log_Hct_j3b2 &
 nohup python training_bdt.py Hct j3b3 ${VER} ${ERA} > log_Hct_j3b3 &
 nohup python training_bdt.py Hct j4b2 ${VER} ${ERA} > log_Hct_j4b2 &
