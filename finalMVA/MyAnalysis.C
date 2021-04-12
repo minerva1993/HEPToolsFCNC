@@ -384,8 +384,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
       met_x = MET_unc_x[3]; met_y = MET_unc_y[3];
     }
     else{
-      met_x = met_x + met_var_x;
-      met_y = met_y + met_var_y;
+      met_x = met_x - met_var_x;
+      met_y = met_y - met_var_y;
     }
   }
   p4met.SetPxPyPzE(met_x, met_y, 0, sqrt(met_x*met_x + met_y*met_y));

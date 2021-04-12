@@ -23,6 +23,7 @@ cd doNoReco
 mv hist*.root 2017
 cd 2017
 python ../../ratioPlot.py
+../../../plotIt/plotIt -o figures/ ../../../plotIt/configs/config_2017.yml -y
 ```
   *Reconstruction
 This is for ST FCNC reconstruction using Keras+TF. For TT FCNC, some options in flat ntuplizer must be changes (eg. event selection, b tagging requirements). The flat ntuples for jer assignment is stored in both root and hdf format. root output is kept for BDT test. Default training code uses 0th ST Hct ntuple with classifier version '01'. score and assign folders will be made automatically.
@@ -68,6 +69,11 @@ cd ..
 mkdir figures/qcd
 cd post_process
 ../../../../../plotIt/plotIt -o ../figures/qcd/ ../../../../../plotIt/configs/config_2017.yml -y
+
+#Postfit from limit setting tool
+#update do_postfit_scale.py
+cd STFCNC01
+python do_postfit_scale.py 2017 Hut
 
 #17+18 plot
 cd ../../../
