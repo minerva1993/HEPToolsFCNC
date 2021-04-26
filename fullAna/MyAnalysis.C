@@ -234,8 +234,8 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
         h_FCNHkinHMass[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinHMass[ich][i][syst]);
 
-        h_FCNHkinDR[ich][i][syst] = new TH1D(Form("h_FCNHkinDR_Ch%i_S%i%s",ich,i,syst_name[syst]), "#Delta R of bb", 30, 0,4);
-        h_FCNHkinDR[ich][i][syst]->SetXTitle("#Delta R of b jets from Higgs");
+        h_FCNHkinDR[ich][i][syst] = new TH1D(Form("h_FCNHkinDR_Ch%i_S%i%s",ich,i,syst_name[syst]), "#Delta R", 30, 0,4);
+        h_FCNHkinDR[ich][i][syst]->SetXTitle("#Delta R of jets from Higgs (W) boson");
         h_FCNHkinDR[ich][i][syst]->Sumw2();
         fOutput->Add(h_FCNHkinDR[ich][i][syst]);
 
@@ -1229,8 +1229,8 @@ Bool_t MyAnalysis::Process(Long64_t entry)
               if( jet_deepCSV[jetIdx[1]] < 0 ) jet_deepCSV[jetIdx[1]] = 0;
               if( jet_deepCSV[jetIdx[2]] < 0 ) jet_deepCSV[jetIdx[2]] = 0;
               h_FCNHkinLepWMass[MODE][cut][syst]  ->Fill(transverseM, EventWeight);
-              h_FCNHkinHadWMass[MODE][cut][syst]  ->Fill((jetP4s[2]+jetP4s[3]).M(), EventWeight);
               h_FCNHkinLepTopM[MODE][cut][syst]   ->Fill(transverseMass(lepton+jetP4s[0], p4met), EventWeight);
+              h_FCNHkinHadWMass[MODE][cut][syst]  ->Fill((jetP4s[1]+jetP4s[2]).M(), EventWeight);//Also j1+j2!!
               h_FCNHkinHMass[MODE][cut][syst]     ->Fill((jetP4s[1]+jetP4s[2]).M(), EventWeight);
               h_FCNHkinDR[MODE][cut][syst]        ->Fill(jetP4s[1].DeltaR(jetP4s[2]), EventWeight);
               h_FCNHkinHadTopM[MODE][cut][syst]   ->Fill((jetP4s[1]+jetP4s[2]+jetP4s[3]).M(), EventWeight);
