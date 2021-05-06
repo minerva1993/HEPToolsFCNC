@@ -15,7 +15,7 @@ void idxToNtuple::Loop(const std::string channel)
 
   int ncombi = 0;
   //int fij = 0;
-  int totevt = fChain->GetMaximum("nevt");
+  int totevt = fChain->GetMaximum("nevt") + 1;
   //cout << totevt << endl;
 
   string fn = fChain->GetCurrentFile()->GetName();
