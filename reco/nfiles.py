@@ -15,14 +15,14 @@ if print17:
   print "Scores for 2017 Reco"
   print 'Looking at version ' + ver + ' files'
   for folder in folder17:
-    if ver != '00' and ver not in folder: continue
+    if ver != '00' and ver not in folder[:15]: continue
     if 'assign' in folder:
       tmp = []
       for files in os.listdir("./2017/" + folder):
         if files.endswith(".root"): tmp.append(files)
       print folder + ": " + str(len(tmp)).rjust(45-len(folder))
   for folder in folder17:
-    if ver != '00' and ver not in folder: continue
+    if ver != '00' and ver not in folder[:15]: continue
     if folder.startswith("score"):
       tmp = []
       for files in os.listdir("./2017/" + folder):
@@ -34,14 +34,14 @@ if print18:
   print "Scores for 2018 Reco"
   print 'Looking at version ' + ver + ' files'
   for folder in folder18:
-    if ver != '00' and ver not in folder: continue
+    if ver != '00' and ver not in folder[:15]: continue
     if 'assign' in folder:
       tmp = []
       for files in os.listdir("./2018/" + folder):
         if files.endswith(".root"): tmp.append(files)
       print folder + ": " + str(len(tmp)).rjust(45-len(folder))
   for folder in folder18:
-    if ver != '00' and ver not in folder: continue
+    if ver != '00' and ver not in folder[:15]: continue
     if folder.startswith("score"):
       tmp = []
       for files in os.listdir("./2018/" + folder):

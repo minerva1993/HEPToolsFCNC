@@ -1,9 +1,18 @@
 SCENARIO=TTBKG
 ERA=2017
 #ERA=2018
-VER=01
-MODEL=model_42_0.9501.h5
+
+#VER=01
+#MODEL=model_42_0.9501.h5
 #MODEL=model_38_0.9508.h5
+
+#VER=02
+#MODEL=model_47_0.9515.h5
+
+VER=05
+MODEL=model_47_0.9200.h5
+#MODEL=model_46_0.9330.h5
+
 nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} ${ERA} False 0 ${MODEL} 0 > log_${SCENARIO}_${VER}_${ERA}_0 &
 nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} ${ERA} False 1 ${MODEL} 0 > log_${SCENARIO}_${VER}_${ERA}_1 &
 nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} ${ERA} False 2 ${MODEL} 0 > log_${SCENARIO}_${VER}_${ERA}_2 &

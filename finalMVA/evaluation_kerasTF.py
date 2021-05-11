@@ -27,7 +27,7 @@ if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_version
 elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_version/hdf_' #no /
 configDir = '.'
 weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
-scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
+scoreDir = era + '/' + ch + '_' +jetcat + '_'
 
 input_files = []
 input_features = []

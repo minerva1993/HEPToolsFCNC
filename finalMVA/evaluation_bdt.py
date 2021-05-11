@@ -39,7 +39,7 @@ if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_ver/roo
 elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_ver/root_'
 configDir = './'
 weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
-scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
+scoreDir = era + '/' + ch + '_' +jetcat + '_'
 
 # Load data
 #syst = ["","jecup","jecdown","jerup","jerdown"]

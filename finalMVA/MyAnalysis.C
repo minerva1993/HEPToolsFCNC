@@ -68,11 +68,11 @@ void MyAnalysis::SlaveBegin(TTree * /*tree*/)
   const char* score_file_j4b3 = "";
   const char* score_file_j4b4 = "";
 
-  score_file_j3b2 = Form("./scores/%s/%s_j3b2_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j3b2.c_str(), syst_str.c_str(), sample.c_str());
-  score_file_j3b3 = Form("./scores/%s/%s_j3b3_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j3b3.c_str(), syst_str.c_str(), sample.c_str());
-  score_file_j4b2 = Form("./scores/%s/%s_j4b2_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j4b2.c_str(), syst_str.c_str(), sample.c_str());
-  score_file_j4b3 = Form("./scores/%s/%s_j4b3_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j4b3.c_str(), syst_str.c_str(), sample.c_str());
-  score_file_j4b4 = Form("./scores/%s/%s_j4b4_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j4b4.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j3b2 = Form("./%s/%s_j3b2_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j3b2.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j3b3 = Form("./%s/%s_j3b3_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j3b3.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j4b2 = Form("./%s/%s_j4b2_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j4b2.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j4b3 = Form("./%s/%s_j4b3_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j4b3.c_str(), syst_str.c_str(), sample.c_str());
+  score_file_j4b4 = Form("./%s/%s_j4b4_%s%s/score_finalMVA_%s.root", era_s.c_str(), sig_ch.c_str(), ver_j4b4.c_str(), syst_str.c_str(), sample.c_str());
 
   string file_tmp_path_j3b2 = score_file_j3b2;
   ifstream file_tmp_j3b2(file_tmp_path_j3b2);
@@ -797,7 +797,7 @@ void MyAnalysis::Terminate()
   train_scheme.erase( train_scheme.find_last_of("_"),string::npos );
 
 //  const char* score_file = "";
-//  score_file = Form("scores/%s/%s%s/score_finalMVA_%s.root", era_s.c_str(), train_scheme.c_str(), syst_str.c_str(), sample.c_str());
+//  score_file = Form("%s/%s%s/score_finalMVA_%s.root", era_s.c_str(), train_scheme.c_str(), syst_str.c_str(), sample.c_str());
 //  string file_tmp_path = score_file;
 //  ifstream file_tmp(file_tmp_path);
 //

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#SBATCH -J test
+#SBATCH -J slurm
 #SBATCH -p gpu,cpu -x gpu-0-2,compute-0-1
 #SBATCH -N 1
 #SBATCH --open-mode=append
