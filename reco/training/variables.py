@@ -47,7 +47,7 @@ def gen_label(ch):
   else               : label = 0
   return label
 
-def train_files(ch, era):
+def train_files(ch, era, b4j4):
   file_list = []
 
   if era == "2017":
@@ -74,6 +74,13 @@ def train_files(ch, era):
       for i in range(10,15): #upto 14
         file_list.append('deepReco_TTpowhegttlf_0'+str(i)+'.h5')
 
+      if b4j4:
+        for i in range(0,9): #upto 8 if b4j4 only
+          file_list.append('deepReco_TTpowhegttbb_00'+str(i)+'.h5')
+          file_list.append('deepReco_TTpowhegttcc_00'+str(i)+'.h5')
+        for i in range(10,45): #upto 14
+          file_list.append('deepReco_TTpowhegttlf_0'+str(i)+'.h5')
+
   elif era == "2018":
     if ch == "STFCNC":
       file_list = ['deepReco_STTH1L3BHct_000.h5', 'deepReco_STTH1L3BHut_000.h5',
@@ -96,8 +103,13 @@ def train_files(ch, era):
         file_list.append('deepReco_TTpowhegttcc_00'+str(i)+'.h5')
       for i in range(0,10):
         file_list.append('deepReco_TTpowhegttlf_00'+str(i)+'.h5')
-      #for i in range(10,15): #upto 9
-      #  file_list.append('deepReco_TTpowhegttlf_0'+str(i)+'.h5')
+
+      if b4j4:
+        for i in range(0,7): #upto 6 if b4j4 only
+          file_list.append('deepReco_TTpowhegttbb_00'+str(i)+'.h5')
+          file_list.append('deepReco_TTpowhegttcc_00'+str(i)+'.h5')
+        for i in range(10,40): #upto 39
+          file_list.append('deepReco_TTpowhegttlf_0'+str(i)+'.h5')
 
   else: file_list = []
 

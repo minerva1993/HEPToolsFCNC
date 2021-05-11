@@ -1,0 +1,51 @@
+'h_FCNHkinLepTopM_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_FCNHkinLepTopPt_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_FCNHkinHadWMass_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_FCNHkinHadTopM_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_FCNHkinHadTopPt_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  #fit-ratio: true
+  #ratio-fit-legend: "EXP(%2$.5f x + %1$.3f)"
+  #ratio-fit-function: "expo"
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_FCNHkinDR_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}
+
+'h_FCNHkinScore_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.789, 0.806], size: 18}

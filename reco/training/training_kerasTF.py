@@ -33,13 +33,15 @@ from variables import input_variables, gen_label, train_files
 
 #Channel and version
 if len(sys.argv) < 4:
-  print("Not enough arguements: Ch, Ver, Era")
+  print("Not enough arguements: Ch, Ver, Era, b4j4_only")
   sys.exit()
 ch = sys.argv[1]
 ver = sys.argv[2]
 era = sys.argv[3]
+b4j4_only = (len(sys.argv) == 5) and (sys.argv[4] == "True")
 if ch not in ["STFCNC", "TTFCNC", "TTBKG"]:
   print("Check channal again!: STFCNC, TTFCNC, of TTBKG are available")
+
 
 ##MultiGPU option
 #multiGPU = True
@@ -56,12 +58,13 @@ assignDir = era + '/assign' + ch
 input_files = []
 input_features = []
 signal_label = gen_label(ch)
-input_files.extend(train_files(ch, era))
+input_files.extend(train_files(ch, era, b4j4_only))
 input_features.extend(input_variables(ch))
 input_features.append('genMatch')
 
 label_name = 'genMatch'
 bkg_drop_rate = 0.0
+if b4j4_only: bkg_drop_rate = 0.8
 train_test_rate = 0.8
 plot_figures = True
 mass_name = "jet12m"
@@ -356,6 +359,7 @@ for files in input_files:
 data[label_name] = (data[label_name] == signal_label).astype(int)
 if mass_decorr:
   data.loc[:, mass_name] = 50
+if b4j4_only: data = data.query('(njets >= 4) and (nbjets_m >= 4)')
 data = shuffle(data)
 NumEvt = data[label_name].value_counts(sort=True, ascending=True)
 print(NumEvt)
@@ -422,6 +426,7 @@ X_test = data_test_sc
 #Keras model compile and training
 #################################
 a = 300
+if b4j4_only: a = 30
 b = 0.2
 init = 'glorot_uniform'
 

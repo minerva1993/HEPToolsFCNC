@@ -1,3 +1,11 @@
+old)
+v10: bdt
+v11: store lists
+
+201215 corrmet
 01: normal
 02: remove jet12m (ST) and hadTm (ST and TT)
 03: remove jet12dR
+04: remove jet0-3m
+05: for b4j4 exclusively (06: for b4j4 exclusively, 100 epochs in test)
+06: 0101010105 (b2j3 b2j4 b3j3 b3j4 b4j4)

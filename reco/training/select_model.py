@@ -17,7 +17,7 @@ config.gpu_options.per_process_gpu_memory_fraction = 0.1
 set_session(tf.Session(config=config))
 import keras
 from keras.models import load_model
-from training.variables import input_variables, gen_label
+from variables import input_variables, gen_label
 
 #Channel and version
 if len(sys.argv) < 4:
@@ -26,9 +26,10 @@ if len(sys.argv) < 4:
 ch = sys.argv[1] #STFCNC, TTFCNC. TTBKG
 ver = sys.argv[2] #01
 era = sys.argv[3]
+b4j4_only = (len(sys.argv) == 5) and (sys.argv[4] == "True")
 
 configDir = './'
-weightDir = 'training/' + era + '/reco' + ch
+weightDir = era + '/reco' + ch
 
 input_files = []
 input_features = []
@@ -38,7 +39,9 @@ input_features.extend(input_variables(ch))
 model_list = []
 file_list = sorted(os.listdir( os.path.join(configDir, weightDir+ver)) )
 for files in file_list:
-  if files.startswith("model"):
+  if files.startswith("model_"):
+    #if int(files.split('_')[1]) < 30: continue
+    if int(files.split('_')[1]) != 38: continue
 
     selected_list_1 = []
     selected_list_2 = []
@@ -64,6 +67,7 @@ for files in file_list:
 
 #      eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch, filename))
       eval_df = pd.read_hdf(os.path.join('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch, filename))
+      if b4j4_only: eval_df = eval_df.query('(njets >= 4) and (nbjets_m >= 4)')
       ncombi = eval_df.shape[0]
 
       matchable = len(eval_df.query('genMatch == '+ str(signal_label)).index)

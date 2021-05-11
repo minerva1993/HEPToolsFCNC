@@ -38,13 +38,16 @@ python dir_manage.py #check number of generated files
 #Launch training
 cd ../training
 python training_kerasTF.py STFCNC 01 2017
+#python training_kerasTF.py STFCNC 01 2017 True #for b4j4 training
 
 #With classifier, run prediction. In evlauation, you can assign sytematic from 0 to 6
-cd ..
 python select_model.py STFCNC 01 2017
+#python select_model.py STFCNC 01 2017 True #for b4j4
 source job_eval.sh
 cat ../commonTools/file_2017_top.txt | xargs -i -P1 -n2 python combi_assign.py STFCNC 01 2017 True #for signal efficiency
 cat ../commonTools/file_2017_all.txt | xargs -i -P$(nproc) -n2 python combi_assign.py STFCNC 01 2017 False
+#To implement different versions of reco DNNs
+python arrange_scores.py STFCNC 0101010101 2017 99
 
 #Plot histograms with reconstruction
 cd ../fullAna/
