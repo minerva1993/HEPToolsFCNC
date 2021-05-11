@@ -40,8 +40,10 @@ void idxToNtuple::Loop(const std::string channel)
 
   float tmpScore[totevt];
   float tmpScoreDummy[totevt];
-  int tmpMatch[totevt];
-  int tmpMatchDummy[totevt];
+  int   tmpMatch[totevt];
+  int   tmpMatchDummy[totevt];
+  int   tmpNjet[totevt];
+  int   tmpNBjet[totevt];
   float tmpLepPt[totevt];
   float tmpMET[totevt];
   float tmpWHm[totevt];
@@ -53,6 +55,8 @@ void idxToNtuple::Loop(const std::string channel)
     tmpMatch[i]      = -1;
     tmpScoreDummy[i] = -10;
     tmpMatchDummy[i] = -1;
+    tmpNjet[i]       = -1;
+    tmpNBjet[i]      = -1;
     tmpLepPt[i]      = -1;
     tmpMET[i]        = -1;
     tmpWHm[i]        = -1;
@@ -88,6 +92,8 @@ void idxToNtuple::Loop(const std::string channel)
       tmpJetIdx[nevt][2] = jet2Idx;
       tmpJetIdx[nevt][3] = jet3Idx;
       tmpMatch[nevt]     = genMatch;
+      tmpNjet[nevt]      = njets;
+      tmpNBjet[nevt]     = nbjets_m;
       tmpMET[nevt]       = missinget;
       tmpLepPt[nevt]     = lepPt;
       tmpWHm[nevt]       = whMass;
@@ -110,6 +116,7 @@ void idxToNtuple::Loop(const std::string channel)
   /////////////////////////////////////////////////
   float score = -1;
   int idx0, idx1, idx2, idx3, match;
+  int njets, nbjets_m;
   float leptonPt, missingET, whMass, lepTopM, hadTopM;
 
   assignT->Branch("score"    , &score    , "score/F");
@@ -118,6 +125,8 @@ void idxToNtuple::Loop(const std::string channel)
   assignT->Branch("idx1"     , &idx1     , "idx1/I");
   assignT->Branch("idx2"     , &idx2     , "idx2/I");
   assignT->Branch("idx3"     , &idx3     , "idx3/I");
+  assignT->Branch("njets"    , &njets    , "njets/I");
+  assignT->Branch("nbjets_m" , &nbjets_m , "nbjets_m/I");
   assignT->Branch("leptonPt" , &leptonPt , "leptonPt/F");
   assignT->Branch("missingET", &missingET, "missingET/F");
   assignT->Branch("whMass"   , &whMass   , "whMass/F");
@@ -129,6 +138,7 @@ void idxToNtuple::Loop(const std::string channel)
     score = tmpScore[i];
     match = tmpMatch[i];
     idx0 = tmpJetIdx[i][0]; idx1 = tmpJetIdx[i][1]; idx2 = tmpJetIdx[i][2]; idx3 = tmpJetIdx[i][3];
+    njets = tmpNjet[i]; nbjets_m = tmpNBjet[i];
     leptonPt = tmpLepPt[i]; missingET = tmpMET[i]; whMass = tmpWHm[i]; lepTopM = tmpLepTm[i]; hadTopM = tmpHadTm[i];
     
     assignT->Fill();

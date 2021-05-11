@@ -46,7 +46,7 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
 #  var_list.extend(['stfcnc_score'])
   var_list.extend(['stfcnc_jet0pt', 'stfcnc_jet0eta', 'stfcnc_jet0m', 'stfcnc_jet0csv',
                   'stfcnc_jet1pt', 'stfcnc_jet1eta', 'stfcnc_jet1m', 'stfcnc_jet1csv',
-                  'stfcnc_jet2pt', 'stfcnc_jet2eta', 'stfcnc_jet2m', #'stfcnc_jet2csv',
+                  'stfcnc_jet2pt', 'stfcnc_jet2eta', 'stfcnc_jet2m', 'stfcnc_jet2csv',
                   'stfcnc_jet12pt', 'stfcnc_jet12eta', 'stfcnc_jet12deta',
                   'stfcnc_jet12dphi', 'stfcnc_jet12dR', 'stfcnc_jet12m',
                   'stfcnc_lepTpt', 'stfcnc_lepTdphi', 'stfcnc_lepTm',
@@ -58,7 +58,7 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
 #    var_list.extend(['ttfcnc_score'])
     var_list.extend(['ttfcnc_jet0pt', 'ttfcnc_jet0eta', 'ttfcnc_jet0m', 'ttfcnc_jet0csv',
                     'ttfcnc_jet1pt', 'ttfcnc_jet1eta', 'ttfcnc_jet1m',  'ttfcnc_jet1csv',
-                    'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m',  #'ttfcnc_jet2csv',
+                    'ttfcnc_jet2pt', 'ttfcnc_jet2eta', 'ttfcnc_jet2m',  'ttfcnc_jet2csv',
                     'ttfcnc_jet3pt', 'ttfcnc_jet3eta', 'ttfcnc_jet3m',  'ttfcnc_jet3csv',
                     'ttfcnc_jet12pt', 'ttfcnc_jet12eta', 'ttfcnc_jet12deta',
                     'ttfcnc_jet12dphi', 'ttfcnc_jet12dR', 'ttfcnc_jet12m',
@@ -78,7 +78,7 @@ def input_variables_bdt(jetcat): #Order Does Matter!!
                     'ttfcnc_lepTjet12dphi', 'ttfcnc_lepTjet23dphi', 'ttfcnc_lepTjet31dphi', 'ttfcnc_hadT_jet0dR',])
 #    var_list.extend(['ttbkg_score'])
     var_list.extend(['ttbkg_jet0pt', 'ttbkg_jet0eta', 'ttbkg_jet0m', 'ttbkg_jet0csv',
-                    'ttbkg_jet1pt', 'ttbkg_jet1eta', 'ttbkg_jet1m', #'ttbkg_jet1csv',
+                    'ttbkg_jet1pt', 'ttbkg_jet1eta', 'ttbkg_jet1m', 'ttbkg_jet1csv',
                     'ttbkg_jet2pt', 'ttbkg_jet2eta', 'ttbkg_jet2m', 'ttbkg_jet2csv',
                     'ttbkg_jet3pt', 'ttbkg_jet3eta', 'ttbkg_jet3m', 'ttbkg_jet3csv',
                     'ttbkg_jet12pt', 'ttbkg_jet12eta', 'ttbkg_jet12deta',

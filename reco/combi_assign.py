@@ -38,6 +38,7 @@ if sig_only == "True":
     if not (any(x in filename for x in ["bb","bj","cc"]) and filename.endswith(('020','021'))) and not (any(x in filename for x in ["lf","other"]) and filename.endswith(('080','081','082','083','084','085','086','087'))): sys.exit(0)
 
 for syst_ext in syst + syst1 + syst2:
+#for syst_ext in syst:
   if   ("Run2017" in filename) and syst_ext != "": continue
   elif (syst_ext in syst2) and not (syst_ext in filename): continue
   elif (syst_ext in syst1) and any(tmp in filename for tmp in syst2): continue

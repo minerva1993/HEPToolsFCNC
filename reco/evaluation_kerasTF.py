@@ -19,6 +19,8 @@ if len(sys.argv) > 7:
     sys.exit()
 
 os.environ["CUDA_VISIBLE_DEVICES"] = gpunum
+b4j4_only = False
+#b4j4_only = True
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, label_binarize
@@ -102,6 +104,8 @@ for syst_ext in syst:
 
 #    eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch + syst_ext, filename))
     eval_df = pd.read_hdf(os.path.join('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch + syst_ext, filename))
+    if b4j4_only: eval_df = eval_df.query('(njets >= 4) and (nbjets_m >= 4)')
+    if eval_df.shape[0] < 1: continue
     print(filename + ": " + str(eval_df.shape[0]).rjust(60-len(filename)))
 
     outfile = TFile.Open(os.path.join(scoreDir + ver + syst_ext, 'score_' + filename.replace('h5','root')),'RECREATE')

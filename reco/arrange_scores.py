@@ -68,35 +68,33 @@ def arrange(fname):
     d_b4j4 = d_b4j4.query('(njets >= 4) and (nbjets_m >= 4)')
     dfs.append(d_b4j4)
 
-  df = pd.concat(dfs)
+  if len(dfs) > 0:
+    df = pd.concat(dfs)
 
-  fout = TFile.Open(fname.replace('VER', out_ver), 'RECREATE')
-  tout = TTree("tree","tree")
+    fout = TFile.Open(fname.replace('VER', out_ver), 'RECREATE')
+    tout = TTree("tree","tree")
 
-  for colname, value in df.iteritems():
-    leaf = df[colname].values
-    branchname = colname
-    print branchname
-    if branchname in ['match', 'njets', 'nbjets_m', 'idx0', 'idx1', 'idx2', 'idx3']: leaf.dtype = [(branchname, np.int32)]
-    else: leaf.dtype = [(branchname, np.float32)]
+    for colname, value in df.iteritems():
+      leaf = df[colname].values
+      branchname = colname
+      if branchname in ['match', 'njets', 'nbjets_m', 'idx0', 'idx1', 'idx2', 'idx3']: leaf.dtype = [(branchname, np.int32)]
+      else: leaf.dtype = [(branchname, np.float32)]
 
-    array2tree(leaf, name='tree', tree=tout)
+      array2tree(leaf, name='tree', tree=tout)
 
-  tout.Fill()
-  fout.Write()
-  fout.Close()
+    tout.Fill()
+    fout.Write()
+    fout.Close()
 
 
 if __name__ == '__main__':
 
-  syst = [""]
-  syst2 = []
-  #syst = ["","jecAbsoluteup","jecAbsolutedown", "jecAbsolute"+era+"up", "jecAbsolute"+era+"down",
-  #        "jecBBEC1up", "jecBBEC1down", "jecBBEC1"+era+"up", "jecBBEC1"+era+"down",
-  #        "jecFlavorQCDup", "jecFlavorQCDdown", "jecRelativeBalup", "jecRelativeBaldown",
-  #        "jecRelativeSample"+era+"up", "jecRelativeSample"+era+"down",
-  #        "jerup","jerdown"]
-  #syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
+  syst = ["","jecAbsoluteup","jecAbsolutedown", "jecAbsolute"+era+"up", "jecAbsolute"+era+"down",
+          "jecBBEC1up", "jecBBEC1down", "jecBBEC1"+era+"up", "jecBBEC1"+era+"down",
+          "jecFlavorQCDup", "jecFlavorQCDdown", "jecRelativeBalup", "jecRelativeBaldown",
+          "jecRelativeSample"+era+"up", "jecRelativeSample"+era+"down",
+          "jerup","jerdown"]
+  syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
 
   base_path = './' + era
 
@@ -104,9 +102,7 @@ if __name__ == '__main__':
 
   with open('../commonTools/file_'+era+'_all.txt') as f:
     lines = f.readlines()
-    count = 0
     for line in lines:
-      if count > 1: continue
       name = line.split(' ')[1].rstrip('\n')
       for syst_ext in syst + syst2:
         if ("Run201" in name) and syst_ext != "": continue
@@ -114,14 +110,13 @@ if __name__ == '__main__':
         elif (syst_ext in syst) and any(tmp in name for tmp in syst2): continue
         elif (syst_ext in syst2): name = name.replace(syst_ext,"")
         file_list.append( os.path.join(base_path, 'assign' + ch + 'VER' + syst_ext + '/assign_deepReco_' + name + '.root') )
-      count +=1
 
   for syst_ext in syst + syst2:
     out_path = os.path.join(base_path, 'assign' + ch + out_ver + syst_ext)
     if not os.path.exists( out_path ):
       os.makedirs( out_path )
 
-  pool = multiprocessing.Pool(1)
+  pool = multiprocessing.Pool(54)
   pool.map(arrange, file_list)
   pool.close()
   pool.join()

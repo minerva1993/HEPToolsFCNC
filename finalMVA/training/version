@@ -7,7 +7,13 @@ order: j3b2 j3b3 j4b2 j4b3 j4b4
 0102010301 - 03, remove stfcnc_jet2csv (b3j3, b3j4), ttfcnc_jet2csv (b3j4)
 0102010401 - 04, remove stfcnc_jet2csv (b3j3, b3j4), ttfcnc_jet2csv (b3j4), ttbkg_jet1csv (b3j4)
 
-201215
+201215 (before fix assignment, ANv13)
 0101010101 - oldmet
 0202020202 - less trees
 0203020302 - 03: remove stfcnc_jet2csv (b3j3, b3j4), ttfcnc_jet2csv (b3j4), ttbkg_jet1csv (b3j4)
+
+201215 (ANv14)
+0101010101 - 0202020202 of v13
+0102010201 - remove stfcnc_jet2csv (b3j3, b3j4), ttfcnc_jet2csv (b3j4), ttbkg_jet1csv (b3j4)
+0102010203 - new b4j4 (03)
+
