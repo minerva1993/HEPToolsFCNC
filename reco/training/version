@@ -9,3 +9,7 @@ v11: store lists
 04: remove jet0-3m
 05: for b4j4 exclusively (06: for b4j4 exclusively, 100 epochs in test)
 06: 0101010105 (b2j3 b2j4 b3j3 b3j4 b4j4) - only assignment files are merged!
+07: b2j* events
+08: b[3,4]j* events
+09: 0707080808
+10: b3j4 training

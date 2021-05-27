@@ -41,7 +41,7 @@ def arrange(fname):
     t_b2j4 = f_b2j4.Get('tree')
     a_b2j4 = tree2array(t_b2j4)
     d_b2j4 = pd.DataFrame(a_b2j4)
-    d_b2j4 = d_b2j4.query('(njets == 3) and (nbjets_m == 3)')
+    d_b2j4 = d_b2j4.query('(njets >= 4) and (nbjets_m == 2)')
     dfs.append(d_b2j4)
 
   if os.path.exists(fname.replace('VER', ver_b3j3)):
@@ -49,7 +49,7 @@ def arrange(fname):
     t_b3j3 = f_b3j3.Get('tree')
     a_b3j3 = tree2array(t_b3j3)
     d_b3j3 = pd.DataFrame(a_b3j3)
-    d_b3j3 = d_b3j3.query('(njets >= 4) and (nbjets_m == 2)')
+    d_b3j3 = d_b3j3.query('(njets == 3) and (nbjets_m == 3)')
     dfs.append(d_b3j3)
 
   if os.path.exists(fname.replace('VER', ver_b3j4)):
@@ -95,6 +95,8 @@ if __name__ == '__main__':
           "jecRelativeSample"+era+"up", "jecRelativeSample"+era+"down",
           "jerup","jerdown"]
   syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
+  #syst = [""]
+  #syst2 = []
 
   base_path = './' + era
 
@@ -105,6 +107,7 @@ if __name__ == '__main__':
     for line in lines:
       name = line.split(' ')[1].rstrip('\n')
       for syst_ext in syst + syst2:
+        #if any(s in line for s in ['hdamp','Tune']): continue
         if ("Run201" in name) and syst_ext != "": continue
         elif (syst_ext in syst2) and not (syst_ext in name): continue
         elif (syst_ext in syst) and any(tmp in name for tmp in syst2): continue

@@ -19,6 +19,8 @@ syst = ["","jecAbsoluteup","jecAbsolutedown", "jecAbsolute"+era+"up", "jecAbsolu
         "jecRelativeSample"+era+"up", "jecRelativeSample"+era+"down",
         "jerup","jerdown"]
 syst2 = ["TuneCP5up","TuneCP5down","hdampup","hdampdown"] #dedecative samples exist
+#syst = [""]
+#syst2 = []
 
 #dest = './doReco/temp'
 dest = '/data1/users/minerva1993/work/fcnc_RunII'+era+'/fullAna/current_ver/temp/'

@@ -2,8 +2,8 @@ SCENARIO=TTFCNC
 ERA=2017
 #ERA=2018
 
-#VER=01
-#MODEL=model_47_0.9845.h5
+VER=01
+MODEL=model_47_0.9845.h5
 #MODEL=model_45_0.9844.h5
 
 #VER=02
@@ -15,9 +15,18 @@ ERA=2017
 #VER=04
 #MODEL=model_48_0.9836.h5
 
-VER=05 #b4j4
-MODEL=model_49_0.9725.h5
+#VER=05 #b4j4
+#MODEL=model_49_0.9725.h5
 #MODEL=model_49_0.9769.h5
+
+#VER=07
+#MODEL=model_46_0.9810.h5
+
+#VER=08
+#MODEL=model_46_0.9845.h5
+
+#VER=10
+#MODEL=model_49_0.9743.h5
 
 nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} ${ERA} False 0 ${MODEL} 0 > log_${SCENARIO}_${VER}_${ERA}_0 &
 nohup python evaluation_kerasTF.py ${SCENARIO} ${VER} ${ERA} False 1 ${MODEL} 0 > log_${SCENARIO}_${VER}_${ERA}_1 &

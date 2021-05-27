@@ -1,0 +1,13 @@
+mkdir figures
+mkdir figures/qcd
+mkdir inputs
+mkdir inputs/qcd
+mkdir ttbbscaled
+mkdir ttbbscaled/figures
+mkdir ttbbscaled/figures/qcd
+mkdir ttbbscaled/inputs
+mkdir ttbbscaled/inputs/qcd
+mkdir inputs_postfit_Hut
+mkdir inputs_postfit_Hut/qcd
+mkdir inputs_postfit_Hct
+mkdir inputs_postfit_Hct/qcd

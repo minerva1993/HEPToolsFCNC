@@ -26,7 +26,7 @@ if len(sys.argv) < 4:
 ch = sys.argv[1] #STFCNC, TTFCNC. TTBKG
 ver = sys.argv[2] #01
 era = sys.argv[3]
-b4j4_only = (len(sys.argv) == 5) and (sys.argv[4] == "True")
+exclusive_jetcat = (len(sys.argv) == 5) and (sys.argv[4] == "True")
 
 configDir = './'
 weightDir = era + '/reco' + ch
@@ -40,8 +40,8 @@ model_list = []
 file_list = sorted(os.listdir( os.path.join(configDir, weightDir+ver)) )
 for files in file_list:
   if files.startswith("model_"):
-    #if int(files.split('_')[1]) < 30: continue
-    if int(files.split('_')[1]) != 38: continue
+    if int(files.split('_')[1]) < 30: continue
+    #if int(files.split('_')[1]) != 38: continue
 
     selected_list_1 = []
     selected_list_2 = []
@@ -67,7 +67,11 @@ for files in file_list:
 
 #      eval_df = pd.read_hdf(os.path.join(configDir, 'mkNtuple', 'hdf_' + ch, filename))
       eval_df = pd.read_hdf(os.path.join('/data1/users/minerva1993/work/fcnc_RunII' + era + '/reco/current_ver', 'hdf_' + ch, filename))
-      if b4j4_only: eval_df = eval_df.query('(njets >= 4) and (nbjets_m >= 4)')
+      if exclusive_jetcat:
+        eval_df = eval_df.query('(njets >= 4) and (nbjets_m >= 4)')
+        #eval_df = eval_df.query('(nbjets_m == 2)')
+        #eval_df = eval_df.query('(nbjets_m >= 3)')
+        #eval_df = eval_df.query('(njets >= 4) and (nbjets_m == 3)')
       ncombi = eval_df.shape[0]
 
       matchable = len(eval_df.query('genMatch == '+ str(signal_label)).index)
