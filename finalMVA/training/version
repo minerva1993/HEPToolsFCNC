@@ -16,4 +16,5 @@ order: j3b2 j3b3 j4b2 j4b3 j4b4
 0101010101 - 0202020202 of v13
 0102010201 - remove stfcnc_jet2csv (b3j3, b3j4), ttfcnc_jet2csv (b3j4), ttbkg_jet1csv (b3j4)
 0102010203 - new b4j4 (03)
-
+0104010203 - remove stfcnc_jet12dR (b3j3) in addition to v02
+0104010503 - remove stfcnc_jet12m, ttfcnc_jet12m, ttbkg_jet12m (b3j4) in addition to v02

@@ -1,0 +1,25 @@
+201215 (oldmet)
+  - variations:
+    - 2017v1: v45
+    - 2017v2: v1 + sig theory unc
+    - 2017v3: v2 + top pt reweight, 2016: same as v45 but updated lumi - no sig theory unc / 2018 b4j4 pdf is not symmetrized due to error
+    - 2017v4: v3 + smoothing hdamp and tune (h-h_nom, FWHM = 4)
+    - 2017v5: v3 + smoothing hdamp and tune (h-h_nom, FWHM = 6)
+    - 2017v6: v3 + lowess directly on templates
+    - 2017v7: v3 + lowess directly on h-h_nom (frac 2/3 which is default)
+    - 2017v8: v3 + lowess directly on h/h_nom (frac 2/3 which is default)
+    - 2017v9: v3 with 0102010401, run2 -> v3_cor for 2016
+    - 2017v10: v3 + ttbb rescale (LL: 1.286, LJ: 1.231)
+
+  -variations (correct met):
+    - 2017v1: same as oldmet v3
+    - 2017v2: new bdt (0202020202, v1)
+    - 2017v3: v2 + ttbb scale (0202020202, post_proc v2)
+    - 2017v4: 0203020302
+    - 2017v5: 0203020302 + ttbb scale (post_proc v2)
+
+  -variations (correct assignment):
+    - 2017v1: same as correct met v2
+    - 2017v2: 0102010201 - remove inputs from b3j3, b3j4
+    - 2017v3: 0101010103 - new reco DNN for b4j4
+    - 2017v4: 0102010203 - remove inputs from b3j3, b3j4 + new reco DNN for b4j4
