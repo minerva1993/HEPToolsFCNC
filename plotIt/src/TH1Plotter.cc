@@ -60,6 +60,35 @@ namespace plotIt {
         return g;
     }
 
+
+    /*Not to propagate mc stat unc to data, use this function*/
+    std::shared_ptr<TGraphAsymmErrors> getRatio2(TH1* a, TH1* b) {
+        std::shared_ptr<TGraphAsymmErrors> g(new TGraphAsymmErrors(a));
+
+        size_t npoint = 0;
+        for (size_t i = 1; i <= (size_t) a->GetNbinsX(); i++) {
+            float b1 = a->GetBinContent(i);
+            float b2 = b->GetBinContent(i);
+
+            if ((b1 == 0) || (b2 == 0))
+                continue;
+
+            float ratio = b1 / b2;
+
+            float error_up = std::abs(a->GetBinErrorUp(i) / b2);
+            float error_low = std::abs(a->GetBinErrorLow(i) / b2);
+
+            //Set the point center and its errors
+            g->SetPoint(npoint, a->GetBinCenter(i), ratio);
+            g->SetPointError(npoint, 0, 0, error_low, error_up);
+            npoint++;
+        }
+
+        g->Set(npoint);
+
+        return g;
+    }
+
   bool TH1Plotter::supports(TObject& object) {
     return object.InheritsFrom("TH1");
   }
@@ -787,7 +816,8 @@ namespace plotIt {
 
       auto& mc_stack = mc_stacks.begin()->second;
 
-      std::shared_ptr<TGraphAsymmErrors> ratio = getRatio(h_data.get(), mc_stack.stat_only.get());
+      //std::shared_ptr<TGraphAsymmErrors> ratio = getRatio(h_data.get(), mc_stack.stat_only.get());
+      std::shared_ptr<TGraphAsymmErrors> ratio = getRatio2(h_data.get(), mc_stack.stat_only.get());
       ratio->Draw((m_plotIt.getConfiguration().ratio_style + "same").c_str());
 
       if (plot.ratio_y_axis_auto_range) {
