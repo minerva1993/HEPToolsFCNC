@@ -39,7 +39,7 @@ if sig_only == "True":
 
 for syst_ext in syst + syst1 + syst2:
 #for syst_ext in syst:
-  if   ("Run2017" in filename) and syst_ext != "": continue
+  if   ("Run201" in filename) and syst_ext != "": continue
   elif (syst_ext in syst2) and not (syst_ext in filename): continue
   elif (syst_ext in syst1) and any(tmp in filename for tmp in syst2): continue
   else:

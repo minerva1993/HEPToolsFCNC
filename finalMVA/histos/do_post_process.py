@@ -98,8 +98,8 @@ def write_envelope(syst, nhists, new_sumW):
 
       #ttbb rescale: TOP-18-002
       if do_ttbb_rescale:
-        if   'TTpowhegttbb'   in files: h.Scale(1.231)
-        elif 'TTLLpowhegttbb' in files: h.Scale(1.286)
+        if   'TTpowhegttbb'   in files: h.Scale(1.2)
+        elif 'TTLLpowhegttbb' in files: h.Scale(1.26)
 
       var_list.append(h)
 
@@ -109,8 +109,8 @@ def write_envelope(syst, nhists, new_sumW):
 
     #ttbb rescale: TOP-18-002
     if do_ttbb_rescale:
-      if   'TTpowhegttbb'   in files: nominal.Scale(1.231)
-      elif 'TTLLpowhegttbb' in files: nominal.Scale(1.286)
+      if   'TTpowhegttbb'   in files: nominal.Scale(1.2)
+      elif 'TTLLpowhegttbb' in files: nominal.Scale(1.26)
 
     n_bins = nominal.GetNcells()
     up = nominal.Clone()
@@ -194,8 +194,8 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
 
         #ttbb rescale: TOP-18-002
         if do_ttbb_rescale:
-          if   'TTpowhegttbb'   in files: h.Scale(1.231)
-          elif 'TTLLpowhegttbb' in files: h.Scale(1.286)
+          if   'TTpowhegttbb'   in files: h.Scale(1.2)
+          elif 'TTLLpowhegttbb' in files: h.Scale(1.26)
 
         bSFInfo_nom = fill_bSFInfo(nom_f)
         h_nom = nom_f.Get(histos)
@@ -340,8 +340,8 @@ for files in file_list:
 
       #ttbb rescale: TOP-18-002
       if do_ttbb_rescale:
-        if   'TTpowhegttbb'   in files: h.Scale(1.231)
-        elif 'TTLLpowhegttbb' in files: h.Scale(1.286)
+        if   'TTpowhegttbb'   in files: h.Scale(1.2)
+        elif 'TTLLpowhegttbb' in files: h.Scale(1.26)
 
     else: pass
 

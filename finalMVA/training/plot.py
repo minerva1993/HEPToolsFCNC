@@ -6,6 +6,9 @@ from variables import input_variables
 gROOT.SetBatch()
 
 era = sys.argv[1]
+chs = ['Hct', 'Hut']
+jetcats = ['j3b2','j3b3','j4b2','j4b3','j4b4']
+vers = ['01']
 
 c1 = TCanvas( 'c1', 'c1', 450, 450 ) 
 #c1.SetLogy()
@@ -42,9 +45,9 @@ l.SetFillColor(0);
 
 ##all histos with event selection!
 ###########################################################
-for ch in ['Hct','Hut']:
-  for jetcat in ['j3b2','j3b3','j4b2','j4b3','j4b4']:
-    for i in ['01']:
+for ch in chs:
+  for jetcat in jetcats:
+    for i in vers:
       ver = str(i)
       out = TFile.Open(era + '/final_'+ch+'_'+jetcat+'_'+ver+'/output_'+ch+'_'+jetcat+'.root')
       if not os.path.exists(era+'/bdt_plots/' + i):

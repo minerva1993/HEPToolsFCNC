@@ -9,8 +9,8 @@ ver17 = sys.argv[1]
 ver18 = sys.argv[2]
 
 config_path = '../../plotIt/configs/'
-dest_path = './full1718'
-#dest_path = './temp'
+dest_path = './full1718/figures'
+#dest_path = './full1718/figures_ttbbscaled'
 common_syst = 'systematics:\n'
 #not include prefire and elzvtx which exist only in 2017
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
@@ -27,8 +27,7 @@ for sy in syst:
     common_syst_list.append(sy.replace('ERA', '2018'))
   else: common_syst_list.append(sy)
 
-#reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
-reco_scenario = ['STFCNC']
+reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
 
 for i in ['STFCNC','TTFCNC','TTBKG']:
   if not os.path.exists(dest_path + "/" + i + '/qcd'):
@@ -52,7 +51,13 @@ for scenario in reco_scenario:
       if 'hist' in line:
         line = line[0] + '2017/' + scenario + ver17 + '/post_process/' + line[1:]
         if not any(i in line for i in ['TH1L3B', 'Run201']):
-          line += '  scale: ' + str(41529/101270.0) + '\n'
+          if 'ttbbscaled' in dest_path:
+            if 'TTpowhegttbb' in line:
+              line += '  scale: ' + str(1.2*41529/101270.0) + '\n'
+            elif 'TTLLpowhegttbb' in line:
+              line += '  scale: ' + str(1.26*41529/101270.0) + '\n'
+            else: line += '  scale: ' + str(41529/101270.0) + '\n'
+          else: line += '  scale: ' + str(41529/101270.0) + '\n'
       if not skip_signal and not any(i in line for i in ['yields-group']): string_for_files += line
 
   with open(config_path + 'files_2018.yml') as f:
@@ -66,7 +71,13 @@ for scenario in reco_scenario:
       if 'hist' in line:
         line = line[0] + '2018/' + scenario + ver18 + '/post_process/' + line[1:]
         if not any(i in line for i in ['TH1L3B', 'Run201']):
-          line += '  scale: ' + str(59741/101270.0) + '\n'
+          if 'ttbbscaled' in dest_path:
+            if 'TTpowhegttbb' in line:
+              line += '  scale: ' + str(1.2*59741/101270.0) + '\n'
+            elif 'TTLLpowhegttbb' in line:
+              line += '  scale: ' + str(1.26*59741/101270.0) + '\n'
+            else: line += '  scale: ' + str(59741/101270.0) + '\n'
+          else: line += '  scale: ' + str(59741/101270.0) + '\n'
       if not skip_signal and not any(i in line for i in ['yields-group']): string_for_files += line
 
   with open(config_path + 'files_1718.yml', 'w+') as fnew:
@@ -146,6 +157,8 @@ for scenario in reco_scenario:
       if skip_signal and 'hist_QCD' in line: skip_signal = False
       if 'hist_QCD' in line:
         line = line[0] + '2017/' + scenario + ver17 + '/post_process/' + line[1:]
+        if not any(i in line for i in ['TH1L3B', 'Run201']):
+          line += '  scale: ' + str(41529/101270.0) + '\n'
       if not skip_signal and not any(i in line for i in ['yields-group']): string_for_qcd += line
 
   with open(config_path + 'files_2018.yml') as f:
@@ -156,6 +169,8 @@ for scenario in reco_scenario:
       if skip_signal and 'hist_QCD' in line: skip_signal = False
       if 'hist_QCD' in line:
         line = line[0] + '2018/' + scenario + ver18 + '/post_process/' + line[1:]
+        if not any(i in line for i in ['TH1L3B', 'Run201']):
+          line += '  scale: ' + str(59741/101270.0) + '\n'
       if not skip_signal and not any(i in line for i in ['yields-group']): string_for_qcd += line
 
   with open(config_path + 'files_1718.yml', 'a') as fnew:

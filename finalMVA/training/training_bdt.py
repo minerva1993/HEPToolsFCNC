@@ -51,14 +51,12 @@ if era == "2017":
   nsig_Hct = ['52078', '20707', '54919', '33732', '2949'] #bit too large. (#of file per TT ntuple issue?)
   nsig_Hut = ['52221', '17549', '56145', '30905', '1475'] #bit too large. (#of file per ST ntuple issue?)
   nbkg = ['411412', '16154', '622156', '57348', '2921']
-  #ntree = ['400', '100', '400', '200', '20']
   ntree = ['100', '50', '100', '50', '10']
   ncut = ['20', '20', '20', '20', '10']
 elif era == "2018":
   nsig_Hct = ['49866', '21017', '49608', '32232', '3006']
   nsig_Hut = ['45379', '15302', '50638', '28746', '1433']
   nbkg = ['444537', '19610', '660410', '66157', '3260']
-  #ntree = ['400', '100', '400', '200', '20']
   ntree = ['100', '50', '100', '50', '10']
   ncut = ['20', '20', '20', '20', '10']
 
@@ -74,7 +72,7 @@ if   era == '2017': rootDir = rootDir + 'fcnc_RunII2017/finalMVA/current_ver/roo
 elif era == '2018': rootDir = rootDir + 'fcnc_RunII2018/finalMVA/current_ver/root_/'
 configDir = '../'
 weightDir = 'training/' + era + '/final' + '_' + ch + '_' +jetcat + '_'
-scoreDir = 'scores/' + era + '/' + ch + '_' +jetcat + '_'
+scoreDir = era + '/' + ch + '_' +jetcat + '_'
 
 #Check if the model and files already exist
 if not os.path.exists( os.path.join(configDir, weightDir+ver, 'weights') ):
