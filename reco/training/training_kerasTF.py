@@ -138,10 +138,10 @@ def correlations(data, name, **kwds):
     if name == 'sig':
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_corr_s.pdf'))
       print('Correlation matrix for signal is saved!')
-      plt.gcf().clear()
+      plt.gcf().clf()
     elif name == 'bkg':
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_corr_b.pdf'))
-      plt.gcf().clear()
+      plt.gcf().clf()
       print('Correlation matrix for background is saved!')
     else: print('Wrong class name!')
 
@@ -169,7 +169,7 @@ def inputvars(sigdata, bkgdata, signame, bkgname, **kwds):
       plt.title('Intput variables')
       plt.legend(loc='upper right')
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_input_'+colname+'.pdf'))
-      plt.gcf().clear()
+      plt.gcf().clf()
       plt.close()
 
 
@@ -244,7 +244,7 @@ class roc_callback(Callback):
       plt.title('ROC Curve')
       plt.legend(['Test', 'Train'], loc='lower left')
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_roc_%d_%.4f.pdf' %(epoch+1,round(roc_val,4))))
-      plt.gcf().clear()
+      plt.gcf().clf()
 
       ########################################################
       #Overtraining Check, as well as bkg & sig discrimination
@@ -304,11 +304,12 @@ class roc_callback(Callback):
       if min_ < 0.01: plt.ylim(bottom=0.01)
       else: plt.ylim(bottom=min_)
       plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_overtraining_log_%d_%.4f.pdf' %(epoch+1,round(roc_val,4))))
-      plt.gcf().clear()
+      plt.gcf().clf()
       print('ROC curve and overtraining check plots are saved!')
 
       list_sig_train, _, __ = plt.hist(tpr[2], range=low_high, bins=bins, density=True)
       list_bkg_train, _, __ = plt.hist(fpr[2], range=low_high, bins=bins, density=True)
+      plt.gcf().clf()
 
       with open(os.path.join(configDir, weightDir+ver, 'list_overtraining_%d_%.4f.txt' %(epoch+1,round(roc_val,4))), "w") as output:
           output.write('Signal test\n')
@@ -528,7 +529,7 @@ plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='lower right')
 plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_accuracy.pdf'))
-plt.gcf().clear()
+plt.gcf().clf()
 
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
@@ -537,7 +538,7 @@ plt.ylabel('Loss')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='upper right')
 plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_loss.pdf'))
-plt.gcf().clear()
+plt.gcf().clf()
 
 plt.plot(auc_list)
 plt.plot(val_auc_list)
@@ -546,7 +547,7 @@ plt.ylabel('AUC')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='upper right')
 plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_auc.pdf'))
-plt.gcf().clear()
+plt.gcf().clf()
 
 plt.plot(f1_list)
 plt.plot(val_f1_list)
@@ -555,7 +556,7 @@ plt.ylabel('F1 Score')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='upper right')
 plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_f1.pdf'))
-plt.gcf().clear()
+plt.gcf().clf()
 
 plt.plot(recall_list)
 plt.plot(val_recall_list)
@@ -564,7 +565,7 @@ plt.ylabel('Recall')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='upper right')
 plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_recall.pdf'))
-plt.gcf().clear()
+plt.gcf().clf()
 
 plt.plot(precision_list)
 plt.plot(val_precision_list)
@@ -573,5 +574,5 @@ plt.ylabel('Precision')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='upper right')
 plt.savefig(os.path.join(configDir, weightDir+ver, 'fig_score_precision.pdf'))
-plt.gcf().clear()
+plt.gcf().clf()
 print("Training ended!")
