@@ -7,7 +7,7 @@
   yields-table-order: 0
   yields-title: '$b2j3$'
   ratio-y-axis-auto-range: true
-  rebin: 4
+  #rebin: 4
   labels:
     - {text: 'b2j3', position: [0.781, 0.806], size: 18}
 #  signal-normalize-data: false
@@ -21,7 +21,7 @@
   yields-table-order: 2
   yields-title: '$j3b3$'
   ratio-y-axis-auto-range: true
-  rebin: 4
+  #rebin: 4
   labels:
     - {text: 'b3j3', position: [0.781, 0.806], size: 18}
 #  signal-normalize-data: false
@@ -35,7 +35,7 @@
   yields-table-order: 1
   yields-title: '$b2j4$'
   ratio-y-axis-auto-range: true
-  rebin: 4
+  #rebin: 4
   labels:
     - {text: 'b2j4', position: [0.781, 0.806], size: 18}
 #  signal-normalize-data: false
@@ -49,7 +49,7 @@
   yields-table-order: 3
   yields-title: '$b3j4$'
   ratio-y-axis-auto-range: true
-  rebin: 4
+  #rebin: 4
   labels:
     - {text: 'b3j4', position: [0.781, 0.806], size: 18}
 #  signal-normalize-data: false
@@ -63,7 +63,7 @@
   yields-table-order: 4
   yields-title: '$b4j4$'
   ratio-y-axis-auto-range: true
-  rebin: 4
+  #rebin: 4
   labels:
     - {text: 'b4j4', position: [0.781, 0.806], size: 18}
 #  signal-normalize-data: false

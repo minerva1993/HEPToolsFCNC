@@ -1,6 +1,6 @@
 import os, sys
 import numpy as np
-#import statsmodels.api as sm
+import array
 from ROOT import *
 import ROOT
 
@@ -20,67 +20,11 @@ if not os.path.exists( base_path + "post_process" ):
   os.makedirs( base_path + "post_process" )
 
 nrebin = 1
-
-def fwhm2sigma(fwhm):
-
-  return fwhm / np.sqrt(8 * np.log(2))
-
-
-def smoothing(hin, hnom, fwhm):
-
-  htmp = hin.Clone()
-  htmp.SetDirectory(0)
-  #htmp.Add(hnom, -1.0)
-  htmp.Divide(hnom)
-
-  #FWHM = fwhm
-  #sigma = fwhm2sigma(FWHM)
-
-  x_vals = np.arange(htmp.GetNbinsX())
-  y_vals = np.zeros(htmp.GetNbinsX())
-
-  for i in xrange(htmp.GetNbinsX()):
-    y_vals[i] = htmp.GetBinContent(i+1)
-
-  for x_position in x_vals:
-    kernel = np.exp(-(x_vals - x_position) ** 2 / (2 * sigma ** 2))
-    kernel = kernel / sum(kernel)
-    #hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)))
-    #hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)+hnom.GetBinContent(x_position+1)))
-    hin.SetBinContent(x_position+1, max(0, sum(y_vals * kernel)*hnom.GetBinContent(x_position+1)))
-
-  #lowess = sm.nonparametric.lowess
-  #smoothed_vals = np.zeros(y_vals.shape)
-  #smoothed_vals = lowess(y_vals, x_vals, frac=2./3, return_sorted=False)
-
-  #for x_position in x_vals:
-  #  #hin.SetBinContent(x_position+1, max(0, smoothed_vals[x_position]))
-  #  #hin.SetBinContent(x_position+1, max(0, smoothed_vals[x_position]+hnom.GetBinContent(x_position+1)))
-  #  hin.SetBinContent(x_position+1, max(0, smoothed_vals[x_position]*hnom.GetBinContent(x_position+1)))
-
-  return hin
-
-
-def symmetrize(var, var_opp, nom):
-
-  for xbin in xrange(var.GetNbinsX()):
-    if nom.GetBinContent(xbin+1) == 0: ratio = 1.
-    else:
-      ratio = var.GetBinContent(xbin+1) / nom.GetBinContent(xbin+1)
-      ratio_opp = 1.
-      if var_opp.GetBinContent(xbin+1) > 0: ratio_opp = var.GetBinContent(xbin+1) / var_opp.GetBinContent(xbin+1)
-
-      diff = abs(nom.GetBinContent(xbin+1)-var.GetBinContent(xbin+1)) + abs(nom.GetBinContent(xbin+1)-var_opp.GetBinContent(xbin+1))
-      #diff = max(abs(nom.GetBinContent(xbin+1)-var.GetBinContent(xbin+1)), abs(nom.GetBinContent(xbin+1)-var_opp.GetBinContent(xbin+1)))
-      if ratio_opp > 1.:
-        var.SetBinContent(xbin+1, nom.GetBinContent(xbin+1) + diff/2.)
-        if ratio > 1.2: var.SetBinContent(xbin+1, 1.2 * nom.GetBinContent(xbin+1))
-      else:
-        var.SetBinContent(xbin+1, nom.GetBinContent(xbin+1) - diff/2.)
-        if ratio < 0.8: var.SetBinContent(xbin+1, 0.8 * nom.GetBinContent(xbin+1))
-
-  return var
-
+rebin = {'j3b2': [-1., -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0],
+         'j4b2': [-1., -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1.0],
+         'j3b3': [-1., -0.7, -0.5, -0.3, -0.1, 0.1, 0.3, 0.5, 1.0],
+         'j4b3': [-1., -0.7, -0.5, -0.3, -0.1, 0.1, 0.3, 0.5, 0.75, 1.0],
+         'j4b4': [-1., -0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4, 0.6, 1.0]}
 
 def write_envelope(syst, nhists, new_sumW):
 
@@ -94,7 +38,8 @@ def write_envelope(syst, nhists, new_sumW):
         if x == 0: continue
         h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(1))
       else: h.Scale(EventInfo.GetBinContent(2) / new_sumW.GetBinContent(x+1))
-      h.Rebin(nrebin)
+      #h.Rebin(nrebin)
+      h = h.Rebin(len(rebin[h.GetName().split('_')[2]])-1, h.GetName(), array.array('d',rebin[h.GetName().split('_')[2]]))
 
       #ttbb rescale: TOP-18-002
       if do_ttbb_rescale:
@@ -105,7 +50,8 @@ def write_envelope(syst, nhists, new_sumW):
 
     nominal = f.Get(histos)
     nominal.SetDirectory(ROOT.nullptr)
-    nominal.Rebin(nrebin)
+    #nominal.Rebin(nrebin)
+    nominal = nominal.Rebin(len(rebin[h.GetName().split('_')[2]])-1, h.GetName(), array.array('d',rebin[h.GetName().split('_')[2]]))
 
     #ttbb rescale: TOP-18-002
     if do_ttbb_rescale:
@@ -137,29 +83,6 @@ def write_envelope(syst, nhists, new_sumW):
     up.SetName(histos + "__" + syst + "up")
     dn.SetName(histos + "__" + syst + "down")
 
-    #We don't draw pdf in full ana due to computing resources
-    #if year == '2018':
-    #  if syst == 'pdf' and any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad']) and any(sname in h.GetName() for sname in ['j4b4', 'S8']):
-    #    nominal = bSFNorm(nominal, bSFInfo)
-
-    #    for xbin in xrange(up.GetNbinsX()):
-    #      if nominal.GetBinContent(xbin+1) == 0:
-    #        ratio_up = 1.
-    #        ratio_dn = 1.
-    #      else:
-    #        ratio_up = up.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
-    #        ratio_dn = dn.GetBinContent(xbin+1) / nominal.GetBinContent(xbin+1)
-
-    #        #By construction, up shape is always above the down shape
-    #        diff = abs(nominal.GetBinContent(xbin+1)-up.GetBinContent(xbin+1)) + abs(nominal.GetBinContent(xbin+1)-dn.GetBinContent(xbin+1))
-    #        up.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) + diff/2.)
-    #        dn.SetBinContent(xbin+1, nominal.GetBinContent(xbin+1) - diff/2.)
-    #        if dn.GetBinContent(xbin+1) < 0: dn.SetBinContent(xbin+1, 0)
-    #        if ratio_up > 1.2:
-    #          up.SetBinContent(xbin+1, 1.2 * nominal.GetBinContent(xbin+1))
-    #        if ratio_dn < 0.8:
-    #          dn.SetBinContent(xbin+1, 0.8 * nominal.GetBinContent(xbin+1))
-
     up.Write()
     dn.Write()
 
@@ -190,7 +113,8 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
       if not any(i in h.GetName() for i in ['Info', 'Weight']):
         h = bSFNorm(h, bSFInfo)
         h.Scale(nom_EventInfo.GetBinContent(2) / EventInfo.GetBinContent(2))
-        h.Rebin(nrebin)
+        #h.Rebin(nrebin)
+        h = h.Rebin(len(rebin[h.GetName().split('_')[2]])-1, h.GetName(), array.array('d',rebin[h.GetName().split('_')[2]]))
 
         #ttbb rescale: TOP-18-002
         if do_ttbb_rescale:
@@ -200,30 +124,8 @@ def rescale(binNum, new_sumW): # rescale up/dn histos
         bSFInfo_nom = fill_bSFInfo(nom_f)
         h_nom = nom_f.Get(histos)
         h_nom = bSFNorm(h_nom, bSFInfo_nom)
-        h_nom.Rebin(nrebin)
-
-        #if ('Tune' in syst_name or 'hdamp' in syst_name):
-        #  smoothing(h, h_nom, 2)
-
-        #if year == '2017'
-        #  if ( ('Tune' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b2', 'S6']))
-        #    or ('hdamp' in syst_name and any(sname in h.GetName() for sname in ['j3b2', 'S2', 'j4b3', 'S7']))
-        #    or ('jer' in f.GetName() and not any(fname in f.GetName() for fname in ['TTLL', 'TTpowheg','TTHad','TTTH','STTH']) and any(sname in h.GetName() for sname in ['j3b2', 'S2'])) ):
-
-        #    if 'down' in files:
-        #      f_opp = TFile.Open( os.path.join(pre_path, files.replace('down','up')), "READ")
-        #    elif 'up' in files:
-        #      f_opp = TFile.Open( os.path.join(pre_path, files.replace('up','down')), "READ")
-
-        #    #print f.GetName(), h.GetName()
-
-        #    opp_EventInfo = f_opp.Get('EventInfo')
-        #    bSFInfo_opp = fill_bSFInfo(f_opp)
-        #    h_opp = f_opp.Get(histos)
-        #    h_opp = bSFNorm(h_opp, bSFInfo_opp)
-        #    h_opp.Rebin(nrebin)
-        #    h_opp.Scale(nom_EventInfo.GetBinContent(2) / opp_EventInfo.GetBinContent(2))
-        #    h = symmetrize(h, h_opp, h_nom)
+        #h_nom.Rebin(nrebin)
+        h_nom = h_nom.Rebin(len(rebin[h.GetName().split('_')[2]])-1, h.GetName(), array.array('d',rebin[h.GetName().split('_')[2]]))
 
       f_new.cd()
       h.Write()
@@ -336,7 +238,8 @@ for files in file_list:
     h.SetDirectory(ROOT.nullptr)
     if not any(i in h.GetName() for i in ['Info', 'Weight']):
       h = bSFNorm(h, bSFInfo)
-      h.Rebin(nrebin)
+      #h.Rebin(nrebin)
+      h = h.Rebin(len(rebin[h.GetName().split('_')[2]])-1, h.GetName(), array.array('d',rebin[h.GetName().split('_')[2]]))
 
       #ttbb rescale: TOP-18-002
       if do_ttbb_rescale:
@@ -344,26 +247,6 @@ for files in file_list:
         elif 'TTLLpowhegttbb' in files: h.Scale(1.26)
 
     else: pass
-
-    """
-    #Special treatements
-    #if 'cferr1' in h.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
-    #if 'cferr1' in h.GetName() and 'ttcc' in f.GetName() and ('j4b4' in h.GetName() or 'S8' in h.GetName()):
-    if "__" in h.GetName() and ('j3b2' in h.GetName() or 'S2' in h.GetName()):
-      if 'down' in h.GetName():
-        h_opp = f.Get(h.GetName().replace('down','up'))
-      elif 'up' in h.GetName():
-        h_opp = f.Get(h.GetName().replace('up','down'))
-      h_opp.SetDirectory(ROOT.nullptr)
-
-      h_nom = f.Get(h.GetName().split('__')[0])
-      h_nom.SetDirectory(ROOT.nullptr)
-      h_nom = bSFNorm(h_nom, bSFInfo)
-      h_opp = bSFNorm(h_opp, bSFInfo)
-      h_nom.Rebin(nrebin)
-      h_opp.Rebin(nrebin)
-      h = symmetrize(h, h_opp, h_nom)
-    """
 
     h.Write()
 
