@@ -1,0 +1,8 @@
+#Ch2
+'h_FCNHkinHMass_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  ratio-y-axis-auto-range: true
+  labels:
+    - {text: 'b3j3', position: [0.789, 0.806], size: 18}

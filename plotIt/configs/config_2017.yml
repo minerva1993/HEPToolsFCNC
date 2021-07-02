@@ -7,7 +7,7 @@ configuration:
   root: ''
   luminosity: 41529
   luminosity-error: 0.023
-  error-fill-style: 3154
+  error-fill-style: 3254
   error-fill-color: "#ee556270"
   ratio-fit-error-fill-style: 1001
   ratio-fit-error-fill-color: "#aa556270"

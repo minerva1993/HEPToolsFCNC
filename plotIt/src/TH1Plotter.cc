@@ -889,7 +889,8 @@ namespace plotIt {
           else syst = mc_stack.syst_only->GetBinError(i) / mc_stack.syst_only->GetBinContent(i);
 
           h_systematics->SetBinContent(i, 1);
-          h_systematics->SetBinError(i, syst);
+          //h_systematics->SetBinError(i, syst);
+          if (h_data.get()->GetBinContent(i) > 0) h_systematics->SetBinError(i, syst);
 
           has_syst = true;
         }
