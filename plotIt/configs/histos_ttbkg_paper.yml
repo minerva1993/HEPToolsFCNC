@@ -1,6 +1,7 @@
 'h_FCNHkinHadTopM_Ch2_S6':
+  x-axis: "m_{top}^{hadronic} (GeV)"
   y-axis: "Events"
-  y-axis-format: "%1% / %2$.2f"
+  y-axis-format: "%1% / %2$.2f GeV"
   save-extensions: ['pdf']
   ratio-y-axis-auto-range: true
   labels:

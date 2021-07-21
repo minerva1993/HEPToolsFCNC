@@ -49,7 +49,7 @@ namespace plotIt {
     } else if (type == SIGNAL) {
       fill_type = 0;
       line_color = 1;
-      line_width = 2;
+      line_width = 3;
       line_type = 1;
     } else {
       marker_size = 1;

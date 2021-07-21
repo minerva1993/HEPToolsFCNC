@@ -9,8 +9,9 @@ ver17 = sys.argv[1]
 ver18 = sys.argv[2]
 
 config_path = '../../plotIt/configs/'
-dest_path = './full1718/figures'
+#dest_path = './full1718/figures'
 #dest_path = './full1718/figures_ttbbscaled'
+dest_path = './full1718/figures_paper_ttbbscaled'
 common_syst = 'systematics:\n'
 #not include prefire and elzvtx which exist only in 2017
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
@@ -141,8 +142,9 @@ for scenario in reco_scenario:
       for line in lines: f1.write(line)
       f1.write(common_syst)
       f1.write(file_syst)
-      if scenario == 'STFCNC': f1.write("\nplots:\n  include: ['histos_control.yml', 'histos_" + scenario.lower() + ".yml']\n")
-      else: f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + ".yml']\n")
+      #if scenario == 'STFCNC': f1.write("\nplots:\n  include: ['histos_control.yml', 'histos_" + scenario.lower() + ".yml']\n")
+      #else: f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + ".yml']\n")
+      f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_paper.yml']\n")
 
   call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario, config_path + 'config_1718.yml'], shell=False)
 
@@ -184,5 +186,6 @@ for scenario in reco_scenario:
       f1.write(file_syst)
       if scenario == 'STFCNC': f1.write("\nplots:\n  include: ['histos_control_qcd.yml', 'histos_" + scenario.lower() + "_qcd.yml']\n")
       else: f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_qcd.yml']\n")
+      #f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_qcd_paper.yml']\n")
 
-  call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario + '/qcd', config_path + 'config_1718.yml'], shell=False)
+  #call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario + '/qcd', config_path + 'config_1718.yml'], shell=False)

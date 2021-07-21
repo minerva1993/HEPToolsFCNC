@@ -1,7 +1,8 @@
 #Ch2
 'h_FCNHkinHMass_Ch2_S3':
+  x-axis: "m_{b#bar b} (GeV)"
   y-axis: "Events"
-  y-axis-format: "%1% / %2$.2f"
+  y-axis-format: "%1% / %2$.2f GeV"
   save-extensions: ['pdf']
   ratio-y-axis-auto-range: true
   labels:

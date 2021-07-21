@@ -1,6 +1,7 @@
 'h_FCNHkinHb2CSVfull_Ch2_S8':
+  x-axis: "b jet DeepCSV discriminant"
   y-axis: "Events"
-  y-axis-format: "%1% / %2$.2f"
+  y-axis-format: "%1% / %2$.2f units"
   x-axis-range: [0.4,1.0]
   save-extensions: ['pdf']
   ratio-y-axis-auto-range: true
