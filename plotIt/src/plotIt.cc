@@ -714,7 +714,7 @@ namespace plotIt {
       if (node["ratio-draw-mcstat-error"])
         plot.ratio_draw_mcstat_error = node["ratio-draw-mcstat-error"].as<bool>();
 
-      if (node["post_fit"])
+      if (node["post-fit"])
         plot.post_fit = node["post-fit"].as<bool>();
 
       if (node["blinded-range"])
