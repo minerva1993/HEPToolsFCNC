@@ -315,6 +315,7 @@ namespace plotIt {
 
     bool show_ratio = true;
     bool ratio_draw_mcstat_error = false;
+    bool post_fit = false;
 
     bool fit = false;
     std::string fit_function = "gaus";

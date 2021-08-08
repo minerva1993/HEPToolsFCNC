@@ -884,7 +884,7 @@ namespace plotIt {
 
           // relative error, delta X / X
           float syst = 0.;
-          if (plot.ratio_draw_mcstat_error)
+          if (plot.ratio_draw_mcstat_error or !plot.post_fit)
             syst = sqrt(pow(mc_stack.syst_only->GetBinError(i),2) + pow(mc_stack.stat_only->GetBinError(i),2)) / mc_stack.syst_only->GetBinContent(i);
           else syst = mc_stack.syst_only->GetBinError(i) / mc_stack.syst_only->GetBinContent(i);
 
