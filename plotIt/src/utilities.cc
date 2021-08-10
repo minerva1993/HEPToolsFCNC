@@ -90,7 +90,9 @@ namespace plotIt {
 
     style->SetTitleColor(1, "XYZ");
     style->SetTitleFont(43, "XYZ");
-    style->SetTitleSize(TITLE_FONTSIZE, "XYZ");
+    //style->SetTitleSize(TITLE_FONTSIZE, "XYZ");
+    style->SetTitleSize(TITLE_FONTSIZE+2, "X");
+    style->SetTitleSize(TITLE_FONTSIZE, "YZ");
     style->SetTitleXOffset(3.5);
     style->SetTitleYOffset(2.5);
 

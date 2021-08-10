@@ -244,6 +244,7 @@ namespace plotIt {
   struct Label {
     std::string text;
     uint32_t size = LABEL_FONTSIZE;
+    uint32_t font = 64;
     Point position;
   };
 
@@ -405,7 +406,7 @@ namespace plotIt {
   struct Configuration {
     float width = 800;
     float height = 800;
-    float margin_left = 0.14;
+    float margin_left = 0.16;
     float margin_right = 0.03;
     float margin_top = 0.06;
     float margin_bottom = 0.1;
@@ -418,7 +419,8 @@ namespace plotIt {
     float luminosity_error_percent = 0;
 
     std::string y_axis_format = "%1% / %2$.2f";
-    std::string ratio_y_axis_title = "Data / MC";
+    //std::string ratio_y_axis_title = "Data / MC";
+    std::string ratio_y_axis_title = "Data / Pred.";
     std::string ratio_style = "P0";
 
     int16_t error_fill_color = 42;
@@ -444,6 +446,7 @@ namespace plotIt {
 
     std::vector<Label> labels;
 
+    bool experiment_label_paper = false;
     std::string experiment = "CMS";
     std::string extra_label;
 

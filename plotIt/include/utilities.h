@@ -68,10 +68,12 @@ namespace plotIt {
       object->SetLabelFont(43, "XYZ");
       object->SetTitleFont(43, "XYZ");
       object->SetLabelSize(LABEL_FONTSIZE, "XYZ");
-      object->SetTitleSize(TITLE_FONTSIZE, "XYZ");
+      //object->SetTitleSize(TITLE_FONTSIZE, "XYZ");
+      object->SetTitleSize(TITLE_FONTSIZE+2, "X");
+      object->SetTitleSize(TITLE_FONTSIZE, "YZ");
 
       object->GetYaxis()->SetNdivisions(510);
-      object->GetYaxis()->SetTitleOffset(2.0);
+      object->GetYaxis()->SetTitleOffset(1.8);
       object->GetYaxis()->SetLabelOffset(0.012);
       object->GetYaxis()->SetTickLength(0.03);
       object->GetYaxis()->SetLabelSize(plot.y_axis_label_size);

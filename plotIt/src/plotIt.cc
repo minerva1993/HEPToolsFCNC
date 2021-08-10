@@ -256,6 +256,9 @@ namespace plotIt {
 //          label.size = labelNode["size"].as<uint32_t>();
           label.size = labelNode["size"].as<float>();
 
+        if (labelNode["font"])
+          label.font = labelNode["font"].as<int>();
+
         labels.push_back(label);
       }
 
@@ -315,6 +318,9 @@ namespace plotIt {
 
       if (node["experiment"])
         m_config.experiment = node["experiment"].as<std::string>();
+
+      if (node["experiment-label-paper"])
+        m_config.experiment_label_paper = node["experiment-label-paper"].as<bool>();
 
       if (node["extra-label"])
         m_config.extra_label = node["extra-label"].as<std::string>();
@@ -1067,7 +1073,8 @@ namespace plotIt {
 
     // Build legend
     TLegend legend(legend_position.x1, legend_position.y1, legend_position.x2, legend_position.y2);
-    legend.SetTextFont(62);
+    //legend.SetTextFont(62);
+    legend.SetTextFont(42);
     legend.SetFillStyle(0);
     legend.SetBorderSize(0);
     legend.SetNColumns(plot.legend_columns);
@@ -1081,6 +1088,7 @@ namespace plotIt {
       topMargin /= .6666;
 
     // Move exponent label if shown
+    TGaxis::SetMaxDigits(4);
     TGaxis::SetExponentOffset(-0.06, 0, "y");
 
     // Luminosity label
@@ -1101,14 +1109,19 @@ namespace plotIt {
 
     // Experiment
     if (m_config.experiment.length() > 0) {
-      std::shared_ptr<TPaveText> pt = std::make_shared<TPaveText>(m_config.margin_left, 1 - 0.5 * topMargin, 1 - m_config.margin_right, 1, "brNDC");
+      std::shared_ptr<TPaveText> pt;
+      if (m_config.experiment_label_paper)
+          pt = std::make_shared<TPaveText>(1.15 * m_config.margin_left, 1 - 2.75 * topMargin, 1 - m_config.margin_right, 1, "brNDC");
+      else pt = std::make_shared<TPaveText>(m_config.margin_left, 1 - 0.5 * topMargin, 1 - m_config.margin_right, 1, "brNDC");
       TemporaryPool::get().add(pt);
 
       pt->SetFillStyle(0);
       pt->SetBorderSize(0);
       pt->SetMargin(0);
       pt->SetTextFont(62);
-      pt->SetTextSize(0.65 * topMargin);
+      if (m_config.experiment_label_paper)
+          pt->SetTextSize(0.8 * topMargin);
+      else pt->SetTextSize(0.65 * topMargin);
       pt->SetTextAlign(13);
 
       std::string text = m_config.experiment;
@@ -1137,7 +1150,8 @@ namespace plotIt {
 
       std::shared_ptr<TLatex> t(new TLatex(label.position.x, label.position.y, label.text.c_str()));
       t->SetNDC(true);
-      t->SetTextFont(64);
+      //t->SetTextFont(64);
+      t->SetTextFont(label.font);
       t->SetTextSize(label.size);
       t->Draw();
 
@@ -1344,6 +1358,7 @@ namespace plotIt {
         for (const auto& c: categories) {
           std::string categ = c.second;
           latexString << R"($\pm$ )" << std::setprecision(m_config.yields_table_num_prec_yields) << (std::sqrt(std::pow(process_systematics[std::make_tuple(SIGNAL, categ, p)], 2))/signal_yields[categ][p].first)*100 << R"(\% & )";
+          //latexString << R"($\pm$ )" << std::setprecision(m_config.yields_table_num_prec_yields) << (std::sqrt(std::pow(process_systematics[std::make_tuple(SIGNAL, categ, p)], 2))) << R"(\% & )";
         }
 
         latexString.seekp(latexString.tellp() - 2l);
@@ -1361,6 +1376,7 @@ namespace plotIt {
           for (const auto& c: categories) {
             std::string categ = c.second;
             latexString << R"($\pm$ )" << std::setprecision(m_config.yields_table_num_prec_yields) << (std::sqrt(std::pow(process_systematics[std::make_tuple(MC, categ, p)], 2))/mc_yields[categ][p].first)*100 << R"(\% & )";
+            //latexString << R"($\pm$ )" << std::setprecision(m_config.yields_table_num_prec_yields) << (std::sqrt(std::pow(process_systematics[std::make_tuple(MC, categ, p)], 2))) << R"(\% & )";
           }
 
           latexString.seekp(latexString.tellp() - 2l);
@@ -1372,6 +1388,7 @@ namespace plotIt {
 
         for (const auto& c: categories) {
           latexString << R"($\pm $ )" << std::setprecision(m_config.yields_table_num_prec_yields) << (std::sqrt(total_systematics_squared[c.second][MC])/mc_total[c.second])*100 << R"(\% & )";
+          //latexString << R"($\pm $ )" << std::setprecision(m_config.yields_table_num_prec_yields) << (std::sqrt(total_systematics_squared[c.second][MC])) << R"(\% & )";
         }
         latexString.seekp(latexString.tellp() - 2l);
         latexString << R"( \\ )" << std::endl;

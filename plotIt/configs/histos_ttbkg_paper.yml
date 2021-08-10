@@ -5,4 +5,5 @@
   save-extensions: ['pdf']
   ratio-y-axis-auto-range: true
   labels:
-    - {text: 'b2j4', position: [0.789, 0.806], size: 18}
+    #- {text: 'b2j4', position: [0.789, 0.806], size: 18}
+    - {text: 'b2j4', position: [0.2, 0.832], size: 18, font: 44}

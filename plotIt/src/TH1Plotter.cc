@@ -546,7 +546,8 @@ namespace plotIt {
       low_pad->Draw();
       low_pad->SetLeftMargin(config.margin_left);
       low_pad->SetTopMargin(.05);
-      low_pad->SetBottomMargin(config.margin_bottom / .3333);
+      //low_pad->SetBottomMargin(config.margin_bottom / .3333);
+      low_pad->SetBottomMargin(config.margin_bottom / .28);
       low_pad->SetRightMargin(config.margin_right);
       low_pad->SetTickx(1);
 
