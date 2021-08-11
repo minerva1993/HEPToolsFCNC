@@ -188,13 +188,19 @@ if era == "2017":
   AddBkg("hist_QCDMu1000toInf.root","QCD",ROOT.kGray, 1.6)
   AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 0.554)#496.1/831.76~0.596, 0.93*0.596=0.554
   AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 0.554)
-  AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 0.554)
   AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 0.554) 
-  AddHct("hist_TTTH1L3BTLepHct.root", "Hct", 433, 0.554) 
+  AddHct("hist_TTTH1L3BTLepHct.root", "Hct", 433, 0.554)
   #AddHut("hist_TTTH1L3BHut.root", "Hut", 401, 1.86)
   #AddHct("hist_TTTH1L3BHct.root", "Hct", 433, 1.86)
   AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 0.55)#13.84*0.04
   AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 0.076)#1.9*0.04
+  #To compute signal scale
+  #AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 13.857)##496.1/831.76~0.596, 23.25*0.596=
+  #AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 13.857)
+  #AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 13.857)
+  #AddHct("hist_TTTH1L3BTLepHct.root", "Hct", 433, 13.857)
+  #AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 13.84)
+  #AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 1.9)
 
 elif era == "2018":
   SetData("hist_SingleMuonRun2018.root","data", 59741)
@@ -257,6 +263,14 @@ elif era == "2018":
   #AddHct("hist_TTTH1L3BHct.root", "Hct", 433, 1.86)
   AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 0.55)#13.84*0.04
   AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 0.076)#1.9*0.04
+  #To compute signal scale
+  #AddHut("hist_TTTH1L3BaTLepHut.root", "Hut", 401, 13.857)##496.1/831.76~0.596, 23.25*0.596=
+  #AddHut("hist_TTTH1L3BTLepHut.root", "Hut", 401, 13.857)
+  #AddHct("hist_TTTH1L3BaTLepHct.root", "Hct", 433, 13.857)
+  #AddHct("hist_TTTH1L3BTLepHct.root", "Hct", 433, 13.857)
+  #AddSTHut("hist_STTH1L3BHut.root", "STHut", 403, 13.84)
+  #AddSTHct("hist_STTH1L3BHct.root", "STHct", 435, 1.9)
+
 else:
   print "Wrong era!"
   sys.exit()
