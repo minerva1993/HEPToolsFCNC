@@ -354,6 +354,10 @@ namespace plotIt {
 
     bool sort_by_yields = false;
 
+    bool change_legend = false;
+    std::string legend_name_org;
+    std::string legend_name_new;
+
     std::vector<Line> lines;
 
     // Axis label size

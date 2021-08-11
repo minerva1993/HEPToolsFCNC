@@ -740,6 +740,13 @@ namespace plotIt {
         plot.labels = parseLabelsNode(labels);
       }
 
+      // Change legend by hand, currently can change only one entry FIXME
+      if (node["change-legend"]) {
+        plot.change_legend = node["change-legend"].as<bool>();
+        plot.legend_name_org = node["legend-name-org"].as<std::string>();
+        plot.legend_name_new = node["legend-name-new"].as<std::string>();
+      }
+
       if (node["extra-label"])
         plot.extra_label = node["extra-label"].as<std::string>();
 
@@ -1080,6 +1087,18 @@ namespace plotIt {
     legend.SetNColumns(plot.legend_columns);
 
     fillLegend(legend, plot, hasMC && plot.show_errors);
+
+    if (plot.change_legend) {
+      TList *p = legend.GetListOfPrimitives();
+      TIter next(p);
+      TObject *obj;
+      TLegendEntry *le;
+      while ((obj = next())) {
+        le = (TLegendEntry*)obj;
+        std::string le_name = le->GetLabel();
+        if (le_name == plot.legend_name_org) le->SetLabel((plot.legend_name_new).c_str());
+      }
+    }
 
     legend.Draw();
 
