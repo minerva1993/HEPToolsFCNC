@@ -824,13 +824,16 @@ namespace plotIt {
       if (plot.ratio_y_axis_auto_range) {
         float ratio_max = plot.ratio_y_axis_range.end;
         float ratio_min = plot.ratio_y_axis_range.start;
-        float current_max = TMath::MaxElement(ratio->GetN(), ratio->GetY());
-        float current_min = TMath::MinElement(ratio->GetN(), ratio->GetY());
+        //float current_max = TMath::MaxElement(ratio->GetN(), ratio->GetY());
+        //float current_min = TMath::MinElement(ratio->GetN(), ratio->GetY());
+        auto hratio = ratio->GetHistogram();
+        float current_max = hratio->GetMaximum() + hratio->GetBinError(hratio->GetMaximumBin());
+        float current_min = hratio->GetMinimum() - hratio->GetBinError(hratio->GetMinimumBin());
 
         if(current_max > ratio_max)
-          ratio_max = current_max * 1.2;
+          ratio_max = current_max * 1.001;
         if(current_min < ratio_min)
-          ratio_min = current_min * 0.8;
+          ratio_min = current_min * 0.999;
 
         Range ratio_auto_range = {ratio_min, ratio_max};
         setRange(h_low_pad_axis.get(), x_axis_range, ratio_auto_range);
