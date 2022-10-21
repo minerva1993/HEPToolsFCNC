@@ -1,0 +1,22 @@
+2017:
+temp/hist_QCDMu15to20_000__jecup.root
+temp/hist_QCDMu15to20_000__jerup.root
+temp/hist_QCDMu15to20_000__jecdown.root
+temp/hist_QCDMu15to20_000__jerdown.root
+temp/hist_QCDEM15to20_000__jecdown.root
+temp/hist_QCDEM15to20_000__jecup.root
+temp/hist_QCDEM15to20_000__jerup.root
+temp/hist_QCDEM15to20_000__jerdown.root
+temp/hist_QCDEM20to30_000__jecdown.root
+temp/hist_QCDEM20to30_000__jerup.root
+temp/hist_QCDEM20to30_000__jerdown.root
+temp/hist_QCDEM20to30_000__jecup.root
+temp/hist_QCDMu20to30_000__jerup.root
+temp/hist_QCDMu20to30_000__jecdown.root
+temp/hist_QCDMu20to30_000__jerdown.root
+temp/hist_QCDMu20to30_000__jecup.root
+temp/hist_QCDEM30to50_000__jerup.root
+temp/hist_QCDEM30to50_000__jecdown.root
+temp/hist_QCDEM30to50_000__jecup.root
+temp/hist_QCDEM30to50_000__jerdown.root
++nominal 5 files are empty histos

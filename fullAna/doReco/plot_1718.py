@@ -11,8 +11,11 @@ ver18 = sys.argv[2]
 config_path = '../../plotIt/configs/'
 #dest_path = './full1718/figures'
 #dest_path = './full1718/figures_ttbbscaled'
-dest_path = './full1718/figures_paper_ttbbscaled'
+dest_path = './full1718/figures_ttbbscaled_thesis'
+#dest_path = './full1718/figures_paper_ttbbscaled'
+#dest_path = './full1718/figures_pas_ttbbscaled'
 common_syst = 'systematics:\n'
+groups = ['GData', 'Gttbb', 'Gttcc', 'Gttlf', 'Gother', 'GQCD', 'GSTHct', 'GSTHut', 'GTTHct', 'GTTHut']
 #not include prefire and elzvtx which exist only in 2017
 common_syst_list = ['pu', 'muid', 'muiso', 'mutrg', 'elid', 'elreco', 'eltrg',
 #                    'jec', 'jer',
@@ -30,7 +33,8 @@ for sy in syst:
 
 reco_scenario = ['STFCNC', 'TTFCNC', 'TTBKG']
 
-for i in ['STFCNC','TTFCNC','TTBKG']:
+#for i in ['STFCNC','TTFCNC','TTBKG']:
+for i in ['STFCNC']:
   if not os.path.exists(dest_path + "/" + i + '/qcd'):
     try: os.makedirs(dest_path + "/" + i + '/qcd')
     except: pass
@@ -59,7 +63,9 @@ for scenario in reco_scenario:
               line += '  scale: ' + str(1.26*41529/101270.0) + '\n'
             else: line += '  scale: ' + str(41529/101270.0) + '\n'
           else: line += '  scale: ' + str(41529/101270.0) + '\n'
-      if not skip_signal and not any(i in line for i in ['yields-group']): string_for_files += line
+      if not skip_signal and not any(i in line for i in ['yields-group']):
+        if 'group' in line and not any(i in line for i in groups): string_for_files += '  group: Gother \n'
+        else: string_for_files += line
 
   with open(config_path + 'files_2018.yml') as f:
     lines = f.readlines()
@@ -79,7 +85,9 @@ for scenario in reco_scenario:
               line += '  scale: ' + str(1.26*59741/101270.0) + '\n'
             else: line += '  scale: ' + str(59741/101270.0) + '\n'
           else: line += '  scale: ' + str(59741/101270.0) + '\n'
-      if not skip_signal and not any(i in line for i in ['yields-group']): string_for_files += line
+      if not skip_signal and not any(i in line for i in ['yields-group']):
+        if 'group' in line and not any(i in line for i in groups): string_for_files += '  group: Gother \n'
+        else: string_for_files += line
 
   with open(config_path + 'files_1718.yml', 'w+') as fnew:
     print>>fnew, """
@@ -144,7 +152,8 @@ for scenario in reco_scenario:
       f1.write(file_syst)
       #if scenario == 'STFCNC': f1.write("\nplots:\n  include: ['histos_control.yml', 'histos_" + scenario.lower() + ".yml']\n")
       #else: f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + ".yml']\n")
-      f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_paper.yml']\n")
+      #f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_paper.yml']\n")
+      f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_thesis.yml']\n")
 
   call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario, config_path + 'config_1718.yml'], shell=False)
 
@@ -184,8 +193,10 @@ for scenario in reco_scenario:
       for line in lines: f1.write(line)
       f1.write(common_syst)
       f1.write(file_syst)
-      if scenario == 'STFCNC': f1.write("\nplots:\n  include: ['histos_control_qcd.yml', 'histos_" + scenario.lower() + "_qcd.yml']\n")
-      else: f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_qcd.yml']\n")
+      #if scenario == 'STFCNC': f1.write("\nplots:\n  include: ['histos_control_qcd.yml', 'histos_" + scenario.lower() + "_qcd.yml']\n")
+      #else: f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_qcd.yml']\n")
       #f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_qcd_paper.yml']\n")
+      f1.write("\nplots:\n  include: ['histos_" + scenario.lower() + "_thesis.yml']\n")
 
-  #call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario + '/qcd', config_path + 'config_1718.yml'], shell=False)
+  if scenario == 'STFCNC':
+    call(['../../plotIt/plotIt', '-o ' + dest_path + '/' + scenario + '/qcd', config_path + 'config_1718.yml'], shell=False)

@@ -87,7 +87,7 @@ for key, value in unc_cat.items():
           line += "0.0\n"
         if 'root:' in line:
           line = line[:line.find(':')+2]
-          line += "'" + dest_path + "post_process/'\n"
+          line += "'" + dest_path + "post_process_v2/'\n"
         if 'systematics' in line: syst_delete = True
         if 'plots:' in line:
           syst_delete = False
