@@ -1130,7 +1130,8 @@ namespace plotIt {
     if (m_config.experiment.length() > 0) {
       std::shared_ptr<TPaveText> pt;
       if (m_config.experiment_label_paper)
-          pt = std::make_shared<TPaveText>(1.15 * m_config.margin_left, 1 - 2.75 * topMargin, 1 - m_config.margin_right, 1, "brNDC");
+          //pt = std::make_shared<TPaveText>(1.15 * m_config.margin_left, 1 - 2.75 * topMargin, 1 - m_config.margin_right, 1, "brNDC");
+          pt = std::make_shared<TPaveText>(1.15 * m_config.margin_left, 1 - 2.6 * topMargin, 1 - m_config.margin_right, 1 - 0.9 * topMargin, "brNDC");
       else pt = std::make_shared<TPaveText>(m_config.margin_left, 1 - 0.5 * topMargin, 1 - m_config.margin_right, 1, "brNDC");
       TemporaryPool::get().add(pt);
 
@@ -1144,19 +1145,27 @@ namespace plotIt {
       pt->SetTextAlign(13);
 
       std::string text = m_config.experiment;
+      std::string text2 = m_config.extra_label;
       if (m_config.extra_label.length() || plot.extra_label.length()) {
         std::string extra_label = plot.extra_label;
         if (extra_label.length() == 0) {
           extra_label = m_config.extra_label;
         }
 
-        boost::format fmt("%s #font[52]{#scale[0.76]{%s}}");
-        fmt % m_config.experiment % extra_label;
+        //boost::format fmt("%s #font[52]{#scale[0.76]{%s}}");
+        //fmt % m_config.experiment % extra_label;
 
-        text = fmt.str();
+        //text = fmt.str();
+
+        boost::format fmt("#font[52]{#scale[0.62]{%s}}");
+        fmt % extra_label;
+
+        text2 = fmt.str();
+
       }
 
       pt->AddText(text.c_str());
+      pt->AddText(text2.c_str());
       pt->Draw();
     }
 

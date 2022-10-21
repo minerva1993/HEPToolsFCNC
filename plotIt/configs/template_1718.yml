@@ -4,7 +4,7 @@ configuration:
   luminosity-label: '%1$.0f fb^{-1} (13 TeV)'
   experiment: " CMS"
   experiment-label-paper: true
-  #extra-label: "Preliminary"
+  extra-label: " Private work"
   root: ''
   luminosity: 101270 #17 + 18
   luminosity-error: 0.024 #0.23 + 0.25 / 2
@@ -26,7 +26,7 @@ files:
 
 legend:
   #position: [0.18, 0.70, 0.96, 0.88]
-  position: [0.35, 0.70, 0.96, 0.88]
+  position: [0.35, 0.70, 0.94, 0.88]
   columns: 4
 
 groups:

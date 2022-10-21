@@ -1,0 +1,313 @@
+'h_PV_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+
+'h_NJet_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  #log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_NBJetCSVv2M_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  #log-y: true
+  sort-by-yields: true
+  save-extensions: ['pdf']
+
+'h_LepPt_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+
+'h_LepEta_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+
+'h_MET_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+
+'h_WMass_Ch2_S4':
+  x-axis: "m_{W,leptonic}^{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+
+'h_JetCSV_Ch2_S4':
+  y-axis: "Number of jets"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+
+'h_LeadJetPt_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+
+'h_LeadJetEta_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+
+'h_SubleadJetPt_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+
+'h_SubleadJetEta_Ch2_S4':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+
+#QCD checks
+'h_LepIso_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_DPhi_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.2, 0.806], size: 17, font: 44}
+
+#Ch2
+'h_FCNHkinHMass_Ch2_S2':
+  x-axis: "m_{b#bar{b}} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHMass_Ch2_S3':
+  x-axis: "m_{b#bar{b}} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHMass_Ch2_S6':
+  x-axis: "m_{b#bar{b}} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHMass_Ch2_S7':
+  x-axis: "m_{b#bar{b}} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHMass_Ch2_S8':
+  x-axis: "m_{b#bar{b}} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinDR_Ch2_S2':
+  x-axis: "#Delta R(b_{1},b_{2}) (H)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinDR_Ch2_S3':
+  x-axis: "#Delta R(b_{1},b_{2}) (H)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinDR_Ch2_S6':
+  x-axis: "#Delta R(b_{1},b_{2}) (H)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinDR_Ch2_S7':
+  x-axis: "#Delta R(b_{1},b_{2}) (H)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinDR_Ch2_S8':
+  x-axis: "#Delta R(b_{1},b_{2}) (H)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopM_Ch2_S2':
+  x-axis: "m_{top}^{leptonic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopM_Ch2_S3':
+  x-axis: "m_{top}^{leptonic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopM_Ch2_S6':
+  x-axis: "m_{top}^{leptonic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopM_Ch2_S7':
+  x-axis: "m_{top}^{leptonic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopM_Ch2_S8':
+  x-axis: "m_{top}^{leptonic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopPt_Ch2_S2':
+  x-axis: "Leptonic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopPt_Ch2_S3':
+  x-axis: "Leptonic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopPt_Ch2_S6':
+  x-axis: "Leptonic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopPt_Ch2_S7':
+  x-axis: "Leptonic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopPt_Ch2_S8':
+  x-axis: "Leptonic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f GeV"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHb2CSV_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHb2CSV_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHb2CSV_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHb2CSV_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHb2CSV_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHb2CSVfull_Ch2_S2':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j3', position: [0.2, 0.806], size: 17, font: 44}
+  
+'h_FCNHkinHb2CSVfull_Ch2_S3':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  x-axis-range: [0.4,1.0]
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j3', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHb2CSVfull_Ch2_S6':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHb2CSVfull_Ch2_S7':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  x-axis-range: [0.4,1.0]
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHb2CSVfull_Ch2_S8':
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f units"
+  x-axis-range: [0.4,1.0]
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}

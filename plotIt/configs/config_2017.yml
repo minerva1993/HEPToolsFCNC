@@ -1,9 +1,12 @@
 configuration:
   width: 450
   height: 450
-  luminosity-label: '%1$.1f fb^{-1} at #sqrt{s} = 13 TeV'
+  #luminosity-label: '%1$.1f fb^{-1} at #sqrt{s} = 13 TeV'
+  luminosity-label: '%1$.1f fb^{-1} (13 TeV)'
   experiment: " CMS"
-  extra-label: "Preliminary"
+  experiment-label-paper: true
+  #extra-label: "Preliminary"
+  extra-label: " Private work"
   root: ''
   luminosity: 41529
   luminosity-error: 0.023
@@ -19,7 +22,8 @@ configuration:
   yields-table-numerical-precision-yields: 2
 
 files: 
-  include: ['files_2017.yml']
+  #include: ['files_2017.yml']
+  include: ['files_2017_merged.yml']
   #include: ['files_2017_noreco.yml']
 
 systematics:
@@ -167,8 +171,11 @@ plots:
 #  include: ['histos_ttbkg_qcd.yml']
 
 legend:
-  position: [0.18, 0.70, 0.96, 0.88]
-  columns: 5
+  #position: [0.18, 0.70, 0.96, 0.88]
+  position: [0.35, 0.70, 0.94, 0.88]
+  #columns: 5
+  columns: 4
 
 groups:
-  include: ['groups.yml']
+  #include: ['groups.yml']
+  include: ['groups_merged.yml']

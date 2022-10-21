@@ -1,0 +1,39 @@
+GData:
+  legend: 'Data'
+  marker-size: 0.6
+
+Gttbb:
+  fill-color: '#330000'
+  legend: 'ttbb'
+
+Gttcc:
+  fill-color: '#990000'
+  legend: 'ttcc'
+
+Gttlf:
+  fill-color: '#cc0000'
+  legend: 'ttlf'
+
+Gother:
+  fill-color: '#ff9933'
+  legend: 'Other bkg.'
+
+GQCD:
+  fill-color: '#d0cfd4'
+  legend: 'QCD'
+
+GSTHct:
+  line-color: '#006666'
+  legend: 'STHct'
+
+GSTHut:
+  line-color: '#666600'
+  legend: 'STHut'
+
+GTTHct:
+  line-color: '#0000cc'
+  legend: 'TTHct'
+
+GTTHut:
+  line-color: '#cccc00'
+  legend: 'TTHut'

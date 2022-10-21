@@ -1,6 +1,7 @@
 'h_DNN_j3b2_Ch2':
   x-axis: "BDT Score"
   y-axis: "Entries"
+  y-axis: "Events / bin"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
   for-yields: true
@@ -9,12 +10,14 @@
   ratio-y-axis-auto-range: true
   #rebin: 4
   labels:
-    - {text: 'b2j3', position: [0.781, 0.806], size: 18}
+#    - {text: 'b2j3', position: [0.781, 0.806], size: 18}
+    - {text: 'b2j3', position: [0.2, 0.806], size: 17, font: 44}
 #  signal-normalize-data: false
 
 'h_DNN_j3b3_Ch2':
   x-axis: "BDT Score"
-  y-axis: "Entries"
+  #y-axis: "Entries"
+  y-axis: "Events / bin"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
   for-yields: true
@@ -23,12 +26,14 @@
   ratio-y-axis-auto-range: true
   #rebin: 4
   labels:
-    - {text: 'b3j3', position: [0.781, 0.806], size: 18}
+#    - {text: 'b3j3', position: [0.781, 0.806], size: 18}
+    - {text: 'b3j3', position: [0.2, 0.806], size: 17, font: 44}
 #  signal-normalize-data: false
 
 'h_DNN_j4b2_Ch2':
   x-axis: "BDT Score"
-  y-axis: "Entries"
+  #y-axis: "Entries"
+  y-axis: "Events / bin"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
   for-yields: true
@@ -37,12 +42,14 @@
   ratio-y-axis-auto-range: true
   #rebin: 4
   labels:
-    - {text: 'b2j4', position: [0.781, 0.806], size: 18}
+#    - {text: 'b2j4', position: [0.781, 0.806], size: 18}
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
 #  signal-normalize-data: false
 
 'h_DNN_j4b3_Ch2':
   x-axis: "BDT Score"
-  y-axis: "Entries"
+  #y-axis: "Entries"
+  y-axis: "Events / bin"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
   for-yields: true
@@ -51,12 +58,14 @@
   ratio-y-axis-auto-range: true
   #rebin: 4
   labels:
-    - {text: 'b3j4', position: [0.781, 0.806], size: 18}
+#    - {text: 'b3j4', position: [0.781, 0.806], size: 18}
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
 #  signal-normalize-data: false
 
 'h_DNN_j4b4_Ch2':
   x-axis: "BDT Score"
-  y-axis: "Entries"
+  #y-axis: "Entries"
+  y-axis: "Events / bin"
   y-axis-format: "%1% / %2$.2f"
   save-extensions: ['pdf']
   for-yields: true
@@ -65,5 +74,6 @@
   ratio-y-axis-auto-range: true
   #rebin: 4
   labels:
-    - {text: 'b4j4', position: [0.781, 0.806], size: 18}
+#    - {text: 'b4j4', position: [0.781, 0.806], size: 18}
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
 #  signal-normalize-data: false

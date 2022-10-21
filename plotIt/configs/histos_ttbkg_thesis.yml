@@ -1,0 +1,144 @@
+'h_FCNHkinLepTopM_Ch2_S6':
+  x-axis: "m_{top}^{leptonic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopM_Ch2_S7':
+  x-axis: "m_{top}^{leptonic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopM_Ch2_S8':
+  x-axis: "m_{top}^{leptonic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopPt_Ch2_S6':
+  x-axis: "Leptonic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopPt_Ch2_S7':
+  x-axis: "Leptonic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinLepTopPt_Ch2_S8':
+  x-axis: "Leptonic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHadWMass_Ch2_S6':
+  x-axis: "m_{W}^{hadronic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHadWMass_Ch2_S7':
+  x-axis: "m_{W}^{hadronic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHadWMass_Ch2_S8':
+  x-axis: "m_{W}^{hadronic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHadTopM_Ch2_S6':
+  x-axis: "m_{top}^{hadronic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHadTopM_Ch2_S7':
+  x-axis: "m_{top}^{hadronic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHadTopM_Ch2_S8':
+  x-axis: "m_{top}^{hadronic} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHadTopPt_Ch2_S6':
+  x-axis: "Hadronic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHadTopPt_Ch2_S7':
+  x-axis: "Hadronic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinHadTopPt_Ch2_S8':
+  x-axis: "Hadronic top p_{T} (GeV)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinDR_Ch2_S6':
+  x-axis: "#Delta R(j_{1},j_{2}) (hadronic W)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b2j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinDR_Ch2_S7':
+  x-axis: "#Delta R(j_{1},j_{2}) (hadronic W)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b3j4', position: [0.2, 0.806], size: 17, font: 44}
+
+'h_FCNHkinDR_Ch2_S8':
+  x-axis: "#Delta R(j_{1},j_{2}) (hadronic W)"
+  y-axis: "Events"
+  y-axis-format: "%1% / %2$.2f"
+  save-extensions: ['pdf']
+  labels:
+    - {text: 'b4j4', position: [0.2, 0.806], size: 17, font: 44}
+

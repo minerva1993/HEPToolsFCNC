@@ -1,0 +1,516 @@
+'hist_STTH1L3BHct.root':
+  type: signal
+  pretty-name: 'STTH1L3BHct'
+  cross-section: 0.076
+  generated-events: 2958720
+  group: GSTHct
+  order: 1
+
+'hist_TTTH1L3BHct.root':
+  type: signal
+  pretty-name: 'TTTH1L3BHct'
+  cross-section: 1.86
+  generated-events: 1591936
+  group: GTTHct
+  order: 2
+
+#'hist_TTTH1L3BaTLepHct.root':
+#  type: signal
+#  pretty-name: 'TTTH1L3BaTLepHct'
+#  cross-section: 0.93
+#  generated-events: 821188
+#  group: GTTHct
+#  order: 2
+#
+#'hist_TTTH1L3BTLepHct.root':
+#  type: signal
+#  pretty-name: 'TTTH1L3BTLepHct'
+#  cross-section: 0.93
+#  generated-events: 770748
+#  group: GTTHct
+#  order: 2
+
+'hist_STTH1L3BHut.root':
+  type: signal
+  pretty-name: 'STTH1L3BHut'
+  cross-section: 0.55
+  generated-events: 2959592
+  group: GSTHut
+  order: 3
+
+'hist_TTTH1L3BHut.root':
+  type: signal
+  pretty-name: 'TTTH1L3BHut'
+  cross-section: 1.86
+  generated-events: 1566131
+  group: GTTHut
+  order: 4
+
+#'hist_TTTH1L3BaTLepHut.root':
+#  type: signal
+#  pretty-name: 'TTTH1L3BaTLepHut'
+#  cross-section: 0.93
+#  generated-events: 806139
+#  group: GTTHut
+#  order: 4
+#
+#'hist_TTTH1L3BTLepHut.root':
+#  type: signal
+#  pretty-name: 'TTTH1L3BTLepHut'
+#  cross-section: 0.93
+#  generated-events: 759992
+#  group: GTTHut
+#  order: 4
+
+'hist_SingleMuonRun2018.root':
+  type: data
+  pretty-name: 'Data'
+  group: GData
+
+'hist_SingleElectronRun2018.root':
+  type: data
+  pretty-name: 'Data'
+  group: GData
+
+'hist_TTpowhegttbb.root':
+  type: mc
+  pretty-name: 'TTpowhegttbb'
+  cross-section: 365.34
+  generated-events: 90347648
+  group: Gttbb
+  yields-group: '0\ttbar\bbbar'
+  order: 0
+  scale: 1.2
+
+'hist_TTLLpowhegttbb.root':
+  type: mc
+  pretty-name: 'TTLLpowhegttbb'
+  cross-section: 88.29
+  generated-events: 55751966
+  group: Gttbb
+  yields-group: '0\ttbar\bbbar'
+  order: 1
+  scale: 1.26
+
+'hist_TTHadpowhegttbb.root':
+  type: mc
+  pretty-name: 'TTHadpowhegttbb'
+  cross-section: 377.96
+  generated-events: 132725582
+  group: Gttbb
+  yields-group: '0\ttbar\bbbar'
+  order: 2
+
+'hist_TTpowhegttcc.root':
+  type: mc
+  pretty-name: 'TTpowhegttcc'
+  cross-section: 365.34
+  generated-events: 90347648
+  group: Gttcc
+  yields-group: '1\ttbar\ccbar'
+  order: 3
+
+'hist_TTLLpowhegttcc.root':
+  type: mc
+  pretty-name: 'TTLLpowhegttcc'
+  cross-section: 88.29
+  generated-events: 55751966
+  group: Gttcc
+  yields-group: '1\ttbar\ccbar'
+  order: 4
+
+'hist_TTHadpowhegttcc.root':
+  type: mc
+  pretty-name: 'TTHadpowhegttcc'
+  cross-section: 377.96
+  generated-events: 132725582
+  group: Gttcc
+  yields-group: '1\ttbar\ccbar'
+  order: 5
+
+'hist_TTpowhegttlf.root':
+  type: mc
+  pretty-name: 'TTpowhegttlf'
+  cross-section: 365.34
+  generated-events: 90347648
+  group: Gttlf
+  yields-group: '2\ttbar LF'
+  order: 6
+
+'hist_TTLLpowhegttlf.root':
+  type: mc
+  pretty-name: 'TTLLpowhegttlf'
+  cross-section: 88.29
+  generated-events: 55751966
+  group: Gttlf
+  yields-group: '2\ttbar LF'
+  order: 7
+
+'hist_TTHadpowhegttlf.root':
+  type: mc
+  pretty-name: 'TTHadpowhegttlf'
+  cross-section: 377.96
+  generated-events: 132725582
+  group: Gttlf
+  yields-group: '2\ttbar LF'
+  order: 8
+
+'hist_ttHTobb.root':
+  type: mc
+  pretty-name: 'ttHTobb'
+  cross-section: 0.2934
+  generated-events: 11590377
+  group: Gother
+  yields-group: '3Other'
+  order: 9
+
+'hist_ttHToNonbb.root':
+  type: mc
+  pretty-name: 'ttHToNonbb'
+  cross-section: 0.2151
+  generated-events: 7368333
+  group: Gother
+  yields-group: '3Other'
+  order: 10
+
+'hist_TTWJetsToLNu.root':
+  type: mc
+  pretty-name: 'TTWJetsToLNu'
+  cross-section: 0.2043
+  generated-events: 2686095
+  group: Gother
+  yields-group: '3Other'
+  order: 11
+
+'hist_TTWJetsToQQ.root':
+  type: mc
+  pretty-name: 'TTWJetsToQQ'
+  cross-section: 0.4062
+  generated-events: 458226
+  group: Gother
+  yields-group: '3Other'
+  order: 12
+
+'hist_TTZToLLNuNu.root':
+  type: mc
+  pretty-name: 'TTZToLLNuNu'
+  cross-section: 0.2529
+  generated-events: 6274046
+  group: Gother
+  yields-group: '3Other'
+  order: 13
+
+'hist_TTZToQQ.root':
+  type: mc
+  pretty-name: 'TTZToQQ'
+  cross-section: 0.5297
+  generated-events: 355226
+  group: Gother
+  yields-group: '3Other'
+  order: 14
+
+'hist_W1JetsToLNu.root':
+  type: mc
+  pretty-name: 'W1JetsToLNu'
+  cross-section: 9625
+  generated-events: 51047866
+  group: Gother
+  yields-group: '3Other'
+  order: 25
+
+'hist_W2JetsToLNu.root':
+  type: mc
+  pretty-name: 'W2JetsToLNu'
+  cross-section: 2793
+  generated-events: 23272818
+  group: Gother
+  yields-group: '3Other'
+  order: 26
+
+'hist_W3JetsToLNu.root':
+  type: mc
+  pretty-name: 'W3JetsToLNu'
+  cross-section: 992.5
+  generated-events: 14492897
+  group: Gother
+  yields-group: '3Other'
+  order: 27
+
+'hist_W4JetsToLNu.root':
+  type: mc
+  pretty-name: 'W4JetsToLNu'
+  cross-section: 544.3
+  generated-events: 10062333
+  group: Gother
+  yields-group: '3Other'
+  order: 28
+
+'hist_DYJets.root':
+  type: mc
+  pretty-name: 'DYJets'
+  cross-section: 6225.42
+  generated-events: 130939668
+  group: Gother
+  yields-group: '3Other'
+  order: 23
+
+'hist_DYJets10to50.root':
+  type: mc
+  pretty-name: 'DYJets10to50'
+  cross-section: 18610
+  generated-events: 39360792
+  group: Gother
+  yields-group: '3Other'
+  order: 24
+
+'hist_SingleTops.root':
+  type: mc
+  pretty-name: 'SingleTops'
+  cross-section: 3.36
+  generated-events: 12447484
+  group: Gother
+  yields-group: '3Other'
+  order: 15
+
+'hist_SingleTopt.root':
+  type: mc
+  pretty-name: 'SingleTopt'
+  cross-section: 136.02
+  generated-events: 144094782
+  group: Gother
+  yields-group: '3Other'
+  order: 16
+
+'hist_SingleTbart.root':
+  type: mc
+  pretty-name: 'SingleTbart'
+  cross-section: 80.95
+  generated-events: 74227130
+  group: Gother
+  yields-group: '3Other'
+  order: 17
+
+'hist_SingleToptW.root':
+  type: mc
+  pretty-name: 'SingleToptW'
+  cross-section: 35.85
+  generated-events: 9553912
+  group: Gother
+  yields-group: '3Other'
+  order: 18
+
+'hist_SingleTbartW.root':
+  type: mc
+  pretty-name: 'SingleTbartW'
+  cross-section: 35.85
+  generated-events: 7588180
+  group: Gother
+  yields-group: '3Other'
+  order: 19
+
+'hist_WW.root':
+  type: mc
+  pretty-name: 'WW'
+  cross-section: 118.7
+  generated-events: 7850000
+  group: Gother
+  yields-group: '3Other'
+  order: 20
+
+'hist_WZ.root':
+  type: mc
+  pretty-name: 'WZ'
+  cross-section: 47.13
+  generated-events: 3885000
+  group: Gother
+  yields-group: '3Other'
+  order: 21
+
+'hist_ZZ.root':
+  type: mc
+  pretty-name: 'ZZ'
+  cross-section: 16.523
+  generated-events: 1979000
+  group: Gother
+  yields-group: '3Other'
+  order: 22
+
+#'hist_QCDMu15to20.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 3819570.0
+#  generated-events: 4576061
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 29
+#
+#'hist_QCDMu20to30.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 2960198.4
+#  generated-events: 30612338
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 30
+#
+#'hist_QCDMu30to50.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 1652471.5
+#  generated-events: 29884616
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 31
+#
+#'hist_QCDMu50to80.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 437504.1
+#  generated-events: 20268872
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 32
+#
+#'hist_QCDMu80to120.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 106033.7
+#  generated-events: 25039361
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 33
+#
+#'hist_QCDMu120to170.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 25190.5
+#  generated-events: 20682254
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 34
+#
+#'hist_QCDMu170to300.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 8654.5
+#  generated-events: 35978539
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 35
+#
+#'hist_QCDMu300to470.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 797.4
+#  generated-events: 28996145
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 36
+#
+#'hist_QCDMu470to600.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 79.0
+#  generated-events: 20003034
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 37
+#
+#'hist_QCDMu600to800.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 25.1
+#  generated-events: 16618977
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 38
+#
+#'hist_QCDMu800to1000.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 4.7
+#  generated-events: 16749914
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 39
+#
+#'hist_QCDMu1000toInf.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 1.6
+#  generated-events: 10719790
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 40
+#
+#'hist_QCDEM15to20.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 2302200.0
+#  generated-events: 14578212
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 41
+#
+#'hist_QCDEM20to30.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 5352960.0
+#  generated-events: 14255377
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 42
+#
+#'hist_QCDEM30to50.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 9928000.0
+#  generated-events: 15086084
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 43
+#
+#'hist_QCDEM50to80.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 2890800.0
+#  generated-events: 10798233
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 44
+#
+#'hist_QCDEM80to120.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 350000.0
+#  generated-events: 9648791
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 45
+#
+#'hist_QCDEM120to170.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 62964.0
+#  generated-events: 9964143
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 46
+#
+#'hist_QCDEM170to300.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 18810.0
+#  generated-events: 3712174
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 47
+#
+#'hist_QCDEM300toInf.root':
+#  type: mc
+#  pretty-name: 'QCD'
+#  cross-section: 1350.0
+#  generated-events: 2901355
+#  group: GQCD
+#  yields-group: '4QCD'
+#  order: 48
