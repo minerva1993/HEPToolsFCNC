@@ -7,14 +7,14 @@
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f units"
   #log-y: true
-  sort-by-yields: true
+  #sort-by-yields: true
   save-extensions: ['pdf']
 
 'h_NBJetCSVv2M_Ch2_S4':
   y-axis: "Events"
   y-axis-format: "%1% / %2$.2f units"
   #log-y: true
-  sort-by-yields: true
+  #sort-by-yields: true
   save-extensions: ['pdf']
 
 'h_LepPt_Ch2_S4':
